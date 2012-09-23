@@ -22,14 +22,8 @@ var assemble = require('../lib/assemble.js');
 */
 
 exports['awesome'] = {
-  setUp: function(done) {
+  setUp: function(done) { 
     // setup here
     done();
-  },
-  'no args': function(test) {
-    test.expect(1);
-    // tests here
-    test.equal(assemble.init(), 'awesome', 'should be awesome.');
-    test.done();
   }
 };
