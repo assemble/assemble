@@ -1,0 +1,156 @@
+//
+// Inverse Variables
+// --------------------------------------------------
+
+
+// Global values
+// --------------------------------------------------
+
+// Accent colors
+// -------------------------
+@blueInverse:              #049cdb;
+@blueLightInverse:         #e7f4fa;
+@blueDarkInverse:          #0064cd;
+@greenInverse:             #46a546;
+@redInverse:               #9d261d;
+@yellowInverse:            #ffc40d;
+@orangeInverse:            #f89406;
+@pinkInverse:              #c3325f;
+@purpleInverse:            #7a43b6;
+
+
+// Scaffolding
+// -------------------------
+@inverseBackground:        #323334;
+@inverseTextColor:         @grayLight;
+
+
+// Links
+// -------------------------
+@inverseLinkColor:         #08c;
+@inverseLinkColorHover:    lighten(@linkColor, 15%);
+
+
+// Tables
+// -------------------------
+@inverseTableBackground:                   transparent; // overall background-color
+@inverseTableBackgroundAccent:             lighten(@inverseBackground, 5%); // for striping
+@inverseTableBackgroundHover:              lighten(@inverseBackground, 10%); // for hover
+@inverseTableBorder:                       rgba(0,0,0,.2); // inverse table and cell border
+
+// Buttons
+// -------------------------
+@inverseBtnBackground:                     @white;
+@inverseBtnBackgroundHighlight:            darken(@white, 10%);
+@inverseBtnBorder:                         #bbb;
+
+@inverseBtnPrimaryBackground:              @linkColor;
+@inverseBtnPrimaryBackgroundHighlight:     spin(@inverseBtnPrimaryBackground, 20%);
+
+@inverseBtnInfoBackground:                 #5bc0de;
+@inverseBtnInfoBackgroundHighlight:        #2f96b4;
+
+@inverseBtnSuccessBackground:              #62c462;
+@inverseBtnSuccessBackgroundHighlight:     #51a351;
+
+@inverseBtnWarningBackground:              lighten(@orange, 15%);
+@inverseBtnWarningBackgroundHighlight:     @orange;
+
+@inverseBtnDangerBackground:               #ee5f5b;
+@inverseBtnDangerBackgroundHighlight:      #bd362f;
+
+@inverseBtnInverseBackground:              #444;
+@inverseBtnInverseBackgroundHighlight:     @grayDarker;
+
+
+// Forms
+// -------------------------
+@inverseInputBackground:               @white;
+@inverseInputBorder:                   #ccc;
+@inverseInputBorderRadius:             3px;
+@inverseInputDisabledBackground:       @grayLighter;
+@inverseFormActionsBackground:         #f5f5f5;
+
+
+// Dropdowns
+// -------------------------
+@inverseDropdownBackground:            @white;
+@inverseDropdownBorder:                rgba(0,0,0,.2);
+@inverseDropdownDividerTop:            #e5e5e5;
+@inverseDropdownDividerBottom:         @white;
+
+@inverseDropdownLinkColor:             @grayDark;
+@inverseDropdownLinkColorHover:        @white;
+@inverseDropdownLinkColorActive:       @inverseDropdownLinkColor;
+
+@inverseDropdownLinkBackgroundActive:  @linkColor;
+@inverseDropdownLinkBackgroundHover:   @inverseDropdownLinkBackgroundActive;
+
+
+
+// COMPONENT VARIABLES
+// --------------------------------------------------
+
+
+// Input placeholder text color
+// -------------------------
+@inversePlaceholderText:         @grayLight;
+
+
+// Hr border color
+// -------------------------
+@inverseHrBorder:                rgba(0,0,0,.2);
+
+
+// Wells
+// -------------------------
+@inverseWellBackground:          darken(@inverseBackground, 8%);
+
+
+// Pagination
+// -------------------------
+@inversePaginationBackground:                #fff;
+@inversePaginationBorder:                    #ddd;
+@inversePaginationActiveBackground:          #f5f5f5;
+
+
+// Hero unit
+// -------------------------
+@inverseHeroUnitBackground:              @grayLighter;
+@inverseHeroUnitHeadingColor:            inherit;
+@inverseHeroUnitLeadColor:               inherit;
+
+
+// Form states and alerts
+// -------------------------
+@inverseWarningText:             #c09853;
+@inverseWarningBackground:       #fcf8e3;
+@inverseWarningBorder:           darken(spin(@warningBackground, -10), 3%);
+
+@inverseErrorText:               #b94a48;
+@inverseErrorBackground:         #f2dede;
+@inverseErrorBorder:             darken(spin(@inverseErrorBackground, -10), 3%);
+
+@inverseSuccessText:             #468847;
+@inverseSuccessBackground:       #dff0d8;
+@inverseSuccessBorder:           darken(spin(@successBackground, -10), 5%);
+
+@inverseInfoText:                #3a87ad;
+@inverseInfoBackground:          #d9edf7;
+@inverseInfoBorder:              darken(spin(@infoBackground, -10), 7%);
+
+
+// Tooltips and popovers
+// -------------------------
+@inverseTooltipColor:            #fff;
+@inverseTooltipBackground:       #000;
+@inverseTooltipArrowWidth:       5px;
+@inverseTooltipArrowColor:       @tooltipBackground;
+
+@inversePopoverBackground:       #fff;
+@inversePopoverArrowWidth:       10px;
+@inversePopoverArrowColor:       #fff;
+@inversePopoverTitleBackground:  darken(@popoverBackground, 3%);
+
+// Special enhancement for popovers
+@inversePopoverArrowOuterColor:  rgba(0,0,0,.25);

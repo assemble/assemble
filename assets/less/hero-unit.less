@@ -1,0 +1,43 @@
+//
+// Hero unit
+// --------------------------------------------------
+
+
+.hero-unit {
+  padding: 60px;
+  margin-bottom: 30px;
+  background-color: @heroUnitBackground;
+  text-align: center;
+  .border-radius(0);
+  h1 {
+    margin-bottom: 0;
+    font-size: 200px;
+    line-height: 1;
+    color: @heroUnitHeadingColor;
+    letter-spacing: -1px;
+  }
+  p {
+    font-size: 18px;
+    font-weight: 200;
+    line-height: @baseLineHeight * 4;
+    color: @heroUnitLeadColor;
+  }
+  a {
+    color: @white;
+    color: rgba(255,255,255,.5);
+    .transition(all .2s ease-in-out);
+  }
+}
+
+// Link styles
+.hero-unit, 
+.hero-unit a:hover {
+  color: @white;
+  text-shadow: 0 0 10px rgba(255,255,255,.25);
+}
+
+// Inner content
+.hero-inner {
+  width: 940px;
+  margin: auto;
+}
