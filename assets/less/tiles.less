@@ -1,0 +1,88 @@
+//
+// Tiles
+// --------------------------------------------------
+
+// Tile Variables
+@tileBackground:             @white;
+@tileArrowWidth:             25px;
+@tileBorderRadius:           5px;
+
+
+// TODO
+// - tile-bordered?
+// - tile-aero? tile-scaffold, tile-placeholder
+
+
+// Base styles
+// --------------------------------------------------
+
+// Core
+.tile {
+  position: relative; // required for drop shadows, generated content and other effects
+  display: block;
+  color: @textColor; // redeclare text color and shadow to override specificity with nested tiles
+  text-shadow: 0 1px 0 rgba(255,255,255,.75);
+  text-align: center;
+  min-height: 90px;
+  margin: 0 0 (@baseLineHeight * 2);
+  padding: 10px;
+  background: @tileBackground;
+  .border-radius(@tileBorderRadius);
+  .box-shadow(0px 1px 4px #666);
+  .box-sizing(border-box); 
+}
+
+.tile .tile {
+  margin: 0; // remove padding for nested tiles
+}
+
+
+
+// Tile Sections
+// --------------------------------------------------
+
+// Header
+.tile-header {
+  overflow: hidden;
+}
+// Body
+.tile-cover {
+  overflow: hidden;
+}
+// Footer
+.tile-meta {
+  padding: 8px;
+}
+.tile-meta h5 {
+  padding: 0;
+  margin: 0;
+}
+
+
+
+// Tile Sizes
+// --------------------------------------------------
+
+// Large
+.tile-large {
+  padding: (@baseLineHeight * 1.5);
+  .border-radius(8px);
+}
+// Small
+.tile-small {
+  padding: 9px;
+  .border-radius(3px);
+}
+
+
+
+// Alternate Tiles
+// --------------------------------------------------
+
+.tile-inverse {
+  color: @inverseTextColor;
+  text-shadow: 0 1px 1px rgba(0,0,0,.5);
+  background: @inverseBackground;
+  border-color: @black;
+  .box-shadow(0 1px 0 rgba(255,255,255,.2));
+}
