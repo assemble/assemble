@@ -97,8 +97,6 @@ hr.soften {
   background: #fcfcfc; 
 }
 .jumbotron h1 {
-  font-family: 'PT Sans Narrow';
-  font-size: 37px;
   font-weight: bold;
   color: @themeBaseColor;
   line-height: 37px;
@@ -225,7 +223,11 @@ hr.soften {
   border-bottom: 1px solid #ddd;
 }
 .subhead h1 {
-  font-size: 60px;
+  font-size: 70px;
+  font-weight: 300;
+  color: darken(@themeBaseColor, 5%);
+  line-height: 1;
+  letter-spacing: -1px;
 }
 .subhead p {
   margin-bottom: 20px;
@@ -1082,4 +1084,21 @@ form.bs-docs-example {
     margin-right: 15px;
     margin-left: 15px;
   }
+}
+
+
+// iPad media Queries
+
+@media (max-device-width: 1024px) and (orientation: landscape) { 
+
+}
+
+@media (max-device-width: 768px) and (orientation: portrait) { 
+
+}
+
+// iPhone 4
+
+@media only screen and (-webkit-min-device-pixel-ratio : 1.5), only screen and (min-device-pixel-ratio : 1.5) { 
+
 }
