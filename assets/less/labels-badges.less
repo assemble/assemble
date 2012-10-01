@@ -9,7 +9,7 @@
   font-size: @baseFontSize * .846;
   font-weight: bold;
   line-height: 14px; // ensure proper line-height if floated
-  color: @white;
+  color: @white !important;
   vertical-align: baseline;
   white-space: nowrap;
   text-shadow: 0 -1px 0 rgba(0,0,0,.25);
@@ -35,6 +35,27 @@ a {
   }
 }
 
+
+// Sizes
+// ------------------------------
+
+.label-medium {
+  font-weight: normal;
+  font-size: @baseFontSize + 1;
+  line-height: 16px; // ensure proper line-height if floated
+  padding: 4px 10px;
+}
+
+
+.label-large {
+  font-size: @baseFontSize + 3;
+  line-height: 20px; // ensure proper line-height if floated
+  padding: 7px 12px;
+  .border-radius(4px);
+}
+
+
+
 // Colors
 // Only give background-color difference to links (and to simplify, we don't qualifty with `a` but [href] attribute)
 .label,
@@ -46,8 +67,9 @@ a {
   &-warning           { background-color: @orange; }
   &-warning[href]     { background-color: darken(@orange, 10%); }
   // Success (green)
-  &-success           { background-color: @successText; }
-  &-success[href]     { background-color: darken(@successText, 10%); }
+  &-success           { background-color: @green; }
+  &-success[href]     { background-color: @green; }
+  &-success:hover     { background-color: saturate(@green, 10%); }
   // Info (turquoise)
   &-info              { background-color: @infoText; }
   &-info[href]        { background-color: darken(@infoText, 10%); }

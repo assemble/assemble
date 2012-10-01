@@ -5,7 +5,7 @@
 
 .breadcrumb {
   padding: 8px 15px;
-  margin: 0 0 @baseLineHeight;
+  margin: -10px 0 30px;
   list-style: none;
   background-color: #f5f5f5;
   .border-radius(4px);
@@ -14,11 +14,15 @@
     .ie7-inline-block();
     text-shadow: 0 1px 0 @white;
   }
+  li > a {
+    font-weight: bold;
+  }
   .divider {
     padding: 0 5px;
     color: #ccc;
   }
   .active {
+    font-weight: normal;
     color: @grayLight;
   }
 }
