@@ -3,6 +3,21 @@
 // --------------------------------------------------
 
 
+// Learn more links
+.hero-unit .learn-more {
+  position: relative;
+}
+.hero-unit .learn-more:after {
+  position: absolute;
+  content: "\2192";
+  display: inline-block;
+  margin-left: 5px;
+}
+.learn-more { 
+
+}
+
+
 // Featurettes
 // -----------------------------
 
@@ -50,13 +65,13 @@
     .transition(background-color 0.5s ease-in-out);
   }
   .button-github:hover {
-    color: darken(@assembleBaseColor, 15%);
+    color: darken(saturate(@assembleBaseColor, 15%), 20%);
     background-color: rgba(255,255,255,.6);
-    .box-shadow(0px 2px 6px rgba(0,0,0,.5);
+    .box-shadow(0px 1px 3px rgba(0,0,0,.5);
   }
   .button-github:active {
     background-color: rgba(255,255,255,.75);
-    .box-shadow(inset 0 1px 1px 1px rgba(0,0,0,.5);
+    .box-shadow(inset 0 1px 1px 0 rgba(0,0,0,.5);
   }
   .button-github .icon-right-arrow {
     font-size: 24px;
@@ -64,16 +79,18 @@
   }
 }
 
+@btnDocsBackground: spin(@assembleBaseColor, 180%);
+
 // Hero section, btn to "go to docs"
 .hero-unit {
   .btn-docs {
-    color: rgba(255,255,255,.7);
+    color: @white;
     padding: 5px 14px;
-    background: darken(@assembleBaseColor, 5%);
+    background: @btnDocsBackground;
     .border-radius(30px);
     &:hover {
       text-decoration: none;
-      background: darken(@assembleBaseColor, 10%);
+      background: darken(@btnDocsBackground, 10%);
     }
   }
 }
