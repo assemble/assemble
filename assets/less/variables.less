@@ -2,6 +2,7 @@
 // Variables
 // --------------------------------------------------
 
+@assembleBaseColor:           @blue; 
 
 // Global values
 // --------------------------------------------------
@@ -13,7 +14,7 @@
 @grayDarker:            #222;
 @grayDark:              #333;
 @gray:                  #555;
-@grayLight:             #999;
+@grayLight:             #aaa;
 @grayLighter:           #eee;
 @white:                 #fff;
 
@@ -22,7 +23,8 @@
 // -------------------------
 @blue:                  #049cdb;
 @blueDark:              #0064cd;
-@green:                 #76AD55;
+@green:                 #76ad55;
+@greenLight:            lighten(saturate(@green, 25%), 25%);
 @red:                   #9d261d;
 @yellow:                #ffc40d;
 @orange:                #f89406;
@@ -32,19 +34,19 @@
 
 // Scaffolding
 // -------------------------
-@bodyBackground:        @white;
+@bodyBackground:        @grayLighter;
 @textColor:             @grayDark;
 
 
 // Links
 // -------------------------
-@linkColor:             #08c;
+@linkColor:             darken(saturate(@assembleBaseColor, 20%), 10%);
 @linkColorHover:        darken(@linkColor, 15%);
 
 
 // Typography
 // -------------------------
-@sansFontFamily:        'Open Sans', Helvetica, Arial, sans-serif;
+@sansFontFamily:        'Droid Sans', Helvetica, Arial, sans-serif;
 @serifFontFamily:       Georgia, "Times New Roman", Times, serif;
 @monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace;
 
@@ -53,7 +55,7 @@
 @baseLineHeight:        20px;
 @altFontFamily:         @serifFontFamily;
 
-@headingsFontFamily:    'Cuprum', 'Open Sans', Helvetica, Arial, sans-serif; // empty to use BS default, @baseFontFamily
+@headingsFontFamily:    'PT Sans Narrow', 'Open Sans', Helvetica, Arial, sans-serif; // empty to use BS default, @baseFontFamily
 @headingsFontWeight:    bold;    // instead of browser default, bold
 @headingsColor:         inherit; // empty to use BS default, @textColor
 
@@ -88,8 +90,8 @@
 @btnBackgroundHighlight:            darken(@white, 10%);
 @btnBorder:                         #bbb;
 
-@btnPrimaryBackground:              @linkColor;
-@btnPrimaryBackgroundHighlight:     spin(@btnPrimaryBackground, 20%);
+@btnPrimaryBackground:              saturate(@assembleBaseColor, 10%);
+@btnPrimaryBackgroundHighlight:     darken(@btnPrimaryBackground, 10%);
 
 @btnInfoBackground:                 #5bc0de;
 @btnInfoBackgroundHighlight:        #2f96b4;
@@ -107,8 +109,8 @@
 @btnInverseBackgroundHighlight:     @grayDarker;
 
 // Custom
-@btnAssembleBackground:              spin(@green, 180);
-@btnAssembleBackgroundHighlight:     darken(@btnAssembleBackground, 10%);
+@btnAssembleBackground:              spin(@assembleBaseColor, 180);
+@btnAssembleBackgroundHighlight:     darken(@assembleBaseColor, 10%);
 
 
 
@@ -133,7 +135,7 @@
 @dropdownLinkColorHover:        @white;
 @dropdownLinkColorActive:       @dropdownLinkColor;
 
-@dropdownLinkBackgroundActive:  spin(@green, 180);
+@dropdownLinkBackgroundActive:  spin(@assembleBaseColor, 180);
 @dropdownLinkBackgroundHover:   @dropdownLinkBackgroundActive;
 
 
@@ -185,15 +187,15 @@
 @navbarCollapseWidth:             979px;
 @navbarCollapseDesktopWidth:      @navbarCollapseWidth + 1;
 
-@navbarHeight:                    40px;
-@navbarBackgroundHighlight:       #ffffff;
-@navbarBackground:                darken(@navbarBackgroundHighlight, 5%);
+@navbarHeight:                    60px;
+@navbarBackgroundHighlight:       @assembleBaseColor;
+@navbarBackground:                @assembleBaseColor;
 @navbarBorder:                    darken(@navbarBackground, 12%);
 
-@navbarText:                      #777;
-@navbarLinkColor:                 #777;
-@navbarLinkColorHover:            @grayDark;
-@navbarLinkColorActive:           @gray;
+@navbarText:                      #fff;
+@navbarLinkColor:                 #fff;
+@navbarLinkColorHover:            rgba(255,255,255,.8);
+@navbarLinkColorActive:           rgba(255,255,255,.8);
 @navbarLinkBackgroundHover:       transparent;
 @navbarLinkBackgroundActive:      darken(@navbarBackground, 5%);
 
@@ -228,7 +230,7 @@
 
 // Hero unit
 // -------------------------
-@heroUnitBackground:              @grayLighter;
+@heroUnitBackground:              @assembleBaseColor;
 @heroUnitHeadingColor:            inherit;
 @heroUnitLeadColor:               inherit;
 

@@ -1,0 +1,35 @@
+// Panels
+// --------------------------------------------------
+
+
+
+// Base
+.panel {
+  position: relative; // required for drop shadows, generated content and other effects
+  color: @textColor; // redeclare text color and shadow to override specificity with nested panels
+  text-shadow: 0 1px 0 rgba(255,255,255,.75);
+  min-height: @baseLineHeight;
+  padding: 0 @baseLineHeight 40px;
+  margin: @baseLineHeight 0;
+  background-color: #fff;
+  border: 1px solid #d2d3d4;
+  .border-radius(5px);
+  .box-shadow(inset 0 0 0 1px @white);
+}
+.panel .panel {
+  margin: 0; // remove padding for nested panels
+}
+
+
+.panel-flush {
+  margin-top: -30px;
+  padding-top: 30px;
+  border-top: none;
+  .border-radius(0);
+  .box-shadow(0 2px 12px rgba(0,0,0,.1));
+}
+
+.jumbotron + .container > .panel-flush {
+  padding-top: 0;
+  border-top: 1px solid rgba(0,0,0,.15);
+}
