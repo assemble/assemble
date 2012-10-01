@@ -2,7 +2,10 @@
 // Variables
 // --------------------------------------------------
 
-@assembleBaseColor:           @green; 
+@themeBaseColor:           @blue; 
+@themeSpinColor:           spin(@themeBaseColor, 90%);
+@themeSpinFull:            spin(@themeBaseColor, 180%);
+
 
 // Global values
 // --------------------------------------------------
@@ -21,7 +24,7 @@
 
 // Accent colors
 // -------------------------
-@blue:                  #049cdb;
+@blue:                  #04B9DB; // #049cdb;
 @blueDark:              #0064cd;
 @aqua:                  #04D2DB;
 @green:                 #76ad55;
@@ -41,8 +44,8 @@
 
 // Links
 // -------------------------
-@linkColor:             darken(saturate(@assembleBaseColor, 20%), 10%);
-@linkColorHover:        darken(@linkColor, 15%);
+@linkColor:             saturate(@themeBaseColor, 10%);
+@linkColorHover:        lighten(@linkColor, 10%);
 
 
 // Typography
@@ -91,8 +94,8 @@
 @btnBackgroundHighlight:            darken(@white, 10%);
 @btnBorder:                         #bbb;
 
-@btnPrimaryBackground:              saturate(@assembleBaseColor, 10%);
-@btnPrimaryBackgroundHighlight:     darken(@btnPrimaryBackground, 10%);
+@btnPrimaryBackground:              saturate(lighten(@themeBaseColor, 5%), 10%);
+@btnPrimaryBackgroundHighlight:     darken(@btnPrimaryBackground, 5%);
 
 @btnInfoBackground:                 #5bc0de;
 @btnInfoBackgroundHighlight:        #2f96b4;
@@ -110,8 +113,8 @@
 @btnInverseBackgroundHighlight:     @grayDarker;
 
 // Custom
-@btnAssembleBackground:              spin(@assembleBaseColor, 180);
-@btnAssembleBackgroundHighlight:     darken(@assembleBaseColor, 10%);
+@btnAssembleBackground:              spin(@themeBaseColor, 180);
+@btnAssembleBackgroundHighlight:     darken(@themeBaseColor, 10%);
 
 
 
@@ -136,7 +139,7 @@
 @dropdownLinkColorHover:        @white;
 @dropdownLinkColorActive:       @dropdownLinkColor;
 
-@dropdownLinkBackgroundActive:  spin(@assembleBaseColor, 180);
+@dropdownLinkBackgroundActive:  spin(@themeBaseColor, 180);
 @dropdownLinkBackgroundHover:   @dropdownLinkBackgroundActive;
 
 
@@ -189,8 +192,8 @@
 @navbarCollapseDesktopWidth:      @navbarCollapseWidth + 1;
 
 @navbarHeight:                    60px;
-@navbarBackgroundHighlight:       @assembleBaseColor;
-@navbarBackground:                @assembleBaseColor;
+@navbarBackgroundHighlight:       @themeBaseColor;
+@navbarBackground:                @themeBaseColor;
 @navbarBorder:                    darken(@navbarBackground, 12%);
 
 @navbarText:                      #fff;
@@ -231,7 +234,7 @@
 
 // Hero unit
 // -------------------------
-@heroUnitBackground:              @assembleBaseColor;
+@heroUnitBackground:              @themeBaseColor;
 @heroUnitHeadingColor:            inherit;
 @heroUnitLeadColor:               inherit;
 

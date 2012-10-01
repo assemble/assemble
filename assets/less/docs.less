@@ -100,7 +100,7 @@ hr.soften {
   font-family: 'PT Sans Narrow';
   font-size: 37px;
   font-weight: bold;
-  color: @assembleBaseColor;
+  color: @themeBaseColor;
   line-height: 37px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizelegibility; // Fix the character spacing for headings
@@ -121,7 +121,7 @@ hr.soften {
           transition: all .2s ease-in-out;
 }
 .jumbotron .breadcrumb > li > a {
-  color: @assembleBaseColor;
+  color: @themeBaseColor;
 }
 .jumbotron a:hover {
   color: #fff;
@@ -976,6 +976,10 @@ form.bs-docs-example {
   }
 }
 @media (max-width: 767px) {
+  .banner .container {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
   .hero-title,
   .hero-unit h1 {
     font-size: 120px;
