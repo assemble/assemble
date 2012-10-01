@@ -3,172 +3,6 @@
 // --------------------------------------------------
 
 
-// Custom Variables
-// -------------------------------------------
-
-// Colors
-@assembleGreen:               #76AD55; // green
-@assemblePurple:              #8355AD; // purple
-@assembleBerry:               #AD55AD; // berry
-@assembleRed:                 #C55454; // red
-@assembleOrange:              #8355AD; // orange
-@assembleGray:                #504C48; // gray
-
-// Hero Section
-@heroSectionBackground:       #f5f6f7;
-@heroSectionHeadingColor:     @white;
-@heroSectionLeadColor:        @black;
-
-
-
-// Sections
-// --------------------------------------------------
-
-body {
-  padding: 0 !important;
-  background-color: #f5f5f5;
-}
-
-.hero-unit {
-  background-color: @assembleGreen;
-}
-
-.hero-unit h1,
-.hero-section h1 {
-  // font-family: 'Droid Sans', sans-serif;
-  // font-family: 'PT Sans Narrow', sans-serif;
-  // font-family: 'Yanone Kaffeesatz', sans-serif;
-  font-weight: lighter;
-}
-// Link styles
-.hero-unit, 
-.hero-unit a:hover {
-  color: @white;
-  text-shadow: 0 0 10px rgba(255,255,255,.25);
-}
-
-
-// Hero Section
-
-.hero-section {
-  padding: 40px 0;
-  margin-bottom: 30px;
-  background-color: @heroSectionBackground;
-  text-align: center;
-  .border-radius(0);
-  h1, .hero-title {
-    margin-bottom: 0;
-    font-size: 100px;
-    line-height: 0.9;
-    color: @heroSectionHeadingColor;
-    letter-spacing: -3px;
-    width: 100%;
-  }
-  p {
-    font-size: 18px;
-    font-weight: 200;
-    line-height: @baseLineHeight * 1.5;
-    color: @heroSectionLeadColor;
-  }
-  a {
-    color: @white;
-    color: rgba(255,255,255,.5);
-    .transition(all .2s ease-in-out);
-  }
-}
-
-.hero-first,
-.hero-second,
-.hero-third {
-  display: block;
-  padding: 40px 0;
-}
-.hero-first {
-  background-color: @assembleGreen;
-}
-.hero-second {
-  background-color: @assemblePurple;
-}
-.hero-third {
-  background-color: @assembleOrange;
-}
-
-
-// Inner content
-.hero-inner {
-  width: 940px;
-  margin: auto;
-}
-
-@media (max-width: 767px) {
-  .hero-title,
-  .hero-unit h1 {
-    font-size: 160px;
-  }
-}
-@media (max-width: 600px) {
-  .hero-title,
-  .hero-unit h1 {
-    font-size: 120px;
-  }
-}
-@media (max-width: 480px) {
-  .hero-title,
-  .hero-unit h1 {
-    font-size: 80px;
-  }
-  .hero-unit p {
-    font-size: 15px;
-  }
-}
-
-// Components
-// --------------------------------------------------
-
-// Tiles
-// -----------------------------
-.hero-unit .tile {
-  background: none;
-  box-shadow: none;
-  cursor: pointer;
-}
-.hero-unit .tile:hover {
-  background: rgba(255,255,255,.9);
-  box-shadow: 0px 1px 4px #666;
-}
-// Inverse tiles
-.tile-inverse {
-  min-height: 100px;
-}
-
-// Sprite for hero section tiles
-.sprite-tiles {
-  background: url("../ico/tile-sprite.png") top left no-repeat;
-}
-.icon-tile-1 {
-  width: 81px;
-  height: 64px;
-  background-position: -281px -10px;
-}
-.icon-tile-2 {
-  margin-top: 6px;
-  width: 84px;
-  height: 54px;
-  background-position: -90px -10px;
-}
-.icon-tile-3 {
-  width: 87px;
-  height: 64px;
-  background-position: -184px -10px;
-}
-.icon-tile-4 {
-  width: 70px;
-  height: 69px;
-  background-position: -10px -10px;
-}
-
-
-
 // Featurettes
 // -----------------------------
 
@@ -177,9 +11,6 @@ body {
 }
 .featurette {
   padding: 75px 0;
-}
-.featurette-image {
-  margin-top: -75px;
 }
 .featurette-image.pull-left {
   margin-right: 40px;
@@ -197,31 +28,88 @@ body {
 
 // Github Button
 // -----------------------------
-.button-github, 
-.button-github:hover {
-  display: inline-block;
-  padding: 0 90px;
-  margin-bottom: 20px;
-  font-family: arial;
-  font-size: 20px;
-  font-weight: bold;
-  line-height: 60px;
-  text-decoration: none;
-  text-transform: uppercase;
-  cursor: pointer;
-  background-color: rgba(255,255,255,.25);
-  .box-shadow(none);
-  .border-radius(5px);
-  .transition(background-color 0.3s ease-in-out);
+.hero-unit {
+  .button-github, 
+  .button-github:hover {
+    display: block;
+    padding: 0 90px;
+    margin-bottom: 40px;
+    font-family: arial;
+    font-size: 20px;
+    font-weight: bold;
+    color: @white;
+    color: rgba(255,255,255,.9);
+    line-height: 60px;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    background-color: rgba(255,255,255,.4);
+    .box-shadow(none);
+    .border-radius(30px);
+    .transition(none);
+    .transition(background-color 0.5s ease-in-out);
+  }
+  .button-github:hover {
+    color: darken(@assembleBaseColor, 15%);
+    background-color: rgba(255,255,255,.6);
+    .box-shadow(0px 2px 6px rgba(0,0,0,.5);
+  }
+  .button-github:active {
+    background-color: rgba(255,255,255,.75);
+    .box-shadow(inset 0 1px 1px 1px rgba(0,0,0,.5);
+  }
+  .button-github .icon-right-arrow {
+    font-size: 24px;
+    line-height: 16px;
+  }
 }
-.button-github:hover {
-  color: rgba(0,0,0,.8) !important;
-  background-color: rgba(255,255,255,.40);
+
+// Hero section, btn to "go to docs"
+.hero-unit {
+  .btn-docs {
+    color: rgba(255,255,255,.7);
+    padding: 5px 14px;
+    background: darken(@assembleBaseColor, 5%);
+    .border-radius(30px);
+    &:hover {
+      text-decoration: none;
+      background: darken(@assembleBaseColor, 10%);
+    }
+  }
 }
-.button-github:active {
-  .box-shadow(inset 0 1px 1px 1px rgba(0,0,0,.5);
+
+.btn-responsive + .btn-responsive {
+  margin-left: 5px;
 }
-.button-github .icon-right-arrow {
-  font-size: 24px;
-  line-height: 16px;
+
+// Footer
+// --------------------------------------------------
+
+.footer {
+  padding: 60px 0 60px;
+  margin-top: -60px;
+  border-top: 1px solid #ddd;
+  background-color: @grayDark;
+}
+.footer p {
+  margin-bottom: 0;
+  color: @white;
+}
+.footer a,
+.footer-links {
+  color: @grayLight;
+  margin: 10px 0;
+}
+.footer-links li {
+  display: inline;
+  margin-right: 10px;
+}
+.footer-links li > a {
+  color: lighten(@assembleBaseColor, 20%);
+}
+.footer-links li > a:hover {
+  color: lighten(@assembleBaseColor, 30%);
+}
+.footer .icon-up-arrow {
+  width: auto;
 }
