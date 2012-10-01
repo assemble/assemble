@@ -29,6 +29,7 @@
   .border-radius(@tileBorderRadius);
   .box-shadow(0px 1px 4px #666);
   .box-sizing(border-box); 
+  z-index: 10;
 }
 .tile .tile {
   margin: 0; // remove padding for nested tiles
@@ -37,11 +38,7 @@
 .tile-block {
   margin: 0 0 (@baseLineHeight * 2);
 }
-.tile-text {
-  font-size: @baseFontSize + 3;
-  color: #000;
-  margin: @baseLineHeight 0;
-}
+
 
 
 
@@ -70,6 +67,12 @@
 .tile-meta h5 {
   padding: 0;
   margin: 0;
+}
+
+.tile-text {
+  font-size: @baseFontSize + 3;
+  color: #000;
+  margin: @baseLineHeight 0;
 }
 
 
