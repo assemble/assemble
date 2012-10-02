@@ -1,0 +1,20 @@
+//
+// Color Function Mixins
+// --------------------------------
+
+
+
+
+
+// Dark Background
+.textColorMixin (@themePrimaryColor) when (lightness(@themePrimaryColor) >= 66%) {
+  color: black; 
+}
+// Medium Background
+.textColorMixin (@themePrimaryColor) when (lightness(@themePrimaryColor) >= 33%) and not (lightness(@themePrimaryColor) >= 66%) { 
+  color: white; 
+}
+// Light Background
+.textColorMixin (@themePrimaryColor) when (lightness(@themePrimaryColor) < 33%) { 
+  color: white; 
+}
