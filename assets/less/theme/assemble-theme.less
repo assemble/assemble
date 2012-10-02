@@ -1,0 +1,145 @@
+//
+// Assemble Theme
+// --------------------------------------------------
+
+
+// Learn more links
+.hero-unit .learn-more {
+  position: relative;
+}
+.hero-unit .learn-more:after {
+  position: absolute;
+  content: "\2192";
+  display: inline-block;
+  margin-left: 5px;
+}
+.learn-more { 
+
+}
+
+
+// Featurettes
+// -----------------------------
+
+.featurette-divider {
+  margin: 60px 0;
+}
+.featurette {
+  padding: 25px 0 40px;
+}
+.featurette-image.pull-left {
+  margin-right: 40px;
+}
+.featurette-image.pull-right {
+  margin-left: 40px;
+}
+.featurette-heading {
+  font-size: 50px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+
+// Github Button
+// -----------------------------
+.hero-unit {
+  .button-github, 
+  .button-github:hover {
+    display: block;
+    padding: 0 90px;
+    margin-bottom: 40px;
+    font-family: arial;
+    font-size: 20px;
+    font-weight: bold;
+    color: @white;
+    color: rgba(255,255,255,.9);
+    line-height: 60px;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    background-color: rgba(255,255,255,.4);
+    .box-shadow(none);
+    .border-radius(30px);
+    .transition(none);
+    .transition(background-color 0.5s ease-in-out);
+  }
+  .button-github:hover {
+    color: darken(saturate(@themePrimaryColor, 15%), 20%);
+    background-color: rgba(255,255,255,.6);
+    .box-shadow(0px 1px 3px rgba(0,0,0,.5);
+  }
+  .button-github:active {
+    background-color: rgba(255,255,255,.75);
+    .box-shadow(inset 0 1px 1px 0 rgba(0,0,0,.5);
+  }
+  .button-github .icon-right-arrow {
+    font-size: 24px;
+    line-height: 16px;
+  }
+}
+
+// @btnDocsBackground: spin(@themePrimaryColor, 180%); // use to get opposite color of theme
+@btnDocsBackground: lighten(saturate(@themePrimaryColor, 10%), 5%); 
+
+// Hero section, btn to "go to docs"
+.hero-unit {
+  .btn-docs {
+    color: @white;
+    padding: 5px 14px;
+    background: @btnDocsBackground;
+    .border-radius(30px);
+    &:hover {
+      text-decoration: none;
+      background: lighten(@btnDocsBackground, 5%);
+    }
+    &:active {
+      .box-shadow(inset 0 1px 1px rgba(0,0,0,.5));
+    }
+  }
+}
+
+.btn-responsive + .btn-responsive {
+  margin-left: 5px;
+}
+
+// Footer
+// --------------------------------------------------
+
+@footerBackgroundColor: @grayDark;
+
+
+.footer {
+  padding: 60px 0 60px;
+  margin-top: -60px;
+  border-top: 1px solid #ddd;
+  background-color: @footerBackgroundColor;
+}
+.footer p {
+  margin-bottom: 0;
+  color: @white;
+}
+.footer a,
+.footer-links {
+  color: @grayLight;
+  margin: 10px 0;
+  &:hover {
+    color: lighten(@themePrimaryColor, 30%);
+  }
+}
+.footer-links li {
+  display: inline;
+  margin-right: 10px;
+}
+.footer-links li > a {
+  color: lighten(@themePrimaryColor, 20%);
+}
+.footer-links li > a:hover {
+  color: lighten(@themePrimaryColor, 30%);
+}
+.footer .icon-up-arrow {
+  width: auto;
+}
+.footer-links .text-disabled > a {
+  color: lighten(@footerBackgroundColor, 10%);
+}
