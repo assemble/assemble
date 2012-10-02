@@ -37,11 +37,6 @@ body.banner-padding {
   padding-top: 90px;
 }
 
-.banner + .hero-unit {
-  margin-top: @bannerHeight;
-}
-
-
 
 // Alternate styles
 // ----------------
@@ -108,19 +103,17 @@ body.banner-padding {
 
 // Move navbar down if another banner is present
 .banner + .banner,
-.banner + .navbar-fixed-top,
-.banner + script + .navbar-fixed-top { // account for when navbar is pulled in with ajax
-  margin-top: 50px;
+.banner ~ .navbar-fixed-top,
+.banner ~ .navbar-fixed-top ~ .jumbotron { 
+  margin-top: (@bannerHeight + 3px);
 }
 .banner + .banner + .banner,
-.banner + .banner + .navbar-fixed-top,
-.banner + .banner + script + .navbar-fixed-top { // account for when navbar is pulled in with ajax
-  margin-top: 100px;
-  + .nav-drawer {
-    margin-top: 50px;
-  }
+.banner + .banner ~ .navbar-fixed-top { 
+  margin-top: ((@bannerHeight + 3px) * 2);
 }
-
+.banner + .hero-unit {
+  margin-top: (@bannerHeight / 2); // add just a little space above hero-unit when banner is present
+}
 
 
 // Components
@@ -145,14 +138,14 @@ body.banner-padding {
   top: 0; 
   right: 0;
   color: @white;
-  color: lighten(@themeBaseColor, 20%); // #A8FDFA
+  color: lighten(@themePrimaryColor, 20%); // #A8FDFA
   font-weight: bold;
   text-decoration: underline;
   text-shadow: none;
   position: relative;
   line-height: @baseLineHeight;
   &:hover {
-    color: lighten(@themeBaseColor, 40%); // #A8FDFA
+    color: lighten(@themePrimaryColor, 40%); // #A8FDFA
   }
 }
 // Use pseudo-elements to add data to banner messages
@@ -162,18 +155,3 @@ body.banner-padding {
   font-weight: bold;
 }
 
-
-// Master-Details
-// ----------------------------------------
-
-// adjust padding for banners inside records
-.record-banner {
-  padding: 6px 15px;
-  border-bottom: 1px solid #EEE0B0;
-  margin-bottom: @baseLineHeight / 2;
-}
-.data .banner {
-  .container {
-    width: auto;
-  }
-}

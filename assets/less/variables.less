@@ -2,10 +2,6 @@
 // Variables
 // --------------------------------------------------
 
-@themeBaseColor:           @blue; 
-@themeSpinColor:           spin(@themeBaseColor, 90%);
-@themeSpinFull:            spin(@themeBaseColor, 180%);
-
 
 // Global values
 // --------------------------------------------------
@@ -24,9 +20,12 @@
 
 // Accent colors
 // -------------------------
-@blue:                  #04CADB; // #04B9DB; // #049cdb;
+@blue:                  #049cdb;
+@blueMed:               #27A8C0; 
 @blueDark:              #0064cd;
-@aqua:                  #04D2DB;
+@turquoise:             #2dd1df;
+@ceruleanBlue:          #04b9db; // deeper than aqua
+@aqua:                  #04d2db;
 @green:                 #76ad55;
 @greenLight:            lighten(saturate(@green, 25%), 25%);
 @red:                   #9d261d;
@@ -44,7 +43,7 @@
 
 // Links
 // -------------------------
-@linkColor:             saturate(@themeBaseColor, 10%);
+@linkColor:             saturate(@themePrimaryColor, 10%);
 @linkColorHover:        darken(@linkColor, 10%);
 
 
@@ -59,7 +58,7 @@
 @baseLineHeight:        20px;
 @altFontFamily:         @serifFontFamily;
 
-@headingsFontFamily:    'PT Sans Narrow', 'Open Sans', Helvetica, Arial, sans-serif; // empty to use BS default, @baseFontFamily
+@headingsFontFamily:    'PT Sans Narrow', 'Droid Sans', Helvetica, Arial, sans-serif; // empty to use BS default, @baseFontFamily
 @headingsFontWeight:    bold;    // instead of browser default, bold
 @headingsColor:         inherit; // empty to use BS default, @textColor
 
@@ -94,8 +93,8 @@
 @btnBackgroundHighlight:            darken(@white, 10%);
 @btnBorder:                         #bbb;
 
-@btnPrimaryBackground:              saturate(lighten(@themeBaseColor, 5%), 10%);
-@btnPrimaryBackgroundHighlight:     darken(@btnPrimaryBackground, 5%);
+@btnPrimaryBackground:              saturate(lighten(@themePrimaryColor, 5%), 10%);
+@btnPrimaryBackgroundHighlight:     darken(@btnPrimaryBackground, 7%);
 
 @btnInfoBackground:                 #5bc0de;
 @btnInfoBackgroundHighlight:        #2f96b4;
@@ -113,8 +112,8 @@
 @btnInverseBackgroundHighlight:     @grayDarker;
 
 // Custom
-@btnAssembleBackground:              spin(@themeBaseColor, 180);
-@btnAssembleBackgroundHighlight:     darken(@themeBaseColor, 10%);
+@btnAssembleBackground:              spin(@themePrimaryColor, 180);
+@btnAssembleBackgroundHighlight:     darken(@themePrimaryColor, 10%);
 
 
 
@@ -139,7 +138,7 @@
 @dropdownLinkColorHover:        @white;
 @dropdownLinkColorActive:       @dropdownLinkColor;
 
-@dropdownLinkBackgroundActive:  spin(@themeBaseColor, 180);
+@dropdownLinkBackgroundActive:  spin(@themePrimaryColor, 180);
 @dropdownLinkBackgroundHover:   @dropdownLinkBackgroundActive;
 
 
@@ -192,8 +191,8 @@
 @navbarCollapseDesktopWidth:      @navbarCollapseWidth + 1;
 
 @navbarHeight:                    60px;
-@navbarBackgroundHighlight:       @themeBaseColor;
-@navbarBackground:                @themeBaseColor;
+@navbarBackgroundHighlight:       @themePrimaryColor;
+@navbarBackground:                @themePrimaryColor;
 @navbarBorder:                    darken(@navbarBackground, 12%);
 
 @navbarText:                      #fff;
@@ -234,7 +233,7 @@
 
 // Hero unit
 // -------------------------
-@heroUnitBackground:              @themeBaseColor;
+@heroUnitBackground:              @themePrimaryColor;
 @heroUnitHeadingColor:            inherit;
 @heroUnitLeadColor:               inherit;
 

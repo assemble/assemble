@@ -65,7 +65,7 @@
     .transition(background-color 0.5s ease-in-out);
   }
   .button-github:hover {
-    color: darken(saturate(@themeBaseColor, 15%), 20%);
+    color: darken(saturate(@themePrimaryColor, 15%), 20%);
     background-color: rgba(255,255,255,.6);
     .box-shadow(0px 1px 3px rgba(0,0,0,.5);
   }
@@ -79,8 +79,8 @@
   }
 }
 
-// @btnDocsBackground: spin(@themeBaseColor, 180%); // use to get opposite color of theme
-@btnDocsBackground: lighten(saturate(@themeBaseColor, 10%), 5%); 
+// @btnDocsBackground: spin(@themePrimaryColor, 180%); // use to get opposite color of theme
+@btnDocsBackground: lighten(saturate(@themePrimaryColor, 10%), 5%); 
 
 // Hero section, btn to "go to docs"
 .hero-unit {
@@ -124,7 +124,7 @@
   color: @grayLight;
   margin: 10px 0;
   &:hover {
-    color: lighten(@themeBaseColor, 30%);
+    color: lighten(@themePrimaryColor, 30%);
   }
 }
 .footer-links li {
@@ -132,10 +132,10 @@
   margin-right: 10px;
 }
 .footer-links li > a {
-  color: lighten(@themeBaseColor, 20%);
+  color: lighten(@themePrimaryColor, 20%);
 }
 .footer-links li > a:hover {
-  color: lighten(@themeBaseColor, 30%);
+  color: lighten(@themePrimaryColor, 30%);
 }
 .footer .icon-up-arrow {
   width: auto;

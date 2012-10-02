@@ -41,7 +41,6 @@
 
 
 
-
 // Tile Sections
 // --------------------------------------------------
 
@@ -50,29 +49,20 @@
   overflow: hidden;
 }
 .tile-title {
-  color: #000;
+  display: inline-block;
+  .textColorMixin(@themePrimaryColor);
   font-size: 26px;
   text-transform: uppercase;
-  margin-bottom: 20px
-}
-
-// Body
-.tile-cover {
-  overflow: hidden;
-}
-// Footer
-.tile-meta {
-  padding: 8px;
-}
-.tile-meta h5 {
-  padding: 0;
-  margin: 0;
+  margin-bottom: 20px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid @white;
 }
 
 .tile-text {
   font-size: @baseFontSize + 3;
   color: #000;
-  margin: @baseLineHeight 0;
+  margin: @baseLineHeight 0 0;
+  line-height: 1.4;
 }
 
 
