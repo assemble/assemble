@@ -8,6 +8,23 @@
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
 
+
+// Theme Base Colors
+// ------------------------------------------
+
+@themePrimaryColor:        @green; 
+@themeSecondaryColor:      @themeSpinFull; 
+@themeTertiaryColor:       @themePrimaryColor;
+@themeAccentColor:         @themePrimaryColor;
+
+
+@themeSpinTenth:           spin(@themePrimaryColor, 18%);
+@themeSpinQuarter:         spin(@themePrimaryColor, 45%);
+@themeSpinHalf:            spin(@themePrimaryColor, 90%);
+@themeSpinFull:            spin(@themePrimaryColor, 180%);
+
+
+
 // CSS Reset
 @import "less/reset.less";
 
@@ -16,6 +33,7 @@
 @import "less/variables-inverse.less"; 
 @import "less/mixins.less";
 @import "less/mixins-effects.less";
+@import "less/mixins-colors.less";
 
 // Grid system and page structure
 @import "less/scaffolding.less";
@@ -66,7 +84,7 @@
 @import "less/hero-unit.less";
 
 // Theme
-@import "less/theme/assemble.less";
+@import "less/theme/assemble-theme.less";
 
 // Responsive
 @import "less/responsive.less";
