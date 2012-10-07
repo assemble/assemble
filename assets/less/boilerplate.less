@@ -72,6 +72,24 @@
 }
 
 
+.hero-unit {
+  // Hero section, btn to "go to docs"
+  .btn-docs {
+    .switchTextColor(@altColor);
+    padding: 5px 14px 6px;
+    // background: darken(@heroUnitBackground, 15%);
+    #gradient > .vertical(@themeSecondaryColor, darken(@themeSecondaryColor, 15%));
+    .border-radius(30px);
+    &:hover {
+      text-decoration: none;
+      #gradient > .vertical(@themeSecondaryColor, darken(@themeSecondaryColor, 5%));
+    }
+    &:active {
+      .box-shadow(inset 0 1px 1px rgba(0,0,0,.5));
+    }
+  }
+}
+
 
 // Footer
 // --------------------------------------------------
@@ -82,7 +100,7 @@
 .footer {
   padding: 60px 0 60px;
   margin-top: -60px;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid darken(@footerBackgroundColor, 10%);
   background-color: @footerBackgroundColor;
 }
 .footer p {
@@ -90,6 +108,7 @@
   color: @white;
 }
 .footer a,
+.footer-.nav:hover > li > a, // override footer.less styles
 .footer-links {
   color: @grayLight;
   margin: 10px 0;
