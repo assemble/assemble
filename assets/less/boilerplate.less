@@ -1,0 +1,115 @@
+//
+// Boilerplate Theme: gh-pages
+// --------------------------------------------------
+
+
+
+
+// Featurettes
+// -----------------------------
+
+.featurette-divider {
+  margin: 60px 0;
+}
+.featurette {
+  padding: 25px 0 40px;
+}
+.featurette-image.pull-left {
+  margin-right: 40px;
+}
+.featurette-image.pull-right {
+  margin-left: 40px;
+}
+.featurette-heading {
+  font-size: 50px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+
+// Switch
+// --------------------------------------------------
+
+
+#switch {
+  // Text Color
+  // ----------------------------------------
+
+  // Dark Background
+  .textColor (@baseColor) when (lightness(@baseColor) >= 66%) {
+    color: black; 
+  }
+  // Medium Background
+  .textColor (@baseColor) when (lightness(@baseColor) >= 33%) and not (lightness(@baseColor) >= 66%) { 
+    color: white; 
+  }
+  // Light Background
+  .textColor (@baseColor) when (lightness(@baseColor) < 33%) { 
+    color: white; 
+  }
+
+  // Link Color
+  // ----------------------------------------
+
+  // Dark Background
+  .linkColor (@baseColor) when (lightness(@baseColor) >= 50%) {
+    color: darken(@linkColor, 20%); 
+  }
+  // Light Background
+  .linkColor (@baseColor) when (lightness(@baseColor) < 50%) { 
+    color: @linkColor; 
+  }
+
+  // Dark Background
+  .linkColorHover (@baseColor) when (lightness(@baseColor) >= 50%) {
+    color: darken(@linkColor, 30%); 
+  }
+  // Light Background
+  .linkColorHover (@baseColor) when (lightness(@baseColor) < 50%) { 
+    color: @linkColorHover; 
+  }
+}
+
+
+
+// Footer
+// --------------------------------------------------
+
+@footerBackgroundColor: @grayDark; // use this variable instead of @grayDark or another direct color, since other footer colors build off of this
+
+
+.footer {
+  padding: 60px 0 60px;
+  margin-top: -60px;
+  border-top: 1px solid #ddd;
+  background-color: @footerBackgroundColor;
+}
+.footer p {
+  margin-bottom: 0;
+  color: @white;
+}
+.footer a,
+.footer-links {
+  color: @grayLight;
+  margin: 10px 0;
+  &:hover {
+    color: lighten(@themePrimaryColor, 30%);
+  }
+}
+.footer-links li {
+  display: inline;
+  margin-right: 10px;
+}
+.footer-links li > a {
+  color: lighten(@themePrimaryColor, 20%);
+}
+.footer-links li > a:hover {
+  color: lighten(@themePrimaryColor, 30%);
+}
+.footer .icon-up-arrow {
+  width: auto;
+}
+.footer-links .text-disabled > a {
+  color: lighten(@footerBackgroundColor, 10%);
+}

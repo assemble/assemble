@@ -7,10 +7,7 @@
 @tileArrowWidth:             25px;
 @tileBorderRadius:           5px;
 
-
-// TODO
-// - tile-bordered?
-// - tile-aero? tile-scaffold, tile-placeholder
+          
 
 
 // Base styles
@@ -41,7 +38,7 @@
 
 
 
-// Tile Sections
+// Sections
 // --------------------------------------------------
 
 // Header
@@ -50,7 +47,7 @@
 }
 .tile-title {
   display: inline-block;
-  .textColorMixin(@themePrimaryColor);
+  .switchTextColor(@baseColor); // textColor
   font-size: 26px;
   text-transform: uppercase;
   margin-bottom: 20px;
@@ -61,12 +58,13 @@
 .tile-text {
   font-size: @baseFontSize + 3;
   color: #000;
-  margin: @baseLineHeight 0 0;
+  margin: @baseLineHeight 0;
   line-height: 1.4;
 }
 
 
-// Tile Sizes
+
+// Sizes
 // --------------------------------------------------
 
 // Large
@@ -81,9 +79,22 @@
 }
 
 
-// Alternate Tiles
+
+// Alternate Styles
 // --------------------------------------------------
 
+// Aero (semi-transparent background, and solid white on hover)
+.tile-aero {
+  background: rgba(255,255,255,.2);
+  box-shadow: none;
+  cursor: pointer;
+}
+.tile-aero:hover {
+  background: @white;
+  .box-shadow(0px 2px 6px rgba(0,0,0,.5);
+}
+
+// Inverse (dark gray background)
 .tile-inverse {
   color: @inverseTextColor;
   text-shadow: 0 1px 1px rgba(0,0,0,.5);

@@ -3,6 +3,39 @@
 // --------------------------------------------------
 
 
+@themeColor:               @blueMed;
+
+@baseColor:                @blueMed; 
+@altColor:                 darken(saturate(@spinColor, 15%), 5%); 
+@spinColor:                spin(@themeColor, 170%);
+
+// Light and Dark
+@baseColorDark:            darken(@baseColor, 20%); 
+@baseColorLight:           lighten(@baseColor, 30%); 
+
+
+// Spin
+@spinColorTenth:           spin(@baseColor, 18%);
+@spinColorQuarter:         spin(@baseColor, 45%);
+@spinColorHalf:            spin(@baseColor, 90%);
+
+
+// Theme Base Colors
+// ------------------------------------------
+
+@themePrimaryColor:        @blueMed; 
+@themeSecondaryColor:      @themeSpinFull; 
+@themeTertiaryColor:       @themePrimaryColor;
+@themeAccentColor:         @themePrimaryColor;
+
+
+@themeSpinTenth:           spin(@themePrimaryColor, 18%);
+@themeSpinQuarter:         spin(@themePrimaryColor, 45%);
+@themeSpinHalf:            spin(@themePrimaryColor, 90%);
+@themeSpinFull:            spin(@themePrimaryColor, 180%);
+
+
+
 // Global values
 // --------------------------------------------------
 
@@ -21,6 +54,7 @@
 
 // Accent colors
 // -------------------------
+@blueLight:             lighten(@blue, 25%);
 @blue:                  #049cdb;
 @blueMed:               #27A8C0; 
 @blueDark:              #0064cd;
@@ -42,12 +76,17 @@
 @bodyBackground:        @grayLighter;
 @textColor:             @grayDark;
 
+// Inverse
+@inverseText:           @white;
+@inverseBackground:     @grayDark;
+@inverseBorder:         @grayDarker;
 
 // Links
 // -------------------------
-@linkColor:             saturate(@themePrimaryColor, 10%);
+@linkColor:             saturate(@themeColor, 10%);
 @linkColorHover:        darken(@linkColor, 10%);
 @linkColorActive:       darken(@linkColor, 20%);
+
 
 // Typography
 // -------------------------
@@ -258,9 +297,9 @@
 @infoBackground:          #d9edf7;
 @infoBorder:              darken(spin(@infoBackground, -10), 7%);
 
-@inverseText:             @white;
-@inverseBackground:       @gray;
-@inverseBorder:           @gray;
+@formInverseText:         @white;
+@formInverseBackground:   @grayDark;
+@formInverseBorder:       @gray;
 
 
 // Tooltips and popovers

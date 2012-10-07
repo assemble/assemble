@@ -40,3 +40,7 @@ less.js
 temp/*
 
 */todo.txt
+
+node_modules/
+*/node_modules/*
+*/less.js/
