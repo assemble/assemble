@@ -1,57 +1,89 @@
-# assemble
+[Assemble](http://assemble.io)
+========
 
-Static website assembler and compiler.
+Assemble is an open source build tool for quickly and easily assembling static websites from reusable HTML, LESS and CSS components, pages, layouts and content.
 
-## Getting Started
-### On the server
-Install the module with: `npm install assemble`
+Assemble works well with [Sellside Toolkit's](http://toolkit.io) library of HTML, LESS/CSS and JS components and [Twitter Bootstrap](https://github.com/twitter/bootstrap).
 
-```javascript
-var assemble = require('assemble');
-assemble.awesome(); // "awesome"
-```
 
-### In the browser
-Download the [production version][min] or the [development version][max].
 
-[min]: https://raw.github.com/sellside/assemble/master/dist/assemble.min.js
-[max]: https://raw.github.com/sellside/assemble/master/dist/assemble.js
+Learn More
+----------
 
-In your web page:
+To learn how Assemble can be used in your project, go to [http://assemble.io/getting-started.html](http://assemble.io/getting-started.html).
 
-```html
-<script src="dist/assemble.min.js"></script>
-<script>
-awesome(); // "awesome"
-</script>
-```
 
-In your code, you can attach assemble's methods to any object.
 
-```html
-<script>
-this.exports = Bocoup.utils;
-</script>
-<script src="dist/assemble.min.js"></script>
-<script>
-Bocoup.utils.awesome(); // "awesome"
-</script>
-```
+Quick start
+-----------
 
-## Documentation
-_(Coming soon)_
+Clone the repo, `git clone git://github.com/sellside/assemble.git`, or [download the latest release](https://github.com/sellside/assemble/zipball/master).
 
-## Examples
-_(Coming soon)_
 
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt](https://github.com/cowboy/grunt).
 
-_Also, please don't edit files in the "dist" subdirectory as they are generated via grunt. You'll find source code in the "lib" subdirectory!_
+Bug tracker
+-----------
 
-## Release History
-_(Nothing yet)_
+Have a bug? Please create an issue here on GitHub that conforms with [necolas's guidelines](https://github.com/necolas/issue-guidelines).
 
-## License
-Copyright (c) 2012 Brian Woodward  
-Licensed under the MIT license.
+[https://github.com/sellside/assemble/issues](https://github.com/sellside/assemble/issues)
+
+
+
+Contributing
+------------
+
+Please submit all pull requests against *-wip branches. If your unit test contains javascript patches or features, you must include relevant unit tests. Thanks!
+
+
+
+Authors
+-------
+
+**Brian Woodward**
+
++ http://twitter.com/doowb
++ http://github.com/doowb
+
+**Jon Schlinkert**
+
++ http://twitter.com/jonschlinkert
++ http://github.com/jonschlinkert
+
+
+
+Follow Assemble on Twitter
+--------------------------
+
+Keep up to date on announcements and more by following Assemble on Twitter, [@assemblejs](http://twitter.com/assemblejs).
+
+
+
+Sellside Open Source
+--------------------
+
+Learn about other open source projects from the folks at Sellside.
+
++ [Pre](http://pre.io)
++ [Assemble](http://assemble.io)
++ [Toolkit](http://toolkit.io)
+
+
+
+Copyright and license
+---------------------
+
+Copyright 2012 Sellside, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this work except in compliance with the License.
+You may obtain a copy of the License in the LICENSE file, or at:
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
