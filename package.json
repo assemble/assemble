@@ -4,10 +4,22 @@
   "version": "0.1.0",
   "homepage": "https://github.com/sellside/assemble",
   "author": {
-    "name": "Brian Woodward",
+    "name": "sellside",
     "email": "brian.woodward@sellside.com",
-    "url": "http://www.woodwardb.com"
+    "url": "https://github.com/sellside"
   },
+  "contributors": [
+    {
+      "name": "Brian Woodward",
+      "email": "brian.woodward@sellside.com",
+      "url": "https://github.com/doowb"
+    },
+    {
+      "name": "Jon Schlinkert",
+      "email": "jon.schlinkert@sellside.com",
+      "url": "https://github.com/jonschlinkert"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/sellside/assemble.git"
