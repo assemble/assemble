@@ -1,6 +1,6 @@
-/*! assemble - v0.1.0 - 2012-09-23
+/*! assemble - v0.1.0 - 2013-01-19
 * https://github.com/sellside/assemble
-* Copyright (c) 2012 Brian Woodward; Licensed MIT */
+* Copyright (c) 2013 Sellside; Licensed MIT */
 
 (function(exports) {
 
