@@ -1,0 +1,47 @@
+{
+  "name": "assemble",
+  "description": "Static website assembler and compiler.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/sellside/assemble",
+  "author": {
+    "name": "Sellside",
+    "email": "brian.woodward@sellside.com",
+    "url": "https://github.com/sellside"
+  },
+  "contributors": [
+    {
+      "name": "Brian Woodward",
+      "email": "brian.woodward@sellside.com",
+      "url": "https://github.com/doowb"
+    },
+    {
+      "name": "Jon Schlinkert",
+      "email": "jon.schlinkert@sellside.com",
+      "url": "https://github.com/jonschlinkert"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sellside/assemble.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sellside/assemble/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/sellside/assemble/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/assemble",
+  "engines": {
+    "node": "*"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.11"
+  },
+  "keywords": []
+}

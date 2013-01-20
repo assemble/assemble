@@ -1,7 +1,7 @@
 [Assemble](http://assemble.io)
 ========
 
-Assemble is an open source build tool for quickly and easily assembling static websites from reusable HTML, LESS and CSS components, pages, layouts and content. 
+Assemble is an open source build tool for quickly and easily assembling static websites from reusable HTML, LESS and CSS components, pages, layouts and content.
 
 Assemble works well with [Sellside Toolkit's](http://toolkit.io) library of HTML, LESS/CSS and JS components and [Twitter Bootstrap](https://github.com/twitter/bootstrap).
 
@@ -10,7 +10,7 @@ Assemble works well with [Sellside Toolkit's](http://toolkit.io) library of HTML
 Learn More
 ----------
 
-To learn how Assemble can be used in your project, go to [http://assemble.io/getting-started.html](http://assemble.io/getting-started.html). 
+To learn how Assemble can be used in your project, go to [http://assemble.io/getting-started.html](http://assemble.io/getting-started.html).
 
 
 
