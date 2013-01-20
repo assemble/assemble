@@ -1,5 +1,5 @@
 /*global require:true */
-var frontMatter = require('../lib/frontMatter.js');
+var utils = require('../lib/utils.js');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -26,7 +26,7 @@ exports['Reading From Files'] = {
   setUp: function(done) {
     // setup here
 
-    frontMatter = frontMatter.init({});
+    frontMatter = utils.FrontMatter({});
 
     this.simpleExpected = {
       context: {
@@ -80,7 +80,7 @@ exports['Reading From Files'] = {
 exports['Reading From Strings'] = {
 
   setUp: function(done) {
-    frontMatter = frontMatter.init({ fromFile: false });
+    frontMatter = utils.FrontMatter({ fromFile: false });
 
     this.simple1 = "---\r\nfoo: bar\r\n";
     this.simple2 = "---\r\nfoo: bar\r\n---";

@@ -1,4 +1,4 @@
-/*! assemble - v0.1.0 - 2013-01-19
+/*! assemble - v0.1.0 - 2013-01-20
 * https://github.com/sellside/assemble
 * Copyright (c) 2013 Sellside; Licensed MIT */
 
