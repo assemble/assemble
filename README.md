@@ -6,6 +6,36 @@ Assemble is an open source build tool for quickly and easily assembling static w
 Assemble works well with [Sellside Toolkit's](http://toolkit.io) library of HTML, LESS/CSS and JS components and [Twitter Bootstrap](https://github.com/twitter/bootstrap).
 
 
+## Features
+
+**Configuration Options**
+
+  * Project config files in YAML or JSON
+  * YAML front-matter
+  * Process underscore templates in YAML or JSON
+  * Use underscore templates to expand config values from within Gruntfile
+  * Specify layout templates from YAML front-matter
+
+**Content**
+
+  * Support for HTML, plain text, [[markdown|markdown-features]], mustache and handlebars templates
+  * Render markdown files by adding a reference to the file from a template
+
+**Templates**
+  * Template Types
+  * [[Template Filters|filters]]
+
+
+
+General Features
+  * Helpers and Filters
+  *
+
+
+
+
+
+
 
 ## Learn More
 To learn how Assemble can be used in your project, go to [http://assemble.io/getting-started.html](http://assemble.io/getting-started.html).
