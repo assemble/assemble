@@ -1,12 +1,11 @@
 {
   "name": "assemble",
   "description": "Static website assembler and compiler.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://github.com/sellside/assemble",
   "author": {
     "name": "Sellside",
-    "email": "brian.woodward@sellside.com",
-    "url": "https://github.com/sellside"
+    "url": "https://sellside.github.com/"
   },
   "contributors": [
     {
