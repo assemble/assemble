@@ -1,135 +1,101 @@
 /*global require:true */
-var utils = require('../lib/utils.js');
+var assemble = require('../lib/assemble.js'),
+    expect = require('chai').expect;
 
-/*
-  ======== A Handy Little Nodeunit Reference ========
-  https://github.com/caolan/nodeunit
 
-  Test methods:
-    test.expect(numAssertions)
-    test.done()
-  Test assertions:
-    test.ok(value, [message])
-    test.equal(actual, expected, [message])
-    test.notEqual(actual, expected, [message])
-    test.deepEqual(actual, expected, [message])
-    test.notDeepEqual(actual, expected, [message])
-    test.strictEqual(actual, expected, [message])
-    test.notStrictEqual(actual, expected, [message])
-    test.throws(block, [error], [message])
-    test.doesNotThrow(block, [error], [message])
-    test.ifError(value)
-*/
+describe('Reading From Files', function() {
 
-exports['Reading From Files'] = {
+  var frontMatter = assemble.FrontMatter({});
 
-  setUp: function(done) {
-    // setup here
-
-    frontMatter = utils.FrontMatter({});
-
-    this.simpleExpected = {
-      context: {
-        "foo": "bar"
-      }
-    };
-
-    this.complexExpected = {
-      context: {
-        "foo": "bar",
-        "version": 2
-      },
-      originalContent: "---\r\nfoo: bar\r\nversion: 2\r\n---\r\n\r\n<span class=\"alert alert-info\">DO IT!</span>\r\n",
-      content: "\r\n\r\n<span class=\"alert alert-info\">DO IT!</span>\r\n"
+  var simpleExpected = {
+    context: {
+      "foo": "bar"
     }
+  };
 
-    done();
-  },
+  var complexExpected = {
+    context: {
+      "foo": "bar",
+      "version": 2
+    },
+    originalContent: "---\r\nfoo: bar\r\nversion: 2\r\n---\r\n\r\n<span class=\"alert alert-info\">DO IT!</span>\r\n",
+    content: "\r\n\r\n<span class=\"alert alert-info\">DO IT!</span>\r\n"
+  };
 
-  tearDown: function(done) {
-    // clean up
-    done();
-  },
 
-  "yaml file starts with --- no content": function(test) {
+  it("yaml file starts with --- no content", function(done) {
     var data = frontMatter.extract('./test/files/simple1.yaml');
-    test.deepEqual(this.simpleExpected.context, data.context);
-    test.done();
-  },
+    expect(simpleExpected.context).to.deep.equal(data.context);
+    done();
+  });
 
-  "yaml file starts and ends with --- no content": function(test) {
+  it("yaml file starts and ends with --- no content", function(done) {
     var data = frontMatter.extract('./test/files/simple2.yaml');
-    test.deepEqual(this.simpleExpected.context, data.context);
-    test.done();
-  },
+    expect(simpleExpected.context).to.deep.equal(data.context);
+    done();
+  });
 
-  "yaml file starts and ends with --- has content": function(test) {
+  it("yaml file starts and ends with --- has content", function(done) {
     var data = frontMatter.extract('./test/files/simple3.mustache');
-    test.deepEqual(this.simpleExpected.context, data.context);
-    test.done();
-  },
+    expect(simpleExpected.context).to.deep.equal(data.context);
+    done();
+  });
 
-  "mustache file with complex yaml data and content": function(test) {
+  it("mustache file with complex yaml data and content", function(done) {
     var data = frontMatter.extract("./test/files/complex.mustache");
-    test.deepEqual(this.complexExpected, data);
-    test.done();
-  }
+    expect(complexExpected).to.deep.equal(data);
+    done();
+  });
 
-};
+});
 
-exports['Reading From Strings'] = {
+describe('Reading From Strings', function() {
 
-  setUp: function(done) {
-    frontMatter = utils.FrontMatter({ fromFile: false });
+  var frontMatter = assemble.FrontMatter({ fromFile: false });
 
-    this.simple1 = "---\r\nfoo: bar\r\n";
-    this.simple2 = "---\r\nfoo: bar\r\n---";
-    this.simple3 = "---\r\nfoo: bar\r\n---\r\n\r\n<span class=\"alert alert-info\">DO IT!</span>\r\n"
+  var simple1 = "---\r\nfoo: bar\r\n";
+  var simple2 = "---\r\nfoo: bar\r\n---";
+  var simple3 = "---\r\nfoo: bar\r\n---\r\n\r\n<span class=\"alert alert-info\">DO IT!</span>\r\n"
 
-    this.simpleExpected = {
-      context: {
-        foo: 'bar'
-      }
-    };
-
-    this.complex = "---\r\nfoo: bar\r\nversion: 2\r\n---\r\n\r\n<span class=\"alert alert-info\">DO IT!</span>\r\n"
-
-    this.complexExpected = {
-      context: {
-        "foo": "bar",
-        "version": 2
-      },
-      originalContent: "---\r\nfoo: bar\r\nversion: 2\r\n---\r\n\r\n<span class=\"alert alert-info\">DO IT!</span>\r\n",
-      content: "\r\n\r\n<span class=\"alert alert-info\">DO IT!</span>\r\n"
+  var simpleExpected = {
+    context: {
+      foo: 'bar'
     }
+  };
+
+  var complex = "---\r\nfoo: bar\r\nversion: 2\r\n---\r\n\r\n<span class=\"alert alert-info\">DO IT!</span>\r\n"
+
+  var complexExpected = {
+    context: {
+      "foo": "bar",
+      "version": 2
+    },
+    originalContent: "---\r\nfoo: bar\r\nversion: 2\r\n---\r\n\r\n<span class=\"alert alert-info\">DO IT!</span>\r\n",
+    content: "\r\n\r\n<span class=\"alert alert-info\">DO IT!</span>\r\n"
+  };
+
+  it("yaml string starts with --- no content", function(done) {
+    var data = frontMatter.extract(simple1);
+    expect(simpleExpected.context).to.deep.equal(data.context);
     done();
-  },
+  });
 
-  tearDown: function(done) {
+  it("yaml string starts and ends with --- no content", function(done) {
+    var data = frontMatter.extract(simple2);
+    expect(simpleExpected.context).to.deep.equal(data.context);
     done();
-  },
+  });
 
-  "yaml string starts with --- no content": function(test) {
-    var data = frontMatter.extract(this.simple1);
-    test.deepEqual(this.simpleExpected.context, data.context);
-    test.done();
-  },
+  it("yaml string starts and ends with --- has content", function(done) {
+    var data = frontMatter.extract(simple3);
+    expect(simpleExpected.context).to.deep.equal(data.context);
+    done();
+  });
 
-  "yaml string starts and ends with --- no content": function(test) {
-    var data = frontMatter.extract(this.simple2);
-    test.deepEqual(this.simpleExpected.context, data.context);
-    test.done();
-  },
+  it("mustache string with complex yaml data and content", function(done) {
+    var data = frontMatter.extract(complex);
+    expect(complexExpected).to.deep.equal(data);
+    done();
+  });
 
-  "yaml string starts and ends with --- has content": function(test) {
-    var data = frontMatter.extract(this.simple3);
-    test.deepEqual(this.simpleExpected.context, data.context);
-    test.done();
-  },
-
-  "mustache string with complex yaml data and content": function(test) {
-    var data = frontMatter.extract(this.complex);
-    test.deepEqual(this.complexExpected, data);
-    test.done();
-  }
-}
+});
