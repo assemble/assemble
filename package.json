@@ -40,7 +40,10 @@
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt": "0.4.0rc4"
+    "grunt": "~0.4.0rc7",
+    "testem": "~0.2.68",
+    "grunt-mocha-test": "~0.2.0",
+    "chai": "~1.5.0"
   },
   "keywords": []
 }

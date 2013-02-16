@@ -1,5 +1,6 @@
 /*global require:true */
-var assemble = require('../lib/assemble.js');
+var assemble = require('../lib/assemble.js'),
+    expect = require('chai').expect;
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -21,9 +22,10 @@ var assemble = require('../lib/assemble.js');
     test.ifError(value)
 */
 
-exports['awesome'] = {
-  setUp: function(done) { 
-    // setup here
-    done();
-  }
-};
+describe("awesome", function() {
+
+  it('should run an awesome test', function() {
+    expect(1).to.equal(1);
+  });
+
+});
