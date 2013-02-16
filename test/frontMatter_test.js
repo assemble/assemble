@@ -55,7 +55,7 @@ describe('Reading From Strings', function() {
 
   var simple1 = "---\r\nfoo: bar\r\n";
   var simple2 = "---\r\nfoo: bar\r\n---";
-  var simple3 = "---\r\nfoo: bar\r\n---\r\n\r\n<span class=\"alert alert-info\">DO IT!</span>\r\n"
+  var simple3 = "---\r\nfoo: bar\r\n---\r\n\r\n<span class=\"alert alert-info\">DO IT!</span>\r\n";
 
   var simpleExpected = {
     context: {
@@ -63,7 +63,7 @@ describe('Reading From Strings', function() {
     }
   };
 
-  var complex = "---\r\nfoo: bar\r\nversion: 2\r\n---\r\n\r\n<span class=\"alert alert-info\">DO IT!</span>\r\n"
+  var complex = "---\r\nfoo: bar\r\nversion: 2\r\n---\r\n\r\n<span class=\"alert alert-info\">DO IT!</span>\r\n";
 
   var complexExpected = {
     context: {
