@@ -36,16 +36,19 @@ module.exports = function(grunt) {
       }
     },
 
-    lint: {
-      files: ['grunt.js', 'lib/**/*.js', 'test/**/*.js']
+    watch: {
+      all: {
+        files: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js'],
+        tasks: ['jshint', 'mochaTest'],
+        options: {
+          debounceDelay: 250
+        }
+      }
     },
 
-    watch: {
-      files: '<config:lint.files>',
-      tasks: 'lint test'
-    },
 
     jshint: {
+      files: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js'],
       options: {
         curly: true,
         eqeqeq: true,
@@ -54,13 +57,13 @@ module.exports = function(grunt) {
         newcap: true,
         noarg: true,
         sub: true,
-        undef: true,
+        undef: false,
         boss: true,
-        eqnull: true
-      },
-      globals: {
-        exports: true,
-        module: false
+        eqnull: true,
+        globals: {
+          module: true,
+          exports: true
+        }
       }
     },
 
@@ -68,16 +71,17 @@ module.exports = function(grunt) {
 
   });
 
-
   grunt.loadTasks('./tasks');
 
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
 
   // Default task.
   grunt.registerTask('default', [
-      'mochaTest'
-    // , 'concat'
-    // , 'min'
+    'jshint',
+    'mochaTest',
+    'watch'
   ]);
 
 };
