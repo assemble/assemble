@@ -3,17 +3,14 @@
 > Get the rocks out of your socks.
 
 
-First and foremost, this project is just launching as of early 2013, so expect frequent changes. If you like what we're doing, please consider contributing! All constructive feedback and contributions are welcome.
+First and foremost, this project just launched in early 2013 so expect frequent changes. If you find this project interesting, please consider watching or starring it to show your support.
 
+
+**A balance of best practices, convention and configuration**
 
 Assemble helps you _quickly launch web projects_ using HTML and CSS components, scaffolds, client-side templates, mock-data, CSS pre-processors, markdown, YAML, JSON, sensible configuration defaults and a Grunt.js build system to make it work while you're sleeping - on the job or off, that's up to you.
 
-
-**A system is not a strategy**
-
-This project was designed to be more about flexibility and speed, and less about opinion and prescription.
-
-So we'll give you some examples, and show you how to speed up your projects, but we won't force you to do it our way. And if you like what we're doing but you prefer using different technologies than what we offer, we encourage you to add one as a plugin and submit a pull request.
+This project was designed to be more about flexibility and speed, and less about opinion and prescription. So we'll give you some examples, and show you _how to speed up your projects_, but we won't force you to do it our way.
 
 
 
@@ -36,8 +33,20 @@ Have a bug? Please create an issue here on GitHub that conforms with [necolas's 
 
 
 ## Contributing
-Please comment your code and submit all pull requests against a development branch. If your pull request contains javascript patches or features, please include relevant unit tests. Thanks!
 
+Please consider contributing! All constructive feedback and contributions are welcome.
+
+  * Please comment your code and submit all pull requests against a development branch.
+  * If your pull request contains javascript patches or features, please include relevant unit tests.
+  * If you like what we're doing but you prefer using different technologies than we currently offer, we encourage you to make a feature request or submit a pull request for your plugin.
+
+
+**How you can help**
+
+  * We would like to add more template engines to those listed here https://github.com/sellside/assemble/issues/43
+  * Docs, we can always use help creating more documentation
+  * Feedback: Use assemble, tell us how to improve, add feature requests.
+  * Have an idea? Tell us about it. You can contact us via GitHub issues or preferably via email (found on author's profiles)
 
 
 ## Authors
