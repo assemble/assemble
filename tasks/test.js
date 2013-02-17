@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 
     var child = fork(testemPath, args);
     child.on("exit", function(code, signal) {
-      if(code != 0) {
+      if(code !== 0) {
         grunt.warn("Test execution failed with exit code " + code);
       }
       done();
