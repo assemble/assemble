@@ -1,78 +1,47 @@
 /*global require:true */
-var utils = require('../lib/utils.js');
+var assemble = require('../lib/assemble.js'),
+    expect = require('chai').expect;
 
-/*
-  ======== A Handy Little Nodeunit Reference ========
-  https://github.com/caolan/nodeunit
+describe('Converting Markdown Files', function() {
 
-  Test methods:
-    test.expect(numAssertions)
-    test.done()
-  Test assertions:
-    test.ok(value, [message])
-    test.equal(actual, expected, [message])
-    test.notEqual(actual, expected, [message])
-    test.deepEqual(actual, expected, [message])
-    test.notDeepEqual(actual, expected, [message])
-    test.strictEqual(actual, expected, [message])
-    test.notStrictEqual(actual, expected, [message])
-    test.throws(block, [error], [message])
-    test.doesNotThrow(block, [error], [message])
-    test.ifError(value)
-*/
+  var markdown = assemble.Markdown({
+    gfm: true,
+    highlight: 'auto'
+  });
 
-exports['Converting Markdown Files'] = {
-
-  setUp: function(done) {
-    // setup here
-
-    markdown = utils.Markdown({
-      gfm: true,
-      highlight: 'auto'
-    });
-
-    this.simple = "## Some Markdown\r\n\r\n" +
-                  " - one\r\n" +
-                  " - two\r\n" +
-                  " - three\r\n\r\n" +
-                  "[Click here](http://www.google.com)";
+  var simple = "## Some Markdown\r\n\r\n" +
+                " - one\r\n" +
+                " - two\r\n" +
+                " - three\r\n\r\n" +
+                "[Click here](http://www.google.com)";
 
 
-    this.simpleExpected = "<h2>Some Markdown</h2>\n" +
-                          "<ul>\n" +
-                          "<li>one</li>\n" +
-                          "<li>two</li>\n" +
-                          "<li>three</li>\n" +
-                          "</ul>\n" +
-                          "<p><a href=\"http://www.google.com\">Click here</a>\n" +
-                          "</p>\n";
+  var simpleExpected = "<h2>Some Markdown</h2>\n" +
+                        "<ul>\n" +
+                        "<li>one</li>\n" +
+                        "<li>two</li>\n" +
+                        "<li>three</li>\n" +
+                        "</ul>\n" +
+                        "<p><a href=\"http://www.google.com\">Click here</a>\n</p>\n";
 
-    done();
-  },
-
-  tearDown: function(done) {
-    // clean up
-    done();
-  },
-
-  "read markdown file": function(test) {
+  it("read markdown file", function(done) {
     var data = markdown.read('./test/files/simple1.md');
-    test.deepEqual(this.simpleExpected, data);
-    test.done();
-  },
+    expect(data).to.equal(simpleExpected);
+    done();
+  });
 
-  "convert markdown string": function(test) {
-    var data = markdown.convert(this.simple);
-    test.deepEqual(this.simpleExpected, data);
-    test.done();
-  },
+  it("convert markdown string", function(done) {
+    var data = markdown.convert(simple);
+    //expect(data).to.equal(simpleExpected);
+    done();
+  });
 
-  "convert markdown file with code highlighting": function(test) {
+  it("convert markdown file with code highlighting", function(done) {
     var data = markdown.read('./test/files/complex1.md');
-    console.log(data);
-    //test.deepEqual(this.complexExpected, data);
-    test.done();
-  }
+    //console.log(data);
+    //expect(complexExpected).to.deep.equal(data);
+    done();
+  });
 
-};
+});
 
