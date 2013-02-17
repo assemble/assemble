@@ -3,7 +3,7 @@
 > Get the rocks out of your socks.
 
 
-First and foremost, this project is just launching as of early 2013, so expect frequent changes and please consider contributing.
+First and foremost, this project is just launching as of early 2013, so expect frequent changes. If you like what we're doing, please consider contributing! All constructive feedback and contributions are welcome.
 
 
 Assemble helps you _quickly launch web projects_ using HTML and CSS components, scaffolds, client-side templates, mock-data, CSS pre-processors, markdown, YAML, JSON, sensible configuration defaults and a Grunt.js build system to make it work while you're sleeping - on the job or off, that's up to you.
