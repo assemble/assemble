@@ -38,7 +38,7 @@ module.exports = function(grunt) {
 
     watch: {
       all: {
-        files: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js'],
+        files: ['Gruntfile.js', 'lib/**/*.js', 'tasks/**/*.js', 'test/**/*.js'],
         tasks: ['jshint', 'mochaTest'],
         options: {
           debounceDelay: 250
@@ -48,7 +48,7 @@ module.exports = function(grunt) {
 
 
     jshint: {
-      files: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js'],
+      files: ['Gruntfile.js', 'lib/**/*.js', 'tasks/**/*.js', 'test/**/*.js'],
       options: {
         curly: true,
         eqeqeq: true,
@@ -62,7 +62,8 @@ module.exports = function(grunt) {
         eqnull: true,
         globals: {
           module: true,
-          exports: true
+          exports: true,
+          define: true
         }
       }
     },
