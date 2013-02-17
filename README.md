@@ -1,49 +1,30 @@
 # [Assemble](http://assemble.io)
 
-
-Assemble is an open source build tool for quickly and easily assembling static websites from reusable HTML, LESS and CSS components, pages, layouts and content.
-
-Assemble works well with [Sellside Toolkit's](http://toolkit.io) library of HTML, LESS/CSS and JS components and [Twitter Bootstrap](https://github.com/twitter/bootstrap).
+> Get the rocks out of your socks.
 
 
-## Features
-
-**Configuration Options**
-
-  * Project config files in YAML or JSON
-  * YAML front-matter
-  * Process underscore templates in YAML or JSON
-  * Use underscore templates to expand config values from within Gruntfile
-  * Specify layout templates from YAML front-matter
-
-**Content**
-
-  * Support for HTML, plain text, [markdown](markdown-features), mustache and handlebars templates
-  * Render markdown files by adding a reference to the file from a template
-
-**Templates**
-  * Template Types
-  * [Template Filters](filters)
+First and foremost, this project is just launching as of early 2013, so expect frequent changes and please consider contributing.
 
 
-
-General Features
-  * Helpers and Filters
-  *
+Assemble helps you _quickly launch web projects_ using HTML and CSS components, scaffolds, client-side templates, mock-data, CSS pre-processors, markdown, YAML, JSON, sensible configuration defaults and a Grunt.js build system to make it work while you're sleeping - on the job or off, that's up to you.
 
 
+**A system is not a strategy**
 
+This project was designed to be more about flexibility and speed, and less about opinion and prescription.
 
-
-
-
-## Learn More
-To learn how Assemble can be used in your project, go to [http://assemble.io/getting-started.html](http://assemble.io/getting-started.html).
+So we'll give you some examples, and show you how to speed up your projects, but we won't force you to do it our way. And if you like what we're doing but you prefer using different technologies than what we offer, we encourage you to add one as a plugin and submit a pull request.
 
 
 
 ## Quick start
-Clone the repo, `git clone git://github.com/sellside/assemble.git`, or [download the latest release](https://github.com/sellside/assemble/zipball/master).
+
+  * Clone the repo, `git clone git://github.com/sellside/assemble.git`, or [download the latest release](https://github.com/sellside/assemble/zipball/master).
+  * Use one of Assemble's boilerplates to get up and running
+  * See some [working example's] of projects using Assemble
+  * Read the [wiki](https://github.com/sellside/assemble/wiki)
+
+Once you get up and running, be sure to checkout [Toolkit](http://toolkit.io) for a library of UI components and project scaffolds that are designed to work with Assemble.
 
 
 
@@ -55,11 +36,12 @@ Have a bug? Please create an issue here on GitHub that conforms with [necolas's 
 
 
 ## Contributing
-Please submit all pull requests against *-wip branches. If your unit test contains javascript patches or features, you must include relevant unit tests. Thanks!
+Please comment your code and submit all pull requests against a development branch. If your pull request contains javascript patches or features, please include relevant unit tests. Thanks!
 
 
 
 ## Authors
+
 **Brian Woodward**
 
 + http://twitter.com/doowb
@@ -69,11 +51,6 @@ Please submit all pull requests against *-wip branches. If your unit test contai
 
 + http://twitter.com/jonschlinkert
 + http://github.com/jonschlinkert
-
-
-
-## Follow Assemble on Twitter
-Keep up to date on announcements and more by following Assemble on Twitter, [@assemblejs](http://twitter.com/assemblejs).
 
 
 

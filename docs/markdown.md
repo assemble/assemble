@@ -1,9 +1,13 @@
-# Markdown Features
+# Markdown Support
 
 
-Assemble's default markdown engine is [markded](marked), so the following options are available for changing behavior:
 
-(credit: some of this documentation was copied directly from the marked readme.)
+
+
+## Markdown Features*
+
+
+Assemble's default markdown engine is [marked](marked), so the following options are available for changing behavior:
 
   * **pedantic**: Conform to obscure parts of `markdown.pl` as much as possible.
   Don't fix any of the original markdown bugs or poor behavior.
@@ -42,7 +46,7 @@ console.log(marked('i am using **markdown**.'));
 ```
 
 
-You also have direct access to the lexer and parser if you so desire.
+You also have direct access to the marked lexer and parser if you so desire.
 
 ``` js
 var tokens = marked.lexer(text, options);
@@ -79,6 +83,10 @@ $ cat hello.html
 ## License
 
 Marked Copyright (c) 2011-2013, Christopher Jeffrey. (MIT License). See Marked [LICENSE](https://github.com/chjj/marked/blob/master/LICENSE) and [repo](marked) for more info.
+
+
+
+* Some of this documentation was copied directly from the marked readme.
 
 
 [marked]: https://github.com/chjj/marked "Marked Repo on GitHub"
