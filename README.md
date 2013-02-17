@@ -18,12 +18,12 @@ Assemble works well with [Sellside Toolkit's](http://toolkit.io) library of HTML
 
 **Content**
 
-  * Support for HTML, plain text, [[markdown|markdown-features]], mustache and handlebars templates
+  * Support for HTML, plain text, [markdown](markdown-features), mustache and handlebars templates
   * Render markdown files by adding a reference to the file from a template
 
 **Templates**
   * Template Types
-  * [[Template Filters|filters]]
+  * [Template Filters](filters)
 
 
 
@@ -77,18 +77,18 @@ Keep up to date on announcements and more by following Assemble on Twitter, [@as
 
 
 
-## Sellside Open Source
-Learn about other open source projects from the folks at Sellside.
+## Related Projects
+Learn about other open source projects from the folks at [Sellside](http://www.sellside.com).
 
-+ [Pre](http://pre.io)
-+ [Assemble](http://assemble.io)
 + [Toolkit](http://toolkit.io)
 + [Dry](http://dry.io)
 + [Generate](http://generate.github.com)
++ [Pre](http://pre.io)
 
 
 
 ## Copyright and license
+
 Copyright 2012 Sellside, Inc.
 
 [MIT License](LICENSE-MIT)
