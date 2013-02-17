@@ -8,21 +8,101 @@ First and foremost, this project just launched in early 2013 so expect frequent 
 
 **A balance of best practices, convention and configuration**
 
+See some [examples](http://assemble.io/examples).
+
 Assemble helps you _quickly launch web projects_ using HTML and CSS components, scaffolds, client-side templates, mock-data, CSS pre-processors, markdown, YAML, JSON, sensible configuration defaults and a Grunt.js build system to make it work while you're sleeping - on the job or off, that's up to you.
 
 This project was designed to be more about flexibility and speed, and less about opinion and prescription. So we'll give you some examples, and show you _how to speed up your projects_, but we won't force you to do it our way.
 
 
 
-## Quick start
+## Getting Started
+Assemble uses Grunt.js. If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out Grunt's [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
-  * Clone the repo, `git clone git://github.com/sellside/assemble.git`, or [download the latest release](https://github.com/sellside/assemble/zipball/master).
-  * Use one of Assemble's boilerplates to get up and running
+```shell
+npm install assemble --save-dev
+```
+
+_This plugin was designed to work with Grunt 0.4.x. If you're still using grunt v0.3.x it's strongly recommended that [you upgrade](http://gruntjs.com/upgrading-from-0.3-to-0.4)._
+
+
+## Running Assemble
+_Run assemble with the`grunt assemble` command._
+
+
+Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
+### Task defaults
+The `assemble` task will build an included boilerplate by default, so you can get up and running quickly. Here are some pointers to get you started on customizing your project:
+
+  * Use Assemble's other boilerplates as examples
   * See some [working example's] of projects using Assemble
   * Read the [wiki](https://github.com/sellside/assemble/wiki)
+  * Visit [Toolkit](http://toolkit.io), a more extensive library of UI components and project scaffolds that can be used with Assemble.
 
-Once you get up and running, be sure to checkout [Toolkit](http://toolkit.io) for a library of UI components and project scaffolds that are designed to work with Assemble.
 
+### Options
+
+#### assets
+Type: `String` `false`
+Default: `false`
+
+TODO...
+
+
+#### data
+Type: `String` `false`
+Default: `false`
+
+TODO...
+
+
+#### engine
+Type: `String`
+Default: `handlebars`
+
+TODO...
+
+
+#### flatten
+Type: `boolean`
+
+TODO...
+
+
+#### layout
+Type: `String` `false`
+Default: `false`
+
+TODO...
+
+
+#### partials
+Type: `String` `false`
+Default: `false`
+
+TODO...
+
+
+
+### Usage Examples
+
+```js
+assemble: {
+  project: {
+    options: {
+      flatten: true,
+      assets: "dist/assets",
+      data: "src/data/*.json",
+      layout: "src/templates/layouts/layout.mustache",
+      partials: ["src/templates/partials/*.handlebars"]
+    },
+    files: {
+      "path/to/result.html": "path/to/source.mustache",
+      "path/to/another.html": ["path/to/sources/*.mustache", "path/to/more/*.mustache"]
+    }
+  }
+}
+```
 
 
 ## Bug tracker
