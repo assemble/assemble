@@ -14,30 +14,17 @@ module.exports = function(grunt) {
   var kindOf    = grunt.util.kindOf;
   var _         = grunt.util._;
 
+  var assemble  = require('../lib/assemble');
+
   // external dependencies
-  var Handlebars       = require('handlebars');
   var path             = require('path');
   var fs               = require('fs');
   var util             = require('util');
-  var handlebarHelpers = require('../../src/assets/js/helpers/handlebars-helpers.js')(Handlebars);
-  var handlebarPreprocessors = require('./handlebars-preprocessors');
 
-  var extensions = {
-    "handlebars"  : "handlebars",
-    "hbt"         : "handlebars",
-    "hb"          : "handlebars",
-    "handlebar"   : "handlebars",
-    "mustache"    : "handlebars"
-  };
+  var extensions = assemble.Utils.ExtensionMap;
 
-  // load handlebars helpers
-  handlebarHelpers.registerHelpers();
-  handlebarPreprocessors.init(Handlebars);
-  var YamlPreprocessor = handlebarPreprocessors.YamlPreprocessor;
+  grunt.registerMultiTask('assemble', 'Compile template files to HTML with specified engines', function(){
 
-  grunt.registerMultiTask('templates', 'Compile template files to HTML with specified engines', function(){
-
-    var helpers  = require('grunt-lib-contrib').init(grunt);
     var defaults = {
       layout        : '',
       partials      : {},
@@ -47,7 +34,7 @@ module.exports = function(grunt) {
 
     //var options = _.extend(defaults, this.data.options || {});
     //var options = this.options(defaults);
-    var options = helpers.options(this, defaults);
+    var options = this.options(defaults);
     logBlock("options: ", util.inspect(options));
     logBlock("this.files: ", util.inspect(this.files));
 
@@ -57,18 +44,35 @@ module.exports = function(grunt) {
       src = fp.src;
     });
 
+    if(!src || src.length === 0) {
+      grunt.warn('No source files found.');
+      return false;
+    }
+
     // find an engine to use
-    var engine = options.engine || getEngineOf(src);
-    if(!engine) {
+    options.engine = options.engine || getEngineOf(src);
+    if(!options.engine) {
       grunt.warn('No compatible engine available');
       return false;
     }
+
+    var EngineLoader = options.EngineLoader = assemble.EngineLoader(options);
+    var engine = null;
+    EngineLoader.getEngine(function(err, results) {
+      if(err) {
+        console.log(err);
+        return;
+      }
+      engine = options.engine = results;
+    });
+
+    var yamlPreprocessor = EngineLoader.getPreprocessor('YamlPreprocessor');
 
     var partials      = file.expand(options.partials);
     var dataFiles     = file.expand(options.data);
     var fileExt       = extension(src);
     var filenameRegex = /[^\\\/:*?"<>|\r\n]+$/i;
-    var fileExtRegex  = new RegExp("\." + fileExt + "$");
+    var fileExtRegex  = new RegExp("\\." + fileExt + "$");
 
     options.filenameRegex = filenameRegex;
     options.fileExtRegex = fileExtRegex;
@@ -88,7 +92,9 @@ module.exports = function(grunt) {
       options.layout,
       {
         filenameRegex: filenameRegex,
-        fileExtRegex: fileExtRegex
+        fileExtRegex: fileExtRegex,
+        EngineLoader: EngineLoader,
+        engine: engine
       },
       function(err, results) {
         if(!err) {
@@ -103,29 +109,34 @@ module.exports = function(grunt) {
     // merge any layoutData with options
     options.data = _.extend(defaultLayoutData.context, options.data || {});
 
+    var complete = 0;
+    var increment = 10;
+
     // load partials if specified
     if(partials && partials.length > 0) {
-      var complete = 0;
-      var increment = Math.round(partials.length / 10);
+      complete = 0;
+      increment = Math.round(partials.length / 10);
       log.write(('\n' + 'Processing partials...').grey);
 
       partials.forEach(function(filepath) {
         var filename = _.first(filepath.match(filenameRegex)).replace(fileExtRegex, '');
         grunt.verbose.writeln(('Processing ' + filename + ' partial').cyan);
-        if(complete%increment == 0) log.write('.'.cyan);
+        if(complete%increment === 0) {
+          log.write('.'.cyan);
+        }
 
         var partial = fs.readFileSync(filepath, 'utf8');
 
-        partial = Handlebars.compile(partial, {
+        partial = engine.compile(partial, {
           preprocessers: [
-            YamlPreprocessor(filename, function(output) {
+            yamlPreprocessor(filename, function(output) {
               options.data[output.name] = _.extend(output.output.context, options.data[output.name] || {});
             })
           ]
         });
 
-        // register the partial with handlebars
-        Handlebars.registerPartial(filename, partial);
+        // register the partial with the engine
+        engine.registerPartial(filename, partial);
         complete++;
       });
       log.notverbose.writeln('\n');
@@ -133,13 +144,15 @@ module.exports = function(grunt) {
 
     // load data if specified
     if(dataFiles && dataFiles.length > 0) {
-      var complete = 0;
-      var increment = Math.round(dataFiles.length / 10);
+      complete = 0;
+      increment = Math.round(dataFiles.length / 10);
       log.writeln(('\n' + 'Begin processing data...').grey);
 
       dataFiles.forEach(function(filepath) {
         var filename = _.first(filepath.match(filenameRegex)).replace(/\.json/,'');
-        if(complete%increment == 0) log.notverbose.write('.'.cyan);
+        if(complete%increment === 0) {
+          log.notverbose.write('.'.cyan);
+        }
 
         if(filename === 'data') {
           // if this is the base data.json file, load it into the options.data object directly
@@ -250,8 +263,11 @@ module.exports = function(grunt) {
         grunt.verbose.writeln(('\t' + 'Assets: ' + options.assets));
 
         build(srcFile, filename, options, function(err, result) {
-          err && grunt.warn(err) && done(false);
-          if(err) return;
+          if(err) {
+            grunt.warn(err);
+            done(false);
+            return;
+          }
 
           file.write(destFile, result);
           grunt.log.ok('File ' + (filename + '.html').magenta + ' created.' + ' ok '.green); // ✔ doesn't work for some reason
@@ -274,6 +290,8 @@ module.exports = function(grunt) {
     var page           = fs.readFileSync(src, 'utf8'),
         layout         = options.defaultLayout,
         data           = options.data,
+        engine         = options.engine,
+        EngineLoader   = options.EngineLoader,
         context        = {};
 
     context.layoutName = _(options.defaultLayoutName).humanize();
@@ -285,10 +303,11 @@ module.exports = function(grunt) {
     try {
 
       var pageContext = {};
+      var yamlPreprocessor = EngineLoader.getPreprocessor('YamlPreprocessor');
 
-      page = Handlebars.compile(page, {
+      page = engine.compile(page, {
         preprocessers: [
-          YamlPreprocessor(filename, function(output) {
+          yamlPreprocessor(filename, function(output) {
             grunt.verbose.writeln(output.name + ' data retreived');
             pageContext = output.output.context;
           })
@@ -297,9 +316,13 @@ module.exports = function(grunt) {
 
       options.data   = undefined;
       options.layout = undefined;
+      options.engine = undefined;
+      options.EngineLoader = undefined;
       context        = _.extend(context, options, data, pageContext);
       options.data   = data;
       options.layout = layout;
+      options.engine = engine;
+      options.EngineLoader = EngineLoader;
 
       // if pageContext contains a layout, use that one instead
       // of the default layout
@@ -309,13 +332,15 @@ module.exports = function(grunt) {
             pageLayout = null,
             pageLayoutContext = {};
 
-        var context = processContext(grunt, context);
+        context = processContext(grunt, context);
 
         loadLayout(
           context.layout,
           {
             filenameRegex: options.filenameRegex,
-            fileExtRegex: options.fileExtRegex
+            fileExtRegex: options.fileExtRegex,
+            EngineLoader: EngineLoader,
+            engine: engine
           },
           function(err, results) {
             if(!err) {
@@ -336,7 +361,7 @@ module.exports = function(grunt) {
 
       }
 
-      Handlebars.registerPartial("body", page);
+      engine.registerPartial("body", page);
 
       context = processContext(grunt, context);
       page = layout(context);
@@ -345,7 +370,7 @@ module.exports = function(grunt) {
     } catch(err) {
       callback(err);
       return;
-    };
+    }
   };
 
   var processContext = function(grunt, context) {
@@ -379,9 +404,10 @@ module.exports = function(grunt) {
     layout = fs.readFileSync(layout, 'utf8');
 
     var layoutData = {};
-    layout = Handlebars.compile(layout, {
+    var yamlPreprocessor = options.EngineLoader.getPreprocessor('YamlPreprocessor');
+    layout = options.engine.compile(layout, {
       preprocessers: [
-        YamlPreprocessor(layoutName, function(output) {
+        yamlPreprocessor(layoutName, function(output) {
           grunt.verbose.writeln(output.name + ' data retreived');
           layoutData = output.output;
         })
