@@ -8,6 +8,7 @@ Assemble gives you a few options for configuration:
   * [[YAML Front-Matter|yaml-front-matter]]
 
 
+
 ## External Configuration Files
 
   * JSON
