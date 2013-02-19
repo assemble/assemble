@@ -83,12 +83,6 @@ Default: `handlebars`
 TODO...
 
 
-#### flatten
-Type: `boolean`
-
-TODO...
-
-
 #### layout
 Type: `String` `false`
 Default: `false`
