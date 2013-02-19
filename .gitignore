@@ -39,3 +39,5 @@ npm-debug.log
 temp
 node_modules
 !.gitkeep
+
+notes.md
