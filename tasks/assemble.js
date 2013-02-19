@@ -29,7 +29,8 @@ module.exports = function(grunt) {
       layout        : '',
       partials      : {},
       data          : {},
-      assets        : '.'
+      assets        : '.',
+      ext           : '.html'
     };
 
     //var options = _.extend(defaults, this.data.options || {});
@@ -248,7 +249,7 @@ module.exports = function(grunt) {
         relative = _(relative).strRight(basePath).trim(path.sep);
         relative = relative.replace(/\.\.(\/|\\)/g, '');
 
-        destFile = path.join(dest, relative, filename + '.html');
+        destFile = path.join(dest, relative, filename + options.ext);
 
         // setup options.assets so it's the relative path to the
         // dest assets folder from the new dest file
