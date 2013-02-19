@@ -1,0 +1,41 @@
+---
+page:
+  title: Bootstrap Grid Demo
+  links:
+    -
+      href: https://github.com/sellside/assemble
+      text: Assemble
+    -
+      href: https://github.com/sellside/toolkit
+      text: Toolkit
+---
+
+{{#grid.container}}
+<div class="container">
+
+  {{#rows}}
+  <div class="row">
+
+    {{#spans}}
+    <div class="span{{width}}">
+
+      {{#content}}
+
+        {{#if html}}{{{html}}}{{/if}}
+        {{#if md}}{{{md md}}}{{/if}}
+        {{#if markdown}}
+          {{#markdown}}
+            {{this.markdown}}
+          {{/markdown}}
+        {{/if}}
+
+      {{/content}}
+
+    </div>
+    {{/spans}}
+
+  </div>
+  {{/rows}}
+
+</div>
+{{/grid.container}}
