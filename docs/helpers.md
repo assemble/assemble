@@ -1,79 +1,112 @@
-# Filters
-
-TODO: clean up list
-
-
 # Handlebars Helpers
+
+TODO: this needs to be better organized. Probably should have some information about tests.
+
 
 A small collection of useful helpers for [Handlebars.js](https://github.com/wycats/handlebars.js).
 
-Released under the [WTFPL](http://sam.zoy.org/wtfpl/). Do whatever with it; if you make improvements it'd be _nice_ if you contributed them back but it's by no means required. Use in any project, commercial or otherwise. No warranty is provided.
+
 
 ## Equals
 
 ### If x Equals y
 
-```
-{{#if_eq x compare=y}} ... {{/if_eq}}
-```
+**Parameters**:
+**Usage**:
+
+
+    {{#if_eq x compare=y}} ... {{/if_eq}}
+
 
 ### Unless x Equals y
-```
-{{#unless_eq x compare=y}} ... {{/unless_eq}}
-```
+
+**Parameters**:
+**Usage**:
+
+    {{#unless_eq x compare=y}} ... {{/unless_eq}}
+
 
 ## Greater Than
 
 ### If x > y
-```
-{{#if_gt x compare=y}} ... {{/if_gt}}
-```
+
+**Parameters**:
+**Usage**:
+
+    {{#if_gt x compare=y}} ... {{/if_gt}}
+
 
 ### Unless x > y
-```
-{{#unless_gt x compare=y}} ... {{/unless_gt}}
-```
+
+**Parameters**:
+**Usage**:
+
+    {{#unless_gt x compare=y}} ... {{/unless_gt}}
+
+
 
 ## Greater Than or Equal To
 
 ### If x >= y
-```
-{{#if_gteq x compare=y}} ... {{/if_gteq}}
-```
+
+**Parameters**:
+**Usage**:
+
+    {{#if_gteq x compare=y}} ... {{/if_gteq}}
+
 
 ### Unless x >= y
-```
-{{#unless_gteq x compare=y}} ... {{/unless_gteq}}
-```
+
+**Parameters**:
+**Usage**:
+
+    {{#unless_gteq x compare=y}} ... {{/unless_gteq}}
+
+
 
 ## Less Than
 
 ### If x < y
-```
-{{#if_lt x compare=y}} ... {{/if_lt}}
-```
+
+**Parameters**:
+**Usage**:
+
+    {{#if_lt x compare=y}} ... {{/if_lt}}
+
 
 ### Unless x < y
-```
-{{#unless_lt x compare=y}} ... {{/unless_lt}}
-```
+
+**Parameters**:
+**Usage**:
+
+    {{#unless_lt x compare=y}} ... {{/unless_lt}}
+
+
+
 
 ## Less Than or Equal To
 
 ### If x <= y
-```
-{{#if_lteq x compare=y}} ... {{/if_lteq}}
-```
+
+**Parameters**:
+**Usage**:
+
+    {{#if_lteq x compare=y}} ... {{/if_lteq}}
+
 
 ### Unless x <= y
-```
-{{#unless_lteq x compare=y}} ... {{/unless_lteq}}
-```
+
+**Parameters**:
+**Usage**:
+
+    {{#unless_lteq x compare=y}} ... {{/unless_lteq}}
+
 
 ## nl2br
 Convert new lines (`\r\n`, `\n\r`, `\r`, `\n`) to line breaks
 
 `{{nl2br description}}`
+
 
 
 
@@ -83,9 +116,8 @@ Convert new lines (`\r\n`, `\n\r`, `\r`, `\n`) to line breaks
 
 Turns a string to lowercase.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     {{lowercase "MAKE THIS ALL LOWERCASE"}}
 
@@ -95,9 +127,8 @@ Usage:
 
 Turns a string to uppercase. Opposite of `{{lowercase}}`.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     {{uppercase "make this all uppercase"}}
 
@@ -107,9 +138,8 @@ Usage:
 
 Capitalizes the first word in a string.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     {{capitalizeFirst "capitalize each word in this sentence"}}
 
@@ -119,9 +149,8 @@ Usage:
 
 Capitalizes each word in a string.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     {{capitalizeEach "bender should NOT be allowed on TV"}}
 
@@ -131,9 +160,8 @@ Usage:
 
 Capitalizes all words within a string. Taken from the templating library [Walrus](https://github.com/jeremyruppel/walrus) by [Jeremy Ruppel](https://github.com/jeremyruppel).
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     {{titleize "Bender-should-Not-be-allowed_on_Tv."}}
 
@@ -143,9 +171,8 @@ Usage:
 
 Capitalizes the first word of each sentence in a string and converts the rest of the sentence to lowercase.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     {{sentence "bender should NOT be allowed on TV. fry SHOULD be allowed on TV."}}
 
@@ -155,9 +182,8 @@ Usage:
 
 Reverses a string.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     {{reverse "bender should NOT be allowed on TV."}}
 
@@ -167,12 +193,11 @@ Usage:
 
 Truncates a string given a specified `length`, providing a custom string to denote an `omission`.
 
-Parameters:
+**Parameters**:
 
     length [int] - The number of characters to keep (Required)
     omission [string] - A string to denote an omission (Optional)
-
-Usage:
+**Usage**:
 
     {{truncate "Bender should not be allowed on tv." 31 "..."}}
 
@@ -182,11 +207,10 @@ Usage:
 
 Centers a string using non-breaking spaces.
 
-Parameters:
+**Parameters**:
 
     spaces [int] - The number of spaces. (Required)
-
-Usage:
+**Usage**:
 
     {{center "Bender should not be allowed on tv." 10}}
 
@@ -196,9 +220,8 @@ Usage:
 
 Converts new line characters `\n` to line breaks `<br>`.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     {{{newLineToBr "Bender \n should \n not \n be allowed on tv."}}}
 
@@ -210,9 +233,8 @@ Usage:
 
 Returns the first item in a collection.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     collection = ['Amy Wong', 'Bender', 'Dr. Zoidberg', 'Fry', 'Hermes Conrad', 'Leela', 'Professor Farnsworth', 'Scruffy']
 
@@ -224,9 +246,8 @@ Usage:
 
 Use the first item in a collection inside a block.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     collection = ['Amy Wong', 'Bender', 'Dr. Zoidberg', 'Fry', 'Hermes Conrad', 'Leela', 'Professor Farnsworth', 'Scruffy']
 
@@ -240,9 +261,8 @@ Usage:
 
 Returns the last item in a collection. Opposite of `first`.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     collection = ['Amy Wong', 'Bender', 'Dr. Zoidberg', 'Fry', 'Hermes Conrad', 'Leela', 'Professor Farnsworth', 'Scruffy']
 
@@ -254,9 +274,8 @@ Usage:
 
 Use the last item in a collection inside a block. Opposite of `withFirst`.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     collection = ['Amy Wong', 'Bender', 'Dr. Zoidberg', 'Fry', 'Hermes Conrad', 'Leela', 'Professor Farnsworth', 'Scruffy']
 
@@ -270,11 +289,10 @@ Usage:
 
 Returns all of the items in the collection after the specified count.
 
-Parameters:
+**Parameters**:
 
     count [int] - How many items to omit from the beginning. (Required)
-
-Usage:
+**Usage**:
 
     collection = ['Amy Wong', 'Bender', 'Dr. Zoidberg', 'Fry', 'Hermes Conrad', 'Leela', 'Professor Farnsworth', 'Scruffy']
 
@@ -286,11 +304,10 @@ Usage:
 
 Use all of the items in the collection after the specified count inside a block.
 
-Parameters:
+**Parameters**:
 
     count [int] - How many items to omit from the beginning. (Required)
-
-Usage:
+**Usage**:
 
     collection = ['Amy Wong', 'Bender', 'Dr. Zoidberg', 'Fry', 'Hermes Conrad', 'Leela', 'Professor Farnsworth', 'Scruffy']
 
@@ -304,11 +321,10 @@ Usage:
 
 Returns all of the items in the collection before the specified count. Opposite of `after`.
 
-Parameters:
+**Parameters**:
 
     count [int] - How many items to omit from the end. (Required)
-
-Usage:
+**Usage**:
 
     collection = ['Amy Wong', 'Bender', 'Dr. Zoidberg', 'Fry', 'Hermes Conrad', 'Leela', 'Professor Farnsworth', 'Scruffy']
 
@@ -320,11 +336,10 @@ Usage:
 
 Use all of the items in the collection before the specified count inside a block. Opposite of `withAfter`.
 
-Parameters:
+**Parameters**:
 
     count [int] - How many items to omit from the end. (Required)
-
-Usage:
+**Usage**:
 
     collection = ['Amy Wong', 'Bender', 'Dr. Zoidberg', 'Fry', 'Hermes Conrad', 'Leela', 'Professor Farnsworth', 'Scruffy']
 
@@ -338,11 +353,10 @@ Usage:
 
 Joins all elements of a collection into a string using a separator if specified.
 
-Parameters:
+**Parameters**:
 
     separator [string] - A string to use as a separator between the items. (Optional)
-
-Usage:
+**Usage**:
 
     collection = ['Amy Wong', 'Bender', 'Dr. Zoidberg', 'Fry', 'Hermes Conrad', 'Leela', 'Professor Farnsworth', 'Scruffy']
 
@@ -354,11 +368,10 @@ Usage:
 
 Returns the collection sorted.
 
-Parameters:
+**Parameters**:
 
     none.
-
-Usage:
+**Usage**:
 
     collection = ['Dr. Zoidberg', 'Fry', 'Amy Wong', 'Professor Farnsworth', 'Bender', 'Hermes Conrad', 'Leela', 'Scruffy']
 
@@ -370,11 +383,10 @@ Usage:
 
 Uses the sorted collection inside the block.
 
-Parameters:
+**Parameters**:
 
     field [string] - String name of the field or property to sort by. (Optional)
-
-Usage:
+**Usage**:
 
     collection = [
             name: 'Leela'
@@ -399,7 +411,7 @@ Usage:
 
 Returns the length of the collection.
 
-Parameters: none.
+**Parameters**: none.
 
     collection = ['Dr. Zoidberg', 'Fry', 'Amy Wong', 'Professor Farnsworth', 'Bender', 'Hermes Conrad', 'Leela', 'Scruffy']
 
@@ -411,11 +423,10 @@ Parameters: none.
 
 Conditionally render a block based on the length of a collection.
 
-Parameters:
+**Parameters**:
 
     length [int] - The value to test against. (Required)
-
-Usage:
+**Usage**:
 
     collection = [
             name: 'Leela'
@@ -441,9 +452,8 @@ Usage:
 
 Conditionally render a block if the collection is empty.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     collection = []
 
@@ -459,9 +469,8 @@ Usage:
 
 Conditionally render a block if the collection isn't empty. Opposite of `empty`
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     collection = ['Professor Farnsworth']
 
@@ -477,11 +486,10 @@ Usage:
 
 Conditionally render a block if a specified value is in the collection.
 
-Parameters:
+**Parameters**:
 
     value [string|int] - A value to test against. (Required)
-
-Usage:
+**Usage**:
 
     collection = ['Professor Farnsworth', 'Fry', 'Bender']
 
@@ -497,9 +505,8 @@ Usage:
 
 Current implementation of the default Handlebars loop helper {{#each}} adding index (0-based index) to the loop context.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     collection = ['Professor Farnsworth', 'Fry', 'Bender']
 
@@ -515,11 +522,10 @@ Usage:
 
 Returns the sum of two numbers.
 
-Parameters:
+**Parameters**:
 
     value [int] - The number to add to the expression. (Required)
-
-Usage:
+**Usage**:
 
     value = 5
 
@@ -531,11 +537,10 @@ Usage:
 
 Returns the difference of two numbers. Opposite of `add`
 
-Parameters:
+**Parameters**:
 
     value [int] - The number to subtract from the expression. (Required)
-
-Usage:
+**Usage**:
 
     value = 5
 
@@ -547,11 +552,10 @@ Usage:
 
 Returns the division of two numbers.
 
-Parameters:
+**Parameters**:
 
     value [int] - The number to divide the expression. (Required)
-
-Usage:
+**Usage**:
 
     value = 5
 
@@ -563,11 +567,10 @@ Usage:
 
 Returns the multiplication of two numbers.
 
-Parameters:
+**Parameters**:
 
     value [int] - The number to multiply the expression. (Required)
-
-Usage:
+**Usage**:
 
     value = 5
 
@@ -579,9 +582,8 @@ Usage:
 
 Returns the value rounded down to the nearest integer.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     value = 5.6
 
@@ -593,9 +595,8 @@ Usage:
 
 Returns the value rounded up to the nearest integer.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     value = 5.6
 
@@ -607,9 +608,8 @@ Usage:
 
 Returns the value rounded to the nearest integer.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     value = 5.69
 
@@ -623,11 +623,10 @@ Usage:
 
 Returns exactly `digits` after the decimal place. The number is rounded if necessary, and the fractional part is padded with zeros if necessary so that it has the specified length.
 
-Parameters:
+**Parameters**:
 
     digits [int] - The number of digits to appear after the decimal point. (Optional)
-
-Usage:
+**Usage**:
 
     value = 5.53231
 
@@ -639,11 +638,10 @@ Usage:
 
 Returns the number in fixed-point or exponential notation rounded to `precision` significant digits.
 
-Parameters:
+**Parameters**:
 
     precision [int] - The number of digits. If omitted, it returns the entire number (without any formatting). (Optional)
-
-Usage:
+**Usage**:
 
     value = 555.322
 
@@ -656,11 +654,10 @@ Usage:
 
 Returns the number in exponential notation with one digit before the decimal point, rounded to `fractions` digits after the decimal point.
 
-Parameters:
+**Parameters**:
 
     fractions [int] - An integer specifying the number of digits after the decimal point. (Optional)
-
-Usage:
+**Usage**:
 
     value = 5
 
@@ -672,9 +669,8 @@ Usage:
 
 Returns an integer.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     value = '22.2abc'
 
@@ -686,9 +682,8 @@ Usage:
 
 Returns a floating point number.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     value = '22.2abc'
 
@@ -700,9 +695,8 @@ Usage:
 
 Adds commas to a number.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     value = 2222222
 
@@ -718,11 +712,10 @@ Usage:
 
 Conditionally render a block if the condition is true.
 
-Parameters:
+**Parameters**:
 
     value [string|int] - the value to test against.
-
-Usage:
+**Usage**:
 
     number = 5
 
@@ -738,11 +731,10 @@ Usage:
 
 Conditionally render a block if the condition is false. Opposite of `is`.
 
-Parameters:
+**Parameters**:
 
     value [string|int] - the value to test against.
-
-Usage:
+**Usage**:
 
     number = 5
 
@@ -758,11 +750,10 @@ Usage:
 
 Conditionally render a block if the value is greater than a given number.
 
-Parameters:
+**Parameters**:
 
     value [string|int] - the value to test against.
-
-Usage:
+**Usage**:
 
     number = 5
 
@@ -778,11 +769,10 @@ Usage:
 
 Conditionally render a block if the value is greater or equal than a given number.
 
-Parameters:
+**Parameters**:
 
     value [string|int] - the value to test against.
-
-Usage:
+**Usage**:
 
     number = 5
 
@@ -798,11 +788,10 @@ Usage:
 
 Conditionally render a block if the value is less than a given number. Opposite of `gt`.
 
-Parameters:
+**Parameters**:
 
     value [string|int] - the value to test against.
-
-Usage:
+**Usage**:
 
     number = 5
 
@@ -818,11 +807,10 @@ Usage:
 
 Conditionally render a block if the value is less or equal than a given number. Opposite of `gte`.
 
-Parameters:
+**Parameters**:
 
     value [string|int] - the value to test against.
-
-Usage:
+**Usage**:
 
     number = 5
 
@@ -838,11 +826,10 @@ Usage:
 
 Conditionally render a block if one of the values is truthy.
 
-Parameters:
+**Parameters**:
 
     values [string|int] - the values to test against.
-
-Usage:
+**Usage**:
 
     great = no
     magnificent = true
@@ -859,11 +846,10 @@ Usage:
 
 Conditionally render a block if both values are truthy.
 
-Parameters:
+**Parameters**:
 
     values [string|int] - the values to test against.
-
-Usage:
+**Usage**:
 
     great = true
     magnificent = true
@@ -882,11 +868,10 @@ Usage:
 
 Formats a date into a string given a format. Accepts any value that can be passed to `new Date()`. This helper is a port of the [formatDate-js](http://https://github.com/michaelbaldry/formatDate-js) library by [Michael Baldry](https://github.com/michaelbaldry).
 
-Parameters:
+**Parameters**:
 
     format [string] - The format string, according to these tokens: (http://www.ruby-doc.org/core-1.9.3/Time.html#method-i-strftime) (Required)
-
-Usage:
+**Usage**:
 
     date = new Date()
 
@@ -904,11 +889,10 @@ Usage:
 
 Returns the current date.
 
-Parameters:
+**Parameters**:
 
     format [string] - The format string, according to these tokens: http://www.ruby-doc.org/core-1.9.3/Time.html#method-i-strftime (Optional)
-
-Usage:
+**Usage**:
 
     {{now}}
     {{now "%m/%d/%Y"}}
@@ -920,9 +904,8 @@ Usage:
 
 Returns a human-readable time phrase from the given date.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     date = 'Thu Jul 22 2012 23:41:02 GMT-0400 (AST)'
 
@@ -936,13 +919,12 @@ Usage:
 
 Returns the plural or singular form of a word based on a count.
 
-Parameters:
+**Parameters**:
 
     singular [string] - The singular form of the word. (Required)
     plural [string] - The plural form of the word. (Required)
     include [boolean] - whether or not to include the count before the word. (Optional)
-
-Usage:
+**Usage**:
 
     enemies = 0
     friends = 1
@@ -957,9 +939,8 @@ Usage:
 
 Turns a number into an ordinal string. Taken from the templating library [Walrus](https://github.com/jeremyruppel/walrus) by [Jeremy Ruppel](https://github.com/jeremyruppel).
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     {{ordinalize 3}}
     {{ordinalize 1}}
@@ -975,11 +956,10 @@ Usage:
 
 Creates an unordered list.
 
-Parameters:
+**Parameters**:
 
     hash [html attributes] - HTML attributes to use on the ul element. (Optional)
-
-Usage:
+**Usage**:
 
     collection = [
             name: 'Leela'
@@ -1016,11 +996,10 @@ Same as the `ul` helper but creates and ordered list.
 
 Returns `<br>` tags based on a count.
 
-Parameters:
+**Parameters**:
 
     count [int] - The number of `br` elements to render. (Optional)
-
-Usage:
+**Usage**:
 
     {{br 5}}
 
@@ -1032,9 +1011,8 @@ Usage:
 
 Simple console.log()
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     {{log "Hi console :)"}}
 
@@ -1044,9 +1022,8 @@ Usage:
 
 Simple console.debug() that shows the current context.
 
-Parameters: none.
-
-Usage:
+**Parameters**: none.
+**Usage**:
 
     collection = [
             name: 'Leela'
@@ -1073,11 +1050,10 @@ Usage:
 
 Provides a default or fallback value if a value doesn't exist.
 
-Parameters:
+**Parameters**:
 
     defaultValue [string|int] - The default value to use.
-
-Usage:
+**Usage**:
 
     title = ''
 
@@ -1089,13 +1065,12 @@ Usage:
 
 Provides an easy way to register and use partials inside your templates. This helper only works if you define your templates as common.js modules, since it uses the common.js `require` function to find and register your templates with `Handlebars.registerPartial`. It was created with [brunch](http://brunch.io) in mind (which I use a lot), because brunch automatically wraps your scripts and templates in common.js modules to use in the browser.
 
-Parameters:
+**Parameters**:
 
     name [string] - The name or path of the file in which your template is define. You can tell swag where your templates folder is by overriding Swag.Config.partialsPath. (Required)
 
     data [int|string|collection] - The data you want to use inside the partial. (Optional)
-
-Usage:
+**Usage**:
 
     # Path to your templates from where yo override Swag.Config.partialsPath
     # The path must finish with a foward slash '/'
@@ -1115,7 +1090,8 @@ Usage:
 
 
 
-Most of these helpers are based on work by one of the following:
+Many of these helpers were borrowed from the following repos:
   * [Handlebars Helpers, by Dan Harper](http://github.com/danharper)
   * [Swag v0.2.1, by Elving Rodriguez](http://elving.github.com/swag/)
+
 
