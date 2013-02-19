@@ -1,7 +1,7 @@
 {
   "name": "assemble",
-  "description": "Get the rocks out of your socks. Assemble helps you build static web projects, fast. Using HTML and CSS components, scaffolds, client-side templates, mock-data, CSS pre-processors, markdown, YAML, JSON, sensible configuration defaults and a Grunt.js build system to make it work. Works for gh-pages, documentation, static sites etc.",
-  "version": "0.3.0",
+  "description": "Get the rocks out of your socks. Assemble helps you _quickly launch web projects_ using HTML and CSS components, scaffolds, client-side templates, mock-data, CSS pre-processors, markdown, YAML, JSON, sensible configuration defaults and a Grunt.js build system to make it work.",
+  "version": "0.3.1",
   "homepage": "https://github.com/sellside/assemble",
   "author": {
     "name": "Sellside",
@@ -37,28 +37,25 @@
   "scripts": {
     "test": "grunt test"
   },
+  "dependencies": {
+    "amdefine": "0.0.4"
+  },
   "devDependencies": {
     "grunt": "~0.4.0rc7",
     "testem": "~0.2.68",
     "grunt-mocha-test": "~0.2.0",
     "chai": "~1.5.0",
     "grunt-contrib-jshint": "~0.1.0",
-    "grunt-contrib-watch": "~0.2.0"
+    "grunt-contrib-watch": "~0.2.0",
+    "handlebars": "~1.0.9"
   },
   "keywords": [
     "blog",
     "boilerplate",
     "boilerplates",
     "assembler",
-    "bootstrap",
-    "static HTML",
-    "gh-pages",
-    "theme",
-    "themes",
     "build and deployment",
     "build",
-    "build system",
-    "components",
     "conventions",
     "gruntplugin",
     "builder",
@@ -68,7 +65,6 @@
     "deploy",
     "framework",
     "generator",
-    "modules",
     "parse",
     "parser",
     "partial",

@@ -2,7 +2,7 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    pkg: '<json:package.json>',
+    pkg: grunt.file.readJSON('package.json'),
 
     meta: {
       banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
@@ -38,7 +38,7 @@ module.exports = function(grunt) {
 
     watch: {
       all: {
-        files: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js'],
+        files: ['Gruntfile.js', 'lib/**/*.js', 'tasks/**/*.js', 'test/**/*.js'],
         tasks: ['jshint', 'mochaTest'],
         options: {
           debounceDelay: 250
@@ -46,9 +46,22 @@ module.exports = function(grunt) {
       }
     },
 
+    // "grunt-version": "https://github.com/kswedberg/grunt-version/tarball/master"
+    version: {
+      check: {
+        src: ['package.json']
+      },
+      release: {
+        options: {
+          release: 'patch'
+        },
+        src: ['package.json']
+      }
+    },
+
 
     jshint: {
-      files: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js'],
+      files: ['Gruntfile.js', 'lib/**/*.js', 'tasks/**/*.js', 'test/**/*.js'],
       options: {
         curly: true,
         eqeqeq: true,
@@ -62,7 +75,8 @@ module.exports = function(grunt) {
         eqnull: true,
         globals: {
           module: true,
-          exports: true
+          exports: true,
+          define: true
         }
       }
     },
@@ -76,6 +90,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
+
+  //"grunt-version": "https://github.com/kswedberg/grunt-version/tarball/master"
+  // issue with putting this in the package.json file, is that it updates it's own line since it has version": in it.
+  grunt.loadNpmTasks('grunt-version');
 
   // Default task.
   grunt.registerTask('default', [
