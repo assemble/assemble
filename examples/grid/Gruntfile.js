@@ -13,16 +13,13 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     build: grunt.file.readJSON('build.json'),
 
-    // Templates, build HTML docs from .mustache files
+
+    // Build static files from templates
     assemble: {
       options: {
         engine: 'handlebars',
-        helpers: [
-          '../../lib/engines/handlebars/helpers/defaultHelpers'
-        ],
-        preprocessors: [
-          '../../lib/engines/handlebars/preprocessors/handlebarsPreprocessors'
-        ],
+        helpers: '../../lib/engines/handlebars/helpers/defaultHelpers',
+        preprocessors: '../../lib/engines/handlebars/preprocessors/handlebarsPreprocessors',
         flatten: true,
         production: false,
         docs: true,

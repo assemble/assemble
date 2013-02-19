@@ -26,10 +26,10 @@ module.exports = function(grunt) {
       }
     },
 
+    // Run tests.
     mochaTest: {
       files: ['test/**/*.js']
     },
-
     mochaTestConfig: {
       options: {
         reporter: 'nyan'
@@ -85,14 +85,13 @@ module.exports = function(grunt) {
 
   });
 
-//  grunt.loadTasks('./tasks');
-
+  //  grunt.loadTasks('./tasks');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
 
   //"grunt-version": "https://github.com/kswedberg/grunt-version/tarball/master"
-  // issue with putting this in the package.json file, is that it updates it's own line since it has version": in it.
+  // issue with putting this in the package.json file is that it updates it's own line since it has version": in it.
   grunt.loadNpmTasks('grunt-version');
 
   // Default task.
