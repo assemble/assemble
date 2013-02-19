@@ -1,9 +1,9 @@
-## Defaults
+## Options
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-assemble --save-dev
+npm install assemble --save-dev
 ```
 
 
@@ -15,15 +15,18 @@ default: `handlebars`
 
 #### helpers
 type: `string`
-default: `<%= config.helpers %>`
+default: `./src/js/helpers`
+template: `<%= config.helpers %>`
+
+
+`config.json`
 
 ``` json
 {
-  "config": {
-    "helpers": "./src/js/helpers",
-  }
+  "helpers": "./src/js/helpers",
 }
 ```
+
 
 #### preprocessors
 type: `string`
@@ -51,13 +54,16 @@ The extension you want to apply to dest files. By default, the file extension is
 
 #### assets
 type: `string`
-default: `<%= build.assets %>`
+default: `<%= build.dest.assets %>`
+templates: `<%= assets %>` = `<%= build.dest.assets %>`
 
 Location of **destination assets**. By default, the path is set to `./dest/assets` in `.build` configuration file.
 
 ``` json
 {
-  "assets": "./dest/assets"
+  "dest": {
+    "assets": "./dest/assets"
+  }
 }
 ```
 
@@ -70,7 +76,9 @@ Location of **source data**. By default, the path is set to `./src/data` in `.bu
 
 ``` json
 {
-  "assets": "./dest/assets"
+  "src": {
+    "data": "./src/data"
+  }
 }
 ```
 
@@ -79,14 +87,31 @@ Location of **source data**. By default, the path is set to `./src/data` in `.bu
 type: `string`, optional
 default: `default`
 
+Location of the default [layout]() to use for the specified files. By default, the path is set to `./src/templates/layouts` in `.build` configuration file.
 
-A `layout` can be optionally specified in each `assemble` [target](grunt-target) in your Gruntfile, this specifies the layout file to use. Use the layout file name without file extension. Layout files must be placed in the _layouts directory.
+A `layout` can be optionally specified for each `assemble` [build target](grunt-target) in your Gruntfile. Layout files can be placed in any directory, but file extension is optional if you use the default directory.
 
+
+``` json
+{
+  "src": {
+    "layout": "./src/templates/layouts"
+  }
+}
+```
 
 #### partials
 type: `string`
 default: `default`
 
+
+``` json
+{
+  "src": {
+    "partials": ["./src/templates/partials", "./src/templates/snippets", ]
+  }
+}
+```
 
 
 
