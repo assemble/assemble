@@ -4,8 +4,8 @@
   "version": "0.3.1",
   "homepage": "https://github.com/sellside/assemble",
   "author": {
-    "name": "Sellside",
-    "url": "https://sellside.github.com/"
+    "name": "assemble",
+    "url": "https://github.com/sellside/assemble"
   },
   "contributors": [
     {
