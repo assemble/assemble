@@ -1,5 +1,13 @@
 # Configuration
 
+Just getting this doc started, needs tons of work.
+
+TODO: Explain
+  * how the data is used by the build system,
+  * how variables are used with templates
+  * how mock data can be used
+
+
 
 Assemble gives you a few options for configuration:
 
@@ -9,12 +17,33 @@ Assemble gives you a few options for configuration:
 
 
 
+## Templates
+
+TODO...
+
+
+Assemble takes advantage of underscore templates to simplify configuration
+
+``` json
+{
+  "helpers": `<%= config.helpers %>`
+}
+```
+
+Learn more about [underscore templates] and how they work from the Grunt.js wiki.
+
+
+
 ## External Configuration Files
+
+TODO...
 
   * JSON
   * YAML
 
 If you are familiar with a `package.json` file, then you're familiar with this concept. When we refer to "external config files", we're just saying "anything outside of your pages (html) or Gruntfile". If you wish, you can use a `package.json` as a configuration file in your project.
+
+**Example**
 
 For anyone who isn't familiar, this example `package.json` is from the Bootstrap project:
 
@@ -53,11 +82,6 @@ For anyone who isn't familiar, this example `package.json` is from the Bootstrap
 ```
 
 TBC...
-
-TODO: Explain
-  * how the data is used by the build system,
-  * how variables are used with templates
-  * how mock data can be used
 
 
 ## YAML Front-Matter

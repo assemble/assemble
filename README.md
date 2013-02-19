@@ -3,7 +3,8 @@
 > Get the rocks out of your socks.
 
 
-First and foremost, this project just launched in early 2013 so expect frequent changes. If you find this project interesting, please consider watching or starring it to show your support.
+First and foremost, this project just launched so expect frequent changes. And if you find this project interesting, please consider watching or starring it to show your support. If you don't find this interesting, here is another project you might like: [nodebuildr](http://www.youtube.com/watch?v=NgWn7zbgxZ4).
+
 
 **Table of Contents**
 
@@ -15,7 +16,6 @@ First and foremost, this project just launched in early 2013 so expect frequent 
       - [assets](#assets)
       - [data](#data)
       - [engine](#engine)
-      - [flatten](#flatten)
       - [layout](#layout)
       - [partials](#partials)
     - [Usage Examples](#usage-examples)
@@ -28,9 +28,9 @@ First and foremost, this project just launched in early 2013 so expect frequent 
 
 **A balance of best practices, convention and configuration**
 
-See some [examples](). todo...
+See some [examples]. todo...
 
-Assemble helps you _quickly launch web projects_ using HTML and CSS components, scaffolds, client-side templates, mock-data, CSS pre-processors, markdown, YAML, JSON, sensible configuration defaults and a Grunt.js build system to make it work.
+Assemble helps you _quickly launch static web projects_ using HTML and CSS components, scaffolds, client-side templates, mock-data, CSS pre-processors, markdown, YAML, JSON, sensible configuration defaults and a Grunt.js build system to make it work.
 
 This project was designed to be more about flexibility and speed, and less about opinion and prescription. So we'll give you some examples, and show you _how to speed up your projects_, but we won't force you to do it our way.
 
@@ -47,20 +47,24 @@ _This plugin was designed to work with Grunt 0.4.x. If you're still using grunt 
 
 
 ## Running Assemble
+
 _Run assemble with the`grunt assemble` command._
 
+Here are some ways to get started with Assemble:
 
-Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
-### Task defaults
-The `assemble` task will build an included boilerplate by default, so you can get up and running quickly. Here are some pointers to get you started on customizing your project:
-
-  * Use Assemble's other boilerplates as examples
+  * The `assemble` project includes some examples to help you get up and running quickly.
   * See some [working example's] of projects using Assemble
   * Read the [wiki](https://github.com/sellside/assemble/wiki)
-  * Visit [Toolkit](http://toolkit.io), a more extensive library of UI components and project scaffolds that can be used with Assemble.
+  * Visit [Toolkit], a more extensive library of UI components and project scaffolds that can be used with Assemble.
+
+
+### Task defaults
+Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 
 
 ### Options
+
+See [options](assemble-options) for more information.
 
 #### assets
 Type: `String` `false`
@@ -104,15 +108,13 @@ TODO...
 assemble: {
   project: {
     options: {
-      flatten: true,
-      assets: "dist/assets",
-      data: "src/data/*.json",
-      layout: "src/templates/layouts/layout.mustache",
-      partials: ["src/templates/partials/*.handlebars"]
+      assets:   "<%= dest.assets %>",
+      data:     "<%= src.data %>/*.json",
+      layout:   "<%= src.layouts %>/layout.hbs",
+      partials: "<%= src.partials %>/*.hbs"
     },
     files: {
-      "path/to/result.html": "path/to/source.mustache",
-      "path/to/another.html": ["path/to/sources/*.mustache", "path/to/more/*.mustache"]
+      "dest": "<%= src.pages %>/*.hbs",
     }
   }
 }
@@ -120,14 +122,14 @@ assemble: {
 
 ## Helpers
 
-See docs for [helpers](https://github.com/sellside/assemble/blob/master/docs/helpers.md).
+See docs for [helpers](assemble-helpers).
 
 
 
 ## Bug tracker
 Have a bug? Please create an issue here on GitHub that conforms with [necolas's guidelines](https://github.com/necolas/issue-guidelines).
 
-[https://github.com/sellside/assemble/issues](https://github.com/sellside/assemble/issues)
+[https://github.com/sellside/assemble/issues](assemble-issues)
 
 
 
@@ -177,3 +179,8 @@ Learn about other open source projects from the folks at [Sellside](http://www.s
 Copyright 2012 Sellside, Inc.
 
 [MIT License](LICENSE-MIT)
+
+
+[assemble-issues]:  https://github.com/sellside/assemble/issues
+[assemble-helpers]: https://github.com/sellside/assemble/blob/master/docs/helpers.md
+[assemble-options]: https://github.com/sellside/assemble/docs/options.md

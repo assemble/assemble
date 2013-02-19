@@ -159,11 +159,11 @@ assemble {
 ```
 
 
+### More Options from Grunt
 
+Since Assemble is based on Grunt.js, you can also use all native Grunt options in addition to options provided by Assemble.
 
-Following is a brief exerpt from the Grunt.js wiki, please see [Grunt.js Wiki: Configuring Tasks](https://github.com/gruntjs/grunt/wiki/Configuring-tasks) for more information. Grunt.js offers far more functionality than what we reference here.
-
-### Additional "Native" Grunt Options
+(This exerpt is from the Grunt.js wiki, please see [Grunt.js Wiki: Configuring Tasks](https://github.com/gruntjs/grunt/wiki/Configuring-tasks) for more information. Grunt.js offers far more functionality than what we reference here).
 
 Inside a task configuration, an `options` property may be specified to override built-in defaults.  In addition, each target may have an `options` property which is specific to that target.  Target-level options will override task-level options.
 
@@ -189,7 +189,7 @@ grunt.initConfig({
 
 #### Building the Files Object Dynamically
 
-When you want to process many individual files, a few additional properties may be used to build a files list dynamically. These properties may be specified in both "Compact" and "Files Array" mapping formats. (from [Grunt.js Wiki: Configuring Tasks](https://github.com/gruntjs/grunt/wiki/Configuring-tasks))
+When you want to process many individual files, a few additional properties may be used to build a files list dynamically. These properties may be specified in both "Compact" and "Files Array" mapping formats. (see [Grunt.js Wiki: Configuring Tasks](https://github.com/gruntjs/grunt/wiki/Configuring-tasks))
 
 * `expand` Set to `true` to enable the following options:
 * `cwd` All `src` matches are relative to (but don't include) this path.
