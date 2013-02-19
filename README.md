@@ -6,6 +6,15 @@
 First and foremost, this project just launched so expect frequent changes. And if you find this project interesting, please consider watching or starring it to show your support. If you don't find this interesting, here is another project you might like: [nodebuildr](http://www.youtube.com/watch?v=NgWn7zbgxZ4).
 
 
+**A balance of best practices, convention and configuration**
+
+See some [examples]. todo...
+
+Assemble helps you _quickly launch static web projects_ using HTML and CSS components, scaffolds, client-side templates, mock-data, CSS pre-processors, markdown, YAML, JSON, sensible configuration defaults and a Grunt.js build system to make it work.
+
+This project was designed to be more about flexibility and speed, and less about opinion and prescription. So we'll give you some examples, and show you _how to speed up your projects_, but we won't force you to do it our way.
+
+
 **Table of Contents**
 
 - [Assemble](#assemble)
@@ -26,16 +35,6 @@ First and foremost, this project just launched so expect frequent changes. And i
   - [Copyright and license](#copyright-and-license)
 
 
-**A balance of best practices, convention and configuration**
-
-See some [examples]. todo...
-
-Assemble helps you _quickly launch static web projects_ using HTML and CSS components, scaffolds, client-side templates, mock-data, CSS pre-processors, markdown, YAML, JSON, sensible configuration defaults and a Grunt.js build system to make it work.
-
-This project was designed to be more about flexibility and speed, and less about opinion and prescription. So we'll give you some examples, and show you _how to speed up your projects_, but we won't force you to do it our way.
-
-
-
 ## Getting Started
 Assemble uses Grunt.js. If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out Grunt's [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -46,7 +45,7 @@ npm install assemble --save-dev
 _This plugin was designed to work with Grunt 0.4.x. If you're still using grunt v0.3.x it's strongly recommended that [you upgrade](http://gruntjs.com/upgrading-from-0.3-to-0.4)._
 
 
-## Running Assemble
+### Running Assemble
 
 _Run assemble with the`grunt assemble` command._
 
@@ -58,13 +57,16 @@ Here are some ways to get started with Assemble:
   * Visit [Toolkit], a more extensive library of UI components and project scaffolds that can be used with Assemble.
 
 
+
+## Options
+
+See [options](assemble-options) for more information.
+
+
 ### Task defaults
 Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 
 
-### Options
-
-See [options](assemble-options) for more information.
 
 #### assets
 Type: `String` `false`
