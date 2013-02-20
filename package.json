@@ -41,7 +41,7 @@
     "amdefine": "0.0.4"
   },
   "devDependencies": {
-    "grunt": "~0.4.0rc7",
+    "grunt": "~0.4.0",
     "testem": "~0.2.68",
     "grunt-mocha-test": "~0.2.0",
     "chai": "~1.5.0",
