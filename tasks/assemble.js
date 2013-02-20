@@ -257,7 +257,7 @@ module.exports = function(grunt) {
           path.relative(
             path.resolve(path.join(dest, relative)),
             path.resolve(assetsPath)
-          ) + path.sep);
+          ));
 
         grunt.verbose.writeln(('\t' + 'Src: '    + srcFile));
         grunt.verbose.writeln(('\t' + 'Dest: '   + destFile));
