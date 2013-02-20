@@ -47,7 +47,8 @@
     "chai": "~1.5.0",
     "grunt-contrib-jshint": "~0.1.0",
     "grunt-contrib-watch": "~0.2.0",
-    "handlebars": "~1.0.9"
+    "handlebars": "~1.0.9",
+    "grunt-version": "https://github.com/kswedberg/grunt-version/tarball/master"
   },
   "keywords": [
     "blog",
