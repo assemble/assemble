@@ -30,7 +30,7 @@
       "url": "https://github.com/sellside/assemble/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "lib/assemble",
+  "main": "Gruntfile.js",
   "engines": {
     "node": "*"
   },
