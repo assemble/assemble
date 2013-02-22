@@ -20,6 +20,36 @@ module.exports = function(grunt) {
         ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
     },
 
+    // Update Version
+    version: {
+      check: {
+        src: ['package.json']
+      },
+      release: {
+        options: {
+          release: 'patch'
+        },
+        src: ['package.json']
+      }
+    },
+
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc'
+      },
+      files: ['Gruntfile.js', 'lib/**/*.js', 'tasks/**/*.js', 'test/**/*.js']
+    },
+
+    // Run tests.
+    mochaTest: {
+      files: ['test/**/*.js']
+    },
+    mochaTestConfig: {
+      options: {
+        reporter: 'nyan'
+      }
+    },
+
     concat: {
       dist: {
         src: ['<banner:meta.banner>', '<file_strip_banner:lib/<%= pkg.name %>.js>'],
@@ -34,15 +64,7 @@ module.exports = function(grunt) {
       }
     },
 
-    // Run tests.
-    mochaTest: {
-      files: ['test/**/*.js']
-    },
-    mochaTestConfig: {
-      options: {
-        reporter: 'nyan'
-      }
-    },
+    uglify: {},
 
     watch: {
       all: {
@@ -52,44 +74,7 @@ module.exports = function(grunt) {
           debounceDelay: 250
         }
       }
-    },
-
-    // "grunt-version": "https://github.com/kswedberg/grunt-version/tarball/master"
-    version: {
-      check: {
-        src: ['package.json']
-      },
-      release: {
-        options: {
-          release: 'patch'
-        },
-        src: ['package.json']
-      }
-    },
-
-
-    jshint: {
-      files: ['Gruntfile.js', 'lib/**/*.js', 'tasks/**/*.js', 'test/**/*.js'],
-      options: {
-        curly: true,
-        eqeqeq: true,
-        immed: true,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        undef: false,
-        boss: true,
-        eqnull: true,
-        globals: {
-          module: true,
-          exports: true,
-          define: true
-        }
-      }
-    },
-
-    uglify: {}
+    }
 
   });
 
@@ -109,4 +94,9 @@ module.exports = function(grunt) {
     'watch'
   ]);
 
+  // Tests to be run.
+  grunt.registerTask('test', [
+    'jshint',
+    'mochaTest'
+  ]);
 };
