@@ -29,6 +29,10 @@ Please read the following guidelines before opening any issue.
 3. **Include a live example.** Make use of jsFiddle or jsBin to share your isolated test cases.
 4. **Share as much information as possible.** Include operating system and version, browser and version, version of Assemble, customized or vanilla build, etc. where appropriate. Also include steps to reproduce the bug.
 
+## Coding standards: Templates
+
+- Single space before and after variables in templates (e.g. `{{ page.title }}`)
+
 
 ## Coding standards: HTML
 
