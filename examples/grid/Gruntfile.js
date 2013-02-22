@@ -1,6 +1,9 @@
 /*
- * Gruntfile.js for projects.
+ * Assemble Example: Grid
+ * http://github.com/assemble/assemble
  *
+ * Copyright (c) 2013 Assemble
+ * MIT License
  */
 
 
@@ -10,7 +13,8 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+
+    pkg:   grunt.file.readJSON('package.json'),
     build: grunt.file.readJSON('build.json'),
 
 
@@ -18,11 +22,12 @@ module.exports = function(grunt) {
     assemble: {
       options: {
         engine: 'handlebars',
-        helpers: '../../lib/engines/handlebars/helpers/defaultHelpers',
-        preprocessors: '../../lib/engines/handlebars/preprocessors/handlebarsPreprocessors',
-        flatten: true,
-        production: false,
+        helpers: '<%= build.helpers %>',
+        preprocessors: '<%= build.preprocessors %>',
+
         docs: true,
+        production: false,
+        flatten: true,
         assets: 'dest/assets',
         data:  [
           'src/data/**/*.json'
