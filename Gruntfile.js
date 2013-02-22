@@ -47,6 +47,10 @@ module.exports = function(grunt) {
       }
     },
 
+    nodeunit: {
+      all: ['test/{grunt,tasks,util}/**/*.js']
+    },
+
     // Run tests.
     mochaTest: {
       files: ['test/**/*.js']
@@ -58,15 +62,16 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      options: {
-        jshintrc: '.jshintrc'
-      },
+      subgrunt: ['<%= subgrunt.all %>'],
       files: [
         'Gruntfile.js',
         'lib/**/*.js',
         'tasks/**/*.js',
         'test/**/*.js'
-      ]
+      ],
+      options: {
+        jshintrc: '.jshintrc'
+      }
     },
 
     concat: {
@@ -94,16 +99,17 @@ module.exports = function(grunt) {
 
     // Run other gruntfiles in project
     subgrunt: {
-      examples: ['examples/**/Gruntfile.js']
+      examples: [
+        'examples/handlebars/Gruntfile.js',
+        'examples/grid/Gruntfile.js'
+      ]
     },
 
     watch: {
       all: {
+        options: { debounceDelay: 250 },
         files: ['<%= jshint.files %>'],
-        tasks: ['jshint', 'mochaTest'],
-        options: {
-          debounceDelay: 250
-        }
+        tasks: ['jshint', 'mochaTest']
       }
     }
 
@@ -123,18 +129,18 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', [
-    'jshint',
-    'mochaTest',
-    'watch'
+    'test',
+    'release'
   ]);
 
   // Default task.
-  grunt.registerTask('examples', [
-    'subgrunt'
+  grunt.registerTask('sub', [
+    'subgrunt:examples'
   ]);
 
   // Tests to be run.
   grunt.registerTask('test', [
+    'nodeunit',
     'jshint',
     'mochaTest'
   ]);
