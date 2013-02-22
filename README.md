@@ -3,7 +3,7 @@
 > Get the rocks out of your socks.
 
 
-First and foremost, this project just launched so expect frequent changes. And if you find this project interesting, please consider watching or starring it to show your support. If you don't find this interesting, here is another project you might like: [nodebuildr](http://www.youtube.com/watch?v=NgWn7zbgxZ4).
+First and foremost, this project just launched so expect frequent changes. And if you find this project interesting, please consider watching or starring it to show your support. If you don't find this interesting, here is another project you might like: [nodebuildr](nodebuildr).
 
 
 **A balance of best practices, convention and configuration**
@@ -15,72 +15,94 @@ Assemble helps you _quickly launch static web projects_ using HTML and CSS compo
 This project was designed to be more about flexibility and speed, and less about opinion and prescription. So we'll give you some examples, and show you _how to speed up your projects_, but we won't force you to do it our way.
 
 
-**Table of Contents**
-
-- [Assemble](#assemble)
-  - [Getting Started](#getting-started)
-  - [Running Assemble](#running-assemble)
-    - [Task defaults](#task-defaults)
-    - [Options](#options)
-      - [assets](#assets)
-      - [data](#data)
-      - [engine](#engine)
-      - [layout](#layout)
-      - [partials](#partials)
-    - [Usage Examples](#usage-examples)
-  - [Bug tracker](#bug-tracker)
-  - [Contributing](#contributing)
-  - [Authors](#authors)
-  - [Related Projects](#related-projects)
-  - [Copyright and license](#copyright-and-license)
-
-
 ## Getting Started
-Assemble uses Grunt.js. If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out Grunt's [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+_Assemble uses Grunt.js. If you haven't used [grunt][http://gruntjs.com/] before, be sure to check out the [Getting Started][] guide._
+
+From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install this plugin with the following command:
 
 ```shell
 npm install assemble --save-dev
 ```
 
-_This plugin was designed to work with Grunt 0.4.0. If you're still using grunt v0.3.x it's strongly recommended that [you upgrade](http://gruntjs.com/upgrading-from-0.3-to-0.4)._
+_Assemble was designed to work with Grunt 0.4.0. If you're still using grunt v0.3.x, you must [upgrade](Upgrading) for Assemble to work._
 
 
-### Running Assemble
+Once that's done, add this line to your project's Gruntfile:
+
+```js
+grunt.loadNpmTasks('assemble');
+```
+
+If Assemble has been installed correctly, running `grunt --help` at the command line should list Assemble's task or tasks. In addition, Assemble should be listed in package.json as a `devDependency`, which ensures that it will be installed whenever the `npm install` command is run.
+
+[grunt]: http://gruntjs.com/
+[Upgrading]: http://gruntjs.com/upgrading-from-0.3-to-0.4
+[Getting Started]: http://gruntjs.com/getting-started
+[package.json]: https://npmjs.org/doc/json.html
+
+## The "assemble" task
+
+### Overview
+In your project's Gruntfile, add a section named `assemble` to the data object passed into `grunt.initConfig()`.
+
+```js
+grunt.initConfig({
+  assemble: {
+    options: {
+      // Task-specific options go here.
+    },
+    your_target: {
+      // Target-specific file lists and/or options go here.
+    }
+  }
+});
+```
+
+## Run Assemble
 
 _Run assemble with the`grunt assemble` command._
-
-Here are some ways to get started with Assemble:
-
-  * The `assemble` project includes some examples to help you get up and running quickly.
-  * See some [working example's] of projects using Assemble
-  * Read the [wiki](https://github.com/sellside/assemble/wiki)
-  * Visit [Toolkit], a more extensive library of UI components and project scaffolds that can be used with Assemble.
-
-
-
-## Options
-
-See [options](assemble-options) for more information.
 
 
 ### Task defaults
 Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 
 
+### Options
+
+See [options](assemble-options) for more information.
+
+
+#### flatten
+Type: `Boolean`
+Default: `false`
+
+Remove anything after (and including) the first "." in the destination path, then append this value.
 
 #### assets
-Type: `String` `false`
+Type: `String`
 Default: `false`
 
 TODO...
 
 
 #### data
-Type: `String` `false`
+Type: `String`
 Default: `false`
 
-TODO...
+Read a file's contents, parsing the data as JSON and returning the result.
 
+
+#### ext
+Type: `String`
+Default: `.html`
+
+If specified, this function will be responsible for returning the final dest filepath. By default, it joins dest and matchedSrcPath like so:
+
+``` javascript
+rename: function(dest, matchedSrcPath, options) {
+  return path.join(dest, matchedSrcPath);
+}
+```
 
 #### engine
 Type: `String`
@@ -90,14 +112,14 @@ TODO...
 
 
 #### layout
-Type: `String` `false`
+Type: `String`
 Default: `false`
 
 TODO...
 
 
 #### partials
-Type: `String` `false`
+Type: `String`
 Default: `false`
 
 TODO...
@@ -106,20 +128,47 @@ TODO...
 
 ### Usage Examples
 
+#### Default Options
+In this example, the default options are setup to use . So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+
 ```js
-assemble: {
-  project: {
+grunt.initConfig({
+  assemble: {
     options: {
-      assets:   "<%= dest.assets %>",
-      data:     "<%= src.data %>/*.json",
-      layout:   "<%= src.layouts %>/layout.hbs",
-      partials: "<%= src.partials %>/*.hbs"
+        assets:   'test/dist/assets',
+        data:     'test/src/data/*.json',
+        layout:   'test/src/templates/layouts/default.hbs',
+        partials: [
+          'test/src/templates/partials/*.hbs',
+          'test/src/templates/snippets/*.hbs'
+        ]
     },
     files: {
-      "dest": "<%= src.pages %>/*.hbs",
+      'test/dist': ['test/src/templates/pages/*.hbs']
     }
   }
-}
+});
+```
+
+#### Custom Options
+In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+
+```js
+grunt.initConfig({
+  assemble: {
+    project: {
+      options: {
+        assets:   '<%= dest.assets %>',
+        data:     '<%= src.data %>/*.json',
+        layout:   '<%= src.layouts %>/layout.hbs',
+        partials: '<%= src.partials %>/*.hbs'
+      },
+      files: {
+        'dest': '<%= src.pages %>/*.hbs',
+      }
+    }
+  }
+});
 ```
 
 ## Helpers
@@ -167,12 +216,8 @@ Please consider contributing! All constructive feedback and contributions are we
 
 
 ## Related Projects
-Learn about other open source projects from the folks at [Sellside](http://www.sellside.com).
 
-+ [Toolkit](http://toolkit.io)
-+ [Dry](http://dry.io)
-+ [Generate](http://generate.github.com)
-+ [Pre](http://pre.io)
++ [Toolkit](http://toolkit.io): Library of UI components, using client-side templates, mock-data, and LESS. Components are also available as compiled HTML/CSS.
 
 
 
@@ -186,3 +231,4 @@ Copyright 2012 Sellside, Inc.
 [assemble-issues]:  https://github.com/sellside/assemble/issues
 [assemble-helpers]: https://github.com/sellside/assemble/blob/master/docs/helpers.md
 [assemble-options]: https://github.com/sellside/assemble/docs/options.md
+[nodebuildr]: http://www.youtube.com/watch?v=NgWn7zbgxZ4
