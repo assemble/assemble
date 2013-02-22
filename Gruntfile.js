@@ -20,7 +20,7 @@ module.exports = function(grunt) {
         ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
     },
 
-
+    // Release management
     release: {
       options: {
         bump: true,
