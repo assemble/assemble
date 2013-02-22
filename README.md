@@ -42,7 +42,7 @@ Assemble uses Grunt.js. If you haven't used [Grunt](http://gruntjs.com/) before,
 npm install assemble --save-dev
 ```
 
-_This plugin was designed to work with Grunt 0.4.x. If you're still using grunt v0.3.x it's strongly recommended that [you upgrade](http://gruntjs.com/upgrading-from-0.3-to-0.4)._
+_This plugin was designed to work with Grunt 0.4.0. If you're still using grunt v0.3.x it's strongly recommended that [you upgrade](http://gruntjs.com/upgrading-from-0.3-to-0.4)._
 
 
 ### Running Assemble
