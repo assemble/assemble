@@ -64,15 +64,16 @@ module.exports = function(grunt) {
   });
 
   // Load npm plugins to provide necessary tasks.
-  grunt.loadTasks('../../tasks');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-watch');
 
-  // Default task.
+  // Load local tasks from project root.
+  grunt.loadTasks('../../tasks');
+
+
+  // Default task to be run.
   grunt.registerTask('default', [
     'clean',
-    'assemble',
-    'watch'
+    'assemble'
   ]);
 
 };

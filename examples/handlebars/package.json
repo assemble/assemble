@@ -30,7 +30,6 @@
   "devDependencies": {
     "grunt": "~0.4.0",
     "handlebars": "",
-    "grunt-contrib-clean": "~0.4.0rc6",
-    "grunt-contrib-watch": "~0.2.0"
+    "grunt-contrib-clean": "~0.4.0rc6"
   }
 }
