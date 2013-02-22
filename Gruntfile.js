@@ -20,6 +20,19 @@ module.exports = function(grunt) {
         ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
     },
 
+
+    release: {
+      options: {
+        bump: true,
+        add: false,
+        commit: false,
+        tag: false,
+        push: false,
+        pushTags: false,
+        npm: false
+      }
+    },
+
     // Update Version
     version: {
       check: {
@@ -79,6 +92,7 @@ module.exports = function(grunt) {
   });
 
   //  grunt.loadTasks('./tasks');
+  grunt.loadNpmTasks('grunt-release');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
