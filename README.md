@@ -96,21 +96,58 @@ assemble: {
 ```
 Example usage:
 
-``` js
+``` html
 <link href="{{assets}}/css/styles.css" rel="stylesheet">
 ```
 Resulting in:
 
-``` js
+``` html
 <link href="dist/assets/css/styles.css" rel="stylesheet">
 ```
 
 
 #### data
 Type: `String`
-Default: `false`
+Default: `src/data`
 
-Read a file's contents, parsing the data as JSON and returning the result.
+Load data for templates and configuration from specified `JSON` and/or `YAML` files.
+
+Example:
+
+``` js
+assemble: {
+  options: {
+    data: ['src/data/*.json', 'config/global.json']
+  },
+  files: {
+    'dest': ['src/files/*.hbs']
+  }
+}
+```
+Example `widget.json` data file:
+
+``` json
+{
+  "name": "Square Widget",
+  "modifier": "widget-square"
+}
+
+```
+
+Example `widget.hbs` template:
+
+``` html
+<div class="widget {{ widget.modifier }}">{{ widget.name }}</div>
+```
+
+Compiled result (after running `grunt assemble`):
+
+``` html
+<div class="widget widget-square">Square Widget</div>
+```
+
+Also see: [YAML front matter] todo...
+
 
 
 #### ext
