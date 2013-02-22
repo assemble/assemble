@@ -51,18 +51,14 @@ module.exports = function(grunt) {
 
     clean: {
       dest: {
-        src: [
-          'dest/*.*'
-        ]
+        src: [ 'dest/*.*' ]
       }
     },
 
     watch: {
       src: {
-        files: [
-          'src/**/*.*'
-        ],
-        tasks: ['clean', 'assemble']
+        files: [ 'src/**/*.*' ],
+        tasks: [ 'clean', 'assemble' ]
       }
     }
 
