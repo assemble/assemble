@@ -1,6 +1,9 @@
 # Handlebars Helpers
 
-TODO: this needs to be better organized. Probably should have some information about tests.
+TODO:
+- [ ] this needs to be better organized.
+- [ ] Add links to unit tests, CONTRIBUTING.md.
+- [ ] Combine redundant helpers.
 
 
 A small collection of useful helpers for [Handlebars.js](https://github.com/wycats/handlebars.js).
@@ -24,6 +27,7 @@ A small collection of useful helpers for [Handlebars.js](https://github.com/wyca
 **Usage**:
 
     {{#unless_eq x compare=y}} ... {{/unless_eq}}
+
 
 
 ## Greater Than
