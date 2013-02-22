@@ -1,6 +1,9 @@
 /*
- * Gruntfile.js for projects.
+ * Assemble Example: Handlebars
+ * http://github.com/assemble/assemble
  *
+ * Copyright (c) 2013 Assemble
+ * MIT License
  */
 
 
@@ -10,7 +13,9 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+
+    pkg:   grunt.file.readJSON('package.json'),
+    build: grunt.file.readJSON('build.json'),
 
     // Templates, build HTML docs from .mustache files
     assemble: {
@@ -45,18 +50,14 @@ module.exports = function(grunt) {
 
     clean: {
       dest: {
-        src: [
-          'dest'
-        ]
+        src: [ 'dest/*.*' ]
       }
     },
 
     watch: {
       src: {
-        files: [
-          'src/**/*.*'
-        ],
-        tasks: ['clean', 'assemble']
+        files: [ 'src/**/*.*' ],
+        tasks: [ 'clean', 'assemble' ]
       }
     }
 
