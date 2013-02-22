@@ -18,7 +18,7 @@ page:
          <header class="page-header">
           {{#if site.vendors.enabled}}<a class="btn header-button btn-inverse" href="./start-selling.html">Sell themes</a>{{/if}}
           <h1 class="page-title">{{page.title}}.</h1>
-          {{#if page.subtitle}}<h2 class="page-subtitle">{{page.subtitle}}</h2>{{/if}}
+          {{#if page.subtitle}}<h2 class="page-subtitle">{{ page.subtitle }}</h2>{{/if}}
 
 
           {{! typeahead with example data }}
@@ -48,7 +48,7 @@ page:
           <p>Add some markdown file here</p>
 
           <p>
-            {{{md './src/templates/pages/markdown-test.md'}}}
+            {{{md './test/markdown/markdown-test.md'}}}
           </p>
 
         </div><!-- /page-content -->
