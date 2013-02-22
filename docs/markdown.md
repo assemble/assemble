@@ -1,10 +1,7 @@
-# Markdown Support
+## Markdown Support
 
 
-
-
-
-## Markdown Features*
+### Markdown Features*
 
 
 Assemble's default markdown engine is [marked](marked), so the following options are available for changing behavior:
@@ -23,7 +20,7 @@ Assemble's default markdown engine is [marked](marked), so the following options
   * **langPrefix**: Set the prefix for code block classes. Defaults to `lang-`.
 
 
-## Usage
+### Usage
 
 ``` js
 // Set default options
@@ -70,7 +67,7 @@ $ node
   links: {} ]
 ```
 
-## CLI
+### CLI
 
 ``` bash
 $ marked -o hello.html
@@ -80,7 +77,7 @@ $ cat hello.html
 <p>hello world</p>
 ```
 
-## License
+### License
 
 Marked Copyright (c) 2011-2013, Christopher Jeffrey. (MIT License). See Marked [LICENSE](https://github.com/chjj/marked/blob/master/LICENSE) and [repo](marked) for more info.
 

@@ -1,7 +1,7 @@
-### Usage Examples
+## Usage Examples
 
 
-#### Default Options
+### Default Options
 
 This example shows the default options ()
 
@@ -25,7 +25,7 @@ grunt.initConfig({
 });
 ```
 
-#### Custom Options
+### Custom Options
 
 This example shows how to customize options.
 
@@ -48,7 +48,7 @@ grunt.initConfig({
 });
 ```
 
-#### Wildcards
+### Wildcards
 
 In this example, `grunt nodeunit:all` (or `grunt nodeunit` because `nodeunit` is a [multi task][]) will test all files ending with `_test.js` in the `test` directory.
 

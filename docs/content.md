@@ -1,13 +1,13 @@
-# Content
+## Content
 
 
-## Markdown filter
+### Markdown filter
 
 Render markdown files by adding a reference to the file from a template. This is accomplished using a filter (in this case, a handlebars helper).
 
 If you need to add content to a page, and you want to do so by "pulling in" the content from another (external) file, and you've chosen markdown to do the job - then you would use the `md` filter.
 
-**Option #1: Basic Example**
+#### Option #1: Basic Example
 
 Let's use a real-world example. Say you're creating an "About Us" page and you need to add some content, in particular the content from **about-us.md**.  First you simply add a template to the page where you want the content to render, in this example we'll add it directly inside the `<body></body>` tag. Inside the template itself, there are a couple of things you'll need to remember:
 
@@ -27,7 +27,7 @@ Let's use a real-world example. Say you're creating an "About Us" page and you n
 </html>
 ```
 
-**Option #2: Advanced Example**
+#### Option #2: Advanced Example**
 
 In this example, we're going to change a couple of things about our approach.
 
