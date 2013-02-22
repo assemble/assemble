@@ -80,6 +80,31 @@ Default: `false`
 
 TODO...
 
+Used by the `{{assets}}` template to resolve the relative path to the dest assets folder from the dest file.
+
+Example:
+
+``` js
+assemble: {
+  options: {
+    assets: 'dist/assets'
+  },
+  files: {
+    'dest': ['src/files/*.hbs']
+  }
+}
+```
+Example usage:
+
+``` js
+<link href="{{assets}}/css/styles.css" rel="stylesheet">
+```
+Resulting in:
+
+``` js
+<link href="dist/assets/css/styles.css" rel="stylesheet">
+```
+
 
 #### data
 Type: `String`
