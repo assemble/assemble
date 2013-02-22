@@ -1,10 +1,9 @@
 module.exports = function(grunt) {
 
-  // Run sub-grunt files in all projects.
+  // Run Gruntfiles in given directories.
   grunt.registerMultiTask('subgrunt', 'Run a sub-gruntfile.', function() {
     var path = require('path');
-    var files = grunt.file.expandFiles(this.file.src);
-    grunt.util.async.forEachSeries(files, function(gruntfile, next) {
+    grunt.util.async.forEachSeries(this.filesSrc, function(gruntfile, next) {
       grunt.util.spawn({
         grunt: true,
         args: ['--gruntfile', path.resolve(gruntfile)]
