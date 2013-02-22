@@ -8,24 +8,23 @@ First and foremost, this project just launched so expect frequent changes. And i
 
 **A balance of best practices, convention and configuration**
 
-See some [examples]. todo...
-
 Assemble helps you _quickly launch static web projects_ using HTML and CSS components, scaffolds, client-side templates, mock-data, CSS pre-processors, markdown, YAML, JSON, sensible configuration defaults and a Grunt.js build system to make it work.
 
 This project was designed to be more about flexibility and speed, and less about opinion and prescription. So we'll give you some examples, and show you _how to speed up your projects_, but we won't force you to do it our way.
 
+Check out these [examples]. todo...
+
+
 
 ## Getting Started
-_Assemble uses Grunt.js. If you haven't used [grunt][http://gruntjs.com/] before, be sure to check out the [Getting Started][] guide._
 
-From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install this plugin with the following command:
+_Assemble uses Grunt.js. If you haven't used [grunt][grunt] before, be sure to check out the [Getting Started][Getting Started] guide. Also, Assemble was designed to work with Grunt 0.4.0. If you're still using grunt v0.3.x, you must [upgrade](Upgrading) for Assemble to work._
+
+From the same directory as your project's [Gruntfile][Getting Started] and [package.json][packageJSON], install this plugin with the following command:
 
 ```shell
 npm install assemble --save-dev
 ```
-
-_Assemble was designed to work with Grunt 0.4.0. If you're still using grunt v0.3.x, you must [upgrade](Upgrading) for Assemble to work._
-
 
 Once that's done, add this line to your project's Gruntfile:
 
@@ -35,10 +34,7 @@ grunt.loadNpmTasks('assemble');
 
 If Assemble has been installed correctly, running `grunt --help` at the command line should list Assemble's task or tasks. In addition, Assemble should be listed in package.json as a `devDependency`, which ensures that it will be installed whenever the `npm install` command is run.
 
-[grunt]: http://gruntjs.com/
-[Upgrading]: http://gruntjs.com/upgrading-from-0.3-to-0.4
-[Getting Started]: http://gruntjs.com/getting-started
-[package.json]: https://npmjs.org/doc/json.html
+
 
 ## The "assemble" task
 
@@ -57,6 +53,8 @@ grunt.initConfig({
   }
 });
 ```
+
+
 
 ## Run Assemble
 
@@ -126,6 +124,7 @@ TODO...
 
 
 
+
 ## Helpers
 
 See docs for [helpers](assemble-helpers).
@@ -182,6 +181,11 @@ Copyright 2012 Sellside, Inc.
 
 [MIT License](LICENSE-MIT)
 
+
+[grunt]: http://gruntjs.com/
+[Upgrading]: http://gruntjs.com/upgrading-from-0.3-to-0.4
+[Getting Started]: http://gruntjs.com/getting-started
+[package.json]: https://npmjs.org/doc/json.html
 
 [assemble-issues]:  https://github.com/sellside/assemble/issues
 [assemble-helpers]: https://github.com/sellside/assemble/blob/master/docs/helpers.md
