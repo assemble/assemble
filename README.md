@@ -139,7 +139,7 @@ See docs for [helpers](assemble-helpers).
 ## Bug tracker
 Have a bug? Please create an issue here on GitHub that conforms with [necolas's guidelines](https://github.com/necolas/issue-guidelines).
 
-[https://github.com/sellside/assemble/issues](assemble-issues)
+[https://github.com/assemble/assemble/issues](assemble-issues)
 
 
 
@@ -154,7 +154,7 @@ Please consider contributing! All constructive feedback and contributions are we
 
 **How you can help**
 
-  * We would like to add more template engines to those listed here https://github.com/sellside/assemble/issues/43
+  * We would like to add more template engines to those listed here https://github.com/assemble/assemble/issues/43
   * Docs, we can always use help creating more documentation
   * Feedback: Use assemble, tell us how to improve, add feature requests.
   * Have an idea? Tell us about it. You can contact us via GitHub issues or preferably via email (found on author's profiles)
@@ -192,7 +192,7 @@ Copyright 2012 Sellside, Inc.
 [Getting Started]: http://gruntjs.com/getting-started
 [package.json]: https://npmjs.org/doc/json.html
 
-[assemble-issues]:  https://github.com/sellside/assemble/issues
-[assemble-helpers]: https://github.com/sellside/assemble/blob/master/docs/helpers.md
-[assemble-options]: https://github.com/sellside/assemble/docs/options.md
+[assemble-issues]:  https://github.com/assemble/assemble/issues
+[assemble-helpers]: https://github.com/assemble/assemble/blob/master/docs/helpers.md
+[assemble-options]: https://github.com/assemble/assemble/docs/options.md
 [nodebuildr]: http://www.youtube.com/watch?v=NgWn7zbgxZ4
