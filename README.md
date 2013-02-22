@@ -41,7 +41,7 @@ If Assemble has been installed correctly, running `grunt --help` at the command 
 ### Overview
 In your project's Gruntfile, add a section named `assemble` to the data object passed into `grunt.initConfig()`.
 
-```js
+``` js
 grunt.initConfig({
   assemble: {
     options: {
@@ -53,8 +53,6 @@ grunt.initConfig({
   }
 });
 ```
-
-
 
 ## Run Assemble
 
@@ -94,11 +92,18 @@ Read a file's contents, parsing the data as JSON and returning the result.
 Type: `String`
 Default: `.html`
 
-If specified, this function will be responsible for returning the final dest filepath. By default, it joins dest and matchedSrcPath like so:
+Specify the file extension for destination files.
 
-``` javascript
-rename: function(dest, matchedSrcPath, options) {
-  return path.join(dest, matchedSrcPath);
+Example:
+
+``` js
+assemble: {
+  options: {
+    ext: '.xml'
+  },
+  files: {
+    'dest': ['path/to/sitemap.tmpl']
+  }
 }
 ```
 
