@@ -1,0 +1,24 @@
+---
+page:
+  title: Mustache Example
+  links:
+    -
+      href: https://github.com/sellside/assemble
+      text: Assemble
+    -
+      href: https://github.com/sellside/toolkit
+      text: Toolkit
+
+---
+
+{{#markdown}}
+
+  ### Headline for markdown
+
+  This is inline markdown content, wrapped with handlebars (mustache) tags.
+
+  {{#page.links}}
+  [{{text}}]({{href}})
+  {{/page.links}}
+
+{{/markdown}}

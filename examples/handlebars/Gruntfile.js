@@ -17,13 +17,12 @@ module.exports = function(grunt) {
     pkg:   grunt.file.readJSON('package.json'),
     build: grunt.file.readJSON('build.json'),
 
-    // Templates, build HTML docs from .mustache files
+    // Templates, build HTML docs from .hbs files
     assemble: {
       options: {
         engine: 'handlebars',
         helpers: '<%= build.helpers %>',
         preprocessors: '<%= build.preprocessors %>',
-
         docs: true,
         production: false,
         flatten: true,
@@ -34,15 +33,15 @@ module.exports = function(grunt) {
       },
       pages: {
         options: {
-          layout: 'src/layouts/layout.mustache',
+          layout: 'src/layouts/layout.hbs',
           partials: [
-            'src/partials/**/*.mustache'
+            'src/partials/**/*.hbs'
           ]
         },
         files: {
           // Compile each page in the project.
           'dest': [
-            'src/pages/**/*.mustache'
+            'src/pages/**/*.hbs'
           ]
         }
       }
@@ -68,7 +67,6 @@ module.exports = function(grunt) {
 
   // Load local tasks from project root.
   grunt.loadTasks('../../tasks');
-
 
   // Default task to be run.
   grunt.registerTask('default', [
