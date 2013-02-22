@@ -4,4 +4,4 @@
  - two
  - three
 
-[Click here](http://www.google.com)
+[Click here](http://github.com)

@@ -2,5 +2,7 @@
  - one
  - two
  - three
-[Click here](http://www.google.com)
+
+[Visit Assemble](http://assemble.io)
+[Visit Toolkit](http://toolkit.io)
 
