@@ -1,7 +1,7 @@
 {
   "name": "assemble",
   "description": "Get the rocks out of your socks. Assemble helps you _quickly launch static web projects_ using HTML and CSS components, scaffolds, client-side templates, mock-data, CSS pre-processors, markdown, YAML, JSON, sensible configuration defaults and a Grunt.js build system to make it work. We use Assemble for gh-pages, documentation, static sites, mocking etc.",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "homepage": "https://github.com/sellside/assemble",
   "author": {
     "name": "assemble",
@@ -53,8 +53,7 @@
     "grunt-contrib-jshint": "~0.1.0",
     "grunt-contrib-watch": "~0.2.0",
     "grunt-version": "~0.1.1",
-    "grunt-release": "~0.2.0",
-    "grunt-contrib-nodeunit": "~0.1.2"
+    "grunt-release": "~0.2.0"
   },
   "keywords": [
     "blog",
