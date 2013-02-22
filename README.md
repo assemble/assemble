@@ -126,51 +126,6 @@ TODO...
 
 
 
-### Usage Examples
-
-#### Default Options
-In this example, the default options are setup to use . So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
-```js
-grunt.initConfig({
-  assemble: {
-    options: {
-        assets:   'test/dist/assets',
-        data:     'test/src/data/*.json',
-        layout:   'test/src/templates/layouts/default.hbs',
-        partials: [
-          'test/src/templates/partials/*.hbs',
-          'test/src/templates/snippets/*.hbs'
-        ]
-    },
-    files: {
-      'test/dist': ['test/src/templates/pages/*.hbs']
-    }
-  }
-});
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  assemble: {
-    project: {
-      options: {
-        assets:   '<%= dest.assets %>',
-        data:     '<%= src.data %>/*.json',
-        layout:   '<%= src.layouts %>/layout.hbs',
-        partials: '<%= src.partials %>/*.hbs'
-      },
-      files: {
-        'dest': '<%= src.pages %>/*.hbs',
-      }
-    }
-  }
-});
-```
-
 ## Helpers
 
 See docs for [helpers](assemble-helpers).
