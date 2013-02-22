@@ -13,7 +13,7 @@ describe('Converting Markdown Files', function() {
                 " - one\r\n" +
                 " - two\r\n" +
                 " - three\r\n\r\n" +
-                "[Click here](http://www.google.com)";
+                "[Click here](http://github.com)";
 
 
   var simpleExpected = "<h2>Some Markdown</h2>\n" +
@@ -22,17 +22,17 @@ describe('Converting Markdown Files', function() {
                         "<li>two</li>\n" +
                         "<li>three</li>\n" +
                         "</ul>\n" +
-                        "<p><a href=\"http://www.google.com\">Click here</a>\n</p>\n";
-
-  it("read markdown file", function(done) {
-    var data = markdown.read('./test/files/simple1.md');
-    expect(data).to.equal(simpleExpected);
-    done();
-  });
+                        "<p><a href=\"http://github.com\">Click here</a></p>\n";
 
   it("convert markdown string", function(done) {
     var data = markdown.convert(simple);
     //expect(data).to.equal(simpleExpected);
+    done();
+  });
+
+  it("read markdown file", function(done) {
+    var data = markdown.read('./test/files/simple1.md');
+    expect(data).to.equal(simpleExpected);
     done();
   });
 
