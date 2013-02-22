@@ -24,7 +24,8 @@ module.exports = function(grunt) {
     // Release management
     release: {
       options: {
-        bump: true,
+        pkgBump: true,
+        compBump: true,
         add: false,
         commit: false,
         tag: false,
@@ -32,23 +33,6 @@ module.exports = function(grunt) {
         pushTags: false,
         npm: false
       }
-    },
-
-    // Update Version
-    version: {
-      check: {
-        src: ['package.json']
-      },
-      release: {
-        options: {
-          release: 'patch'
-        },
-        src: ['<%= version.check.src %>']
-      }
-    },
-
-    nodeunit: {
-      all: ['test/{grunt,tasks,util}/**/*.js']
     },
 
     // Run tests.
@@ -62,7 +46,6 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      subgrunt: ['<%= subgrunt.all %>'],
       files: [
         'Gruntfile.js',
         'lib/**/*.js',
@@ -127,11 +110,7 @@ module.exports = function(grunt) {
   // Load local tasks.
   grunt.loadTasks('tasks');
 
-  // Default task.
-  grunt.registerTask('default', [
-    'test',
-    'release'
-  ]);
+
 
   // Default task.
   grunt.registerTask('sub', [
@@ -140,8 +119,13 @@ module.exports = function(grunt) {
 
   // Tests to be run.
   grunt.registerTask('test', [
-    'nodeunit',
     'jshint',
     'mochaTest'
+  ]);
+
+  // Default task.
+  grunt.registerTask('bump', [
+    'test',
+    'release'
   ]);
 };
