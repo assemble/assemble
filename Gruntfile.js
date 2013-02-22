@@ -99,9 +99,6 @@ module.exports = function(grunt) {
   });
 
   // Load npm plugins to provide necessary tasks.
-  // "grunt-version": "https://github.com/kswedberg/grunt-version/tarball/master"
-  // issue with putting this in the package.json file is that it updates it's own line since it has version": in it.
-  grunt.loadNpmTasks('grunt-version');
   grunt.loadNpmTasks('grunt-release');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
