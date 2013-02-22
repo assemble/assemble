@@ -23,19 +23,16 @@ module.exports = function(grunt) {
 
   var extensions = assemble.Utils.ExtensionMap;
 
-  grunt.registerMultiTask('assemble', 'Compile template files to HTML with specified engines', function(){
+  grunt.registerMultiTask('assemble', 'Compile template files with specified engines', function(){
 
-    var defaults = {
+    var options = this.options({
       layout        : '',
       partials      : {},
       data          : {},
       assets        : '.',
       ext           : '.html'
-    };
+    });
 
-    //var options = _.extend(defaults, this.data.options || {});
-    //var options = this.options(defaults);
-    var options = this.options(defaults);
     logBlock("options: ", util.inspect(options));
     logBlock("this.files: ", util.inspect(this.files));
 
