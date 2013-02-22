@@ -16,15 +16,12 @@ module.exports = function(grunt) {
     assemble: {
       options: {
         engine: 'handlebars',
-        helpers: [
-          '../../lib/engines/handlebars/helpers/defaultHelpers'
-        ],
-        preprocessors: [
-          '../../lib/engines/handlebars/preprocessors/handlebarsPreprocessors'
-        ],
-        flatten: true,
-        production: false,
+        helpers: '<%= build.helpers %>',
+        preprocessors: '<%= build.preprocessors %>',
+
         docs: true,
+        production: false,
+        flatten: true,
         assets: 'dest/assets',
         data:  [
           'src/data/**/*.json'
