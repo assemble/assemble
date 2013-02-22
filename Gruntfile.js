@@ -1,3 +1,11 @@
+/*
+ * Assemble
+ * http://sellside.github.com/assemelbe
+ *
+ * Copyright (c) 2013 Assemble
+ * MIT License
+ */
+
 module.exports = function(grunt) {
 
   // Project configuration.
