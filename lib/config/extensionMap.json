@@ -1,9 +1,9 @@
 {
   "handlebars": "handlebars",
+  "handlebar": "handlebars",
   "hbt": "handlebars",
   "hbs": "handlebars",
-  "hb":"handlebars",
-  "handlebar": "handlebars",
+  "hb": "handlebars",
   "mustache": "handlebars",
 
   "markdown": "markdown",
