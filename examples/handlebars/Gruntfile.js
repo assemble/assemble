@@ -22,7 +22,6 @@ module.exports = function(grunt) {
       options: {
         engine: 'handlebars',
         helpers: '<%= config.helpers %>',
-        preprocessors: '<%= config.preprocessors %>',
         docs: true,
         production: false,
         flatten: true,
