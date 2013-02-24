@@ -1,7 +1,0 @@
-{
-  "helpers": "../../lib/engines/handlebars/helpers/defaultHelpers",
-  "preprocessors": "../../lib/engines/handlebars/preprocessors/handlebarsPreprocessors",
-  "content": {
-    "src": "./src/content/"
-  }
-}

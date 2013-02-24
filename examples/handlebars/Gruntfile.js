@@ -15,14 +15,14 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     pkg:   grunt.file.readJSON('package.json'),
-    build: grunt.file.readJSON('build.json'),
+    config: grunt.file.readJSON('config.json'),
 
-    // Templates, build HTML docs from .hbs files
+    // Templates, config HTML docs from .hbs files
     assemble: {
       options: {
         engine: 'handlebars',
-        helpers: '<%= build.helpers %>',
-        preprocessors: '<%= build.preprocessors %>',
+        helpers: '<%= config.helpers %>',
+        preprocessors: '<%= config.preprocessors %>',
         docs: true,
         production: false,
         flatten: true,
