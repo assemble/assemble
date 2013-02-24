@@ -125,7 +125,7 @@ module.exports = function(grunt) {
 
         var partial = fs.readFileSync(filepath, 'utf8');
 
-        partial = engine.engine.compile(partial, {
+        partial = engine.compile(partial, {
           preprocessers: [
             yamlPreprocessor(filename, function(output) {
               options.data[output.name] = _.extend(output.output.context, options.data[output.name] || {});
@@ -303,7 +303,7 @@ module.exports = function(grunt) {
       var pageContext = {};
       var yamlPreprocessor = EngineLoader.getPreprocessor('YamlPreprocessor');
 
-      page = engine.engine.compile(page, {
+      page = engine.compile(page, {
         preprocessers: [
           yamlPreprocessor(filename, function(output) {
             grunt.verbose.writeln(output.name + ' data retreived');
@@ -403,7 +403,7 @@ module.exports = function(grunt) {
 
     var layoutData = {};
     var yamlPreprocessor = options.EngineLoader.getPreprocessor('YamlPreprocessor');
-    layout = options.engine.engine.compile(layout, {
+    layout = options.engine.compile(layout, {
       preprocessers: [
         yamlPreprocessor(layoutName, function(output) {
           grunt.verbose.writeln(output.name + ' data retreived');
