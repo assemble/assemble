@@ -3,7 +3,7 @@
 > Get the rocks out of your socks.
 
 
-First and foremost, this project just launched so expect frequent changes. And if you find this project interesting, please consider watching or starring it to show your support. If you don't find this interesting, here is another project you might like: [nodebuildr](nodebuildr).
+First and foremost, this project just launched so expect frequent changes, and be sure specify an exact version number in `devDependencies` instead of a range, backwards-incompatible changes will be introduced _often_.  If you find this project interesting, please consider starring it to receive updates. However if you don't find this interesting here is another project you might like: [nodebuildr](nodebuildr).
 
 
 **A balance of best practices, convention and configuration**
@@ -244,7 +244,7 @@ Please consider contributing! All constructive feedback and contributions are we
 
 ## Copyright and license
 
-Copyright 2012 Sellside, Inc.
+Copyright 2012 Assemble, Inc.
 
 [MIT License](LICENSE-MIT)
 
