@@ -7,7 +7,7 @@
           {
             "columns": 12,
             "content": {
-              "html": "<h1>Here's the header of the page</h1>"
+              "html": "<h4>Here's the header of the page</h4>\n <hr>"
             }
           }
         ]
@@ -16,19 +16,19 @@
       {
         "spans": [
           {
-            "columns": 3,
+            "columns": 4,
             "content": {
               "markdown": "\n - item1\n - item2\n - item3"
             }
           },
           {
-            "columns": 3,
+            "columns": 4,
             "content": {
               "md": "<%= config.content.src %>/middle.md"
             }
           },
           {
-            "columns": 3,
+            "columns": 4,
             "content": {
               "html": "<a href='http://www.woodwardb.com'>Awesomeness</a>"
             }
