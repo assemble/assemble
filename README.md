@@ -197,6 +197,13 @@ TODO...
 See docs for [helpers](assemble-helpers).
 
 
+## Examples
+
+Examples are found here [https://github.com/assemble/assemble/examples](assemble-examples).
+
+To build the examples run `grunt examples`.
+
+
 
 ## Bug tracker
 Have a bug? Please create an issue here on GitHub that conforms with [necolas's guidelines](https://github.com/necolas/issue-guidelines).
@@ -238,7 +245,7 @@ Please consider contributing! All constructive feedback and contributions are we
 
 ## Related Projects
 
-+ [Toolkit](http://toolkit.io): Library of UI components, using client-side templates, mock-data, and LESS. Components are also available as compiled HTML/CSS.
++ [Toolkit](http://toolkit.io): Library of UI components using client-side templates, mock-data, markdown and LESS. Components are also available as compiled HTML/CSS.
 
 
 
@@ -254,6 +261,7 @@ Copyright 2012 Assemble, Inc.
 [Getting Started]: http://gruntjs.com/getting-started
 [package.json]: https://npmjs.org/doc/json.html
 
+[assemble-examples]:  https://github.com/assemble/assemble/examples
 [assemble-issues]:  https://github.com/assemble/assemble/issues
 [assemble-helpers]: https://github.com/assemble/assemble/blob/master/docs/helpers.md
 [assemble-options]: https://github.com/assemble/assemble/docs/options.md
