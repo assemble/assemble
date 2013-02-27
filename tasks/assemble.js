@@ -134,7 +134,7 @@ module.exports = function(grunt) {
         });
 
         // register the partial with the engine
-        engine.registerPartial(filename, partial);
+        engine.engine.registerPartial(filename, partial);
         complete++;
       });
       log.notverbose.writeln('\n');
@@ -359,7 +359,7 @@ module.exports = function(grunt) {
 
       }
 
-      engine.registerPartial("body", page);
+      engine.engine.registerPartial("body", page);
 
       context = processContext(grunt, context);
       page = layout(context);
