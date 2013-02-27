@@ -127,4 +127,4 @@ The `{{> body }}` template is where the content for the post will be rendered.
 
 
 
-[toolkit]: https://github.com/sellside/toolkit "Visit Toolkit's Repo on GitHub"
+[toolkit]: https://github.com/assemble/toolkit "Visit Toolkit's Repo on GitHub"

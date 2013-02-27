@@ -63,4 +63,4 @@ Please read the following guidelines before opening any issue.
 
 ## License
 
-By contributing your code, you agree to license your contribution under the terms of the APLv2: https://github.com/sellside/assemble/blob/master/LICENSE-MIT
+By contributing your code, you agree to license your contribution under the terms of the APLv2: https://github.com/assemble/assemble/blob/master/LICENSE-MIT

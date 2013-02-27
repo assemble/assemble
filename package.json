@@ -2,10 +2,10 @@
   "name": "assemble",
   "description": "Get the rocks out of your socks. Assemble helps you quickly launch web projects, using HTML and CSS components, scaffolds, client-side templates, mock-data, CSS pre-processors, markdown, YAML, JSON, sensible configuration defaults and a Grunt.js build system to make it work. We use Assemble for gh-pages, documentation, static sites, mocking etc.",
   "version": "0.3.6",
-  "homepage": "https://github.com/sellside/assemble",
+  "homepage": "https://github.com/assemble/assemble",
   "author": {
     "name": "assemble",
-    "url": "https://github.com/sellside/assemble"
+    "url": "https://github.com/assemble/assemble"
   },
   "contributors": [
     {
@@ -19,15 +19,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/sellside/assemble.git"
+    "url": "https://github.com/assemble/assemble.git"
   },
   "bugs": {
-    "url": "https://github.com/sellside/assemble/issues"
+    "url": "https://github.com/assemble/assemble/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/sellside/assemble/blob/master/LICENSE-MIT"
+      "url": "https://github.com/assemble/assemble/blob/master/LICENSE-MIT"
     }
   ],
   "main": "Gruntfile.js",

@@ -1,6 +1,6 @@
 /*
- * Sellside Assemble
- * https://github.com/sellside/assemble
+ * Assemble Assemble
+ * https://github.com/assemble/assemble
  *
  * Authored by Brian Woodward
  * Inspired by previous work by Jon Schlinkert
