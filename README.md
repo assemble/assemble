@@ -4,75 +4,9 @@
 
 Assemble helps you _quickly launch static web projects_ by enabling you to rapidly produce highly reusable code. We accomplish this by emphasizing a strong separation of concerns between logic, structure, style, content and configuration.
 
-**Example Grid**
-
-[![grid](https://github.com/assemble/assemble/blob/master/examples/advanced/dest/assets/grid.png?raw=true)](https://github.com/assemble/assemble/blob/master/examples/advanced/dest/assets/grid.png)
-For example, we may wish to build a dynamic grid, like the one in the image above using handlebars templates for the structure, like this:
-
-``` html
-{{#grid.container}}
-  <div class="container">
-  {{#rows}}
-    <div class="row">
-      {{#columns}}
-        <div class="span{{width}}"> {{content}} </div>
-      {{/columns}}
-    </div>
-  {{/rows}}
-  </div>
-{{/grid.container}}
-```
-and then use an external data file, such as `grid.yml`, to configure the grid and provide the content, like this:
-
-``` yaml
----
-container:
-  rows:
-  - columns:
-    - width: 4
-      content: First Column
-    - width: 4
-      content: Second Column
-    - width: 4
-      content: Third Column
-  - columns:
-    - width: 6
-      content: First Half
-    - width: 6
-      content: Second Half
-...
-```
-
-Or use `grid.json`:
-
-``` json
-{
-  "container": {
-    "rows": [
-      {
-        "columns": [
-          { "width": 4, "content": "First Column"},
-          { "width": 4, "content": "Second Column"},
-          { "width": 4, "content": "Third Column"}
-        ]
-      },
-      {
-        "columns": [
-          { "width": 6, "content": "First Half"},
-          { "width": 6, "content": "Second Half"}
-        ]
-      }
-    ]
-  }
-}
-```
-
-After configuring the `assemble` task with the correct paths for the files used on the grid, run `grunt assemble` to compile the grid to static HTML.
-
 First and foremost, this project just launched so expect frequent changes, and be sure specify an exact version number in `devDependencies` instead of a range, backwards-incompatible changes will be introduced _often_.  If you find this project interesting, please consider starring it to receive updates.
 
 However if you don't find this interesting here is another project you might like: [nodebuildr](nodebuildr).
-
 
 
 ## Getting Started
@@ -92,6 +26,7 @@ grunt.loadNpmTasks('assemble');
 ```
 
 If Assemble has been installed correctly, running `grunt --help` at the command line should list Assemble's task or tasks. In addition, Assemble should be listed in package.json as a `devDependency`, which ensures that it will be installed whenever the `npm install` command is run.
+
 
 
 
@@ -237,30 +172,150 @@ TODO...
 
 #### layout
 Type: `String`
-Default: `false`
+Default: `undefined`
 
-TODO...
+Path to the layout to be used.
+
+``` js
+assemble: {
+  options: {
+    layout: 'src/layouts/default-layout.hbs'
+  },
+  files: {
+    'docs': ['src/files/*.hbs']
+  }
+}
+```
 
 
 #### partials
 Type: `String`
+Default: `undefined`
+
+Accepts [minimatch](https://github.com/isaacs/minimatch) patterns to define the Handlebars partials files, or paths to the directories of files to be used.
+
+``` js
+assemble: {
+  options: {
+    partials: ['src/partials/*.hbs', 'src/snippets/*.hbs']
+  },
+  files: {
+    'docs': ['src/files/*.hbs']
+  }
+}
+```
+
+
+
+### YAML options
+Assemble makes the following options available from `js-yaml`. See [js-yaml](https://github.com/nodeca/js-yaml) for more information.
+
+
+#### filename
+Type: `String`
+Default: `null`
+
+String to be used as a file path in error/warning messages.
+
+
+#### strict
+Type: `Boolean`
 Default: `false`
 
-TODO...
+Makes the loader to throw errors instead of warnings.
+
+
+#### schema
+Type: `String`
+Default: `DEFAULT_SCHEMA`
+
+Specifies a schema to use.
 
 
 
 
 ## Helpers
 
-See docs for [helpers](assemble-helpers).
+Assemble currently includes close to **70 build-in helpers** to make life easier. See the list of [helpers](assemble-helpers) here.
 
 
-## Examples
 
-Examples are found here [https://github.com/assemble/assemble/examples](assemble-examples).
+## Example Projects
 
-To build the examples run `grunt examples`.
+Browse the `examples` folder to get a better idea of what Assemble can do. To build the examples (found here [https://github.com/assemble/assemble/examples](assemble-examples)) run `grunt examples`.
+
+
+**Dynamically build a Grid using Templates and Data**
+
+For example, we may wish to build a dynamic grid, like the one in the image above using handlebars templates for the structure:
+
+[![grid](https://github.com/assemble/assemble/blob/master/examples/advanced/dest/assets/grid.png?raw=true)|align=center](https://github.com/assemble/assemble/blob/master/examples/advanced/dest/assets/grid.png)
+
+---
+
+like this:
+
+``` html
+{{#grid.container}}
+  <div class="container">
+  {{#rows}}
+    <div class="row">
+      {{#columns}}
+        <div class="span{{width}}"> {{content}} </div>
+      {{/columns}}
+    </div>
+  {{/rows}}
+  </div>
+{{/grid.container}}
+```
+and then use an external data file, such as `grid.yml`, to configure the grid and provide the content, like this:
+
+``` yaml
+---
+container:
+  rows:
+  - columns:
+    - width: 4
+      content: First Column
+    - width: 4
+      content: Second Column
+    - width: 4
+      content: Third Column
+  - columns:
+    - width: 6
+      content: First Half
+    - width: 6
+      content: Second Half
+...
+```
+
+Or use `grid.json`:
+
+``` json
+{
+  "container": {
+    "rows": [
+      {
+        "columns": [
+          { "width": 4, "content": "First Column"},
+          { "width": 4, "content": "Second Column"},
+          { "width": 4, "content": "Third Column"}
+        ]
+      },
+      {
+        "columns": [
+          { "width": 6, "content": "First Half"},
+          { "width": 6, "content": "Second Half"}
+        ]
+      }
+    ]
+  }
+}
+```
+
+After configuring the `assemble` task with the correct paths for the files used on the grid, run `grunt assemble` to compile the grid to static HTML.
+
+
 
 
 

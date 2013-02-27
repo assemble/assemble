@@ -9,7 +9,6 @@ TODO:
 A small collection of useful helpers for [Handlebars.js](https://github.com/wycats/handlebars.js).
 
 
-
 ## Equals
 
 ### If x Equals y
@@ -708,7 +707,7 @@ Adds commas to a number.
 
     2,222,222
 
-###
+
 
 ## Comparisons
 
