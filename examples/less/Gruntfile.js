@@ -27,7 +27,7 @@ module.exports = function(grunt) {
         ext: '.less'
       },
       less: {
-        layout: 'src/themes/layouts/default.hbs',
+        layout: 'src/layouts/default.hbs',
         files: {
           'src/themes/<%= theme.name %>/<%= theme.name %>.less': [
             'src/themes/themes.hbs'

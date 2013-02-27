@@ -107,17 +107,15 @@ module.exports = function(grunt) {
   // Load local tasks.
   grunt.loadTasks('tasks');
 
-
-
   // Default task.
-  grunt.registerTask('sub', [
-    'subgrunt:examples'
-  ]);
-
-  // Tests to be run.
-  grunt.registerTask('test', [
+  grunt.registerTask('default', [
     'jshint',
     'mochaTest'
+  ]);
+
+  // Build examples.
+  grunt.registerTask('sub', [
+    'subgrunt:examples'
   ]);
 
   // Default task.
