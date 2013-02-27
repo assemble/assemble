@@ -2,17 +2,48 @@
 
 > Get the rocks out of your socks.
 
+Assemble helps you _quickly launch static web projects_ by enabling you to rapidly produce highly reusable code. We accomplish this by emphasizing a strong separation of concerns between logic, structure, style, content and configuration.
 
-First and foremost, this project just launched so expect frequent changes, and be sure specify an exact version number in `devDependencies` instead of a range, backwards-incompatible changes will be introduced _often_.  If you find this project interesting, please consider starring it to receive updates. However if you don't find this interesting here is another project you might like: [nodebuildr](nodebuildr).
+**Example Grid**
+
+![grid](https://github.com/assemble/assemble/tree/master/examples/advanced/dest/assets/grid.png "Dynamic grid contructed using handlebars templates and external json data")
+
+For example, we may wish to build the dynamic grid in the image above using handlebars templates for the structure, like this:
+
+``` html
+{{#grid.container}}
+<div class="bs-docs-grid">{{#rows}}
+  <div class="row show-grid">{{#columns}}
+    <div class="span{{width}}"> {{content}} </div>
+    {{/columns}}</div>
+  {{/rows}}</div>
+{{/grid.container}}
+```
+and then use an external data file, `grid.json`, to configure the grid and provide the content, like this:
+
+``` json
+{
+  "container": {
+    "description": "Basic grid system, with container, rows and columns.",
+    "rows": [
+      {
+        "columns": [
+          { "width": 1, "content": "1"},
+          { "width": 1, "content": "1"},
+          { "width": 1, "content": "1"},
+          { "width": 1, "content": "1"},
+          { "width": 1, "content": "1"},
+          { "width": 1, "content": "1"}
+  ...
+```
+
+Then run `grunt assemble` to compile the grid to static HTML.
 
 
-**A balance of best practices, convention and configuration**
 
-Assemble helps you _quickly launch static web projects_ using HTML and CSS components, scaffolds, client-side templates, mock-data, CSS pre-processors, markdown, YAML, JSON, sensible configuration defaults and a Grunt.js build system to make it work.
+First and foremost, this project just launched so expect frequent changes, and be sure specify an exact version number in `devDependencies` instead of a range, backwards-incompatible changes will be introduced _often_.  If you find this project interesting, please consider starring it to receive updates.
 
-This project was designed to be more about flexibility and speed, and less about opinion and prescription. So we'll give you some examples, and show you _how to speed up your projects_, but we won't force you to do it our way.
-
-Check out these [examples]. todo...
+However if you don't find this interesting here is another project you might like: [nodebuildr](nodebuildr).
 
 
 
