@@ -6,8 +6,7 @@ Assemble helps you _quickly launch static web projects_ by enabling you to rapid
 
 **Example Grid**
 
-[![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-handlebars.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-handlebars)
-![grid](https://github.com/assemble/assemble/tree/master/examples/advanced/dest/assets/grid.png)
+![grid](https://github.com/assemble/assemble/blob/master/examples/advanced/dest/assets/grid.png)
 
 For example, we may wish to build the dynamic grid in the image above using handlebars templates for the structure, like this:
 
