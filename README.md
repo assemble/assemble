@@ -2,16 +2,15 @@
 
 > Get the rocks out of your socks.
 
-Assemble helps you _quickly launch static web projects_ by enabling you to rapidly produce highly reusable code. We accomplish this by emphasizing a strong separation of concerns between logic, structure, style, content and configuration.
+Assemble helps you _quickly launch static web projects_ by emphasizing a strong separation of concerns between structure, style, content and configuration.
 
-First and foremost, this project just launched so expect frequent changes, and be sure specify an exact version number in `devDependencies` instead of a range, backwards-incompatible changes will be introduced _often_.  If you find this project interesting, please consider starring it to receive updates.
 
-However if you don't find this interesting here is another project you might like: [nodebuildr](nodebuildr).
+This project just launched **so expect frequent changes** for the near future, and if you find this project interesting please consider starring it to receive updates.
 
 
 ## Getting Started
 
-_Assemble uses Grunt.js. If you haven't used [grunt][grunt] before, be sure to check out the [Getting Started][Getting Started] guide. Also, Assemble was designed to work with Grunt 0.4.0. If you're still using grunt v0.3.x, you must [upgrade](Upgrading) for Assemble to work._
+_Assemble uses Grunt.js. If you haven't used [grunt][grunt] before, be sure to check out the [Getting Started][Getting Started] guide. Also, Assemble was designed to work with Grunt 0.4.0, so if you're still using grunt v0.3.x, you must [upgrade][Upgrading] for Assemble to work._
 
 From the same directory as your project's [Gruntfile][Getting Started] and [package.json][packageJSON], install this plugin with the following command:
 
@@ -59,7 +58,7 @@ Task targets, files and options may be specified according to the grunt [Configu
 
 ### Options
 
-See [options](assemble-options) for more information.
+See [options][assemble-options] for more information.
 
 
 #### flatten
@@ -83,9 +82,7 @@ assemble: {
   options: {
     assets: 'dist/assets'
   },
-  files: {
-    'dest': ['src/files/*.hbs']
-  }
+  ...
 }
 ```
 Example usage:
@@ -104,7 +101,7 @@ Resulting in:
 Type: `String`
 Default: `src/data`
 
-Load data for templates and configuration from specified `JSON` and/or `YAML` files.
+Load data for templates and [configuration](https://github.com/assemble/assemble/blob/master/docs/config.md) from specified `JSON` and/or `YAML` files.
 
 Example:
 
@@ -113,9 +110,7 @@ assemble: {
   options: {
     data: ['src/data/*.json', 'config/global.json']
   },
-  files: {
-    'dest': ['src/files/*.hbs']
-  }
+  ...
 }
 ```
 Example `widget.json` data file:
@@ -134,7 +129,7 @@ Example `widget.hbs` template:
 <div class="widget {{ widget.modifier }}">{{ widget.name }}</div>
 ```
 
-Compiled result (after running `grunt assemble`):
+Compiled result after running `grunt assemble`:
 
 ``` html
 <div class="widget widget-square">Square Widget</div>
@@ -236,13 +231,13 @@ Specifies a schema to use.
 
 ## Helpers
 
-Assemble currently includes close to **70 build-in helpers** to make life easier. See the list of [helpers](assemble-helpers) here.
+Assemble currently includes close to **70 build-in helpers** to make life easier. See the list of [helpers][assemble-helpers] here.
 
 
 
 ## Example Projects
 
-Browse the `examples` folder to get a better idea of what Assemble can do. To build the examples (found here [https://github.com/assemble/assemble/examples](assemble-examples)) run `grunt examples`.
+Browse the [examples][assemble-examples] folder to get a better idea of what Assemble can do. To build the examples run `grunt examples`.
 
 
 **Dynamically build a Grid using Templates and Data**
