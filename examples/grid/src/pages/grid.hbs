@@ -13,14 +13,9 @@ page:
 {{#grid.container}}
 <div class="container">
 
-  {{#rows}}
-  <div class="row">
-
-    {{#spans}}
-    <div class="span{{columns}}">
-
+  {{#rows}}<div class="row">
+    {{#spans}}<div class="span{{columns}}">
       {{#content}}
-
         {{#if html}}{{{html}}}{{/if}}
         {{#if md}}{{{md md}}}{{/if}}
         {{#if markdown}}
@@ -28,14 +23,7 @@ page:
             {{this.markdown}}
           {{/markdown}}
         {{/if}}
-
       {{/content}}
-
-    </div>
-    {{/spans}}
-
-  </div>
-  {{/rows}}
-
-</div>
-{{/grid.container}}
+    </div>{{/spans}}
+  </div>{{/rows}}
+</div>{{/grid.container}}
