@@ -6,40 +6,68 @@ Assemble helps you _quickly launch static web projects_ by enabling you to rapid
 
 **Example Grid**
 
-![grid](https://github.com/assemble/assemble/blob/master/examples/advanced/dest/assets/grid.png)
-
-For example, we may wish to build the dynamic grid in the image above using handlebars templates for the structure, like this:
+[![grid](https://github.com/assemble/assemble/blob/master/examples/advanced/dest/assets/grid.png?raw=true)](https://github.com/assemble/assemble/blob/master/examples/advanced/dest/assets/grid.png)
+For example, we may wish to build a dynamic grid, like the one in the image above using handlebars templates for the structure, like this:
 
 ``` html
 {{#grid.container}}
-<div class="bs-docs-grid">{{#rows}}
-  <div class="row show-grid">{{#columns}}
-    <div class="span{{width}}"> {{content}} </div>
-    {{/columns}}</div>
-  {{/rows}}</div>
+  <div class="container">
+  {{#rows}}
+    <div class="row">
+      {{#columns}}
+        <div class="span{{width}}"> {{content}} </div>
+      {{/columns}}
+    </div>
+  {{/rows}}
+  </div>
 {{/grid.container}}
 ```
-and then use an external data file, `grid.json`, to configure the grid and provide the content, like this:
+and then use an external data file, such as `grid.yml`, to configure the grid and provide the content, like this:
+
+``` yaml
+---
+container:
+  rows:
+  - columns:
+    - width: 4
+      content: First Column
+    - width: 4
+      content: Second Column
+    - width: 4
+      content: Third Column
+  - columns:
+    - width: 6
+      content: First Half
+    - width: 6
+      content: Second Half
+...
+```
+
+Or use `grid.json`:
 
 ``` json
 {
   "container": {
-    "description": "Basic grid system, with container, rows and columns.",
     "rows": [
       {
         "columns": [
-          { "width": 1, "content": "1"},
-          { "width": 1, "content": "1"},
-          { "width": 1, "content": "1"},
-          { "width": 1, "content": "1"},
-          { "width": 1, "content": "1"},
-          { "width": 1, "content": "1"}
-  ...
+          { "width": 4, "content": "First Column"},
+          { "width": 4, "content": "Second Column"},
+          { "width": 4, "content": "Third Column"}
+        ]
+      },
+      {
+        "columns": [
+          { "width": 6, "content": "First Half"},
+          { "width": 6, "content": "Second Half"}
+        ]
+      }
+    ]
+  }
+}
 ```
 
-Then run `grunt assemble` to compile the grid to static HTML.
-
-
+After configuring the `assemble` task with the correct paths for the files used on the grid, run `grunt assemble` to compile the grid to static HTML.
 
 First and foremost, this project just launched so expect frequent changes, and be sure specify an exact version number in `devDependencies` instead of a range, backwards-incompatible changes will be introduced _often_.  If you find this project interesting, please consider starring it to receive updates.
 
