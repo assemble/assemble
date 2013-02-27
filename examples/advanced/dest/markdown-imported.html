@@ -30,13 +30,13 @@
         <div class="span3">
           <nav class="nav nav-pills nav-stacked">
             
-            <li> <a href="markdown-inline.html">Inline Markdown</a> </li>
-            
-            <li> <a href="markdown-imported.html">Imported Markdown</a> </li>
+            <li> <a href="grid.html">Grid</a> </li>
             
             <li> <a href="external-content.html">External Content</a> </li>
             
-            <li> <a href="grid.html">Grid</a> </li>
+            <li> <a href="markdown-inline.html">Inline Markdown</a> </li>
+            
+            <li> <a href="markdown-imported.html">Imported Markdown</a> </li>
             
             <li> <a href="kitchen-sink.html">Kitchen Sink</a> </li>
             
@@ -52,12 +52,206 @@
         <p class="lead">Import markdown content from external files</p>
       </div>
 
-      <p>To import external markdown content just use the <code>{{{md}}}</code> markdown helper (make sure you use the triple staches if you want it escaped), and running `grunt assemble` will compile it to HTML.</p>
+      <p>To import external markdown content just use the <code>md</code> markdown helper with a variable template for the content you want to import, like: <code>{{{md content}}}</code> (make sure you use the triple staches if you want it escaped).</p>
+
+      <p>Then run <code>grunt assemble</code> to compile it to HTML.</p>
 
       <hr>
 
-      <!-- Inline markdown content. -->
-      
+      <!-- Imported markdown content.  -->
+      <h1>First-level heading</h1>
+<h2>Second-level Heading</h2>
+<h3>Third-level Heading</h3>
+<h4>Fourth-level heading</h4>
+<pre><code class="lang-md"><span class="preprocessor"># First-level heading</span>
+
+<span class="preprocessor">## Second-level Heading</span>
+
+<span class="preprocessor">### Third-level Heading</span>
+
+<span class="preprocessor">#### Fourth-level heading</span></code></pre>
+<h2>Paragraphs</h2>
+<p>This is a paragraph. It has two sentences.</p>
+<p>This is another paragraph. It also has
+two sentences.</p>
+<pre><code class="lang-md">This <span class="keyword">is</span> a <span class="property">paragraph</span>. It has two sentences.
+
+This <span class="keyword">is</span> another <span class="property">paragraph</span>. It also has
+two sentences.</code></pre>
+<h2>Lists</h2>
+<ul>
+<li>An item in a bulleted (unordered) list<ul>
+<li>A subitem, indented with 4 spaces</li>
+</ul>
+</li>
+<li>Another item in a bulleted list</li>
+<li>An item in an enumerated (ordered) list
+1.1. A subitem, indented with 4 spaces</li>
+<li>Another item in an enumerated list</li>
+</ul>
+<pre><code class="lang-md">* An <span class="property">item</span> <span class="keyword">in</span> a bulleted (unordered) <span class="type">list</span>
+    * A subitem, indented <span class="keyword">with</span> <span class="number">4</span> spaces
+* Another <span class="property">item</span> <span class="keyword">in</span> a bulleted <span class="type">list</span>
+<span class="number">1.</span> An <span class="property">item</span> <span class="keyword">in</span> an enumerated (ordered) <span class="type">list</span>
+   <span class="number">1.1</span>. A subitem, indented <span class="keyword">with</span> <span class="number">4</span> spaces
+<span class="number">2.</span> Another <span class="property">item</span> <span class="keyword">in</span> an enumerated <span class="type">list</span></code></pre>
+<h2>Line return</h2>
+<p>Line breaks inserted in the text are removed from the final result: the web browser is in charge of breaking lines depending on the available space. To force a line break, insert two spaces at the end of the line.</p>
+<h2>Emphasized text</h2>
+<p><em>emphasis</em> or <em>emphasis</em>  (e.g., italics)</p>
+<p><strong>strong emphasis</strong> or <strong>strong emphasis</strong> (e.g., boldface)</p>
+<pre><code class="lang-md"><span class="variable">*emphasis</span>* <span class="keyword">or</span> _emphasis<span class="number">_</span>  (e.g., italics)
+
+<span class="variable">**</span>strong emphasis<span class="variable">**</span> <span class="keyword">or</span> __strong emphasis_<span class="number">_</span> (e.g., boldface)</code></pre>
+<h2>Code</h2>
+<p>To include code (formatted in monospace font), you can either surround inline code with backticks (`), like in:</p>
+<p>Some text with <code>some code</code> inside.</p>
+<pre><code class="lang-md">Some <span class="type">text</span> <span class="keyword">with</span> `<span class="keyword">some</span> code` inside.</code></pre>
+<p>Or indent several lines of code by at least four spaces, as in:</p>
+<pre><code><span class="title">line</span> <span class="number">1</span> <span class="keyword">of</span> code
+<span class="title">line</span> <span class="number">2</span> <span class="keyword">of</span> code
+<span class="title">line</span> <span class="number">3</span> <span class="keyword">of</span> code</code></pre>
+<pre><code class="lang-md">    line <span class="number">1</span> <span class="keyword">of</span> code
+    line <span class="number">2</span> <span class="keyword">of</span> code
+    line <span class="number">3</span> <span class="keyword">of</span> code</code></pre>
+<p>The latter option makes Markdown retain all whitespace—as opposed to the usual behaviour, which, by removing line breaks and excess spaces, would break indentation and code layout.</p>
+<h2>Escaping</h2>
+<p>Use <code>\</code> for escaping code, such as handlebars templates, so the following:</p>
+<pre><code class="lang-md"><span class="command">\{</span><span class="special">{</span> page.title <span class="special">}</span><span class="special">}</span></code></pre>
+<p>would translate literally.</p>
+<h2>Line breaks</h2>
+<p>When you do want to insert a break tag using Markdown, you end a line with two or more spaces, then type return. For example:</p>
+<pre><code class="lang-md"><span class="function"><span class="keyword">def</span> <span class="title">show_results</span></span>
+tag_br space space
+<span class="keyword">end</span></code></pre>
+<p>Result:</p>
+<pre><code class="lang-html"><span class="function"><span class="keyword">def</span> <span class="title">show_results</span></span>
+
+<span class="keyword">end</span></code></pre>
+<p>You can also use two newlines. For example:</p>
+<pre><code><span class="title">sentence</span> <span class="type">A</span>
+
+<span class="title">sentence</span> <span class="type">B</span></code></pre>
+<p>Result:</p>
+<pre><code class="lang-html"><span class="title">sentence</span> <span class="type">A</span>
+<span class="title">sentence</span> <span class="type">B</span></code></pre>
+<h2>Blockquotes</h2>
+<blockquote>
+<p>&quot;This entire paragraph of text will be enclosed in an HTML blockquote element.
+Blockquote elements are reflowable. You may arbitrarily
+wrap the text to your liking, and it will all be parsed
+into a single blockquote element.&quot;</p>
+</blockquote>
+<pre><code class="lang-md"><span class="blockquote">&gt; "This entire paragraph of text will be enclosed in an HTML blockquote element.</span>
+Blockquote elements are reflowable. You may arbitrarily
+wrap the text to your liking, and it will all be parsed
+into a single blockquote element."</code></pre>
+<p>The above would translate into the following HTML:</p>
+<pre><code class="lang-html"><span class="tag">&lt;<span class="title">blockquote</span>&gt;</span><span class="tag">&lt;<span class="title">p</span>&gt;</span>This entire paragraph of text will be enclosed in an HTML blockquote element. Blockquote
+elements are reflowable. You may arbitrarily wrap the text to your liking, and it will all
+be parsed into a single blockquote element.<span class="tag">&lt;/<span class="title">p</span>&gt;</span><span class="tag">&lt;/<span class="title">blockquote</span>&gt;</span></code></pre>
+<h2>External links</h2>
+<p>Links may be included inline:</p>
+<pre><code class="lang-md"><span class="link_label">[link text here]</span>(<span class="link_url">link.address.here</span>)
+Ex. <span class="link_label">[Markdown]</span>(<span class="link_url">http://en.wikipedia.com/wiki/Markdown</span>)</code></pre>
+<p>Alternatively, links can be placed in footnotes outside of the paragraph, being referenced with some sort of reference tag. For example, including the following inline:</p>
+<pre><code class="lang-md">[link text here][linkref]</code></pre>
+<p>would produce a link if the following showed up outside of the paragraph (or at the end of the document):</p>
+<pre><code class="lang-md">
+[linkref]: link<span class="variable">.address</span><span class="variable">.here</span> <span class="string">"link title here"</span></code></pre>
+<h2>Images</h2>
+<p>Images have similar syntax to links with a preceding exclamation point.</p>
+<pre><code class="lang-md">!<span class="link_label">[Alt text]</span>(<span class="link_url">/path/to/img.jpg</span>)</code></pre>
+<p>or</p>
+<pre><code class="lang-md">!<span class="link_label">[Alt text]</span>(<span class="link_url">/path/to/img.jpg "Optional title"</span>)</code></pre>
+<p>Like links, Images also have a footnote style syntax</p>
+<pre><code class="lang-md">!<span class="attr_selector">[Alt text]</span><span class="attr_selector">[id]</span></code></pre>
+<p>with a reference later in the document defining the url location</p>
+<pre><code class="lang-md">
+[<span class="property">id</span>]: url/<span class="keyword">to</span>/image  <span class="string">"Optional title attribute"</span></code></pre>
+<h2>Horizontal rules</h2>
+<p>Horizontal rules are created by placing three or more hyphens, asterisks, or underscores on a line by themselves. You may use spaces between the hyphens or asterisks. Each of the following lines will produce a horizontal rule:</p>
+<pre><code class="lang-md"><span class="comment">*</span> <span class="comment">*</span> <span class="comment">*</span>
+<span class="comment">***</span>
+<span class="comment">*****</span>
+<span class="literal">-</span> <span class="literal">-</span> <span class="literal">-</span>
+<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span></code></pre>
+<h1>More</h1>
+<p>Here is a Markdown link to <a href="http://assemble.io">Assemble</a>, and a literal <a href="http://assemble.io/">http://assemble.io/</a>.
+Now some simple links, like one to &#91;google&#93; (automagically links to are-you-
+feeling-lucky), a &#91;wiki: test&#93; link to a Wikipedia page, and a link to
+&#91;foldoc: CPU&#93;s at foldoc.</p>
+<p>Now some inline markup like <em>italics</em>,  <strong>bold</strong>, and <code>code()</code>. Note that underscores in
+words are ignored in Markdown Extra.</p>
+<p><img src="/images/photo.jpg" alt="picture alt" title="Title is optional"></p>
+<blockquote>
+<p>Blockquotes are like quoted text in email replies</p>
+<blockquote>
+<p>And, they can be nested</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>Bullet lists are easy too</li>
+<li>Another one</li>
+<li><p>Another one</p>
+</li>
+<li><p>A numbered list</p>
+</li>
+<li>Which is numbered</li>
+<li>With periods and a space</li>
+</ul>
+<p>And now some code:</p>
+<pre><code>// <span class="variable">Code</span> is just text indented a bit
+<span class="function"><span class="title">which</span><span class="params">(is_easy)</span> <span class="title">to_remember</span><span class="params">()</span>;</code></pre>
+<pre><code>
+<span class="regexp">//</span> Markdown extra adds un-indented code blocks too
+
+<span class="keyword">if</span> (this_is_more_code == <span class="literal">true</span> &amp;&amp; !indented) {
+    <span class="regexp">//</span> tild wrapped code blocks, also <span class="keyword">not</span> indented
+}</code></pre>
+<p>Text with
+two trailing spaces
+(on the right)
+can be used
+for things like poems</p>
+<h3>Horizontal rules</h3>
+<hr>
+<h2><em>**</em></h2>
+<div class="alert"> This is a div wrapping some <strong>Markdown</strong> plus. Without the DIV attribute, it ignores the block. </div>
+
+
+<p>&lt;div class=&quot;alert&quot;&gt;
+This is a div wrapping some <strong>Markdown</strong> plus.  Without the DIV attribute, it ignores the
+block.
+&lt;/div&gt;</p>
+<h2>Markdown plus tables</h2>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Header</th>
+<th align="right">Right</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cell</td>
+<td>Cell</td>
+<td align="right">$10</td>
+</tr>
+<tr>
+<td>Cell</td>
+<td>Cell</td>
+<td align="right">$20</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Outer pipes on tables are optional</li>
+<li>Colon used for alignment (right versus left)</li>
+</ul>
+<p>*[ABBR]: Markdown plus abbreviations (produces an &lt;abbr&gt; tag)</p>
+
 
         </div>
       </div>

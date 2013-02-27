@@ -15,20 +15,20 @@
   "sidebar": {
     "links": [
       {
-        "href": "markdown-inline.html",
-        "text": "Inline Markdown"
-      },
-      {
-        "href": "markdown-imported.html",
-        "text": "Imported Markdown"
+        "href": "grid.html",
+        "text": "Grid"
       },
       {
         "href": "external-content.html",
         "text": "External Content"
       },
       {
-        "href": "grid.html",
-        "text": "Grid"
+        "href": "markdown-inline.html",
+        "text": "Inline Markdown"
+      },
+      {
+        "href": "markdown-imported.html",
+        "text": "Imported Markdown"
       },
       {
         "href": "kitchen-sink.html",

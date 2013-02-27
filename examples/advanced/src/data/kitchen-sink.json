@@ -54,6 +54,12 @@
           {
             "width": 12,
             "content": {
+              "md": "<%= config.content %>/reference.md"
+            }
+          },
+          {
+            "width": 12,
+            "content": {
               "html": "<hr>",
               "md": "<%= config.content %>/grid.md"
             }

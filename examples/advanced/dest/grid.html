@@ -30,13 +30,13 @@
         <div class="span3">
           <nav class="nav nav-pills nav-stacked">
             
-            <li> <a href="markdown-inline.html">Inline Markdown</a> </li>
-            
-            <li> <a href="markdown-imported.html">Imported Markdown</a> </li>
+            <li> <a href="grid.html">Grid</a> </li>
             
             <li> <a href="external-content.html">External Content</a> </li>
             
-            <li> <a href="grid.html">Grid</a> </li>
+            <li> <a href="markdown-inline.html">Inline Markdown</a> </li>
+            
+            <li> <a href="markdown-imported.html">Imported Markdown</a> </li>
             
             <li> <a href="kitchen-sink.html">Kitchen Sink</a> </li>
             
@@ -50,6 +50,8 @@
       <div class="page-header">
         <h1>Example Grid</h1>
         <p class="lead">Basic grid system, with container, rows and columns.</p>
+
+        <p>See the code for this example here: <a href="https://github.com/assemble/assemble/tree/master/examples/advanced/src/pages/grid.hbs">Grid Source</a> </p>
       </div>
 
       <!-- Grid
@@ -98,6 +100,34 @@
 
 
 
+<p>This grid was created using these simple handlebars templates:</p>
+<pre><code class="lang-html"><span class="variable">{{#grid.container}}</span>
+<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"bs-docs-grid"</span>&gt;</span><span class="variable">{{#rows}}</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"row show-grid"</span>&gt;</span><span class="variable">{{#columns}}</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"span"</span>&gt;</span> <span class="variable">{{content}}</span> <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="variable">{{/columns}}</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  <span class="variable">{{/rows}}</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="variable">{{/grid.container}}</span></code></pre>
+<p>and an external file, <code>data.json</code>, to provide the content and configure the desired number of columns and rows.</p>
+<pre><code class="lang-json">{
+  "<span class="attribute">container</span>": <span class="value">{
+    "<span class="attribute">description</span>": <span class="value"><span class="string">"Basic grid system, with container, rows and columns."</span></span>,
+    "<span class="attribute">rows</span>": <span class="value">[
+      {
+        "<span class="attribute">columns</span>": <span class="value">[
+          {
+            "<span class="attribute">width</span>": <span class="value"><span class="number">1</span></span>,
+            "<span class="attribute">content</span>": <span class="value"><span class="string">"1"</span>
+          }</span>,
+          {
+            "<span class="attribute">width</span>": <span class="value"><span class="number">1</span></span>,
+            "<span class="attribute">content</span>": <span class="value"><span class="string">"1"</span>
+          }</span>,
+          {
+            "<span class="attribute">width</span>": <span class="value"><span class="number">1</span></span>,
+            "<span class="attribute">content</span>": <span class="value"><span class="string">"1"</span>
+          }</span>
+  ...</code></pre>
 
         </div>
       </div>
