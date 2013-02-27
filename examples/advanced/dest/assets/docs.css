@@ -10,6 +10,11 @@
 /* Body and structure
 -------------------------------------------------- */
 
+body {
+  position: relative;
+  padding-top: 60px;
+}
+
 
 /* Code in headings */
 h3 code {
@@ -329,9 +334,11 @@ only screen and (     -o-min-device-pixel-ratio: 2/1) {
 .show-grid [class*="span"] {
   background-color: #eee;
   text-align: center;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
   min-height: 40px;
   line-height: 40px;
-  border: 1px solid #ddd;
 }
 .show-grid:hover [class*="span"] {
   background: #ddd;

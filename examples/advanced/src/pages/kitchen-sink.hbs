@@ -1,6 +1,7 @@
 ---
 page:
-  title: Example Grid with Content
+  title: Why would you do this?
+  description: I'm not sure, but you'll find an example of just about everything in this grid.
   links:
     -
       href: https://github.com/assemble/assemble
@@ -9,8 +10,6 @@ page:
       href: https://github.com/assemble/toolkit
       text: Toolkit
 ---
-  <div class="container">
-
     <div class="page-header">
       <h1>{{ page.title }}</h1>
       <p class="lead">{{ page.description }}</p>
@@ -19,7 +18,7 @@ page:
     {{#structured-content.container}}
     <div class="bs-docs-grid">
       {{#rows}}<div class="row">
-        {{#spans}}<div class="span{{columns}}">
+        {{#columns}}<div class="span{{width}}">
 
           {{#content}}
             {{#if html}}{{{html}}}{{/if}}
@@ -31,11 +30,9 @@ page:
             {{/if}}
           {{/content}}
 
-        </div>{{/spans}}
+        </div>{{/columns}}
       </div>{{/rows}}
     </div>
     {{/structured-content.container}}
-
-  </div><!-- /container -->
 
 

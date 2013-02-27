@@ -1,42 +1,21 @@
 ---
 page:
   title: Example Grid
-  description:
-  links:
-    -
-      href: https://github.com/assemble/assemble
-      text: Assemble
-    -
-      href: https://github.com/assemble/toolkit
-      text: Toolkit
 ---
-  <div class="container">
+      <div class="page-header">
+        <h1>{{ page.title }}</h1>
+        <p class="lead">{{ grid.container.description }}</p>
+      </div>
 
-    <div class="page-header">
-      <h1>{{ page.title }}</h1>
-      <p class="lead">{{ page.description }}</p>
-    </div>
+      <!-- Grid
+      ==================================================== -->
+      {{#grid.container}}
+      <div class="bs-docs-grid">{{#rows}}
+        <div class="row show-grid">{{#columns}}
+          <div class="span{{width}}"> {{content}} </div>
+          {{/columns}}</div>
+        {{/rows}}</div>
+      {{/grid.container}}
 
-    {{#grid.container}}
-    <div class="bs-docs-grid">
-      {{#rows}}<div class="row show-grid">
-        {{#spans}}<div class="span{{columns}}">
-
-          {{#content}}
-            {{#if html}}{{{html}}}{{/if}}
-            {{#if md}}{{{md md}}}{{/if}}
-            {{#if markdown}}
-              {{#markdown}}
-                {{this.markdown}}
-              {{/markdown}}
-            {{/if}}
-          {{/content}}
-
-        </div>{{/spans}}
-      </div>{{/rows}}
-    </div>
-    {{/grid.container}}
-
-  </div><!-- /container -->
 
 

@@ -1,6 +1,6 @@
 ---
 page:
-  title: Markdown
+  title: YAML Front Matter
   description: Write inline markdown inside any HTML file.
 
   links:
@@ -25,19 +25,21 @@ page:
         <p class="lead">{{ page.description }}</p>
       </div>
 
-<!-- Inline Markdown. -->
-{{#markdown}}
+      <div class="row">
+        <div class="span3">
 
-### Inline Markdown
+          <!-- Create links from YAML header. -->
+          <nav class="nav nav-pills nav-stacked">
+            {{#page.links}}
+            <li> <a href="{{href}}">{{text}}</a> </li>
+            {{/page.links}}
+          </nav>
 
-This is an example of `inline markdown`.  Just write markdown wherever you want and wrap it with `\{{#markdown}}` section tags, then run `grunt assemble` to convert it to HTML.
+        </div>
+        <div class="span9">
 
-You can even add handlebars templates inside the markdown!
+          <!-- Import content from YAML header. -->
+          {{{md content}}}
 
-<nav>
-{{#page.links}}
-  <li>[{{text}}]({{href}})</li>
-{{/page.links}}
-</nav>
-
-{{/markdown}}
+        </div>
+      </div>

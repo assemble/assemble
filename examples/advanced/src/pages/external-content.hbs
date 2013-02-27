@@ -3,10 +3,8 @@ page:
   title: External Content
   description: Assemble makes it easy to include content from external files.
 
-content: <%= config.content %>/dear-diary.md
+content: <%= config.content %>/blockquote.md
 ---
-    <div class="container">
-
       <div class="page-header">
         <h1>{{ page.title }}</h1>
         <p class="lead">{{ page.description }}</p>
@@ -19,11 +17,9 @@ content: <%= config.content %>/dear-diary.md
       <!-- Import markdown content. -->
       {{{md content}}}
 
-      <!-- Import plain text/html or markdown. Markdown can either be written "inline" or imported using the "md" helper -->
+      <!-- Import content from an external source -->
       {{#external-content}}
         {{#if html}}{{{html}}}{{/if}}
         {{#if md}}{{{md md}}}{{/if}}
         {{#if markdown}} {{#markdown}} {{this.markdown}} {{/markdown}} {{/if}}
       {{/external-content}}
-
-    </div><!-- /container -->

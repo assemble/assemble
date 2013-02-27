@@ -10,16 +10,13 @@
 
     <!-- Navbar
     ============================================= -->
-    <div class="navbar">
+    <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li><a href="markdown-inline.html">Inline Markdown</a></li>
-              <li><a href="markdown-imported.html">Imported Markdown</a></li>
-              <li><a href="external-content.html">External Content</a></li>
-              <li><a href="grid.html">Grid</a></li>
-              <li><a href="structured-content.html">Structured Content</a></li>
+              <li><a href="index.html">Examples</a></li>
+              <li><a href="http://github.com/assemble/assemble">GitHub Repo</a></li>
               
             </ul>
           </div>
@@ -28,12 +25,28 @@
     </div>
 
 
-
-    <!-- Content
-    ============================================= -->
-    
     <div class="container">
+      <div class="row">
+        <div class="span3">
+          <nav class="nav nav-pills nav-stacked">
+            
+            <li> <a href="markdown-inline.html">Inline Markdown</a> </li>
+            
+            <li> <a href="markdown-imported.html">Imported Markdown</a> </li>
+            
+            <li> <a href="external-content.html">External Content</a> </li>
+            
+            <li> <a href="grid.html">Grid</a> </li>
+            
+            <li> <a href="kitchen-sink.html">Kitchen Sink</a> </li>
+            
+          </nav>
+        </div>
 
+        <!-- Content
+        ============================================= -->
+        <div class="span9">
+          
       <div class="page-header">
         <h1>External Content</h1>
         <p class="lead">Assemble makes it easy to include content from external files.</p>
@@ -46,12 +59,12 @@
       <!-- Import markdown content. -->
       <h4>Some imported markdown</h4>
 <blockquote>
-<p>Dear diary, I imported markdown using a handlebars helper today. It was so exciting! Yeah!</p>
+<p>This is an example quote, originally written markdown.</p>
 </blockquote>
 <p>  - <a href="https://github.com/assemble/assemble">Assemble</a></p>
 
 
-      <!-- Import plain text/html or markdown. Markdown can either be written "inline" or imported using the "md" helper -->
+      <!-- Import content from an external source -->
       
         <h4>Here's the header of the page</h4>
  <hr>
@@ -144,7 +157,9 @@
  
       
 
-    </div><!-- /container -->
+        </div>
+      </div>
+    </div>
 
   </body>
 </html>

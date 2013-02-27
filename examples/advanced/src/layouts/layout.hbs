@@ -1,20 +1,7 @@
 ---
-links:
-    -
-      href: markdown-inline.html
-      text: Inline Markdown
-    -
-      href: markdown-imported.html
-      text: Imported Markdown
-    -
-      href: external-content.html
-      text: External Content
-    -
-      href: grid.html
-      text: Grid
-    -
-      href: structured-content.html
-      text: Structured Content
+links: <%= config.links %>
+sidebar:
+  links: <%= config.sidebar.links %>
 ---
 <!DOCTYPE html>
 <html>
@@ -29,10 +16,23 @@ links:
     ============================================= -->
     {{> navbar }}
 
+    <div class="container">
+      <div class="row">
+        <div class="span3">
+          <nav class="nav nav-pills nav-stacked">
+            {{#sidebar.links}}
+            <li> <a href="{{href}}">{{text}}</a> </li>
+            {{/sidebar.links}}
+          </nav>
+        </div>
 
-    <!-- Content
-    ============================================= -->
-    {{> body }}
+        <!-- Content
+        ============================================= -->
+        <div class="span9">
+          {{> body }}
+        </div>
+      </div>
+    </div>
 
   </body>
 </html>

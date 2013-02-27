@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> Markdown </title>
+    <title> YAML Front Matter </title>
     <link rel="stylesheet" href="assets/bootstrap.css">
     <link rel="stylesheet" href="assets/docs.css">
   </head>
@@ -48,29 +48,36 @@
         <div class="span9">
           
       <div class="page-header">
-        <h1>Markdown</h1>
+        <h1>YAML Front Matter</h1>
         <p class="lead">Write inline markdown inside any HTML file.</p>
       </div>
 
-<!-- Inline Markdown. -->
-<h3>Inline Markdown</h3>
-<p>This is an example of <code>inline markdown</code>.  Just write markdown wherever you want and wrap it with <code>{{#markdown}}</code> section tags, then run <code>grunt assemble</code> to convert it to HTML.</p>
-<p>You can even add handlebars templates inside the markdown!</p>
-<nav>
+      <div class="row">
+        <div class="span3">
 
-  <li><a href="markdown-inline.html">Inline Markdown</a></li>
+          <!-- Create links from YAML header. -->
+          <nav class="nav nav-pills nav-stacked">
+            
+            <li> <a href="markdown-inline.html">Inline Markdown</a> </li>
+            
+            <li> <a href="markdown-imported.html">Imported Markdown</a> </li>
+            
+            <li> <a href="external-content.html">External Content</a> </li>
+            
+            <li> <a href="grid.html">Grid</a> </li>
+            
+            <li> <a href="structured-content.html">Structured Content</a> </li>
+            
+          </nav>
 
-  <li><a href="markdown-imported.html">Imported Markdown</a></li>
+        </div>
+        <div class="span9">
 
-  <li><a href="external-content.html">External Content</a></li>
+          <!-- Import content from YAML header. -->
+          
 
-  <li><a href="grid.html">Grid</a></li>
-
-  <li><a href="structured-content.html">Structured Content</a></li>
-
-</nav>
-
-
+        </div>
+      </div>
 
         </div>
       </div>

@@ -1,91 +1,80 @@
 {
   "container": {
+    "description": "Basic grid system, with container, rows and columns.",
     "rows": [
       {
-        "spans": [
+        "columns": [
           {
-            "columns": 1,
-            "content": { "html": "1" }
+            "width": 1,
+            "content": "1"
           },
           {
-            "columns": 1,
-            "content": { "html": "1" }
+            "width": 1,
+            "content": "1"
           },
           {
-            "columns": 1,
-            "content": { "html": "1" }
+            "width": 1,
+            "content": "1"
           },
           {
-            "columns": 1,
-            "content": { "html": "1" }
+            "width": 1,
+            "content": "1"
           },
           {
-            "columns": 1,
-            "content": { "html": "1" }
+            "width": 1,
+            "content": "1"
           },
           {
-            "columns": 1,
-            "content": { "html": "1" }
+            "width": 1,
+            "content": "1"
           },
           {
-            "columns": 1,
-            "content": { "html": "1" }
+            "width": 1,
+            "content": "1"
           },
           {
-            "columns": 1,
-            "content": { "html": "1" }
+            "width": 1,
+            "content": "1"
           },
           {
-            "columns": 1,
-            "content": { "html": "1" }
-          },
-          {
-            "columns": 1,
-            "content": { "html": "1" }
-          },
-          {
-            "columns": 1,
-            "content": { "html": "1" }
-          },
-          {
-            "columns": 1,
-            "content": { "html": "1" }
+            "width": 1,
+            "content": "1"
           }
         ]
       },
       {
-        "spans": [
+        "columns": [
           {
-            "columns": 2,
-            "content": { "html": "2" }
+            "width": 2,
+            "content": "2"
           },
           {
-            "columns": 4,
-            "content": { "html": "4" }
+            "width": 3,
+            "content": "3"
           },
           {
-            "columns": 6,
-            "content": { "html": "6" }
+            "width": 4,
+            "content": "4"
           }
         ]
       },
       {
-        "spans": [
+        "columns": [
           {
-            "columns": 5,
-            "content": { "html": "5" }
+            "width": 4,
+            "content": "4"
           },
           {
-            "columns": 7,
-            "content": { "html": "7" }
+            "width": 5,
+            "content": "5"
           }
         ]
       },
       {
-        "spans": [
+        "columns": [
           {
-            "columns": 12,
-            "content": { "html": "12" }
+            "width": 9,
+            "content": "9"
           }
         ]
       }

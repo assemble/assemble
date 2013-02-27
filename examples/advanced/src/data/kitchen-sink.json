@@ -2,9 +2,9 @@
   "container": {
     "rows": [
       {
-        "spans": [
+        "columns": [
           {
-            "columns": 12,
+            "width": 12,
             "content": {
               "html": "<h4>Here's the header of the page</h4>\n <hr>"
             }
@@ -12,21 +12,21 @@
         ]
       },
       {
-        "spans": [
+        "columns": [
           {
-            "columns": 4,
+            "width": 4,
             "content": {
               "markdown": "\n - item1\n - item2\n - item3"
             }
           },
           {
-            "columns": 4,
+            "width": 4,
             "content": {
               "markdown": "\n#### Middle Section\n"
             }
           },
           {
-            "columns": 4,
+            "width": 4,
             "content": {
               "html": "Right Sidebar <a href='http://www.woodwardb.com'>Awesomeness</a>"
             }
@@ -34,15 +34,15 @@
         ]
       },
       {
-        "spans": [
+        "columns": [
           {
-            "columns": 6,
+            "width": 6,
             "content": {
               "markdown": "\n### Left Column\n"
             }
           },
           {
-            "columns": 6,
+            "width": 6,
             "content": {
               "markdown": "\n### Right Column\n"
             }
@@ -50,12 +50,12 @@
         ]
       },
       {
-        "spans": [
+        "columns": [
           {
-            "columns": 12,
+            "width": 12,
             "content": {
               "html": "<hr>",
-              "md": "<%= config.content %>/grid-docs.md"
+              "md": "<%= config.content %>/grid.md"
             }
           }
         ]

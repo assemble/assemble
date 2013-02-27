@@ -1,6 +1,6 @@
 {
   "html": "<h4>Here's the header of the page</h4>\n <hr>",
   "markdown": "\n - item1\n - item2\n - item3",
-  "md": "<%= config.content %>/grid-docs.md"
+  "md": "<%= config.content %>/grid.md"
 }
 
