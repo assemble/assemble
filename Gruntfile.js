@@ -114,7 +114,7 @@ module.exports = function(grunt) {
   ]);
 
   // Build examples.
-  grunt.registerTask('sub', [
+  grunt.registerTask('examples', [
     'subgrunt:examples'
   ]);
 
