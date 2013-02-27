@@ -24,7 +24,7 @@
           {
             "columns": 4,
             "content": {
-              "md": "<%= config.content.src %>/middle-section.md"
+              "md": "<%= config.content %>/middle-section.md"
             }
           },
           {
