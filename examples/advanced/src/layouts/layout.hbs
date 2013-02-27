@@ -1,0 +1,38 @@
+---
+links:
+    -
+      href: markdown-inline.html
+      text: Inline Markdown
+    -
+      href: markdown-imported.html
+      text: Imported Markdown
+    -
+      href: external-content.html
+      text: External Content
+    -
+      href: grid.html
+      text: Grid
+    -
+      href: structured-content.html
+      text: Structured Content
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> {{ page.title }} </title>
+    <link rel="stylesheet" href="{{assets}}/bootstrap.css">
+    <link rel="stylesheet" href="{{assets}}/docs.css">
+  </head>
+  <body>
+
+    <!-- Navbar
+    ============================================= -->
+    {{> navbar }}
+
+
+    <!-- Content
+    ============================================= -->
+    {{> body }}
+
+  </body>
+</html>

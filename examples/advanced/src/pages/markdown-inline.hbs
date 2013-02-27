@@ -1,0 +1,46 @@
+---
+page:
+  title: Markdown
+  description: Write inline markdown inside any HTML file.
+
+  links:
+    -
+      href: markdown-inline.html
+      text: Inline Markdown
+    -
+      href: markdown-imported.html
+      text: Imported Markdown
+    -
+      href: external-content.html
+      text: External Content
+    -
+      href: grid.html
+      text: Grid
+    -
+      href: structured-content.html
+      text: Structured Content
+---
+    <div class="container">
+      <div class="page-header">
+        <h1>{{ page.title }}</h1>
+        <p class="lead">{{ page.description }}</p>
+      </div>
+
+<!-- Inline Markdown. -->
+{{#markdown}}
+
+### Inline Markdown
+
+This is an example of `inline markdown`.  Just write markdown wherever you want and wrap it with `\{{#markdown}}` section tags, then run `grunt assemble` to convert it to HTML.
+
+You can even add handlebars templates inside the markdown!
+
+<nav>
+{{#page.links}}
+  <li>[{{text}}]({{href}})</li>
+{{/page.links}}
+</nav>
+
+{{/markdown}}
+
+    </div><!-- /container -->

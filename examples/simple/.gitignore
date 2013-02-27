@@ -1,0 +1,41 @@
+# node #
+########
+
+lib-cov
+*.seed
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.rar
+
+
+pids
+logs
+results
+
+npm-debug.log
+
+# SublimeText project files #
+#############################
+*.sublime-*
+.cache
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store*
+.DS_Store
+._*
+
+
+# node and git
+temp
+node_modules
+!.gitkeep

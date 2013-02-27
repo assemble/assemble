@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Imported Markdown </title>
+    <link rel="stylesheet" href="assets/bootstrap.css">
+    <link rel="stylesheet" href="assets/docs.css">
+  </head>
+  <body>
+
+    <!-- Navbar
+    ============================================= -->
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="markdown-inline.html">Inline Markdown</a></li>
+              <li><a href="markdown-imported.html">Imported Markdown</a></li>
+              <li><a href="external-content.html">External Content</a></li>
+              <li><a href="grid.html">Grid</a></li>
+              <li><a href="structured-content.html">Structured Content</a></li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Content
+    ============================================= -->
+    
+    <div class="container">
+
+      <div class="page-header">
+        <h1>Imported Markdown</h1>
+        <p class="lead">Import markdown content from external files</p>
+      </div>
+
+      <p>To import external markdown content just use the <code>{{{md}}}</code> markdown helper (make sure you use the triple staches if you want it escaped), and running `grunt assemble` will compile it to HTML.</p>
+
+      <hr>
+
+      <!-- Inline markdown content. -->
+      <h4>Some imported markdown</h4>
+<blockquote>
+<p>Dear diary, I imported markdown using a handlebars helper today. It was so exciting! Yeah!</p>
+</blockquote>
+<p>  - <a href="https://github.com/assemble/assemble">Assemble</a></p>
+
+
+    </div><!-- /container -->
+
+  </body>
+</html>

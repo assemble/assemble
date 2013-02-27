@@ -1,0 +1,22 @@
+---
+page:
+  title: Imported Markdown
+  description: Import markdown content from external files
+
+content: <%= config.content %>/dear-diary.md
+---
+    <div class="container">
+
+      <div class="page-header">
+        <h1>{{ page.title }}</h1>
+        <p class="lead">{{ page.description }}</p>
+      </div>
+
+      <p>To import external markdown content just use the <code>\{{{md}}}</code> markdown helper (make sure you use the triple staches if you want it escaped), and running `grunt assemble` will compile it to HTML.</p>
+
+      <hr>
+
+      <!-- Inline markdown content. -->
+      {{{md content}}}
+
+    </div><!-- /container -->
