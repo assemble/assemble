@@ -1,7 +1,7 @@
 {
   "name": "assemble",
-  "description": "Get the rocks out of your socks. Assemble helps you quickly launch web projects, using HTML and CSS components, scaffolds, client-side templates, mock-data, CSS pre-processors, markdown, YAML, JSON, sensible configuration defaults and a Grunt.js build system to make it work. We use Assemble for gh-pages, documentation, static sites, mocking etc.",
-  "version": "0.3.6",
+  "description": "Get the rocks out of your socks. Assemble helps you _quickly launch static web projects_ by emphasizing a strong separation of concerns between structure, style, content and configuration. See examples for plain HTML and CSS, scaffolds, client-side templates, mock-data, CSS pre-processors, markdown, YAML, JSON, sensible configuration defaults and a Grunt.js build system to make it work. Assemble is great for gh-pages, documentation, static sites, mocking etc.",
+  "version": "0.3.7",
   "homepage": "https://github.com/assemble/assemble",
   "author": {
     "name": "assemble",
