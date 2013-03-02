@@ -268,7 +268,7 @@ module.exports = function(grunt) {
           }
 
           file.write(destFile, result);
-          grunt.log.ok('File ' + (filename + '.html').magenta + ' created.' + ' ok '.green); // ✔ doesn't work for some reason
+          grunt.log.ok('File ' + (filename + options.ext).magenta + ' created.' + ' ok '.green); // ✔ doesn't work for some reason
         }); // build
 
       }); // filePair.src.forEach
