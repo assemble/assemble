@@ -34,7 +34,7 @@ If Assemble has been installed correctly, running `grunt --help` at the command 
 ### Overview
 In your project's Gruntfile, add a section named `assemble` to the data object passed into `grunt.initConfig()`.
 
-``` js
+``` javascript
 grunt.initConfig({
   assemble: {
     options: {
@@ -77,7 +77,7 @@ Used by the `{{assets}}` template to resolve the relative path to the dest asset
 
 Example:
 
-``` js
+``` javascript
 assemble: {
   options: {
     assets: 'dist/assets'
@@ -105,7 +105,7 @@ Load data for templates and [configuration](https://github.com/assemble/assemble
 
 Example:
 
-``` js
+``` javascript
 assemble: {
   options: {
     data: ['src/data/*.json', 'config/global.json']
@@ -147,7 +147,7 @@ Specify the file extension for destination files.
 
 Example:
 
-``` js
+``` javascript
 assemble: {
   options: {
     ext: '.xml'
@@ -171,7 +171,7 @@ Default: `undefined`
 
 Path to the layout to be used.
 
-``` js
+``` javascript
 assemble: {
   options: {
     layout: 'src/layouts/default-layout.hbs'
@@ -189,7 +189,7 @@ Default: `undefined`
 
 Accepts [minimatch](https://github.com/isaacs/minimatch) patterns to define the Handlebars partials files, or paths to the directories of files to be used.
 
-``` js
+``` javascript
 assemble: {
   options: {
     partials: ['src/partials/*.hbs', 'src/snippets/*.hbs']
@@ -242,13 +242,13 @@ Browse the [examples][assemble-examples] folder to get a better idea of what Ass
 
 **Dynamically build a Grid using Templates and Data**
 
-For example, we may wish to build a dynamic grid, like the one in the image above using handlebars templates for the structure:
+For example, we may wish to build a dynamic grid, similar to this:
 
-[![grid](https://github.com/assemble/assemble/blob/master/examples/advanced/dest/assets/grid.png?raw=true)|align=center](https://github.com/assemble/assemble/blob/master/examples/advanced/dest/assets/grid.png)
+[![grid](https://github.com/assemble/assemble/blob/master/examples/advanced/dest/assets/grid.png?raw=true)](https://github.com/assemble/assemble/blob/master/examples/advanced/dest/assets/grid.png)
 
 ---
 
-like this:
+using handlebars templates for the structure like this:
 
 ``` html
 {{#grid.container}}
