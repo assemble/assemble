@@ -4,6 +4,7 @@
   "hbt": "handlebars",
   "hbs": "handlebars",
   "hb": "handlebars",
+  "tmpl": "handlebars",
   "mustache": "handlebars",
 
   "markdown": "markdown",

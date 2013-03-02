@@ -1,4 +1,4 @@
-# [Assemble](http://assemble.io)
+# [Assemble](http://assemble.github.com/assemble)
 
 > Get the rocks out of your socks.
 
@@ -14,13 +14,13 @@ _Assemble uses Grunt.js. If you haven't used [grunt][grunt] before, be sure to c
 
 From the same directory as your project's [Gruntfile][Getting Started] and [package.json][packageJSON], install this plugin with the following command:
 
-```shell
+``` bash
 npm install assemble --save-dev
 ```
 
 Once that's done, add this line to your project's Gruntfile:
 
-```js
+``` js
 grunt.loadNpmTasks('assemble');
 ```
 
@@ -34,7 +34,7 @@ If Assemble has been installed correctly, running `grunt --help` at the command 
 ### Overview
 In your project's Gruntfile, add a section named `assemble` to the data object passed into `grunt.initConfig()`.
 
-``` javascript
+``` js
 grunt.initConfig({
   assemble: {
     options: {
@@ -61,11 +61,45 @@ Task targets, files and options may be specified according to the grunt [Configu
 See [options][assemble-options] for more information.
 
 
+
+#### engine
+Type: `String`
+Default: `handlebars`
+
+The engine to use for processing client-side templates. Assemble ships Handlebars as the default template engine, if you are interested in using a different engine visit the documentation to see an up-to-date list of template engines.
+
+Pull requests are welcome for additional template engines. Since we're still working to update the docs, you many also contact [@doowb](http://github.com/doowb) for more information or create an [Issue][assemble-issues].
+
+#### helpers
+Type: `String`
+Default: `undefined`
+
+Path defined to a directory of helpers to use with the specified template engine.
+
+``` js
+assemble: {
+  options: {
+    helpers: 'assemble-helpers-handlebars'
+  },
+  ...
+}
+```
+
+Handlebars, Assemble's default template engine, includes the following built-in helpers: {{#each}}, {{#if}}, and {{#unless}}.
+
+[assemble-helpers-handlebars][assemble-helpers-handlebars] adds approximately **70 additional helpers**. To include them, follow these instructions:
+  * Run: `npm install assemble-helpers-handlebars`
+  * Add `assemble-helpers-handlebars` to the `options.helpers` property
+  * To learn more visit the [assemble-helpers-handlebars][assemble-helpers-handlebars] repo.
+  * See the list of [handlebars helpers][helpers-docs] here.
+
+
 #### flatten
 Type: `Boolean`
 Default: `false`
 
 Remove anything after (and including) the first "." in the destination path, then append this value.
+
 
 #### assets
 Type: `String`
@@ -77,7 +111,7 @@ Used by the `{{assets}}` template to resolve the relative path to the dest asset
 
 Example:
 
-``` javascript
+``` js
 assemble: {
   options: {
     assets: 'dist/assets'
@@ -105,7 +139,7 @@ Load data for templates and [configuration](https://github.com/assemble/assemble
 
 Example:
 
-``` javascript
+``` js
 assemble: {
   options: {
     data: ['src/data/*.json', 'config/global.json']
@@ -114,7 +148,6 @@ assemble: {
 }
 ```
 Example `widget.json` data file:
-
 ``` json
 {
   "name": "Square Widget",
@@ -122,48 +155,44 @@ Example `widget.json` data file:
 }
 
 ```
-
 Example `widget.hbs` template:
-
 ``` html
 <div class="widget {{ widget.modifier }}">{{ widget.name }}</div>
 ```
 
 Compiled result after running `grunt assemble`:
-
 ``` html
 <div class="widget widget-square">Square Widget</div>
 ```
-
 Also see: [YAML front matter] todo...
-
 
 
 #### ext
 Type: `String`
 Default: `.html`
 
-Specify the file extension for destination files.
+Specify the file extension for destination files. Example:
 
-Example:
-
-``` javascript
+``` js
 assemble: {
-  options: {
-    ext: '.xml'
+  sitemap: {
+    options: {
+      ext: '.xml'
+    },
+    files: {
+      '.': ['path/to/sitemap.tmpl']
+    }
   },
-  files: {
-    'dest': ['path/to/sitemap.tmpl']
+  readme: {
+    options: {
+      ext: '.md'
+    },
+    files: {
+      '.': ['path/to/readme.tmpl']
+    }
   }
 }
 ```
-
-#### engine
-Type: `String`
-Default: `handlebars`
-
-TODO...
-
 
 #### layout
 Type: `String`
@@ -171,10 +200,10 @@ Default: `undefined`
 
 Path to the layout to be used.
 
-``` javascript
+``` js
 assemble: {
   options: {
-    layout: 'src/layouts/default-layout.hbs'
+    layout: 'src/layouts/default.hbs'
   },
   files: {
     'docs': ['src/files/*.hbs']
@@ -189,7 +218,7 @@ Default: `undefined`
 
 Accepts [minimatch](https://github.com/isaacs/minimatch) patterns to define the Handlebars partials files, or paths to the directories of files to be used.
 
-``` javascript
+``` js
 assemble: {
   options: {
     partials: ['src/partials/*.hbs', 'src/snippets/*.hbs']
@@ -199,7 +228,6 @@ assemble: {
   }
 }
 ```
-
 
 
 ### YAML options
@@ -227,11 +255,6 @@ Default: `DEFAULT_SCHEMA`
 Specifies a schema to use.
 
 
-
-
-## Helpers
-
-Assemble currently includes close to **70 build-in helpers** to make life easier. See the list of [helpers][assemble-helpers] here.
 
 
 
@@ -317,7 +340,7 @@ After configuring the `assemble` task with the correct paths for the files used 
 ## Bug tracker
 Have a bug? Please create an issue here on GitHub that conforms with [necolas's guidelines](https://github.com/necolas/issue-guidelines).
 
-[https://github.com/assemble/assemble/issues](assemble-issues)
+[https://github.com/assemble/assemble/issues][assemble-issues]
 
 
 
@@ -372,6 +395,7 @@ Copyright 2012 Assemble, Inc.
 
 [assemble-examples]:  https://github.com/assemble/assemble/examples
 [assemble-issues]:  https://github.com/assemble/assemble/issues
-[assemble-helpers]: https://github.com/assemble/assemble/blob/master/docs/helpers.md
 [assemble-options]: https://github.com/assemble/assemble/docs/options.md
+[helpers-docs]: https://github.com/assemble/assemble/blob/master/docs/helpers.md
+[assemble-helpers-handlebars]: http://assemble.github.com/assemble-helpers-handlebars
 [nodebuildr]: http://www.youtube.com/watch?v=NgWn7zbgxZ4
