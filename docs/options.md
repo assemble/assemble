@@ -1,209 +1,195 @@
-## Options
-
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
-
-```shell
-npm install assemble --save-dev
-```
-
+### Options
 
 
 #### engine
-type: `string`
-default: `handlebars`
+Type: `String`
+Default: `handlebars`
 
+The engine to use for processing client-side templates. Assemble ships Handlebars as the default template engine, if you are interested in using a different engine visit the documentation to see an up-to-date list of template engines.
+
+Pull requests are welcome for additional template engines. Since we're still working to update the docs, you many also contact [@doowb](http://github.com/doowb) for more information or create an [Issue][assemble-issues].
 
 #### helpers
-type: `string`
-default: `./src/js/helpers`
-template: `<%= config.helpers %>`
+Type: `String`
+Default: `undefined`
 
+Path defined to a directory of helpers to use with the specified template engine.
 
-`config.json`
-
-``` json
-{
-  "helpers": "./src/js/helpers",
+``` js
+assemble: {
+  options: {
+    helpers: 'assemble-helpers-handlebars'
+  },
+  ...
 }
 ```
 
+Handlebars, Assemble's default template engine, includes the following built-in helpers: {{#each}}, {{#if}}, and {{#unless}}.
 
-#### preprocessors
-type: `string`
-default: `<%= config.preprocessors %>`
+[assemble-helpers-handlebars][assemble-helpers-handlebars] adds approximately **70 additional helpers**. To include them, follow these instructions:
+  * Run: `npm install assemble-helpers-handlebars`
+  * Add `assemble-helpers-handlebars` to the `options.helpers` property
+  * To learn more visit the [assemble-helpers-handlebars][assemble-helpers-handlebars] repo.
+  * See the list of [handlebars helpers][helpers-docs] here.
 
-`config.json`
 
-``` json
-{
-  "preprocessors": "./src/js/preprocessors"
-}
-```
+#### flatten
+Type: `Boolean`
+Default: `false`
 
-#### ext
-type: `string`
-default: `.html`
-
-The extension you want to apply to dest files. By default, the file extension is set to `.html`. You can change this to any extension required. Example use cases:
-
-  * `.md` to build commonly used markdown files, such as `README.md` or `CONTRIBUTING.md` from templates
-  * `.txt` to build `humans.txt` or `robots.txt` from templates
-  * `.xml` to build sitemaps,
-  * `.css`, `.less` etc. for building conditional stylesheets. (We use this as a simple "toggle" from the build config to include/exclude experimental styles)
+Remove anything after (and including) the first "." in the destination path, then append this value.
 
 
 #### assets
-type: `string`
-default: `<%= build.dest.assets %>`
-templates: `<%= assets %>` = `<%= build.dest.assets %>`
+Type: `String`
+Default: `false`
 
-Location of **destination assets**. By default, the path is set to `./dest/assets` in `.build` configuration file.
+TODO...
 
-``` json
-{
-  "dest": {
-    "assets": "./dest/assets"
-  }
+Used by the `{{assets}}` template to resolve the relative path to the dest assets folder from the dest file.
+
+Example:
+
+``` js
+assemble: {
+  options: {
+    assets: 'dist/assets'
+  },
+  ...
 }
+```
+Example usage:
+
+``` html
+<link href="{{assets}}/css/styles.css" rel="stylesheet">
+```
+Resulting in:
+
+``` html
+<link href="dist/assets/css/styles.css" rel="stylesheet">
 ```
 
 
 #### data
-type: `string`
-default: `<%= build.data %>`
+Type: `String`
+Default: `src/data`
 
-Location of **source data**. By default, the path is set to `./src/data` in `.build` configuration file.
+Load data for templates and [configuration](https://github.com/assemble/assemble/blob/master/docs/config.md) from specified `JSON` and/or `YAML` files.
 
+Example:
+
+``` js
+assemble: {
+  options: {
+    data: ['src/data/*.json', 'config/global.json']
+  },
+  ...
+}
+```
+Example `widget.json` data file:
 ``` json
 {
-  "src": {
-    "data": "./src/data"
+  "name": "Square Widget",
+  "modifier": "widget-square"
+}
+
+```
+Example `widget.hbs` template:
+``` html
+<div class="widget {{ widget.modifier }}">{{ widget.name }}</div>
+```
+
+Compiled result after running `grunt assemble`:
+``` html
+<div class="widget widget-square">Square Widget</div>
+```
+Also see: [YAML front matter] todo...
+
+
+#### ext
+Type: `String`
+Default: `.html`
+
+Specify the file extension for destination files. Example:
+
+``` js
+assemble: {
+  sitemap: {
+    options: {
+      ext: '.xml'
+    },
+    files: {
+      '.': ['path/to/sitemap.tmpl']
+    }
+  },
+  readme: {
+    options: {
+      ext: '.md'
+    },
+    files: {
+      '.': ['path/to/readme.tmpl']
+    }
   }
 }
 ```
-
 
 #### layout
-type: `string`, optional
-default: `default`
+Type: `String`
+Default: `undefined`
 
-Location of the default [layout]() to use for the specified files. By default, the path is set to `./src/templates/layouts` in `.build` configuration file.
+Path to the layout to be used.
 
-A `layout` can be optionally specified for each `assemble` [build target](grunt-target) in your Gruntfile. Layout files can be placed in any directory, but file extension is optional if you use the default directory.
-
-
-``` json
-{
-  "src": {
-    "layout": "./src/templates/layouts"
+``` js
+assemble: {
+  options: {
+    layout: 'src/layouts/default.hbs'
+  },
+  files: {
+    'docs': ['src/files/*.hbs']
   }
 }
 ```
+
 
 #### partials
-type: `string`
-default: `default`
+Type: `String`
+Default: `undefined`
 
+Accepts [minimatch](https://github.com/isaacs/minimatch) patterns to define the Handlebars partials files, or paths to the directories of files to be used.
 
-``` json
-{
-  "src": {
-    "partials": ["./src/templates/partials", "./src/templates/snippets", ]
-  }
-}
-```
-
-
-
-``` javascript
-assemble {
+``` js
+assemble: {
   options: {
-    docs         : true,
-    production   : false,
-
-    engine       : 'handlebars',
-    helpers      : '<%= config.helpers %>',
-    preprocessors: '<%= config.preprocessors %>',
-    ext          : '.html',
-    assets       : 'dist/assets',
-    data         : 'src/data/*.json',
-    layout       : 'src/templates/layouts/default.tpl',
-    partials     : ['src/templates/partials/*.tpl']
-  }
-  project: {
-    files: {
-      'path/to/dest': ['path/to/src/*.tpl'],
-    }
-  }
-}
-```
-
-
-#### Contexts
-
-Add contexts to the options object:
-
-
-``` javascript
-assemble {
-  options: {
-    docs         : true,
-    production   : false,
-  }
-  project: {
-    files: {
-      'dest': ['src/*.tpl'],
-    }
-  }
-}
-```
-
-
-### More Options from Grunt
-
-Since Assemble is based on Grunt.js, you can also use all native Grunt options in addition to options provided by Assemble.
-
-(This exerpt is from the Grunt.js wiki, please see [Grunt.js Wiki: Configuring Tasks](https://github.com/gruntjs/grunt/wiki/Configuring-tasks) for more information. Grunt.js offers far more functionality than what we reference here).
-
-Inside a task configuration, an `options` property may be specified to override built-in defaults.  In addition, each target may have an `options` property which is specific to that target.  Target-level options will override task-level options.
-
-The `options` object is optional and may be omitted if not needed.
-
-```js
-grunt.initConfig({
-  concat: {
-    options: {
-      // Task-level options may go here, overriding task defaults.
-    },
-    foo: {
-      options: {
-        // "foo" target options may go here, overriding task-level options.
-      },
-    },
-    bar: {
-      // No options specified; this target will use task-level options.
-    },
+    partials: ['src/partials/*.hbs', 'src/snippets/*.hbs']
   },
-});
+  files: {
+    'docs': ['src/files/*.hbs']
+  }
+}
 ```
 
-#### Building the Files Object Dynamically
 
-When you want to process many individual files, a few additional properties may be used to build a files list dynamically. These properties may be specified in both "Compact" and "Files Array" mapping formats. (see [Grunt.js Wiki: Configuring Tasks](https://github.com/gruntjs/grunt/wiki/Configuring-tasks))
-
-* `expand` Set to `true` to enable the following options:
-* `cwd` All `src` matches are relative to (but don't include) this path.
-* `src` Pattern(s) to match, relative to the `cwd`.
-* `dest` Destination path prefix.
-* `ext` Replace any existing extension with this value in generated `dest` paths.
-* `flatten` Remove all path parts from generated `dest` paths.
-* `rename` This function is called for each matched `src` file, (after extension renaming and flattening). The `dest` and matched `src` path are passed in, and this function must return a new `dest` value.  If the same `dest` is returned more than once, each `src` which used it will be added to an array of sources for it.
+### YAML options
+Assemble makes the following options available from `js-yaml`. See [js-yaml](https://github.com/nodeca/js-yaml) for more information.
 
 
+#### filename
+Type: `String`
+Default: `null`
+
+String to be used as a file path in error/warning messages.
 
 
+#### strict
+Type: `Boolean`
+Default: `false`
+
+Makes the loader to throw errors instead of warnings.
 
 
+#### schema
+Type: `String`
+Default: `DEFAULT_SCHEMA`
 
+Specifies a schema to use.
 
-[grunt-target]: (http://github.com/gruntjs/grunt/)

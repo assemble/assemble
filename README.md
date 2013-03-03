@@ -394,8 +394,8 @@ Copyright 2012 Assemble, Inc.
 [package.json]: https://npmjs.org/doc/json.html
 
 [assemble-examples]:  https://github.com/assemble/assemble/examples
-[assemble-issues]:  https://github.com/assemble/assemble/issues
-[assemble-options]: https://github.com/assemble/assemble/docs/options.md
-[helpers-docs]: https://github.com/assemble/assemble/blob/master/docs/helpers.md
-[assemble-helpers-handlebars]: http://assemble.github.com/assemble-helpers-handlebars
+[assemble-issues]:    https://github.com/assemble/assemble/issues
+[assemble-options]:   https://github.com/assemble/assemble/blob/master/docs/options.md
+[helpers-docs]:       https://github.com/assemble/assemble/blob/master/docs/helpers.md
+[assemble-helpers-handlebars]: https://github.com/assemble/assemble-helpers-handlebars
 [nodebuildr]: http://www.youtube.com/watch?v=NgWn7zbgxZ4
