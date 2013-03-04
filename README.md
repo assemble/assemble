@@ -28,7 +28,6 @@ If Assemble has been installed correctly, running `grunt --help` at the command 
 
 
 
-
 ## The "assemble" task
 
 ### Overview
@@ -47,12 +46,12 @@ grunt.initConfig({
 });
 ```
 
-## Run Assemble
+#### Run Assemble
 
 _Run assemble with the`grunt assemble` command._
 
 
-### Task defaults
+## Task defaults
 Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 
 
@@ -263,15 +262,20 @@ Specifies a schema to use.
 Browse the [examples][assemble-examples] folder to get a better idea of what Assemble can do. To build the examples run `grunt examples`.
 
 
-**Dynamically build a Grid using Templates and Data**
+### Build Bootstrap's Grid with JSON or YAML
 
-For example, we may wish to build a dynamic grid, similar to this:
+ This example shows how to use JSON and handlebars templates to manipulate Bootstrap's grid system. We only have to define the grid one time using templates, then we can updated the grid columns, rows, and even content from a JSON or YAML file.
+
+
+**Screenshot**
+
+The finished result of the example project looks like this:
 
 [![grid](https://github.com/assemble/assemble/blob/master/examples/advanced/dest/assets/grid.png?raw=true)](https://github.com/assemble/assemble/blob/master/examples/advanced/dest/assets/grid.png)
 
 ---
 
-using handlebars templates for the structure like this:
+This is what our handlebars grid looks like:
 
 ``` html
 {{#grid.container}}
@@ -279,14 +283,14 @@ using handlebars templates for the structure like this:
   {{#rows}}
     <div class="row">
       {{#columns}}
-        <div class="span{{width}}"> {{content}} </div>
+        <div class="span{{width}}"> {{md content}} </div>
       {{/columns}}
     </div>
   {{/rows}}
   </div>
 {{/grid.container}}
 ```
-and then use an external data file, such as `grid.yml`, to configure the grid and provide the content, like this:
+And then we use an external data file, such as `grid.yml` or `grid.json`, to configure the grid and provide the content, like this:
 
 ``` yaml
 ---
@@ -294,20 +298,25 @@ container:
   rows:
   - columns:
     - width: 4
-      content: First Column
+      heading: Overview
+      content: <%= content %>/overview.md
     - width: 4
-      content: Second Column
+      heading: Getting Started
+      content: <%= content %>/getting-started.md
     - width: 4
-      content: Third Column
+      heading: Basics
+      content: <%= content %>/basics.md
   - columns:
     - width: 6
-      content: First Half
+      heading: Templates
+      content: <%= content %>/templates.md
     - width: 6
-      content: Second Half
+      heading: Advanced
+      content: <%= content %>/advanced.md
 ...
 ```
 
-Or use `grid.json`:
+Or the same configuration using `grid.json` instead:
 
 ``` json
 {
@@ -315,15 +324,35 @@ Or use `grid.json`:
     "rows": [
       {
         "columns": [
-          { "width": 4, "content": "First Column"},
-          { "width": 4, "content": "Second Column"},
-          { "width": 4, "content": "Third Column"}
+          {
+            "width": 4,
+            "heading": "Overview",
+            "content": "<%= content %>/overview.md"
+          },
+          {
+            "width": 4,
+            "heading": "Getting Started",
+            "content": "<%= content %>/getting-started.md"
+          },
+          {
+            "width": 4,
+            "heading": "Basics",
+            "content": "<%= content %>/basics.md"
+          }
         ]
       },
       {
         "columns": [
-          { "width": 6, "content": "First Half"},
-          { "width": 6, "content": "Second Half"}
+          {
+            "width": 6,
+            "heading": "Templates",
+            "content": "<%= content %>/templates.md"
+          },
+          {
+            "width": 6,
+            "heading": "Advanced",
+            "content": "<%= content %>/advanced.md"
+          }
         ]
       }
     ]
@@ -331,9 +360,7 @@ Or use `grid.json`:
 }
 ```
 
-After configuring the `assemble` task with the correct paths for the files used on the grid, run `grunt assemble` to compile the grid to static HTML.
-
-
+If you're satisfied with the default `src` and `dest` paths in the `assemble`, simply run `grunt assemble` to compile the grid to static HTML. Or run `grunt watch` to continuously watch files and automatically re-build when changes occur.
 
 
 
@@ -393,9 +420,8 @@ Copyright 2012 Assemble, Inc.
 [Getting Started]: http://gruntjs.com/getting-started
 [package.json]: https://npmjs.org/doc/json.html
 
-[assemble-examples]:  https://github.com/assemble/assemble/examples
-[assemble-issues]:    https://github.com/assemble/assemble/issues
+[assemble-examples]:  https://github.com/assemble/assemble/tree/master/examples
+[assemble-issues]:    https://github.com/assemble/assemble/issues?page=1&state=open
 [assemble-options]:   https://github.com/assemble/assemble/blob/master/docs/options.md
 [helpers-docs]:       https://github.com/assemble/assemble/blob/master/docs/helpers.md
 [assemble-helpers-handlebars]: https://github.com/assemble/assemble-helpers-handlebars
-[nodebuildr]: http://www.youtube.com/watch?v=NgWn7zbgxZ4
