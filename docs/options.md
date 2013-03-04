@@ -9,28 +9,37 @@ The engine to use for processing client-side templates. Assemble ships Handlebar
 
 Pull requests are welcome for additional template engines. Since we're still working to update the docs, you many also contact [@doowb](http://github.com/doowb) for more information or create an [Issue][assemble-issues].
 
+
+
 #### helpers
 Type: `String`
 Default: `undefined`
 
-Path defined to a directory of helpers to use with the specified template engine.
+Path defined to a directory of helpers to use with the specified template engine. For convenience you can store paths to helpers in `./config/helpers.json`:
 
+`helpers.json`
+
+``` json
+{
+  "handlebars": "./some/path/handlebars/helpers",
+}
+```
+
+Then for each directory of helpers you wish to use, add a corresponding underscore template to the `assemble` task options, like this:
 ``` js
 assemble: {
   options: {
-    helpers: 'assemble-helpers-handlebars'
+    helpers: '<%= helpers.handlebars %>
   },
   ...
 }
 ```
-
-Handlebars, Assemble's default template engine, includes the following built-in helpers: {{#each}}, {{#if}}, and {{#unless}}.
-
-[assemble-helpers-handlebars][assemble-helpers-handlebars] adds approximately **70 additional helpers**. To include them, follow these instructions:
+The Handlebars templating engine includes a few built-in helpers: `{{#each}}`, `{{#if}}`, and `{{#unless}}`. But Assemble's external helper library, [assemble-helpers-handlebars][assemble-helpers-handlebars], includes **70 additional helpers**. To install:
   * Run: `npm install assemble-helpers-handlebars`
-  * Add `assemble-helpers-handlebars` to the `options.helpers` property
+  * Then add `assemble-helpers-handlebars` to the `options.helpers` property (as in the example above)
   * To learn more visit the [assemble-helpers-handlebars][assemble-helpers-handlebars] repo.
-  * See the list of [handlebars helpers][helpers-docs] here.
+  * Visit the [handlebars helpers documentation][helpers-docs].
+
 
 
 #### flatten
@@ -38,6 +47,7 @@ Type: `Boolean`
 Default: `false`
 
 Remove anything after (and including) the first "." in the destination path, then append this value.
+
 
 
 #### assets
@@ -106,11 +116,13 @@ Compiled result after running `grunt assemble`:
 Also see: [YAML front matter] todo...
 
 
+
+
 #### ext
 Type: `String`
 Default: `.html`
 
-Specify the file extension for destination files. Example:
+Specify the file extension to use for destination files. Example:
 
 ``` js
 assemble: {
@@ -132,6 +144,17 @@ assemble: {
   }
 }
 ```
+
+**Examples**
+
+Some example use cases for `ext`
+
+  * `.md` to build commonly used markdown files, such as `README.md` or `CONTRIBUTING.md` from templates
+  * `.txt` to build `humans.txt` or `robots.txt` from templates
+  * `.xml` to build sitemaps
+  * `.css`, `.less` etc. for building stylesheets from templates. (See the [assemble-styles](https://github.com/assemble/assemble-styles) project for an example)
+
+
 
 #### layout
 Type: `String`
@@ -168,7 +191,6 @@ assemble: {
 }
 ```
 
-
 ### YAML options
 Assemble makes the following options available from `js-yaml`. See [js-yaml](https://github.com/nodeca/js-yaml) for more information.
 
@@ -192,4 +214,6 @@ Type: `String`
 Default: `DEFAULT_SCHEMA`
 
 Specifies a schema to use.
+
+
 
