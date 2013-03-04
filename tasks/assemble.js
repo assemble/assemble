@@ -29,7 +29,7 @@ module.exports = function(grunt) {
       layout        : '',
       partials      : {},
       data          : {},
-      assets        : '.',
+      assets        : 'dist/assets',
       ext           : '.html'
     });
 
