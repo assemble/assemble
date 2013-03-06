@@ -4,15 +4,44 @@
 
 Assemble helps you _quickly launch static web projects_ by emphasizing a strong separation of concerns between structure, style, content and configuration.
 
+_This project just launched **so expect frequent changes** for the near future, and if you find this project interesting please consider starring it to receive updates. If you have any questions or have any trouble getting Assemble to work, please create an Issue, we'd love to help._
 
-This project just launched **so expect frequent changes** for the near future, and if you find this project interesting please consider starring it to receive updates.
+
+
+**Table of Contents**
+
+- [The "assemble" task](#the-assemble-task)
+  - [Run Assemble](#run-assemble)
+- [About](#about)
+- [Task defaults](#task-defaults)
+  - [Options](#options)
+    - [engine](#engine)
+    - [helpers](#helpers)
+    - [flatten](#flatten)
+    - [assets](#assets)
+    - [data](#data)
+    - [ext](#ext)
+    - [layout](#layout)
+    - [partials](#partials)
+  - [YAML options](#yaml-options)
+    - [filename](#filename)
+    - [strict](#strict)
+    - [schema](#schema)
+- [Example Projects](#example-projects)
+  - [Build Bootstrap's Grid with JSON or YAML](#build-bootstraps-grid-with-json-or-yaml)
+- [Bug tracker](#bug-tracker)
+- [Contributing](#contributing)
+- [Authors](#authors)
+- [Related Projects](#related-projects)
+- [Copyright and license](#copyright-and-license)
+
 
 
 ## Getting Started
 
-_Assemble uses Grunt.js. If you haven't used [grunt][grunt] before, be sure to check out the [Getting Started][Getting Started] guide. Also, Assemble was designed to work with Grunt 0.4.0, so if you're still using grunt v0.3.x, you must [upgrade][Upgrading] for Assemble to work._
+_You must use Grunt.js version 0.4.0 with Assemble. Please upgrade if you're still using grunt v0.3.x. If you haven't used [grunt][grunt] before, be sure to check out the [Getting Started][Getting Started] guide._
 
-From the same directory as your project's [Gruntfile][Getting Started] and [package.json][packageJSON], install this plugin with the following command:
+ From the same directory as your project's [Gruntfile][Getting Started] and [package.json][packageJSON], install this plugin with the following command:
 
 ``` bash
 npm install assemble --save-dev
@@ -27,10 +56,8 @@ grunt.loadNpmTasks('assemble');
 If Assemble has been installed correctly, running `grunt --help` at the command line should list Assemble's task or tasks. In addition, Assemble should be listed in package.json as a `devDependency`, which ensures that it will be installed whenever the `npm install` command is run.
 
 
-
 ## The "assemble" task
 
-### Overview
 In your project's Gruntfile, add a section named `assemble` to the data object passed into `grunt.initConfig()`.
 
 ``` js
@@ -361,6 +388,17 @@ Or the same configuration using `grid.json` instead:
 ```
 
 If you're satisfied with the default `src` and `dest` paths in the `assemble`, simply run `grunt assemble` to compile the grid to static HTML. Or run `grunt watch` to continuously watch files and automatically re-build when changes occur.
+
+
+## About
+
+This project aims to offer:
+
+* Conventions for building and maintaining static sites and UI pattern libraries, using HTML, CSS/LESS/SASS, client-side templates and structured data
+* Patterns for highly reusable layouts, pages, includes/partials, "snippets" and so on
+* Strategies for externalizing metadata, data and content into maintainable formats, such as markdown, JSON, YAML, text, HTML and others
+* Ability to use simple JSON or YAML to configure and define the structure of entire projects, static sites or component libraries
+* Configurable and extensible enough for programmers, but easy for non-programmers to learn and use.
 
 
 
