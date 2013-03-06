@@ -28,7 +28,7 @@ _This project just launched **so expect frequent changes** for the near future, 
     - [strict](#strict)
     - [schema](#schema)
 - [Features](#features)
-    - [Markdown](#markdown)
+    - [Markdown](#markdown) - NEW documentation
 - [Example Projects](#example-projects)
   - [Build Bootstrap's Grid with JSON or YAML](#build-bootstraps-grid-with-json-or-yaml)
 - [Bug tracker](#bug-tracker)
@@ -282,6 +282,8 @@ Default: `DEFAULT_SCHEMA`
 Specifies a schema to use.
 
 
+---
+
 
 ## Features
 
@@ -292,13 +294,12 @@ Specifies a schema to use.
 
 Wouldn't it be awesome if you could just _use markdown however you wanted, wherever you needed it_? Assemble gives you the flexibility to:
 
-  * Write entire documents in markdown, and later compile them to HTML
-  * Keep sections of documents in externalized markdown files, so they can be imported into other documents
-  * Embed or write "inline" markdown on-the-fly inside HTML documents
+  * **Write entire documents in markdown**, and later compile them to HTML
+  * **Keep sections of documents in externalized markdown files**, so they can be imported into other documents
+  * **Embed or write "inline" markdown** on-the-fly inside HTML documents
 
-#### Features
 
-**"Include" or import externalized content**
+#### "Include" or import externalized content
 
 Use the markdown expression, `{{md}}`, to enable importing of external markdown content.
 
@@ -324,7 +325,7 @@ then use it like this:
 {{md content}}
 ```
 
-**Write "inline" markdown**
+#### Write "inline" markdown
 
 The `{{#markdown}}{{/markdown}}` block expression allows markdown to be written "inline" with any HTML and handlebars content.
 
@@ -354,8 +355,7 @@ Embed handlebars templates to make them even prettier.
 ```
 
 
-
-
+---
 
 
 ## Example Projects
