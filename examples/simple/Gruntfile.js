@@ -20,11 +20,8 @@ module.exports = function(grunt) {
     // Templates, config HTML docs from .hbs files
     assemble: {
       options: {
-        engine: 'handlebars',
+        // Path to helpers. Required for markdown helper, example: "{{md content}}"
         helpers: '<%= config.helpers %>',
-        docs: true,
-        production: false,
-        flatten: true,
         assets: 'dest/assets',
         data:  [
           'src/data/**/*.json'
