@@ -1,10 +1,73 @@
-## Markdown Support
+### Markdown
+
+Wouldn't it be awesome if you could just _use markdown however you wanted, wherever you needed it_? Assemble gives you the flexibility to:
+
+  * Write entire documents in markdown, and later compile them to HTML
+  * Keep sections of documents in externalized markdown files, so they can be imported into other documents
+  * Embed or write "inline" markdown on-the-fly inside HTML documents
+
+#### Features
+
+**"Include" or import externalized content**
+
+Use the markdown expression, `{{md}}`, to enable importing of external markdown content.
+
+Example:
+
+``` handlebars
+{{md ../path/to/content.md}}
+```
+
+Or use a variable instead of setting the path directly inside the template. For example you can add the content variable to a YAML header:
 
 
-### Markdown Features*
+``` yaml
+---
+page:
+  title: Home
+content: ../path/to/content.md
+---
+```
+then use it like this:
+
+``` handlebars
+{{md content}}
+```
+
+**Write "inline" markdown**
+
+The `{{#markdown}}{{/markdown}}` block expression allows markdown to be written "inline" with any HTML and handlebars content.
+
+Example:
+
+``` handlebars
+{{#markdown}}
+# Inline Markdown is awesome
+
+> this is markdown content
+
+  * useful for simple content
+  * great for blog posts
+  * easier on the eyes than angle brackets
+  * even links look prettier
+
+### Pretty links
+[Visit Assemble](http://github.com/assemble/assemble)
+
+### Even Prettier links
+Embed handlebars templates to make them even prettier.
+{{#page.links}}
+[{{text}}]({{href}})
+{{/page.links}}
+
+{{/markdown}}
+```
 
 
-Assemble's default markdown engine is [marked](marked), so the following options are available for changing behavior:
+
+### Markdown options*
+
+Default markdown options are from [marked](marked), so the following options are available for changing behavior:
 
   * **pedantic**: Conform to obscure parts of `markdown.pl` as much as possible.
   Don't fix any of the original markdown bugs or poor behavior.
