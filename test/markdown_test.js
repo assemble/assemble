@@ -17,12 +17,12 @@ describe('Converting Markdown Files', function() {
 
 
   var simpleExpected = "<h2>Some Markdown</h2>\n" +
-                        "<ul>\n" +
-                        "<li>one</li>\n" +
-                        "<li>two</li>\n" +
-                        "<li>three</li>\n" +
-                        "</ul>\n" +
-                        "<p><a href=\"http://github.com\">Click here</a></p>\n";
+                       "<ul>\n" +
+                       "<li>one</li>\n" +
+                       "<li>two</li>\n" +
+                       "<li>three</li>\n" +
+                       "</ul>\n" +
+                       "<p><a href=\"http://github.com\">Click here</a></p>\n";
 
   it("convert markdown string", function(done) {
     var data = markdown.convert(simple);

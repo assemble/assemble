@@ -1,25 +1,25 @@
 /*
- * Assemble Assemble
+ * Assemble
  * https://github.com/assemble/assemble
  *
- * Authored by Brian Woodward
- * Inspired by previous work by Jon Schlinkert
+ * Copyright (c) 2012 Brian Woodward
+ * Licensed under the MIT license.
  */
 
 module.exports = function(grunt) {
 
   // Grunt utilities
-  var file      = grunt.file;
-  var log       = grunt.log;
-  var kindOf    = grunt.util.kindOf;
-  var _         = grunt.util._;
+  var file     = grunt.file;
+  var log      = grunt.log;
+  var kindOf   = grunt.util.kindOf;
+  var _        = grunt.util._;
 
-  var assemble  = require('../lib/assemble');
+  var assemble = require('../lib/assemble');
 
   // external dependencies
-  var path             = require('path');
-  var fs               = require('fs');
-  var util             = require('util');
+  var path     = require('path');
+  var fs       = require('fs');
+  var util     = require('util');
 
   var extensions = assemble.Utils.ExtensionMap;
 
