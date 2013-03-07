@@ -284,33 +284,37 @@ Specifies a schema to use.
 
 ---
 
-
 ## Features
 
-> Many, many more features are already implemented, and we are documenting them as you read this, so check back frequently for updates!!!
+Many, many more features are already implemented, and we are documenting them as you read this, so **check back frequently for updates**!!!
 
 
 ### Markdown
 
-Wouldn't it be awesome if you could just _use markdown however you wanted, wherever you needed it_? Assemble gives you the flexibility to:
+> Wouldn't it be awesome if you could just _use markdown however you wanted, wherever you needed it_?
+
+Assemble gives you the flexibility to:
 
   * **Write entire documents in markdown**, and later compile them to HTML
   * **Keep sections of documents in externalized markdown files**, so they can be imported into other documents
   * **Embed or write "inline" markdown** on-the-fly inside HTML documents
 
 
+_Read more about markdown features and `options` in the [markdown documentation](https://github.com/assemble/assemble/blob/master/docs/markdown.md)._
+
+
 #### "Include" or import externalized content
 
 Use the markdown expression, `{{md}}`, to enable importing of external markdown content.
 
-Example:
-
+**Example #1: using full path**
 ``` handlebars
 {{md ../path/to/content.md}}
 ```
 
-Or use a variable instead of setting the path directly inside the template. For example you can add the content variable to a YAML header:
 
+**Example #2: using variables**
+Or use a variable instead of setting the path directly inside the template. For example you can add the content variable to a YAML header:
 
 ``` yaml
 ---
@@ -326,7 +330,6 @@ then use it like this:
 ```
 
 #### Write "inline" markdown
-
 The `{{#markdown}}{{/markdown}}` block expression allows markdown to be written "inline" with any HTML and handlebars content.
 
 Example:
@@ -359,24 +362,21 @@ Embed handlebars templates to make them even prettier.
 
 
 ## Example Projects
-
 Browse the [examples][assemble-examples] folder to get a better idea of what Assemble can do. To build the examples run `grunt examples`.
 
 
 ### Build Bootstrap's Grid with JSON or YAML
-
- This example shows how to use JSON and handlebars templates to manipulate Bootstrap's grid system. We only have to define the grid one time using templates, then we can updated the grid columns, rows, and even content from a JSON or YAML file.
+This example shows how to use JSON and handlebars templates to manipulate Bootstrap's grid system. We only have to define the grid one time using templates, then we can updated the grid columns, rows, and even content from a JSON or YAML file.
 
 
 **Screenshot**
-
 The finished result of the example project looks like this:
 
 [![grid](https://github.com/assemble/assemble/blob/master/examples/advanced/dest/assets/grid.png?raw=true)](https://github.com/assemble/assemble/blob/master/examples/advanced/dest/assets/grid.png)
 
 ---
 
-This is what our handlebars grid looks like:
+This is what our handlebars grid looks like. **_No really, this is the code for the entire grid!_**:
 
 ``` html
 {{#grid.container}}
@@ -391,7 +391,11 @@ This is what our handlebars grid looks like:
   </div>
 {{/grid.container}}
 ```
-And then we use an external data file, such as `grid.yml` or `grid.json`, to configure the grid and provide the content, like this:
+
+And then we use an external data file, either `grid.yml` or `grid.json`, to configure the grid and provide the content.
+
+**YAML version**
+This is the data for our grid, written in YAML (`grid.yml`):
 
 ``` yaml
 ---
@@ -417,7 +421,9 @@ container:
 ...
 ```
 
-Or the same configuration using `grid.json` instead:
+**JSON version**
+
+And the same configuration writtin in JSON (`grid.json`) instead:
 
 ``` json
 {
@@ -466,7 +472,7 @@ If you're satisfied with the default `src` and `dest` paths in the `assemble`, s
 
 ## About
 
-This project aims to offer:
+> The goal of Assemble is to offer:
 
 * Conventions for building and maintaining static sites and UI pattern libraries, using HTML, CSS/LESS/SASS, client-side templates and structured data
 * Patterns for highly reusable layouts, pages, includes/partials, "snippets" and so on

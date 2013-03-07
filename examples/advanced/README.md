@@ -1,27 +1,28 @@
-# Assemble Examples
+# Advanced Examples
+
+
+> It would learned how to use Assemble so much faster, if only they had shown me how to...
+
+If you know how to finish that sentence, please consider contributing or make a request on our [Issues][issues] page. Thanks!
+
+**Planned examples**:
+
+- xml file (sitemap)
+- txt file (robots?)
+- carousel (slides)
 
 
 
+## Dynamic Grid
+TODO...
 
-# Example: Basic
+## Table
+TODO...
 
-This example shows how to build static HTML files from handlebars templates.
+## Inline Markdown
+TODO...
 
-
-
-## Example: Dynamic Grid
-This example shows how to build a **dynamic grid** with Assemble, JSON and handlebars templates.
-
-
-## Example: Table
-This example shows how to build a **dynamic grid** with Assemble, JSON and handlebars templates.
-
-
-## Example: Inline Markdown
-This example shows how to build a **dynamic grid** with Assemble, JSON and handlebars templates.
-
-
-## Example: Imported Markdown
-This example shows how to build a **dynamic grid** with Assemble, JSON and handlebars templates.
+## Imported Markdown
+TODO...
 
 
