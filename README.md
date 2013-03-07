@@ -7,6 +7,9 @@ Assemble helps you _quickly launch static web projects_ by emphasizing a strong 
 _This project just launched **so expect frequent changes** for the near future, and if you find this project interesting please consider starring it to receive updates. If you have any questions or have any trouble getting Assemble to work, please create an Issue, we'd love to help._
 
 
+#### [Please visit the wiki](http://github.com/assemble/assemble/wiki)
+
+
 
 **Table of Contents**
 
@@ -498,25 +501,25 @@ Please consider contributing! All constructive feedback and contributions are we
   * If you like what we're doing but you prefer using different technologies than we currently offer, we encourage you to make a feature request or submit a pull request for your plugin.
 
 
-**How you can help**
+### Call for help
 
-  * We would like to add more template engines to those listed here https://github.com/assemble/assemble/issues/43
-  * Docs, we can always use help creating more documentation
-  * Feedback: Use assemble, tell us how to improve, add feature requests.
-  * Have an idea? Tell us about it. You can contact us via GitHub issues or preferably via email (found on author's profiles)
+Want to help make Assemble even awesomer? We can always use help dwindling down the [Issues](https://github.com/assemble/assemble/issues), but here are other ways you can help:
 
+  * **Documentation**: we can always use help with docs. Creating new docs, filling in missing information, examples, corrections, grammar. You name it, we need it.
+  * **Tell us your experience with Assemble**: Use assemble, give us feedback and tell us how to improve, or add feature requests.
+  * **Have an idea? Tell us about it.** You can contact us via GitHub issues or preferably via email (found on author's profiles)
 
 ## Authors
 
 **Brian Woodward**
 
-+ http://twitter.com/doowb
 + http://github.com/doowb
++ http://twitter.com/doowb
 
 **Jon Schlinkert**
 
-+ http://twitter.com/jonschlinkert
 + http://github.com/jonschlinkert
++ http://twitter.com/jonschlinkert
 
 
 
@@ -528,7 +531,7 @@ Please consider contributing! All constructive feedback and contributions are we
 
 ## Copyright and license
 
-Copyright 2012 Assemble, Inc.
+Copyright 2013 Assemble
 
 [MIT License](LICENSE-MIT)
 
@@ -537,7 +540,6 @@ Copyright 2012 Assemble, Inc.
 [Upgrading]: http://gruntjs.com/upgrading-from-0.3-to-0.4
 [Getting Started]: http://gruntjs.com/getting-started
 [package.json]: https://npmjs.org/doc/json.html
-
 [assemble-examples]:  https://github.com/assemble/assemble/tree/master/examples
 [assemble-issues]:    https://github.com/assemble/assemble/issues?page=1&state=open
 [assemble-options]:   https://github.com/assemble/assemble/blob/master/docs/options.md

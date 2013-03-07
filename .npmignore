@@ -1,1 +1,7 @@
 /node_modules/
+/tmp/
+/temp/
+
+*.sublime-*
+notes.md
+defaults.md
