@@ -382,24 +382,35 @@ module.exports = function(grunt) {
 
   var loadLayout = function(src, options, callback) {
 
-    // validate that the layout file exists
+    var loadFile = true;
+    var layout = '';
+    var layoutName = 'layout';
 
-    grunt.log.writeln(src);
-    var layout = path.normalize(src);
-    grunt.log.writeln(layout);
-
-    if(!fs.existsSync(layout)) {
-      var err = 'Layout file (' + layout + ') not found.';
-      grunt.warn(err);
-      if(callback) {
-        callback({message: err}, null);
-      }
-      return false;
+    // if the src is empty, create a default layout in memory
+    if(src === '' || src.length === 0) {
+      loadFile = false;
+      layout = "{{>body}}";
     }
 
-    // load layout
-    var layoutName = _.first(layout.match(options.filenameRegex)).replace(options.fileExtRegex,'');
-    layout = fs.readFileSync(layout, 'utf8');
+    if(loadFile) {
+      // validate that the layout file exists
+      grunt.log.writeln(src);
+      layout = path.normalize(src);
+      grunt.log.writeln(layout);
+
+      if(!fs.existsSync(layout)) {
+        var err = 'Layout file (' + layout + ') not found.';
+        grunt.warn(err);
+        if(callback) {
+          callback({message: err}, null);
+        }
+        return false;
+      }
+
+      // load layout
+      layoutName = _.first(layout.match(options.filenameRegex)).replace(options.fileExtRegex,'');
+      layout = fs.readFileSync(layout, 'utf8');
+    }
 
     var layoutData = {};
     var yamlPreprocessor = options.EngineLoader.getPreprocessor('YamlPreprocessor');
