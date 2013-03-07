@@ -1,4 +1,6 @@
-# Handlebars Helpers
+# Assemble Helpers
+
+A growing collection of useful helpers for Assemble.
 
 TODO:
 - [ ] this needs to be better organized.
@@ -6,12 +8,18 @@ TODO:
 - [ ] Combine redundant helpers.
 
 
-A small collection of useful helpers for [Handlebars.js](https://github.com/wycats/handlebars.js).
+- [Handlebars Helpers](#handlebars-helpers)
+- [Credit](#credit)
 
 
-## Equals
 
-### If x Equals y
+## Handlebars Helpers
+
+[Handlebars.js](https://github.com/wycats/handlebars.js).
+
+### Equals
+
+#### If x Equals y
 
 **Parameters**:
 **Usage**:
@@ -20,7 +28,7 @@ A small collection of useful helpers for [Handlebars.js](https://github.com/wyca
     {{#if_eq x compare=y}} ... {{/if_eq}}
 
 
-### Unless x Equals y
+#### Unless x Equals y
 
 **Parameters**:
 **Usage**:
@@ -29,9 +37,9 @@ A small collection of useful helpers for [Handlebars.js](https://github.com/wyca
 
 
 
-## Greater Than
+### Greater Than
 
-### If x > y
+#### If x > y
 
 **Parameters**:
 **Usage**:
@@ -39,7 +47,7 @@ A small collection of useful helpers for [Handlebars.js](https://github.com/wyca
     {{#if_gt x compare=y}} ... {{/if_gt}}
 
 
-### Unless x > y
+#### Unless x > y
 
 **Parameters**:
 **Usage**:
@@ -48,9 +56,9 @@ A small collection of useful helpers for [Handlebars.js](https://github.com/wyca
 
 
 
-## Greater Than or Equal To
+### Greater Than or Equal To
 
-### If x >= y
+#### If x >= y
 
 **Parameters**:
 **Usage**:
@@ -58,7 +66,7 @@ A small collection of useful helpers for [Handlebars.js](https://github.com/wyca
     {{#if_gteq x compare=y}} ... {{/if_gteq}}
 
 
-### Unless x >= y
+#### Unless x >= y
 
 **Parameters**:
 **Usage**:
@@ -67,9 +75,9 @@ A small collection of useful helpers for [Handlebars.js](https://github.com/wyca
 
 
 
-## Less Than
+### Less Than
 
-### If x < y
+#### If x < y
 
 **Parameters**:
 **Usage**:
@@ -77,7 +85,7 @@ A small collection of useful helpers for [Handlebars.js](https://github.com/wyca
     {{#if_lt x compare=y}} ... {{/if_lt}}
 
 
-### Unless x < y
+#### Unless x < y
 
 **Parameters**:
 **Usage**:
@@ -87,9 +95,9 @@ A small collection of useful helpers for [Handlebars.js](https://github.com/wyca
 
 
 
-## Less Than or Equal To
+### Less Than or Equal To
 
-### If x <= y
+#### If x <= y
 
 **Parameters**:
 **Usage**:
@@ -97,7 +105,7 @@ A small collection of useful helpers for [Handlebars.js](https://github.com/wyca
     {{#if_lteq x compare=y}} ... {{/if_lteq}}
 
 
-### Unless x <= y
+#### Unless x <= y
 
 **Parameters**:
 **Usage**:
@@ -105,7 +113,7 @@ A small collection of useful helpers for [Handlebars.js](https://github.com/wyca
     {{#unless_lteq x compare=y}} ... {{/unless_lteq}}
 
 
-## nl2br
+### nl2br
 Convert new lines (`\r\n`, `\n\r`, `\r`, `\n`) to line breaks
 
 `{{nl2br description}}`
@@ -113,9 +121,9 @@ Convert new lines (`\r\n`, `\n\r`, `\r`, `\n`) to line breaks
 
 
 
-## Strings
+### Strings
 
-### lowercase
+#### lowercase
 
 Turns a string to lowercase.
 
@@ -124,9 +132,10 @@ Turns a string to lowercase.
 
     {{lowercase "MAKE THIS ALL LOWERCASE"}}
 
+**result**
     make this all lowercase
 
-### uppercase
+#### uppercase
 
 Turns a string to uppercase. Opposite of `{{lowercase}}`.
 
@@ -135,53 +144,58 @@ Turns a string to uppercase. Opposite of `{{lowercase}}`.
 
     {{uppercase "make this all uppercase"}}
 
+**result**
     MAKE THIS ALL UPPERCASE
 
-### capitalizeFirst
+#### capitalizeFirst
 
 Capitalizes the first word in a string.
 
 **Parameters**: none.
 **Usage**:
 
-    {{capitalizeFirst "capitalize each word in this sentence"}}
+    {{capitalizeFirst "capitalize first word in this sentence"}}
 
-    Capitalize Each Word In This Sentence
+**result**
+    Capitalize first word in this sentence
 
-### capitalizeEach
+#### capitalizeEach
 
 Capitalizes each word in a string.
 
 **Parameters**: none.
 **Usage**:
 
-    {{capitalizeEach "bender should NOT be allowed on TV"}}
+    {{capitalizeEach "capitalize EACH word in this sentence"}}
 
-    Bender Should NOT Be Allowed On TV
+**result**
+    Capitalize EACH Word In This Sentence
 
-### titleize
+#### titleize
 
 Capitalizes all words within a string. Taken from the templating library [Walrus](https://github.com/jeremyruppel/walrus) by [Jeremy Ruppel](https://github.com/jeremyruppel).
 
 **Parameters**: none.
 **Usage**:
 
-    {{titleize "Bender-should-Not-be-allowed_on_Tv."}}
+    {{titleize "capitalize EACH word in this sentence"}}
 
-    Bender Should Not Be Allowed On Tv.
+**result**
+    Capitalize Each Word In This Sentence.
 
-### sentence
+#### sentence
 
 Capitalizes the first word of each sentence in a string and converts the rest of the sentence to lowercase.
 
 **Parameters**: none.
 **Usage**:
 
-    {{sentence "bender should NOT be allowed on TV. fry SHOULD be allowed on TV."}}
+    {{sentence "capitalize the FIRST word in each sentence. but make the OTHER words lowercase."}}
 
-    Bender should not be allowed on tv. Fry should be allowed on tv.
+**result**
+    Capitalize the first word in each sentence. But make the other words lowercase.
 
-### reverse
+#### reverse
 
 Reverses a string.
 
@@ -190,9 +204,10 @@ Reverses a string.
 
     {{reverse "bender should NOT be allowed on TV."}}
 
+**result**
     .VT no dewolla eb TON dluohs redneb
 
-### truncate
+#### truncate
 
 Truncates a string given a specified `length`, providing a custom string to denote an `omission`.
 
@@ -204,9 +219,10 @@ Truncates a string given a specified `length`, providing a custom string to deno
 
     {{truncate "Bender should not be allowed on tv." 31 "..."}}
 
+**result**
     Bender should not be allowed...
 
-### center
+#### center
 
 Centers a string using non-breaking spaces.
 
@@ -217,9 +233,12 @@ Centers a string using non-breaking spaces.
 
     {{center "Bender should not be allowed on tv." 10}}
 
-              Bender should not be allowed on tv.
+**result**
+```
+|              Bender should not be allowed on tv.              |
+```
 
-### newLineToBr
+#### newLineToBr
 
 Converts new line characters `\n` to line breaks `<br>`.
 
@@ -228,11 +247,12 @@ Converts new line characters `\n` to line breaks `<br>`.
 
     {{{newLineToBr "Bender \n should \n not \n be allowed on tv."}}}
 
+**result**
     Bender <br> should <br> not <br> be allowed on tv.
 
-## Collections
+### Collections
 
-### first
+#### first
 
 Returns the first item in a collection.
 
@@ -243,9 +263,10 @@ Returns the first item in a collection.
 
     {{first collection}}
 
+**result**
     Amy Wong
 
-### withFirst
+#### withFirst
 
 Use the first item in a collection inside a block.
 
@@ -258,9 +279,10 @@ Use the first item in a collection inside a block.
         <p>{{this}} is smart.</p>
     {{/withFirst}}
 
+**result**
     <p>Amy Wong is smart.</p>
 
-### last
+#### last
 
 Returns the last item in a collection. Opposite of `first`.
 
@@ -271,9 +293,10 @@ Returns the last item in a collection. Opposite of `first`.
 
     {{last collection}}
 
+**result**
     Scruffy
 
-### withLast
+#### withLast
 
 Use the last item in a collection inside a block. Opposite of `withFirst`.
 
@@ -286,9 +309,10 @@ Use the last item in a collection inside a block. Opposite of `withFirst`.
         <p>{{this}} is lazy.</p>
     {{/withLast}}
 
+**result**
     <p>Scruffy is lazy.</p>
 
-### after
+#### after
 
 Returns all of the items in the collection after the specified count.
 
@@ -301,9 +325,10 @@ Returns all of the items in the collection after the specified count.
 
     {{after collection 5}}
 
+**result**
     Leela, Professor Farnsworth, Scruffy
 
-### withAfter
+#### withAfter
 
 Use all of the items in the collection after the specified count inside a block.
 
@@ -318,9 +343,10 @@ Use all of the items in the collection after the specified count inside a block.
         {{titleize this}}
     {{/withAfter}}
 
+**result**
     Leela Professor Farnsworth Scruffy
 
-### before
+#### before
 
 Returns all of the items in the collection before the specified count. Opposite of `after`.
 
@@ -333,9 +359,10 @@ Returns all of the items in the collection before the specified count. Opposite 
 
     {{before collection 5}}
 
+**result**
     Amy Wong, Bender, Dr. Zoidberg
 
-### withBefore
+#### withBefore
 
 Use all of the items in the collection before the specified count inside a block. Opposite of `withAfter`.
 
@@ -350,9 +377,10 @@ Use all of the items in the collection before the specified count inside a block
         {{reverse this}}
     {{/withBefore}}
 
+**result**
     gnoW ymA redneB grebdioZ .rD
 
-### join
+#### join
 
 Joins all elements of a collection into a string using a separator if specified.
 
@@ -365,9 +393,10 @@ Joins all elements of a collection into a string using a separator if specified.
 
     {{join collection " & "}}
 
+**result**
     Amy Wong & Bender & Dr. Zoidberg & Fry & Hermes Conrad & Leela & Professor Farnsworth & Scruffy
 
-### sort
+#### sort
 
 Returns the collection sorted.
 
@@ -380,9 +409,10 @@ Returns the collection sorted.
 
     {{sort collection}}
 
+**result**
     Amy Wong, Bender, Dr. Zoidberg, Fry, Hermes Conrad, Leela, Professor Farnsworth, Scruffy
 
-### withSort
+#### withSort
 
 Uses the sorted collection inside the block.
 
@@ -406,11 +436,12 @@ Uses the sorted collection inside the block.
         {{name}}: {{deliveries}} <br>
     {{/withSort}}
 
+**result**
     Fry: -12
     Bender: 239
     Leela: 8021
 
-### length
+#### length
 
 Returns the length of the collection.
 
@@ -420,9 +451,10 @@ Returns the length of the collection.
 
     {{length collection}}
 
+**result**
     8
 
-### lengthEqual
+#### lengthEqual
 
 Conditionally render a block based on the length of a collection.
 
@@ -449,9 +481,10 @@ Conditionally render a block based on the length of a collection.
         This is not Planet Express.
     {{/lengthEqual}}
 
+**result**
     There are 3 people in Planet Express.
 
-### empty
+#### empty
 
 Conditionally render a block if the collection is empty.
 
@@ -466,9 +499,10 @@ Conditionally render a block if the collection is empty.
         Bad news everyone!
     {{/empty}}
 
+**result**
     Good news everyone!
 
-### any
+#### any
 
 Conditionally render a block if the collection isn't empty. Opposite of `empty`
 
@@ -483,9 +517,10 @@ Conditionally render a block if the collection isn't empty. Opposite of `empty`
         Bad news everyone!
     {{/any}}
 
+**result**
     Good news everyone!
 
-### inArray
+#### inArray
 
 Conditionally render a block if a specified value is in the collection.
 
@@ -502,9 +537,10 @@ Conditionally render a block if a specified value is in the collection.
         I'm walking on darkness.
     {{/any}}
 
+**result**
     I'm walking on sunshine!
 
-### eachIndex
+#### eachIndex
 
 Current implementation of the default Handlebars loop helper {{#each}} adding index (0-based index) to the loop context.
 
@@ -517,11 +553,12 @@ Current implementation of the default Handlebars loop helper {{#each}} adding in
         {{this}} is {{index}}
     {{/eachIndex}}
 
+**result**
     Professor Farnsworth is 0, Fry is 1, Bender is 2
 
-## Math
+### Math
 
-### add
+#### add
 
 Returns the sum of two numbers.
 
@@ -534,9 +571,10 @@ Returns the sum of two numbers.
 
     {{add value 5}}
 
+**result**
     10
 
-### subtract
+#### subtract
 
 Returns the difference of two numbers. Opposite of `add`
 
@@ -549,9 +587,10 @@ Returns the difference of two numbers. Opposite of `add`
 
     {{subtract value 5}}
 
+**result**
     0
 
-### divide
+#### divide
 
 Returns the division of two numbers.
 
@@ -564,9 +603,10 @@ Returns the division of two numbers.
 
     {{divide value 5}}
 
+**result**
     1
 
-### multiply
+#### multiply
 
 Returns the multiplication of two numbers.
 
@@ -579,9 +619,10 @@ Returns the multiplication of two numbers.
 
     {{multiply value 5}}
 
+**result**
     25
 
-### floor
+#### floor
 
 Returns the value rounded down to the nearest integer.
 
@@ -592,9 +633,10 @@ Returns the value rounded down to the nearest integer.
 
     {{floor value}}
 
+**result**
     5
 
-### ceil
+#### ceil
 
 Returns the value rounded up to the nearest integer.
 
@@ -605,9 +647,10 @@ Returns the value rounded up to the nearest integer.
 
     {{ceil value}}
 
+**result**
     6
 
-### round
+#### round
 
 Returns the value rounded to the nearest integer.
 
@@ -618,11 +661,12 @@ Returns the value rounded to the nearest integer.
 
     {{round value}}
 
+**result**
     6
 
-## Numbers
+### Numbers
 
-### toFixed
+#### toFixed
 
 Returns exactly `digits` after the decimal place. The number is rounded if necessary, and the fractional part is padded with zeros if necessary so that it has the specified length.
 
@@ -635,9 +679,10 @@ Returns exactly `digits` after the decimal place. The number is rounded if neces
 
     {{toFixed value 3}}
 
+**result**
     5.532
 
-### toPrecision
+#### toPrecision
 
 Returns the number in fixed-point or exponential notation rounded to `precision` significant digits.
 
@@ -650,10 +695,11 @@ Returns the number in fixed-point or exponential notation rounded to `precision`
 
     {{toPrecision value 4}}
 
+**result**
     555.3
 
 
-### toExponential
+#### toExponential
 
 Returns the number in exponential notation with one digit before the decimal point, rounded to `fractions` digits after the decimal point.
 
@@ -666,9 +712,10 @@ Returns the number in exponential notation with one digit before the decimal poi
 
     {{toExponential value 5}}
 
+**result**
     5.00000e+0
 
-### toInt
+#### toInt
 
 Returns an integer.
 
@@ -679,9 +726,10 @@ Returns an integer.
 
     {{toInt value}}
 
+**result**
     22
 
-### toFloat
+#### toFloat
 
 Returns a floating point number.
 
@@ -692,9 +740,10 @@ Returns a floating point number.
 
     {{toFloat value}}
 
+**result**
     22.2
 
-### addCommas
+#### addCommas
 
 Adds commas to a number.
 
@@ -705,13 +754,14 @@ Adds commas to a number.
 
     {{addCommas value}}
 
+**result**
     2,222,222
 
 
 
-## Comparisons
+### Comparisons
 
-### is
+#### is
 
 Conditionally render a block if the condition is true.
 
@@ -728,9 +778,10 @@ Conditionally render a block if the condition is true.
         Never mind :(
     {{/is}}
 
+**result**
     Kiss my shiny metal ass!
 
-### isnt
+#### isnt
 
 Conditionally render a block if the condition is false. Opposite of `is`.
 
@@ -747,9 +798,10 @@ Conditionally render a block if the condition is false. Opposite of `is`.
         Never mind :(
     {{/isnt}}
 
+**result**
     Never mind :(
 
-### gt
+#### gt
 
 Conditionally render a block if the value is greater than a given number.
 
@@ -766,9 +818,10 @@ Conditionally render a block if the value is greater than a given number.
         Never mind :(
     {{/gt}}
 
-    Never mind :(
+**result**
+   Never mind :(
 
-### gte
+#### gte
 
 Conditionally render a block if the value is greater or equal than a given number.
 
@@ -785,9 +838,10 @@ Conditionally render a block if the value is greater or equal than a given numbe
         Never mind :(
     {{/gte}}
 
+**result**
     Kiss my shiny metal ass!
 
-### lt
+#### lt
 
 Conditionally render a block if the value is less than a given number. Opposite of `gt`.
 
@@ -804,9 +858,10 @@ Conditionally render a block if the value is less than a given number. Opposite 
         Never mind :(
     {{/lt}}
 
+**result**
     Never mind :(
 
-### lte
+#### lte
 
 Conditionally render a block if the value is less or equal than a given number. Opposite of `gte`.
 
@@ -823,9 +878,10 @@ Conditionally render a block if the value is less or equal than a given number. 
         Never mind :(
     {{/lte}}
 
+**result**
     Kiss my shiny metal ass!
 
-### or
+#### or
 
 Conditionally render a block if one of the values is truthy.
 
@@ -843,9 +899,10 @@ Conditionally render a block if one of the values is truthy.
         Never mind :(
     {{/or}}
 
+**result**
     Kiss my shiny metal ass!
 
-### and
+#### and
 
 Conditionally render a block if both values are truthy.
 
@@ -863,11 +920,12 @@ Conditionally render a block if both values are truthy.
         Never mind :(
     {{/and}}
 
+**result**
     Kiss my shiny metal ass!
 
-## Dates
+### Dates
 
-### formatDate
+#### formatDate
 
 Formats a date into a string given a format. Accepts any value that can be passed to `new Date()`. This helper is a port of the [formatDate-js](http://https://github.com/michaelbaldry/formatDate-js) library by [Michael Baldry](https://github.com/michaelbaldry).
 
@@ -883,12 +941,13 @@ Formats a date into a string given a format. Accepts any value that can be passe
     {{formatDate date "%F"}}
     {{formatDate date "%Y%m%dT%H%M%S%z"}}
 
+**result**
     07/26/2012
     11:38PM
     2012-07-26
     20120726T233805-0004
 
-### now
+#### now
 
 Returns the current date.
 
@@ -900,10 +959,11 @@ Returns the current date.
     {{now}}
     {{now "%m/%d/%Y"}}
 
+**result**
     Thu Jul 26 2012 23:41:02 GMT-0400 (AST)
     07/26/2012
 
-### timeago
+#### timeago
 
 Returns a human-readable time phrase from the given date.
 
@@ -914,11 +974,12 @@ Returns a human-readable time phrase from the given date.
 
     {{timeago date}}
 
+**result**
     4 days ago
 
-## Inflections
+### Inflections
 
-### inflect
+#### inflect
 
 Returns the plural or singular form of a word based on a count.
 
@@ -935,10 +996,11 @@ Returns the plural or singular form of a word based on a count.
     {{inflect enemies "enemy" "enemies"}}
     {{inflect friends "friend" "friends" true}}
 
+**result**
     enemies
     1 friend
 
-### ordinalize
+#### ordinalize
 
 Turns a number into an ordinal string. Taken from the templating library [Walrus](https://github.com/jeremyruppel/walrus) by [Jeremy Ruppel](https://github.com/jeremyruppel).
 
@@ -949,13 +1011,14 @@ Turns a number into an ordinal string. Taken from the templating library [Walrus
     {{ordinalize 1}}
     {{ordinalize 22}}
 
+**result**
     3rd
     1st
     22nd
 
-## HTML
+### HTML
 
-### ul
+#### ul
 
 Creates an unordered list.
 
@@ -979,6 +1042,7 @@ Creates an unordered list.
         {{name}} - {{inflect deliveries "delivery" "deliveries" true}}
     {{/ul}}
 
+**result**
     <ul class="deliveries-list">
         <li>
             Leela - 8021 deliveries
@@ -991,11 +1055,11 @@ Creates an unordered list.
         </li>
     </ul>
 
-### ol
+#### ol
 
 Same as the `ul` helper but creates and ordered list.
 
-### br
+#### br
 
 Returns `<br>` tags based on a count.
 
@@ -1006,11 +1070,12 @@ Returns `<br>` tags based on a count.
 
     {{br 5}}
 
+**result**
     <br><br><br><br><br>
 
-## Logging
+### Logging
 
-### log
+#### log
 
 Simple console.log()
 
@@ -1019,9 +1084,10 @@ Simple console.log()
 
     {{log "Hi console :)"}}
 
+**result**
     Hi console :)
 
-### debug
+#### debug
 
 Simple console.debug() that shows the current context.
 
@@ -1043,13 +1109,14 @@ Simple console.debug() that shows the current context.
         {{debug name}}
     {{/withFirst}}
 
+**result**
     Context: { deliveries: 8021, name: "Leela" }
     Value: Leela
     -----------------------------------------------
 
-## Miscellaneous
+### Miscellaneous
 
-### default
+#### default
 
 Provides a default or fallback value if a value doesn't exist.
 
@@ -1062,9 +1129,10 @@ Provides a default or fallback value if a value doesn't exist.
 
     {{default title "Not title available."}}
 
+**result**
     Not title available.
 
-### partial
+#### partial
 
 Provides an easy way to register and use partials inside your templates. This helper only works if you define your templates as common.js modules, since it uses the common.js `require` function to find and register your templates with `Handlebars.registerPartial`. It was created with [brunch](http://brunch.io) in mind (which I use a lot), because brunch automatically wraps your scripts and templates in common.js modules to use in the browser.
 
@@ -1089,11 +1157,14 @@ Provides an easy way to register and use partials inside your templates. This he
         {{partial "planet_express" collection}}
     </p>
 
+**result**
     <p>Bender, Fry, Professor Farnsworth</p>
 
 
 
-Many of these helpers were borrowed from the following repos:
+## Credit
+
+Many of these helpers come from the following repos:
   * [Handlebars Helpers, by Dan Harper](http://github.com/danharper)
   * [Swag v0.2.1, by Elving Rodriguez](http://elving.github.com/swag/)
 
