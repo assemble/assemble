@@ -1,9 +1,8 @@
 # Advanced Examples
 
+> "I wish Assemble had more examples for how to..."
 
-> It would learned how to use Assemble so much faster, if only they had shown me how to...
-
-If you know how to finish that sentence, please consider contributing or make a request on our [Issues][issues] page. Thanks!
+If you know how to finish that sentence, please mention it or make a request on our [Issues][issues] page, or consider contributing. Thanks!
 
 **Planned examples**:
 
