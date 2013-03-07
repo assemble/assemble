@@ -1,16 +1,19 @@
 ### Markdown
 
-Wouldn't it be awesome if you could just _use markdown however you wanted, wherever you needed it_? Assemble gives you the flexibility to:
+Wouldn't it be awesome if you could just _use markdown however you wanted, wherever you needed it_? One of the advantages of writing content using markdown is that it is free of the angle brackets and tags used in HTML, so it feels and looks more like "content" than "code".
+
+Assemble gives you the flexibility to _write code when you need to_ and _write content when, where and in whatever format you want_, You can:
 
   * Write entire documents in markdown, and later compile them to HTML
-  * Keep sections of documents in externalized markdown files, so they can be imported into other documents
-  * Embed or write "inline" markdown on-the-fly inside HTML documents
+  * Keep sections of documents in externalized markdown files, similar to includes or partials, so they can be reused and imported into other documents
+  * Embed markdown, or write it "inline" inside HTML documents.
+
 
 #### Features
 
 **"Include" or import externalized content**
 
-Use the markdown expression, `{{md}}`, to enable importing of external markdown content.
+Use the markdown block helper, `{{md}}`, to enable importing of external markdown content.
 
 Example:
 
@@ -36,9 +39,7 @@ then use it like this:
 
 **Write "inline" markdown**
 
-The `{{#markdown}}{{/markdown}}` block expression allows markdown to be written "inline" with any HTML and handlebars content.
-
-Example:
+Using either the `{{#markdown}}{{/markdown}}` or `{{#md}}{{/md}}` block helpers to wrap markdown inside HTML and handlebars templates:
 
 ``` handlebars
 {{#markdown}}
@@ -62,7 +63,16 @@ Embed handlebars templates to make them even prettier.
 
 {{/markdown}}
 ```
+or...
 
+``` handlebars
+<section>
+  {{#md}}
+    # Page Header
+    This is written in markdown.
+  {{/md}}
+</section>
+```
 
 
 ### Markdown options*
