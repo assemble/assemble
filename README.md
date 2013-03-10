@@ -165,7 +165,7 @@ Resulting in:
 Type: `String`
 Default: `src/data`
 
-Load data for templates and [configuration](https://github.com/assemble/assemble/blob/master/docs/config.md) from specified `JSON` and/or `YAML` files.
+Load data for templates and [configuration][config] from specified `JSON` and/or `YAML` files.
 
 Example:
 
@@ -196,33 +196,6 @@ Compiled result after running `grunt assemble`:
 ```
 Also see: [YAML front matter] todo...
 
-
-#### ext
-Type: `String`
-Default: `.html`
-
-Specify the file extension for destination files. Example:
-
-``` js
-assemble: {
-  sitemap: {
-    options: {
-      ext: '.xml'
-    },
-    files: {
-      '.': ['path/to/sitemap.tmpl']
-    }
-  },
-  readme: {
-    options: {
-      ext: '.md'
-    },
-    files: {
-      '.': ['path/to/readme.tmpl']
-    }
-  }
-}
-```
 
 #### layout
 Type: `String`
@@ -255,6 +228,37 @@ assemble: {
   },
   files: {
     'docs': ['src/files/*.hbs']
+  }
+}
+```
+
+#### ext
+Type: `String`
+Default: `.html`
+
+Specify the file extension for destination files. Example:
+
+``` js
+assemble: {
+
+  // Build sitemap from JSON and templates
+  sitemap: {
+    options: {
+      ext: '.xml'
+    },
+    files: {
+      '.': ['path/to/sitemap.tmpl']
+    }
+  },
+
+  // Build README from YAML and templates
+  readme: {
+    options: {
+      ext: '.md'
+    },
+    files: {
+      '.': ['path/to/readme.tmpl']
+    }
   }
 }
 ```
@@ -303,7 +307,7 @@ Assemble gives you the flexibility to:
   * **Embed or write "inline" markdown** on-the-fly inside HTML documents
 
 
-_Read more about markdown features and `options` in the [markdown documentation](https://github.com/assemble/assemble/blob/master/docs/markdown.md)._
+_Read more about markdown features and `options` in the [markdown documentation](https://github.com/assemble/assemble/wiki/Markdown)._
 
 
 #### "Include" or import externalized content
@@ -545,3 +549,6 @@ Copyright 2013 Assemble
 [assemble-options]:   https://github.com/assemble/assemble/blob/master/docs/options.md
 [helpers-docs]:       https://github.com/assemble/assemble/blob/master/docs/helpers.md
 [assemble-helpers-handlebars]: https://github.com/assemble/assemble-helpers-handlebars
+
+[templates]: https://github.com/assemble/assemble/wiki/Templates
+[config]: https://github.com/assemble/assemble/wiki/Configuration
