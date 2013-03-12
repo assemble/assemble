@@ -35,16 +35,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // Run tests.
-    mochaTest: {
-      files: ['test/**/*.js']
-    },
-    mochaTestConfig: {
-      options: {
-        reporter: 'nyan'
-      }
-    },
-
     jshint: {
       files: [
         'Gruntfile.js',
@@ -56,6 +46,17 @@ module.exports = function(grunt) {
         jshintrc: '.jshintrc'
       }
     },
+
+    // Run tests.
+    mochaTest: {
+      files: ['test/**/*.js']
+    },
+    mochaTestConfig: {
+      options: {
+        reporter: 'nyan'
+      }
+    },
+
 
     concat: {
       dist: {
@@ -79,15 +80,6 @@ module.exports = function(grunt) {
 
     uglify: {},
 
-
-    // Run other gruntfiles in project
-    subgrunt: {
-      examples: [
-        'examples/handlebars/Gruntfile.js',
-        'examples/grid/Gruntfile.js'
-      ]
-    },
-
     watch: {
       all: {
         options: { debounceDelay: 250 },
@@ -110,11 +102,6 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', [
     'test'
-  ]);
-
-  // Build examples.
-  grunt.registerTask('examples', [
-    'subgrunt:examples'
   ]);
 
   // Default task.

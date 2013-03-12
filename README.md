@@ -1,11 +1,11 @@
-# [Assemble](http://github.com/assemble/assemble)
+# [Assemble](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble])
+
 
 > Get the rocks out of your socks.
 
 Assemble helps you _quickly launch static web projects_ by emphasizing a strong separation of concerns between structure, style, content and configuration.
 
 _This project just launched **so expect frequent changes** for the near future, and if you find this project interesting please consider starring it to receive updates. If you have any questions or have any trouble getting Assemble to work, please create an Issue, we'd love to help._
-
 
 #### [Please visit the wiki](http://github.com/assemble/assemble/wiki)
 
