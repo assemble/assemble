@@ -109,8 +109,7 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', [
-    'jshint',
-    'mochaTest'
+    'test'
   ]);
 
   // Build examples.
@@ -122,5 +121,12 @@ module.exports = function(grunt) {
   grunt.registerTask('bump', [
     'test',
     'release'
+  ]);
+
+  // Tests to be run.
+  // Placeholder for Travis CI until proper tests are setup.
+  grunt.registerTask('test', [
+    'jshint',
+    'mochaTest'
   ]);
 };
