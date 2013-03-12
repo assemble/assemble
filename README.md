@@ -1,4 +1,4 @@
-# [Assemble](http://assemble.github.com/assemble)
+# [Assemble](http://github.com/assemble/assemble)
 
 > Get the rocks out of your socks.
 
@@ -9,10 +9,7 @@ _This project just launched **so expect frequent changes** for the near future, 
 
 #### [Please visit the wiki](http://github.com/assemble/assemble/wiki)
 
-
-
 **Table of Contents**
-
 - [The "assemble" task](#the-assemble-task)
   - [Run Assemble](#run-assemble)
 - [About](#about)
@@ -43,7 +40,6 @@ _This project just launched **so expect frequent changes** for the near future, 
 
 
 ## Getting Started
-
 _You must use Grunt.js version 0.4.0 with Assemble. Please upgrade if you're still using grunt v0.3.x. If you haven't used [grunt][grunt] before, be sure to check out the [Getting Started][Getting Started] guide._
 
  From the same directory as your project's [Gruntfile][Getting Started] and [package.json][packageJSON], install this plugin with the following command:
@@ -62,7 +58,6 @@ If Assemble has been installed correctly, running `grunt --help` at the command 
 
 
 ## The "assemble" task
-
 In your project's Gruntfile, add a section named `assemble` to the data object passed into `grunt.initConfig()`.
 
 ``` js
@@ -79,12 +74,10 @@ grunt.initConfig({
 ```
 
 #### Run Assemble
-
 _Run assemble with the`grunt assemble` command._
 
 
 ## Options
-
 See [options][assemble-options] for more information.
 
 
@@ -117,7 +110,7 @@ assemble: {
 
 Handlebars, Assemble's default template engine, includes the following built-in helpers: {{#each}}, {{#if}}, and {{#unless}}.
 
-[assemble-helpers-handlebars][assemble-helpers-handlebars] adds approximately **70 additional helpers**. To include them, follow these instructions:
+[helper-lib][helper-lib] adds approximately **70 additional helpers**. To include them, follow these instructions:
   * Run: `npm install assemble-helpers-handlebars`
   * Add `assemble-helpers-handlebars` to the `options.helpers` property
   * To learn more visit the [assemble-helpers-handlebars][assemble-helpers-handlebars] repo.
@@ -495,7 +488,6 @@ Have a bug? Please create an issue here on GitHub that conforms with [necolas's 
 [https://github.com/assemble/assemble/issues][assemble-issues]
 
 
-
 ## Contributing
 
 Please consider contributing! All constructive feedback and contributions are welcome.
@@ -511,7 +503,8 @@ Want to help make Assemble even awesomer? We can always use help dwindling down 
 
   * **Documentation**: we can always use help with docs. Creating new docs, filling in missing information, examples, corrections, grammar. You name it, we need it.
   * **Tell us your experience with Assemble**: Use assemble, give us feedback and tell us how to improve, or add feature requests.
-  * **Have an idea? Tell us about it.** You can contact us via GitHub issues or preferably via email (found on author's profiles)
+  * **Have an idea? Tell us about it.** You can contact us via GitHub issues or via email (found on author's profiles)
+
 
 ## Authors
 
@@ -527,9 +520,8 @@ Want to help make Assemble even awesomer? We can always use help dwindling down 
 
 
 
-## Related Projects
-
-+ [Toolkit](http://toolkit.io): Library of UI components using client-side templates, mock-data, markdown and LESS. Components are also available as compiled HTML/CSS.
+## Coming Soon!
++ [Upstage](http://github.com/upstage): COMING SOON! We are preparing to launch a library of seriously high quality UI components, each constructed following the same conventions we encourage with Assemble.
 
 
 
@@ -544,11 +536,11 @@ Copyright 2013 Assemble
 [Upgrading]: http://gruntjs.com/upgrading-from-0.3-to-0.4
 [Getting Started]: http://gruntjs.com/getting-started
 [package.json]: https://npmjs.org/doc/json.html
-[assemble-examples]:  https://github.com/assemble/assemble/tree/master/examples
+[assemble-examples]:  https://github.com/assemble/assemble-examples/
 [assemble-issues]:    https://github.com/assemble/assemble/issues?page=1&state=open
 [assemble-options]:   https://github.com/assemble/assemble/blob/master/docs/options.md
 [helpers-docs]:       https://github.com/assemble/assemble/blob/master/docs/helpers.md
-[assemble-helpers-handlebars]: https://github.com/assemble/assemble-helpers-handlebars
+[helper-lib]: https://github.com/assemble/helper-lib
 
 [templates]: https://github.com/assemble/assemble/wiki/Templates
 [config]: https://github.com/assemble/assemble/wiki/Configuration
