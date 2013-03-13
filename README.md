@@ -1,4 +1,4 @@
-# [Assemble v0.3.9](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png?branch=master)](https://travis-ci.org/assemble/assemble)
+# [Assemble v0.3.11](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png?branch=master)](https://travis-ci.org/assemble/assemble)
 
 > Get the rocks out of your socks.
 
