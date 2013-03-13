@@ -9,10 +9,10 @@ describe('Converting Markdown Files', function() {
     highlight: 'auto'
   });
 
-  var simple = "## Some Markdown\r\n\r\n" +
-                " - one\r\n" +
-                " - two\r\n" +
-                " - three\r\n\r\n" +
+  var simple = "## Some Markdown\n\n" +
+                " - one\n" +
+                " - two\n" +
+                " - three\n\n" +
                 "[Click here](http://github.com)";
 
 
