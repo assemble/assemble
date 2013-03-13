@@ -50,7 +50,7 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', [
-    'test'
+    'jshint'
   ]);
 
   // Tests to be run.

@@ -1,7 +1,7 @@
 {
   "name": "assemble",
   "description": "Get the rocks out of your socks. Assemble helps you _quickly launch static web projects_ by emphasizing a strong separation of concerns between structure, style, content and configuration.",
-  "version": "0.3.10",
+  "version": "0.3.11",
   "homepage": "https://github.com/assemble/assemble",
   "author": {
     "name": "assemble",
@@ -38,20 +38,22 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "grunt": "~0.4.0",
-    "grunt-contrib-jshint": "~0.1.0",
-    "grunt-mocha-test": "~0.2.0",
     "amdefine": "0.0.4",
-    "chai": "~1.5.0",
     "handlebars": "~1.0.9",
-    "highlight.js": "~7.3.0",
-    "js-yaml": "~2.0.2",
     "lodash": "~1.0.1",
+    "js-yaml": "~2.0.2",
     "marked": "~0.2.8",
-    "testem": "~0.2.68"
+    "highlight.js": "~7.3.0"
   },
   "devDependencies": {
-    "assemble-styles": "0.2.0"
+    "grunt": "~0.4.0",
+    "assemble-styles": "~0.2.0",
+    "testem": "~0.2.68",
+    "grunt-mocha-test": "~0.2.0",
+    "chai": "~1.5.0",
+    "grunt-contrib-jshint": "~0.2.0",
+    "grunt-contrib-watch": "~0.2.0",
+    "grunt-release": "~0.2.0"
   },
   "keywords": [
     "blog generator",
