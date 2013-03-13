@@ -18,8 +18,8 @@ describe('Reading From Files', function() {
       "foo": "bar",
       "version": 2
     },
-    originalContent: "---\r\nfoo: bar\r\nversion: 2\r\n---\r\n\r\n<span class=\"alert alert-info\">This is an alert</span>\r\n",
-    content: "\r\n\r\n<span class=\"alert alert-info\">This is an alert</span>\r\n"
+    originalContent: "---\nfoo: bar\nversion: 2\n---\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
+    content: "\n\n<span class=\"alert alert-info\">This is an alert</span>\n"
   };
 
 
@@ -53,9 +53,9 @@ describe('Reading From Strings', function() {
 
   var frontMatter = assemble.FrontMatter({ fromFile: false });
 
-  var simple1 = "---\r\nfoo: bar\r\n";
-  var simple2 = "---\r\nfoo: bar\r\n---";
-  var simple3 = "---\r\nfoo: bar\r\n---\r\n\r\n<span class=\"alert alert-info\">This is an alert</span>\r\n";
+  var simple1 = "---\nfoo: bar\n";
+  var simple2 = "---\nfoo: bar\n---";
+  var simple3 = "---\nfoo: bar\n---\n\n<span class=\"alert alert-info\">This is an alert</span>\n";
 
   var simpleExpected = {
     context: {
@@ -63,15 +63,15 @@ describe('Reading From Strings', function() {
     }
   };
 
-  var complex = "---\r\nfoo: bar\r\nversion: 2\r\n---\r\n\r\n<span class=\"alert alert-info\">This is an alert</span>\r\n";
+  var complex = "---\nfoo: bar\nversion: 2\n---\n\n<span class=\"alert alert-info\">This is an alert</span>\n";
 
   var complexExpected = {
     context: {
       "foo": "bar",
       "version": 2
     },
-    originalContent: "---\r\nfoo: bar\r\nversion: 2\r\n---\r\n\r\n<span class=\"alert alert-info\">This is an alert</span>\r\n",
-    content: "\r\n\r\n<span class=\"alert alert-info\">This is an alert</span>\r\n"
+    originalContent: "---\nfoo: bar\nversion: 2\n---\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
+    content: "\n\n<span class=\"alert alert-info\">This is an alert</span>\n"
   };
 
   it("yaml string starts with --- no content", function(done) {
