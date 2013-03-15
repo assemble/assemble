@@ -43,25 +43,6 @@ module.exports = function(grunt) {
       options: {
         reporter: 'nyan'
       }
-    },
-
-    // Internal task to build README.
-    assemble: {
-      readme: {
-        options: {
-          today: '<%= grunt.template.today() %>',
-          changelog: grunt.file.readYAML('CHANGELOG'),
-          roadmap: grunt.file.readYAML('ROADMAP'),
-          links: grunt.file.readYAML('docs/data/url.yml'),
-          docs: grunt.file.readYAML('docs/data/docs.yml'),
-          partials: ['docs/*.md','docs/templates/snippets/*.md'],
-          data: [],
-          ext: '.md'
-        },
-        files: {
-          'test': ['docs/templates/README.hbs']
-        }
-      }
     }
   });
 
