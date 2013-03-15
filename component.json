@@ -1,6 +1,6 @@
 {
   "name": "assemble",
-  "version": "0.3.8",
+  "version": "0.3.11",
   "main": [
     "./lib/assemble.js"
   ],
@@ -14,6 +14,5 @@
     "grunt-release": "~0.2.0",
     "handlebars": "~1.0.9",
     "testem": "~0.2.68"
-  },
-  "ignore": []
+  }
 }

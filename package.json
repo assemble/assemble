@@ -52,8 +52,7 @@
     "grunt-mocha-test": "~0.2.0",
     "chai": "~1.5.0",
     "grunt-contrib-jshint": "~0.2.0",
-    "grunt-contrib-watch": "~0.2.0",
-    "grunt-release": "~0.2.0"
+    "grunt-contrib-watch": "~0.2.0"
   },
   "keywords": [
     "blog generator",
@@ -64,7 +63,7 @@
     "build and deployment",
     "build system",
     "build",
-    "build-bootstrapr",
+    "build bootstrap",
     "builder",
     "compile",
     "compiler",
