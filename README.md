@@ -78,7 +78,7 @@ _Run assemble with the`grunt assemble` command._
 
 
 ## Options
-See [options][assemble-options] for more information.
+See the [Options](https://github.com/assemble/assemble/wiki/Options) section on the Wiki for more information.
 
 
 ### Task defaults
