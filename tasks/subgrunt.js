@@ -1,3 +1,8 @@
+// 
+// subgrunt.js
+// Run any sub-gruntfiles in project.
+// -----------------------------------------------
+
 module.exports = function(grunt) {
 
   // Run Gruntfiles in given directories.
