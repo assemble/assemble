@@ -1,91 +1,231 @@
+See the [Options](https://github.com/assemble/assemble/wiki/Options) section on the Wiki for more information.
 
-These options will be passed through directly to [Less.js][]. See the [Less.js documentation](http://github.com/cloudhead/less.js) for a list of supported options.
 
-#### paths
-Type: `String|Array`
-Default: _Directory of input files_
+### Task defaults
+Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 
-Specifies directories to scan for `@import` directives when parsing. The default value is the directory of the specified source files. In other words, the `paths` option allows you to specify paths for your @import statements in the [styles](http://github.com/assemble/styles) task, as an alternative to specifying a path on every `@import` statement that appears throughout your LESS files. So instead of doing this:
 
-``` css
-@import "path/to/my/less/files/mixins/mixins.less";
-```
-you can do this:
-
-``` css
-@import "mixins.less";
-```
-#### compress
-Type: `Boolean`
-Default: _false_
-
-Specifies if we should compress the compiled css by removing some whitespaces.
-
-#### yuicompress
-Type: `Boolean`
-Default: _false_
-
-Compress output using cssmin.js.
-
-#### optimization
-Type: `Integer`
-Default: null
-
-Set the parser's optimization level. The lower the number, the less nodes it will create in the tree. This could matter for debugging, or if you want to access the individual nodes in the tree.
-
-#### strictImports
-Type: `Boolean`
-Default: _false_
-
-Force evaluation of imports.
-
-#### strictMaths
-Type: `Boolean`
-Default: _true_
-
-Force operations to be enclosed within parenthesis, `(2 / 6)`.
-
-#### strictUnits
-Type: `Boolean`
-Default: _true_
-
-Force strict evaluation of units. If set to `false` the compiler will not throw an error with operations such as `(3 * 1em)`. 
-
-#### dumpLineNumbers
+#### engine
 Type: `String`
-Default: _false_
+Default: `handlebars`
 
-Configures -sass-debug-info support.
+The engine to use for processing client-side templates. Assemble ships Handlebars as the default template engine, if you are interested in using a different engine visit the documentation to see an up-to-date list of template engines.
 
-Accepts following values: `comments`, `mediaquery`, `all`.
+Pull requests are welcome for additional template engines. Since we're still working to update the docs, you many also contact [@doowb](http://github.com/doowb) for more information or create an [Issue][assemble-issues].
+
+#### helpers
+Type: `String`
+Default: `undefined`
+
+Path defined to a directory of helpers to use with the specified template engine.
+
+``` js
+assemble: {
+  options: {
+    helpers: 'assemble-helpers-handlebars'
+  },
+  ...
+}
+```
+
+Handlebars, Assemble's default template engine, includes the following built-in helpers: `\{{#each}}`, `\{{#if}}`, and `\{{#unless}}`.
+
+[helper-lib][helper-lib] adds approximately **75 additional helpers**. To include them, follow these instructions:
+  * Run: `npm install assemble-helpers-handlebars`
+  * Add `assemble-helpers-handlebars` to the `options.helpers` property
+  * To learn more visit the [assemble-helpers-handlebars][assemble-helpers-handlebars] repo.
+  * See the list of [handlebars helpers][helpers-docs] here.
 
 
-
-## Custom Options
-
-#### require
-Type: `String|Array`
-Default: _empty string_
-
-Specified files will be _prepended_ to the beginning of src files, **_not_** to the concatenated output. This feature is useful for "inlining" globaly-required LESS files, such as `variables` or `mixins`, so that _they do not need to be referenced with `@import` statements inside any individual files_.
-
-#### concat
+#### flatten
 Type: `Boolean`
-Default: _true_
+Default: `false`
 
-Concatenate all source files by default. If you change the value to false, all source files will compile into individual files.
-
-#### lessrc
-{{> externalize-options.md }}
+Remove anything after (and including) the first "." in the destination path, then append this value.
 
 
+#### assets
+Type: `String`
+Default: `false`
 
-### Under Consideration
+TODO...
 
-#### globals
-Type: `Object`
-Default: _null_
+Used by the `\{{assets}}` template to resolve the relative path to the dest assets folder from the dest file.
 
-Data object for defining global variables inside the Gruntfile which will be accessible in LESS files. Templates can be used to 
+Example:
 
----
+``` js
+assemble: {
+  options: {
+    assets: 'dist/assets'
+  },
+  ...
+}
+```
+Example usage:
+
+``` html
+<link href="\{{assets}}/css/styles.css" rel="stylesheet">
+```
+Resulting in:
+
+``` html
+<link href="dist/assets/css/styles.css" rel="stylesheet">
+```
+
+
+#### data
+Type: `String`
+Default: `src/data`
+
+Load data for templates and [configuration][config] from specified `JSON` and/or `YAML` files.
+
+Example:
+
+``` js
+assemble: {
+  options: {
+    data: ['src/data/*.json', 'config/global.json']
+  },
+  ...
+}
+```
+Example `widget.json` data file:
+``` json
+{
+  "name": "Square Widget",
+  "modifier": "widget-square"
+}
+
+```
+Example `widget.hbs` template:
+``` html
+<div class="widget \{{ widget.modifier }}">\{{ widget.name }}</div>
+```
+
+Compiled result after running `grunt assemble`:
+``` html
+<div class="widget widget-square">Square Widget</div>
+```
+Also see: [YAML front matter] todo...
+
+
+#### layout
+Type: `String`
+Default: `undefined`
+
+Path to the layout to be used.
+
+``` js
+assemble: {
+  options: {
+    layout: 'src/layouts/default.hbs'
+  },
+  files: {
+    'docs': ['src/files/*.hbs']
+  }
+}
+```
+
+
+#### partials
+Type: `String`
+Default: `undefined`
+
+Accepts [minimatch](https://github.com/isaacs/minimatch) patterns to define the Handlebars partials files, or paths to the directories of files to be used.
+
+``` js
+assemble: {
+  options: {
+    partials: ['src/partials/*.hbs', 'src/snippets/*.hbs']
+  },
+  files: {
+    'docs': ['src/files/*.hbs']
+  }
+}
+```
+
+#### ext
+Type: `String`
+Default: `.html`
+
+Specify the file extension for destination files. Example:
+
+``` js
+assemble: {
+
+  // Build sitemap from JSON and templates
+  sitemap: {
+    options: {
+      ext: '.xml'
+    },
+    files: {
+      '.': ['path/to/sitemap.tmpl']
+    }
+  },
+
+  // Build README from YAML and templates
+  readme: {
+    options: {
+      ext: '.md'
+    },
+    files: {
+      '.': ['path/to/readme.tmpl']
+    }
+  }
+}
+```
+
+
+### YAML options
+Assemble makes the following options available from `js-yaml`. See [js-yaml](https://github.com/nodeca/js-yaml) for more information.
+
+
+#### filename
+Type: `String`
+Default: `null`
+
+String to be used as a file path in error/warning messages.
+
+
+#### strict
+Type: `Boolean`
+Default: `false`
+
+Makes the loader to throw errors instead of warnings.
+
+
+#### schema
+Type: `String`
+Default: `DEFAULT_SCHEMA`
+
+Specifies a schema to use.
+
+
+
+### Custom Options
+#### Contexts
+A common use case for custom options is to add contexts for `development` and `production` environments:
+
+``` javascript
+assemble {
+  myProject: {
+    options: {
+      development: true,
+      production: false
+    },
+    files: {
+      'dest': ['src/templates*.hbs']
+    }
+  }
+}
+```
+In your templates just wrap sections with these contexts to include or exclude content based on current working environment.
+``` hbs
+{{#development}}
+<script src="script.js"></script>
+{{/development}}
+{{#production}}
+<script src="script.min.js"></script>
+{{/production}}
+```

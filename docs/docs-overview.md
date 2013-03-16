@@ -1,46 +1,21 @@
-In your project's Gruntfile, the `styles` task is already configured with a number of build `targets`. This is for convenience to show you how to create your own tests:
+In your project's Gruntfile, add a section named `assemble` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  // This is a task
-  styles: {
+  {{ docs.name }}: {
     options: {
       // Task-specific options go here.
     },
-    // This is a target
-    example: {
-      options: {
-        // Target-specific options go here.
-      },
-      files: {
-        'dest/files': ['source/files/*.*']
-      }
+    your_target: {
+      // Target-specific file lists and/or options go here.
     }
-  },
-  jshint: {
-    ...
   }
 });
-grunt.loadNpmTasks('styles');
+grunt.loadNpmTasks('{{ docs.name }}');
 
 grunt.registerTask('default', [
   'jshint', 
-  'styles'
+  '{{ docs.name }}'
 ]);
 ```
 Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
-
-#### Fixtures
-`.less` source files.
-
-TBC...
-
-#### Expected
-`.css` files.
-
-TBC...
-
-#### Result
-Actual compiled `.css` files.
-
-TBC...

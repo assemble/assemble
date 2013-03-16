@@ -1,66 +1,94 @@
-# [Assemble v0.3.11](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png?branch=master)](https://travis-ci.org/assemble/assemble)
+# [Assemble v0.3.13](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png?branch=readme)](https://travis-ci.org/assemble/assemble)
 
-> Get the rocks out of your socks.
-
-Assemble helps you _quickly launch static web projects_ by emphasizing a strong separation of concerns between structure, style, content and configuration.
+> Get the rocks out of your socks. Assemble helps you **quickly launch static web projects** by emphasizing a strong separation of concerns between structure, style, content and configuration.
 
 _This project just launched **so expect frequent changes** for the near future, and if you find this project interesting please consider starring it to receive updates. If you have any questions or have any trouble getting Assemble to work, please create an Issue, we'd love to help._
 
-
-#### [Please visit the wiki](http://github.com/assemble/assemble/wiki)
-
+#### [Please visit the wiki](http://github.com/assemble/assemble/wiki) 
 **Table of Contents**
+
 - [The "assemble" task](#the-assemble-task)
-  - [Run Assemble](#run-assemble)
-- [About](#about)
 - [Options](#options)
-    - [Task defaults](#task-defaults)
+  - [Task defaults](#task-defaults)
     - [engine](#engine)
     - [helpers](#helpers)
     - [flatten](#flatten)
     - [assets](#assets)
     - [data](#data)
-    - [ext](#ext)
     - [layout](#layout)
     - [partials](#partials)
+    - [ext](#ext)
   - [YAML options](#yaml-options)
     - [filename](#filename)
     - [strict](#strict)
     - [schema](#schema)
 - [Features](#features)
-    - [Markdown](#markdown) - NEW documentation
+    - [Markdown](#markdown)
+    - ["Include" or import externalized content](#include-or-import-externalized-content)
+    - [Write "inline" markdown](#write-inline-markdown)
 - [Example Projects](#example-projects)
   - [Build Bootstrap's Grid with JSON or YAML](#build-bootstraps-grid-with-json-or-yaml)
+- [About](#about)
 - [Bug tracker](#bug-tracker)
 - [Contributing](#contributing)
 - [Authors](#authors)
-- [Related Projects](#related-projects)
-- [Copyright and license](#copyright-and-license)
+- [License](#copyright-and-license)
 
 
 
-## Getting Started
-_You must use Grunt.js version 0.4.0 with Assemble. Please upgrade if you're still using grunt v0.3.x. If you haven't used [grunt][grunt] before, be sure to check out the [Getting Started][Getting Started] guide._
 
- From the same directory as your project's [Gruntfile][Getting Started] and [package.json][packageJSON], install this plugin with the following command:
 
-``` bash
+
+## Quick start
+This plugin requires Grunt `~0.4.0`
+
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+
+#### with `npm`
+
+```shell
 npm install assemble --save-dev
 ```
 
-Once that's done, add this line to your project's Gruntfile:
+Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
-``` js
+```js
 grunt.loadNpmTasks('assemble');
 ```
 
-If Assemble has been installed correctly, running `grunt --help` at the command line should list Assemble's task or tasks. In addition, Assemble should be listed in package.json as a `devDependency`, which ensures that it will be installed whenever the `npm install` command is run.
+#### without `npm`
 
+The following quick start alternatives are available:
+
+* [Download the latest release](https://github.com/assemble/assemble/zipball/master).
+* Clone the repo: `git clone git://github.com/assemble/assemble.git`.
+* Install with Twitter's [Bower](http://twitter.github.com/bower): `bower install assemble`.
+
+
+### Compile Templates and Run Tests
+`assemble` provides convenient methods for building and running tests. Before you get started you must first install [the required local dependencies](package.json):
+
+```
+$ npm install
+```
+
+When completed, you'll be able to run the various `grunt` commands provided:
+
+#### build - `grunt`
+Runs the Less.js compiler to rebuild the specified `/test/fixtures/**` files. .
+
+#### test - `grunt test`
+Runs jshint on JavaScripts and nodeunit tests on your templates. 
+
+#### watch - `grunt watch`
+This is a convenience method for watching your templates and automatically re-building them whenever you save. Requires the [grunt-contrib-watch](http://github.com/gruntjs/grunt-contrib-watch) Grunt plugin.
+
+Should you encounter problems with installing dependencies or running the `grunt` commands, be sure to first uninstall any previous versions (global and local) you may have installed, and then rerun `npm install`.
 
 ## The "assemble" task
 In your project's Gruntfile, add a section named `assemble` to the data object passed into `grunt.initConfig()`.
 
-``` js
+```js
 grunt.initConfig({
   assemble: {
     options: {
@@ -71,10 +99,14 @@ grunt.initConfig({
     }
   }
 });
-```
+grunt.loadNpmTasks('assemble');
 
-#### Run Assemble
-_Run assemble with the`grunt assemble` command._
+grunt.registerTask('default', [
+  'jshint', 
+  'assemble'
+]);
+```
+Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 
 
 ## Options
@@ -108,9 +140,9 @@ assemble: {
 }
 ```
 
-Handlebars, Assemble's default template engine, includes the following built-in helpers: {{#each}}, {{#if}}, and {{#unless}}.
+Handlebars, Assemble's default template engine, includes the following built-in helpers: `{{#each}}`, `{{#if}}`, and `{{#unless}}`.
 
-[helper-lib][helper-lib] adds approximately **70 additional helpers**. To include them, follow these instructions:
+[helper-lib][helper-lib] adds approximately **75 additional helpers**. To include them, follow these instructions:
   * Run: `npm install assemble-helpers-handlebars`
   * Add `assemble-helpers-handlebars` to the `options.helpers` property
   * To learn more visit the [assemble-helpers-handlebars][assemble-helpers-handlebars] repo.
@@ -282,10 +314,75 @@ Default: `DEFAULT_SCHEMA`
 Specifies a schema to use.
 
 
----
+
+### Custom Options
+#### Contexts
+A common use case for custom options is to add contexts for `development` and `production` environments:
+
+``` javascript
+assemble {
+  myProject: {
+    options: {
+      development: true,
+      production: false
+    },
+    files: {
+      'dest': ['src/templates*.hbs']
+    }
+  }
+}
+```
+In your templates just wrap sections with these contexts to include or exclude content based on current working environment.
+``` hbs
+
+
+```
+
+## Usage Examples
+
+#### Build templates
+
+```javascript
+assemble: {
+  templates: {
+    files: {
+      'index.html': ['index.hbs']
+    }
+  }
+}
+```
+
+#### Build multiple specified files individually
+
+You can specify multiple `destination: [source]` items in `files`.
+
+```javascript
+assemble: {
+  gh_pages: {
+    files: {
+      'docs': ['getting-started.hbs'],
+      '.':    ['index.hbs']
+    }
+  }
+}
+```
+
+#### Build directory of files
+
+Grunt supports filename expansion (also know as globbing) via the built-in [node-glob][node-glob] and [minimatch][minimatch] libraries. So Templates may be used in filepaths or glob patterns.
+
+```javascript
+assemble: {
+  project: {
+    files: {
+      '.': ['templates/*.hbs']
+    }
+  }
+}
+```
+
 
 ## Features
-
 Many, many more features are already implemented, and we are documenting them as you read this, so **check back frequently for updates**!!!
 
 
@@ -300,10 +397,10 @@ Assemble gives you the flexibility to:
   * **Embed or write "inline" markdown** on-the-fly inside HTML documents
 
 
-_Read more about markdown features and `options` in the [markdown documentation](https://github.com/assemble/assemble/wiki/Markdown)._
+_Read more about markdown features and `options` in the [markdown documentation][markdown]._
 
 
-#### "Include" or import externalized content
+#### Include/import external content
 
 Use the markdown expression, `{{md}}`, to enable importing of external markdown content.
 
@@ -311,7 +408,6 @@ Use the markdown expression, `{{md}}`, to enable importing of external markdown 
 ``` handlebars
 {{md ../path/to/content.md}}
 ```
-
 
 **Example #2: using variables**
 Or use a variable instead of setting the path directly inside the template. For example you can add the content variable to a YAML header:
@@ -372,7 +468,7 @@ This example shows how to use JSON and handlebars templates to manipulate Bootst
 **Screenshot**
 The finished result of the example project looks like this:
 
-[![grid](https://github.com/assemble/assemble/blob/master/examples/advanced/dest/assets/grid.png?raw=true)](https://github.com/assemble/assemble/blob/master/examples/advanced/dest/assets/grid.png)
+[![grid](https://github.com/assemble/assemble/blob/master/examples/advanced/dest/assets/grid.png?raw=true)][exampleGrid]
 
 ---
 
@@ -470,6 +566,47 @@ And the same configuration writtin in JSON (`grid.json`) instead:
 If you're satisfied with the default `src` and `dest` paths in the `assemble`, simply run `grunt assemble` to compile the grid to static HTML. Or run `grunt watch` to continuously watch files and automatically re-build when changes occur.
 
 
+
+## Contributing
+**Contributions are welcome!**. Want to help make Assemble even awesomer? Please consider contributing! All constructive feedback and contributions are welcome.
+
+* Please comment your code and submit all pull requests against a development branch.
+* If your pull request contains javascript patches or features, please include relevant unit tests.
+* If you like what we're doing but you prefer using different templating libraries than we currently offer, we encourage you to make a feature request or submit a pull request.
+
+
+### What we need 
+We can always use help dwindling down the [Issues](https://github.com/assemble/assemble/issues), but here are other ways you can help:
+
+  * **Documentation**: we can always use help with docs. Creating new docs, filling in missing information, examples, corrections, grammar. You name it, we need it.
+  * **Tell us your experience with Assemble**: Use assemble, give us feedback and tell us how to improve, or add feature requests.
+  * **Have an idea? Tell us about it.** You can contact us via GitHub issues or via email (found on author's profiles)
+
+
+## Bug tracker
+Have a bug? Please create an issue here on GitHub that conforms with [necolas's guidelines](https://github.com/necolas/issue-guidelines).
+
+[https://github.com/assemble/assemble/issues][assemble-issues]
+
+
+## Coming Soon!
++ [Upstage](http://github.com/upstage): COMING SOON! We are preparing to launch a library of seriously high quality UI components, each constructed following the same conventions we encourage with Assemble.
+
+ In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using Grunt.
+
+
+## Authors
+
+**Jon Schlinkert**
+
++ [http://twitter.com/jonschlinkert](http://twitter.com/jonschlinkert)
++ [http://github.com/jonschlinkert](http://github.com/jonschlinkert)
+
+**Brian Woodward**
+
++ [http://twitter.com/doowb](http://twitter.com/doowb)
++ [http://github.com/doowb](http://github.com/doowb)
+
 ## About
 
 > The goal of Assemble is to offer:
@@ -481,66 +618,86 @@ If you're satisfied with the default `src` and `dest` paths in the `assemble`, s
 * Configurable and extensible enough for programmers, but easy for non-programmers to learn and use.
 
 
-
-## Bug tracker
-Have a bug? Please create an issue here on GitHub that conforms with [necolas's guidelines](https://github.com/necolas/issue-guidelines).
-
-[https://github.com/assemble/assemble/issues][assemble-issues]
-
-
-## Contributing
-
-Please consider contributing! All constructive feedback and contributions are welcome.
-
-  * Please comment your code and submit all pull requests against a development branch.
-  * If your pull request contains javascript patches or features, please include relevant unit tests.
-  * If you like what we're doing but you prefer using different technologies than we currently offer, we encourage you to make a feature request or submit a pull request for your plugin.
-
-
-### Call for help
-
-Want to help make Assemble even awesomer? We can always use help dwindling down the [Issues](https://github.com/assemble/assemble/issues), but here are other ways you can help:
-
-  * **Documentation**: we can always use help with docs. Creating new docs, filling in missing information, examples, corrections, grammar. You name it, we need it.
-  * **Tell us your experience with Assemble**: Use assemble, give us feedback and tell us how to improve, or add feature requests.
-  * **Have an idea? Tell us about it.** You can contact us via GitHub issues or via email (found on author's profiles)
-
-
-## Authors
-
-**Brian Woodward**
-
-+ http://github.com/doowb
-+ http://twitter.com/doowb
-
-**Jon Schlinkert**
-
-+ http://github.com/jonschlinkert
-+ http://twitter.com/jonschlinkert
-
-
-
 ## Coming Soon!
 + [Upstage](http://github.com/upstage): COMING SOON! We are preparing to launch a library of seriously high quality UI components, each constructed following the same conventions we encourage with Assemble.
 
 
 
 ## Copyright and license
-
 Copyright 2013 Assemble
 
 [MIT License](LICENSE-MIT)
 
+## Release History
 
-[grunt]: http://gruntjs.com/
-[Upgrading]: http://gruntjs.com/upgrading-from-0.3-to-0.4
-[Getting Started]: http://gruntjs.com/getting-started
-[package.json]: https://npmjs.org/doc/json.html
-[assemble-examples]:  https://github.com/assemble/assemble-examples/
-[assemble-issues]:    https://github.com/assemble/assemble/issues?page=1&state=open
-[assemble-options]:   https://github.com/assemble/assemble/blob/master/docs/options.md
-[helpers-docs]:       https://github.com/assemble/assemble/blob/master/docs/helpers.md
-[helper-lib]: https://github.com/assemble/helper-lib
+* Stardate "705301.2"    v0.1.0    First commit. 
+
+
+### Roadmap
+* nothing yet.
+
+---
+
+_This file was generated with Grunt and [assemble](http://github.com/assemble/assemble) on Sat Mar 16 2013 16:47:56._
+
+
+
+
+
+
+[download]: https://github.com/assemble/assemble/zipball/master
+
+
+[config]: https://github.com/assemble/assemble/wiki/Configuration
+[gruntfile]: https://github.com/assemble/assemble/wiki/Gruntfile
+[tasks]: https://github.com/assemble/assemble/wiki/Task-and-Targets
+[options]: https://github.com/assemble/assemble/wiki/Options
+
 
 [templates]: https://github.com/assemble/assemble/wiki/Templates
-[config]: https://github.com/assemble/assemble/wiki/Configuration
+[layouts]: https://github.com/assemble/assemble/wiki/Layouts
+[pages]: https://github.com/assemble/assemble/wiki/Pages
+[partials]: https://github.com/assemble/assemble/wiki/Partials
+[helpers]: https://github.com/assemble/assemble/wiki/Helpers
+[collections]: https://github.com/assemble/assemble/wiki/Collections
+[assets]: https://github.com/assemble/assemble/wiki/Assets
+
+
+[content]: https://github.com/assemble/assemble/wiki/Content
+[data]: https://github.com/assemble/assemble/wiki/Data
+[markdown]: https://github.com/assemble/assemble/wiki/Markdown
+
+
+[examples]: https://github.com/assemble/assemble-examples
+[exampleSite]: https://github.com/assemble/assemble-examples
+[exampleBasic]: https://github.com/assemble/assemble-examples
+[exampleAdvanced]: https://github.com/assemble/assemble-examples
+[exampleGrid]: https://github.com/assemble/assemble-examples
+[exampleTable]: https://github.com/assemble/assemble-examples
+[exampleForm]: https://github.com/assemble/assemble-examples
+
+
+[contribute]: https://github.com/assemble/assemble/wiki/Contributing-to-Assemble
+[extend]: https://github.com/assemble/assemble/wiki/Extending-Assemble
+[helpers-lib]: https://github.com/assemble/helpers-lib
+
+
+[grunt]: http://gruntjs.com/
+[upgrading]: http://gruntjs.com/upgrading-from-0.3-to-0.4
+[getting-started]: http://gruntjs.com/getting-started
+[package]: https://npmjs.org/doc/json.html
+
+
+[assemble]: https://github.com/assemble/assemble
+[pre]: https://github.com/assemble/pre
+[dry]: https://github.com/assemble/dry
+[assemble-github-com]: https://github.com/assemble/assemble.github.com
+[assemble-examples-bootstrap]: https://github.com/assemble/assemble-examples-bootstrap
+[assemble-internal]: https://github.com/assemble/assemble-internal
+[assemble-styles]: https://github.com/assemble/assemble-styles
+[assemble-examples-readme]: https://github.com/assemble/assemble-examples-readme
+[grunt-toc]: https://github.com/assemble/grunt-toc
+[helper-lib]: https://github.com/assemble/helper-lib
+[grunt-dry]: https://github.com/assemble/grunt-dry
+[assemble-examples]: https://github.com/assemble/assemble-examples
+
