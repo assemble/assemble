@@ -11,10 +11,6 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-
-    // Project paths and files.
-    links: grunt.file.readYAML('docs/data/url.yml'),
-
     // package.json
     pkg: grunt.file.readJSON('package.json'),
     meta: {
@@ -24,6 +20,7 @@ module.exports = function(grunt) {
         '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
         ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
     },
+
     jshint: {
       files: [
         'Gruntfile.js',
@@ -43,6 +40,26 @@ module.exports = function(grunt) {
       options: {
         reporter: 'nyan'
       }
+    },
+
+    // Run simple tests.
+    assemble: {
+      tests: {
+        options: {
+          layout: 'test/files/layout-includes.hbs'
+        },
+        files: {
+          'test/actual': ['test/files/extend.hbs']
+        }
+      },
+      yaml: {
+        options: {
+          layout: 'test/files/layout.hbs'
+        },
+        files: {
+          'test/actual/yaml': ['test/yaml/*.hbs']
+        }
+      }
     }
   });
 
@@ -55,12 +72,13 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', [
+    'assemble',
     'jshint'
   ]);
 
   // Tests to be run.
   grunt.registerTask('test', [
-    'jshint',
+    'default',
     'mochaTest'
   ]);
 };
