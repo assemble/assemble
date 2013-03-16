@@ -1,0 +1,30 @@
+<!doctype html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>YAML Variables</title>
+    <link href="../bootstrap.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container"> 
+      
+<div class="page-header">
+  <h4>YAML Variables</h4> 
+</div>
+
+This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!
+
+<p>This would output the variable as literal text.</p>
+<pre><code class="lang-yaml"><span class="attribute">three</span>: <span class="string">But this doesn't work. *DOOWB</span></code></pre>
+<p>And this would throw an error:</p>
+<pre><code class="lang-yaml"><span class="attribute">three</span>: <span class="string">*DOOWB But this doesn't work.</span></code></pre>
+<p>YAML supports <strong>variables</strong>, or <strong>repeated nodes</strong>. The simplest explanation is that you define something as a variable by preceding it with &quot;&amp;NAME value&quot; and you can refer to it with &quot;*NAME&quot; e.g.:</p>
+<pre><code class="lang-yaml"><span class="preprocessor"># YAML</span>
+<span class="label">some_thing:</span> &amp;NAME foobar
+<span class="label">other_thing:</span> *NAME</code></pre>
+<p>Parses to:</p>
+<pre><code class="lang-json">{"<span class="attribute">other_thing</span>": <span class="value"><span class="string">"foobar"</span></span>, "<span class="attribute">some_thing</span>": <span class="value"><span class="string">"foobar"</span>}</span></code></pre>
+
+    </div>
+  </body>
+</html>
