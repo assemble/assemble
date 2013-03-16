@@ -10,7 +10,8 @@ npm-debug.log
 node_modules
 pids
 logs
-results
 
+!/test/
 /tmp/
 /temp/
+/docs/templates/

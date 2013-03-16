@@ -1,7 +1,7 @@
 {
   "name": "assemble",
-  "description": "Get the rocks out of your socks. Assemble helps you _quickly launch static web projects_ by emphasizing a strong separation of concerns between structure, style, content and configuration.",
-  "version": "0.3.11",
+  "description": "Get the rocks out of your socks. Assemble helps you **quickly launch static web projects** by emphasizing a strong separation of concerns between structure, style, content and configuration.",
+  "version": "0.3.13",
   "homepage": "https://github.com/assemble/assemble",
   "author": {
     "name": "assemble",
