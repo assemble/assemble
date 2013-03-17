@@ -1,4 +1,4 @@
-# [Assemble v0.3.13](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png?branch=readme)](https://travis-ci.org/assemble/assemble)
+# [Assemble v0.3.13](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png?branch=master)](https://travis-ci.org/assemble/assemble)
 
 > Get the rocks out of your socks. Assemble helps you **quickly launch static web projects** by emphasizing a strong separation of concerns between structure, style, content and configuration.
 
