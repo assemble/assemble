@@ -11,6 +11,7 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
+
     // package.json
     pkg: grunt.file.readJSON('package.json'),
     meta: {
@@ -20,19 +21,19 @@ module.exports = function(grunt) {
         '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
         ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
     },
-
     jshint: {
+      options: {
+        jshintrc: '.jshintrc'
+      },
       files: [
         'Gruntfile.js',
         'lib/**/*.js',
         'tasks/**/*.js',
         'test/**/*.js'
-      ],
-      options: {
-        jshintrc: '.jshintrc'
-      }
+      ]
     },
-    // Run tests.
+
+    // Run mocha tests.
     mochaTest: {
       files: ['test/**/*.js']
     },
@@ -42,26 +43,8 @@ module.exports = function(grunt) {
       }
     },
 
-    // Run simple tests.
     assemble: {
-      // Internal task to build README, docs.
-      readme: {
-        options: {
-          today: '<%= grunt.template.today() %>',
-          partials: ['docs/*.md','docs/templates/sections/*.{md,hbs}'],
-          changelog: grunt.file.readYAML('CHANGELOG'),
-          roadmap: grunt.file.readYAML('ROADMAP'),
-          data: [
-            'docs/templates/data/docs.json',
-            '../assemble-internal/docs/templates/data/url.json', 
-            '../assemble-internal/docs/templates/data/repos.json'
-          ],
-          ext: '.md'
-        },
-        files: {
-          '.': ['../assemble-internal/docs/templates/README.hbs']
-        }
-      },
+      // Run basic tests on templates and data.
       tests: {
         options: {
           layout: 'test/files/layout-includes.hbs'
@@ -76,6 +59,24 @@ module.exports = function(grunt) {
         },
         files: {
           'test/actual/yaml': ['test/yaml/*.hbs']
+        }
+      },
+      // Internal task to build README, docs.
+      readme: {
+        options: {
+          today: '<%= grunt.template.today() %>',
+          partials: ['docs/*.md','docs/templates/sections/*.{md,hbs}'],
+          changelog: grunt.file.readYAML('CHANGELOG'),
+          roadmap: grunt.file.readYAML('ROADMAP'),
+          ext: '.md',
+          data: [
+            'docs/templates/data/docs.json',
+            '../assemble-internal/docs/templates/data/url.json', 
+            '../assemble-internal/docs/templates/data/repos.json'
+          ]
+        },
+        files: {
+          '.': ['../assemble-internal/docs/templates/README.hbs']
         }
       }
     }
