@@ -37,8 +37,6 @@ _This project just launched **so expect frequent changes** for the near future, 
 
 
 
-
-
 ## Quick start
 This plugin requires Grunt `~0.4.0`
 
@@ -638,7 +636,7 @@ Copyright 2013 Assemble
 
 ---
 
-_This file was generated with Grunt and [assemble](http://github.com/assemble/assemble) on Sat Mar 16 2013 16:47:56._
+_This file was generated with Grunt and [assemble](http://github.com/assemble/assemble) on Mon Mar 18 2013 00:51:12._
 
 
 
