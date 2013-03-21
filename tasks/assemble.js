@@ -147,17 +147,21 @@ module.exports = function(grunt) {
       log.writeln(('\n' + 'Begin processing data...').grey);
 
       dataFiles.forEach(function(filepath) {
-        var filename = _.first(filepath.match(filenameRegex)).replace(/\.json/,'');
+        var ext = path.extname(filepath);
+        var filename = path.basename(filepath, dataExt);
+
+        var fileReader = dataFileReaderFactory(ext);
+
         if(complete%increment === 0) {
           log.notverbose.write('.'.cyan);
         }
 
         if(filename === 'data') {
-          // if this is the base data.json file, load it into the options.data object directly
-          options.data = _.extend(options.data || {}, grunt.file.readJSON(filepath));
+          // if this is the base data file, load it into the options.data object directly
+          options.data = _.extend(options.data || {}, fileReader(filepath));
         } else {
           // otherwise it's an element in options.data
-          var d = grunt.file.readJSON(filepath);
+          var d = fileReader(filepath);
           if(d[filename]) {
             // json object contains root object name so extend it in options.json
             options.data[filename] = _.extend(options.data[filename] || {}, d[filename]);
@@ -466,5 +470,20 @@ module.exports = function(grunt) {
   var urlNormalize = function(urlString) {
     return urlString.replace(/\\/g, '/');
   };
+
+  var dataFileReaderFactory = function(ext) {
+    var reader = grunt.file.readJSON;
+    switch(ext) {
+      case '.json':
+        reader = grunt.file.readJSON;
+        break;
+
+      case '.yml':
+      case '.yaml':
+        reader = grunt.file.readYAML;
+        break;
+    }
+    return reader;
+  }
 
 };
