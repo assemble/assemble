@@ -484,6 +484,6 @@ module.exports = function(grunt) {
         break;
     }
     return reader;
-  }
+  };
 
 };
