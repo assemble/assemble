@@ -148,7 +148,7 @@ module.exports = function(grunt) {
 
       dataFiles.forEach(function(filepath) {
         var ext = path.extname(filepath);
-        var filename = path.basename(filepath, dataExt);
+        var filename = path.basename(filepath, ext);
 
         var fileReader = dataFileReaderFactory(ext);
 

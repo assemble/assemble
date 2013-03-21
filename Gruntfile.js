@@ -55,7 +55,8 @@ module.exports = function(grunt) {
       },
       yaml: {
         options: {
-          layout: 'test/files/layout.hbs'
+          layout: 'test/files/layout.hbs',
+          data: 'test/yaml/data/**/*.*'
         },
         files: {
           'test/actual/yaml': ['test/yaml/*.hbs']
@@ -71,7 +72,7 @@ module.exports = function(grunt) {
           ext: '.md',
           data: [
             'docs/templates/data/docs.json',
-            '../assemble-internal/docs/templates/data/url.json', 
+            '../assemble-internal/docs/templates/data/url.json',
             '../assemble-internal/docs/templates/data/repos.json'
           ]
         },
