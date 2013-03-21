@@ -9,8 +9,6 @@
 
 module.exports = function(grunt) {
 
-  'use strict';
-  
   // Project configuration.
   grunt.initConfig({
 
@@ -37,7 +35,7 @@ module.exports = function(grunt) {
 
     // Run mocha tests.
     mochaTest: {
-      files: ['test/**/*.{js,!yml}']
+      files: ['test/**/*.js']
     },
     mochaTestConfig: {
       options: {
@@ -52,13 +50,13 @@ module.exports = function(grunt) {
           layout: 'test/files/layout-includes.hbs'
         },
         files: {
-          'test/actual': ['test/files/extend.hbs', 'test/files/helpers.hbs']
+          'test/actual': ['test/files/extend.hbs']
         }
       },
       yaml: {
         options: {
           layout: 'test/files/layout.hbs',
-          partials: 'test/files/alert.hbs'
+          data: 'test/yaml/data/**/*.*'
         },
         files: {
           'test/actual/yaml': ['test/yaml/*.hbs']
@@ -74,30 +72,12 @@ module.exports = function(grunt) {
           ext: '.md',
           data: [
             'docs/templates/data/docs.json',
-            '../assemble-internal/docs/templates/data/url.json', 
+            '../assemble-internal/docs/templates/data/url.json',
             '../assemble-internal/docs/templates/data/repos.json'
           ]
         },
         files: {
-          '.': ['docs/templates/README.hbs']
-        }
-      },
-      // Internal task to build wiki.
-      wiki: {
-        options: {
-          today: '<%= grunt.template.today() %>',
-          partials: ['docs/wiki/partials/*.md'],
-          changelog: grunt.file.readYAML('CHANGELOG'),
-          roadmap: grunt.file.readYAML('ROADMAP'),
-          ext: '.md',
-          data: [
-            'docs/templates/data/docs.json',
-            '../assemble-internal/docs/templates/data/url.json', 
-            '../assemble-internal/docs/templates/data/repos.json'
-          ]
-        },
-        files: {
-          '.': ['docs/templates/README.hbs']
+          '.': ['../assemble-internal/docs/templates/README.hbs']
         }
       }
     }
@@ -112,8 +92,7 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', [
-    'assemble:tests',
-    'assemble:yaml',
+    'assemble',
     'jshint'
   ]);
 
