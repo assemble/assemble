@@ -1,4 +1,18 @@
-v0.1.0:
-  date: Stardate "705301.2"
+v0.3.14: 
+  date: "2013-03-18 "
   changes:
-    - First commit.
+    - new relative helper for resolving relative paths
+v0.3.13: 
+  date: "2013-03-16"  
+  changes:
+    - new dashify and formatPhone helpers 
+v0.1.0-v0.3.0:
+  date: "then-til-now"
+  changes:
+    - Leaned how to commit too many times while working on README.
+v0.1.0:
+  date: "Stardate 45047.2"
+  changes:
+    - Visited the uninhabited El-Adrel system. 
+    - Returned home.
+    - Started assemble.
