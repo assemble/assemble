@@ -14,4 +14,4 @@ logs
 !/test/
 /tmp/
 /temp/
-/docs/templates/
+/docs/

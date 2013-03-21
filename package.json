@@ -19,10 +19,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/assemble/assemble.git"
+    "url": "git://github.com/assemble/assemble.git"
   },
   "bugs": {
-    "url": "https://github.com/assemble/assemble/issues"
+    "url": "git://github.com/assemble/assemble/issues"
   },
   "licenses": [
     {
@@ -39,20 +39,21 @@
   },
   "dependencies": {
     "amdefine": "0.0.4",
+    "helper-lib": "~0.1.7",
     "handlebars": "~1.0.9",
-    "lodash": "~1.0.1",
+    "highlight.js": "~7.3.0",
     "js-yaml": "~2.0.2",
-    "marked": "~0.2.8",
-    "highlight.js": "~7.3.0"
+    "lodash": "~1.0.1",
+    "marked": "~0.2.8"
   },
   "devDependencies": {
-    "grunt": "~0.4.0",
-    "assemble-styles": "~0.2.0",
-    "testem": "~0.2.68",
-    "grunt-mocha-test": "~0.2.0",
+    "assemble-styles": "~0.3.0",
     "chai": "~1.5.0",
+    "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.2.0",
-    "grunt-contrib-watch": "~0.2.0"
+    "grunt-contrib-watch": "~0.2.0",
+    "grunt-mocha-test": "~0.2.0",
+    "testem": "~0.2.68"
   },
   "keywords": [
     "blog generator",
