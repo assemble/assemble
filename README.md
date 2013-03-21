@@ -1,10 +1,15 @@
-# [Assemble v0.3.13](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png?branch=master)](https://travis-ci.org/assemble/assemble)
+# [Assemble v0.3.14](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
 
 > Get the rocks out of your socks. Assemble helps you **quickly launch static web projects** by emphasizing a strong separation of concerns between structure, style, content and configuration.
 
-_This project just launched **so expect frequent changes** for the near future, and if you find this project interesting please consider starring it to receive updates. If you have any questions or have any trouble getting Assemble to work, please create an Issue, we'd love to help._
+_This project just launched **so expect frequent changes**._ And if you find this project interesting please consider starring it to receive updates.
+
+### Getting Help
+
+Assemble has man more features implemented than what we've documented thus far, so check back frequently for udates. If you have any questions or have any trouble getting Assemble to work, please feel free to create an [Issue][issues], we'd love to help._
 
 #### [Please visit the wiki](http://github.com/assemble/assemble/wiki) 
+
 **Table of Contents**
 
 - [The "assemble" task](#the-assemble-task)
@@ -38,7 +43,7 @@ _This project just launched **so expect frequent changes** for the near future, 
 
 
 ## Quick start
-This plugin requires Grunt `~0.4.0`
+This plugin requires Grunt `~0.4.1`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -72,11 +77,11 @@ $ npm install
 
 When completed, you'll be able to run the various `grunt` commands provided:
 
-#### build - `grunt`
-Runs the Less.js compiler to rebuild the specified `/test/fixtures/**` files. .
+#### build - `grunt assemble`
+Runs the `assemble` task to rebuild the project. .
 
 #### test - `grunt test`
-Runs jshint on JavaScripts and nodeunit tests on your templates. 
+Runs jshint on JavaScripts and mocha unit tests on your templates. 
 
 #### watch - `grunt watch`
 This is a convenience method for watching your templates and automatically re-building them whenever you save. Requires the [grunt-contrib-watch](http://github.com/gruntjs/grunt-contrib-watch) Grunt plugin.
@@ -110,51 +115,7 @@ Task targets, files and options may be specified according to the grunt [Configu
 ## Options
 See the [Options](https://github.com/assemble/assemble/wiki/Options) section on the Wiki for more information.
 
-
-### Task defaults
-Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
-
-
-#### engine
-Type: `String`
-Default: `handlebars`
-
-The engine to use for processing client-side templates. Assemble ships Handlebars as the default template engine, if you are interested in using a different engine visit the documentation to see an up-to-date list of template engines.
-
-Pull requests are welcome for additional template engines. Since we're still working to update the docs, you many also contact [@doowb](http://github.com/doowb) for more information or create an [Issue][assemble-issues].
-
-#### helpers
-Type: `String`
-Default: `undefined`
-
-Path defined to a directory of helpers to use with the specified template engine.
-
-``` js
-assemble: {
-  options: {
-    helpers: 'assemble-helpers-handlebars'
-  },
-  ...
-}
-```
-
-Handlebars, Assemble's default template engine, includes the following built-in helpers: `{{#each}}`, `{{#if}}`, and `{{#unless}}`.
-
-[helper-lib][helper-lib] adds approximately **75 additional helpers**. To include them, follow these instructions:
-  * Run: `npm install assemble-helpers-handlebars`
-  * Add `assemble-helpers-handlebars` to the `options.helpers` property
-  * To learn more visit the [assemble-helpers-handlebars][assemble-helpers-handlebars] repo.
-  * See the list of [handlebars helpers][helpers-docs] here.
-
-
-#### flatten
-Type: `Boolean`
-Default: `false`
-
-Remove anything after (and including) the first "." in the destination path, then append this value.
-
-
-#### assets
+#### options.assets
 Type: `String`
 Default: `false`
 
@@ -183,12 +144,11 @@ Resulting in:
 <link href="dist/assets/css/styles.css" rel="stylesheet">
 ```
 
-
-#### data
+#### options.data
 Type: `String`
 Default: `src/data`
 
-Load data for templates and [configuration][config] from specified `JSON` and/or `YAML` files.
+Add the `data` object to the options on the assemble task, then data from any specified `JSON` and/or `YAML` files will get passed through to the context in your templates. The data object is also useful for adding [configuration][config] data.  _Note that Handlebars.js is the only supported template engine at this time_. If you would like to see another engine added to Assemble, please make a [feature request][issues] (or pull request).
 
 Example:
 
@@ -200,7 +160,7 @@ assemble: {
   ...
 }
 ```
-Example `widget.json` data file:
+Example `widget.json` data:
 ``` json
 {
   "name": "Square Widget",
@@ -220,7 +180,7 @@ Compiled result after running `grunt assemble`:
 Also see: [YAML front matter] todo...
 
 
-#### layout
+#### options.layout
 Type: `String`
 Default: `undefined`
 
@@ -237,8 +197,7 @@ assemble: {
 }
 ```
 
-
-#### partials
+#### options.partials
 Type: `String`
 Default: `undefined`
 
@@ -255,7 +214,38 @@ assemble: {
 }
 ```
 
-#### ext
+#### options.engine
+Type: `String`
+Default: `handlebars`
+
+The engine to use for processing client-side templates. Assemble ships Handlebars as the default template engine, if you are interested in using a different engine visit the documentation to see an up-to-date list of template engines.
+
+Pull requests are welcome for additional template engines. Since we're still working to update the docs, you many also contact [@doowb](http://github.com/doowb) for more information or create an [Issue][assemble-issues].
+
+#### options.helpers
+Type: `String`
+Default: `undefined`
+
+Path defined to a directory of helpers to use with the specified template engine.
+
+``` js
+assemble: {
+  options: {
+    helpers: 'assemble-helpers-handlebars'
+  },
+  ...
+}
+```
+
+Handlebars, Assemble's default template engine, includes the following built-in helpers: `{{#each}}`, `{{#if}}`, and `{{#unless}}`.
+
+[helper-lib][helper-lib] adds approximately **75 additional helpers**. To include them, follow these instructions:
+  * Run: `npm install assemble-helpers-handlebars`
+  * Add `assemble-helpers-handlebars` to the `options.helpers` property
+  * To learn more visit the [assemble-helpers-handlebars][assemble-helpers-handlebars] repo.
+  * See the list of [handlebars helpers][helpers-docs] here.
+
+#### options.ext
 Type: `String`
 Default: `.html`
 
@@ -287,25 +277,33 @@ assemble: {
 ```
 
 
+
+
+#### options.flatten
+Type: `Boolean`
+Default: `false`
+
+Remove anything after (and including) the first "." in the destination path, then append this value.
+
+
+
+
 ### YAML options
 Assemble makes the following options available from `js-yaml`. See [js-yaml](https://github.com/nodeca/js-yaml) for more information.
 
-
-#### filename
+#### options.filename
 Type: `String`
 Default: `null`
 
 String to be used as a file path in error/warning messages.
 
-
-#### strict
+#### options.strict
 Type: `Boolean`
 Default: `false`
 
 Makes the loader to throw errors instead of warnings.
 
-
-#### schema
+#### options.schema
 Type: `String`
 Default: `DEFAULT_SCHEMA`
 
@@ -338,52 +336,6 @@ In your templates just wrap sections with these contexts to include or exclude c
 
 ## Usage Examples
 
-#### Build templates
-
-```javascript
-assemble: {
-  templates: {
-    files: {
-      'index.html': ['index.hbs']
-    }
-  }
-}
-```
-
-#### Build multiple specified files individually
-
-You can specify multiple `destination: [source]` items in `files`.
-
-```javascript
-assemble: {
-  gh_pages: {
-    files: {
-      'docs': ['getting-started.hbs'],
-      '.':    ['index.hbs']
-    }
-  }
-}
-```
-
-#### Build directory of files
-
-Grunt supports filename expansion (also know as globbing) via the built-in [node-glob][node-glob] and [minimatch][minimatch] libraries. So Templates may be used in filepaths or glob patterns.
-
-```javascript
-assemble: {
-  project: {
-    files: {
-      '.': ['templates/*.hbs']
-    }
-  }
-}
-```
-
-
-## Features
-Many, many more features are already implemented, and we are documenting them as you read this, so **check back frequently for updates**!!!
-
-
 ### Markdown
 
 > Wouldn't it be awesome if you could just _use markdown however you wanted, wherever you needed it_?
@@ -398,8 +350,7 @@ Assemble gives you the flexibility to:
 _Read more about markdown features and `options` in the [markdown documentation][markdown]._
 
 
-#### Include/import external content
-
+### Includes and Partials
 Use the markdown expression, `{{md}}`, to enable importing of external markdown content.
 
 **Example #1: using full path**
@@ -454,6 +405,49 @@ Embed handlebars templates to make them even prettier.
 
 ---
 
+### Task defaults
+Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
+
+#### Build templates
+
+```javascript
+assemble: {
+  templates: {
+    files: {
+      'index.html': ['index.hbs']
+    }
+  }
+}
+```
+
+#### Build multiple specified files individually
+
+You can specify multiple `destination: [source]` items in `files`.
+
+```javascript
+assemble: {
+  gh_pages: {
+    files: {
+      'docs': ['getting-started.hbs'],
+      '.':    ['index.hbs']
+    }
+  }
+}
+```
+
+#### Build directory of files
+
+Grunt supports filename expansion (also know as globbing) via the built-in [node-glob][node-glob] and [minimatch][minimatch] libraries. So Templates may be used in filepaths or glob patterns.
+
+```javascript
+assemble: {
+  project: {
+    files: {
+      '.': ['templates/*.hbs']
+    }
+  }
+}
+```
 
 ## Example Projects
 Browse the [examples][assemble-examples] folder to get a better idea of what Assemble can do. To build the examples run `grunt examples`.
@@ -566,30 +560,9 @@ If you're satisfied with the default `src` and `dest` paths in the `assemble`, s
 
 
 ## Contributing
-**Contributions are welcome!**. Want to help make Assemble even awesomer? Please consider contributing! All constructive feedback and contributions are welcome.
+Want to help make **assemble** even better? All constructive feedback and contributions are welcome, so please consider contributing!  We can always use help creating, tests, documentation or resolving [Issues](https://github.com/assemble/assemble/issues), but if you have other ideas for how you can help, Brian and I would love to hear them!
 
-* Please comment your code and submit all pull requests against a development branch.
-* If your pull request contains javascript patches or features, please include relevant unit tests.
-* If you like what we're doing but you prefer using different templating libraries than we currently offer, we encourage you to make a feature request or submit a pull request.
-
-
-### What we need 
-We can always use help dwindling down the [Issues](https://github.com/assemble/assemble/issues), but here are other ways you can help:
-
-  * **Documentation**: we can always use help with docs. Creating new docs, filling in missing information, examples, corrections, grammar. You name it, we need it.
-  * **Tell us your experience with Assemble**: Use assemble, give us feedback and tell us how to improve, or add feature requests.
-  * **Have an idea? Tell us about it.** You can contact us via GitHub issues or via email (found on author's profiles)
-
-
-## Bug tracker
-Have a bug? Please create an issue here on GitHub that conforms with [necolas's guidelines](https://github.com/necolas/issue-guidelines).
-
-[https://github.com/assemble/assemble/issues][assemble-issues]
-
-
-## Coming Soon!
-+ [Upstage](http://github.com/upstage): COMING SOON! We are preparing to launch a library of seriously high quality UI components, each constructed following the same conventions we encourage with Assemble.
-
+[https://github.com/assemble/assemble/issues](http://github.com/assemble/assemble/issues)
  In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using Grunt.
 
 
@@ -628,7 +601,10 @@ Copyright 2013 Assemble
 
 ## Release History
 
-* Stardate "705301.2"    v0.1.0    First commit. 
+* 2013-03-18     v0.3.14    new relative helper for resolving relative paths 
+* 2013-03-16    v0.3.13    new dashify and formatPhone helpers 
+* then-til-now    v0.1.0-v0.3.0    Leaned how to commit too many times while working on README. 
+* Stardate 45047.2    v0.1.0    Visited the uninhabited El-Adrel system. Returned home. Started assemble. 
 
 
 ### Roadmap
@@ -636,7 +612,7 @@ Copyright 2013 Assemble
 
 ---
 
-_This file was generated with Grunt and [assemble](http://github.com/assemble/assemble) on Mon Mar 18 2013 00:51:12._
+_This file was generated with Grunt and [assemble](http://github.com/assemble/assemble) on Tue Mar 19 2013 16:17:25._
 
 
 
@@ -644,6 +620,10 @@ _This file was generated with Grunt and [assemble](http://github.com/assemble/as
 
 
 [download]: https://github.com/assemble/assemble/zipball/master
+
+[org]: https://github.com/assemble
+[issues]: https://github.com/assemble/assemble/issues
+[styles]: https://github.com/assemble/assemble-styles
 
 
 [config]: https://github.com/assemble/assemble/wiki/Configuration
