@@ -2,7 +2,7 @@ In your project's Gruntfile, add a section named `assemble` to the data object p
 
 ```js
 grunt.initConfig({
-  {{ docs.name }}: {
+  assemble: {
     options: {
       // Task-specific options go here.
     },
@@ -11,11 +11,11 @@ grunt.initConfig({
     }
   }
 });
-grunt.loadNpmTasks('{{ docs.name }}');
+grunt.loadNpmTasks('assemble');
 
 grunt.registerTask('default', [
   'jshint', 
-  '{{ docs.name }}'
+  'assemble'
 ]);
 ```
 Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.

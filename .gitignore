@@ -14,4 +14,6 @@ logs
 !/test/
 /tmp/
 /temp/
-/docs/
+
+*.sublime-project
+*.sublime-workspace
