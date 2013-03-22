@@ -61,24 +61,6 @@ module.exports = function(grunt) {
         files: {
           'test/actual/yaml': ['test/yaml/*.hbs']
         }
-      },
-      // Internal task to build README, docs.
-      readme: {
-        options: {
-          today: '<%= grunt.template.today() %>',
-          partials: ['docs/*.md','docs/templates/sections/*.{md,hbs}'],
-          changelog: grunt.file.readYAML('CHANGELOG'),
-          roadmap: grunt.file.readYAML('ROADMAP'),
-          ext: '.md',
-          data: [
-            'docs/templates/data/docs.json',
-            '../assemble-internal/docs/templates/data/url.json',
-            '../assemble-internal/docs/templates/data/repos.json'
-          ]
-        },
-        files: {
-          '.': ['../assemble-internal/docs/templates/README.hbs']
-        }
       }
     }
   });
