@@ -1,6 +1,6 @@
 {
   "name": "assemble",
-  "version": "0.3.14",
+  "version": "0.3.2",
   "main": [
     "./lib/assemble.js"
   ],
