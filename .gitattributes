@@ -3,26 +3,6 @@
 * text eol=lf
 *.* eol=lf
 
-*.coffee text eol=lf
-*.conf text eol=lf
-*.config text eol=lf
-*.css text eol=lf
-*.hbs text eol=lf
-*.handlebars text eol=lf
-*.htm text eol=lf
-*.html text eol=lf
-*.jade text eol=lf
-*.js text eol=lf
-*.less text eol=lf
-*.markdown text eol=lf
-*.md text eol=lf
-*.mustache text eol=lf
-*.txt text eol=lf
-*.yml text eol=lf
-*.yaml text eol=lf
-grunt text eol=lf
-lessc text eol=lf
-
 *.jpg binary
 *.gif binary
 *.png binary
