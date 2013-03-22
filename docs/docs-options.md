@@ -1,56 +1,12 @@
 See the [Options](https://github.com/assemble/assemble/wiki/Options) section on the Wiki for more information.
 
-
-### Task defaults
-Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
-
-
-#### engine
-Type: `String`
-Default: `handlebars`
-
-The engine to use for processing client-side templates. Assemble ships Handlebars as the default template engine, if you are interested in using a different engine visit the documentation to see an up-to-date list of template engines.
-
-Pull requests are welcome for additional template engines. Since we're still working to update the docs, you many also contact [@doowb](http://github.com/doowb) for more information or create an [Issue][assemble-issues].
-
-#### helpers
-Type: `String`
-Default: `undefined`
-
-Path defined to a directory of helpers to use with the specified template engine.
-
-``` js
-assemble: {
-  options: {
-    helpers: 'assemble-helpers-handlebars'
-  },
-  ...
-}
-```
-
-Handlebars, Assemble's default template engine, includes the following built-in helpers: `\{{#each}}`, `\{{#if}}`, and `\{{#unless}}`.
-
-[helper-lib][helper-lib] adds approximately **75 additional helpers**. To include them, follow these instructions:
-  * Run: `npm install assemble-helpers-handlebars`
-  * Add `assemble-helpers-handlebars` to the `options.helpers` property
-  * To learn more visit the [assemble-helpers-handlebars][assemble-helpers-handlebars] repo.
-  * See the list of [handlebars helpers][helpers-docs] here.
-
-
-#### flatten
-Type: `Boolean`
-Default: `false`
-
-Remove anything after (and including) the first "." in the destination path, then append this value.
-
-
 #### assets
 Type: `String`
 Default: `false`
 
 TODO...
 
-Used by the `\{{assets}}` template to resolve the relative path to the dest assets folder from the dest file.
+Used by the `{{assets}}` template to resolve the relative path to the dest assets folder from the dest file.
 
 Example:
 
@@ -65,7 +21,7 @@ assemble: {
 Example usage:
 
 ``` html
-<link href="\{{assets}}/css/styles.css" rel="stylesheet">
+<link href="{{assets}}/css/styles.css" rel="stylesheet">
 ```
 Resulting in:
 
@@ -73,24 +29,22 @@ Resulting in:
 <link href="dist/assets/css/styles.css" rel="stylesheet">
 ```
 
-
 #### data
 Type: `String`
 Default: `src/data`
 
-Load data for templates and [configuration][config] from specified `JSON` and/or `YAML` files.
+Data from specified `JSON` and/or `YAML` files gets passed through the `data` object to the options on the assemble task, then to the context in your templates. The data object is also useful for adding [configuration][config] data.  _Note that Handlebars.js is the only supported template engine at this time_. If you would like to see another engine added to Assemble, please make a [feature request][issues] (or pull request). 
 
 Example:
-
 ``` js
 assemble: {
   options: {
-    data: ['src/data/*.json', 'config/global.json']
+    data: ['src/data/*.{json,yml,yaml}', 'config/global.json', 'styles/bootstrap.json']
   },
   ...
 }
 ```
-Example `widget.json` data file:
+Data: `widget.json` 
 ``` json
 {
   "name": "Square Widget",
@@ -98,16 +52,16 @@ Example `widget.json` data file:
 }
 
 ```
-Example `widget.hbs` template:
+Template: `widget.hbs`
 ``` html
-<div class="widget \{{ widget.modifier }}">\{{ widget.name }}</div>
+<div class="widget {{ widget.modifier }}">{{ widget.name }}</div>
 ```
 
 Compiled result after running `grunt assemble`:
 ``` html
 <div class="widget widget-square">Square Widget</div>
 ```
-Also see: [YAML front matter] todo...
+Also see: [YAML front matter][yaml] todo...
 
 
 #### layout
@@ -127,7 +81,6 @@ assemble: {
 }
 ```
 
-
 #### partials
 Type: `String`
 Default: `undefined`
@@ -142,6 +95,29 @@ assemble: {
   files: {
     'docs': ['src/files/*.hbs']
   }
+}
+```
+
+#### engine
+Type: `String`
+Default: `handlebars`
+
+The engine to use for processing client-side templates. Assemble ships Handlebars as the default template engine, if you are interested in using a different engine visit the documentation to see an up-to-date list of template engines.
+
+Pull requests are welcome for additional template engines. Since we're still working to update the docs, you many also contact [@doowb](http://github.com/doowb) for more information or create an [Issue][assemble-issues].
+
+#### helpers
+Type: `String`
+Default: `undefined`
+
+Path defined to a directory of custom helpers to use with the specified template engine. Assemble currently includes more than **[75 built-in Handlebars helpers](https://github.com/assemble/helper-lib)**, since Handlebars is the default engine for Assemble. 
+
+``` js
+assemble: {
+  options: {
+    helpers: 'your/custom/helpers'
+  },
+  ...
 }
 ```
 
@@ -176,10 +152,15 @@ assemble: {
 }
 ```
 
+#### flatten
+Type: `Boolean`
+Default: `false`
+
+Remove anything after (and including) the first "." in the destination path, then append this value.
+
 
 ### YAML options
 Assemble makes the following options available from `js-yaml`. See [js-yaml](https://github.com/nodeca/js-yaml) for more information.
-
 
 #### filename
 Type: `String`
@@ -187,13 +168,11 @@ Default: `null`
 
 String to be used as a file path in error/warning messages.
 
-
 #### strict
 Type: `Boolean`
 Default: `false`
 
 Makes the loader to throw errors instead of warnings.
-
 
 #### schema
 Type: `String`
