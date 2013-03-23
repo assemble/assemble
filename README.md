@@ -85,7 +85,7 @@ Runs the `assemble` task to rebuild the project.
 Runs jshint on JavaScripts and mocha unit tests on your templates. 
 
 #### watch - `grunt watch`
-This is a convenience method for watching your templates and automatically re-building them whenever you save. Requires the [grunt-contrib-watch](http://github.com/gruntjs/grunt-contrib-watch) Grunt plugin.
+Requires [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch), `npm i grunt-contrib-watch`. This is a convenience task for watching files and automatically re-building them whenever you save. Requires the [grunt-contrib-watch](http://github.com/gruntjs/grunt-contrib-watch) Grunt plugin.
 
 Should you encounter problems with installing dependencies or running the `grunt` commands, be sure to first uninstall any previous versions (global and local) you may have installed, and then rerun `npm install`.
 
@@ -324,6 +324,7 @@ In your templates just wrap sections with these contexts to include or exclude c
 <script src="script.min.js"></script>
 {{/production}}
 ```
+
 
 ## Usage Examples
 
@@ -584,7 +585,7 @@ _(Big plans in the works)_
 ---
 Authored by [assemble](https://github.com/assemble/assemble)
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Fri Mar 22 2013 08:27:25._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Fri Mar 22 2013 20:18:56._
 
 
 
