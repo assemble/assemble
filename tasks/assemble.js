@@ -25,16 +25,20 @@ module.exports = function(grunt) {
 
   grunt.registerMultiTask('assemble', 'Compile template files with specified engines', function(){
 
+
     var options = this.options({
       layout        : '',
-      partials      : {},
-      data          : {},
+      partials      : [],
+      data          : [],
       assets        : 'dist/assets',
       ext           : '.html'
     });
 
     logBlock("options: ", util.inspect(options));
     logBlock("this.files: ", util.inspect(this.files));
+
+    options.data = mergeOptionsArrays(this.target, 'data');
+    options.partials = mergeOptionsArrays(this.target, 'partials');
 
     // try to get a src to use for configuration
     var src;
@@ -484,6 +488,12 @@ module.exports = function(grunt) {
         break;
     }
     return reader;
+  };
+
+  var mergeOptionsArrays = function(target, name) {
+    var globalArray = grunt.config(['assemble', 'options', name]) || [];
+    var targetArray = grunt.config(['assemble', target, 'options', name]) || [];
+    return _.union(globalArray, targetArray);
   };
 
 };
