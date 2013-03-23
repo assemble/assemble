@@ -1,12 +1,13 @@
-# [Assemble v0.3.21](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
+# [Assemble v0.3.23](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
 
 > Get the rocks out of your socks. Assemble helps you **quickly launch static web projects** by emphasizing a strong separation of concerns between structure, style, content and configuration.
+
 
 _This project just launched **so expect frequent changes**._ And if you find this project interesting please consider starring it to receive updates.
 
 ### Getting Help
 
-Assemble has many more features implemented than what we've documented thus far, so check back frequently for udates. _If you have any questions or have any trouble getting Assemble to work, please feel free to create an [Issue][issues], we'd love to help._
+Assemble has many more features than we've been able to document thus far. So while we work to improve the docs, _please let us know if you have any questions or have any trouble getting Assemble to work. And feel free to create an [Issue][issues], we're here to help._
 
 #### [Please visit the wiki](http://github.com/assemble/assemble/wiki) 
 
@@ -48,8 +49,6 @@ This plugin requires Grunt `~0.4.1`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
-#### with `npm`
-
 ```shell
 npm install assemble --save-dev
 ```
@@ -58,22 +57,6 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 
 ```js
 grunt.loadNpmTasks('assemble');
-```
-
-#### without `npm`
-
-The following quick start alternatives are available:
-
-* [Download the latest release](https://github.com/assemble/assemble/zipball/master).
-* Clone the repo: `git clone git://github.com/assemble/assemble.git`.
-* Install with Twitter's [Bower](http://twitter.github.com/bower): `bower install assemble`.
-
-
-### Compile Templates and Run Tests
-Before you get started you must first install [the required local dependencies](package.json):
-
-```
-$ npm install
 ```
 
 When completed, you'll be able to run the various `grunt` commands provided:
@@ -574,7 +557,9 @@ Copyright 2013 Assemble
 [MIT License](LICENSE-MIT)
 
 ## Release History
-* 2013-03-18     v0.3.14    new relative helper for resolving relative paths 
+* 2013-03-22    v0.3.22    Merged global and target level options so data and partial files can be joined 
+* 2013-03-22    v0.3.21    Valid YAML now allowed in options.data object (along with JSON) 
+* 2013-03-18    v0.3.14    new relative helper for resolving relative paths 
 * 2013-03-16    v0.3.13    new dashify and formatPhone helpers 
 * then-til-now    v0.1.0-v0.3.0    Leaned how to commit too many times while working on README. 
 * Stardate 45047.2    v0.1.0    Visited the uninhabited El-Adrel system. Returned home. Started assemble. 
@@ -585,7 +570,7 @@ _(Big plans in the works)_
 ---
 Authored by [assemble](https://github.com/assemble/assemble)
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Fri Mar 22 2013 20:18:56._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sat Mar 23 2013 13:34:32._
 
 
 
