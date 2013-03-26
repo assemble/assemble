@@ -41,9 +41,11 @@ module.exports = function(grunt) {
     options.partials = mergeOptionsArrays(this.target, 'partials');
 
     // try to get a src to use for configuration
-    var src;
+    var src = false;
     this.files.forEach(function(fp) {
-      src = fp.src;
+      if(!src) {
+        src = fp.src;
+      }
     });
 
     if(!src || src.length === 0) {
