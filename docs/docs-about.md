@@ -10,6 +10,6 @@
 
 ## Related Projects
 
-+ [assemble-styles](http://github.com/assemble/assemble-styles): a powerful and flexible [Grunt plugin](http://gruntjs.com/plugins) for compiling LESS to CSS. The `styles` task leverages [JSON and Lo-dash templates](http://gruntjs.com/configuring-tasks) for defining any number of LESS "bundles", UI components, compressed stylesheets or themes.
++ [assemble-less](http://github.com/assemble/assemble-less): a powerful and flexible [Grunt plugin](http://gruntjs.com/plugins) for compiling LESS to CSS. The `less` task leverages [JSON and Lo-dash templates](http://gruntjs.com/configuring-tasks) for defining any number of LESS "bundles", UI components, compressed stylesheets or themes.
 + [helper-lib](http://github.com/assemble/): An extensive collection of useful Handlebars helpers used in by Assemble (more than 75 at last count!).
 + [Upstage](http://github.com/upstage): **COMING SOON!** We are preparing to launch a library of seriously high quality UI components, each constructed following the same conventions we encourage with Assemble.
