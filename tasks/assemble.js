@@ -222,9 +222,9 @@ module.exports = function(grunt) {
     var basePath = findBasePath(src, true);
     //var assetsPath = path.join(dest, options.assets);
     var assetsPath = options.assets;
-    if(assetsPath === "." || assetsPath.length === 0) {
-      assetsPath = dest;
-    }
+    // if(assetsPath === "." || assetsPath.length === 0) {
+    //   assetsPath = dest;
+    // }
 
 
     this.files.forEach(function(filePair) {
