@@ -1,4 +1,4 @@
-# [Assemble v0.3.23](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
+# [Assemble v0.3.24](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
 
 > Get the rocks out of your socks. Assemble helps you **quickly launch static web projects** by emphasizing a strong separation of concerns between structure, style, content and configuration.
 
@@ -65,7 +65,7 @@ When completed, you'll be able to run the various `grunt` commands provided:
 Runs the `assemble` task to rebuild the project. 
 
 #### test - `grunt test`
-Runs jshint on JavaScripts and mocha unit tests on your templates. 
+Runs jshint on JavaScripts and mocha unit tests on your templates.
 
 #### watch - `grunt watch`
 Requires [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch), `npm i grunt-contrib-watch`. This is a convenience task for watching files and automatically re-building them whenever you save. Requires the [grunt-contrib-watch](http://github.com/gruntjs/grunt-contrib-watch) Grunt plugin.
@@ -89,7 +89,7 @@ grunt.initConfig({
 grunt.loadNpmTasks('assemble');
 
 grunt.registerTask('default', [
-  'jshint', 
+  'jshint',
   'assemble'
 ]);
 ```
@@ -100,12 +100,12 @@ Task targets, files and options may be specified according to the grunt [Configu
 See the [Options](https://github.com/assemble/assemble/wiki/Options) section on the Wiki for more information.
 
 #### assets
-Type: `String`
-Default: `false`
+_Path to "assets" (or "public") folder._
 
-TODO...
+Type: `String` (optional)
+Default: `undefined`
 
-Used by the `{{assets}}` template to resolve the relative path to the dest assets folder from the dest file.
+Used with the `{{assets}}` template to resolve the relative path _to the destination assets folder_, _from the dest file_.
 
 Example:
 
@@ -128,11 +128,30 @@ Resulting in:
 <link href="dist/assets/css/styles.css" rel="stylesheet">
 ```
 
+
 #### data
-Type: `String`
+_The data to populate templates._
+
+Type: `Object` (optional)
+Parameters: `String|Array`
 Default: `src/data`
 
-Data from specified `JSON` and/or `YAML` files gets passed through the `data` object to the options on the assemble task, then to the context in your templates. The data object is also useful for adding [configuration][config] data.  _Note that Handlebars.js is the only supported template engine at this time_. If you would like to see another engine added to Assemble, please make a [feature request][issues] (or pull request). 
+Gets the data from specified `JSON` and/or `YAML` files to populate the templates when rendered. Data gets passed through the `data` object to the options on the assemble task, then to the context in your templates. Also useful for specifying [configuration][config] data, such as when to render certain templates. For example:
+
+`page.json`
+``` json
+{
+  "production": false
+}
+```
+
+``` handlebars
+
+<link href="assets/bootstrap.css" rel="stylesheet">
+
+```
+
+_Note that Handlebars.js is the only supported template engine at this time_. If you would like to see another engine added to Assemble, please make a [feature request][issues] (or pull request).
 
 Example:
 ``` js
@@ -143,14 +162,15 @@ assemble: {
   ...
 }
 ```
-Data: `widget.json` 
+
+Data: `widget.json` (or `widget.yml`)
 ``` json
 {
   "name": "Square Widget",
   "modifier": "widget-square"
 }
-
 ```
+
 Template: `widget.hbs`
 ``` html
 <div class="widget {{ widget.modifier }}">{{ widget.name }}</div>
@@ -164,7 +184,7 @@ Also see: [YAML front matter][yaml] todo...
 
 
 #### layout
-Type: `String`
+Type: `String` (optional)
 Default: `undefined`
 
 Path to the layout to be used.
@@ -181,7 +201,8 @@ assemble: {
 ```
 
 #### partials
-Type: `String`
+Type: `Object` (optional)
+Parameters: `Object|Array`
 Default: `undefined`
 
 Accepts [minimatch](https://github.com/isaacs/minimatch) patterns to define the Handlebars partials files, or paths to the directories of files to be used.
@@ -198,7 +219,7 @@ assemble: {
 ```
 
 #### engine
-Type: `String`
+Type: `String` (optional)
 Default: `handlebars`
 
 The engine to use for processing client-side templates. Assemble ships Handlebars as the default template engine, if you are interested in using a different engine visit the documentation to see an up-to-date list of template engines.
@@ -206,10 +227,10 @@ The engine to use for processing client-side templates. Assemble ships Handlebar
 Pull requests are welcome for additional template engines. Since we're still working to update the docs, you many also contact [@doowb](http://github.com/doowb) for more information or create an [Issue][assemble-issues].
 
 #### helpers
-Type: `String`
-Default: `undefined`
+Type: `Object|Array` (optional)
+Default: [helper-lib](http://github.com/assemble/helper-lib)
 
-Path defined to a directory of custom helpers to use with the specified template engine. Assemble currently includes more than **[75 built-in Handlebars helpers](https://github.com/assemble/helper-lib)**, since Handlebars is the default engine for Assemble. 
+Path defined to a directory of custom helpers to use with the specified template engine. Assemble currently includes more than **[75 built-in Handlebars helpers](https://github.com/assemble/helper-lib)**, since Handlebars is the default engine for Assemble.
 
 ``` js
 assemble: {
@@ -567,10 +588,11 @@ Copyright 2013 Assemble
 
 ### Roadmap
 _(Big plans in the works)_
+
 ---
 Authored by [assemble](https://github.com/assemble/assemble)
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sat Mar 23 2013 13:34:32._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Fri Mar 29 2013 21:51:28._
 
 
 
@@ -636,7 +658,7 @@ _This file was generated using Grunt and [assemble](http://github.com/assemble/a
 [assemble-github-com]: https://github.com/assemble/assemble.github.com
 [assemble-examples-bootstrap]: https://github.com/assemble/assemble-examples-bootstrap
 [assemble-internal]: https://github.com/assemble/assemble-internal
-[assemble-styles]: https://github.com/assemble/assemble-styles
+[assemble-less]: https://github.com/assemble/assemble-less
 [assemble-examples-readme]: https://github.com/assemble/assemble-examples-readme
 [grunt-toc]: https://github.com/assemble/grunt-toc
 [helper-lib]: https://github.com/assemble/helper-lib

@@ -18,7 +18,7 @@ When completed, you'll be able to run the various `grunt` commands provided:
 Runs the `assemble` task to rebuild the project. 
 
 #### test - `grunt test`
-Runs jshint on JavaScripts and mocha unit tests on your templates. 
+Runs jshint on JavaScripts and mocha unit tests on your templates.
 
 #### watch - `grunt watch`
 Requires [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch), `npm i grunt-contrib-watch`. This is a convenience task for watching files and automatically re-building them whenever you save. Requires the [grunt-contrib-watch](http://github.com/gruntjs/grunt-contrib-watch) Grunt plugin.
