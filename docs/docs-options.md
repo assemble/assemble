@@ -1,12 +1,12 @@
 See the [Options](https://github.com/assemble/assemble/wiki/Options) section on the Wiki for more information.
 
 #### assets
-Type: `String`
-Default: `false`
+_Path to "assets" (or "public") folder._
 
-TODO...
+Type: `String` (optional) 
+Default: `undefined`
 
-Used by the `{{assets}}` template to resolve the relative path to the dest assets folder from the dest file.
+Used with the `{{assets}}` template to resolve the relative path _to the destination assets folder_, _from the dest file_.
 
 Example:
 
@@ -29,11 +29,30 @@ Resulting in:
 <link href="dist/assets/css/styles.css" rel="stylesheet">
 ```
 
+
 #### data
-Type: `String`
+_The data to populate templates._
+
+Type: `Object` (optional)
+Parameters: `String|Array`
 Default: `src/data`
 
-Data from specified `JSON` and/or `YAML` files gets passed through the `data` object to the options on the assemble task, then to the context in your templates. The data object is also useful for adding [configuration][config] data.  _Note that Handlebars.js is the only supported template engine at this time_. If you would like to see another engine added to Assemble, please make a [feature request][issues] (or pull request). 
+Gets the data from specified `JSON` and/or `YAML` files to populate the templates when rendered. Data gets passed through the `data` object to the options on the assemble task, then to the context in your templates. Also useful for specifying [configuration][config] data, such as when to render certain templates. For example:
+
+`page.json`
+``` json
+{
+  "production": false
+}
+```
+
+``` handlebars
+
+<link href="assets/bootstrap.css" rel="stylesheet">
+
+```
+
+_Note that Handlebars.js is the only supported template engine at this time_. If you would like to see another engine added to Assemble, please make a [feature request][issues] (or pull request). 
 
 Example:
 ``` js
@@ -44,14 +63,15 @@ assemble: {
   ...
 }
 ```
-Data: `widget.json` 
+
+Data: `widget.json` (or `widget.yml`)
 ``` json
 {
   "name": "Square Widget",
   "modifier": "widget-square"
 }
-
 ```
+
 Template: `widget.hbs`
 ``` html
 <div class="widget {{ widget.modifier }}">{{ widget.name }}</div>
@@ -65,7 +85,7 @@ Also see: [YAML front matter][yaml] todo...
 
 
 #### layout
-Type: `String`
+Type: `String` (optional) 
 Default: `undefined`
 
 Path to the layout to be used.
@@ -82,7 +102,8 @@ assemble: {
 ```
 
 #### partials
-Type: `String`
+Type: `Object` (optional)
+Parameters: `Object|Array`
 Default: `undefined`
 
 Accepts [minimatch](https://github.com/isaacs/minimatch) patterns to define the Handlebars partials files, or paths to the directories of files to be used.
@@ -99,7 +120,7 @@ assemble: {
 ```
 
 #### engine
-Type: `String`
+Type: `String` (optional)
 Default: `handlebars`
 
 The engine to use for processing client-side templates. Assemble ships Handlebars as the default template engine, if you are interested in using a different engine visit the documentation to see an up-to-date list of template engines.
@@ -107,8 +128,8 @@ The engine to use for processing client-side templates. Assemble ships Handlebar
 Pull requests are welcome for additional template engines. Since we're still working to update the docs, you many also contact [@doowb](http://github.com/doowb) for more information or create an [Issue][assemble-issues].
 
 #### helpers
-Type: `String`
-Default: `undefined`
+Type: `Object|Array` (optional)
+Default: []
 
 Path defined to a directory of custom helpers to use with the specified template engine. Assemble currently includes more than **[75 built-in Handlebars helpers](https://github.com/assemble/helper-lib)**, since Handlebars is the default engine for Assemble. 
 
