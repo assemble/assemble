@@ -45,7 +45,7 @@ module.exports = function(grunt) {
 
     assemble: {
       options: {
-        // Common data.
+        assets: 'test/actual',
         data: ['test/common/data/common1.json', 'test/common/data/common2.yml']
       },
       // Run basic tests on templates and data.
@@ -64,6 +64,15 @@ module.exports = function(grunt) {
         },
         files: {
           'test/actual/yaml': ['test/yaml/*.hbs']
+        }
+      },
+      multi: {
+        options: {
+          layout: 'test/files/layout.hbs'
+        },
+        files: {
+          'test/actual/multi/dest1': ['test/files/**/*.hbs', '!test/files/layout*.*'],
+          'test/actual/multi/dest2': ['test/files/**/*.md']
         }
       }
     }
