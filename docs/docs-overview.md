@@ -14,7 +14,7 @@ grunt.initConfig({
 grunt.loadNpmTasks('assemble');
 
 grunt.registerTask('default', [
-  'jshint', 
+  'jshint',
   'assemble'
 ]);
 ```

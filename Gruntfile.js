@@ -45,6 +45,7 @@ module.exports = function(grunt) {
 
     assemble: {
       options: {
+        // Common data.
         assets: 'test/actual',
         data: ['test/common/data/common1.json', 'test/common/data/common2.yml']
       },

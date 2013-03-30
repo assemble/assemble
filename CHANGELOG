@@ -1,9 +1,13 @@
+v0.3.22: 
+  date: "2013-03-22"
+  changes:
+    - Merged global and target level options so data and partial files can be joined
 v0.3.21: 
-  date: "2013-03-22 "
+  date: "2013-03-22"
   changes:
     - Valid YAML now allowed in options.data object (along with JSON)
 v0.3.14: 
-  date: "2013-03-18 "
+  date: "2013-03-18"
   changes:
     - new relative helper for resolving relative paths
 v0.3.13: 
