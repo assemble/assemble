@@ -3,7 +3,7 @@ See the [Options](https://github.com/assemble/assemble/wiki/Options) section on 
 #### assets
 _Path to "assets" (or "public") folder._
 
-Type: `String` (optional) 
+Type: `String` (optional)
 Default: `undefined`
 
 Used with the `{{assets}}` template to resolve the relative path _to the destination assets folder_, _from the dest file_.
@@ -52,7 +52,7 @@ Gets the data from specified `JSON` and/or `YAML` files to populate the template
 
 ```
 
-_Note that Handlebars.js is the only supported template engine at this time_. If you would like to see another engine added to Assemble, please make a [feature request][issues] (or pull request). 
+_Note that Handlebars.js is the only supported template engine at this time_. If you would like to see another engine added to Assemble, please make a [feature request][issues] (or pull request).
 
 Example:
 ``` js
@@ -85,7 +85,7 @@ Also see: [YAML front matter][yaml] todo...
 
 
 #### layout
-Type: `String` (optional) 
+Type: `String` (optional)
 Default: `undefined`
 
 Path to the layout to be used.
@@ -129,9 +129,9 @@ Pull requests are welcome for additional template engines. Since we're still wor
 
 #### helpers
 Type: `Object|Array` (optional)
-Default: []
+Default: [helper-lib](http://github.com/assemble/helper-lib)
 
-Path defined to a directory of custom helpers to use with the specified template engine. Assemble currently includes more than **[75 built-in Handlebars helpers](https://github.com/assemble/helper-lib)**, since Handlebars is the default engine for Assemble. 
+Path defined to a directory of custom helpers to use with the specified template engine. Assemble currently includes more than **[75 built-in Handlebars helpers](https://github.com/assemble/helper-lib)**, since Handlebars is the default engine for Assemble.
 
 ``` js
 assemble: {

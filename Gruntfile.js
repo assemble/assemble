@@ -7,6 +7,7 @@
  */
 
 
+
 module.exports = function(grunt) {
 
   // Project configuration.
@@ -41,6 +42,10 @@ module.exports = function(grunt) {
       options: {
         reporter: 'nyan'
       }
+    },
+    manifest: {
+      src: '',
+      dest: ''
     },
 
     assemble: {
@@ -88,6 +93,7 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', [
+    'manifest',
     'assemble',
     'jshint'
   ]);
