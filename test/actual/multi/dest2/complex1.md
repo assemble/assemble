@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>YAML Test</title>
-    <link href="../../bootstrap.css" rel="stylesheet">
+    <link href="../../../bootstrap.css" rel="stylesheet">
   </head>
   <body>
     <div class="container">
@@ -13,7 +13,19 @@
  - two
  - three
 
-[Click here](http://github.com)
+```javascript
+var foo = function(bar) {
+  console.log(bar);
+};
+```
+
+[Click here](http://www.google.com)
+
+```json
+{
+  "foo": "bar"
+}
+```
 
     </div>
   </body>

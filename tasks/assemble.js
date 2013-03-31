@@ -459,7 +459,7 @@ module.exports = function(grunt) {
   };
 
   var detectDestType = function(dest) {
-    if(_.endsWith(dest, path.sep)) {
+    if(_.endsWith(path.normalize(dest), path.sep)) {
       return "directory";
     } else {
       return "file";
