@@ -55,7 +55,7 @@ module.exports = function(grunt) {
           layout: 'test/files/layout-includes.hbs'
         },
         files: {
-          'test/actual': ['test/files/extend.hbs']
+          'test/actual/': ['test/files/extend.hbs']
         }
       },
       yaml: {
@@ -64,7 +64,7 @@ module.exports = function(grunt) {
           data: 'test/yaml/data/**/*.*'
         },
         files: {
-          'test/actual/yaml': ['test/yaml/*.hbs']
+          'test/actual/yaml/': ['test/yaml/*.hbs']
         }
       },
       multi: {
