@@ -244,25 +244,38 @@ module.exports = function(grunt) {
         grunt.warn('Missing dest property.');
         return false;
       }
-      var dest = path.normalize(filePair.dest);
 
+      // some of the following code for figuring out
+      // the destination files has been taken/inspired
+      // by the grunt-contrib-copy project
+      //https://github.com/gruntjs/grunt-contrib-copy
+      var isExpandedPair = filePair.orig.expand || false;
+      var destFile;
       filePair.src.forEach(function(srcFile) {
+
         srcFile  = path.normalize(srcFile);
         filename = path.basename(srcFile).replace(fileExtRegex,'');
 
+        if(detectDestType(filePair.dest) === 'directory') {
+          destFile = (isExpandedPair) ?
+                      filePair.dest :
+                      path.join(filePair.dest,
+                                (options.flatten ?
+                                  path.basename(srcFile) :
+                                  srcFile));
+        } else {
+          destFile = filePair.dest;
+        }
+
         grunt.verbose.writeln('Reading ' + filename.magenta);
-
-        relative = path.dirname(srcFile);
-        relative = _(relative).strRight(basePath).trim(path.sep);
-        relative = relative.replace(/\.\.(\/|\\)/g, '');
-
-        destFile = path.join(dest, relative, filename + options.ext);
 
         // setup options.assets so it's the relative path to the
         // dest assets folder from the new dest file
+        // TODO: this needs to be looked at again after the
+        // other dest changes
         options.assets = urlNormalize(
           path.relative(
-            path.resolve(path.join(dest, relative)),
+            path.resolve(destFile),
             path.resolve(assetsPath)
           ));
 
