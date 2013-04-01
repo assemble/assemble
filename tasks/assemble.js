@@ -72,11 +72,11 @@ module.exports = function(grunt) {
 
     var yamlPreprocessor = EngineLoader.getPreprocessor('YamlPreprocessor');
 
-    var partials      = file.expand(options.partials);
-    var dataFiles     = file.expand(options.data);
-    var fileExt       = extension(src);
+    var partials = file.expand(options.partials);
+    var dataFiles = file.expand(options.data);
+    var fileExt = extension(src);
     var filenameRegex = /[^\\\/:*?"<>|\r\n]+$/i;
-    var fileExtRegex  = new RegExp("\\." + fileExt + "$");
+    var fileExtRegex = new RegExp("\\." + fileExt + "$");
 
     options.filenameRegex = filenameRegex;
     options.fileExtRegex = fileExtRegex;
@@ -226,6 +226,7 @@ module.exports = function(grunt) {
     //   assetsPath = dest;
     // }
 
+    options.pages = buildPageInfo(this, options);
 
     this.files.forEach(function(filePair) {
       // validate that the source object exists
@@ -254,7 +255,7 @@ module.exports = function(grunt) {
       filePair.src.forEach(function(srcFile) {
 
         srcFile  = path.normalize(srcFile);
-        filename = path.basename(srcFile).replace(fileExtRegex,'');
+        filename = path.basename(srcFile, path.extname(srcFile));
 
         if(detectDestType(filePair.dest) === 'directory') {
           destFile = (isExpandedPair) ?
@@ -306,11 +307,89 @@ module.exports = function(grunt) {
   // ==========================================================================
   // HELPERS
   // ==========================================================================
+
+  var buildPageInfo = function(obj, options) {
+
+    var pages = {};
+    obj.files.forEach(function(filePair) {
+
+      // validate that the source object exists
+      // and there are files at the source.
+      if(!filePair.src) {
+        grunt.warn('Missing src property.');
+        return false;
+      }
+      if(filePair.src.length === 0) {
+        grunt.warn('Source files not found.');
+        return false;
+      }
+
+      // validate that the dest object exists
+      if(!filePair.dest || filePair.dest.length === 0) {
+        grunt.warn('Missing dest property.');
+        return false;
+      }
+
+      // some of the following code for figuring out
+      // the destination files has been taken/inspired
+      // by the grunt-contrib-copy project
+      //https://github.com/gruntjs/grunt-contrib-copy
+      var isExpandedPair = filePair.orig.expand || false;
+      var destFile;
+      var engine = options.engine;
+      var EngineLoader = options.EngineLoader;
+
+      filePair.src.forEach(function(srcFile) {
+
+        srcFile  = path.normalize(srcFile);
+        filename = path.basename(srcFile, path.extname(srcFile));
+
+        if(detectDestType(filePair.dest) === 'directory') {
+          destFile = (isExpandedPair) ?
+                      filePair.dest :
+                      path.join(filePair.dest,
+                                (options.flatten ?
+                                  path.basename(srcFile) :
+                                  srcFile));
+        } else {
+          destFile = filePair.dest;
+        }
+
+        grunt.verbose.writeln('Reading ' + filename.magenta);
+
+        var page = fs.readFileSync(srcFile, 'utf8');
+        try {
+          var pageContext = {};
+          var yamlPreprocessor = EngineLoader.getPreprocessor('YamlPreprocessor');
+
+          page = engine.compile(page, {
+            preprocessers: [
+              yamlPreprocessor(filename, function(output) {
+                grunt.verbose.writeln(output.name + ' data retreived');
+                pageContext = output.output.context;
+              })
+            ]
+          });
+
+          pages[filename] = { page: page, data: pageContext };
+        } catch(err) {
+          grunt.warn(err);
+          return;
+        }
+      }); // filePair.src.forEach
+    }); // this.files.forEach
+
+    return pages;
+
+  };
+
   var build = function(src, filename, options, callback) {
 
-    var page           = fs.readFileSync(src, 'utf8'),
+    var page           = options.pages[filename].page,
+        pageContext    = options.pages[filename].data,
         layout         = options.defaultLayout,
         data           = options.data,
+        pages          = options.pages,
         engine         = options.engine,
         EngineLoader   = options.EngineLoader,
         context        = {};
@@ -323,24 +402,14 @@ module.exports = function(grunt) {
 
     try {
 
-      var pageContext = {};
-      var yamlPreprocessor = EngineLoader.getPreprocessor('YamlPreprocessor');
-
-      page = engine.compile(page, {
-        preprocessers: [
-          yamlPreprocessor(filename, function(output) {
-            grunt.verbose.writeln(output.name + ' data retreived');
-            pageContext = output.output.context;
-          })
-        ]
-      });
-
       options.data   = undefined;
+      options.pages  = undefined;
       options.layout = undefined;
       options.engine = undefined;
       options.EngineLoader = undefined;
       context        = _.extend(context, options, data, pageContext);
       options.data   = data;
+      options.pages  = pages;
       options.layout = layout;
       options.engine = engine;
       options.EngineLoader = EngineLoader;
