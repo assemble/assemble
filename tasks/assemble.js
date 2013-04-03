@@ -459,6 +459,10 @@ module.exports = function(grunt) {
       engine.engine.registerPartial("body", page);
 
       context = processContext(grunt, context);
+
+      // add the list of pages back to the context so
+      // it's available in the templates
+      context.pages = pages;
       page = layout(context);
 
       callback(null, page);
