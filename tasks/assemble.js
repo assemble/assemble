@@ -377,6 +377,7 @@ module.exports = function(grunt) {
 
           pages.push({
             filename: filename,
+            ext: options.ext,
             page: page,
             data: pageContext
           });
@@ -396,8 +397,9 @@ module.exports = function(grunt) {
 
     var findPage = function(page) { return page.filename === filename; };
 
-    var page           = _.find(options.pages, findPage).page,
-        pageContext    = _.find(options.pages, findPage).data,
+    var currentPage    = _.find(options.pages, findPage);
+    var page           = currentPage.page,
+        pageContext    = currentPage.data,
         layout         = options.defaultLayout,
         data           = options.data,
         pages          = options.pages,
