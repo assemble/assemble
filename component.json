@@ -1,6 +1,8 @@
 {
   "name": "assemble",
-  "version": "0.3.24",
+  "description": "Get the rocks out of your socks. Assemble helps you quickly launch static web projects by emphasizing a strong separation of concerns between structure, style, content and configuration.",
+  "version": "0.3.25",
+  "repo": "assemble/assemble",
   "main": [
     "./lib/assemble.js"
   ],
@@ -14,5 +16,10 @@
     "grunt-release": "~0.2.0",
     "handlebars": "~1.0.9",
     "testem": "~0.2.68"
-  }
+  },
+  "styles": [],
+  "scripts": [],
+  "images": [],
+  "fonts": [],
+  "files": []
 }
