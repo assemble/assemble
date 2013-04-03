@@ -149,7 +149,6 @@ And then we use an external data file, either `grid.yml` or `grid.json`, to conf
 This is the data for our grid, written in YAML (`grid.yml`):
 
 ``` yaml
----
 container:
   rows:
   - columns:
@@ -169,7 +168,6 @@ container:
     - width: 6
       heading: Advanced
       content: <%= content %>/advanced.md
-...
 ```
 
 **JSON version**
