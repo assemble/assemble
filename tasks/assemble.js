@@ -371,7 +371,12 @@ module.exports = function(grunt) {
             ]
           });
 
-          pages[filename] = { page: page, data: pageContext };
+          pages[filename] = {
+            page: page,
+            filename: filename,
+            data: pageContext
+          };
+
         } catch(err) {
           grunt.warn(err);
           return;
