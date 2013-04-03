@@ -276,6 +276,8 @@ module.exports = function(grunt) {
         // dest assets folder from the new dest file
         // TODO: this needs to be looked at again after the
         // other dest changes
+        grunt.verbose.writeln('AssetsPath: ' + assetsPath);
+        grunt.verbose.writeln('DestFile: ' + destFile);
         options.assets = urlNormalize(
           path.relative(
             path.resolve(destFile),
