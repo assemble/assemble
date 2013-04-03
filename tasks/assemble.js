@@ -312,7 +312,7 @@ module.exports = function(grunt) {
 
   var buildPageInfo = function(obj, options) {
 
-    var pages = {};
+    var pages = [];
     obj.files.forEach(function(filePair) {
 
       // validate that the source object exists
@@ -373,11 +373,11 @@ module.exports = function(grunt) {
             ]
           });
 
-          pages[filename] = {
-            page: page,
+          pages.push({
             filename: filename,
+            page: page,
             data: pageContext
-          };
+          });
 
         } catch(err) {
           grunt.warn(err);
@@ -392,8 +392,10 @@ module.exports = function(grunt) {
 
   var build = function(src, filename, options, callback) {
 
-    var page           = options.pages[filename].page,
-        pageContext    = options.pages[filename].data,
+    var findPage = function(page) { return page.filename === filename; };
+
+    var page           = _.find(options.pages, findPage).page,
+        pageContext    = _.find(options.pages, findPage).data,
         layout         = options.defaultLayout,
         data           = options.data,
         pages          = options.pages,
