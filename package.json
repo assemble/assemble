@@ -47,7 +47,7 @@
     "marked": "~0.2.8"
   },
   "devDependencies": {
-    "assemble-styles": "~0.3.0",
+    "assemble-less": "~0.4.0",
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.2.0",
     "grunt-contrib-watch": "~0.2.0",
