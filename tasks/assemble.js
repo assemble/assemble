@@ -268,6 +268,8 @@ module.exports = function(grunt) {
           destFile = filePair.dest;
         }
 
+        destFile = path.join(path.dirname(destFile), path.basename(destFile, path.extname(destFile))) + options.ext;
+
         grunt.verbose.writeln('Reading ' + filename.magenta);
 
         // setup options.assets so it's the relative path to the
