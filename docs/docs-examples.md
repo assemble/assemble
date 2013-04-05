@@ -73,7 +73,7 @@ Task targets, files and options may be specified according to the grunt [Configu
 
 #### Build templates
 
-```javascript
+``` javascript
 assemble: {
   templates: {
     files: {
