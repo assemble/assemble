@@ -1,6 +1,6 @@
-# [Assemble v0.3.25](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
+# [Assemble v0.3.27](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
 
-> Get the rocks out of your socks. Assemble helps you **quickly launch static web projects** by emphasizing a strong separation of concerns between structure, style, content and configuration.
+> Get the rocks out of your socks. Assemble helps you quickly launch static web projects by emphasizing a strong separation of concerns between structure, style, content and configuration.
 
 
 _This project just launched **so expect frequent changes**._ And if you find this project interesting please consider starring it to receive updates.
@@ -406,7 +406,7 @@ Task targets, files and options may be specified according to the grunt [Configu
 
 #### Build templates
 
-```javascript
+``` javascript
 assemble: {
   templates: {
     files: {
@@ -482,7 +482,6 @@ And then we use an external data file, either `grid.yml` or `grid.json`, to conf
 This is the data for our grid, written in YAML (`grid.yml`):
 
 ``` yaml
----
 container:
   rows:
   - columns:
@@ -502,7 +501,6 @@ container:
     - width: 6
       heading: Advanced
       content: <%= content %>/advanced.md
-...
 ```
 
 **JSON version**
@@ -592,7 +590,7 @@ _(Big plans in the works)_
 ---
 Authored by [assemble](https://github.com/assemble/assemble)
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sat Mar 30 2013 17:33:13._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Fri Apr 05 2013 23:06:53._
 
 
 
