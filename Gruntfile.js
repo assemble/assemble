@@ -45,6 +45,7 @@ module.exports = function(grunt) {
     assemble: {
       options: {
         // Common data.
+        flatten: true,
         assets: 'test/actual',
         data: ['test/common/data/common1.json', 'test/common/data/common2.yml']
       },
@@ -54,7 +55,7 @@ module.exports = function(grunt) {
           layout: 'test/files/layout-includes.hbs'
         },
         files: {
-          'test/actual': ['test/files/extend.hbs']
+          'test/actual/': ['test/files/extend.hbs']
         }
       },
       yaml: {
@@ -63,7 +64,7 @@ module.exports = function(grunt) {
           data: 'test/yaml/data/**/*.*'
         },
         files: {
-          'test/actual/yaml': ['test/yaml/*.hbs']
+          'test/actual/yaml/': ['test/yaml/*.hbs']
         }
       },
       multi: {
@@ -71,8 +72,9 @@ module.exports = function(grunt) {
           layout: 'test/files/layout.hbs'
         },
         files: {
-          'test/actual/multi/dest1': ['test/files/**/*.hbs', '!test/files/layout*.*'],
-          'test/actual/multi/dest2': ['test/files/**/*.md']
+          'test/actual/multi/dest1/': ['test/files/**/*.hbs', '!test/files/layout*.*'],
+          'test/actual/multi/dest2/': ['test/files/**/*.md'],
+          'test/actual/multi/dest2/sub-dest/': ['test/files/**/*.hbs', '!test/files/layout*.*']
         }
       }
     }

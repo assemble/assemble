@@ -72,11 +72,11 @@ module.exports = function(grunt) {
 
     var yamlPreprocessor = EngineLoader.getPreprocessor('YamlPreprocessor');
 
-    var partials      = file.expand(options.partials);
-    var dataFiles     = file.expand(options.data);
-    var fileExt       = extension(src);
+    var partials = file.expand(options.partials);
+    var dataFiles = file.expand(options.data);
+    var fileExt = extension(src);
     var filenameRegex = /[^\\\/:*?"<>|\r\n]+$/i;
-    var fileExtRegex  = new RegExp("\\." + fileExt + "$");
+    var fileExtRegex = new RegExp("\\." + fileExt + "$");
 
     options.filenameRegex = filenameRegex;
     options.fileExtRegex = fileExtRegex;
@@ -222,10 +222,11 @@ module.exports = function(grunt) {
     var basePath = findBasePath(src, true);
     //var assetsPath = path.join(dest, options.assets);
     var assetsPath = options.assets;
-    if(assetsPath === "." || assetsPath.length === 0) {
-      assetsPath = dest;
-    }
+    // if(assetsPath === "." || assetsPath.length === 0) {
+    //   assetsPath = dest;
+    // }
 
+    options.pages = buildPageInfo(this, options);
 
     this.files.forEach(function(filePair) {
       // validate that the source object exists
@@ -244,25 +245,42 @@ module.exports = function(grunt) {
         grunt.warn('Missing dest property.');
         return false;
       }
-      var dest = path.normalize(filePair.dest);
 
+      // some of the following code for figuring out
+      // the destination files has been taken/inspired
+      // by the grunt-contrib-copy project
+      //https://github.com/gruntjs/grunt-contrib-copy
+      var isExpandedPair = filePair.orig.expand || false;
+      var destFile;
       filePair.src.forEach(function(srcFile) {
+
         srcFile  = path.normalize(srcFile);
-        filename = path.basename(srcFile).replace(fileExtRegex,'');
+        filename = path.basename(srcFile, path.extname(srcFile));
+
+        if(detectDestType(filePair.dest) === 'directory') {
+          destFile = (isExpandedPair) ?
+                      filePair.dest :
+                      path.join(filePair.dest,
+                                (options.flatten ?
+                                  path.basename(srcFile) :
+                                  srcFile));
+        } else {
+          destFile = filePair.dest;
+        }
+
+        destFile = path.join(path.dirname(destFile), path.basename(destFile, path.extname(destFile))) + options.ext;
 
         grunt.verbose.writeln('Reading ' + filename.magenta);
 
-        relative = path.dirname(srcFile);
-        relative = _(relative).strRight(basePath).trim(path.sep);
-        relative = relative.replace(/\.\.(\/|\\)/g, '');
-
-        destFile = path.join(dest, relative, filename + options.ext);
-
         // setup options.assets so it's the relative path to the
         // dest assets folder from the new dest file
+        // TODO: this needs to be looked at again after the
+        // other dest changes
+        grunt.verbose.writeln('AssetsPath: ' + assetsPath);
+        grunt.verbose.writeln('DestFile: ' + path.dirname(destFile));
         options.assets = urlNormalize(
           path.relative(
-            path.resolve(path.join(dest, relative)),
+            path.resolve(path.dirname(destFile)),
             path.resolve(assetsPath)
           ));
 
@@ -293,11 +311,98 @@ module.exports = function(grunt) {
   // ==========================================================================
   // HELPERS
   // ==========================================================================
+
+  var buildPageInfo = function(obj, options) {
+
+    var pages = [];
+    obj.files.forEach(function(filePair) {
+
+      // validate that the source object exists
+      // and there are files at the source.
+      if(!filePair.src) {
+        grunt.warn('Missing src property.');
+        return false;
+      }
+      if(filePair.src.length === 0) {
+        grunt.warn('Source files not found.');
+        return false;
+      }
+
+      // validate that the dest object exists
+      if(!filePair.dest || filePair.dest.length === 0) {
+        grunt.warn('Missing dest property.');
+        return false;
+      }
+
+      // some of the following code for figuring out
+      // the destination files has been taken/inspired
+      // by the grunt-contrib-copy project
+      //https://github.com/gruntjs/grunt-contrib-copy
+      var isExpandedPair = filePair.orig.expand || false;
+      var destFile;
+      var engine = options.engine;
+      var EngineLoader = options.EngineLoader;
+
+      filePair.src.forEach(function(srcFile) {
+
+        srcFile  = path.normalize(srcFile);
+        filename = path.basename(srcFile, path.extname(srcFile));
+
+        if(detectDestType(filePair.dest) === 'directory') {
+          destFile = (isExpandedPair) ?
+                      filePair.dest :
+                      path.join(filePair.dest,
+                                (options.flatten ?
+                                  path.basename(srcFile) :
+                                  srcFile));
+        } else {
+          destFile = filePair.dest;
+        }
+
+        grunt.verbose.writeln('Reading ' + filename.magenta);
+
+        var page = fs.readFileSync(srcFile, 'utf8');
+        try {
+          var pageContext = {};
+          var yamlPreprocessor = EngineLoader.getPreprocessor('YamlPreprocessor');
+
+          page = engine.compile(page, {
+            preprocessers: [
+              yamlPreprocessor(filename, function(output) {
+                grunt.verbose.writeln(output.name + ' data retreived');
+                pageContext = output.output.context;
+              })
+            ]
+          });
+
+          pages.push({
+            filename: filename,
+            ext: options.ext,
+            page: page,
+            data: pageContext
+          });
+
+        } catch(err) {
+          grunt.warn(err);
+          return;
+        }
+      }); // filePair.src.forEach
+    }); // this.files.forEach
+
+    return pages;
+
+  };
+
   var build = function(src, filename, options, callback) {
 
-    var page           = fs.readFileSync(src, 'utf8'),
+    var findPage = function(page) { return page.filename === filename; };
+
+    var currentPage    = _.find(options.pages, findPage);
+    var page           = currentPage.page,
+        pageContext    = currentPage.data,
         layout         = options.defaultLayout,
         data           = options.data,
+        pages          = options.pages,
         engine         = options.engine,
         EngineLoader   = options.EngineLoader,
         context        = {};
@@ -310,24 +415,14 @@ module.exports = function(grunt) {
 
     try {
 
-      var pageContext = {};
-      var yamlPreprocessor = EngineLoader.getPreprocessor('YamlPreprocessor');
-
-      page = engine.compile(page, {
-        preprocessers: [
-          yamlPreprocessor(filename, function(output) {
-            grunt.verbose.writeln(output.name + ' data retreived');
-            pageContext = output.output.context;
-          })
-        ]
-      });
-
       options.data   = undefined;
+      options.pages  = undefined;
       options.layout = undefined;
       options.engine = undefined;
       options.EngineLoader = undefined;
       context        = _.extend(context, options, data, pageContext);
       options.data   = data;
+      options.pages  = pages;
       options.layout = layout;
       options.engine = engine;
       options.EngineLoader = EngineLoader;
@@ -372,6 +467,10 @@ module.exports = function(grunt) {
       engine.engine.registerPartial("body", page);
 
       context = processContext(grunt, context);
+
+      // add the list of pages back to the context so
+      // it's available in the templates
+      context.pages = pages;
       page = layout(context);
 
       callback(null, page);
@@ -446,7 +545,7 @@ module.exports = function(grunt) {
   };
 
   var detectDestType = function(dest) {
-    if(_.endsWith(dest, path.sep)) {
+    if(_.endsWith(path.normalize(dest), path.sep)) {
       return "directory";
     } else {
       return "file";
