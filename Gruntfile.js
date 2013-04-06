@@ -52,10 +52,12 @@ module.exports = function(grunt) {
       // Run basic tests on templates and data.
       tests: {
         options: {
-          layout: 'test/files/layout-includes.hbs'
+          //layout: 'test/files/layout-includes.hbs'
+          layout: 'test/files/layout.hbs'
         },
         files: {
-          'test/actual/': ['test/files/extend.hbs']
+          //'test/actual/': ['test/files/extend.hbs']
+          'test/actual/': ['test/files/dates.hbs']
         }
       },
       yaml: {
