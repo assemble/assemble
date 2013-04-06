@@ -12,6 +12,7 @@ pids
 logs
 .npmignore
 
+release
 !/test/
 /tmp/
 /temp/
