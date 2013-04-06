@@ -1,4 +1,4 @@
-# [Assemble v0.3.27](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
+# [Assemble v0.3.28](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
 
 > Get the rocks out of your socks. Assemble helps you quickly launch static web projects by emphasizing a strong separation of concerns between structure, style, content and configuration.
 
@@ -590,7 +590,7 @@ _(Big plans in the works)_
 ---
 Authored by [assemble](https://github.com/assemble/assemble)
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Fri Apr 05 2013 23:12:57._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sat Apr 06 2013 00:23:48._
 
 
 
