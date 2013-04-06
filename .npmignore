@@ -13,7 +13,8 @@ logs
 
 
 release
-!/test/
+docs
+
 /tmp/
 /temp/
 
