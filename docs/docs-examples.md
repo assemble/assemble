@@ -73,7 +73,7 @@ Task targets, files and options may be specified according to the grunt [Configu
 
 #### Build templates
 
-``` javascript
+```javascript
 assemble: {
   templates: {
     files: {
@@ -149,6 +149,7 @@ And then we use an external data file, either `grid.yml` or `grid.json`, to conf
 This is the data for our grid, written in YAML (`grid.yml`):
 
 ``` yaml
+---
 container:
   rows:
   - columns:
@@ -168,6 +169,7 @@ container:
     - width: 6
       heading: Advanced
       content: <%= content %>/advanced.md
+...
 ```
 
 **JSON version**
