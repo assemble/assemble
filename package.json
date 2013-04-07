@@ -40,7 +40,7 @@
   "dependencies": {
     "amdefine": "0.0.4",
     "handlebars": "~1.0.10",
-    "helper-lib": "git://github.com/assemble/helper-lib.git",
+    "helper-lib": "https://github.com/assemble/helper-lib/tarball/master",
     "highlight.js": "*",
     "js-yaml": "~2.0.3",
     "lodash": "~1.1.1",

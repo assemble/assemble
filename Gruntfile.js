@@ -42,21 +42,21 @@ module.exports = function(grunt) {
       }
     },
 
+    // Included for running basic tests.
     assemble: {
       options: {
-        // Common data.
         flatten: true,
         assets: 'test/actual',
-        data: ['test/common/data/common1.json', 'test/common/data/common2.yml']
+        data: [
+          'test/common/data/common1.json', 
+          'test/common/data/common2.yml'
+        ]
       },
-      // Run basic tests on templates and data.
       tests: {
         options: {
-          //layout: 'test/files/layout-includes.hbs'
           layout: 'test/files/layout.hbs'
         },
         files: {
-          //'test/actual/': ['test/files/extend.hbs']
           'test/actual/': ['test/files/dates.hbs']
         }
       },
