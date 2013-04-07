@@ -1,4 +1,4 @@
-# [Assemble v0.3.28](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
+# [Assemble v0.3.30](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
 
 > Get the rocks out of your socks. Assemble helps you quickly launch static web projects by emphasizing a strong separation of concerns between structure, style, content and configuration.
 
@@ -576,6 +576,7 @@ Copyright 2013 Assemble
 [MIT License](LICENSE-MIT)
 
 ## Release History
+* 2013-04-06    v0.3.3    helper-lib properly externalized and wired up. Global variables for filename, ext and pages 
 * 2013-03-22    v0.3.22    Merged global and target level options so data and partial files can be joined 
 * 2013-03-22    v0.3.21    Valid YAML now allowed in options.data object (along with JSON) 
 * 2013-03-18    v0.3.14    new relative helper for resolving relative paths 
@@ -590,7 +591,7 @@ _(Big plans in the works)_
 ---
 Authored by [assemble](https://github.com/assemble/assemble)
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sat Apr 06 2013 00:23:48._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sat Apr 06 2013 19:54:50._
 
 
 

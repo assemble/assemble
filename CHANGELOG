@@ -1,3 +1,7 @@
+v0.3.3: 
+  date: "2013-04-06"
+  changes:
+    - helper-lib properly externalized and wired up. Global variables for filename, ext and pages
 v0.3.22: 
   date: "2013-03-22"
   changes:

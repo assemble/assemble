@@ -16,6 +16,7 @@ release
 !/test/
 /tmp/
 /temp/
+TODO.md
 
 *.sublime-project
 *.sublime-workspace
