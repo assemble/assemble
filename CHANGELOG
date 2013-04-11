@@ -1,3 +1,7 @@
+v0.3.4: 
+  date: "2013-04-11"
+  changes:
+    - More tests for helpers and global variables, organized tests. A number of bug fixes.
 v0.3.3: 
   date: "2013-04-06"
   changes:

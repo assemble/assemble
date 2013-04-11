@@ -46,21 +46,16 @@ module.exports = function(grunt) {
     assemble: {
       options: {
         flatten: true,
-        assets: 'test/actual',
-        data: [
-          'test/common/data/common1.json', 
-          'test/common/data/common2.yml'
-        ]
+        assets: 'test/actual'
       },
-      tests: {
+      compact: {
         options: {
           layout: 'test/files/layout.hbs'
         },
-        files: {
-          'test/actual/': ['test/files/dates.hbs']
-        }
+        src:  ['test/files/dates.hbs'],
+        dest: 'test/actual/'
       },
-      yaml: {
+      files_object: {
         options: {
           layout: 'test/files/layout.hbs',
           data: 'test/yaml/data/**/*.*'
@@ -91,8 +86,8 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', [
-    'assemble',
-    'jshint'
+    'jshint',
+    'assemble'
   ]);
 
   // Tests to be run.
