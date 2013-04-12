@@ -185,50 +185,80 @@ module.exports = function(grunt) {
     options.defaultLayoutName = defaultLayoutName;
 
     // build each page
-    log.writeln(('\n' + 'Building partials...').grey);
-
-    var findBasePath = function(srcFiles, basePath) {
-      if (basePath === false) {
-        return '';
-      }
-
-      if (grunt.util.kindOf(basePath) === 'string' && basePath.length >= 1) {
-        return grunt.util._(path.normalize(basePath)).trim(path.sep);
-      }
-
-      var foundPath;
-      var basePaths = [];
-      var dirName;
-
-      srcFiles.forEach(function(srcFile) {
-        srcFile = path.normalize(srcFile);
-        dirName = path.dirname(srcFile);
-
-        basePaths.push(dirName.split(path.sep));
-      });
-
-      basePaths = grunt.util._.intersection.apply([], basePaths);
-
-      foundPath = path.join.apply(path, basePaths);
-
-      if (foundPath === '.') {
-        foundPath = '';
-      }
-
-      return foundPath;
-    };
-
-
-    var basePath = findBasePath(src, true);
-    //var assetsPath = path.join(dest, options.assets);
-    var assetsPath = options.assets;
-    // if(assetsPath === "." || assetsPath.length === 0) {
-    //   assetsPath = dest;
-    // }
+    log.writeln(('\n' + 'Building pages...').grey);
 
     options.pages = buildPageInfo(this, options);
 
-    this.files.forEach(function(filePair) {
+    options.pages.forEach(function(page) {
+
+      grunt.verbose.writeln(require('util').inspect(page));
+
+      build(page.src, page.basename, options, function(err, result) {
+        if(err) {
+          grunt.warn(err);
+          done(false);
+          return;
+        }
+
+        file.write(page.dest, result);
+        grunt.log.ok('File ' + (page.basename + page.ext).magenta + ' created.' + ' ok '.green);
+      }); // build
+
+    });
+
+
+    if(done) {
+      done();
+    }
+
+  });
+
+  // ==========================================================================
+  // HELPERS
+  // ==========================================================================
+  var findBasePath = function(srcFiles, basePath) {
+    if (basePath === false) {
+      return '';
+    }
+
+    if (grunt.util.kindOf(basePath) === 'string' && basePath.length >= 1) {
+      return grunt.util._(path.normalize(basePath)).trim(path.sep);
+    }
+
+    var foundPath;
+    var basePaths = [];
+    var dirName;
+
+    srcFiles.forEach(function(srcFile) {
+      srcFile = path.normalize(srcFile);
+      dirName = path.dirname(srcFile);
+
+      basePaths.push(dirName.split(path.sep));
+    });
+
+    basePaths = grunt.util._.intersection.apply([], basePaths);
+
+    foundPath = path.join.apply(path, basePaths);
+
+    if (foundPath === '.') {
+      foundPath = '';
+    }
+
+    return foundPath;
+  };
+
+
+  var buildPageInfo = function(obj, options) {
+
+    grunt.verbose.writeln('building page informtion');
+
+    var src = false;
+
+    var pages = [];
+    var assetsPath = options.assets;
+
+    obj.files.forEach(function(filePair) {
+
       // validate that the source object exists
       // and there are files at the source.
       if(!filePair.src) {
@@ -246,12 +276,18 @@ module.exports = function(grunt) {
         return false;
       }
 
+      src = src || filePair.src;
+      var basePath = findBasePath(src, true);
+
       // some of the following code for figuring out
       // the destination files has been taken/inspired
       // by the grunt-contrib-copy project
       //https://github.com/gruntjs/grunt-contrib-copy
       var isExpandedPair = filePair.orig.expand || false;
       var destFile;
+      var engine = options.engine;
+      var EngineLoader = options.EngineLoader;
+
       filePair.src.forEach(function(srcFile) {
 
         srcFile  = path.normalize(srcFile);
@@ -288,83 +324,12 @@ module.exports = function(grunt) {
         grunt.verbose.writeln(('\t' + 'Dest: '   + destFile));
         grunt.verbose.writeln(('\t' + 'Assets: ' + options.assets));
 
-        build(srcFile, filename, options, function(err, result) {
-          if(err) {
-            grunt.warn(err);
-            done(false);
-            return;
-          }
-
-          file.write(destFile, result);
-          grunt.log.ok('File ' + (filename + options.ext).magenta + ' created.' + ' ok '.green);
-        }); // build
-
-      }); // filePair.src.forEach
-    }); // this.files.forEach
-
-    if(done) {
-      done();
-    }
-
-  });
-
-  // ==========================================================================
-  // HELPERS
-  // ==========================================================================
-
-  var buildPageInfo = function(obj, options) {
-
-    var pages = [];
-    obj.files.forEach(function(filePair) {
-
-      // validate that the source object exists
-      // and there are files at the source.
-      if(!filePair.src) {
-        grunt.warn('Missing src property.');
-        return false;
-      }
-      if(filePair.src.length === 0) {
-        grunt.warn('Source files not found.');
-        return false;
-      }
-
-      // validate that the dest object exists
-      if(!filePair.dest || filePair.dest.length === 0) {
-        grunt.warn('Missing dest property.');
-        return false;
-      }
-
-      // some of the following code for figuring out
-      // the destination files has been taken/inspired
-      // by the grunt-contrib-copy project
-      //https://github.com/gruntjs/grunt-contrib-copy
-      var isExpandedPair = filePair.orig.expand || false;
-      var destFile;
-      var engine = options.engine;
-      var EngineLoader = options.EngineLoader;
-
-      filePair.src.forEach(function(srcFile) {
-
-        srcFile  = path.normalize(srcFile);
-        filename = path.basename(srcFile, path.extname(srcFile));
-
-        if(detectDestType(filePair.dest) === 'directory') {
-          destFile = (isExpandedPair) ?
-                      filePair.dest :
-                      path.join(filePair.dest,
-                                (options.flatten ?
-                                  path.basename(srcFile) :
-                                  srcFile));
-        } else {
-          destFile = filePair.dest;
-        }
-
-        grunt.verbose.writeln('Reading ' + filename.magenta);
-
         var page = fs.readFileSync(srcFile, 'utf8');
         try {
+          grunt.verbose.writeln('compiling page ' + filename.magenta);
           var pageContext = {};
           var yamlPreprocessor = EngineLoader.getPreprocessor('YamlPreprocessor');
+          grunt.verbose.writeln('yamlPreprocessor: ' + yamlPreprocessor);
 
           page = engine.compile(page, {
             preprocessers: [
@@ -376,7 +341,10 @@ module.exports = function(grunt) {
           });
 
           pages.push({
-            filename: filename,
+            basename: filename,
+            src: srcFile,
+            dest: destFile,
+            assets: options.assets,
             ext: options.ext,
             page: page,
             data: pageContext
@@ -389,15 +357,19 @@ module.exports = function(grunt) {
       }); // filePair.src.forEach
     }); // this.files.forEach
 
+    grunt.verbose.writeln('pages compiled');
     return pages;
 
   };
 
   var build = function(src, filename, options, callback) {
 
-    var findPage = function(page) { return page.filename === filename; };
+    grunt.verbose.writeln('building page');
+
+    var findPage = function(page) { return page.basename === filename; };
 
     var currentPage    = _.find(options.pages, findPage);
+    grunt.verbose.writeln('currentPage: ' + currentPage);
     var page           = currentPage.page,
         pageContext    = currentPage.data,
         layout         = options.defaultLayout,
@@ -410,6 +382,8 @@ module.exports = function(grunt) {
     context.layoutName = _(options.defaultLayoutName).humanize();
     context.pageName   = _(filename).humanize();
     context.pageName   = filename;
+
+    grunt.verbose.writeln('variables loaded');
 
     //options.data = null;
 
@@ -503,9 +477,9 @@ module.exports = function(grunt) {
 
     if(loadFile) {
       // validate that the layout file exists
-      grunt.log.writeln(src);
+      grunt.verbose.writeln(src);
       layout = path.normalize(src);
-      grunt.log.writeln(layout);
+      grunt.verbose.writeln(layout);
 
       if(!fs.existsSync(layout)) {
         var err = 'Layout file (' + layout + ') not found.';
