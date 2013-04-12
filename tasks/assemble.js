@@ -341,6 +341,7 @@ module.exports = function(grunt) {
           });
 
           pages.push({
+            filename: filename,
             basename: filename,
             src: srcFile,
             dest: destFile,
