@@ -189,7 +189,7 @@ module.exports = function(grunt) {
     log.writeln(('\n' + 'Building pages...').grey);
 
     var info = buildInfo(this, options);
-    grunt.log.writeln(require('util').inspect(info));
+    grunt.log.writeln(require('util').inspect(info, 10, null));
     options.pages = info.pages;
     options.tags = info.tags;
     options.categories = info.categories;
@@ -461,6 +461,7 @@ module.exports = function(grunt) {
       // add the list of pages back to the context so
       // it's available in the templates
       context.pages = pages;
+      grunt.log.writeln(require('util').inspect(context.tags, 10, null));
       page = layout(context);
 
       callback(null, page);
@@ -593,7 +594,7 @@ module.exports = function(grunt) {
     }
 
     var pageTags = context.tags || [];
-    if(typeof pageTags !== '[object Array]') {
+    if(toString.call(pageTags) !== '[object Array]') {
       pageTags = [pageTags];
     }
 
