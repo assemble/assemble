@@ -187,7 +187,11 @@ module.exports = function(grunt) {
     // build each page
     log.writeln(('\n' + 'Building pages...').grey);
 
-    options.pages = buildPageInfo(this, options);
+    var info = buildInfo(this, options);
+    grunt.log.writeln(require('util').inspect(info));
+    options.pages = info.pages;
+    options.tags = info.tags;
+    options.categories = info.categories;
 
     options.pages.forEach(function(page) {
 
@@ -248,13 +252,15 @@ module.exports = function(grunt) {
   };
 
 
-  var buildPageInfo = function(obj, options) {
+  var buildInfo = function(obj, options) {
 
-    grunt.verbose.writeln('building page informtion');
+    grunt.verbose.writeln('building informtion');
 
     var src = false;
 
     var pages = [];
+    var tags = [];
+    var categories = [];
     var assetsPath = options.assets;
 
     obj.files.forEach(function(filePair) {
@@ -340,7 +346,7 @@ module.exports = function(grunt) {
             ]
           });
 
-          pages.push({
+          var pageObj = {
             filename: filename,
             basename: filename,
             src: srcFile,
@@ -349,7 +355,11 @@ module.exports = function(grunt) {
             ext: options.ext,
             page: page,
             data: pageContext
-          });
+          };
+
+          pages.push(pageObj);
+
+          tags = udpateTags(tags, pageObj, pageContext);
 
         } catch(err) {
           grunt.warn(err);
@@ -358,8 +368,12 @@ module.exports = function(grunt) {
       }); // filePair.src.forEach
     }); // this.files.forEach
 
-    grunt.verbose.writeln('pages compiled');
-    return pages;
+    grunt.verbose.writeln('information compiled');
+    return {
+      pages: pages,
+      tags: tags,
+      categories: categories
+    };
 
   };
 
@@ -570,6 +584,22 @@ module.exports = function(grunt) {
     var globalArray = grunt.config(['assemble', 'options', name]) || [];
     var targetArray = grunt.config(['assemble', target, 'options', name]) || [];
     return _.union(globalArray, targetArray);
+  };
+
+  var updateTags = function(tags, page, context) {
+    var pageTags = context.tags || [];
+    if(typeof pageTags !== '[object Array]') {
+      pageTags = [pageTags];
+    }
+
+    pageTags.forEach(function(pageTag) {
+      var tagIndex = _.findIndex(tags, { 'tag': pageTag });
+      if(tagIndex > -1) {
+        tags[tagIndex].pages.push(page);
+      } else {
+        tags.push({ tag: pageTag, pages: [paeg] });
+      }
+    });
   };
 
 };
