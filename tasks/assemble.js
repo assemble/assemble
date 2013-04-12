@@ -13,6 +13,7 @@ module.exports = function(grunt) {
   var log      = grunt.log;
   var kindOf   = grunt.util.kindOf;
   var _        = grunt.util._;
+  var lodash   = require('lodash'); // required since grunt's lodash might be older
 
   var assemble = require('../lib/assemble');
 
@@ -359,7 +360,7 @@ module.exports = function(grunt) {
 
           pages.push(pageObj);
 
-          tags = udpateTags(tags, pageObj, pageContext);
+          tags = updateTags(tags, pageObj, pageContext);
 
         } catch(err) {
           grunt.warn(err);
@@ -587,19 +588,26 @@ module.exports = function(grunt) {
   };
 
   var updateTags = function(tags, page, context) {
+    if(!context.tags) {
+      return tags;
+    }
+
     var pageTags = context.tags || [];
     if(typeof pageTags !== '[object Array]') {
       pageTags = [pageTags];
     }
 
     pageTags.forEach(function(pageTag) {
-      var tagIndex = _.findIndex(tags, { 'tag': pageTag });
-      if(tagIndex > -1) {
-        tags[tagIndex].pages.push(page);
+      var tagIndex = lodash.findIndex(tags, function(tag) {
+        return tag.tag === pageTag;
+      });
+      if(tagIndex === -1) {
+        tags.push({ tag: pageTag, pages: [page] });
       } else {
-        tags.push({ tag: pageTag, pages: [paeg] });
+        tags[tagIndex].pages.push(page);
       }
     });
+    return tags;
   };
 
 };
