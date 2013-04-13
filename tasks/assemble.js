@@ -460,7 +460,6 @@ module.exports = function(grunt) {
       // add the list of pages back to the context so
       // it's available in the templates
       context.pages = pages;
-      grunt.log.writeln(require('util').inspect(context.tags, 10, null));
       page = layout(context);
 
       callback(null, page);
