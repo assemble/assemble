@@ -189,7 +189,6 @@ module.exports = function(grunt) {
     log.writeln(('\n' + 'Building pages...').grey);
 
     var info = buildInfo(this, options);
-    grunt.log.writeln(require('util').inspect(info, 10, null));
     options.pages = info.pages;
     options.tags = info.tags;
     options.categories = info.categories;
