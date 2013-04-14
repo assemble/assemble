@@ -38,6 +38,24 @@ module.exports = function(grunt) {
     logBlock("options: ", util.inspect(options));
     logBlock("this.files: ", util.inspect(this.files));
 
+    // just for testing
+    var ass = assemble.init(options)
+                .step(function(assemble, next) {
+                  console.log('step 1');
+                  next(assemble);
+                })
+                .step(function(assemble, next) {
+                  console.log('step 2');
+                  next(assemble);
+                })
+                .step(function(assemble, next) {
+                  console.log('step 3');
+                  next(assemble);
+                })
+                .build(function(err, results) {
+                  console.log('finished.');
+                });
+
     options.data = mergeOptionsArrays(this.target, 'data');
     options.partials = mergeOptionsArrays(this.target, 'partials');
 
