@@ -1,12 +1,12 @@
 /*global require:true */
-var assemble = require('../lib/assemble.js'),
+var utils = require('../lib/assemble.js').Utils,
     expect = require('chai').expect;
 
 describe('Engine Loader tests', function() {
 
 
   it("load handlebars engine", function(done) {
-    var EngineLoader = assemble.EngineLoader({});
+    var EngineLoader = utils.EngineLoader({});
     var engine = null;
     EngineLoader.getEngine(function(err, results) {
       if(err) {
@@ -21,7 +21,7 @@ describe('Engine Loader tests', function() {
 
 
   it("load handlebars engine with helpers", function(done) {
-    var EngineLoader = assemble.EngineLoader({
+    var EngineLoader = utils.EngineLoader({
       helpers: [
         'defaultHelpers'
       ]
@@ -40,7 +40,7 @@ describe('Engine Loader tests', function() {
 
 
   it("loads handlebars engine with preprocessors", function(done) {
-    var EngineLoader = assemble.EngineLoader({
+    var EngineLoader = utils.EngineLoader({
       preprocessors: [
         'handlebarsPreprocessors'
       ]
@@ -59,7 +59,7 @@ describe('Engine Loader tests', function() {
 
 
   it("loads handlebars engine with helpers and preprocessors", function(done) {
-    var EngineLoader = assemble.EngineLoader({
+    var EngineLoader = utils.EngineLoader({
       engine: 'handlebars',
       helpers: [
         'defaultHelpers'
@@ -82,7 +82,7 @@ describe('Engine Loader tests', function() {
 
 
   it("gets a yaml preprocessor from the engine", function(done) {
-    var EngineLoader = assemble.EngineLoader({
+    var EngineLoader = utils.EngineLoader({
       engine: 'handlebars',
       helpers: [
         'defaultHelpers'

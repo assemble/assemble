@@ -16,204 +16,339 @@ module.exports = function(grunt) {
   var lodash   = require('lodash'); // required since grunt's lodash might be older
 
   var assemble = require('../lib/assemble');
+  var utils = assemble.Utils;
 
   // external dependencies
   var path     = require('path');
   var fs       = require('fs');
   var util     = require('util');
 
-  var extensions = assemble.Utils.ExtensionMap;
+  var extensions = utils.ExtensionMap;
 
   grunt.registerMultiTask('assemble', 'Compile template files with specified engines', function(){
 
-
-    var options = this.options({
-      layout        : '',
-      partials      : [],
-      data          : [],
-      assets        : 'dist/assets',
-      ext           : '.html'
-    });
-
-    logBlock("options: ", util.inspect(options));
-    logBlock("this.files: ", util.inspect(this.files));
-
-    options.data = mergeOptionsArrays(this.target, 'data');
-    options.partials = mergeOptionsArrays(this.target, 'partials');
-
-    // try to get a src to use for configuration
-    var src = false;
-    this.files.forEach(function(fp) {
-      if(!src) {
-        src = fp.src;
-      }
-    });
-
-    if(!src || src.length === 0) {
-      grunt.warn('No source files found.');
-      return false;
-    }
-
-    // find an engine to use
-    options.engine = options.engine || getEngineOf(src);
-    if(!options.engine) {
-      grunt.warn('No compatible engine available');
-      return false;
-    }
-
-    var EngineLoader = options.EngineLoader = assemble.EngineLoader(options);
-    var engine = null;
-    EngineLoader.getEngine(function(err, results) {
-      if(err) {
-        console.log(err);
-        return;
-      }
-      engine = options.engine = results;
-    });
-
-    var yamlPreprocessor = EngineLoader.getPreprocessor('YamlPreprocessor');
-
-    var partials = file.expand(options.partials);
-    var dataFiles = file.expand(options.data);
-    var fileExt = extension(src);
-    var filenameRegex = /[^\\\/:*?"<>|\r\n]+$/i;
-    var fileExtRegex = new RegExp("\\." + fileExt + "$");
-
-    options.filenameRegex = filenameRegex;
-    options.fileExtRegex = fileExtRegex;
-
     var done = this.async();
+    var self = this;
 
-    // clear out the partials and data objects on options
-    options.partials = {};
-    options.data = {};
+    // functions for use in build steps
+    var optionsConfiguration = function(assemble, next) {
+      grunt.log.writeln('validating options');
 
-    // load default layout
-    var defaultLayoutName,
-        defaultLayout,
-        defaultLayoutData = {};
-
-    loadLayout(
-      options.layout,
-      {
-        filenameRegex: filenameRegex,
-        fileExtRegex: fileExtRegex,
-        EngineLoader: EngineLoader,
-        engine: engine
-      },
-      function(err, results) {
-        if(!err) {
-          defaultLayoutName = results.layoutName;
-          defaultLayout = results.layout;
-          defaultLayoutData = results.data;
-        } else {
-          grunt.warn(err.message);
+      var src = false;
+      assemble.files.forEach(function(fp) {
+        if(!src) {
+          src = fp.src;
         }
       });
 
-    // merge any layoutData with options
-    options.data = _.extend(defaultLayoutData.context, options.data || {});
+      if(!src || src.length === 0) {
+        grunt.warn('No source files found.');
+        done(false);
+      }
 
-    var complete = 0;
-    var increment = 10;
+      // find an engine to use
+      assemble.options.engine = assemble.options.engine || getEngineOf(src);
+      if(!assemble.options.engine) {
+        grunt.warn('No compatible engine available');
+        done(false);
+      }
 
-    // load partials if specified
-    if(partials && partials.length > 0) {
-      complete = 0;
-      increment = Math.round(partials.length / 10);
-      log.write(('\n' + 'Processing partials...').grey);
-
-      partials.forEach(function(filepath) {
-        var filename = _.first(filepath.match(filenameRegex)).replace(fileExtRegex, '');
-        grunt.verbose.writeln(('Processing ' + filename + ' partial').cyan);
-        if(complete%increment === 0) {
-          log.write('.'.cyan);
-        }
-
-        var partial = fs.readFileSync(filepath, 'utf8');
-
-        partial = engine.compile(partial, {
-          preprocessers: [
-            yamlPreprocessor(filename, function(output) {
-              options.data[output.name] = _.extend(output.output.context, options.data[output.name] || {});
-            })
-          ]
-        });
-
-        // register the partial with the engine
-        engine.engine.registerPartial(filename, partial);
-        complete++;
-      });
-      log.notverbose.writeln('\n');
-    }
-
-    // load data if specified
-    if(dataFiles && dataFiles.length > 0) {
-      complete = 0;
-      increment = Math.round(dataFiles.length / 10);
-      log.writeln(('\n' + 'Begin processing data...').grey);
-
-      dataFiles.forEach(function(filepath) {
-        var ext = path.extname(filepath);
-        var filename = path.basename(filepath, ext);
-
-        var fileReader = dataFileReaderFactory(ext);
-
-        if(complete%increment === 0) {
-          log.notverbose.write('.'.cyan);
-        }
-
-        if(filename === 'data') {
-          // if this is the base data file, load it into the options.data object directly
-          options.data = _.extend(options.data || {}, fileReader(filepath));
-        } else {
-          // otherwise it's an element in options.data
-          var d = fileReader(filepath);
-          if(d[filename]) {
-            // json object contains root object name so extend it in options.json
-            options.data[filename] = _.extend(options.data[filename] || {}, d[filename]);
-          } else {
-            // add the entire object
-            options.data[filename] = _.extend(options.data[filename] || {}, d);
-          }
-        }
-        complete++;
-      });
-      log.writeln('\n');
-    }
-
-    options.defaultLayout     = defaultLayout;
-    options.defaultLayoutName = defaultLayoutName;
-
-    // build each page
-    log.writeln(('\n' + 'Building pages...').grey);
-
-    var info = buildInfo(this, options);
-    options.pages = info.pages;
-    options.tags = info.tags;
-    options.categories = info.categories;
-
-    options.pages.forEach(function(page) {
-
-      grunt.verbose.writeln(require('util').inspect(page));
-
-      build(page.src, page.basename, options, function(err, result) {
+      assemble.engineLoader = utils.EngineLoader(assemble.options);
+      var engine = null;
+      assemble.engineLoader.getEngine(function(err, results) {
         if(err) {
-          grunt.warn(err);
-          done(false);
+          console.log(err);
           return;
         }
+        engine = assemble.engine = results;
+      });
 
-        file.write(page.dest, result);
-        grunt.log.ok('File ' + (page.basename + page.ext).magenta + ' created.' + ' ok '.green);
-      }); // build
+      assemble.yamlPreprocessor = assemble.engineLoader.getPreprocessor('YamlPreprocessor');
 
-    });
+      assemble.fileExt = extension(src);
+      assemble.filenameRegex = /[^\\\/:*?"<>|\r\n]+$/i;
+      assemble.fileExtRegex = new RegExp("\\." + assemble.fileExt + "$");
+
+      assemble.partials = file.expand(assemble.options.partials);
+      assemble.options.partials = {};
+
+      assemble.dataFiles = file.expand(assemble.options.data);
+      assemble.options.data = {};
+
+      next(assemble);
+    };
+
+    var assembleDefaultLayout = function(assemble, next) {
+      grunt.log.writeln('assembling default layout');
+
+      // load default layout
+      var defaultLayoutData = {};
+
+      loadLayout(
+        assemble.options.layout,
+        assemble,
+        function(err, results) {
+          if(!err) {
+            assemble.options.defaultLayoutName = results.layoutName;
+            assemble.options.defaultLayout = results.layout;
+            defaultLayoutData = results.data;
+          } else {
+            grunt.warn(err.message);
+          }
+        });
+
+      // merge any layoutData with options
+      assemble.options.data = _.extend(defaultLayoutData.context, assemble.options.data || {});
+
+      next(assemble);
+    };
+
+    var assemblePartials = function(assemble, next) {
+      grunt.log.writeln('assembling partials');
+
+      var complete = 0;
+      var increment = 10;
+
+      // load partials if specified
+      var partials = assemble.partials;
+      if(partials && partials.length > 0) {
+        complete = 0;
+        increment = Math.round(partials.length / 10);
+        grunt.log.write(('\n' + 'Processing partials...').grey);
+
+        partials.forEach(function(filepath) {
+          var filename = _.first(filepath.match(assemble.filenameRegex)).replace(assemble.fileExtRegex, '');
+          grunt.verbose.writeln(('Processing ' + filename + ' partial').cyan);
+          if(complete%increment === 0) {
+            grunt.log.write('.'.cyan);
+          }
+
+          var partial = fs.readFileSync(filepath, 'utf8');
+
+          partial = assemble.engine.compile(partial, {
+            preprocessers: [
+              assemble.yamlPreprocessor(filename, function(output) {
+                assemble.options.data[output.name] = _.extend(output.output.context, assemble.options.data[output.name] || {});
+              })
+            ]
+          });
+
+          // register the partial with the engine
+          assemble.engine.engine.registerPartial(filename, partial);
+          complete++;
+        });
+        grunt.log.notverbose.writeln('\n');
+      }
+
+      next(assemble);
+    };
+
+    var assembleData = function(assemble, next) {
+      grunt.log.writeln('assembling data');
+
+      // load data if specified
+      var dataFiles = assemble.dataFiles;
+      if(dataFiles && dataFiles.length > 0) {
+        complete = 0;
+        increment = Math.round(dataFiles.length / 10);
+        grunt.log.writeln(('\n' + 'Begin processing data...').grey);
+
+        dataFiles.forEach(function(filepath) {
+          var ext = path.extname(filepath);
+          var filename = path.basename(filepath, ext);
+
+          var fileReader = dataFileReaderFactory(ext);
+
+          if(complete%increment === 0) {
+            grunt.log.notverbose.write('.'.cyan);
+          }
+
+          if(filename === 'data') {
+            // if this is the base data file, load it into the options.data object directly
+            assemble.options.data = _.extend(assemble.options.data || {}, fileReader(filepath));
+          } else {
+            // otherwise it's an element in options.data
+            var d = fileReader(filepath);
+            if(d[filename]) {
+              // json object contains root object name so extend it in options.json
+              assemble.options.data[filename] = _.extend(assemble.options.data[filename] || {}, d[filename]);
+            } else {
+              // add the entire object
+              assemble.options.data[filename] = _.extend(assemble.options.data[filename] || {}, d);
+            }
+          }
+          complete++;
+        });
+        grunt.log.writeln('\n');
+      }
+
+      next(assemble);
+    };
+
+    var assemblePages = function(assemble, next) {
+      // build each page
+      grunt.log.writeln(('\n' + 'Building pages...').grey);
+
+      var task = assemble.task;
+      var options = assemble.options;
+
+      var src = false;
+
+      var pages = [];
+      var tags = [];
+      var categories = [];
+      var assetsPath = options.assets;
+
+      task.files.forEach(function(filePair) {
+
+        // validate that the source object exists
+        // and there are files at the source.
+        if(!filePair.src) {
+          grunt.warn('Missing src property.');
+          return false;
+        }
+        if(filePair.src.length === 0) {
+          grunt.warn('Source files not found.');
+          return false;
+        }
+
+        // validate that the dest object exists
+        if(!filePair.dest || filePair.dest.length === 0) {
+          grunt.warn('Missing dest property.');
+          return false;
+        }
+
+        src = src || filePair.src;
+        var basePath = findBasePath(src, true);
+
+        // some of the following code for figuring out
+        // the destination files has been taken/inspired
+        // by the grunt-contrib-copy project
+        //https://github.com/gruntjs/grunt-contrib-copy
+        var isExpandedPair = filePair.orig.expand || false;
+        var destFile;
+
+        filePair.src.forEach(function(srcFile) {
+
+          srcFile  = path.normalize(srcFile);
+          filename = path.basename(srcFile, path.extname(srcFile));
+
+          if(detectDestType(filePair.dest) === 'directory') {
+            destFile = (isExpandedPair) ?
+                        filePair.dest :
+                        path.join(filePair.dest,
+                                  (options.flatten ?
+                                    path.basename(srcFile) :
+                                    srcFile));
+          } else {
+            destFile = filePair.dest;
+          }
+
+          destFile = path.join(path.dirname(destFile), path.basename(destFile, path.extname(destFile))) + options.ext;
+
+          grunt.verbose.writeln('Reading ' + filename.magenta);
+
+          // setup options.assets so it's the relative path to the
+          // dest assets folder from the new dest file
+          // TODO: this needs to be looked at again after the
+          // other dest changes
+          grunt.verbose.writeln('AssetsPath: ' + assetsPath);
+          grunt.verbose.writeln('DestFile: ' + path.dirname(destFile));
+          options.assets = urlNormalize(
+            path.relative(
+              path.resolve(path.dirname(destFile)),
+              path.resolve(assetsPath)
+            ));
+
+          grunt.verbose.writeln(('\t' + 'Src: '    + srcFile));
+          grunt.verbose.writeln(('\t' + 'Dest: '   + destFile));
+          grunt.verbose.writeln(('\t' + 'Assets: ' + options.assets));
+
+          var page = fs.readFileSync(srcFile, 'utf8');
+          try {
+            grunt.verbose.writeln('compiling page ' + filename.magenta);
+            var pageContext = {};
+
+            page = assemble.engine.compile(page, {
+              preprocessers: [
+                assemble.yamlPreprocessor(filename, function(output) {
+                  grunt.verbose.writeln(output.name + ' data retreived');
+                  pageContext = output.output.context;
+                })
+              ]
+            });
+
+            var pageObj = {
+              filename: filename,
+              basename: filename,
+              src: srcFile,
+              dest: destFile,
+              assets: options.assets,
+              ext: options.ext,
+              page: page,
+              data: pageContext
+            };
+
+            pages.push(pageObj);
+
+            tags = updateTags(tags, pageObj, pageContext);
+
+          } catch(err) {
+            grunt.warn(err);
+            return;
+          }
+        }); // filePair.src.forEach
+      }); // this.files.forEach
+
+      grunt.verbose.writeln('information compiled');
+
+      assemble.options.pages = pages;
+      assemble.options.tags = tags;
+      assemble.options.categories = categories;
 
 
-    if(done) {
-      done();
-    }
+      next(assemble);
+    };
+
+    var renderPages = function(assemble, next) {
+
+      grunt.log.writeln(('\n' + 'Rendering pages...').grey);
+
+      assemble.options.pages.forEach(function(page) {
+
+        grunt.verbose.writeln(require('util').inspect(page));
+
+        build(page.src, page.basename, assemble, function(err, result) {
+          if(err) {
+            grunt.warn(err);
+            done(false);
+            return;
+          }
+
+          file.write(page.dest, result);
+          grunt.log.ok('File ' + (page.basename + page.ext).magenta + ' created.' + ' ok '.green);
+        }); // build
+
+      });
+
+      next(assemble);
+    };
+
+    // assemble everything
+    var assembler = assemble.init(this)
+        .step(optionsConfiguration)
+        .step(assembleDefaultLayout)
+        .step(assemblePartials)
+        .step(assembleData)
+        .step(assemblePages)
+        .step(renderPages)
+        .build(function(err, results) {
+          if(err) {
+            grunt.warn(err);
+            done(false);
+          }
+          done();
+        });
 
   });
 
@@ -252,134 +387,9 @@ module.exports = function(grunt) {
   };
 
 
-  var buildInfo = function(obj, options) {
+  var build = function(src, filename, assemble, callback) {
 
-    grunt.verbose.writeln('building informtion');
-
-    var src = false;
-
-    var pages = [];
-    var tags = [];
-    var categories = [];
-    var assetsPath = options.assets;
-
-    obj.files.forEach(function(filePair) {
-
-      // validate that the source object exists
-      // and there are files at the source.
-      if(!filePair.src) {
-        grunt.warn('Missing src property.');
-        return false;
-      }
-      if(filePair.src.length === 0) {
-        grunt.warn('Source files not found.');
-        return false;
-      }
-
-      // validate that the dest object exists
-      if(!filePair.dest || filePair.dest.length === 0) {
-        grunt.warn('Missing dest property.');
-        return false;
-      }
-
-      src = src || filePair.src;
-      var basePath = findBasePath(src, true);
-
-      // some of the following code for figuring out
-      // the destination files has been taken/inspired
-      // by the grunt-contrib-copy project
-      //https://github.com/gruntjs/grunt-contrib-copy
-      var isExpandedPair = filePair.orig.expand || false;
-      var destFile;
-      var engine = options.engine;
-      var EngineLoader = options.EngineLoader;
-
-      filePair.src.forEach(function(srcFile) {
-
-        srcFile  = path.normalize(srcFile);
-        filename = path.basename(srcFile, path.extname(srcFile));
-
-        if(detectDestType(filePair.dest) === 'directory') {
-          destFile = (isExpandedPair) ?
-                      filePair.dest :
-                      path.join(filePair.dest,
-                                (options.flatten ?
-                                  path.basename(srcFile) :
-                                  srcFile));
-        } else {
-          destFile = filePair.dest;
-        }
-
-        destFile = path.join(path.dirname(destFile), path.basename(destFile, path.extname(destFile))) + options.ext;
-
-        grunt.verbose.writeln('Reading ' + filename.magenta);
-
-        // setup options.assets so it's the relative path to the
-        // dest assets folder from the new dest file
-        // TODO: this needs to be looked at again after the
-        // other dest changes
-        grunt.verbose.writeln('AssetsPath: ' + assetsPath);
-        grunt.verbose.writeln('DestFile: ' + path.dirname(destFile));
-        options.assets = urlNormalize(
-          path.relative(
-            path.resolve(path.dirname(destFile)),
-            path.resolve(assetsPath)
-          ));
-
-        grunt.verbose.writeln(('\t' + 'Src: '    + srcFile));
-        grunt.verbose.writeln(('\t' + 'Dest: '   + destFile));
-        grunt.verbose.writeln(('\t' + 'Assets: ' + options.assets));
-
-        var page = fs.readFileSync(srcFile, 'utf8');
-        try {
-          grunt.verbose.writeln('compiling page ' + filename.magenta);
-          var pageContext = {};
-          var yamlPreprocessor = EngineLoader.getPreprocessor('YamlPreprocessor');
-          grunt.verbose.writeln('yamlPreprocessor: ' + yamlPreprocessor);
-
-          page = engine.compile(page, {
-            preprocessers: [
-              yamlPreprocessor(filename, function(output) {
-                grunt.verbose.writeln(output.name + ' data retreived');
-                pageContext = output.output.context;
-              })
-            ]
-          });
-
-          var pageObj = {
-            filename: filename,
-            basename: filename,
-            src: srcFile,
-            dest: destFile,
-            assets: options.assets,
-            ext: options.ext,
-            page: page,
-            data: pageContext
-          };
-
-          pages.push(pageObj);
-
-          tags = updateTags(tags, pageObj, pageContext);
-
-        } catch(err) {
-          grunt.warn(err);
-          return;
-        }
-      }); // filePair.src.forEach
-    }); // this.files.forEach
-
-    grunt.verbose.writeln('information compiled');
-    return {
-      pages: pages,
-      tags: tags,
-      categories: categories
-    };
-
-  };
-
-  var build = function(src, filename, options, callback) {
-
-    grunt.verbose.writeln('building page');
+    var options = assemble.options;
 
     var findPage = function(page) { return page.basename === filename; };
 
@@ -407,14 +417,10 @@ module.exports = function(grunt) {
       options.data   = undefined;
       options.pages  = undefined;
       options.layout = undefined;
-      options.engine = undefined;
-      options.EngineLoader = undefined;
       context        = _.extend(context, options, data, pageContext);
       options.data   = data;
       options.pages  = pages;
       options.layout = layout;
-      options.engine = engine;
-      options.EngineLoader = EngineLoader;
 
       // if pageContext contains a layout, use that one instead
       // of the default layout
@@ -428,12 +434,7 @@ module.exports = function(grunt) {
 
         loadLayout(
           context.layout,
-          {
-            filenameRegex: options.filenameRegex,
-            fileExtRegex: options.fileExtRegex,
-            EngineLoader: EngineLoader,
-            engine: engine
-          },
+          assemble,
           function(err, results) {
             if(!err) {
               pageLayoutName = results.layoutName;
@@ -453,7 +454,7 @@ module.exports = function(grunt) {
 
       }
 
-      engine.engine.registerPartial("body", page);
+      assemble.engine.engine.registerPartial("body", page);
 
       context = processContext(grunt, context);
 
@@ -478,7 +479,7 @@ module.exports = function(grunt) {
       return context;
   };
 
-  var loadLayout = function(src, options, callback) {
+  var loadLayout = function(src, assemble, callback) {
 
     var loadFile = true;
     var layout = '';
@@ -506,15 +507,14 @@ module.exports = function(grunt) {
       }
 
       // load layout
-      layoutName = _.first(layout.match(options.filenameRegex)).replace(options.fileExtRegex,'');
+      layoutName = _.first(layout.match(assemble.filenameRegex)).replace(assemble.fileExtRegex,'');
       layout = fs.readFileSync(layout, 'utf8');
     }
 
     var layoutData = {};
-    var yamlPreprocessor = options.EngineLoader.getPreprocessor('YamlPreprocessor');
-    layout = options.engine.compile(layout, {
+    layout = assemble.engine.compile(layout, {
       preprocessers: [
-        yamlPreprocessor(layoutName, function(output) {
+        assemble.yamlPreprocessor(layoutName, function(output) {
           grunt.verbose.writeln(output.name + ' data retreived');
           layoutData = output.output;
         })
