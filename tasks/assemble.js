@@ -189,10 +189,122 @@ module.exports = function(grunt) {
       // build each page
       grunt.log.writeln(('\n' + 'Building pages...').grey);
 
-      var info = buildInfo(assemble);
-      assemble.options.pages = info.pages;
-      assemble.options.tags = info.tags;
-      assemble.options.categories = info.categories;
+      var task = assemble.task;
+      var options = assemble.options;
+
+      var src = false;
+
+      var pages = [];
+      var tags = [];
+      var categories = [];
+      var assetsPath = options.assets;
+
+      task.files.forEach(function(filePair) {
+
+        // validate that the source object exists
+        // and there are files at the source.
+        if(!filePair.src) {
+          grunt.warn('Missing src property.');
+          return false;
+        }
+        if(filePair.src.length === 0) {
+          grunt.warn('Source files not found.');
+          return false;
+        }
+
+        // validate that the dest object exists
+        if(!filePair.dest || filePair.dest.length === 0) {
+          grunt.warn('Missing dest property.');
+          return false;
+        }
+
+        src = src || filePair.src;
+        var basePath = findBasePath(src, true);
+
+        // some of the following code for figuring out
+        // the destination files has been taken/inspired
+        // by the grunt-contrib-copy project
+        //https://github.com/gruntjs/grunt-contrib-copy
+        var isExpandedPair = filePair.orig.expand || false;
+        var destFile;
+
+        filePair.src.forEach(function(srcFile) {
+
+          srcFile  = path.normalize(srcFile);
+          filename = path.basename(srcFile, path.extname(srcFile));
+
+          if(detectDestType(filePair.dest) === 'directory') {
+            destFile = (isExpandedPair) ?
+                        filePair.dest :
+                        path.join(filePair.dest,
+                                  (options.flatten ?
+                                    path.basename(srcFile) :
+                                    srcFile));
+          } else {
+            destFile = filePair.dest;
+          }
+
+          destFile = path.join(path.dirname(destFile), path.basename(destFile, path.extname(destFile))) + options.ext;
+
+          grunt.verbose.writeln('Reading ' + filename.magenta);
+
+          // setup options.assets so it's the relative path to the
+          // dest assets folder from the new dest file
+          // TODO: this needs to be looked at again after the
+          // other dest changes
+          grunt.verbose.writeln('AssetsPath: ' + assetsPath);
+          grunt.verbose.writeln('DestFile: ' + path.dirname(destFile));
+          options.assets = urlNormalize(
+            path.relative(
+              path.resolve(path.dirname(destFile)),
+              path.resolve(assetsPath)
+            ));
+
+          grunt.verbose.writeln(('\t' + 'Src: '    + srcFile));
+          grunt.verbose.writeln(('\t' + 'Dest: '   + destFile));
+          grunt.verbose.writeln(('\t' + 'Assets: ' + options.assets));
+
+          var page = fs.readFileSync(srcFile, 'utf8');
+          try {
+            grunt.verbose.writeln('compiling page ' + filename.magenta);
+            var pageContext = {};
+
+            page = assemble.engine.compile(page, {
+              preprocessers: [
+                assemble.yamlPreprocessor(filename, function(output) {
+                  grunt.verbose.writeln(output.name + ' data retreived');
+                  pageContext = output.output.context;
+                })
+              ]
+            });
+
+            var pageObj = {
+              filename: filename,
+              basename: filename,
+              src: srcFile,
+              dest: destFile,
+              assets: options.assets,
+              ext: options.ext,
+              page: page,
+              data: pageContext
+            };
+
+            pages.push(pageObj);
+
+            tags = updateTags(tags, pageObj, pageContext);
+
+          } catch(err) {
+            grunt.warn(err);
+            return;
+          }
+        }); // filePair.src.forEach
+      }); // this.files.forEach
+
+      grunt.verbose.writeln('information compiled');
+
+      assemble.options.pages = pages;
+      assemble.options.tags = tags;
+      assemble.options.categories = categories;
 
 
       next(assemble);
@@ -274,130 +386,6 @@ module.exports = function(grunt) {
     return foundPath;
   };
 
-
-  var buildInfo = function(assemble) {
-
-    grunt.verbose.writeln('building informtion');
-
-    var task = assemble.task;
-    var options = assemble.options;
-
-    var src = false;
-
-    var pages = [];
-    var tags = [];
-    var categories = [];
-    var assetsPath = options.assets;
-
-    task.files.forEach(function(filePair) {
-
-      // validate that the source object exists
-      // and there are files at the source.
-      if(!filePair.src) {
-        grunt.warn('Missing src property.');
-        return false;
-      }
-      if(filePair.src.length === 0) {
-        grunt.warn('Source files not found.');
-        return false;
-      }
-
-      // validate that the dest object exists
-      if(!filePair.dest || filePair.dest.length === 0) {
-        grunt.warn('Missing dest property.');
-        return false;
-      }
-
-      src = src || filePair.src;
-      var basePath = findBasePath(src, true);
-
-      // some of the following code for figuring out
-      // the destination files has been taken/inspired
-      // by the grunt-contrib-copy project
-      //https://github.com/gruntjs/grunt-contrib-copy
-      var isExpandedPair = filePair.orig.expand || false;
-      var destFile;
-
-      filePair.src.forEach(function(srcFile) {
-
-        srcFile  = path.normalize(srcFile);
-        filename = path.basename(srcFile, path.extname(srcFile));
-
-        if(detectDestType(filePair.dest) === 'directory') {
-          destFile = (isExpandedPair) ?
-                      filePair.dest :
-                      path.join(filePair.dest,
-                                (options.flatten ?
-                                  path.basename(srcFile) :
-                                  srcFile));
-        } else {
-          destFile = filePair.dest;
-        }
-
-        destFile = path.join(path.dirname(destFile), path.basename(destFile, path.extname(destFile))) + options.ext;
-
-        grunt.verbose.writeln('Reading ' + filename.magenta);
-
-        // setup options.assets so it's the relative path to the
-        // dest assets folder from the new dest file
-        // TODO: this needs to be looked at again after the
-        // other dest changes
-        grunt.verbose.writeln('AssetsPath: ' + assetsPath);
-        grunt.verbose.writeln('DestFile: ' + path.dirname(destFile));
-        options.assets = urlNormalize(
-          path.relative(
-            path.resolve(path.dirname(destFile)),
-            path.resolve(assetsPath)
-          ));
-
-        grunt.verbose.writeln(('\t' + 'Src: '    + srcFile));
-        grunt.verbose.writeln(('\t' + 'Dest: '   + destFile));
-        grunt.verbose.writeln(('\t' + 'Assets: ' + options.assets));
-
-        var page = fs.readFileSync(srcFile, 'utf8');
-        try {
-          grunt.verbose.writeln('compiling page ' + filename.magenta);
-          var pageContext = {};
-
-          page = assemble.engine.compile(page, {
-            preprocessers: [
-              assemble.yamlPreprocessor(filename, function(output) {
-                grunt.verbose.writeln(output.name + ' data retreived');
-                pageContext = output.output.context;
-              })
-            ]
-          });
-
-          var pageObj = {
-            filename: filename,
-            basename: filename,
-            src: srcFile,
-            dest: destFile,
-            assets: options.assets,
-            ext: options.ext,
-            page: page,
-            data: pageContext
-          };
-
-          pages.push(pageObj);
-
-          tags = updateTags(tags, pageObj, pageContext);
-
-        } catch(err) {
-          grunt.warn(err);
-          return;
-        }
-      }); // filePair.src.forEach
-    }); // this.files.forEach
-
-    grunt.verbose.writeln('information compiled');
-    return {
-      pages: pages,
-      tags: tags,
-      categories: categories
-    };
-
-  };
 
   var build = function(src, filename, assemble, callback) {
 
