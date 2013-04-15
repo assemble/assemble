@@ -1,11 +1,11 @@
 /*global require:true */
-var assemble = require('../lib/assemble.js'),
+var utils = require('../lib/assemble.js').Utils,
     expect = require('chai').expect;
 
 
 describe('Reading From Files', function() {
 
-  var frontMatter = assemble.FrontMatter({});
+  var frontMatter = utils.FrontMatter({});
 
   var simpleExpected = {
     context: {
@@ -51,7 +51,7 @@ describe('Reading From Files', function() {
 
 describe('Reading From Strings', function() {
 
-  var frontMatter = assemble.FrontMatter({ fromFile: false });
+  var frontMatter = utils.FrontMatter({ fromFile: false });
 
   var simple1 = "---\nfoo: bar\n";
   var simple2 = "---\nfoo: bar\n---";

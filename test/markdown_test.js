@@ -1,10 +1,10 @@
 /*global require:true */
-var assemble = require('../lib/assemble.js'),
+var utils = require('../lib/assemble.js').Utils,
     expect = require('chai').expect;
 
 describe('Converting Markdown Files', function() {
 
-  var markdown = assemble.Markdown({
+  var markdown = utils.Markdown({
     gfm: true,
     highlight: 'auto'
   });
