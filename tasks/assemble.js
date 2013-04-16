@@ -462,6 +462,11 @@ module.exports = function(grunt) {
       // it's available in the templates
       context.pages = pages;
       context.currentPage = currentPage;
+
+      // add a sections array to the engine to be used by
+      // helpers
+      assemble.engine.engine.sections = [];
+
       page = layout(context);
 
       callback(null, page);
