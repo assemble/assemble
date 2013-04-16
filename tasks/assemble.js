@@ -461,7 +461,7 @@ module.exports = function(grunt) {
       // add the list of pages back to the context so
       // it's available in the templates
       context.pages = pages;
-      context.page = currentPage;
+      context.currentPage = currentPage;
       page = layout(context);
 
       callback(null, page);
