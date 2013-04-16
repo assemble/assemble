@@ -1,27 +1,31 @@
-v0.3.4: 
+v0.3.5:
+  date: "2013-04-16"
+  changes:
+    - Adding a sections array to the template engine so it can be used in helpers.
+v0.3.4:
   date: "2013-04-11"
   changes:
     - More tests for helpers and global variables, organized tests. A number of bug fixes.
-v0.3.3: 
+v0.3.3:
   date: "2013-04-06"
   changes:
     - helper-lib properly externalized and wired up. Global variables for filename, ext and pages
-v0.3.22: 
+v0.3.22:
   date: "2013-03-22"
   changes:
     - Merged global and target level options so data and partial files can be joined
-v0.3.21: 
+v0.3.21:
   date: "2013-03-22"
   changes:
     - Valid YAML now allowed in options.data object (along with JSON)
-v0.3.14: 
+v0.3.14:
   date: "2013-03-18"
   changes:
     - new relative helper for resolving relative paths
-v0.3.13: 
-  date: "2013-03-16"  
+v0.3.13:
+  date: "2013-03-16"
   changes:
-    - new dashify and formatPhone helpers 
+    - new dashify and formatPhone helpers
 v0.1.0-v0.3.0:
   date: "then-til-now"
   changes:
@@ -29,6 +33,6 @@ v0.1.0-v0.3.0:
 v0.1.0:
   date: "Stardate 45047.2"
   changes:
-    - Visited the uninhabited El-Adrel system. 
+    - Visited the uninhabited El-Adrel system.
     - Returned home.
     - Started assemble.
