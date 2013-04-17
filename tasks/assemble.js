@@ -189,17 +189,14 @@ module.exports = function(grunt) {
       // build each page
       grunt.log.writeln(('\n' + 'Building pages...').grey);
 
-      var task = assemble.task;
-      var options = assemble.options;
-
       var src = false;
 
       var pages = [];
       var tags = [];
       var categories = [];
-      var assetsPath = options.assets;
+      var assetsPath = assemble.options.assets;
 
-      task.files.forEach(function(filePair) {
+      assemble.task.files.forEach(function(filePair) {
 
         // validate that the source object exists
         // and there are files at the source.
@@ -237,14 +234,16 @@ module.exports = function(grunt) {
             destFile = (isExpandedPair) ?
                         filePair.dest :
                         path.join(filePair.dest,
-                                  (options.flatten ?
+                                  (assemble.options.flatten ?
                                     path.basename(srcFile) :
                                     srcFile));
           } else {
             destFile = filePair.dest;
           }
 
-          destFile = path.join(path.dirname(destFile), path.basename(destFile, path.extname(destFile))) + options.ext;
+          destFile = path.join(path.dirname(destFile),
+                               path.basename(destFile, path.extname(destFile))
+                              ) + assemble.options.ext;
 
           grunt.verbose.writeln('Reading ' + filename.magenta);
 
@@ -254,7 +253,7 @@ module.exports = function(grunt) {
           // other dest changes
           grunt.verbose.writeln('AssetsPath: ' + assetsPath);
           grunt.verbose.writeln('DestFile: ' + path.dirname(destFile));
-          options.assets = urlNormalize(
+          assemble.options.assets = urlNormalize(
             path.relative(
               path.resolve(path.dirname(destFile)),
               path.resolve(assetsPath)
@@ -262,7 +261,7 @@ module.exports = function(grunt) {
 
           grunt.verbose.writeln(('\t' + 'Src: '    + srcFile));
           grunt.verbose.writeln(('\t' + 'Dest: '   + destFile));
-          grunt.verbose.writeln(('\t' + 'Assets: ' + options.assets));
+          grunt.verbose.writeln(('\t' + 'Assets: ' + assemble.options.assets));
 
           var page = fs.readFileSync(srcFile, 'utf8');
           try {
@@ -283,8 +282,8 @@ module.exports = function(grunt) {
               basename: filename,
               src: srcFile,
               dest: destFile,
-              assets: options.assets,
-              ext: options.ext,
+              assets: assemble.options.assets,
+              ext: assemble.options.ext,
               page: page,
               data: pageContext
             };
