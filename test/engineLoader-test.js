@@ -40,11 +40,7 @@ describe('Engine Loader tests', function() {
 
 
   it("loads handlebars engine with preprocessors", function(done) {
-    var EngineLoader = utils.EngineLoader({
-      preprocessors: [
-        'handlebarsPreprocessors'
-      ]
-    });
+    var EngineLoader = utils.EngineLoader({});
     var engine = null;
     EngineLoader.getEngine(function(err, results) {
       if(err) {
@@ -60,13 +56,7 @@ describe('Engine Loader tests', function() {
 
   it("loads handlebars engine with helpers and preprocessors", function(done) {
     var EngineLoader = utils.EngineLoader({
-      engine: 'handlebars',
-      helpers: [
-        'defaultHelpers'
-      ],
-      preprocessors: [
-        'handlebarsPreprocessors'
-      ]
+      engine: 'handlebars'
     });
     var engine = null;
     EngineLoader.getEngine(function(err, results) {
@@ -83,13 +73,7 @@ describe('Engine Loader tests', function() {
 
   it("gets a yaml preprocessor from the engine", function(done) {
     var EngineLoader = utils.EngineLoader({
-      engine: 'handlebars',
-      helpers: [
-        'defaultHelpers'
-      ],
-      preprocessors: [
-        'handlebarsPreprocessors'
-      ]
+      engine: 'handlebars'
     });
     var engine = null;
     EngineLoader.getEngine(function(err, results) {
