@@ -1,3 +1,7 @@
+v0.3.7:
+  date: "2013-04-17"
+  changes:
+    - Cleaning up some unused folders and tests
 v0.3.6:
   date: "2013-04-16"
   changes:
