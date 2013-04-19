@@ -462,6 +462,9 @@ module.exports = function(grunt) {
       context.pages = pages;
       context.currentPage = currentPage;
 
+      // make sure the currentPage assets is used
+      context.assets = currentPage.assets;
+
       // add a sections array to the engine to be used by
       // helpers
       assemble.engine.engine.sections = [];
