@@ -1,29 +1,32 @@
 /*
  * Assemble
- * https://github.com/assemble/assemble
+ * https://github.com/assemble/
  *
- * Copyright (c) 2012 Brian Woodward
+ * Copyright (c) 2013 Upstage
  * Licensed under the MIT license.
  */
 
 module.exports = function(grunt) {
 
-  // Grunt utilities
-  var file     = grunt.file;
-  var log      = grunt.log;
-  var kindOf   = grunt.util.kindOf;
-  var _        = grunt.util._;
-  var lodash   = require('lodash'); // required since grunt's lodash might be older
+  // Grunt utils
+  var file   = grunt.file;
+  var log    = grunt.log;
+  var kindOf = grunt.util.kindOf;
+  var _      = grunt.util._;
 
-  var assemble = require('../lib/assemble');
-  var utils = assemble.Utils;
+  // Node utils
+  var path   = require('path');
+  var fs     = require('fs');
+  var util   = require('util');
 
-  // external dependencies
-  var path     = require('path');
-  var fs       = require('fs');
-  var util     = require('util');
+  // NPM utils
+  var lodash = require('lodash'); // required to ensure correct version is used
 
+  // Assemble utils
+  var assemble   = require('../lib/assemble');
+  var utils      = assemble.Utils;
   var extensions = utils.ExtensionMap;
+
 
   grunt.registerMultiTask('assemble', 'Compile template files with specified engines', function(){
 
