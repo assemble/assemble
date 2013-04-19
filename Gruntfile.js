@@ -46,13 +46,14 @@ module.exports = function(grunt) {
     assemble: {
       options: {
         flatten: true,
-        assets: 'test/actual'
+        assets: 'test/actual/assets'
       },
       compact: {
         options: {
+          partials: 'test/files/partials/*.hbs',
           layout: 'test/files/layout.hbs'
         },
-        src:  ['test/files/dates.hbs'],
+        src:  ['test/files/dates.hbs', 'test/files/page.hbs'],
         dest: 'test/actual/'
       },
       files_object: {
@@ -70,7 +71,7 @@ module.exports = function(grunt) {
         },
         files: {
           'test/actual/multi/dest1/': ['test/files/**/*.hbs', '!test/files/layout*.*'],
-          'test/actual/multi/dest2/': ['test/files/**/*.md'],
+          'test/actual/multi/dest2/': ['test/files/**/*.{markd,md,markdown}'],
           'test/actual/multi/dest2/sub-dest/': ['test/files/**/*.hbs', '!test/files/layout*.*']
         }
       }

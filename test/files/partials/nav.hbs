@@ -1,0 +1,11 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <ul class="nav">
+        {{#links}}<li><a href="{{.}}.html">{{titleize .}}</a></li>
+        {{/links}}
+      </ul>
+      <ul class="nav pull-right"><li><a href="{{url.repo}}">Visit Assemble</a></li></ul>
+    </div>
+  </div>
+</div>
