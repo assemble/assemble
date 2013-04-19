@@ -317,7 +317,7 @@ module.exports = function(grunt) {
 
         grunt.verbose.writeln(require('util').inspect(page));
 
-        build(page.src, page.basename, assemble, function(err, result) {
+        build(page, assemble, function(err, result) {
           if(err) {
             grunt.warn(err);
             done(false);
@@ -386,13 +386,12 @@ module.exports = function(grunt) {
   };
 
 
-  var build = function(src, filename, assemble, callback) {
+  var build = function(currentPage, assemble, callback) {
 
+    var src = currentPage.srcFile;
+    var filename = currentPage.filename;
     var options = assemble.options;
 
-    var findPage = function(page) { return page.basename === filename; };
-
-    var currentPage    = _.find(options.pages, findPage);
     grunt.verbose.writeln('currentPage: ' + currentPage);
     var page           = currentPage.page,
         pageContext    = currentPage.data,
