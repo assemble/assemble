@@ -1,7 +1,6 @@
-// 
-// subgrunt.js
-// Run any sub-gruntfiles in project.
-// -----------------------------------------------
+/*
+ * Credit: Task authored by "Cowbow" Ben Altman 
+ */ 
 
 module.exports = function(grunt) {
 
