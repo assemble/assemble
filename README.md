@@ -1,4 +1,4 @@
-# [Assemble v0.3.8](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
+# [Assemble v0.3.9](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
 
 > Assemble makes it dead simple to build modular sites and components from reusable templates and data.
 
@@ -183,28 +183,48 @@ Compiled result after running `grunt assemble`:
 Also see: [YAML front matter][yaml] todo...
 
 
-#### `layout`
+#### layout
 Type: `String` (optional)
 Default: `undefined`
 
-If set, this defines the layout file to use for that [target][tasks-and-targets]. Unlike Jekyll, Assemble requires a file extension since you are not limited to using a single file type.
+Path to the layout to be used.
 
+``` js
+assemble: {
+  options: {
+    layout: 'src/layouts/default.hbs'
+  },
+  files: {
+    'docs': ['src/files/*.hbs']
+  }
+}
+```
 
-#### `partials`
+#### partials
 Type: `Object` (optional)
 Parameters: `Object|Array`
 Default: `undefined`
 
-Specifies the Handlebars partials files, or paths to the directories of files to be used. 
+Accepts [minimatch](https://github.com/isaacs/minimatch) patterns to define the Handlebars partials files, or paths to the directories of files to be used.
 
-#### `engine`
+``` js
+assemble: {
+  options: {
+    partials: ['src/partials/*.hbs', 'src/snippets/*.hbs']
+  },
+  files: {
+    'docs': ['src/files/*.hbs']
+  }
+}
+```
+
+#### engine
 Type: `String` (optional)
 Default: `handlebars`
 
 The engine to use for processing client-side templates. Assemble ships Handlebars as the default template engine, if you are interested in using a different engine visit the documentation to see an up-to-date list of template engines.
 
 Pull requests are welcome for additional template engines. Since we're still working to update the docs, you many also contact [@doowb](http://github.com/doowb) for more information or create an [Issue][assemble-issues].
-
 
 #### helpers
 Type: `Object|Array` (optional)
@@ -252,12 +272,12 @@ assemble: {
 }
 ```
 
-
-#### `flatten`
+#### flatten
 Type: `Boolean`
 Default: `false`
 
-Remove anything after (and including) the first "." in the destination path, then append this value. In other words, when they are are generated from different source folders this "flattens" them into the same destination directory. See [building the files object dynamically][files-object] for more information on files formats.
+Remove anything after (and including) the first "." in the destination path, then append this value.
+
 
 ### YAML options
 Assemble makes the following options available from `js-yaml`. See [js-yaml](https://github.com/nodeca/js-yaml) for more information.
@@ -571,7 +591,7 @@ _(Big plans in the works)_
 ---
 Authored by [assemble](https://github.com/assemble/assemble)
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Thu Apr 18 2013 23:35:27._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sat Apr 20 2013 00:13:08._
 
 
 
