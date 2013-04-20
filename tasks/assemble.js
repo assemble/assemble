@@ -416,6 +416,11 @@ module.exports = function(grunt) {
 
     try {
 
+      // omit the tags and categories from pageContext when merging
+      var pageTags = pageContext.tags || [];
+      var pageCategories = pageContext.categories || [];
+      pageContext = lodash.omit(pageContext, ['tags', 'categories']);
+
       options.data   = undefined;
       options.pages  = undefined;
       options.layout = undefined;
@@ -423,6 +428,9 @@ module.exports = function(grunt) {
       options.data   = data;
       options.pages  = pages;
       options.layout = layout;
+
+      pageContext.tags = pageTags;
+      pageContext.categories = pageCategories;
 
       // if pageContext contains a layout, use that one instead
       // of the default layout
