@@ -294,6 +294,7 @@ module.exports = function(grunt) {
             pages.push(pageObj);
 
             tags = updateTags(tags, pageObj, pageContext);
+            categories = updateCategories(categories, pageObj, pageContext);
 
           } catch(err) {
             grunt.warn(err);
@@ -617,6 +618,29 @@ module.exports = function(grunt) {
       }
     });
     return tags;
+  };
+
+  var updateCategories = function(categories, page, context) {
+    if(!context.categories) {
+      return categories;
+    }
+
+    var pageCategories = context.categories || [];
+    if(toString.call(pageCategories) !== '[object Array]') {
+      pageCategories = [pageCategories];
+    }
+
+    pageCategories.forEach(function(pageCategory) {
+      var categoryIndex = lodash.findIndex(categories, function(category) {
+        return category.category === pageCategory;
+      });
+      if(categoryIndex === -1) {
+        categories.push({ category: pageCategory, pages: [page] });
+      } else {
+        categories[categoryIndex].pages.push(page);
+      }
+    });
+    return categories;
   };
 
 };
