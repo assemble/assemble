@@ -427,7 +427,6 @@ module.exports = function(grunt) {
       context        = _.extend(context, options, data, pageContext);
       options.data   = data;
       options.pages  = pages;
-      options.layout = layout;
 
       pageContext.tags = pageTags;
       pageContext.categories = pageCategories;
@@ -460,11 +459,18 @@ module.exports = function(grunt) {
           layout = pageLayout;
           context.layoutName = pageLayoutName;
           data = _.extend(data, pageLayoutContext);
-        }
 
+          // extend again
+          options.data   = undefined;
+          options.pages  = undefined;
+          options.layout = undefined;
+          context        = _.extend(context, options, data, pageContext);
+          options.data   = data;
+          options.pages  = pages;
+        }
       }
 
-      assemble.engine.engine.registerPartial("body", page);
+
 
       context = processContext(grunt, context);
 
@@ -480,6 +486,7 @@ module.exports = function(grunt) {
       // helpers
       assemble.engine.engine.sections = [];
 
+      assemble.engine.engine.registerPartial("body", page);
       page = layout(context);
 
       callback(null, page);
