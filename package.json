@@ -1,7 +1,7 @@
 {
   "name": "assemble",
   "description": "Assemble makes it dead simple to build modular sites and components from reusable templates and data.",
-  "version": "0.3.9",
+  "version": "0.3.72",
   "homepage": "https://github.com/assemble/assemble",
   "author": {
     "name": "assemble",
