@@ -428,8 +428,6 @@ module.exports = function(grunt) {
       options.data   = data;
       options.pages  = pages;
 
-      pageContext.tags = pageTags;
-      pageContext.categories = pageCategories;
 
       // if pageContext contains a layout, use that one instead
       // of the default layout
@@ -471,6 +469,8 @@ module.exports = function(grunt) {
       }
 
 
+      pageContext.tags = pageTags;
+      pageContext.categories = pageCategories;
 
       context = processContext(grunt, context);
 
