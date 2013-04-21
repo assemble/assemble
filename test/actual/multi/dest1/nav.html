@@ -19,5 +19,188 @@
 </div>
 
     </div>
+
+    <div class="container" style="display: none">
+      <h3>Debug Info</h3>
+
+      ``` 
+{
+  page: 
+   { [Function]
+     [prototype]: { [constructor]: [Circular] 
+},
+     [length]: 2,
+     [arguments]: null,
+     [name]: '',
+     [caller]: null },
+  data: {},
+  src: 'test\\files\\partials\\nav.hbs',
+  ext: '.html',
+  dest: 'test\\actual\\multi\\dest1\\nav.html',
+  filename: 'nav',
+  basename: 'nav',
+  assets: '../../assets' }
+```
+
+      <ul>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest1\alert.html
+        -->
+        <li><a href="alert.html">alert</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest1\category.html
+        -->
+        <li><a href="category.html">category</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest1\category2.html
+        -->
+        <li><a href="category2.html">category2</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest1\complex.html
+        -->
+        <li><a href="complex.html">complex</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest1\dates.html
+        -->
+        <li><a href="dates.html">dates</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest1\helpers.html
+        -->
+        <li><a href="helpers.html">helpers</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest1\page.html
+        -->
+        <li><a href="page.html">page</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest1\nav.html
+        -->
+        <li><a href="nav.html">nav</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest1\simple3.html
+        -->
+        <li><a href="simple3.html">simple3</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest1\tags_test.html
+        -->
+        <li><a href="tags_test.html">tags_test</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest1\tags_test2.html
+        -->
+        <li><a href="tags_test2.html">tags_test2</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest2\complex1.html
+        -->
+        <li><a href="../dest2/complex1.html">complex1</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest2\md1.html
+        -->
+        <li><a href="../dest2/md1.html">md1</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest2\md2.html
+        -->
+        <li><a href="../dest2/md2.html">md2</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest2\simple1.html
+        -->
+        <li><a href="../dest2/simple1.html">simple1</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest2\sub-dest\alert.html
+        -->
+        <li><a href="../dest2/sub-dest/alert.html">alert</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest2\sub-dest\category.html
+        -->
+        <li><a href="../dest2/sub-dest/category.html">category</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest2\sub-dest\category2.html
+        -->
+        <li><a href="../dest2/sub-dest/category2.html">category2</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest2\sub-dest\complex.html
+        -->
+        <li><a href="../dest2/sub-dest/complex.html">complex</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest2\sub-dest\dates.html
+        -->
+        <li><a href="../dest2/sub-dest/dates.html">dates</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest2\sub-dest\helpers.html
+        -->
+        <li><a href="../dest2/sub-dest/helpers.html">helpers</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest2\sub-dest\page.html
+        -->
+        <li><a href="../dest2/sub-dest/page.html">page</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest2\sub-dest\nav.html
+        -->
+        <li><a href="../dest2/sub-dest/nav.html">nav</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest2\sub-dest\simple3.html
+        -->
+        <li><a href="../dest2/sub-dest/simple3.html">simple3</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest2\sub-dest\tags_test.html
+        -->
+        <li><a href="../dest2/sub-dest/tags_test.html">tags_test</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\multi\dest1\nav.html
+          this.dest: test\actual\multi\dest2\sub-dest\tags_test2.html
+        -->
+        <li><a href="../dest2/sub-dest/tags_test2.html">tags_test2</a></li>
+      
+      </ul>
+    </div>
   </body>
 </html>

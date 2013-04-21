@@ -24,5 +24,51 @@
 </div>
 
     </div>
+
+    <div class="container" style="display: none">
+      <h3>Debug Info</h3>
+
+      ``` 
+{
+  page: 
+   { [Function]
+     [prototype]: { [constructor]: [Circular] 
+},
+     [length]: 2,
+     [arguments]: null,
+     [name]: '',
+     [caller]: null },
+  data: 
+   { links: 
+      [ './index',
+        'dest/context',
+        'dest/basic',
+        'dest/markdown',
+        [length]: 4 ],
+     title: 'Partials Test' },
+  src: 'test\\files\\page.hbs',
+  ext: '.html',
+  dest: 'test\\actual\\page.html',
+  filename: 'page',
+  basename: 'page',
+  assets: 'assets' }
+```
+
+      <ul>
+      
+        <!--
+          currentPage.dest: test\actual\page.html
+          this.dest: test\actual\dates.html
+        -->
+        <li><a href="dates.html">dates</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\page.html
+          this.dest: test\actual\page.html
+        -->
+        <li><a href="page.html">page</a></li>
+      
+      </ul>
+    </div>
   </body>
 </html>

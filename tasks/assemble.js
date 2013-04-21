@@ -446,7 +446,7 @@ module.exports = function(grunt) {
             if(!err) {
               pageLayoutName = results.layoutName;
               pageLayout = results.layout;
-              pageLayoutContext = results.data;
+              pageLayoutContext = results.data.context;
             } else {
               grunt.warn(err.message);
             }
