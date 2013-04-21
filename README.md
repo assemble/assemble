@@ -1,4 +1,4 @@
-# [Assemble v0.3.72](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
+# [Assemble v0.3.73](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
 
 > Assemble makes it dead simple to build modular sites and components from reusable templates and data.
 
@@ -576,6 +576,14 @@ Copyright 2013 Assemble
 [MIT License](LICENSE-MIT)
 
 ## Release History
+* 2013-04-21    v0.3.73    Fixing how the relative path helper worked and showing an example in the footer of the layout. This example is hidden, but can be seen by doing view source. 
+* 2013-04-20    v0.3.72    Fixing the layout override issue happening in the page yaml headers. Something was missed during refactoring. 
+* 2013-04-19    v0.3.9    Adding tags and categories to the root context and ensure that the current page context values don't override the root context values. 
+* 2013-04-18    v0.3.8    Updating to use actual assets property from current page. 
+* 2013-04-17    v0.3.7    Cleaning up some unused folders and tests 
+* 2013-04-16    v0.3.6    Fixed missing assets property. 
+* 2013-04-16    v0.3.5    Adding a sections array to the template engine so it can be used in helpers. 
+* 2013-04-11    v0.3.4    More tests for helpers and global variables, organized tests. A number of bug fixes. 
 * 2013-04-06    v0.3.3    helper-lib properly externalized and wired up. Global variables for filename, ext and pages 
 * 2013-03-22    v0.3.22    Merged global and target level options so data and partial files can be joined 
 * 2013-03-22    v0.3.21    Valid YAML now allowed in options.data object (along with JSON) 
@@ -591,7 +599,7 @@ _(Big plans in the works)_
 ---
 Authored by [assemble](https://github.com/assemble/assemble)
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sat Apr 20 2013 15:45:16._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sun Apr 21 2013 15:33:22._
 
 
 
