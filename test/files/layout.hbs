@@ -9,5 +9,21 @@
     <div class="container">
       {{> body }}
     </div>
+
+    <div class="container" style="display: none">
+      <h3>Debug Info</h3>
+
+      {{inspect currentPage}}
+
+      <ul>
+      {{#each pages}}
+        <!--
+          currentPage.dest: {{../currentPage.dest}}
+          this.dest: {{this.dest}}
+        -->
+        <li><a href="{{relative ../currentPage.dest this.dest}}">{{this.basename}}</a></li>
+      {{/each}}
+      </ul>
+    </div>
   </body>
 </html>

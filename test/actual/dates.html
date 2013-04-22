@@ -9,10 +9,52 @@
     <div class="container">
       
 
-<div>Date: Sat Apr 20 2013 15:42:54 GMT-0400 (Eastern Daylight Time)</div>
+<div>Date: Sun Apr 21 2013 15:28:39 GMT-0400 (Eastern Daylight Time)</div>
 
 <div>Born 33 years ago</div>
 
+    </div>
+
+    <div class="container" style="display: none">
+      <h3>Debug Info</h3>
+
+      ``` 
+{
+  page: 
+   { [Function]
+     [prototype]: { [constructor]: [Circular] 
+},
+     [length]: 2,
+     [arguments]: null,
+     [name]: '',
+     [caller]: null },
+  data: 
+   { description: 'testing the dates helpers',
+     css: '<link rel="stylesheet" href="/css/index.css"/>',
+     js: 'document.write(\'foo bar!\');' },
+  src: 'test\\files\\dates.hbs',
+  ext: '.html',
+  dest: 'test\\actual\\dates.html',
+  filename: 'dates',
+  basename: 'dates',
+  assets: 'assets' }
+```
+
+      <ul>
+      
+        <!--
+          currentPage.dest: test\actual\dates.html
+          this.dest: test\actual\dates.html
+        -->
+        <li><a href="dates.html">dates</a></li>
+      
+        <!--
+          currentPage.dest: test\actual\dates.html
+          this.dest: test\actual\page.html
+        -->
+        <li><a href="page.html">page</a></li>
+      
+      </ul>
     </div>
   </body>
 </html>

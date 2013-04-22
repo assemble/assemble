@@ -1,3 +1,7 @@
+v0.3.73:
+  date: "2013-04-21"
+  changes:
+    - Fixing how the relative path helper worked and showing an example in the footer of the layout. This example is hidden, but can be seen by doing view source.
 v0.3.72:
   date: "2013-04-20"
   changes:
