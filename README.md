@@ -45,7 +45,7 @@ Assemble has many more features than we've been able to document thus far. So wh
 
 
 ## Quick start
-This plugin requires Grunt ``
+This plugin requires Grunt `~0.4.1`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -570,7 +570,7 @@ _(Big plans in the works)_
 ---
 Authored by [assemble](https://github.com/assemble/assemble)
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sat Apr 27 2013 11:46:40._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sat Apr 27 2013 11:52:54._
 
 
 
