@@ -1,12 +1,10 @@
 See the [Options](https://github.com/assemble/assemble/wiki/Options) section on the Wiki for more information.
 
 #### assets
-_Path to "assets" (or "public") folder._
-
 Type: `String` (optional)
 Default: `undefined`
 
-Used with the `{{assets}}` template to resolve the relative path _to the destination assets folder_, _from the dest file_.
+Used with the `{{assets}}` variable to resolve the relative path from the _dest file_ to the _assets_ folder.
 
 Example:
 
@@ -31,13 +29,12 @@ Resulting in:
 
 
 #### data
-_The data to populate templates._
-
-Type: `Object` (optional)
-Parameters: `String|Array`
+Type: `Object|Array` (optional)
 Default: `src/data`
 
-Gets the data from specified `JSON` and/or `YAML` files to populate the templates when rendered. Data gets passed through the `data` object to the options on the assemble task, then to the context in your templates. Also useful for specifying [configuration][config] data, such as when to render certain templates. For example:
+Retrieves data from any specified `JSON` and/or `YAML` files to populate the templates when rendered. Data gets passed through the `data` object to the options on the assemble task, then to the context in your templates. 
+
+Also useful for specifying [configuration][config] data, such as when to render certain templates. For example:
 
 `page.json`
 ``` json
@@ -88,36 +85,15 @@ Also see: [YAML front matter][yaml] todo...
 Type: `String` (optional)
 Default: `undefined`
 
-Path to the layout to be used.
+If set, this defines the layout file to use for that [target][tasks-and-targets]. Unlike Jekyll, Assemble requires a file extension since you are not limited to using a single file type.
 
-``` js
-assemble: {
-  options: {
-    layout: 'src/layouts/default.hbs'
-  },
-  files: {
-    'docs': ['src/files/*.hbs']
-  }
-}
-```
+[tasks-and-targets]: http://gruntjs.com/configuring-tasks#task-configuration-and-targets
 
 #### partials
-Type: `Object` (optional)
-Parameters: `Object|Array`
+Type:  `Object|Array` (optional)
 Default: `undefined`
 
-Accepts [minimatch](https://github.com/isaacs/minimatch) patterns to define the Handlebars partials files, or paths to the directories of files to be used.
-
-``` js
-assemble: {
-  options: {
-    partials: ['src/partials/*.hbs', 'src/snippets/*.hbs']
-  },
-  files: {
-    'docs': ['src/files/*.hbs']
-  }
-}
-```
+Specifies the Handlebars partials files, or paths to the directories of files to be used. 
 
 #### engine
 Type: `String` (optional)
@@ -127,11 +103,12 @@ The engine to use for processing client-side templates. Assemble ships Handlebar
 
 Pull requests are welcome for additional template engines. Since we're still working to update the docs, you many also contact [@doowb](http://github.com/doowb) for more information or create an [Issue][assemble-issues].
 
+
 #### helpers
 Type: `Object|Array` (optional)
 Default: [helper-lib](http://github.com/assemble/helper-lib)
 
-Path defined to a directory of custom helpers to use with the specified template engine. Assemble currently includes more than **[75 built-in Handlebars helpers](https://github.com/assemble/helper-lib)**, since Handlebars is the default engine for Assemble.
+Path defined to a directory of custom helpers to use with the specified template engine. Assemble currently includes more than **[100+ built-in Handlebars helpers](https://github.com/assemble/helper-lib)**, since Handlebars is the default engine for Assemble.
 
 ``` js
 assemble: {
@@ -143,10 +120,12 @@ assemble: {
 ```
 
 #### ext
-Type: `String`
+Type: `String` (optional)
 Default: `.html`
 
 Specify the file extension for destination files. Example:
+
+Learn more about [ext][options]
 
 ``` js
 assemble: {
@@ -177,10 +156,10 @@ assemble: {
 Type: `Boolean`
 Default: `false`
 
-Remove anything after (and including) the first "." in the destination path, then append this value.
+Remove anything after (and including) the first "." in the destination path, then append this value. In other words, when they are are generated from different source folders this "flattens" them into the same destination directory. See [building the files object dynamically][files-object] for more information on files formats.
 
+## YAML options
 
-### YAML options
 Assemble makes the following options available from `js-yaml`. See [js-yaml](https://github.com/nodeca/js-yaml) for more information.
 
 #### filename
@@ -203,7 +182,7 @@ Specifies a schema to use.
 
 
 
-### Custom Options
+## Custom Options
 #### Contexts
 A common use case for custom options is to add contexts for `development` and `production` environments:
 
