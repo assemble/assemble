@@ -1,6 +1,6 @@
 See the [Options](https://github.com/assemble/assemble/wiki/Options) section on the Wiki for more information.
 
-#### `assets`
+#### assets
 Type: `String` (optional)
 Default: `undefined`
 
@@ -28,7 +28,7 @@ Resulting in:
 ```
 
 
-#### `data`
+#### data
 Type: `Object|Array` (optional)
 Default: `src/data`
 
@@ -81,7 +81,7 @@ Compiled result after running `grunt assemble`:
 Also see: [YAML front matter][yaml] todo...
 
 
-#### `layout`
+#### layout
 Type: `String` (optional)
 Default: `undefined`
 
@@ -89,13 +89,13 @@ If set, this defines the layout file to use for that [target][tasks-and-targets]
 
 [tasks-and-targets]: http://gruntjs.com/configuring-tasks#task-configuration-and-targets
 
-#### `partials`
+#### partials
 Type:  `Object|Array` (optional)
 Default: `undefined`
 
 Specifies the Handlebars partials files, or paths to the directories of files to be used. 
 
-#### `engine`
+#### engine
 Type: `String` (optional)
 Default: `handlebars`
 
@@ -104,7 +104,7 @@ The engine to use for processing client-side templates. Assemble ships Handlebar
 Pull requests are welcome for additional template engines. Since we're still working to update the docs, you many also contact [@doowb](http://github.com/doowb) for more information or create an [Issue][assemble-issues].
 
 
-#### `helpers`
+#### helpers
 Type: `Object|Array` (optional)
 Default: [helper-lib](http://github.com/assemble/helper-lib)
 
@@ -119,7 +119,7 @@ assemble: {
 }
 ```
 
-#### `ext`
+#### ext
 Type: `String` (optional)
 Default: `.html`
 
@@ -152,7 +152,7 @@ assemble: {
 }
 ```
 
-#### `flatten`
+#### flatten
 Type: `Boolean`
 Default: `false`
 
@@ -162,19 +162,19 @@ Remove anything after (and including) the first "." in the destination path, the
 
 Assemble makes the following options available from `js-yaml`. See [js-yaml](https://github.com/nodeca/js-yaml) for more information.
 
-#### `filename`
+#### filename
 Type: `String`
 Default: `null`
 
 String to be used as a file path in error/warning messages.
 
-#### `strict`
+#### strict
 Type: `Boolean`
 Default: `false`
 
 Makes the loader to throw errors instead of warnings.
 
-#### `schema`
+#### schema
 Type: `String`
 Default: `DEFAULT_SCHEMA`
 
