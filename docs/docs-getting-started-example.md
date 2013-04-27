@@ -1,6 +1,6 @@
 _You must use Grunt.js version 0.4.0 with Assemble. Please upgrade if you're still using grunt v0.3.x. If you haven't used [grunt][grunt] before, be sure to check out the [Getting Started][Getting Started] guide._
 
- From the same directory as your project's [Gruntfile][Getting Started] and [package.json][packageJSON], install this plugin with the following command:
+From the same directory as your project's [Gruntfile][Getting Started] and [package.json][packageJSON], install this plugin with the following command:
 
 ``` bash
 npm install assemble --save-dev

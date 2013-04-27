@@ -45,7 +45,7 @@ Assemble has many more features than we've been able to document thus far. So wh
 
 
 ## Quick start
-This plugin requires Grunt `~0.4.1`
+This plugin requires Grunt ``
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -100,12 +100,10 @@ Task targets, files and options may be specified according to the grunt [Configu
 See the [Options](https://github.com/assemble/assemble/wiki/Options) section on the Wiki for more information.
 
 #### assets
-_Path to "assets" (or "public") folder._
-
 Type: `String` (optional)
 Default: `undefined`
 
-Used with the `{{assets}}` template to resolve the relative path _to the destination assets folder_, _from the dest file_.
+Used with the `{{assets}}` variable to resolve the relative path from the _dest file_ to the _assets_ folder.
 
 Example:
 
@@ -130,13 +128,12 @@ Resulting in:
 
 
 #### data
-_The data to populate templates._
-
-Type: `Object` (optional)
-Parameters: `String|Array`
+Type: `Object|Array` (optional)
 Default: `src/data`
 
-Gets the data from specified `JSON` and/or `YAML` files to populate the templates when rendered. Data gets passed through the `data` object to the options on the assemble task, then to the context in your templates. Also useful for specifying [configuration][config] data, such as when to render certain templates. For example:
+Retrieves data from any specified `JSON` and/or `YAML` files to populate the templates when rendered. Data gets passed through the `data` object to the options on the assemble task, then to the context in your templates. 
+
+Also useful for specifying [configuration][config] data, such as when to render certain templates. For example:
 
 `page.json`
 ``` json
@@ -187,36 +184,15 @@ Also see: [YAML front matter][yaml] todo...
 Type: `String` (optional)
 Default: `undefined`
 
-Path to the layout to be used.
+If set, this defines the layout file to use for that [target][tasks-and-targets]. Unlike Jekyll, Assemble requires a file extension since you are not limited to using a single file type.
 
-``` js
-assemble: {
-  options: {
-    layout: 'src/layouts/default.hbs'
-  },
-  files: {
-    'docs': ['src/files/*.hbs']
-  }
-}
-```
+[tasks-and-targets]: http://gruntjs.com/configuring-tasks#task-configuration-and-targets
 
 #### partials
-Type: `Object` (optional)
-Parameters: `Object|Array`
+Type:  `Object|Array` (optional)
 Default: `undefined`
 
-Accepts [minimatch](https://github.com/isaacs/minimatch) patterns to define the Handlebars partials files, or paths to the directories of files to be used.
-
-``` js
-assemble: {
-  options: {
-    partials: ['src/partials/*.hbs', 'src/snippets/*.hbs']
-  },
-  files: {
-    'docs': ['src/files/*.hbs']
-  }
-}
-```
+Specifies the Handlebars partials files, or paths to the directories of files to be used. 
 
 #### engine
 Type: `String` (optional)
@@ -226,11 +202,12 @@ The engine to use for processing client-side templates. Assemble ships Handlebar
 
 Pull requests are welcome for additional template engines. Since we're still working to update the docs, you many also contact [@doowb](http://github.com/doowb) for more information or create an [Issue][assemble-issues].
 
+
 #### helpers
 Type: `Object|Array` (optional)
 Default: [helper-lib](http://github.com/assemble/helper-lib)
 
-Path defined to a directory of custom helpers to use with the specified template engine. Assemble currently includes more than **[75 built-in Handlebars helpers](https://github.com/assemble/helper-lib)**, since Handlebars is the default engine for Assemble.
+Path defined to a directory of custom helpers to use with the specified template engine. Assemble currently includes more than **[100+ built-in Handlebars helpers](https://github.com/assemble/helper-lib)**, since Handlebars is the default engine for Assemble.
 
 ``` js
 assemble: {
@@ -242,10 +219,12 @@ assemble: {
 ```
 
 #### ext
-Type: `String`
+Type: `String` (optional)
 Default: `.html`
 
 Specify the file extension for destination files. Example:
+
+Learn more about [ext][options]
 
 ``` js
 assemble: {
@@ -276,10 +255,10 @@ assemble: {
 Type: `Boolean`
 Default: `false`
 
-Remove anything after (and including) the first "." in the destination path, then append this value.
+Remove anything after (and including) the first "." in the destination path, then append this value. In other words, when they are are generated from different source folders this "flattens" them into the same destination directory. See [building the files object dynamically][files-object] for more information on files formats.
 
+## YAML options
 
-### YAML options
 Assemble makes the following options available from `js-yaml`. See [js-yaml](https://github.com/nodeca/js-yaml) for more information.
 
 #### filename
@@ -302,7 +281,7 @@ Specifies a schema to use.
 
 
 
-### Custom Options
+## Custom Options
 #### Contexts
 A common use case for custom options is to add contexts for `development` and `production` environments:
 
@@ -355,7 +334,7 @@ Use the markdown expression, `{{md}}`, to enable importing of external markdown 
 ```
 
 **Example #2: using variables**
-Or use a variable instead of setting the path directly inside the template. For example you can add the content variable to a YAML header:
+Or use a variable instead of setting the path directly inside the template. For example you can add the content variable to the [YAML Front-Matter](https://github.com/assemble/assemble/wiki/YAML-Front-Matter):
 
 ``` yaml
 ---
@@ -576,14 +555,6 @@ Copyright 2013 Assemble
 [MIT License](LICENSE-MIT)
 
 ## Release History
-* 2013-04-21    v0.3.73    Fixing how the relative path helper worked and showing an example in the footer of the layout. This example is hidden, but can be seen by doing view source. 
-* 2013-04-20    v0.3.72    Fixing the layout override issue happening in the page yaml headers. Something was missed during refactoring. 
-* 2013-04-19    v0.3.9    Adding tags and categories to the root context and ensure that the current page context values don't override the root context values. 
-* 2013-04-18    v0.3.8    Updating to use actual assets property from current page. 
-* 2013-04-17    v0.3.7    Cleaning up some unused folders and tests 
-* 2013-04-16    v0.3.6    Fixed missing assets property. 
-* 2013-04-16    v0.3.5    Adding a sections array to the template engine so it can be used in helpers. 
-* 2013-04-11    v0.3.4    More tests for helpers and global variables, organized tests. A number of bug fixes. 
 * 2013-04-06    v0.3.3    helper-lib properly externalized and wired up. Global variables for filename, ext and pages 
 * 2013-03-22    v0.3.22    Merged global and target level options so data and partial files can be joined 
 * 2013-03-22    v0.3.21    Valid YAML now allowed in options.data object (along with JSON) 
@@ -599,7 +570,7 @@ _(Big plans in the works)_
 ---
 Authored by [assemble](https://github.com/assemble/assemble)
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sun Apr 21 2013 15:33:22._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sat Apr 27 2013 11:46:40._
 
 
 

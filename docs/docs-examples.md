@@ -22,7 +22,7 @@ Use the markdown expression, `{{md}}`, to enable importing of external markdown 
 ```
 
 **Example #2: using variables**
-Or use a variable instead of setting the path directly inside the template. For example you can add the content variable to a YAML header:
+Or use a variable instead of setting the path directly inside the template. For example you can add the content variable to the [YAML Front-Matter](https://github.com/assemble/assemble/wiki/YAML-Front-Matter):
 
 ``` yaml
 ---
