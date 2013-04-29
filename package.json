@@ -39,13 +39,8 @@
   },
   "dependencies": {
     "helper-lib": "https://github.com/assemble/helper-lib/tarball/master",
-    "amdefine": "0.0.4",
-    "handlebars": "~1.0.10",
-    "highlight.js": "*",
-    "js-yaml": "~2.0.3",
-    "lodash": "~1.1.1",
-    "marked": "~0.2.8",
-    "assemble-utils": "~0.1.0"
+    "assemble-utils": "~0.1.0",
+    "lodash": "~1.1.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
