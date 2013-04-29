@@ -117,45 +117,45 @@ Suite 16
 
       ``` 
 {
-  page: 
-   { [Function]
-     [prototype]: { [constructor]: [Circular] 
-},
-     [length]: 2,
-     [arguments]: null,
-     [name]: '',
-     [caller]: null },
+  dest: 'test\\actual\\yaml\\document.html',
+  basename: 'document',
   data: 
-   { items: 
-      [ { descrip: 'Water Bucket (Filled)',
-          price: 1.47,
-          part_no: 'A4786',
-          quantity: 4 },
-        { descrip: 'High Heeled "Ruby" Slippers',
-          price: 100.27,
-          part_no: 'E1628',
-          size: 8,
-          quantity: 1 },
-        [length]: 2 ],
-     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+   { receipt: 'Oz-Ware Purchase Invoice',
+     customer: { family: 'Gale', given: 'Dorothy' 
+},
      prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
      specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
-     receipt: 'Oz-Ware Purchase Invoice',
-     customer: { family: 'Gale', given: 'Dorothy' },
+     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+     items: 
+      [ { price: 1.47,
+          quantity: 4,
+          part_no: 'A4786',
+          descrip: 'Water Bucket (Filled)' },
+        { price: 100.27,
+          quantity: 1,
+          part_no: 'E1628',
+          descrip: 'High Heeled "Ruby" Slippers',
+          size: 8 },
+        [length]: 2 ],
      'bill-to': 
       { city: 'East Centerville',
-        state: 'KS',
-        street: '123 Tornado Alley\nSuite 16\n' },
+        street: '123 Tornado Alley\nSuite 16\n',
+        state: 'KS' },
      'ship-to': 
       { city: 'East Centerville',
-        state: 'KS',
-        street: '123 Tornado Alley\nSuite 16\n' } },
-  src: 'test\\yaml\\document.hbs',
-  ext: '.html',
-  dest: 'test\\actual\\yaml\\document.html',
+        street: '123 Tornado Alley\nSuite 16\n',
+        state: 'KS' } },
+  assets: '../assets',
+  page: 
+   { [Function]
+     [name]: '',
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] },
+     [length]: 2,
+     [arguments]: null },
   filename: 'document',
-  basename: 'document',
-  assets: '../assets' }
+  ext: '.html',
+  src: 'test\\yaml\\document.hbs' }
 ```
 
       <ul>

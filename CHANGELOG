@@ -1,3 +1,7 @@
+v0.3.74:
+  date: "2013-04-28"
+  changes:
+    - Updating the assemble library to use the assemble-utils repo and unnecessary code.
 v0.3.73:
   date: "2013-04-21"
   changes:
