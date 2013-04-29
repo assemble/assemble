@@ -117,45 +117,45 @@ Suite 16
 
       ``` 
 {
+  assets: '../assets',
   page: 
    { [Function]
-     [prototype]: { [constructor]: [Circular] 
-},
      [length]: 2,
+     [caller]: null,
      [arguments]: null,
      [name]: '',
-     [caller]: null },
+     [prototype]: { [constructor]: [Circular] 
+} },
   data: 
-   { items: 
-      [ { descrip: 'Water Bucket (Filled)',
+   { customer: { family: 'Gale', given: 'Dorothy' },
+     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
+     items: 
+      [ { part_no: 'A4786',
+          descrip: 'Water Bucket (Filled)',
           price: 1.47,
-          part_no: 'A4786',
           quantity: 4 },
-        { descrip: 'High Heeled "Ruby" Slippers',
-          price: 100.27,
+        { size: 8,
           part_no: 'E1628',
-          size: 8,
+          descrip: 'High Heeled "Ruby" Slippers',
+          price: 100.27,
           quantity: 1 },
         [length]: 2 ],
      date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
-     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
-     receipt: 'Oz-Ware Purchase Invoice',
-     customer: { family: 'Gale', given: 'Dorothy' },
-     'bill-to': 
-      { city: 'East Centerville',
-        state: 'KS',
-        street: '123 Tornado Alley\nSuite 16\n' },
      'ship-to': 
-      { city: 'East Centerville',
-        state: 'KS',
-        street: '123 Tornado Alley\nSuite 16\n' } },
-  src: 'test\\yaml\\document.hbs',
+      { state: 'KS',
+        city: 'East Centerville',
+        street: '123 Tornado Alley\nSuite 16\n' },
+     'bill-to': 
+      { state: 'KS',
+        city: 'East Centerville',
+        street: '123 Tornado Alley\nSuite 16\n' },
+     receipt: 'Oz-Ware Purchase Invoice',
+     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>' },
   ext: '.html',
-  dest: 'test\\actual\\yaml\\document.html',
-  filename: 'document',
   basename: 'document',
-  assets: '../assets' }
+  filename: 'document',
+  src: 'test\\yaml\\document.hbs',
+  dest: 'test\\actual\\yaml\\document.html' }
 ```
 
       <ul>

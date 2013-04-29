@@ -92,36 +92,36 @@
 
       ``` 
 {
+  assets: '../assets',
   page: 
    { [Function]
-     [prototype]: { [constructor]: [Circular] 
-},
      [length]: 2,
+     [caller]: null,
      [arguments]: null,
      [name]: '',
-     [caller]: null },
+     [prototype]: { [constructor]: [Circular] 
+} },
   data: 
-   { movies: 
-      [ 'Casablanca',
-        'North by Northwest',
-        'The Man Who Wasn\'t There',
-        [length]: 3 ],
+   { methods: [ 'getter', 'setter', [length]: 2 ],
+     men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
+     groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
      women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
+     title: 'Almost a Haiku',
      people: 
       [ { name: 'John Smith', age: 33 },
         { name: 'Mary Smith', age: 27 },
         [length]: 2 ],
-     men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
-     groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
-     attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
-     methods: [ 'getter', 'setter', [length]: 2 ],
-     title: 'Almost a Haiku' },
-  src: 'test\\yaml\\lists.hbs',
+     movies: 
+      [ 'Casablanca',
+        'North by Northwest',
+        'The Man Who Wasn\'t There',
+        [length]: 3 ],
+     attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ] },
   ext: '.html',
-  dest: 'test\\actual\\yaml\\lists.html',
-  filename: 'lists',
   basename: 'lists',
-  assets: '../assets' }
+  filename: 'lists',
+  src: 'test\\yaml\\lists.hbs',
+  dest: 'test\\actual\\yaml\\lists.html' }
 ```
 
       <ul>
