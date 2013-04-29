@@ -117,45 +117,45 @@ Suite 16
 
       ``` 
 {
+  dest: 'test\\actual\\yaml\\document.html',
+  basename: 'document',
+  data: 
+   { receipt: 'Oz-Ware Purchase Invoice',
+     customer: { family: 'Gale', given: 'Dorothy' 
+},
+     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
+     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
+     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+     items: 
+      [ { price: 1.47,
+          quantity: 4,
+          part_no: 'A4786',
+          descrip: 'Water Bucket (Filled)' },
+        { price: 100.27,
+          quantity: 1,
+          part_no: 'E1628',
+          descrip: 'High Heeled "Ruby" Slippers',
+          size: 8 },
+        [length]: 2 ],
+     'bill-to': 
+      { city: 'East Centerville',
+        street: '123 Tornado Alley\nSuite 16\n',
+        state: 'KS' },
+     'ship-to': 
+      { city: 'East Centerville',
+        street: '123 Tornado Alley\nSuite 16\n',
+        state: 'KS' } },
   assets: '../assets',
   page: 
    { [Function]
-     [length]: 2,
-     [caller]: null,
-     [arguments]: null,
      [name]: '',
-     [prototype]: { [constructor]: [Circular] 
-} },
-  data: 
-   { customer: { family: 'Gale', given: 'Dorothy' },
-     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
-     items: 
-      [ { part_no: 'A4786',
-          descrip: 'Water Bucket (Filled)',
-          price: 1.47,
-          quantity: 4 },
-        { size: 8,
-          part_no: 'E1628',
-          descrip: 'High Heeled "Ruby" Slippers',
-          price: 100.27,
-          quantity: 1 },
-        [length]: 2 ],
-     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-     'ship-to': 
-      { state: 'KS',
-        city: 'East Centerville',
-        street: '123 Tornado Alley\nSuite 16\n' },
-     'bill-to': 
-      { state: 'KS',
-        city: 'East Centerville',
-        street: '123 Tornado Alley\nSuite 16\n' },
-     receipt: 'Oz-Ware Purchase Invoice',
-     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>' },
-  ext: '.html',
-  basename: 'document',
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] },
+     [length]: 2,
+     [arguments]: null },
   filename: 'document',
-  src: 'test\\yaml\\document.hbs',
-  dest: 'test\\actual\\yaml\\document.html' }
+  ext: '.html',
+  src: 'test\\yaml\\document.hbs' }
 ```
 
       <ul>
