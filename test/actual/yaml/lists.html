@@ -92,36 +92,28 @@
 
       ``` 
 {
-  dest: 'test\\actual\\yaml\\lists.html',
+  filename: 'lists',
   basename: 'lists',
+  src: 'test\\yaml\\lists.hbs',
+  dest: 'test\\actual\\yaml\\lists.html',
+  assets: '../assets',
+  ext: '.html',
+  page: [Function],
   data: 
-   { people: 
-      [ { name: 'John Smith', age: 33 
-},
-        { name: 'Mary Smith', age: 27 },
-        [length]: 2 ],
-     men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
-     groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
+   { title: 'Almost a Haiku',
+     attributes: [ 'attr1', 'attr2', 'attr3' ],
+     methods: [ 'getter', 'setter' ],
      movies: 
       [ 'Casablanca',
         'North by Northwest',
-        'The Man Who Wasn\'t There',
-        [length]: 3 ],
-     attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
-     title: 'Almost a Haiku',
-     methods: [ 'getter', 'setter', [length]: 2 ],
-     women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ] },
-  assets: '../assets',
-  page: 
-   { [Function]
-     [name]: '',
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] },
-     [length]: 2,
-     [arguments]: null },
-  filename: 'lists',
-  ext: '.html',
-  src: 'test\\yaml\\lists.hbs' }
+        'The Man Who Wasn\'t There' ],
+     groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice' ],
+     people: 
+      [ { name: 'John Smith', age: 33 
+},
+        { name: 'Mary Smith', age: 27 } ],
+     men: [ 'John Smith', 'Bill Jones' ],
+     women: [ 'Mary Smith', 'Susan Williams' ] } }
 ```
 
       <ul>

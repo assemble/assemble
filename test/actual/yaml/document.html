@@ -117,45 +117,38 @@ Suite 16
 
       ``` 
 {
-  dest: 'test\\actual\\yaml\\document.html',
+  filename: 'document',
   basename: 'document',
+  src: 'test\\yaml\\document.hbs',
+  dest: 'test\\actual\\yaml\\document.html',
+  assets: '../assets',
+  ext: '.html',
+  page: [Function],
   data: 
    { receipt: 'Oz-Ware Purchase Invoice',
-     customer: { family: 'Gale', given: 'Dorothy' 
-},
-     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
-     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
      date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
+     customer: { given: 'Dorothy', family: 'Gale' 
+},
      items: 
-      [ { price: 1.47,
-          quantity: 4,
-          part_no: 'A4786',
-          descrip: 'Water Bucket (Filled)' },
-        { price: 100.27,
-          quantity: 1,
-          part_no: 'E1628',
+      [ { part_no: 'A4786',
+          descrip: 'Water Bucket (Filled)',
+          price: 1.47,
+          quantity: 4 },
+        { part_no: 'E1628',
           descrip: 'High Heeled "Ruby" Slippers',
-          size: 8 },
-        [length]: 2 ],
+          size: 8,
+          price: 100.27,
+          quantity: 1 } ],
      'bill-to': 
-      { city: 'East Centerville',
-        street: '123 Tornado Alley\nSuite 16\n',
+      { street: '123 Tornado Alley\nSuite 16\n',
+        city: 'East Centerville',
         state: 'KS' },
      'ship-to': 
-      { city: 'East Centerville',
-        street: '123 Tornado Alley\nSuite 16\n',
-        state: 'KS' } },
-  assets: '../assets',
-  page: 
-   { [Function]
-     [name]: '',
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] },
-     [length]: 2,
-     [arguments]: null },
-  filename: 'document',
-  ext: '.html',
-  src: 'test\\yaml\\document.hbs' }
+      { street: '123 Tornado Alley\nSuite 16\n',
+        city: 'East Centerville',
+        state: 'KS' },
+     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n' } }
 ```
 
       <ul>
