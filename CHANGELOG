@@ -54,10 +54,6 @@ v0.3.13:
   date: "2013-03-16"
   changes:
     - new dashify and formatPhone helpers
-v0.1.0-v0.3.0:
-  date: "then-til-now"
-  changes:
-    - Leaned how to commit too many times while working on README.
 v0.1.0:
   date: "Stardate 45047.2"
   changes:
