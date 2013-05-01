@@ -38,17 +38,15 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "helper-lib": "https://github.com/assemble/helper-lib/tarball/master",
     "assemble-utils": "~0.1.0",
-    "lodash": "~1.1.1",
-    "handlebars": "~1.0.10"
+    "handlebars": "~1.0.10",
+    "helper-lib": "https://github.com/assemble/helper-lib/tarball/master",
+    "lodash": "~1.1.1"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "assemble-less": "~0.4.x",
     "chai": "~1.5.0",
+    "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.1.0",
-    "grunt-contrib-watch": "~0.2.0",
     "grunt-mocha-test": "~0.2.0"
   },
   "keywords": [
@@ -58,9 +56,9 @@
     "boilerplates",
     "bootstrap",
     "build and deployment",
+    "build bootstrap",
     "build system",
     "build",
-    "build bootstrap",
     "builder",
     "compile",
     "compiler",
@@ -109,8 +107,8 @@
     "toolkit",
     "utility",
     "web development",
-    "yaml",
+    "web framework",
     "yaml front matter",
-    "web framework"
+    "yaml"
   ]
 }

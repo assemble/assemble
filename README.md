@@ -1,15 +1,8 @@
-# [Assemble v0.3.73](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
+# [Assemble v0.3.74](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
 
 > Assemble makes it dead simple to build modular sites and components from reusable templates and data.
 
-
-_This project just launched **so expect frequent changes**._ And if you find this project interesting please consider starring it to receive updates.
-
-### Getting Help
-
-Assemble has many more features than we've been able to document thus far. So while we work to improve the docs, _please let us know if you have any questions or have any trouble getting Assemble to work. And feel free to create an [Issue][issues], we're here to help._
-
-#### [Please visit the wiki](http://github.com/assemble/assemble/wiki) 
+_This project just launched **so expect frequent changes**._ And if you find this project interesting please consider starring it to receive updates
 
 **Table of Contents**
 
@@ -555,22 +548,28 @@ Copyright 2013 Assemble
 [MIT License](LICENSE-MIT)
 
 ## Release History
-* 2013-04-06    v0.3.3    helper-lib properly externalized and wired up. Global variables for filename, ext and pages 
-* 2013-03-22    v0.3.22    Merged global and target level options so data and partial files can be joined 
-* 2013-03-22    v0.3.21    Valid YAML now allowed in options.data object (along with JSON) 
-* 2013-03-18    v0.3.14    new relative helper for resolving relative paths 
-* 2013-03-16    v0.3.13    new dashify and formatPhone helpers 
-* then-til-now    v0.1.0-v0.3.0    Leaned how to commit too many times while working on README. 
-* Stardate 45047.2    v0.1.0    Visited the uninhabited El-Adrel system. Returned home. Started assemble. 
+* 2013-04-28    v0.3.74    Updating the assemble library to use the assemble-utils repo and unnecessary code.
+* 2013-04-21    v0.3.73    Fixing how the relative path helper worked and showing an example in the footer of the layout. This example is hidden, but can be seen by doing view source.
+* 2013-04-20    v0.3.72    Fixing the layout override issue happening in the page yaml headers. Something was missed during refactoring.
+* 2013-04-19    v0.3.9    Adding tags and categories to the root context and ensure that the current page context values don't override the root context values.
+* 2013-04-18    v0.3.8    Updating to use actual assets property from current page.
+* 2013-04-17    v0.3.7    Cleaning up some unused folders and tests
+* 2013-04-16    v0.3.6    Fixed missing assets property.
+* 2013-04-16    v0.3.5    Adding a sections array to the template engine so it can be used in helpers.
+* 2013-04-11    v0.3.4    More tests for helpers and global variables, organized tests. A number of bug fixes.
+* 2013-04-06    v0.3.3    helper-lib properly externalized and wired up. Global variables for filename, ext and pages
+* 2013-03-22    v0.3.22    Merged global and target level options so data and partial files can be joined
+* 2013-03-22    v0.3.21    Valid YAML now allowed in options.data object (along with JSON)
+* 2013-03-18    v0.3.14    new relative helper for resolving relative paths
+* 2013-03-16    v0.3.13    new dashify and formatPhone helpers
+* Stardate 45047.2    v0.1.0    Visited the uninhabited El-Adrel system.Returned home.Started assemble.
 
 
-### Roadmap
-_(Big plans in the works)_
 
 ---
 Authored by [assemble](https://github.com/assemble/assemble)
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sat Apr 27 2013 11:52:54._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Tue Apr 30 2013 20:02:26._
 
 
 
