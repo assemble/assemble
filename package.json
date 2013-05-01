@@ -30,7 +30,7 @@
       "url": "https://github.com/assemble/assemble/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "Gruntfile.js",
+  "main": "./lib/assemble",
   "engines": {
     "node": ">= 0.8.0"
   },
