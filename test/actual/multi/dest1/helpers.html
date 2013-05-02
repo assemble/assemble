@@ -76,29 +76,22 @@
 
       ``` 
 {
-  dest: 'test\\actual\\multi\\dest1\\helpers.html',
-  basename: 'helpers',
-  data: 
-   { text: 'helpers.js',
-     url: 'http://gist.github.com/jonschlinkert/5193239',
-     links: [ 'one', 'two', 'three', [length]: 3 ],
-     moreLinks: 
-      [ { text: 'two', url: 'one' 
-},
-        { text: 'four', url: 'three' },
-        { text: 'size', url: 'five' },
-        [length]: 3 ] },
-  assets: '../../assets',
-  page: 
-   { [Function]
-     [name]: '',
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] },
-     [length]: 2,
-     [arguments]: null },
   filename: 'helpers',
+  basename: 'helpers',
+  src: 'test\\files\\helpers.hbs',
+  dest: 'test\\actual\\multi\\dest1\\helpers.html',
+  assets: '../../assets',
   ext: '.html',
-  src: 'test\\files\\helpers.hbs' }
+  page: [Function],
+  data: 
+   { url: 'http://gist.github.com/jonschlinkert/5193239',
+     text: 'helpers.js',
+     links: [ 'one', 'two', 'three' ],
+     moreLinks: 
+      [ { url: 'one', text: 'two' 
+},
+        { url: 'three', text: 'four' },
+        { url: 'five', text: 'size' } ] } }
 ```
 
       <ul>
