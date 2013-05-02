@@ -30,28 +30,17 @@
 
       ``` 
 {
-  dest: 'test\\actual\\page.html',
-  basename: 'page',
-  data: 
-   { links: 
-      [ './index',
-        'dest/context',
-        'dest/basic',
-        'dest/markdown',
-        [length]: 4 ],
-     title: 'Partials Test' 
-},
-  assets: 'assets',
-  page: 
-   { [Function]
-     [name]: '',
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] },
-     [length]: 2,
-     [arguments]: null },
   filename: 'page',
+  basename: 'page',
+  src: 'test\\files\\page.hbs',
+  dest: 'test\\actual\\page.html',
+  assets: 'assets',
   ext: '.html',
-  src: 'test\\files\\page.hbs' }
+  page: [Function],
+  data: 
+   { title: 'Partials Test',
+     links: [ './index', 'dest/context', 'dest/basic', 'dest/markdown' ] 
+} }
 ```
 
       <ul>

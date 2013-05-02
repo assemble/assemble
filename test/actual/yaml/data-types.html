@@ -34,30 +34,24 @@
 
       ``` 
 {
-  dest: 'test\\actual\\yaml\\data-types.html',
-  basename: 'data-types',
-  data: 
-   { dataTypes: 
-      { g: 'Yes',
-        a: 123,
-        f: 'Yes',
-        h: 'Yes we have No bananas',
-        c: 123,
-        b: '123',
-        e: '123' 
-},
-     title: 'Data Types' },
-  assets: '../assets',
-  page: 
-   { [Function]
-     [name]: '',
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] },
-     [length]: 2,
-     [arguments]: null },
   filename: 'data-types',
+  basename: 'data-types',
+  src: 'test\\yaml\\data-types.hbs',
+  dest: 'test\\actual\\yaml\\data-types.html',
+  assets: '../assets',
   ext: '.html',
-  src: 'test\\yaml\\data-types.hbs' }
+  page: [Function],
+  data: 
+   { title: 'Data Types',
+     dataTypes: 
+      { a: 123,
+        b: '123',
+        c: 123,
+        e: '123',
+        f: 'Yes',
+        g: 'Yes',
+        h: 'Yes we have No bananas' 
+} } }
 ```
 
       <ul>
