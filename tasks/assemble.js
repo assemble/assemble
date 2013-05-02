@@ -35,7 +35,7 @@ module.exports = function(grunt) {
 
     // functions for use in build steps
     var optionsConfiguration = function(assemble, next) {
-      grunt.log.writeln('validating options');
+      grunt.verbose.writeln('validating options');
 
       var src = false;
       assemble.files.forEach(function(fp) {
@@ -82,7 +82,7 @@ module.exports = function(grunt) {
     };
 
     var assembleDefaultLayout = function(assemble, next) {
-      grunt.log.writeln('assembling default layout');
+      grunt.log.writeln('assembling'  + ' default layout'.cyan);
 
       // load default layout
       var defaultLayoutData = {};
@@ -107,7 +107,7 @@ module.exports = function(grunt) {
     };
 
     var assemblePartials = function(assemble, next) {
-      grunt.log.writeln('assembling partials');
+      grunt.log.writeln('assembling'  + ' partials'.cyan);
 
       var complete = 0;
       var increment = 10;
@@ -117,11 +117,11 @@ module.exports = function(grunt) {
       if(partials && partials.length > 0) {
         complete = 0;
         increment = Math.round(partials.length / 10);
-        grunt.log.write(('\n' + 'Processing partials...').grey);
+        grunt.verbose.write(('\n' + 'Processing partials...').grey);
 
         partials.forEach(function(filepath) {
           var filename = _.first(filepath.match(assemble.filenameRegex)).replace(assemble.fileExtRegex, '');
-          grunt.verbose.writeln(('Processing ' + filename + ' partial').cyan);
+          grunt.log.ok(('Processing ' + filename.cyan + ' partial'));
           if(complete%increment === 0) {
             grunt.log.write('.'.cyan);
           }
@@ -147,14 +147,14 @@ module.exports = function(grunt) {
     };
 
     var assembleData = function(assemble, next) {
-      grunt.log.writeln('assembling data');
+      grunt.log.writeln('assembling' + ' data'.cyan);
 
       // load data if specified
       var dataFiles = assemble.dataFiles;
       if(dataFiles && dataFiles.length > 0) {
         complete = 0;
         increment = Math.round(dataFiles.length / 10);
-        grunt.log.writeln(('\n' + 'Begin processing data...').grey);
+        grunt.verbose.writeln(('\n' + 'Begin processing data...').grey);
 
         dataFiles.forEach(function(filepath) {
           var ext = path.extname(filepath);
@@ -182,7 +182,6 @@ module.exports = function(grunt) {
           }
           complete++;
         });
-        grunt.log.writeln('\n');
       }
 
       next(assemble);
@@ -190,7 +189,7 @@ module.exports = function(grunt) {
 
     var assemblePages = function(assemble, next) {
       // build each page
-      grunt.log.writeln(('\n' + 'Building pages...').grey);
+      grunt.verbose.writeln(('\n' + 'Building pages...').grey);
 
       var src = false;
 
@@ -327,31 +326,30 @@ module.exports = function(grunt) {
             done(false);
             return;
           }
-
           file.write(page.dest, result);
           grunt.log.ok('File ' + (page.basename + page.ext).magenta + ' created.' + ' ok '.green);
         }); // build
-
       });
+      grunt.log.ok((assemble.options.pages).length + ' pages rendered successfully.');
 
       next(assemble);
     };
 
     // assemble everything
     var assembler = assemble.init(this)
-        .step(optionsConfiguration)
-        .step(assembleDefaultLayout)
-        .step(assemblePartials)
-        .step(assembleData)
-        .step(assemblePages)
-        .step(renderPages)
-        .build(function(err, results) {
-          if(err) {
-            grunt.warn(err);
-            done(false);
-          }
-          done();
-        });
+      .step(optionsConfiguration)
+      .step(assembleDefaultLayout)
+      .step(assemblePartials)
+      .step(assembleData)
+      .step(assemblePages)
+      .step(renderPages)
+      .build(function(err, results) {
+        if(err) {
+          grunt.warn(err);
+          done(false);
+        }
+        done();
+      });
 
   });
 
