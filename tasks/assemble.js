@@ -121,7 +121,7 @@ module.exports = function(grunt) {
 
         partials.forEach(function(filepath) {
           var filename = _.first(filepath.match(assemble.filenameRegex)).replace(assemble.fileExtRegex, '');
-          grunt.log.ok(('Processing ' + filename.cyan + ' partial'));
+          grunt.verbose.ok(('Processing ' + filename.cyan + ' partial'));
           if(complete%increment === 0) {
             grunt.log.write('.'.cyan);
           }
