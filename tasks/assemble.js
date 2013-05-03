@@ -321,13 +321,21 @@ module.exports = function(grunt) {
         grunt.verbose.writeln(require('util').inspect(page));
 
         build(page, assemble, function(err, result) {
+          grunt.log.notverbose.write('File ' + (page.basename + page.ext).magenta +' processing. ');
+          grunt.verbose.write('File ' + (page.basename + page.ext).magenta +' processing.');
+
           if(err) {
+            grunt.verbose.write(" ");
+            grunt.log.error();
             grunt.warn(err);
             done(false);
             return;
           }
+          grunt.verbose.writeln('..');
           file.write(page.dest, result);
-          grunt.log.ok('File ' + (page.basename + page.ext).magenta + ' created.' + ' ok '.green);
+
+          grunt.verbose.writeln('...File ' + (page.basename + page.ext).magenta +' processed. '+'OK'.green);
+          grunt.log.notverbose.ok();
         }); // build
       });
       grunt.log.ok((assemble.options.pages).length + ' pages rendered successfully.');
