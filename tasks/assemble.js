@@ -295,6 +295,11 @@ module.exports = function(grunt) {
               data: pageContext
             };
 
+            if(pageObj.data.published === false){
+              grunt.log.writeln('Page ' + filename.magenta + ' has been set to published = false, '+'skipping.'.yellow);
+              return;
+            }
+
             pages.push(pageObj);
 
             tags = updateTags(tags, pageObj, pageContext);
