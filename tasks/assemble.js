@@ -27,6 +27,14 @@ module.exports = function(grunt) {
   var utils      = assemble.Utils;
   var extensions = utils.ExtensionMap;
 
+  //Removes extra whitespace around {{}}-elements somewhat like .mustache does.
+  var removeHbsWhitespace = function(assemble,filecontent){
+    if(assemble.options.removeHbsWhitespace){
+      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{\{[^}]+?\}\}\})(?=(\n|\r|\n\r))/gi,"$2");
+      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{[^}]+?\}\})(?=(\n|\r|\n\r))/gi,"$2");
+    }
+    return filecontent;
+  };
 
   grunt.registerMultiTask('assemble', 'Compile template files with specified engines', function(){
 
@@ -132,6 +140,9 @@ module.exports = function(grunt) {
           }
 
           var partial = fs.readFileSync(filepath, 'utf8');
+
+          //If remove hbs whitespace...
+          partial = removeHbsWhitespace(assemble,partial);
 
           partial = assemble.engine.compile(partial, {
             preprocessers: [
@@ -274,6 +285,9 @@ module.exports = function(grunt) {
           try {
             grunt.verbose.writeln('compiling page ' + filename.magenta);
             var pageContext = {};
+
+            //If remove hbs whitespace...
+            page = removeHbsWhitespace(assemble,page);
 
             page = assemble.engine.compile(page, {
               preprocessers: [
@@ -552,6 +566,9 @@ module.exports = function(grunt) {
       layoutName = _.first(layout.match(assemble.filenameRegex)).replace(assemble.fileExtRegex,'');
       layout = fs.readFileSync(layout, 'utf8');
     }
+
+    //If remove hbs whitespace...
+    layout = removeHbsWhitespace(assemble,layout);
 
     var layoutData = {};
     layout = assemble.engine.compile(layout, {
