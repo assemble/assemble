@@ -27,6 +27,14 @@ module.exports = function(grunt) {
   var utils      = assemble.Utils;
   var extensions = utils.ExtensionMap;
 
+  //Removes extra whitespace around {{}}-elements somewhat like .mustache does.
+  var removeHbsWhitespace = function(assemble,filecontent){
+    if(assemble.options.removeHbsWhitespace){
+      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{\{[^}]+?\}\}\})(?=(\n|\r|\n\r))/gi,"$2");
+      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{[^}]+?\}\})(?=(\n|\r|\n\r))/gi,"$2");
+    }
+    return filecontent;
+  };
 
   grunt.registerMultiTask('assemble', 'Compile template files with specified engines', function(){
 
@@ -36,6 +44,11 @@ module.exports = function(grunt) {
     // functions for use in build steps
     var optionsConfiguration = function(assemble, next) {
       grunt.verbose.writeln('validating options');
+
+      if(_.endsWith(assemble.options.ext, '.')) {
+        grunt.warn("Invalid ext '" + assemble.options.ext + "'. ext cannot end with a period.");
+        done(false);
+      }
 
       var src = false;
       assemble.files.forEach(function(fp) {
@@ -124,6 +137,9 @@ module.exports = function(grunt) {
           grunt.verbose.ok(('Processing ' + filename.cyan + ' partial'));
 
           var partial = fs.readFileSync(filepath, 'utf8');
+
+          //If remove hbs whitespace...
+          partial = removeHbsWhitespace(assemble,partial);
 
           partial = assemble.engine.compile(partial, {
             preprocessers: [
@@ -262,6 +278,9 @@ module.exports = function(grunt) {
             grunt.verbose.writeln('compiling page ' + filename.magenta);
             var pageContext = {};
 
+            //If remove hbs whitespace...
+            page = removeHbsWhitespace(assemble,page);
+
             page = assemble.engine.compile(page, {
               preprocessers: [
                 assemble.yamlPreprocessor(filename, function(output) {
@@ -281,6 +300,11 @@ module.exports = function(grunt) {
               page: page,
               data: pageContext
             };
+
+            if(pageObj.data.published === false){
+              grunt.log.writeln('Page ' + filename.magenta + ' has been set to published = false, '+'skipping.'.yellow);
+              return;
+            }
 
             pages.push(pageObj);
 
@@ -313,13 +337,21 @@ module.exports = function(grunt) {
         grunt.verbose.writeln(require('util').inspect(page));
 
         build(page, assemble, function(err, result) {
+          grunt.log.notverbose.write('File ' + (page.basename + page.ext).magenta +' processing. ');
+          grunt.verbose.write('File ' + (page.basename + page.ext).magenta +' processing.');
+
           if(err) {
+            grunt.verbose.write(" ");
+            grunt.log.error();
             grunt.warn(err);
             done(false);
             return;
           }
+          grunt.verbose.writeln('..');
           file.write(page.dest, result);
-          grunt.log.ok('File ' + (page.basename + page.ext).magenta + ' created.' + ' ok '.green);
+
+          grunt.verbose.writeln('...File ' + (page.basename + page.ext).magenta +' processed. '+'OK'.green);
+          grunt.log.notverbose.ok();
         }); // build
       });
       grunt.log.ok((assemble.options.pages).length + ' pages rendered successfully.');
@@ -526,6 +558,9 @@ module.exports = function(grunt) {
       layoutName = _.first(layout.match(assemble.filenameRegex)).replace(assemble.fileExtRegex,'');
       layout = fs.readFileSync(layout, 'utf8');
     }
+
+    //If remove hbs whitespace...
+    layout = removeHbsWhitespace(assemble,layout);
 
     var layoutData = {};
     layout = assemble.engine.compile(layout, {
