@@ -30,8 +30,8 @@ module.exports = function(grunt) {
   //Removes extra whitespace around {{}}-elements somewhat like .mustache does.
   var removeHbsWhitespace = function(assemble,filecontent){
     if(assemble.options.removeHbsWhitespace){
-      filecontent = filecontent.replace(/\n\s*(\{\{\{[^}]+?\}\}\}\n)/gi,"$1");
-      filecontent = filecontent.replace(/\n\s*(\{\{[^}]+?\}\}\n)/gi,"$1");
+      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{\{[^}]+?\}\}\})(?=(\n|\r|\n\r))/gi,"$2");
+      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{[^}]+?\}\})(?=(\n|\r|\n\r))/gi,"$2");
     }
     return filecontent;
   };
