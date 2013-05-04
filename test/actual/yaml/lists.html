@@ -92,28 +92,36 @@
 
       ``` 
 {
+  ext: '.html',
+  src: 'test\\yaml\\lists.hbs',
+  assets: '../assets',
+  dest: 'test\\actual\\yaml\\lists.html',
+  page: 
+   { [Function]
+     [arguments]: null,
+     [prototype]: { [constructor]: [Circular] 
+},
+     [name]: '',
+     [caller]: null,
+     [length]: 2 },
   filename: 'lists',
   basename: 'lists',
-  src: 'test\\yaml\\lists.hbs',
-  dest: 'test\\actual\\yaml\\lists.html',
-  assets: '../assets',
-  ext: '.html',
-  page: [Function],
   data: 
-   { title: 'Almost a Haiku',
-     attributes: [ 'attr1', 'attr2', 'attr3' ],
-     methods: [ 'getter', 'setter' ],
+   { methods: [ 'getter', 'setter', [length]: 2 ],
+     women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
+     attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
+     people: 
+      [ { age: 33, name: 'John Smith' },
+        { age: 27, name: 'Mary Smith' },
+        [length]: 2 ],
+     men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
+     title: 'Almost a Haiku',
      movies: 
       [ 'Casablanca',
         'North by Northwest',
-        'The Man Who Wasn\'t There' ],
-     groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice' ],
-     people: 
-      [ { name: 'John Smith', age: 33 
-},
-        { name: 'Mary Smith', age: 27 } ],
-     men: [ 'John Smith', 'Bill Jones' ],
-     women: [ 'Mary Smith', 'Susan Williams' ] } }
+        'The Man Who Wasn\'t There',
+        [length]: 3 ],
+     groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ] } }
 ```
 
       <ul>
