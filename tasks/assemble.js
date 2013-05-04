@@ -37,6 +37,11 @@ module.exports = function(grunt) {
     var optionsConfiguration = function(assemble, next) {
       grunt.verbose.writeln('validating options');
 
+      if(_.endsWith(assemble.options.ext, '.')) {
+        grunt.warn("Invalid ext '" + assemble.options.ext + "'. ext cannot end with a period.");
+        done(false);
+      }
+
       var src = false;
       assemble.files.forEach(function(fp) {
         if(!src) {
