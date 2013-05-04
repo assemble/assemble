@@ -1,7 +1,7 @@
 ---
 url: http://gist.github.com/jonschlinkert/5193239
 text: helpers.js
-links: 
+links:
   - one
   - two
   - three
@@ -9,10 +9,10 @@ links:
 moreLinks:
   -
     url: one
-    text: two  
+    text: two
   -
     url: three
-    text: four  
+    text: four
   -
     url: five
     text: size
@@ -25,7 +25,7 @@ moreLinks:
 {{/ul}}
 
 {{#ul moreLinks class="nav"}}
-  <a href="{{url}}">{{text}}</a> 
+  <a href="{{url}}">{{text}}</a>
 {{/ul}}
 
 ## ol
@@ -34,16 +34,16 @@ moreLinks:
 {{/ol}}
 
 {{#ol moreLinks class="nav"}}
-  <a href="{{url}}">{{text}}</a> 
+  <a href="{{url}}">{{text}}</a>
 {{/ol}}
 
 
 
 
-## link
-{{link url text}}
-{{link 'http://github.com' 'GitHub'}}
-{{link 'http://github.com' 'GitHub' 'nav-link'}}
+## href
+{{href url text}}
+{{href 'http://github.com' 'GitHub'}}
+{{href 'http://github.com' 'GitHub' 'nav-link'}}
 
 
 

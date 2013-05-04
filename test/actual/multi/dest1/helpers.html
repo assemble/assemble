@@ -21,13 +21,13 @@
 
 </p>
 <p>&lt;ul class=&quot;nav&quot;&gt;&lt;li&gt;
-  &lt;a href=&quot;one&quot;&gt;two&lt;/a&gt; 
+  &lt;a href=&quot;one&quot;&gt;two&lt;/a&gt;
 &lt;/li&gt;
 &lt;li&gt;
-  &lt;a href=&quot;three&quot;&gt;four&lt;/a&gt; 
+  &lt;a href=&quot;three&quot;&gt;four&lt;/a&gt;
 &lt;/li&gt;
 &lt;li&gt;
-  &lt;a href=&quot;five&quot;&gt;size&lt;/a&gt; 
+  &lt;a href=&quot;five&quot;&gt;size&lt;/a&gt;
 &lt;/li&gt;&lt;/ul&gt;
 
 </p>
@@ -44,20 +44,20 @@
 
 </p>
 <p>&lt;ol class=&quot;nav&quot;&gt;&lt;li&gt;
-  &lt;a href=&quot;one&quot;&gt;two&lt;/a&gt; 
+  &lt;a href=&quot;one&quot;&gt;two&lt;/a&gt;
 &lt;/li&gt;
 &lt;li&gt;
-  &lt;a href=&quot;three&quot;&gt;four&lt;/a&gt; 
+  &lt;a href=&quot;three&quot;&gt;four&lt;/a&gt;
 &lt;/li&gt;
 &lt;li&gt;
-  &lt;a href=&quot;five&quot;&gt;size&lt;/a&gt; 
+  &lt;a href=&quot;five&quot;&gt;size&lt;/a&gt;
 &lt;/li&gt;&lt;/ol&gt;
 
 
 
 
 </p>
-<h2>link</h2>
+<h2>href</h2>
 <p>&lt;a class=&quot;&quot; href=&quot;http://gist.github.com/jonschlinkert/5193239&quot; title=&quot;helpers.js&quot;&gt;helpers.js&lt;/a&gt;
 &lt;a class=&quot;&quot; href=&quot;http://github.com&quot; title=&quot;GitHub&quot;&gt;GitHub&lt;/a&gt;
 &lt;a class=&quot;nav-link&quot; href=&quot;http://github.com&quot; title=&quot;GitHub&quot;&gt;GitHub&lt;/a&gt;</p>
@@ -76,22 +76,29 @@
 
       ``` 
 {
+  ext: '.html',
+  src: 'test\\files\\helpers.hbs',
+  assets: '../../assets',
+  dest: 'test\\actual\\multi\\dest1\\helpers.html',
+  page: 
+   { [Function]
+     [arguments]: null,
+     [prototype]: { [constructor]: [Circular] 
+},
+     [name]: '',
+     [caller]: null,
+     [length]: 2 },
   filename: 'helpers',
   basename: 'helpers',
-  src: 'test\\files\\helpers.hbs',
-  dest: 'test\\actual\\multi\\dest1\\helpers.html',
-  assets: '../../assets',
-  ext: '.html',
-  page: [Function],
   data: 
-   { url: 'http://gist.github.com/jonschlinkert/5193239',
-     text: 'helpers.js',
-     links: [ 'one', 'two', 'three' ],
+   { links: [ 'one', 'two', 'three', [length]: 3 ],
      moreLinks: 
-      [ { url: 'one', text: 'two' 
-},
-        { url: 'three', text: 'four' },
-        { url: 'five', text: 'size' } ] } }
+      [ { text: 'two', url: 'one' },
+        { text: 'four', url: 'three' },
+        { text: 'size', url: 'five' },
+        [length]: 3 ],
+     text: 'helpers.js',
+     url: 'http://gist.github.com/jonschlinkert/5193239' } }
 ```
 
       <ul>
