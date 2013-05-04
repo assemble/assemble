@@ -41,13 +41,16 @@
     "assemble-utils": "~0.1.0",
     "handlebars": "~1.0.10",
     "helper-lib": "https://github.com/assemble/helper-lib/tarball/master",
-    "lodash": "~1.1.1"
+    "lodash": "~1.1.1",
+    "marked": "~0.2.8",
+    "highlight.js": "~7.3.0"
   },
   "devDependencies": {
     "chai": "~1.5.0",
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.1.0",
-    "grunt-mocha-test": "~0.2.0"
+    "grunt-mocha-test": "~0.2.0",
+    "js-yaml": "~2.0.5"
   },
   "keywords": [
     "blog generator",
