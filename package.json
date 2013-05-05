@@ -43,7 +43,8 @@
     "helper-lib": "https://github.com/assemble/helper-lib/tarball/master",
     "lodash": "~1.1.1",
     "marked": "~0.2.8",
-    "highlight.js": "~7.3.0"
+    "highlight.js": "~7.3.0",
+    "assemble-handlebars": "https://github.com/assemble/assemble-handlebars/tarball/master"
   },
   "devDependencies": {
     "chai": "~1.5.0",
