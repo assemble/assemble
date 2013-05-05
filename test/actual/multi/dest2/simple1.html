@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <title>YAML Test</title>
-    <link href="../../assets/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
-  <body>
+  <body style="padding-top: 60px;">
     <div class="container">
       ## Some Markdown
 
@@ -19,24 +19,17 @@
 
     <div class="container" style="display: none">
       <h3>Debug Info</h3>
-
       ``` 
 {
-  ext: '.html',
-  src: 'test\\files\\simple1.md',
-  assets: '../../assets',
-  dest: 'test\\actual\\multi\\dest2\\simple1.html',
-  page: 
-   { [Function]
-     [arguments]: null,
-     [prototype]: { [constructor]: [Circular] 
-},
-     [name]: '',
-     [caller]: null,
-     [length]: 2 },
   filename: 'simple1',
   basename: 'simple1',
-  data: {} }
+  src: 'test\\files\\simple1.md',
+  dest: 'test\\actual\\multi\\dest2\\simple1.html',
+  assets: '../../assets',
+  ext: '.html',
+  page: [Function],
+  data: {
+} }
 ```
 
       <ul>

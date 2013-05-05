@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <title>YAML Test</title>
-    <link href="../../../assets/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
-  <body>
+  <body style="padding-top: 60px;">
     <div class="container">
       
 <h2>ul</h2>
@@ -73,32 +73,24 @@
 
     <div class="container" style="display: none">
       <h3>Debug Info</h3>
-
       ``` 
 {
-  ext: '.html',
-  src: 'test\\files\\helpers.hbs',
-  assets: '../../../assets',
-  dest: 'test\\actual\\multi\\dest2\\sub-dest\\helpers.html',
-  page: 
-   { [Function]
-     [arguments]: null,
-     [prototype]: { [constructor]: [Circular] 
-},
-     [name]: '',
-     [caller]: null,
-     [length]: 2 },
   filename: 'helpers',
   basename: 'helpers',
+  src: 'test\\files\\helpers.hbs',
+  dest: 'test\\actual\\multi\\dest2\\sub-dest\\helpers.html',
+  assets: '../../../assets',
+  ext: '.html',
+  page: [Function],
   data: 
-   { links: [ 'one', 'two', 'three', [length]: 3 ],
-     moreLinks: 
-      [ { text: 'two', url: 'one' },
-        { text: 'four', url: 'three' },
-        { text: 'size', url: 'five' },
-        [length]: 3 ],
+   { url: 'http://gist.github.com/jonschlinkert/5193239',
      text: 'helpers.js',
-     url: 'http://gist.github.com/jonschlinkert/5193239' } }
+     links: [ 'one', 'two', 'three' ],
+     moreLinks: 
+      [ { url: 'one', text: 'two' 
+},
+        { url: 'three', text: 'four' },
+        { url: 'five', text: 'size' } ] } }
 ```
 
       <ul>

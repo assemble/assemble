@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <title>Associative arrays</title>
-    <link href="../assets/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
-  <body>
+  <body style="padding-top: 60px;">
     <div class="container">
       
 <div class="page-header">
@@ -29,27 +29,20 @@
 
     <div class="container" style="display: none">
       <h3>Debug Info</h3>
-
       ``` 
 {
-  ext: '.html',
-  src: 'test\\yaml\\associative-arrays.hbs',
-  assets: '../assets',
-  dest: 'test\\actual\\yaml\\associative-arrays.html',
-  page: 
-   { [Function]
-     [arguments]: null,
-     [prototype]: { [constructor]: [Circular] 
-},
-     [name]: '',
-     [caller]: null,
-     [length]: 2 },
   filename: 'associative-arrays',
   basename: 'associative-arrays',
+  src: 'test\\yaml\\associative-arrays.hbs',
+  dest: 'test\\actual\\yaml\\associative-arrays.html',
+  assets: '../assets',
+  ext: '.html',
+  page: [Function],
   data: 
-   { morePeople: { age: 21, name: 'Grace Jones' },
-     people: { age: 33, name: 'John Smith' },
-     title: 'Associative arrays' } }
+   { title: 'Associative arrays',
+     people: { name: 'John Smith', age: 33 
+},
+     morePeople: { name: 'Grace Jones', age: 21 } } }
 ```
 
       <ul>

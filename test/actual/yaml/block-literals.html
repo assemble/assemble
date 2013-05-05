@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <title>Block Literals</title>
-    <link href="../assets/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
-  <body>
+  <body style="padding-top: 60px;">
     <div class="container">
       
 <div class="page-header">
@@ -34,27 +34,20 @@ old pond . . . a frog leaps in water’s sound
 
     <div class="container" style="display: none">
       <h3>Debug Info</h3>
-
       ``` 
 {
-  ext: '.html',
-  src: 'test\\yaml\\block-literals.hbs',
-  assets: '../assets',
-  dest: 'test\\actual\\yaml\\block-literals.html',
-  page: 
-   { [Function]
-     [arguments]: null,
-     [prototype]: { [constructor]: [Circular] 
-},
-     [name]: '',
-     [caller]: null,
-     [length]: 2 },
   filename: 'block-literals',
   basename: 'block-literals',
+  src: 'test\\yaml\\block-literals.hbs',
+  dest: 'test\\actual\\yaml\\block-literals.html',
+  assets: '../assets',
+  ext: '.html',
+  page: [Function],
   data: 
-   { another: 'old pond . . . a frog leaps in water’s sound\n',
+   { title: 'Block Literals',
      poem: 'old pond . . .\na frog leaps in\nwater’s sound\n',
-     title: 'Block Literals' } }
+     another: 'old pond . . . a frog leaps in water’s sound\n' 
+} }
 ```
 
       <ul>

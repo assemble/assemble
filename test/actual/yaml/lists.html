@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <title>Almost a Haiku</title>
-    <link href="../assets/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
-  <body>
+  <body style="padding-top: 60px;">
     <div class="container">
       
 <div class="page-header">
@@ -89,39 +89,30 @@
 
     <div class="container" style="display: none">
       <h3>Debug Info</h3>
-
       ``` 
 {
-  ext: '.html',
-  src: 'test\\yaml\\lists.hbs',
-  assets: '../assets',
-  dest: 'test\\actual\\yaml\\lists.html',
-  page: 
-   { [Function]
-     [arguments]: null,
-     [prototype]: { [constructor]: [Circular] 
-},
-     [name]: '',
-     [caller]: null,
-     [length]: 2 },
   filename: 'lists',
   basename: 'lists',
+  src: 'test\\yaml\\lists.hbs',
+  dest: 'test\\actual\\yaml\\lists.html',
+  assets: '../assets',
+  ext: '.html',
+  page: [Function],
   data: 
-   { methods: [ 'getter', 'setter', [length]: 2 ],
-     women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
-     attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
-     people: 
-      [ { age: 33, name: 'John Smith' },
-        { age: 27, name: 'Mary Smith' },
-        [length]: 2 ],
-     men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
-     title: 'Almost a Haiku',
+   { title: 'Almost a Haiku',
+     attributes: [ 'attr1', 'attr2', 'attr3' ],
+     methods: [ 'getter', 'setter' ],
      movies: 
       [ 'Casablanca',
         'North by Northwest',
-        'The Man Who Wasn\'t There',
-        [length]: 3 ],
-     groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ] } }
+        'The Man Who Wasn\'t There' ],
+     groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice' ],
+     people: 
+      [ { name: 'John Smith', age: 33 
+},
+        { name: 'Mary Smith', age: 27 } ],
+     men: [ 'John Smith', 'Bill Jones' ],
+     women: [ 'Mary Smith', 'Susan Williams' ] } }
 ```
 
       <ul>
