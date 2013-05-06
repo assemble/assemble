@@ -23,9 +23,7 @@ module.exports = function(grunt) {
   var lodash = require('lodash'); // required to ensure correct version is used
 
   // Assemble utils
-  var assemble   = require('../lib/assemble');
-  var utils      = assemble.Utils;
-  var extensions = utils.ExtensionMap;
+  var assemble = require('../lib/assemble');
 
   //Removes extra whitespace around {{}}-elements somewhat like .mustache does.
   var removeHbsWhitespace = function(assemble,filecontent){
@@ -40,6 +38,7 @@ module.exports = function(grunt) {
 
     var done = this.async();
     var self = this;
+
 
     // functions for use in build steps
     var optionsConfiguration = function(assemble, next) {
@@ -69,17 +68,14 @@ module.exports = function(grunt) {
         done(false);
       }
 
-      assemble.engineLoader = utils.EngineLoader(assemble.options);
-      var engine = null;
-      assemble.engineLoader.getEngine(function(err, results) {
-        if(err) {
-          console.log(err);
-          return;
-        }
-        engine = assemble.engine = results;
-      });
+      //assemble.engineLoader = utils.EngineLoader(assemble.options);
+      assemble.engine.load(assemble.options.engine);
 
-      assemble.yamlPreprocessor = assemble.engineLoader.getPreprocessor('YamlPreprocessor');
+      var registerFunctions = function() { assemble.engine.registerFunctions(); };
+      assemble.options.registerFunctions = assemble.options.registerFunctions || registerFunctions;
+
+      var registerPartial = function(filename, content) { assemble.engine.registerPartial(filename, content); };
+      assemble.options.registerPartial = assemble.options.registerPartial || registerPartial;
 
       assemble.fileExt = extension(src);
       assemble.filenameRegex = /[^\\\/:*?"<>|\r\n]+$/i;
@@ -91,10 +87,13 @@ module.exports = function(grunt) {
       assemble.dataFiles = file.expand(assemble.options.data);
       assemble.options.data = {};
 
+      assemble.options.registerFunctions();
+
       next(assemble);
     };
 
     var assembleDefaultLayout = function(assemble, next) {
+      grunt.verbose.writeln('assembleing default layout');
       grunt.log.writeln('assembling'  + ' default layout'.cyan);
 
       // load default layout
@@ -114,12 +113,14 @@ module.exports = function(grunt) {
         });
 
       // merge any layoutData with options
-      assemble.options.data = _.extend(defaultLayoutData.context, assemble.options.data || {});
+      assemble.options.data = _.extend(defaultLayoutData.context || {}, assemble.options.data || {});
+      grunt.verbose.writeln(assemble.options.data);
 
       next(assemble);
     };
 
     var assemblePartials = function(assemble, next) {
+      grunt.verbose.writeln('assembling partials');
       grunt.log.writeln('assembling'  + ' partials'.cyan);
 
       var complete = 0;
@@ -141,16 +142,13 @@ module.exports = function(grunt) {
           //If remove hbs whitespace...
           partial = removeHbsWhitespace(assemble,partial);
 
-          partial = assemble.engine.compile(partial, {
-            preprocessers: [
-              assemble.yamlPreprocessor(filename, function(output) {
-                assemble.options.data[output.name] = _.extend(output.output.context, assemble.options.data[output.name] || {});
-              })
-            ]
-          });
+          // get the data
+          var partialInfo = assemble.data.readYFM(partial, {fromFile: false});
+          assemble.options.data[filename] = _.extend(partialInfo.context || {}, assemble.options.data[filename] || {});
 
-          // register the partial with the engine
-          assemble.engine.engine.registerPartial(filename, partial);
+          // register the partial
+          assemble.options.registerPartial(filename, partialInfo.content);
+
           complete++;
         });
       }
@@ -196,6 +194,7 @@ module.exports = function(grunt) {
     };
 
     var assemblePages = function(assemble, next) {
+      grunt.verbose.writeln('assembling pages');
       // build each page
       grunt.verbose.writeln(('\n' + 'Building pages...').grey);
 
@@ -281,13 +280,16 @@ module.exports = function(grunt) {
             //If remove hbs whitespace...
             page = removeHbsWhitespace(assemble,page);
 
-            page = assemble.engine.compile(page, {
-              preprocessers: [
-                assemble.yamlPreprocessor(filename, function(output) {
-                  grunt.verbose.writeln(output.name + ' data retreived');
-                  pageContext = output.output.context;
-                })
-              ]
+            var pageInfo = assemble.data.readYFM(page, {fromFile: false});
+            pageContext = pageInfo.context;
+
+            // compile
+            assemble.engine.compile(pageInfo.content, null, function(err, tmpl) {
+              if(err) {
+                grunt.warn(err);
+                done(false);
+              }
+              page = tmpl;
             });
 
             var pageObj = {
@@ -504,14 +506,16 @@ module.exports = function(grunt) {
       // make sure the currentPage assets is used
       context.assets = currentPage.assets;
 
-      // add a sections array to the engine to be used by
-      // helpers
-      assemble.engine.engine.sections = [];
+      assemble.options.registerPartial('body', page);
 
-      assemble.engine.engine.registerPartial("body", page);
-      page = layout(context);
+      assemble.engine.render(layout, context, function(err, content) {
+        if(err) {
+          callback(err);
+        }
+        page = content;
+        callback(null, page);
+      });
 
-      callback(null, page);
     } catch(err) {
       callback(err);
       return;
@@ -562,14 +566,16 @@ module.exports = function(grunt) {
     //If remove hbs whitespace...
     layout = removeHbsWhitespace(assemble,layout);
 
-    var layoutData = {};
-    layout = assemble.engine.compile(layout, {
-      preprocessers: [
-        assemble.yamlPreprocessor(layoutName, function(output) {
-          grunt.verbose.writeln(output.name + ' data retreived');
-          layoutData = output.output;
-        })
-      ]
+    var layoutInfo = assemble.data.readYFM(layout, {fromFile: false});
+    var layoutData = layoutInfo.context;
+    assemble.engine.compile(layoutInfo.content, null, function(err, tmpl) {
+      if(err) {
+        grunt.warn(err);
+        if(callback) {
+          callback(err);
+        }
+      }
+      layout = tmpl;
     });
 
     var results = {
@@ -600,7 +606,7 @@ module.exports = function(grunt) {
 
   var getEngineOf = function(fileName) {
     var ext = extension(fileName);
-    return  _( _(extensions).keys() ).include(ext) ? extensions[ext] : false;
+    return  _( _(assemble.engine.extensions).keys() ).include(ext) ? assemble.engine.extensions[ext] : false;
   };
 
   var extension = function(fileName) {
