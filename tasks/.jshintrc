@@ -12,6 +12,6 @@
   "globals": {
     "module": true,
     "exports": true,
-    "define": true
+    "require": true
   }
 }
