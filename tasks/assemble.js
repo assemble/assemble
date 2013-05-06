@@ -292,7 +292,7 @@ module.exports = function(grunt) {
             pageContext = pageInfo.context;
 
             // compile
-            assemble.engine.compile(page, null, function(err, tmpl) {
+            assemble.engine.compile(pageInfo.content, null, function(err, tmpl) {
               if(err) {
                 grunt.warn(err);
                 done(false);
@@ -576,7 +576,7 @@ module.exports = function(grunt) {
 
     var layoutInfo = assemble.data.readYFM(layout, {fromFile: false});
     var layoutData = layoutInfo.context;
-    assemble.engine.compile(layout, null, function(err, tmpl) {
+    assemble.engine.compile(layoutInfo.content, null, function(err, tmpl) {
       if(err) {
         grunt.warn(err);
         if(callback) {
