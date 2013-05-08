@@ -1,7 +1,7 @@
 {
   "name": "assemble",
   "description": "Get the rocks out of your socks. Assemble helps you quickly launch static web projects by emphasizing a strong separation of concerns between structure, style, content and configuration.",
-  "version": "0.3.76",
+  "version": "0.3.77",
   "repo": "assemble/assemble",
   "main": [
     "./lib/assemble.js"

@@ -3,16 +3,15 @@
   <head>
     <meta charset="UTF-8">
     <title>{{#if title}}{{title}}{{else}}YAML Test{{/if}}</title>
-    <link href="{{assets}}/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
-  <body>
+  <body style="padding-top: 60px;">
     <div class="container">
       {{> body }}
     </div>
 
     <div class="container" style="display: none">
       <h3>Debug Info</h3>
-
       {{inspect currentPage}}
 
       <ul>

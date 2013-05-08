@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <title>Data Types</title>
-    <link href="../assets/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
-  <body>
+  <body style="padding-top: 60px;">
     <div class="container">
       
 <div class="page-header">
@@ -31,33 +31,26 @@
 
     <div class="container" style="display: none">
       <h3>Debug Info</h3>
-
       ``` 
 {
-  ext: '.html',
-  src: 'test\\yaml\\data-types.hbs',
-  assets: '../assets',
-  dest: 'test\\actual\\yaml\\data-types.html',
-  page: 
-   { [Function]
-     [arguments]: null,
-     [prototype]: { [constructor]: [Circular] 
-},
-     [name]: '',
-     [caller]: null,
-     [length]: 2 },
   filename: 'data-types',
   basename: 'data-types',
+  src: 'test\\yaml\\data-types.hbs',
+  dest: 'test\\actual\\yaml\\data-types.html',
+  assets: '../assets',
+  ext: '.html',
+  page: [Function],
   data: 
-   { dataTypes: 
-      { e: '123',
-        a: 123,
-        f: 'Yes',
+   { title: 'Data Types',
+     dataTypes: 
+      { a: 123,
         b: '123',
-        h: 'Yes we have No bananas',
+        c: 123,
+        e: '123',
+        f: 'Yes',
         g: 'Yes',
-        c: 123 },
-     title: 'Data Types' } }
+        h: 'Yes we have No bananas' 
+} } }
 ```
 
       <ul>
