@@ -71,7 +71,7 @@ module.exports = function(grunt) {
       //assemble.engineLoader = utils.EngineLoader(assemble.options);
       assemble.engine.load(assemble.options.engine);
 
-      var registerFunctions = function(engine) { engine.registerFunctions({}); };
+      var registerFunctions = function(engine) { engine.registerFunctions(); };
       assemble.options.registerFunctions = assemble.options.registerFunctions || registerFunctions;
 
       var registerPartial = function(engine, filename, content) { engine.registerPartial(filename, content); };
