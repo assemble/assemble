@@ -71,10 +71,10 @@ module.exports = function(grunt) {
       //assemble.engineLoader = utils.EngineLoader(assemble.options);
       assemble.engine.load(assemble.options.engine);
 
-      var registerFunctions = function() { assemble.engine.registerFunctions(); };
+      var registerFunctions = function(engine) { engine.registerFunctions({}); };
       assemble.options.registerFunctions = assemble.options.registerFunctions || registerFunctions;
 
-      var registerPartial = function(filename, content) { assemble.engine.registerPartial(filename, content); };
+      var registerPartial = function(engine, filename, content) { engine.registerPartial(filename, content); };
       assemble.options.registerPartial = assemble.options.registerPartial || registerPartial;
 
       assemble.fileExt = extension(src);
@@ -87,7 +87,7 @@ module.exports = function(grunt) {
       assemble.dataFiles = file.expand(assemble.options.data);
       assemble.options.data = {};
 
-      assemble.options.registerFunctions();
+      assemble.options.registerFunctions(assemble.engine);
 
       next(assemble);
     };
@@ -147,7 +147,7 @@ module.exports = function(grunt) {
           assemble.options.data[filename] = _.extend(partialInfo.context || {}, assemble.options.data[filename] || {});
 
           // register the partial
-          assemble.options.registerPartial(filename, partialInfo.content);
+          assemble.options.registerPartial(assemble.engine, filename, partialInfo.content);
 
           complete++;
         });
@@ -506,7 +506,7 @@ module.exports = function(grunt) {
       // make sure the currentPage assets is used
       context.assets = currentPage.assets;
 
-      assemble.options.registerPartial('body', page);
+      assemble.options.registerPartial(assemble.engine, 'body', page);
 
       assemble.engine.render(layout, context, function(err, content) {
         if(err) {
