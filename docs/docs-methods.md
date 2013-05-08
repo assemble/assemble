@@ -1,5 +1,3 @@
-## Methods
-
 ### assemble object
 
 Methods to the assemble object can be created using:
