@@ -45,6 +45,7 @@ module.exports = function(grunt) {
     // Included for running basic tests.
     assemble: {
       options: {
+        
         flatten: true,
         assets: 'test/actual/assets'
       },
@@ -86,14 +87,8 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
 
   // Default task.
-  grunt.registerTask('default', [
-    'jshint',
-    'assemble'
-  ]);
+  grunt.registerTask('default', ['jshint', 'assemble']);
 
   // Tests to be run.
-  grunt.registerTask('test', [
-    'jshint',
-    'mochaTest'
-  ]);
+  grunt.registerTask('test', ['jshint', 'mochaTest']);
 };
