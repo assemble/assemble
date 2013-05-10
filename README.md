@@ -4,7 +4,7 @@
 
 _This project just launched **so expect frequent changes**._ We love contributors, pull requests are welcome and followers are appreciated.
 
-Visit the [assemble-examples](http://github.com/assemble/assemble-examples) repo to see a list of example projects.
+Visit the [assemble-examples](http://github.com/assemble/assemble-examples) repo to see a list of example projects, such as:
 
 
 **Table of Contents**
@@ -17,7 +17,12 @@ Visit the [assemble-examples](http://github.com/assemble/assemble-examples) repo
 - [Methods](#methods)
 
 
+> It amazes me how flexible this whole system is, as we can dance around all the issues quite easily. -- @Arkkimaagi
+
+If you're having trouble getting started, please [create an Issue](https://github.com/assemble/assemble/issues), we're happy to help.
+
 ## Getting started
+
 
 This plugin requires Grunt `~0.4.1`. If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -150,6 +155,18 @@ assemble {
 }
 ```
 
+Then we can wrap sections in our templates with these contexts to include or exclude content based on truthy or falsy evalution of the `dev` and `prod` variables.
+
+``` hbs
+{{#dev}}
+  <script src="script.js"></script>
+{{/dev}}
+{{#prod}}
+  <script src="script.min.js"></script>
+{{/prod}}
+```
+
+
 **version consistency**
 
 Get or set metadata to/from `package.json`:
@@ -168,17 +185,9 @@ assemble {
   }
 }
 ```
+Used in our templates like this: `{{version}}`
 
-In your templates just wrap sections with these contexts to include or exclude content based on truthy or falsy evalution.
-
-``` hbs
-{{#dev}}
-  <script src="script.js"></script>
-{{/dev}}
-{{#prod}}
-  <script src="script.min.js"></script>
-{{/prod}}
-```
+**NOTE**: It's worth noting that you can accomplish the same end goal by using the `options.data` object instead of creating a custom "options variable". See the [options.data](https://github.com/assemble/assemble/wiki/Options) page in the wiki for more detail.
 
 
 
@@ -443,7 +452,7 @@ Copyright 2013 Assemble
 
 ---
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Thu May 09 2013 21:06:39._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Fri May 10 2013 13:29:27._
 
 
 

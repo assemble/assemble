@@ -90,6 +90,18 @@ assemble {
 }
 ```
 
+Then we can wrap sections in our templates with these contexts to include or exclude content based on truthy or falsy evalution of the `dev` and `prod` variables.
+
+``` hbs
+{{#dev}}
+  <script src="script.js"></script>
+{{/dev}}
+{{#prod}}
+  <script src="script.min.js"></script>
+{{/prod}}
+```
+
+
 **version consistency**
 
 Get or set metadata to/from `package.json`:
@@ -108,15 +120,7 @@ assemble {
   }
 }
 ```
+Used in our templates like this: `{{version}}`
 
-In your templates just wrap sections with these contexts to include or exclude content based on truthy or falsy evalution.
-
-``` hbs
-{{#dev}}
-  <script src="script.js"></script>
-{{/dev}}
-{{#prod}}
-  <script src="script.min.js"></script>
-{{/prod}}
-```
+**NOTE**: It's worth noting that you can accomplish the same end goal by using the `options.data` object instead of creating a custom "options variable". See the [options.data](https://github.com/assemble/assemble/wiki/Options) page in the wiki for more detail.
 
