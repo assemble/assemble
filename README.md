@@ -17,11 +17,12 @@ Visit the [assemble-examples](http://github.com/assemble/assemble-examples) repo
 - [Methods](#methods)
 
 
-> It amazes me how flexible this whole system is, as we can dance around all the issues quite easily. -- @Arkkimaagi
 
-If you're having trouble getting started, please [create an Issue](https://github.com/assemble/assemble/issues), we're happy to help.
 
 ## Getting started
+> It amazes me how flexible this whole system is, as we can dance around all the issues quite easily. -- [@Arkkimaagi](https://github.com/Arkkimaagi)
+
+If you're having trouble getting started, please [create an Issue](https://github.com/assemble/assemble/issues), we're happy to help.
 
 
 This plugin requires Grunt `~0.4.1`. If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
@@ -452,7 +453,7 @@ Copyright 2013 Assemble
 
 ---
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Fri May 10 2013 13:29:27._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Fri May 10 2013 13:31:28._
 
 
 
