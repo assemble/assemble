@@ -53,11 +53,28 @@ Remove anything after (and including) the first "." in the destination path, the
 
 ### Custom "Options Variables"
 
-You can add custom variables directly
+You can add any custom variables directly to the options block:
 
-#### environment
+``` javascript
+assemble {
+  myProject: {
+    options: {
+      custom_option1: 'value',
+      custom_option2: 'value'
+    },
+    files: {
+      'dest': ['src/templates*.hbs']
+    }
+  }
+}
+```
+This offers a great deal of flexibility, but it's also something that should be done sparingly because your tasks and targets can get out of hand pretty quickly. 
 
-A common use case is to add custom variables for development stages, such as `dev` and `prod`:
+Here are a couple of common use cases for custom options variables:
+
+**development stages**
+
+Add custom variables for development stages, such as `dev` and `prod`:
 
 ``` javascript
 assemble {
@@ -65,6 +82,25 @@ assemble {
     options: {
       dev: true,
       prod: false
+    },
+    files: {
+      'dest': ['src/templates*.hbs']
+    }
+  }
+}
+```
+
+**version consistency**
+
+Get or set metadata to/from `package.json`:
+
+``` javascript
+pkg: grunt.file.readJSON('package.json'),
+
+assemble {
+  myProject: {
+    options: {
+      version: '<%= pkg.version %>'
     },
     files: {
       'dest': ['src/templates*.hbs']
