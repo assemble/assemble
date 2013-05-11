@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <title>YAML Test</title>
-    <link href="../assets/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
-  <body>
+  <body style="padding-top: 60px;">
     <div class="container">
       
 <div class="page-header">
@@ -114,47 +114,39 @@ Suite 16
 
     <div class="container" style="display: none">
       <h3>Debug Info</h3>
-
       ``` 
 {
-  ext: '.html',
-  src: 'test\\yaml\\document.hbs',
-  assets: '../assets',
-  dest: 'test\\actual\\yaml\\document.html',
-  page: 
-   { [Function]
-     [arguments]: null,
-     [prototype]: { [constructor]: [Circular] 
-},
-     [name]: '',
-     [caller]: null,
-     [length]: 2 },
   filename: 'document',
   basename: 'document',
+  src: 'test\\yaml\\document.hbs',
+  dest: 'test\\actual\\yaml\\document.html',
+  assets: '../assets',
+  ext: '.html',
+  page: [Function],
   data: 
-   { customer: { family: 'Gale', given: 'Dorothy' },
-     'ship-to': 
-      { city: 'East Centerville',
-        street: '123 Tornado Alley\nSuite 16\n',
-        state: 'KS' },
-     receipt: 'Oz-Ware Purchase Invoice',
+   { receipt: 'Oz-Ware Purchase Invoice',
      date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-     items: 
-      [ { price: 1.47,
-          part_no: 'A4786',
-          quantity: 4,
-          descrip: 'Water Bucket (Filled)' },
-        { price: 100.27,
-          part_no: 'E1628',
-          size: 8,
-          quantity: 1,
-          descrip: 'High Heeled "Ruby" Slippers' },
-        [length]: 2 ],
-     'bill-to': 
-      { city: 'East Centerville',
-        street: '123 Tornado Alley\nSuite 16\n',
-        state: 'KS' },
      prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
+     customer: { given: 'Dorothy', family: 'Gale' 
+},
+     items: 
+      [ { part_no: 'A4786',
+          descrip: 'Water Bucket (Filled)',
+          price: 1.47,
+          quantity: 4 },
+        { part_no: 'E1628',
+          descrip: 'High Heeled "Ruby" Slippers',
+          size: 8,
+          price: 100.27,
+          quantity: 1 } ],
+     'bill-to': 
+      { street: '123 Tornado Alley\nSuite 16\n',
+        city: 'East Centerville',
+        state: 'KS' },
+     'ship-to': 
+      { street: '123 Tornado Alley\nSuite 16\n',
+        city: 'East Centerville',
+        state: 'KS' },
      specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n' } }
 ```
 

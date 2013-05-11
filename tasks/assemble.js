@@ -136,9 +136,6 @@ module.exports = function(grunt) {
         partials.forEach(function(filepath) {
           var filename = _.first(filepath.match(assemble.filenameRegex)).replace(assemble.fileExtRegex, '');
           grunt.verbose.ok(('Processing ' + filename.cyan + ' partial'));
-          if(complete%increment === 0) {
-            grunt.log.write('.'.cyan);
-          }
 
           var partial = fs.readFileSync(filepath, 'utf8');
 
@@ -154,7 +151,6 @@ module.exports = function(grunt) {
 
           complete++;
         });
-        grunt.log.notverbose.writeln('\n');
       }
 
       next(assemble);
@@ -175,10 +171,6 @@ module.exports = function(grunt) {
           var filename = path.basename(filepath, ext);
 
           var fileReader = dataFileReaderFactory(ext);
-
-          if(complete%increment === 0) {
-            grunt.log.notverbose.write('.'.cyan);
-          }
 
           if(filename === 'data') {
             // if this is the base data file, load it into the options.data object directly

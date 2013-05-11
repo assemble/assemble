@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <title>YAML Variables</title>
-    <link href="../assets/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
-  <body>
+  <body style="padding-top: 60px;">
     <div class="container">
       
 <div class="page-header">
@@ -29,27 +29,20 @@ other_thing: *NAME</code></pre>
 
     <div class="container" style="display: none">
       <h3>Debug Info</h3>
-
       ``` 
 {
-  ext: '.html',
-  src: 'test\\yaml\\variables.hbs',
-  assets: '../assets',
-  dest: 'test\\actual\\yaml\\variables.html',
-  page: 
-   { [Function]
-     [arguments]: null,
-     [prototype]: { [constructor]: [Circular] 
-},
-     [name]: '',
-     [caller]: null,
-     [length]: 2 },
   filename: 'variables',
   basename: 'variables',
+  src: 'test\\yaml\\variables.hbs',
+  dest: 'test\\actual\\yaml\\variables.html',
+  assets: '../assets',
+  ext: '.html',
+  page: [Function],
   data: 
-   { one: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
-     title: 'YAML Variables',
-     two: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!' } }
+   { title: 'YAML Variables',
+     one: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
+     two: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!' 
+} }
 ```
 
       <ul>

@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <title>Partials Test</title>
-    <link href="../../assets/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
-  <body>
+  <body style="padding-top: 60px;">
     <div class="container">
       
 <div class="navbar navbar-fixed-top">
@@ -27,31 +27,19 @@
 
     <div class="container" style="display: none">
       <h3>Debug Info</h3>
-
       ``` 
 {
-  ext: '.html',
-  src: 'test\\files\\page.hbs',
-  assets: '../../assets',
-  dest: 'test\\actual\\multi\\dest1\\page.html',
-  page: 
-   { [Function]
-     [arguments]: null,
-     [prototype]: { [constructor]: [Circular] 
-},
-     [name]: '',
-     [caller]: null,
-     [length]: 2 },
   filename: 'page',
   basename: 'page',
+  src: 'test\\files\\page.hbs',
+  dest: 'test\\actual\\multi\\dest1\\page.html',
+  assets: '../../assets',
+  ext: '.html',
+  page: [Function],
   data: 
-   { links: 
-      [ './index',
-        'dest/context',
-        'dest/basic',
-        'dest/markdown',
-        [length]: 4 ],
-     title: 'Partials Test' } }
+   { title: 'Partials Test',
+     links: [ './index', 'dest/context', 'dest/basic', 'dest/markdown' ] 
+} }
 ```
 
       <ul>
