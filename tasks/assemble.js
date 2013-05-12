@@ -68,10 +68,12 @@ module.exports = function(grunt) {
         done(false);
       }
 
-      //assemble.engineLoader = utils.EngineLoader(assemble.options);
       assemble.engine.load(assemble.options.engine);
 
-      var registerFunctions = function(engine) { engine.registerFunctions({}); };
+      var initializeEngine = function(engine, options) { engine.init(options); };
+      assemble.options.initializeEngine = assemble.options.initializeEngine || initializeEngine;
+
+      var registerFunctions = function(engine) { engine.registerFunctions(); };
       assemble.options.registerFunctions = assemble.options.registerFunctions || registerFunctions;
 
       var registerPartial = function(engine, filename, content) { engine.registerPartial(filename, content); };
@@ -87,6 +89,7 @@ module.exports = function(grunt) {
       assemble.dataFiles = file.expand(assemble.options.data);
       assemble.options.data = {};
 
+      assemble.options.initializeEngine(assemble.engine, assemble.options);
       assemble.options.registerFunctions(assemble.engine);
 
       next(assemble);
