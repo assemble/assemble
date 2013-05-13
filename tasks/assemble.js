@@ -204,8 +204,11 @@ module.exports = function(grunt) {
       var src = false;
 
       var pages = [];
-      var tags = [];
-      var categories = [];
+      var collections = {};
+      assemble.options.collections.forEach(function(item) {
+        collections[item] = [];
+      });
+
       var assetsPath = assemble.options.assets;
 
       assemble.task.files.forEach(function(filePair) {
@@ -313,8 +316,9 @@ module.exports = function(grunt) {
 
             pages.push(pageObj);
 
-            tags = updateTags(tags, pageObj, pageContext);
-            categories = updateCategories(categories, pageObj, pageContext);
+            assemble.options.collections.forEach(function(item) {
+              collections[item] = assemble.util.collection.update(item, collections[item], pageObj, pageContext);
+            });
 
           } catch(err) {
             grunt.warn(err);
@@ -326,8 +330,9 @@ module.exports = function(grunt) {
       grunt.verbose.writeln('information compiled');
 
       assemble.options.pages = pages;
-      assemble.options.tags = tags;
-      assemble.options.categories = categories;
+      assemble.options.collections.forEach(function(item) {
+        assemble.options[item] = collections[item];
+      });
 
 
       next(assemble);
