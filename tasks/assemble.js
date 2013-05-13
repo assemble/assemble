@@ -443,10 +443,9 @@ module.exports = function(grunt) {
 
     try {
 
-      // omit the tags and categories from pageContext when merging
-      var pageTags = pageContext.tags || [];
-      var pageCategories = pageContext.categories || [];
-      pageContext = lodash.omit(pageContext, ['tags', 'categories']);
+      // omit the collections from pageContext when merging
+      var pageCollections = lodash.pick(pageContext, options.collections);
+      pageContext = lodash.omit(pageContext, options.collections);
 
       options.data   = undefined;
       options.pages  = undefined;
@@ -496,8 +495,8 @@ module.exports = function(grunt) {
       }
 
 
-      pageContext.tags = pageTags;
-      pageContext.categories = pageCategories;
+      // add omitted collections back to pageContext
+      pageContext = lodash.merge(pageContext, pageCollections);
 
       context = processContext(grunt, context);
 
