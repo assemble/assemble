@@ -647,49 +647,11 @@ module.exports = function(grunt) {
   };
 
   var updateTags = function(tags, page, context) {
-    if(!context.tags) {
-      return tags;
-    }
-
-    var pageTags = context.tags || [];
-    if(toString.call(pageTags) !== '[object Array]') {
-      pageTags = [pageTags];
-    }
-
-    pageTags.forEach(function(pageTag) {
-      var tagIndex = lodash.findIndex(tags, function(tag) {
-        return tag.tag === pageTag;
-      });
-      if(tagIndex === -1) {
-        tags.push({ tag: pageTag, pages: [page] });
-      } else {
-        tags[tagIndex].pages.push(page);
-      }
-    });
-    return tags;
+    return assemble.util.collection.update('tags', tags, page, context);
   };
 
   var updateCategories = function(categories, page, context) {
-    if(!context.categories) {
-      return categories;
-    }
-
-    var pageCategories = context.categories || [];
-    if(toString.call(pageCategories) !== '[object Array]') {
-      pageCategories = [pageCategories];
-    }
-
-    pageCategories.forEach(function(pageCategory) {
-      var categoryIndex = lodash.findIndex(categories, function(category) {
-        return category.category === pageCategory;
-      });
-      if(categoryIndex === -1) {
-        categories.push({ category: pageCategory, pages: [page] });
-      } else {
-        categories[categoryIndex].pages.push(page);
-      }
-    });
-    return categories;
+    return assemble.util.collection.update('categories', categories, page, context);
   };
 
 };
