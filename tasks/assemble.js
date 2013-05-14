@@ -68,10 +68,12 @@ module.exports = function(grunt) {
         done(false);
       }
 
-      //assemble.engineLoader = utils.EngineLoader(assemble.options);
       assemble.engine.load(assemble.options.engine);
 
-      var registerFunctions = function(engine) { engine.registerFunctions({}); };
+      var initializeEngine = function(engine, options) { engine.init(options); };
+      assemble.options.initializeEngine = assemble.options.initializeEngine || initializeEngine;
+
+      var registerFunctions = function(engine) { engine.registerFunctions(); };
       assemble.options.registerFunctions = assemble.options.registerFunctions || registerFunctions;
 
       var registerPartial = function(engine, filename, content) { engine.registerPartial(filename, content); };
@@ -87,6 +89,7 @@ module.exports = function(grunt) {
       assemble.dataFiles = file.expand(assemble.options.data);
       assemble.options.data = {};
 
+      assemble.options.initializeEngine(assemble.engine, assemble.options);
       assemble.options.registerFunctions(assemble.engine);
 
       next(assemble);
@@ -201,8 +204,11 @@ module.exports = function(grunt) {
       var src = false;
 
       var pages = [];
-      var tags = [];
-      var categories = [];
+      var collections = {};
+      assemble.options.collections.forEach(function(item) {
+        collections[item] = [];
+      });
+
       var assetsPath = assemble.options.assets;
 
       assemble.task.files.forEach(function(filePair) {
@@ -310,8 +316,9 @@ module.exports = function(grunt) {
 
             pages.push(pageObj);
 
-            tags = updateTags(tags, pageObj, pageContext);
-            categories = updateCategories(categories, pageObj, pageContext);
+            assemble.options.collections.forEach(function(item) {
+              collections[item] = assemble.util.collection.update(item, collections[item], pageObj, pageContext);
+            });
 
           } catch(err) {
             grunt.warn(err);
@@ -323,8 +330,9 @@ module.exports = function(grunt) {
       grunt.verbose.writeln('information compiled');
 
       assemble.options.pages = pages;
-      assemble.options.tags = tags;
-      assemble.options.categories = categories;
+      assemble.options.collections.forEach(function(item) {
+        assemble.options[item] = collections[item];
+      });
 
 
       next(assemble);
@@ -440,10 +448,9 @@ module.exports = function(grunt) {
 
     try {
 
-      // omit the tags and categories from pageContext when merging
-      var pageTags = pageContext.tags || [];
-      var pageCategories = pageContext.categories || [];
-      pageContext = lodash.omit(pageContext, ['tags', 'categories']);
+      // omit the collections from pageContext when merging
+      var pageCollections = lodash.pick(pageContext, options.collections);
+      pageContext = lodash.omit(pageContext, options.collections);
 
       options.data   = undefined;
       options.pages  = undefined;
@@ -493,8 +500,8 @@ module.exports = function(grunt) {
       }
 
 
-      pageContext.tags = pageTags;
-      pageContext.categories = pageCategories;
+      // add omitted collections back to pageContext
+      pageContext = lodash.merge(pageContext, pageCollections);
 
       context = processContext(grunt, context);
 
@@ -644,49 +651,11 @@ module.exports = function(grunt) {
   };
 
   var updateTags = function(tags, page, context) {
-    if(!context.tags) {
-      return tags;
-    }
-
-    var pageTags = context.tags || [];
-    if(toString.call(pageTags) !== '[object Array]') {
-      pageTags = [pageTags];
-    }
-
-    pageTags.forEach(function(pageTag) {
-      var tagIndex = lodash.findIndex(tags, function(tag) {
-        return tag.tag === pageTag;
-      });
-      if(tagIndex === -1) {
-        tags.push({ tag: pageTag, pages: [page] });
-      } else {
-        tags[tagIndex].pages.push(page);
-      }
-    });
-    return tags;
+    return assemble.util.collection.update('tags', tags, page, context);
   };
 
   var updateCategories = function(categories, page, context) {
-    if(!context.categories) {
-      return categories;
-    }
-
-    var pageCategories = context.categories || [];
-    if(toString.call(pageCategories) !== '[object Array]') {
-      pageCategories = [pageCategories];
-    }
-
-    pageCategories.forEach(function(pageCategory) {
-      var categoryIndex = lodash.findIndex(categories, function(category) {
-        return category.category === pageCategory;
-      });
-      if(categoryIndex === -1) {
-        categories.push({ category: pageCategory, pages: [page] });
-      } else {
-        categories[categoryIndex].pages.push(page);
-      }
-    });
-    return categories;
+    return assemble.util.collection.update('categories', categories, page, context);
   };
 
 };
