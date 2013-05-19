@@ -512,9 +512,10 @@ module.exports = function(grunt) {
 
       // add other page variables to the main context
       context.pageName = currentPage.filename;
-      context.filename = currentPage.filename;
+      context.filename = currentPage.dest;
       context.extname = currentPage.ext;
       context.basename = currentPage.basename;
+      context.dirname = path.dirname(currentPage.dest);
 
       assemble.options.registerPartial(assemble.engine, 'body', page);
 

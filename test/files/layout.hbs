@@ -19,6 +19,8 @@
         <!--
           page.dest: {{../page.dest}}
           this.dest: {{this.dest}}
+          filename: {{../filename}}
+          dirname: {{../dirname}}
         -->
         <li><a href="{{relative ../page.dest this.dest}}">{{this.basename}}</a></li>
       {{/each}}
