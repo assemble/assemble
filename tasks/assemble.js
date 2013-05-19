@@ -439,9 +439,6 @@ module.exports = function(grunt) {
         context        = {};
 
     context.layoutName = _(options.defaultLayoutName).humanize();
-    context.pageName   = _(filename).humanize();
-    context.pageName   = filename;
-
     grunt.verbose.writeln('variables loaded');
 
     //options.data = null;
@@ -508,10 +505,16 @@ module.exports = function(grunt) {
       // add the list of pages back to the context so
       // it's available in the templates
       context.pages = pages;
-      context.currentPage = currentPage;
+      context.page = currentPage;
 
       // make sure the currentPage assets is used
       context.assets = currentPage.assets;
+
+      // add other page variables to the main context
+      context.pageName = currentPage.filename;
+      context.filename = currentPage.filename;
+      context.extname = currentPage.ext;
+      context.basename = currentPage.basename;
 
       assemble.options.registerPartial(assemble.engine, 'body', page);
 

@@ -12,15 +12,15 @@
 
     <div class="container" style="display: none">
       <h3>Debug Info</h3>
-      {{inspect currentPage}}
+      {{inspect page}}
 
       <ul>
       {{#each pages}}
         <!--
-          currentPage.dest: {{../currentPage.dest}}
+          page.dest: {{../page.dest}}
           this.dest: {{this.dest}}
         -->
-        <li><a href="{{relative ../currentPage.dest this.dest}}">{{this.basename}}</a></li>
+        <li><a href="{{relative ../page.dest this.dest}}">{{this.basename}}</a></li>
       {{/each}}
       </ul>
     </div>
