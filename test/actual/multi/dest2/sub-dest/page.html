@@ -39,7 +39,9 @@
   data: 
    { title: 'Partials Test',
      links: [ './index', 'dest/context', 'dest/basic', 'dest/markdown' ] 
-} }
+},
+  title: 'Partials Test',
+  links: [ './index', 'dest/context', 'dest/basic', 'dest/markdown' ] }
 ```
 
       <ul>
@@ -83,6 +85,14 @@
           dirname: test\actual\multi\dest2\sub-dest
         -->
         <li><a href="../../dest1/dates.html">dates</a></li>
+      
+        <!--
+          page.dest: test\actual\multi\dest2\sub-dest\page.html
+          this.dest: test\actual\multi\dest1\example.html
+          filename: test\actual\multi\dest2\sub-dest\page.html
+          dirname: test\actual\multi\dest2\sub-dest
+        -->
+        <li><a href="../../dest1/example.html">example</a></li>
       
         <!--
           page.dest: test\actual\multi\dest2\sub-dest\page.html
@@ -203,6 +213,14 @@
           dirname: test\actual\multi\dest2\sub-dest
         -->
         <li><a href="dates.html">dates</a></li>
+      
+        <!--
+          page.dest: test\actual\multi\dest2\sub-dest\page.html
+          this.dest: test\actual\multi\dest2\sub-dest\example.html
+          filename: test\actual\multi\dest2\sub-dest\page.html
+          dirname: test\actual\multi\dest2\sub-dest
+        -->
+        <li><a href="example.html">example</a></li>
       
         <!--
           page.dest: test\actual\multi\dest2\sub-dest\page.html

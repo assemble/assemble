@@ -70,6 +70,14 @@
       <h3>Debug Info</h3>
       ``` 
 {
+  url: 'http://gist.github.com/jonschlinkert/5193239',
+  text: 'helpers.js',
+  links: [ 'one', 'two', 'three' ],
+  moreLinks: 
+   [ { url: 'one', text: 'two' 
+},
+     { url: 'three', text: 'four' },
+     { url: 'five', text: 'size' } ],
   filename: 'helpers',
   basename: 'helpers',
   src: 'test\\files\\helpers.hbs',
@@ -82,8 +90,7 @@
      text: 'helpers.js',
      links: [ 'one', 'two', 'three' ],
      moreLinks: 
-      [ { url: 'one', text: 'two' 
-},
+      [ { url: 'one', text: 'two' },
         { url: 'three', text: 'four' },
         { url: 'five', text: 'size' } ] } }
 ```
@@ -129,6 +136,14 @@
           dirname: test\actual\multi\dest2\sub-dest
         -->
         <li><a href="../../dest1/dates.html">dates</a></li>
+      
+        <!--
+          page.dest: test\actual\multi\dest2\sub-dest\helpers.html
+          this.dest: test\actual\multi\dest1\example.html
+          filename: test\actual\multi\dest2\sub-dest\helpers.html
+          dirname: test\actual\multi\dest2\sub-dest
+        -->
+        <li><a href="../../dest1/example.html">example</a></li>
       
         <!--
           page.dest: test\actual\multi\dest2\sub-dest\helpers.html
@@ -249,6 +264,14 @@
           dirname: test\actual\multi\dest2\sub-dest
         -->
         <li><a href="dates.html">dates</a></li>
+      
+        <!--
+          page.dest: test\actual\multi\dest2\sub-dest\helpers.html
+          this.dest: test\actual\multi\dest2\sub-dest\example.html
+          filename: test\actual\multi\dest2\sub-dest\helpers.html
+          dirname: test\actual\multi\dest2\sub-dest
+        -->
+        <li><a href="example.html">example</a></li>
       
         <!--
           page.dest: test\actual\multi\dest2\sub-dest\helpers.html

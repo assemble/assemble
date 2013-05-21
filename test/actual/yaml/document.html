@@ -116,6 +116,30 @@ Suite 16
       <h3>Debug Info</h3>
       ``` 
 {
+  receipt: 'Oz-Ware Purchase Invoice',
+  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+  prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
+  customer: { given: 'Dorothy', family: 'Gale' 
+},
+  items: 
+   [ { part_no: 'A4786',
+       descrip: 'Water Bucket (Filled)',
+       price: 1.47,
+       quantity: 4 },
+     { part_no: 'E1628',
+       descrip: 'High Heeled "Ruby" Slippers',
+       size: 8,
+       price: 100.27,
+       quantity: 1 } ],
+  'bill-to': 
+   { street: '123 Tornado Alley\nSuite 16\n',
+     city: 'East Centerville',
+     state: 'KS' },
+  'ship-to': 
+   { street: '123 Tornado Alley\nSuite 16\n',
+     city: 'East Centerville',
+     state: 'KS' },
+  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
   filename: 'document',
   basename: 'document',
   src: 'test\\yaml\\document.hbs',
@@ -127,8 +151,7 @@ Suite 16
    { receipt: 'Oz-Ware Purchase Invoice',
      date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
      prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
-     customer: { given: 'Dorothy', family: 'Gale' 
-},
+     customer: { given: 'Dorothy', family: 'Gale' },
      items: 
       [ { part_no: 'A4786',
           descrip: 'Water Bucket (Filled)',

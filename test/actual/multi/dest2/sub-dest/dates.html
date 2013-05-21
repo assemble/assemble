@@ -9,7 +9,7 @@
     <div class="container">
       
 
-<div>Date: Sun May 19 2013 12:10:08 GMT-0400 (Eastern Daylight Time)</div>
+<div>Date: Tue May 21 2013 00:28:47 GMT-0400 (Eastern Daylight Time)</div>
 
 <div>Born 33 years ago</div>
 
@@ -19,6 +19,9 @@
       <h3>Debug Info</h3>
       ``` 
 {
+  description: 'testing the dates helpers',
+  css: '<link rel="stylesheet" href="/css/index.css"/>',
+  js: 'document.write(\'foo bar!\');',
   filename: 'dates',
   basename: 'dates',
   src: 'test\\files\\dates.hbs',
@@ -74,6 +77,14 @@
           dirname: test\actual\multi\dest2\sub-dest
         -->
         <li><a href="../../dest1/dates.html">dates</a></li>
+      
+        <!--
+          page.dest: test\actual\multi\dest2\sub-dest\dates.html
+          this.dest: test\actual\multi\dest1\example.html
+          filename: test\actual\multi\dest2\sub-dest\dates.html
+          dirname: test\actual\multi\dest2\sub-dest
+        -->
+        <li><a href="../../dest1/example.html">example</a></li>
       
         <!--
           page.dest: test\actual\multi\dest2\sub-dest\dates.html
@@ -194,6 +205,14 @@
           dirname: test\actual\multi\dest2\sub-dest
         -->
         <li><a href="dates.html">dates</a></li>
+      
+        <!--
+          page.dest: test\actual\multi\dest2\sub-dest\dates.html
+          this.dest: test\actual\multi\dest2\sub-dest\example.html
+          filename: test\actual\multi\dest2\sub-dest\dates.html
+          dirname: test\actual\multi\dest2\sub-dest
+        -->
+        <li><a href="example.html">example</a></li>
       
         <!--
           page.dest: test\actual\multi\dest2\sub-dest\dates.html

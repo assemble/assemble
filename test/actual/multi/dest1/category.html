@@ -25,13 +25,14 @@
       <h3>Debug Info</h3>
       ``` 
 {
+  page: [Function],
+  categories: [ 'categories', 'test', 'something' ],
   filename: 'category',
   basename: 'category',
   src: 'test\\files\\category.hbs',
   dest: 'test\\actual\\multi\\dest1\\category.html',
   assets: '../../assets',
   ext: '.html',
-  page: [Function],
   data: 
    { page: { title: 'Categories Test' 
 },
@@ -79,6 +80,14 @@
           dirname: test\actual\multi\dest1
         -->
         <li><a href="dates.html">dates</a></li>
+      
+        <!--
+          page.dest: test\actual\multi\dest1\category.html
+          this.dest: test\actual\multi\dest1\example.html
+          filename: test\actual\multi\dest1\category.html
+          dirname: test\actual\multi\dest1
+        -->
+        <li><a href="example.html">example</a></li>
       
         <!--
           page.dest: test\actual\multi\dest1\category.html
@@ -199,6 +208,14 @@
           dirname: test\actual\multi\dest1
         -->
         <li><a href="../dest2/sub-dest/dates.html">dates</a></li>
+      
+        <!--
+          page.dest: test\actual\multi\dest1\category.html
+          this.dest: test\actual\multi\dest2\sub-dest\example.html
+          filename: test\actual\multi\dest1\category.html
+          dirname: test\actual\multi\dest1
+        -->
+        <li><a href="../dest2/sub-dest/example.html">example</a></li>
       
         <!--
           page.dest: test\actual\multi\dest1\category.html
