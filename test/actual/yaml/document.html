@@ -116,6 +116,30 @@ Suite 16
       <h3>Debug Info</h3>
       ``` 
 {
+  receipt: 'Oz-Ware Purchase Invoice',
+  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+  prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
+  customer: { given: 'Dorothy', family: 'Gale' 
+},
+  items: 
+   [ { part_no: 'A4786',
+       descrip: 'Water Bucket (Filled)',
+       price: 1.47,
+       quantity: 4 },
+     { part_no: 'E1628',
+       descrip: 'High Heeled "Ruby" Slippers',
+       size: 8,
+       price: 100.27,
+       quantity: 1 } ],
+  'bill-to': 
+   { street: '123 Tornado Alley\nSuite 16\n',
+     city: 'East Centerville',
+     state: 'KS' },
+  'ship-to': 
+   { street: '123 Tornado Alley\nSuite 16\n',
+     city: 'East Centerville',
+     state: 'KS' },
+  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
   filename: 'document',
   basename: 'document',
   src: 'test\\yaml\\document.hbs',
@@ -127,8 +151,7 @@ Suite 16
    { receipt: 'Oz-Ware Purchase Invoice',
      date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
      prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
-     customer: { given: 'Dorothy', family: 'Gale' 
-},
+     customer: { given: 'Dorothy', family: 'Gale' },
      items: 
       [ { part_no: 'A4786',
           descrip: 'Water Bucket (Filled)',
@@ -153,56 +176,74 @@ Suite 16
       <ul>
       
         <!--
-          currentPage.dest: test\actual\yaml\document.html
+          page.dest: test\actual\yaml\document.html
           this.dest: test\actual\yaml\associative-arrays.html
+          filename: test\actual\yaml\document.html
+          dirname: test\actual\yaml
         -->
         <li><a href="associative-arrays.html">associative-arrays</a></li>
       
         <!--
-          currentPage.dest: test\actual\yaml\document.html
+          page.dest: test\actual\yaml\document.html
           this.dest: test\actual\yaml\block-literals.html
+          filename: test\actual\yaml\document.html
+          dirname: test\actual\yaml
         -->
         <li><a href="block-literals.html">block-literals</a></li>
       
         <!--
-          currentPage.dest: test\actual\yaml\document.html
+          page.dest: test\actual\yaml\document.html
           this.dest: test\actual\yaml\comments.html
+          filename: test\actual\yaml\document.html
+          dirname: test\actual\yaml
         -->
         <li><a href="comments.html">comments</a></li>
       
         <!--
-          currentPage.dest: test\actual\yaml\document.html
+          page.dest: test\actual\yaml\document.html
           this.dest: test\actual\yaml\data-files.html
+          filename: test\actual\yaml\document.html
+          dirname: test\actual\yaml
         -->
         <li><a href="data-files.html">data-files</a></li>
       
         <!--
-          currentPage.dest: test\actual\yaml\document.html
+          page.dest: test\actual\yaml\document.html
           this.dest: test\actual\yaml\data-types.html
+          filename: test\actual\yaml\document.html
+          dirname: test\actual\yaml
         -->
         <li><a href="data-types.html">data-types</a></li>
       
         <!--
-          currentPage.dest: test\actual\yaml\document.html
+          page.dest: test\actual\yaml\document.html
           this.dest: test\actual\yaml\document.html
+          filename: test\actual\yaml\document.html
+          dirname: test\actual\yaml
         -->
         <li><a href="document.html">document</a></li>
       
         <!--
-          currentPage.dest: test\actual\yaml\document.html
+          page.dest: test\actual\yaml\document.html
           this.dest: test\actual\yaml\lists.html
+          filename: test\actual\yaml\document.html
+          dirname: test\actual\yaml
         -->
         <li><a href="lists.html">lists</a></li>
       
         <!--
-          currentPage.dest: test\actual\yaml\document.html
+          page.dest: test\actual\yaml\document.html
           this.dest: test\actual\yaml\relational-trees.html
+          filename: test\actual\yaml\document.html
+          dirname: test\actual\yaml
         -->
         <li><a href="relational-trees.html">relational-trees</a></li>
       
         <!--
-          currentPage.dest: test\actual\yaml\document.html
+          page.dest: test\actual\yaml\document.html
           this.dest: test\actual\yaml\variables.html
+          filename: test\actual\yaml\document.html
+          dirname: test\actual\yaml
         -->
         <li><a href="variables.html">variables</a></li>
       

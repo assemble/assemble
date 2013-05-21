@@ -45,7 +45,7 @@ module.exports = function(grunt) {
     // Included for running basic tests.
     assemble: {
       options: {
-        
+
         flatten: true,
         assets: 'test/actual/assets'
       },
@@ -68,7 +68,8 @@ module.exports = function(grunt) {
       },
       multi: {
         options: {
-          layout: 'test/files/layout.hbs'
+          layout: 'test/files/layout.hbs',
+          data: ['test/data/*.json']
         },
         files: {
           'test/actual/multi/dest1/': ['test/files/**/*.hbs', '!test/files/layout*.*'],

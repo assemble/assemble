@@ -39,20 +39,26 @@
   data: 
    { title: 'Partials Test',
      links: [ './index', 'dest/context', 'dest/basic', 'dest/markdown' ] 
-} }
+},
+  title: 'Partials Test',
+  links: [ './index', 'dest/context', 'dest/basic', 'dest/markdown' ] }
 ```
 
       <ul>
       
         <!--
-          currentPage.dest: test\actual\page.html
+          page.dest: test\actual\page.html
           this.dest: test\actual\dates.html
+          filename: test\actual\page.html
+          dirname: test\actual
         -->
         <li><a href="dates.html">dates</a></li>
       
         <!--
-          currentPage.dest: test\actual\page.html
+          page.dest: test\actual\page.html
           this.dest: test\actual\page.html
+          filename: test\actual\page.html
+          dirname: test\actual
         -->
         <li><a href="page.html">page</a></li>
       
