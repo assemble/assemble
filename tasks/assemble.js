@@ -507,6 +507,9 @@ module.exports = function(grunt) {
       context.pages = pages;
       context.page = currentPage;
 
+      // apply any data for this page to the page object
+      context.page = _.extend(context[filename] || {}, currentPage.data, context.page);
+
       // make sure the currentPage assets is used
       context.assets = currentPage.assets;
 
