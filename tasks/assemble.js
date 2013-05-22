@@ -124,7 +124,7 @@ module.exports = function(grunt) {
       if(partials && partials.length > 0) {
         complete = 0;
         increment = Math.round(partials.length / 10);
-        grunt.verbose.write(('\n' + 'Processing partials...').grey);
+        grunt.verbose.write(('\n' + 'Processing partials...\n').grey);
 
         partials.forEach(function(filepath) {
           var filename = _.first(filepath.match(assemble.filenameRegex)).replace(assemble.fileExtRegex, '');
@@ -132,7 +132,7 @@ module.exports = function(grunt) {
 
           var partial = fs.readFileSync(filepath, 'utf8');
 
-          //If remove hbs whitespace...
+          // If options.removeHbsWhitespace is true
           partial = removeHbsWhitespace(assemble,partial);
 
           // get the data
@@ -273,7 +273,7 @@ module.exports = function(grunt) {
             grunt.verbose.writeln('compiling page ' + filename.magenta);
             var pageContext = {};
 
-            // If remove hbs whitespace...
+            // If options.removeHbsWhitespace is true
             page = removeHbsWhitespace(assemble,page);
 
             var pageInfo = assemble.data.readYFM(page, {fromFile: false});
@@ -300,7 +300,7 @@ module.exports = function(grunt) {
             };
 
             if(pageObj.data.published === false){
-              grunt.log.writeln('\n>> Skipping "'.yellow + srcFile.magenta + '" since ' + '"published: false"'.grey + ' was set.');
+              grunt.log.writeln('\n>> Skipping "'.grey + srcFile + '" since ' + '"published: false"'.grey + ' was set.');
               return;
             }
 
@@ -330,15 +330,15 @@ module.exports = function(grunt) {
 
     var renderPages = function(assemble, next) {
 
-      grunt.log.writeln(('\n' + 'Rendering pages...').grey);
+      grunt.log.writeln(('\n' + 'Assembling pages...').grey);
 
       assemble.options.pages.forEach(function(page) {
 
         grunt.verbose.writeln(require('util').inspect(page));
 
         build(page, assemble, function(err, result) {
-          grunt.log.notverbose.write('File ' + (page.basename + page.ext).magenta +' processing. ');
-          grunt.verbose.write('File ' + (page.basename + page.ext).magenta +' processing.');
+          grunt.log.notverbose.write('File "' + path.basename(page.dest).magenta +'" assembled...');
+          grunt.verbose.write('File "' + page.dest.magenta +'" assembled...');
 
           if(err) {
             grunt.verbose.write(" ");
@@ -350,11 +350,11 @@ module.exports = function(grunt) {
           grunt.verbose.writeln('..');
           file.write(page.dest, result);
 
-          grunt.verbose.writeln('...File ' + (page.basename + page.ext).magenta +' processed. '+'OK'.green);
+          grunt.verbose.writeln('...File "' + (page.basename + page.ext).magenta +'" assembled. '+'OK'.green);
           grunt.log.notverbose.ok();
         }); // build
       });
-      grunt.log.ok((assemble.options.pages).length + ' pages assembled successfully.');
+      grunt.log.ok('Assembled ' + ((assemble.options.pages).length).toString().cyan + ' pages.');
 
       next(assemble);
     };
@@ -411,16 +411,7 @@ module.exports = function(grunt) {
     return foundPath;
   };
 
-  // Attempt to remove extra whitespace around Handlebars expressions 
-  // in generated HTML, similar to what mustache.js does
-  var removeHbsWhitespace = function(assemble, filecontent) {
-    if (assemble.options.removeHbsWhitespace) {
-      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{\{[^}]+?\}\}\})(?=(\n|\r|\n\r))/gi, "$2");
-      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{[^}]+?\}\})(?=(\n|\r|\n\r))/gi, "$2");
-    }
-    return filecontent;
-  };
-  
+
   var build = function(currentPage, assemble, callback) {
 
     var src = currentPage.srcFile;
@@ -428,14 +419,14 @@ module.exports = function(grunt) {
     var options = assemble.options;
 
     grunt.verbose.writeln('currentPage: ' + currentPage);
-    var page           = currentPage.page,
-        pageContext    = currentPage.data,
-        layout         = options.defaultLayout,
-        data           = options.data,
-        pages          = options.pages,
-        engine         = options.engine,
-        EngineLoader   = options.EngineLoader,
-        context        = {};
+    var page         = currentPage.page,
+        pageContext  = currentPage.data,
+        layout       = options.defaultLayout,
+        data         = options.data,
+        pages        = options.pages,
+        engine       = options.engine,
+        EngineLoader = options.EngineLoader,
+        context      = {};
 
     context.layoutName = _(options.defaultLayoutName).humanize();
     grunt.verbose.writeln('variables loaded');
@@ -454,7 +445,6 @@ module.exports = function(grunt) {
       context        = _.extend(context, options, data, pageContext);
       options.data   = data;
       options.pages  = pages;
-
 
       // if pageContext contains a layout, use that one instead
       // of the default layout
@@ -498,7 +488,6 @@ module.exports = function(grunt) {
 
       // add omitted collections back to pageContext
       pageContext = lodash.merge(pageContext, pageCollections);
-
       context = processContext(grunt, context);
 
       // add the list of pages back to the context so
@@ -555,7 +544,7 @@ module.exports = function(grunt) {
       loadFile = false;
       layout = "{{>body}}";
     }
-
+    
     if(loadFile) {
       // validate that the layout file exists
       grunt.verbose.writeln(src);
@@ -576,8 +565,8 @@ module.exports = function(grunt) {
       layout = fs.readFileSync(layout, 'utf8');
     }
 
-    // If options.removeHbsWhitespace: true
-    layout = removeHbsWhitespace(assemble,layout);
+    // If options.removeHbsWhitespace is true
+    layout = removeHbsWhitespace(assemble, layout);
 
     var layoutInfo = assemble.data.readYFM(layout, {fromFile: false});
     var layoutData = layoutInfo.context;
@@ -648,6 +637,16 @@ module.exports = function(grunt) {
         break;
     }
     return reader;
+  };
+
+  // Attempt to remove extra whitespace around Handlebars expressions 
+  // in generated HTML, similar to what mustache.js does
+  var removeHbsWhitespace = function(assemble, filecontent){
+    if(assemble.options.removeHbsWhitespace){
+      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{\{[^}]+?\}\}\})(?=(\n|\r|\n\r))/gi,"$2");
+      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{[^}]+?\}\})(?=(\n|\r|\n\r))/gi,"$2");
+    }
+    return filecontent;
   };
 
   var mergeOptionsArrays = function(target, name) {
