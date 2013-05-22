@@ -1,10 +1,14 @@
-# [Assemble v0.3.77](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
+# [Assemble v0.3.78](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
 
 > Assemble makes it dead simple to build modular sites and components from reusable templates and data.
 
 _This project just launched **so expect frequent changes**._ We love contributors, pull requests are welcome and followers are appreciated.
 
 Visit the [assemble-examples](http://github.com/assemble/assemble-examples) repo to see a list of example projects, such as:
+
+* [assembling a basic site](http://github.com/assemble/assemble-examples-basic) 
+* [building a readme from templates](http://github.com/assemble/assemble-examples-readme): more useful for large or multi-projects, wikis etc.
+* [generating a sitemap](http://github.com/assemble/assemble-examples-sitemap) 
 
 
 **Table of Contents**
@@ -17,10 +21,10 @@ Visit the [assemble-examples](http://github.com/assemble/assemble-examples) repo
 - [Methods](#methods)
 
 
-
-
 ## Getting started
-> It amazes me how flexible this whole system is, as we can dance around all the issues quite easily. -- [@Arkkimaagi](https://github.com/Arkkimaagi)
+> It amazes me how flexible this whole system is, as we can dance   
+> around all the issues quite easily.  
+> -- [@Arkkimaagi](https://github.com/Arkkimaagi)
 
 If you're having trouble getting started, please [create an Issue](https://github.com/assemble/assemble/issues), we're happy to help.
 
@@ -346,6 +350,97 @@ author: <%= some.author.variable %>
 
 
 ## Methods
+## `init` method
+
+Describes `init` method to `assemble.engine`, and exposes engine on `assemble.engine`.
+
+
+## Custom Engines
+
+If you don't wish to use Handlebars as your templates engine, you may add your own engine by providing an init function that takes in options from the assemble task/target. You may also override the `init` function in the task/target options by providing an `initializeEngine` function that takes the engine and the options:
+
+```js
+assemble: {
+  options: {
+    engine: 'consolidate',
+    initializeEngine: function(engine, options) {
+      engine.engine.swig.init(options);
+    }
+  },
+  docs: {
+    files: {
+      'docs/': ['src/templates/**/*.tmpl']
+    }
+  }
+}
+```
+
+Assemble will attempt to load an engine and automatically add it's own wrapper methods around it while holding an instance of the engine. This is a way for engine plugin authors to write adapters between other engines and assemble's wrapper. To make these functions on the options useful, we've exposed the underlying engine through the `assemble.engine` object so **developers can use the raw engine**. 
+
+This is particularly useful when **a)** a library such as [consolidate][] is used, where the engine is `consolidate`, and **b)** the developer wants to use another engine such as [handlebars](https://github.com/wycats/handlebars.js), [swig](https://github.com/paularmstrong/swig), [mustache](https://github.com/janl/mustache.js) etc.
+
+* The `init` function allows assemble to pass in options to be used in initializing this engine plugin.
+* `init` function is exposed, and [helper-lib](https://github.com/assemble/helper-lib) is registered inside the init so that options can be passed in.
+
+Admittedly, the `engine.engine` syntax is strange. This is "alpha", so feedback and pull requests are especially welcome if you have ideas for improving this.
+
+
+### Register Helpers
+
+Call `registerFunctions`, to register custom helpers or "filters", by passing in an engine:
+
+```javascript
+registerFunctions(assemble.engine);
+```
+
+Example of how this would be setup in the `options` of the assemble task or target:
+
+```javascript
+assemble: {
+  options: {
+    registerFunctions: function(engine) {
+      var helperFunctions = {};
+      helperFunctions['foo'] = function() { return 'bar'; };
+      engine.registerFunctions(helperFunctions);
+    }
+  },
+  site: {
+    files: {
+      'dist/': ['src/templates/**/*.tmpl']
+    }
+  }
+}
+```
+
+### Register Partials
+
+Call `registerPartial` by passing in an engine.
+
+```javascript
+registerPartial(assemble.engine, 'partialName', content);
+```
+
+Example of how this would be setup in the `options` of the assemble task or target:
+
+```javascript
+assemble: {
+  options: {
+    registerPartial: function(engine, name, content) {
+      var tmpl = engine.compile(content);
+      engine.registerPartial(name, tmpl);
+    }
+  },
+  blog: {
+    files: {
+      'dist/blog/': ['src/templates/**/*.tmpl']
+    }
+  }
+}
+```
+
+[consolidate]: https://github.com/visionmedia/consolidate.js/
+
+
 ### assemble object
 
 Methods to the assemble object can be created using:
@@ -412,6 +507,7 @@ assemble.build(function(err, result) {
 });
 ```
 
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Please lint and test your code using Grunt.
 
@@ -453,7 +549,7 @@ Copyright 2013 Assemble
 
 ---
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Fri May 10 2013 13:31:28._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Wed May 22 2013 16:44:26._
 
 
 
