@@ -25,20 +25,10 @@ module.exports = function(grunt) {
   // Assemble utils
   var assemble = require('../lib/assemble');
 
-  //Removes extra whitespace around {{}}-elements somewhat like .mustache does.
-  var removeHbsWhitespace = function(assemble,filecontent){
-    if(assemble.options.removeHbsWhitespace){
-      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{\{[^}]+?\}\}\})(?=(\n|\r|\n\r))/gi,"$2");
-      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{[^}]+?\}\})(?=(\n|\r|\n\r))/gi,"$2");
-    }
-    return filecontent;
-  };
-
   grunt.registerMultiTask('assemble', 'Compile template files with specified engines', function(){
 
     var done = this.async();
     var self = this;
-
 
     // functions for use in build steps
     var optionsConfiguration = function(assemble, next) {
@@ -283,7 +273,7 @@ module.exports = function(grunt) {
             grunt.verbose.writeln('compiling page ' + filename.magenta);
             var pageContext = {};
 
-            //If remove hbs whitespace...
+            // If remove hbs whitespace...
             page = removeHbsWhitespace(assemble,page);
 
             var pageInfo = assemble.data.readYFM(page, {fromFile: false});
@@ -310,7 +300,7 @@ module.exports = function(grunt) {
             };
 
             if(pageObj.data.published === false){
-              grunt.log.writeln('Page ' + filename.magenta + ' has been set to published = false, '+'skipping.'.yellow);
+              grunt.log.writeln('\n>> Skipping "'.yellow + srcFile.magenta + '" since ' + '"published: false"'.grey + ' was set.');
               return;
             }
 
@@ -364,7 +354,7 @@ module.exports = function(grunt) {
           grunt.log.notverbose.ok();
         }); // build
       });
-      grunt.log.ok((assemble.options.pages).length + ' pages rendered successfully.');
+      grunt.log.ok((assemble.options.pages).length + ' pages assembled successfully.');
 
       next(assemble);
     };
@@ -421,7 +411,16 @@ module.exports = function(grunt) {
     return foundPath;
   };
 
-
+  // Attempt to remove extra whitespace around Handlebars expressions 
+  // in generated HTML, similar to what mustache.js does
+  var removeHbsWhitespace = function(assemble, filecontent) {
+    if (assemble.options.removeHbsWhitespace) {
+      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{\{[^}]+?\}\}\})(?=(\n|\r|\n\r))/gi, "$2");
+      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{[^}]+?\}\})(?=(\n|\r|\n\r))/gi, "$2");
+    }
+    return filecontent;
+  };
+  
   var build = function(currentPage, assemble, callback) {
 
     var src = currentPage.srcFile;
@@ -577,7 +576,7 @@ module.exports = function(grunt) {
       layout = fs.readFileSync(layout, 'utf8');
     }
 
-    //If remove hbs whitespace...
+    // If options.removeHbsWhitespace: true
     layout = removeHbsWhitespace(assemble,layout);
 
     var layoutInfo = assemble.data.readYFM(layout, {fromFile: false});

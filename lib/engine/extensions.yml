@@ -1,7 +1,8 @@
 # Extension Map
 # Format: [ext]: [engine]
 
-# Engine: Handlebars
+
+# Handlebars extensions
 handlebar: handlebars
 handlebars: handlebars
 hb: handlebars
@@ -9,19 +10,18 @@ hbars: handlebars
 hbrs: handlebars
 hbs: handlebars
 hbt: handlebars
-
-# Mustache
+htm: handlebars
+html: handlebars
 mustache: handlebars
-
-# Template
+template: handlebars
 tmpl: handlebars
 tpl: handlebars
 
 # Markdown
-markd: markdown
+markd   : markdown
 markdown: markdown
-md: markdown
+md      : markdown
 
 # YAML
-yml: yaml
+yml : yaml
 yaml: yaml
