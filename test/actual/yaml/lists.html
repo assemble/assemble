@@ -91,41 +91,51 @@
       <h3>Debug Info</h3>
       ``` 
 {
-  title: 'Almost a Haiku',
-  attributes: [ 'attr1', 'attr2', 'attr3' ],
-  methods: [ 'getter', 'setter' ],
-  movies: 
-   [ 'Casablanca',
-     'North by Northwest',
-     'The Man Who Wasn\'t There' ],
-  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice' ],
-  people: 
-   [ { name: 'John Smith', age: 33 
-},
-     { name: 'Mary Smith', age: 27 } ],
-  men: [ 'John Smith', 'Bill Jones' ],
-  women: [ 'Mary Smith', 'Susan Williams' ],
-  filename: 'lists',
-  basename: 'lists',
   src: 'test\\yaml\\lists.hbs',
-  dest: 'test\\actual\\yaml\\lists.html',
-  assets: '../assets',
-  ext: '.html',
-  page: [Function],
+  people: 
+   [ { age: 33, name: 'John Smith' 
+},
+     { age: 27, name: 'Mary Smith' },
+     [length]: 2 ],
+  filename: 'lists',
   data: 
-   { title: 'Almost a Haiku',
-     attributes: [ 'attr1', 'attr2', 'attr3' ],
-     methods: [ 'getter', 'setter' ],
+   { people: 
+      [ { age: 33, name: 'John Smith' },
+        { age: 27, name: 'Mary Smith' },
+        [length]: 2 ],
+     methods: [ 'getter', 'setter', [length]: 2 ],
+     women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
+     groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
+     men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
+     title: 'Almost a Haiku',
      movies: 
       [ 'Casablanca',
         'North by Northwest',
-        'The Man Who Wasn\'t There' ],
-     groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice' ],
-     people: 
-      [ { name: 'John Smith', age: 33 },
-        { name: 'Mary Smith', age: 27 } ],
-     men: [ 'John Smith', 'Bill Jones' ],
-     women: [ 'Mary Smith', 'Susan Williams' ] } }
+        'The Man Who Wasn\'t There',
+        [length]: 3 ],
+     attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ] },
+  dest: 'test\\actual\\yaml\\lists.html',
+  assets: '../assets',
+  methods: [ 'getter', 'setter', [length]: 2 ],
+  page: 
+   { [Function]
+     [arguments]: null,
+     [caller]: null,
+     [name]: '',
+     [prototype]: { [constructor]: [Circular] },
+     [length]: 2 },
+  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
+  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
+  men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
+  basename: 'lists',
+  title: 'Almost a Haiku',
+  ext: '.html',
+  movies: 
+   [ 'Casablanca',
+     'North by Northwest',
+     'The Man Who Wasn\'t There',
+     [length]: 3 ],
+  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ] }
 ```
 
       <ul>

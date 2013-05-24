@@ -132,91 +132,99 @@
       <h3>Debug Info</h3>
       ``` 
 {
-  title: 'Relational Trees - References',
-  steps: 
-   [ { step: 
-        { instrument: 'Lasik 2000',
-          pulseEnergy: 5.4,
-          pulseDuration: 12,
-          repetition: 1000,
-          spotSize: '1mm' 
-} },
-     { step: 
-        { instrument: 'Lasik 2000',
-          pulseEnergy: 5,
-          pulseDuration: 10,
-          repetition: 500,
-          spotSize: '2mm' } },
-     { step: 
-        { instrument: 'Lasik 2000',
-          pulseEnergy: 5.4,
-          pulseDuration: 12,
-          repetition: 1000,
-          spotSize: '1mm' } },
-     { step: 
-        { instrument: 'Lasik 2000',
-          pulseEnergy: 5,
-          pulseDuration: 10,
-          repetition: 500,
-          spotSize: '2mm' } },
-     { step: 
-        { instrument: 'Lasik 2000',
-          pulseEnergy: 5.4,
-          pulseDuration: 12,
-          repetition: 1000,
-          spotSize: '1mm' } },
-     { step: 
-        { instrument: 'Lasik 2000',
-          pulseEnergy: 5,
-          pulseDuration: 10,
-          repetition: 500,
-          spotSize: '2mm' } } ],
-  filename: 'relational-trees',
-  basename: 'relational-trees',
   src: 'test\\yaml\\relational-trees.hbs',
-  dest: 'test\\actual\\yaml\\relational-trees.html',
-  assets: '../assets',
-  ext: '.html',
-  page: [Function],
+  filename: 'relational-trees',
   data: 
    { title: 'Relational Trees - References',
      steps: 
       [ { step: 
-           { instrument: 'Lasik 2000',
-             pulseEnergy: 5.4,
+           { repetition: 1000,
              pulseDuration: 12,
-             repetition: 1000,
-             spotSize: '1mm' } },
-        { step: 
-           { instrument: 'Lasik 2000',
-             pulseEnergy: 5,
-             pulseDuration: 10,
-             repetition: 500,
-             spotSize: '2mm' } },
-        { step: 
-           { instrument: 'Lasik 2000',
              pulseEnergy: 5.4,
-             pulseDuration: 12,
-             repetition: 1000,
-             spotSize: '1mm' } },
+             spotSize: '1mm',
+             instrument: 'Lasik 2000' 
+} },
         { step: 
-           { instrument: 'Lasik 2000',
-             pulseEnergy: 5,
+           { repetition: 500,
              pulseDuration: 10,
-             repetition: 500,
-             spotSize: '2mm' } },
+             pulseEnergy: 5,
+             spotSize: '2mm',
+             instrument: 'Lasik 2000' } },
         { step: 
-           { instrument: 'Lasik 2000',
+           { repetition: 1000,
+             pulseDuration: 12,
              pulseEnergy: 5.4,
-             pulseDuration: 12,
-             repetition: 1000,
-             spotSize: '1mm' } },
+             spotSize: '1mm',
+             instrument: 'Lasik 2000' } },
         { step: 
-           { instrument: 'Lasik 2000',
-             pulseEnergy: 5,
+           { repetition: 500,
              pulseDuration: 10,
-             repetition: 500,
-             spotSize: '2mm' } } ] } }
+             pulseEnergy: 5,
+             spotSize: '2mm',
+             instrument: 'Lasik 2000' } },
+        { step: 
+           { repetition: 1000,
+             pulseDuration: 12,
+             pulseEnergy: 5.4,
+             spotSize: '1mm',
+             instrument: 'Lasik 2000' } },
+        { step: 
+           { repetition: 500,
+             pulseDuration: 10,
+             pulseEnergy: 5,
+             spotSize: '2mm',
+             instrument: 'Lasik 2000' } },
+        [length]: 6 ] },
+  dest: 'test\\actual\\yaml\\relational-trees.html',
+  assets: '../assets',
+  page: 
+   { [Function]
+     [arguments]: null,
+     [caller]: null,
+     [name]: '',
+     [prototype]: { [constructor]: [Circular] },
+     [length]: 2 },
+  basename: 'relational-trees',
+  title: 'Relational Trees - References',
+  ext: '.html',
+  steps: 
+   [ { step: 
+        { repetition: 1000,
+          pulseDuration: 12,
+          pulseEnergy: 5.4,
+          spotSize: '1mm',
+          instrument: 'Lasik 2000' } },
+     { step: 
+        { repetition: 500,
+          pulseDuration: 10,
+          pulseEnergy: 5,
+          spotSize: '2mm',
+          instrument: 'Lasik 2000' } },
+     { step: 
+        { repetition: 1000,
+          pulseDuration: 12,
+          pulseEnergy: 5.4,
+          spotSize: '1mm',
+          instrument: 'Lasik 2000' } },
+     { step: 
+        { repetition: 500,
+          pulseDuration: 10,
+          pulseEnergy: 5,
+          spotSize: '2mm',
+          instrument: 'Lasik 2000' } },
+     { step: 
+        { repetition: 1000,
+          pulseDuration: 12,
+          pulseEnergy: 5.4,
+          spotSize: '1mm',
+          instrument: 'Lasik 2000' } },
+     { step: 
+        { repetition: 500,
+          pulseDuration: 10,
+          pulseEnergy: 5,
+          spotSize: '2mm',
+          instrument: 'Lasik 2000' } },
+     [length]: 6 ] }
 ```
 
       <ul>

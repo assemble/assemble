@@ -1,0 +1,66 @@
+<!doctype html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>YAML Test</title>
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="./css/layout3.css" rel="stylesheet">
+  </head>
+  <body style="padding-top: 60px;">
+    <div class="container">
+      
+
+<div>bar</div>
+<div>content from common1.json</div>
+
+
+<div>bar</div>
+<div></div>
+
+    </div>
+
+    <div class="container" style="display: none">
+      <h3>Debug Info</h3>
+      ``` 
+{
+  content: 'content from common1.json',
+  src: 'test\\files\\example.hbs',
+  filename: 'example',
+  data: { foo: 'bar' 
+},
+  dest: 'test\\actual\\example.html',
+  assets: '.',
+  foo: 'bar',
+  page: 
+   { [Function]
+     [arguments]: null,
+     [caller]: null,
+     [name]: '',
+     [prototype]: { [constructor]: [Circular] },
+     [length]: 2 },
+  basename: 'example',
+  ext: '.html' }
+```
+
+      <ul>
+      
+        <!--
+          page.dest: test\actual\example.html
+          this.dest: test\actual\example.html
+          filename: test\actual\example.html
+          dirname: test\actual
+        -->
+        <li><a href="example.html">example</a></li>
+      
+        <!--
+          page.dest: test\actual\example.html
+          this.dest: test\actual\example\example.html
+          filename: test\actual\example.html
+          dirname: test\actual
+        -->
+        <li><a href="example/example.html">example</a></li>
+      
+      </ul>
+    </div>
+  </body>
+</html>
