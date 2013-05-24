@@ -31,20 +31,26 @@
       <h3>Debug Info</h3>
       ``` 
 {
-  page: [Function],
-  title: 'Tags Test',
-  tags: [ 'tags', 'test', 'something' ],
-  filename: 'tags_test',
-  basename: 'tags_test',
   src: 'test\\files\\tags_test.hbs',
+  filename: 'tags_test',
+  data: 
+   { tags: [ 'tags', 'test', 'something', [length]: 3 ],
+     page: null,
+     title: 'Tags Test' 
+},
   dest: 'test\\actual\\multi\\dest1\\tags_test.html',
   assets: '../../assets',
-  ext: '.html',
-  data: 
-   { page: null,
-     title: 'Tags Test',
-     tags: [ 'tags', 'test', 'something' ] 
-} }
+  tags: [ 'tags', 'test', 'something', [length]: 3 ],
+  page: 
+   { [Function]
+     [arguments]: null,
+     [caller]: null,
+     [name]: '',
+     [prototype]: { [constructor]: [Circular] },
+     [length]: 2 },
+  basename: 'tags_test',
+  title: 'Tags Test',
+  ext: '.html' }
 ```
 
       <ul>

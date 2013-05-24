@@ -31,18 +31,24 @@
       <h3>Debug Info</h3>
       ``` 
 {
-  page: [Function],
-  categories: [ 'categories', 'test', 'something' ],
-  filename: 'category',
-  basename: 'category',
   src: 'test\\files\\category.hbs',
+  filename: 'category',
+  data: 
+   { categories: [ 'categories', 'test', 'something', [length]: 3 ],
+     page: { title: 'Categories Test' 
+} },
   dest: 'test\\actual\\multi\\dest1\\category.html',
   assets: '../../assets',
-  ext: '.html',
-  data: 
-   { page: { title: 'Categories Test' 
-},
-     categories: [ 'categories', 'test', 'something' ] } }
+  categories: [ 'categories', 'test', 'something', [length]: 3 ],
+  page: 
+   { [Function]
+     [arguments]: null,
+     [caller]: null,
+     [name]: '',
+     [prototype]: { [constructor]: [Circular] },
+     [length]: 2 },
+  basename: 'category',
+  ext: '.html' }
 ```
 
       <ul>

@@ -31,21 +31,27 @@ other_thing: *NAME</code></pre>
       <h3>Debug Info</h3>
       ``` 
 {
-  title: 'YAML Variables',
-  one: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
-  two: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
-  filename: 'variables',
-  basename: 'variables',
   src: 'test\\yaml\\variables.hbs',
+  filename: 'variables',
+  data: 
+   { two: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
+     one: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
+     title: 'YAML Variables' 
+},
   dest: 'test\\actual\\yaml\\variables.html',
   assets: '../assets',
-  ext: '.html',
-  page: [Function],
-  data: 
-   { title: 'YAML Variables',
-     one: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
-     two: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!' 
-} }
+  two: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
+  page: 
+   { [Function]
+     [arguments]: null,
+     [caller]: null,
+     [name]: '',
+     [prototype]: { [constructor]: [Circular] },
+     [length]: 2 },
+  one: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
+  basename: 'variables',
+  title: 'YAML Variables',
+  ext: '.html' }
 ```
 
       <ul>
