@@ -31,21 +31,27 @@
       <h3>Debug Info</h3>
       ``` 
 {
-  title: 'Associative arrays',
-  people: { name: 'John Smith', age: 33 
-},
-  morePeople: { name: 'Grace Jones', age: 21 },
-  filename: 'associative-arrays',
-  basename: 'associative-arrays',
   src: 'test\\yaml\\associative-arrays.hbs',
+  people: { age: 33, name: 'John Smith' 
+},
+  filename: 'associative-arrays',
+  data: 
+   { people: { age: 33, name: 'John Smith' },
+     morePeople: { age: 21, name: 'Grace Jones' },
+     title: 'Associative arrays' },
   dest: 'test\\actual\\yaml\\associative-arrays.html',
   assets: '../assets',
-  ext: '.html',
-  page: [Function],
-  data: 
-   { title: 'Associative arrays',
-     people: { name: 'John Smith', age: 33 },
-     morePeople: { name: 'Grace Jones', age: 21 } } }
+  page: 
+   { [Function]
+     [arguments]: null,
+     [caller]: null,
+     [name]: '',
+     [prototype]: { [constructor]: [Circular] },
+     [length]: 2 },
+  morePeople: { age: 21, name: 'Grace Jones' },
+  basename: 'associative-arrays',
+  title: 'Associative arrays',
+  ext: '.html' }
 ```
 
       <ul>
