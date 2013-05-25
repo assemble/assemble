@@ -130,7 +130,7 @@ module.exports = function(grunt) {
           var filename = _.first(filepath.match(assemble.filenameRegex)).replace(assemble.fileExtRegex, '');
           grunt.verbose.ok(('Processing ' + filename.cyan + ' partial'));
 
-          var partial = fs.readFileSync(filepath, 'utf8');
+          var partial = grunt.file.read(filepath);
 
           // If options.removeHbsWhitespace is true
           partial = removeHbsWhitespace(assemble,partial);
@@ -232,23 +232,18 @@ module.exports = function(grunt) {
 
         filePair.src.forEach(function(srcFile) {
 
-          srcFile  = path.normalize(srcFile);
+          srcFile  = urlNormalize(path.normalize(srcFile));
           filename = path.basename(srcFile, path.extname(srcFile));
 
           if(detectDestType(filePair.dest) === 'directory') {
-            destFile = (isExpandedPair) ?
-                        filePair.dest :
-                        path.join(filePair.dest,
-                                  (assemble.options.flatten ?
-                                    path.basename(srcFile) :
-                                    srcFile));
+            destFile = (isExpandedPair) ? filePair.dest : path.join(
+              filePair.dest, (assemble.options.flatten ? path.basename(srcFile) : srcFile)
+            );
           } else {
             destFile = filePair.dest;
           }
 
-          destFile = path.join(path.dirname(destFile),
-                               path.basename(destFile, path.extname(destFile))
-                              ) + assemble.options.ext;
+          destFile = urlNormalize(path.join(path.dirname(destFile), path.basename(destFile, path.extname(destFile)))) + assemble.options.ext;
 
           grunt.verbose.writeln('Reading ' + filename.magenta);
 
@@ -274,7 +269,7 @@ module.exports = function(grunt) {
           grunt.verbose.writeln(('\t' + 'Dest: '   + destFile));
           grunt.verbose.writeln(('\t' + 'Assets: ' + assemble.options.assets));
 
-          var page = fs.readFileSync(srcFile, 'utf8');
+          var page = grunt.file.read(srcFile);
           try {
             grunt.verbose.writeln('compiling page ' + filename.magenta);
             var pageContext = {};
@@ -568,7 +563,7 @@ module.exports = function(grunt) {
 
       // load layout
       layoutName = _.first(layout.match(assemble.filenameRegex)).replace(assemble.fileExtRegex,'');
-      layout = fs.readFileSync(layout, 'utf8');
+      layout = grunt.file.read(layout);
     }
 
     // If options.removeHbsWhitespace is true
@@ -626,8 +621,14 @@ module.exports = function(grunt) {
     return _(fileName.match(/[^.]*$/)).last();
   };
 
+  // Windows? (from grunt.file)
+  var win32 = process.platform === 'win32';
   var urlNormalize = function(urlString) {
+    if (win32) {
     return urlString.replace(/\\/g, '/');
+    } else {
+      return urlString;
+    }
   };
 
   var dataFileReaderFactory = function(ext) {
