@@ -29,19 +29,35 @@
       <h3>Debug Info</h3>
       ``` 
 {
-  filename: 'page',
-  basename: 'page',
   src: 'test\\files\\page.hbs',
-  dest: 'test\\actual\\multi\\dest2\\sub-dest\\page.html',
-  assets: '../../../assets',
-  ext: '.html',
-  page: [Function],
+  filename: 'page',
   data: 
    { title: 'Partials Test',
-     links: [ './index', 'dest/context', 'dest/basic', 'dest/markdown' ] 
+     links: 
+      [ './index',
+        'dest/context',
+        'dest/basic',
+        'dest/markdown',
+        [length]: 4 ] 
 },
+  dest: 'test\\actual\\multi\\dest2\\sub-dest\\page.html',
+  assets: '../../../assets',
+  page: 
+   { [Function]
+     [arguments]: null,
+     [caller]: null,
+     [name]: '',
+     [prototype]: { [constructor]: [Circular] },
+     [length]: 2 },
+  basename: 'page',
   title: 'Partials Test',
-  links: [ './index', 'dest/context', 'dest/basic', 'dest/markdown' ] }
+  ext: '.html',
+  links: 
+   [ './index',
+     'dest/context',
+     'dest/basic',
+     'dest/markdown',
+     [length]: 4 ] }
 ```
 
       <ul>

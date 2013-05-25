@@ -70,29 +70,37 @@
       <h3>Debug Info</h3>
       ``` 
 {
-  url: 'http://gist.github.com/jonschlinkert/5193239',
   text: 'helpers.js',
-  links: [ 'one', 'two', 'three' ],
-  moreLinks: 
-   [ { url: 'one', text: 'two' 
-},
-     { url: 'three', text: 'four' },
-     { url: 'five', text: 'size' } ],
-  filename: 'helpers',
-  basename: 'helpers',
   src: 'test\\files\\helpers.hbs',
+  filename: 'helpers',
+  moreLinks: 
+   [ { text: 'two', url: 'one' 
+},
+     { text: 'four', url: 'three' },
+     { text: 'size', url: 'five' },
+     [length]: 3 ],
+  data: 
+   { text: 'helpers.js',
+     moreLinks: 
+      [ { text: 'two', url: 'one' },
+        { text: 'four', url: 'three' },
+        { text: 'size', url: 'five' },
+        [length]: 3 ],
+     links: [ 'one', 'two', 'three', [length]: 3 ],
+     url: 'http://gist.github.com/jonschlinkert/5193239' },
   dest: 'test\\actual\\multi\\dest1\\helpers.html',
   assets: '../../assets',
+  page: 
+   { [Function]
+     [arguments]: null,
+     [caller]: null,
+     [name]: '',
+     [prototype]: { [constructor]: [Circular] },
+     [length]: 2 },
+  basename: 'helpers',
   ext: '.html',
-  page: [Function],
-  data: 
-   { url: 'http://gist.github.com/jonschlinkert/5193239',
-     text: 'helpers.js',
-     links: [ 'one', 'two', 'three' ],
-     moreLinks: 
-      [ { url: 'one', text: 'two' },
-        { url: 'three', text: 'four' },
-        { url: 'five', text: 'size' } ] } }
+  links: [ 'one', 'two', 'three', [length]: 3 ],
+  url: 'http://gist.github.com/jonschlinkert/5193239' }
 ```
 
       <ul>

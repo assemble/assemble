@@ -76,6 +76,17 @@ module.exports = function(grunt) {
           'test/actual/multi/dest2/': ['test/files/**/*.{md,markdown}'],
           'test/actual/multi/dest2/sub-dest/': ['test/files/**/*.hbs', '!test/files/layout*.*']
         }
+      },
+      assets: {
+        options: {
+          assets: 'test/actual',
+          layout: 'test/files/layout3.hbs',
+          data: ['test/data/*.json']
+        },
+        files: {
+          'test/actual/': ['test/files/example.hbs'],
+          'test/actual/example/': ['test/files/example.hbs']
+        }
       }
     }
   });

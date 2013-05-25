@@ -9,7 +9,7 @@
     <div class="container">
       
 
-<div>Date: Thu May 23 2013 11:52:07 GMT-0400 (Eastern Daylight Time)</div>
+<div>Date: Fri May 24 2013 13:06:34 GMT-0400 (Eastern Daylight Time)</div>
 
 <div>Born 33 years ago</div>
 
@@ -19,21 +19,27 @@
       <h3>Debug Info</h3>
       ``` 
 {
-  description: 'testing the dates helpers',
   css: '<link rel="stylesheet" href="/css/index.css"/>',
-  js: 'document.write(\'foo bar!\');',
-  filename: 'dates',
-  basename: 'dates',
   src: 'test\\files\\dates.hbs',
+  filename: 'dates',
+  data: 
+   { css: '<link rel="stylesheet" href="/css/index.css"/>',
+     js: 'document.write(\'foo bar!\');',
+     description: 'testing the dates helpers' 
+},
   dest: 'test\\actual\\multi\\dest2\\sub-dest\\dates.html',
   assets: '../../../assets',
+  page: 
+   { [Function]
+     [arguments]: null,
+     [caller]: null,
+     [name]: '',
+     [prototype]: { [constructor]: [Circular] },
+     [length]: 2 },
+  js: 'document.write(\'foo bar!\');',
+  basename: 'dates',
   ext: '.html',
-  page: [Function],
-  data: 
-   { description: 'testing the dates helpers',
-     css: '<link rel="stylesheet" href="/css/index.css"/>',
-     js: 'document.write(\'foo bar!\');' 
-} }
+  description: 'testing the dates helpers' }
 ```
 
       <ul>
@@ -45,14 +51,6 @@
           dirname: test\actual\multi\dest2\sub-dest
         -->
         <li><a href="../../dest1/alert.html">alert</a></li>
-      
-        <!--
-          page.dest: test\actual\multi\dest2\sub-dest\dates.html
-          this.dest: test\actual\multi\dest1\assets.html
-          filename: test\actual\multi\dest2\sub-dest\dates.html
-          dirname: test\actual\multi\dest2\sub-dest
-        -->
-        <li><a href="../../dest1/assets.html">assets</a></li>
       
         <!--
           page.dest: test\actual\multi\dest2\sub-dest\dates.html
@@ -173,14 +171,6 @@
           dirname: test\actual\multi\dest2\sub-dest
         -->
         <li><a href="alert.html">alert</a></li>
-      
-        <!--
-          page.dest: test\actual\multi\dest2\sub-dest\dates.html
-          this.dest: test\actual\multi\dest2\sub-dest\assets.html
-          filename: test\actual\multi\dest2\sub-dest\dates.html
-          dirname: test\actual\multi\dest2\sub-dest
-        -->
-        <li><a href="assets.html">assets</a></li>
       
         <!--
           page.dest: test\actual\multi\dest2\sub-dest\dates.html

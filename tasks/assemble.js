@@ -264,6 +264,12 @@ module.exports = function(grunt) {
               path.resolve(assetsPath)
             ));
 
+          // if the assets relative path is blank, then it's the same folder
+          // so update to be '.'
+          if(!assemble.options.assets || assemble.options.assets.length === 0) {
+            assemble.options.assets = '.';
+          }
+
           grunt.verbose.writeln(('\t' + 'Src: '    + srcFile));
           grunt.verbose.writeln(('\t' + 'Dest: '   + destFile));
           grunt.verbose.writeln(('\t' + 'Assets: ' + assemble.options.assets));
