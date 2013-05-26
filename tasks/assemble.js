@@ -86,7 +86,7 @@ module.exports = function(grunt) {
     };
 
     var assembleDefaultLayout = function(assemble, next) {
-      grunt.verbose.writeln('assembleing default layout');
+      grunt.verbose.writeln('assembling default layout');
       grunt.log.writeln('assembling'  + ' default layout'.cyan);
 
       // load default layout
@@ -288,12 +288,16 @@ module.exports = function(grunt) {
             });
 
             var pageObj = {
-              filename: filename,
-              basename: filename,
+              dirname : path.dirname(destFile),
+              filename: path.basename(destFile),
+              pageName: path.basename(destFile),
+              pagename: path.basename(destFile),
+              basename: path.basename(filename),
               src: srcFile,
               dest: destFile,
               assets: assemble.options.assets,
               ext: assemble.options.ext,
+              extname: assemble.options.ext,
               page: page,
               data: pageContext
             };
@@ -504,11 +508,14 @@ module.exports = function(grunt) {
       context.assets = currentPage.assets;
 
       // add other page variables to the main context
-      context.pageName = currentPage.filename;
-      context.filename = currentPage.dest;
-      context.extname = currentPage.ext;
+      context.extname  = currentPage.ext;
       context.basename = currentPage.basename;
-      context.dirname = path.dirname(currentPage.dest);
+      context.absolute = currentPage.dest;
+      context.dirname  = path.dirname(currentPage.dest);
+      context.pagename = currentPage.filename;
+      context.filename = currentPage.filename;
+      // "pageName" is deprecated, use "pagename" or "filename"
+      context.pageName = currentPage.filename;
 
       assemble.options.registerPartial(assemble.engine, 'body', page);
 
