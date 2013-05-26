@@ -3,27 +3,8 @@
 ## Debug Info
 
 ``` json
-{ dest: 'test/actual/multi/dest1/helpers.md',
-  assets: '../../assets',
-  text: 'helpers.js',
-  src: 'test/files/helpers.hbs',
-  extname: '.md',
-  basename: 'helpers',
-  moreLinks: 
-   [ { url: 'one', text: 'two' },
-     { url: 'three', text: 'four' },
-     { url: 'five', text: 'size' },
-     [length]: 3 ],
-  url: 'http://gist.github.com/jonschlinkert/5193239',
-  pageName: 'helpers.md',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  pagename: 'helpers.md',
+{ src: 'test/files/helpers.hbs',
+  ext: '.md',
   data: 
    { url: 'http://gist.github.com/jonschlinkert/5193239',
      text: 'helpers.js',
@@ -33,10 +14,29 @@
         { url: 'three', text: 'four' },
         { url: 'five', text: 'size' },
         [length]: 3 ] },
+  moreLinks: 
+   [ { url: 'one', text: 'two' },
+     { url: 'three', text: 'four' },
+     { url: 'five', text: 'size' },
+     [length]: 3 ],
+  text: 'helpers.js',
+  dirname: 'test/actual/multi/dest1',
+  pageName: 'helpers.md',
+  basename: 'helpers',
+  dest: 'test/actual/multi/dest1/helpers.md',
+  assets: '../../assets',
+  url: 'http://gist.github.com/jonschlinkert/5193239',
   filename: 'helpers.md',
-  ext: '.md',
-  links: [ 'one', 'two', 'three', [length]: 3 ],
-  dirname: 'test/actual/multi/dest1' }
+  pagename: 'helpers.md',
+  extname: '.md',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  links: [ 'one', 'two', 'three', [length]: 3 ] }
 ```
 
 ### "{{#each pages}}" Links
