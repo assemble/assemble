@@ -29,52 +29,36 @@
       <h3>Debug Info</h3>
       ``` 
 {
-  src: 'test\\files\\page.hbs',
   filename: 'page',
+  basename: 'page',
+  src: 'test/files/page.hbs',
+  dest: 'test/actual/page.html',
+  assets: 'assets',
+  ext: '.html',
+  page: [Function],
   data: 
    { title: 'Partials Test',
-     links: 
-      [ './index',
-        'dest/context',
-        'dest/basic',
-        'dest/markdown',
-        [length]: 4 ] 
+     links: [ './index', 'dest/context', 'dest/basic', 'dest/markdown' ] 
 },
-  dest: 'test\\actual\\page.html',
-  assets: 'assets',
-  page: 
-   { [Function]
-     [arguments]: null,
-     [caller]: null,
-     [name]: '',
-     [prototype]: { [constructor]: [Circular] },
-     [length]: 2 },
-  basename: 'page',
   title: 'Partials Test',
-  ext: '.html',
-  links: 
-   [ './index',
-     'dest/context',
-     'dest/basic',
-     'dest/markdown',
-     [length]: 4 ] }
+  links: [ './index', 'dest/context', 'dest/basic', 'dest/markdown' ] }
 ```
 
       <ul>
       
         <!--
-          page.dest: test\actual\page.html
-          this.dest: test\actual\dates.html
-          filename: test\actual\page.html
-          dirname: test\actual
+          page.dest: test/actual/page.html
+          this.dest: test/actual/dates.html
+          filename: test/actual/page.html
+          dirname: test/actual
         -->
         <li><a href="dates.html">dates</a></li>
       
         <!--
-          page.dest: test\actual\page.html
-          this.dest: test\actual\page.html
-          filename: test\actual\page.html
-          dirname: test\actual
+          page.dest: test/actual/page.html
+          this.dest: test/actual/page.html
+          filename: test/actual/page.html
+          dirname: test/actual
         -->
         <li><a href="page.html">page</a></li>
       

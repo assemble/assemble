@@ -9,7 +9,7 @@
     <div class="container">
       
 
-<div>Date: Fri May 24 2013 13:06:34 GMT-0400 (Eastern Daylight Time)</div>
+<div>Date: Sat May 25 2013 22:00:14 GMT-0400 (Eastern Daylight Time)</div>
 
 <div>Born 33 years ago</div>
 
@@ -19,44 +19,38 @@
       <h3>Debug Info</h3>
       ``` 
 {
+  description: 'testing the dates helpers',
   css: '<link rel="stylesheet" href="/css/index.css"/>',
-  src: 'test\\files\\dates.hbs',
-  filename: 'dates',
-  data: 
-   { css: '<link rel="stylesheet" href="/css/index.css"/>',
-     js: 'document.write(\'foo bar!\');',
-     description: 'testing the dates helpers' 
-},
-  dest: 'test\\actual\\dates.html',
-  assets: 'assets',
-  page: 
-   { [Function]
-     [arguments]: null,
-     [caller]: null,
-     [name]: '',
-     [prototype]: { [constructor]: [Circular] },
-     [length]: 2 },
   js: 'document.write(\'foo bar!\');',
+  filename: 'dates',
   basename: 'dates',
+  src: 'test/files/dates.hbs',
+  dest: 'test/actual/dates.html',
+  assets: 'assets',
   ext: '.html',
-  description: 'testing the dates helpers' }
+  page: [Function],
+  data: 
+   { description: 'testing the dates helpers',
+     css: '<link rel="stylesheet" href="/css/index.css"/>',
+     js: 'document.write(\'foo bar!\');' 
+} }
 ```
 
       <ul>
       
         <!--
-          page.dest: test\actual\dates.html
-          this.dest: test\actual\dates.html
-          filename: test\actual\dates.html
-          dirname: test\actual
+          page.dest: test/actual/dates.html
+          this.dest: test/actual/dates.html
+          filename: test/actual/dates.html
+          dirname: test/actual
         -->
         <li><a href="dates.html">dates</a></li>
       
         <!--
-          page.dest: test\actual\dates.html
-          this.dest: test\actual\page.html
-          filename: test\actual\dates.html
-          dirname: test\actual
+          page.dest: test/actual/dates.html
+          this.dest: test/actual/page.html
+          filename: test/actual/dates.html
+          dirname: test/actual
         -->
         <li><a href="page.html">page</a></li>
       

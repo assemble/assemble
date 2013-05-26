@@ -70,270 +70,262 @@
       <h3>Debug Info</h3>
       ``` 
 {
+  url: 'http://gist.github.com/jonschlinkert/5193239',
   text: 'helpers.js',
-  src: 'test\\files\\helpers.hbs',
-  filename: 'helpers',
+  links: [ 'one', 'two', 'three' ],
   moreLinks: 
-   [ { text: 'two', url: 'one' 
+   [ { url: 'one', text: 'two' 
 },
-     { text: 'four', url: 'three' },
-     { text: 'size', url: 'five' },
-     [length]: 3 ],
-  data: 
-   { text: 'helpers.js',
-     moreLinks: 
-      [ { text: 'two', url: 'one' },
-        { text: 'four', url: 'three' },
-        { text: 'size', url: 'five' },
-        [length]: 3 ],
-     links: [ 'one', 'two', 'three', [length]: 3 ],
-     url: 'http://gist.github.com/jonschlinkert/5193239' },
-  dest: 'test\\actual\\multi\\dest1\\helpers.html',
-  assets: '../../assets',
-  page: 
-   { [Function]
-     [arguments]: null,
-     [caller]: null,
-     [name]: '',
-     [prototype]: { [constructor]: [Circular] },
-     [length]: 2 },
+     { url: 'three', text: 'four' },
+     { url: 'five', text: 'size' } ],
+  filename: 'helpers',
   basename: 'helpers',
+  src: 'test/files/helpers.hbs',
+  dest: 'test/actual/multi/dest1/helpers.html',
+  assets: '../../assets',
   ext: '.html',
-  links: [ 'one', 'two', 'three', [length]: 3 ],
-  url: 'http://gist.github.com/jonschlinkert/5193239' }
+  page: [Function],
+  data: 
+   { url: 'http://gist.github.com/jonschlinkert/5193239',
+     text: 'helpers.js',
+     links: [ 'one', 'two', 'three' ],
+     moreLinks: 
+      [ { url: 'one', text: 'two' },
+        { url: 'three', text: 'four' },
+        { url: 'five', text: 'size' } ] } }
 ```
 
       <ul>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest1\alert.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest1/alert.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="alert.html">alert</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest1\assets.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest1/assets.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="assets.html">assets</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest1\category.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest1/category.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="category.html">category</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest1\category2.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest1/category2.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="category2.html">category2</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest1\complex.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest1/complex.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="complex.html">complex</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest1\dates.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest1/dates.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="dates.html">dates</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest1\example.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest1/example.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="example.html">example</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest1\helpers.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest1/helpers.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="helpers.html">helpers</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest1\page.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest1/page.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="page.html">page</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest1\nav.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest1/nav.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="nav.html">nav</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest1\simple3.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest1/simple3.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="simple3.html">simple3</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest1\tags_test.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest1/tags_test.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="tags_test.html">tags_test</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest1\tags_test2.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest1/tags_test2.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="tags_test2.html">tags_test2</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest2\complex1.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest2/complex1.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="../dest2/complex1.html">complex1</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest2\md2.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest2/md2.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="../dest2/md2.html">md2</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest2\simple1.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest2/simple1.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="../dest2/simple1.html">simple1</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest2\sub-dest\alert.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest2/sub-dest/alert.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="../dest2/sub-dest/alert.html">alert</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest2\sub-dest\assets.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest2/sub-dest/assets.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="../dest2/sub-dest/assets.html">assets</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest2\sub-dest\category.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest2/sub-dest/category.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="../dest2/sub-dest/category.html">category</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest2\sub-dest\category2.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest2/sub-dest/category2.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="../dest2/sub-dest/category2.html">category2</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest2\sub-dest\complex.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest2/sub-dest/complex.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="../dest2/sub-dest/complex.html">complex</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest2\sub-dest\dates.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest2/sub-dest/dates.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="../dest2/sub-dest/dates.html">dates</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest2\sub-dest\example.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest2/sub-dest/example.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="../dest2/sub-dest/example.html">example</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest2\sub-dest\helpers.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest2/sub-dest/helpers.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="../dest2/sub-dest/helpers.html">helpers</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest2\sub-dest\page.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest2/sub-dest/page.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="../dest2/sub-dest/page.html">page</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest2\sub-dest\nav.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest2/sub-dest/nav.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="../dest2/sub-dest/nav.html">nav</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest2\sub-dest\simple3.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest2/sub-dest/simple3.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="../dest2/sub-dest/simple3.html">simple3</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest2\sub-dest\tags_test.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest2/sub-dest/tags_test.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="../dest2/sub-dest/tags_test.html">tags_test</a></li>
       
         <!--
-          page.dest: test\actual\multi\dest1\helpers.html
-          this.dest: test\actual\multi\dest2\sub-dest\tags_test2.html
-          filename: test\actual\multi\dest1\helpers.html
-          dirname: test\actual\multi\dest1
+          page.dest: test/actual/multi/dest1/helpers.html
+          this.dest: test/actual/multi/dest2/sub-dest/tags_test2.html
+          filename: test/actual/multi/dest1/helpers.html
+          dirname: test/actual/multi/dest1
         -->
         <li><a href="../dest2/sub-dest/tags_test2.html">tags_test2</a></li>
       
