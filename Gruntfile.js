@@ -76,6 +76,13 @@ module.exports = function(grunt) {
           'test/actual/multi/dest2/sub-dest/': ['test/files/**/*.hbs', '!test/files/layout*.*']
         }
       },
+      markdown: {
+        options: {
+          layout: 'test/layouts/default.md.hbs',
+          ext: '.md'
+        },
+        files: {'test/actual/multi/dest1/': ['test/files/**/*.hbs', '!test/files/layout*.*']}
+      },
       assets_one: {
         options: {
           assets: 'test/actual/public',
@@ -102,7 +109,7 @@ module.exports = function(grunt) {
     // Before assembling new files, removed previously
     // created files.
     clean: {
-      tests: ['test/actual/**/*.html']
+      tests: ['test/actual/**/*.{html,md}']
     }
   });
 

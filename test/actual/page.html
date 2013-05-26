@@ -27,25 +27,42 @@
 
     <div class="container" style="display: none">
       <h3>Debug Info</h3>
-      ``` 
-{
-  title: 'Partials Test',
-  links: [ './index', 'dest/context', 'dest/basic', 'dest/markdown' ],
+
+
+<pre class="json">
+{ title: 'Partials Test',
+  links: 
+   [ './index',
+     'dest/context',
+     'dest/basic',
+     'dest/markdown',
+     [length]: 4 ],
   dirname: 'test/actual',
   filename: 'page.html',
   pageName: 'page.html',
+  pagename: 'page.html',
   basename: 'page',
+  src: 'test/files/page.hbs',
+  dest: 'test/actual/page.html',
   assets: 'assets',
   ext: '.html',
   extname: '.html',
-  src: 'test/files/page.hbs',
-  dest: 'test/actual/page.html',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
   data: 
    { title: 'Partials Test',
-     links: [ './index', 'dest/context', 'dest/basic', 'dest/markdown' ] 
-},
-  page: [Function] }
-```
+     links: 
+      [ './index',
+        'dest/context',
+        'dest/basic',
+        'dest/markdown',
+        [length]: 4 ] } }
+</pre>
 
       <ul>
       
@@ -56,7 +73,7 @@
         this.absolute: 
         this.dirname:  test/actual
         this.filename: dates.html
-        this.pageName: dates.html
+        this.pagename: dates.html
         this.basename: dates
         this.extname:  .html
         this.ext:      .html
@@ -64,10 +81,10 @@
         "page"
         ===============================
         page.dest:     test/actual/page.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual
         page.filename: page.html
-        page.pageName: page.html
+        page.pagename: page.html
         page.basename: page
         page.extname:  .html
         page.ext:      .html
@@ -78,7 +95,7 @@
         absolute:      test/actual/page.html
         dirname:       test/actual
         filename:      page.html
-        pageName:      page.html
+        pagename:      page.html
         basename:      page
         extname:       .html
         ext:           .html
@@ -92,7 +109,7 @@
         this.absolute: 
         this.dirname:  test/actual
         this.filename: page.html
-        this.pageName: page.html
+        this.pagename: page.html
         this.basename: page
         this.extname:  .html
         this.ext:      .html
@@ -100,10 +117,10 @@
         "page"
         ===============================
         page.dest:     test/actual/page.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual
         page.filename: page.html
-        page.pageName: page.html
+        page.pagename: page.html
         page.basename: page
         page.extname:  .html
         page.ext:      .html
@@ -114,7 +131,7 @@
         absolute:      test/actual/page.html
         dirname:       test/actual
         filename:      page.html
-        pageName:      page.html
+        pagename:      page.html
         basename:      page
         extname:       .html
         ext:           .html

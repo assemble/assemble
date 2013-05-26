@@ -89,47 +89,58 @@
 
     <div class="container" style="display: none">
       <h3>Debug Info</h3>
-      ``` 
-{
-  title: 'Almost a Haiku',
-  attributes: [ 'attr1', 'attr2', 'attr3' ],
-  methods: [ 'getter', 'setter' ],
+
+
+<pre class="json">
+{ dest: 'test/actual/yaml/lists.html',
+  people: 
+   [ { name: 'John Smith', age: 33 },
+     { name: 'Mary Smith', age: 27 },
+     [length]: 2 ],
+  methods: [ 'getter', 'setter', [length]: 2 ],
   movies: 
    [ 'Casablanca',
      'North by Northwest',
-     'The Man Who Wasn\'t There' ],
-  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice' ],
-  people: 
-   [ { name: 'John Smith', age: 33 
-},
-     { name: 'Mary Smith', age: 27 } ],
-  men: [ 'John Smith', 'Bill Jones' ],
-  women: [ 'Mary Smith', 'Susan Williams' ],
-  dirname: 'test/actual/yaml',
-  filename: 'lists.html',
-  pageName: 'lists.html',
-  basename: 'lists',
+     'The Man Who Wasn\'t There',
+     [length]: 3 ],
   assets: '../assets',
-  ext: '.html',
-  extname: '.html',
+  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
   src: 'test/yaml/lists.hbs',
-  dest: 'test/actual/yaml/lists.html',
+  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
+  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
+  extname: '.html',
+  basename: 'lists',
+  men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
+  pageName: 'lists.html',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  pagename: 'lists.html',
+  title: 'Almost a Haiku',
   data: 
    { title: 'Almost a Haiku',
-     attributes: [ 'attr1', 'attr2', 'attr3' ],
-     methods: [ 'getter', 'setter' ],
+     attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
+     methods: [ 'getter', 'setter', [length]: 2 ],
      movies: 
       [ 'Casablanca',
         'North by Northwest',
-        'The Man Who Wasn\'t There' ],
-     groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice' ],
+        'The Man Who Wasn\'t There',
+        [length]: 3 ],
+     groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
      people: 
       [ { name: 'John Smith', age: 33 },
-        { name: 'Mary Smith', age: 27 } ],
-     men: [ 'John Smith', 'Bill Jones' ],
-     women: [ 'Mary Smith', 'Susan Williams' ] },
-  page: [Function] }
-```
+        { name: 'Mary Smith', age: 27 },
+        [length]: 2 ],
+     men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
+     women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ] },
+  filename: 'lists.html',
+  ext: '.html',
+  dirname: 'test/actual/yaml' }
+</pre>
 
       <ul>
       
@@ -140,7 +151,7 @@
         this.absolute: 
         this.dirname:  test/actual/yaml
         this.filename: associative-arrays.html
-        this.pageName: associative-arrays.html
+        this.pagename: associative-arrays.html
         this.basename: associative-arrays
         this.extname:  .html
         this.ext:      .html
@@ -148,10 +159,10 @@
         "page"
         ===============================
         page.dest:     test/actual/yaml/lists.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual/yaml
         page.filename: lists.html
-        page.pageName: lists.html
+        page.pagename: lists.html
         page.basename: lists
         page.extname:  .html
         page.ext:      .html
@@ -162,7 +173,7 @@
         absolute:      test/actual/yaml/lists.html
         dirname:       test/actual/yaml
         filename:      lists.html
-        pageName:      lists.html
+        pagename:      lists.html
         basename:      lists
         extname:       .html
         ext:           .html
@@ -176,7 +187,7 @@
         this.absolute: 
         this.dirname:  test/actual/yaml
         this.filename: block-literals.html
-        this.pageName: block-literals.html
+        this.pagename: block-literals.html
         this.basename: block-literals
         this.extname:  .html
         this.ext:      .html
@@ -184,10 +195,10 @@
         "page"
         ===============================
         page.dest:     test/actual/yaml/lists.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual/yaml
         page.filename: lists.html
-        page.pageName: lists.html
+        page.pagename: lists.html
         page.basename: lists
         page.extname:  .html
         page.ext:      .html
@@ -198,7 +209,7 @@
         absolute:      test/actual/yaml/lists.html
         dirname:       test/actual/yaml
         filename:      lists.html
-        pageName:      lists.html
+        pagename:      lists.html
         basename:      lists
         extname:       .html
         ext:           .html
@@ -212,7 +223,7 @@
         this.absolute: 
         this.dirname:  test/actual/yaml
         this.filename: comments.html
-        this.pageName: comments.html
+        this.pagename: comments.html
         this.basename: comments
         this.extname:  .html
         this.ext:      .html
@@ -220,10 +231,10 @@
         "page"
         ===============================
         page.dest:     test/actual/yaml/lists.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual/yaml
         page.filename: lists.html
-        page.pageName: lists.html
+        page.pagename: lists.html
         page.basename: lists
         page.extname:  .html
         page.ext:      .html
@@ -234,7 +245,7 @@
         absolute:      test/actual/yaml/lists.html
         dirname:       test/actual/yaml
         filename:      lists.html
-        pageName:      lists.html
+        pagename:      lists.html
         basename:      lists
         extname:       .html
         ext:           .html
@@ -248,7 +259,7 @@
         this.absolute: 
         this.dirname:  test/actual/yaml
         this.filename: data-files.html
-        this.pageName: data-files.html
+        this.pagename: data-files.html
         this.basename: data-files
         this.extname:  .html
         this.ext:      .html
@@ -256,10 +267,10 @@
         "page"
         ===============================
         page.dest:     test/actual/yaml/lists.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual/yaml
         page.filename: lists.html
-        page.pageName: lists.html
+        page.pagename: lists.html
         page.basename: lists
         page.extname:  .html
         page.ext:      .html
@@ -270,7 +281,7 @@
         absolute:      test/actual/yaml/lists.html
         dirname:       test/actual/yaml
         filename:      lists.html
-        pageName:      lists.html
+        pagename:      lists.html
         basename:      lists
         extname:       .html
         ext:           .html
@@ -284,7 +295,7 @@
         this.absolute: 
         this.dirname:  test/actual/yaml
         this.filename: data-types.html
-        this.pageName: data-types.html
+        this.pagename: data-types.html
         this.basename: data-types
         this.extname:  .html
         this.ext:      .html
@@ -292,10 +303,10 @@
         "page"
         ===============================
         page.dest:     test/actual/yaml/lists.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual/yaml
         page.filename: lists.html
-        page.pageName: lists.html
+        page.pagename: lists.html
         page.basename: lists
         page.extname:  .html
         page.ext:      .html
@@ -306,7 +317,7 @@
         absolute:      test/actual/yaml/lists.html
         dirname:       test/actual/yaml
         filename:      lists.html
-        pageName:      lists.html
+        pagename:      lists.html
         basename:      lists
         extname:       .html
         ext:           .html
@@ -320,7 +331,7 @@
         this.absolute: 
         this.dirname:  test/actual/yaml
         this.filename: document.html
-        this.pageName: document.html
+        this.pagename: document.html
         this.basename: document
         this.extname:  .html
         this.ext:      .html
@@ -328,10 +339,10 @@
         "page"
         ===============================
         page.dest:     test/actual/yaml/lists.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual/yaml
         page.filename: lists.html
-        page.pageName: lists.html
+        page.pagename: lists.html
         page.basename: lists
         page.extname:  .html
         page.ext:      .html
@@ -342,7 +353,7 @@
         absolute:      test/actual/yaml/lists.html
         dirname:       test/actual/yaml
         filename:      lists.html
-        pageName:      lists.html
+        pagename:      lists.html
         basename:      lists
         extname:       .html
         ext:           .html
@@ -356,7 +367,7 @@
         this.absolute: 
         this.dirname:  test/actual/yaml
         this.filename: lists.html
-        this.pageName: lists.html
+        this.pagename: lists.html
         this.basename: lists
         this.extname:  .html
         this.ext:      .html
@@ -364,10 +375,10 @@
         "page"
         ===============================
         page.dest:     test/actual/yaml/lists.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual/yaml
         page.filename: lists.html
-        page.pageName: lists.html
+        page.pagename: lists.html
         page.basename: lists
         page.extname:  .html
         page.ext:      .html
@@ -378,7 +389,7 @@
         absolute:      test/actual/yaml/lists.html
         dirname:       test/actual/yaml
         filename:      lists.html
-        pageName:      lists.html
+        pagename:      lists.html
         basename:      lists
         extname:       .html
         ext:           .html
@@ -392,7 +403,7 @@
         this.absolute: 
         this.dirname:  test/actual/yaml
         this.filename: relational-trees.html
-        this.pageName: relational-trees.html
+        this.pagename: relational-trees.html
         this.basename: relational-trees
         this.extname:  .html
         this.ext:      .html
@@ -400,10 +411,10 @@
         "page"
         ===============================
         page.dest:     test/actual/yaml/lists.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual/yaml
         page.filename: lists.html
-        page.pageName: lists.html
+        page.pagename: lists.html
         page.basename: lists
         page.extname:  .html
         page.ext:      .html
@@ -414,7 +425,7 @@
         absolute:      test/actual/yaml/lists.html
         dirname:       test/actual/yaml
         filename:      lists.html
-        pageName:      lists.html
+        pagename:      lists.html
         basename:      lists
         extname:       .html
         ext:           .html
@@ -428,7 +439,7 @@
         this.absolute: 
         this.dirname:  test/actual/yaml
         this.filename: variables.html
-        this.pageName: variables.html
+        this.pagename: variables.html
         this.basename: variables
         this.extname:  .html
         this.ext:      .html
@@ -436,10 +447,10 @@
         "page"
         ===============================
         page.dest:     test/actual/yaml/lists.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual/yaml
         page.filename: lists.html
-        page.pageName: lists.html
+        page.pagename: lists.html
         page.basename: lists
         page.extname:  .html
         page.ext:      .html
@@ -450,7 +461,7 @@
         absolute:      test/actual/yaml/lists.html
         dirname:       test/actual/yaml
         filename:      lists.html
-        pageName:      lists.html
+        pagename:      lists.html
         basename:      lists
         extname:       .html
         ext:           .html

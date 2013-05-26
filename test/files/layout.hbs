@@ -12,7 +12,9 @@
 
     <div class="container" style="display: none">
       <h3>Debug Info</h3>
-      {{inspect page}}
+
+
+{{inspect page 'json'}}
 
       <ul>
       {{#each pages}}
@@ -23,7 +25,7 @@
         this.absolute: {{this.absolute}}
         this.dirname:  {{this.dirname}}
         this.filename: {{this.filename}}
-        this.pageName: {{this.pageName}}
+        this.pagename: {{this.pagename}}
         this.basename: {{this.basename}}
         this.extname:  {{this.extname}}
         this.ext:      {{this.ext}}
@@ -31,10 +33,10 @@
         "page"
         ===============================
         page.dest:     {{../page.dest}}
-        page.absolute: {{#if ../page.absolute}}{{../page.absolute}}{{else}}N/A{{/if}}
+        page.absolute: {{../page.absolute}}
         page.dirname:  {{../page.dirname}}
         page.filename: {{../page.filename}}
-        page.pageName: {{../page.pageName}}
+        page.pagename: {{../page.pagename}}
         page.basename: {{../page.basename}}
         page.extname:  {{../page.extname}}
         page.ext:      {{../page.ext}}
@@ -45,7 +47,7 @@
         absolute:      {{../absolute}}
         dirname:       {{../dirname}}
         filename:      {{../filename}}
-        pageName:      {{../pageName}}
+        pagename:      {{../pagename}}
         basename:      {{../basename}}
         extname:       {{../extname}}
         ext:           {{../ext}}

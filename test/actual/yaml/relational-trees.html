@@ -130,28 +130,16 @@
 
     <div class="container" style="display: none">
       <h3>Debug Info</h3>
-      ``` 
-{
-  title: 'Relational Trees - References',
+
+
+<pre class="json">
+{ title: 'Relational Trees - References',
   steps: 
    [ { step: 
         { instrument: 'Lasik 2000',
           pulseEnergy: 5.4,
           pulseDuration: 12,
           repetition: 1000,
-          spotSize: '1mm' 
-} },
-     { step: 
-        { instrument: 'Lasik 2000',
-          pulseEnergy: 5,
-          pulseDuration: 10,
-          repetition: 500,
-          spotSize: '2mm' } },
-     { step: 
-        { instrument: 'Lasik 2000',
-          pulseEnergy: 5.4,
-          pulseDuration: 12,
-          repetition: 1000,
           spotSize: '1mm' } },
      { step: 
         { instrument: 'Lasik 2000',
@@ -170,16 +158,37 @@
           pulseEnergy: 5,
           pulseDuration: 10,
           repetition: 500,
-          spotSize: '2mm' } } ],
+          spotSize: '2mm' } },
+     { step: 
+        { instrument: 'Lasik 2000',
+          pulseEnergy: 5.4,
+          pulseDuration: 12,
+          repetition: 1000,
+          spotSize: '1mm' } },
+     { step: 
+        { instrument: 'Lasik 2000',
+          pulseEnergy: 5,
+          pulseDuration: 10,
+          repetition: 500,
+          spotSize: '2mm' } },
+     [length]: 6 ],
   dirname: 'test/actual/yaml',
   filename: 'relational-trees.html',
   pageName: 'relational-trees.html',
+  pagename: 'relational-trees.html',
   basename: 'relational-trees',
+  src: 'test/yaml/relational-trees.hbs',
+  dest: 'test/actual/yaml/relational-trees.html',
   assets: '../assets',
   ext: '.html',
   extname: '.html',
-  src: 'test/yaml/relational-trees.hbs',
-  dest: 'test/actual/yaml/relational-trees.html',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
   data: 
    { title: 'Relational Trees - References',
      steps: 
@@ -218,9 +227,9 @@
              pulseEnergy: 5,
              pulseDuration: 10,
              repetition: 500,
-             spotSize: '2mm' } } ] },
-  page: [Function] }
-```
+             spotSize: '2mm' } },
+        [length]: 6 ] } }
+</pre>
 
       <ul>
       
@@ -231,7 +240,7 @@
         this.absolute: 
         this.dirname:  test/actual/yaml
         this.filename: associative-arrays.html
-        this.pageName: associative-arrays.html
+        this.pagename: associative-arrays.html
         this.basename: associative-arrays
         this.extname:  .html
         this.ext:      .html
@@ -239,10 +248,10 @@
         "page"
         ===============================
         page.dest:     test/actual/yaml/relational-trees.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual/yaml
         page.filename: relational-trees.html
-        page.pageName: relational-trees.html
+        page.pagename: relational-trees.html
         page.basename: relational-trees
         page.extname:  .html
         page.ext:      .html
@@ -253,7 +262,7 @@
         absolute:      test/actual/yaml/relational-trees.html
         dirname:       test/actual/yaml
         filename:      relational-trees.html
-        pageName:      relational-trees.html
+        pagename:      relational-trees.html
         basename:      relational-trees
         extname:       .html
         ext:           .html
@@ -267,7 +276,7 @@
         this.absolute: 
         this.dirname:  test/actual/yaml
         this.filename: block-literals.html
-        this.pageName: block-literals.html
+        this.pagename: block-literals.html
         this.basename: block-literals
         this.extname:  .html
         this.ext:      .html
@@ -275,10 +284,10 @@
         "page"
         ===============================
         page.dest:     test/actual/yaml/relational-trees.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual/yaml
         page.filename: relational-trees.html
-        page.pageName: relational-trees.html
+        page.pagename: relational-trees.html
         page.basename: relational-trees
         page.extname:  .html
         page.ext:      .html
@@ -289,7 +298,7 @@
         absolute:      test/actual/yaml/relational-trees.html
         dirname:       test/actual/yaml
         filename:      relational-trees.html
-        pageName:      relational-trees.html
+        pagename:      relational-trees.html
         basename:      relational-trees
         extname:       .html
         ext:           .html
@@ -303,7 +312,7 @@
         this.absolute: 
         this.dirname:  test/actual/yaml
         this.filename: comments.html
-        this.pageName: comments.html
+        this.pagename: comments.html
         this.basename: comments
         this.extname:  .html
         this.ext:      .html
@@ -311,10 +320,10 @@
         "page"
         ===============================
         page.dest:     test/actual/yaml/relational-trees.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual/yaml
         page.filename: relational-trees.html
-        page.pageName: relational-trees.html
+        page.pagename: relational-trees.html
         page.basename: relational-trees
         page.extname:  .html
         page.ext:      .html
@@ -325,7 +334,7 @@
         absolute:      test/actual/yaml/relational-trees.html
         dirname:       test/actual/yaml
         filename:      relational-trees.html
-        pageName:      relational-trees.html
+        pagename:      relational-trees.html
         basename:      relational-trees
         extname:       .html
         ext:           .html
@@ -339,7 +348,7 @@
         this.absolute: 
         this.dirname:  test/actual/yaml
         this.filename: data-files.html
-        this.pageName: data-files.html
+        this.pagename: data-files.html
         this.basename: data-files
         this.extname:  .html
         this.ext:      .html
@@ -347,10 +356,10 @@
         "page"
         ===============================
         page.dest:     test/actual/yaml/relational-trees.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual/yaml
         page.filename: relational-trees.html
-        page.pageName: relational-trees.html
+        page.pagename: relational-trees.html
         page.basename: relational-trees
         page.extname:  .html
         page.ext:      .html
@@ -361,7 +370,7 @@
         absolute:      test/actual/yaml/relational-trees.html
         dirname:       test/actual/yaml
         filename:      relational-trees.html
-        pageName:      relational-trees.html
+        pagename:      relational-trees.html
         basename:      relational-trees
         extname:       .html
         ext:           .html
@@ -375,7 +384,7 @@
         this.absolute: 
         this.dirname:  test/actual/yaml
         this.filename: data-types.html
-        this.pageName: data-types.html
+        this.pagename: data-types.html
         this.basename: data-types
         this.extname:  .html
         this.ext:      .html
@@ -383,10 +392,10 @@
         "page"
         ===============================
         page.dest:     test/actual/yaml/relational-trees.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual/yaml
         page.filename: relational-trees.html
-        page.pageName: relational-trees.html
+        page.pagename: relational-trees.html
         page.basename: relational-trees
         page.extname:  .html
         page.ext:      .html
@@ -397,7 +406,7 @@
         absolute:      test/actual/yaml/relational-trees.html
         dirname:       test/actual/yaml
         filename:      relational-trees.html
-        pageName:      relational-trees.html
+        pagename:      relational-trees.html
         basename:      relational-trees
         extname:       .html
         ext:           .html
@@ -411,7 +420,7 @@
         this.absolute: 
         this.dirname:  test/actual/yaml
         this.filename: document.html
-        this.pageName: document.html
+        this.pagename: document.html
         this.basename: document
         this.extname:  .html
         this.ext:      .html
@@ -419,10 +428,10 @@
         "page"
         ===============================
         page.dest:     test/actual/yaml/relational-trees.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual/yaml
         page.filename: relational-trees.html
-        page.pageName: relational-trees.html
+        page.pagename: relational-trees.html
         page.basename: relational-trees
         page.extname:  .html
         page.ext:      .html
@@ -433,7 +442,7 @@
         absolute:      test/actual/yaml/relational-trees.html
         dirname:       test/actual/yaml
         filename:      relational-trees.html
-        pageName:      relational-trees.html
+        pagename:      relational-trees.html
         basename:      relational-trees
         extname:       .html
         ext:           .html
@@ -447,7 +456,7 @@
         this.absolute: 
         this.dirname:  test/actual/yaml
         this.filename: lists.html
-        this.pageName: lists.html
+        this.pagename: lists.html
         this.basename: lists
         this.extname:  .html
         this.ext:      .html
@@ -455,10 +464,10 @@
         "page"
         ===============================
         page.dest:     test/actual/yaml/relational-trees.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual/yaml
         page.filename: relational-trees.html
-        page.pageName: relational-trees.html
+        page.pagename: relational-trees.html
         page.basename: relational-trees
         page.extname:  .html
         page.ext:      .html
@@ -469,7 +478,7 @@
         absolute:      test/actual/yaml/relational-trees.html
         dirname:       test/actual/yaml
         filename:      relational-trees.html
-        pageName:      relational-trees.html
+        pagename:      relational-trees.html
         basename:      relational-trees
         extname:       .html
         ext:           .html
@@ -483,7 +492,7 @@
         this.absolute: 
         this.dirname:  test/actual/yaml
         this.filename: relational-trees.html
-        this.pageName: relational-trees.html
+        this.pagename: relational-trees.html
         this.basename: relational-trees
         this.extname:  .html
         this.ext:      .html
@@ -491,10 +500,10 @@
         "page"
         ===============================
         page.dest:     test/actual/yaml/relational-trees.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual/yaml
         page.filename: relational-trees.html
-        page.pageName: relational-trees.html
+        page.pagename: relational-trees.html
         page.basename: relational-trees
         page.extname:  .html
         page.ext:      .html
@@ -505,7 +514,7 @@
         absolute:      test/actual/yaml/relational-trees.html
         dirname:       test/actual/yaml
         filename:      relational-trees.html
-        pageName:      relational-trees.html
+        pagename:      relational-trees.html
         basename:      relational-trees
         extname:       .html
         ext:           .html
@@ -519,7 +528,7 @@
         this.absolute: 
         this.dirname:  test/actual/yaml
         this.filename: variables.html
-        this.pageName: variables.html
+        this.pagename: variables.html
         this.basename: variables
         this.extname:  .html
         this.ext:      .html
@@ -527,10 +536,10 @@
         "page"
         ===============================
         page.dest:     test/actual/yaml/relational-trees.html
-        page.absolute: N/A
+        page.absolute: 
         page.dirname:  test/actual/yaml
         page.filename: relational-trees.html
-        page.pageName: relational-trees.html
+        page.pagename: relational-trees.html
         page.basename: relational-trees
         page.extname:  .html
         page.ext:      .html
@@ -541,7 +550,7 @@
         absolute:      test/actual/yaml/relational-trees.html
         dirname:       test/actual/yaml
         filename:      relational-trees.html
-        pageName:      relational-trees.html
+        pagename:      relational-trees.html
         basename:      relational-trees
         extname:       .html
         ext:           .html
