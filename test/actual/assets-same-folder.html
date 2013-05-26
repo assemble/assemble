@@ -1,0 +1,23 @@
+
+
+<h1>Same Folder</h1>
+<p>Assets folder is in the same dir as dest files.</p>
+<pre>
+assets_two: {
+  options: {assets: 'test/actual'},
+  files: {'test/actual/assets-same-folder.html': ['test/files/assets.hbs']}
+},
+</pre>
+
+
+
+<h1>Relative Helper</h1>
+<script src="../../css/one/two/three.js"></script>
+<script src="../../js/one/two/three.js"></script>
+<script src="../../jsone/two/three.js"></script>
+<script src="./../../jsone/two/three.js"></script>
+
+<h1>Assets Helper</h1>
+<script src="one/two/three.js"></script>
+<script src="/one/two/three.js"></script>
+
