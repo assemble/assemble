@@ -117,15 +117,15 @@ Suite 16
 
 
 <pre class="json">
-{ dest: 'test/actual/yaml/document.html',
-  pageName: 'document.html',
-  page: 
+{ page: 
    { [Function]
      [length]: 2,
      [name]: '',
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
+  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+  prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
   items: 
    [ { part_no: 'A4786',
        descrip: 'Water Bucket (Filled)',
@@ -137,13 +137,17 @@ Suite 16
        price: 100.27,
        quantity: 1 },
      [length]: 2 ],
-  assets: '../assets',
   customer: { given: 'Dorothy', family: 'Gale' },
-  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
-  pagename: 'document.html',
+  dest: 'test/actual/yaml/document.html',
+  assets: '../assets',
   receipt: 'Oz-Ware Purchase Invoice',
+  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
+  filename: 'document.html',
+  ext: '.html',
   data: 
-   { items: 
+   { date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
+     items: 
       [ { part_no: 'A4786',
           descrip: 'Water Bucket (Filled)',
           price: 1.47,
@@ -155,34 +159,30 @@ Suite 16
           quantity: 1 },
         [length]: 2 ],
      customer: { given: 'Dorothy', family: 'Gale' },
-     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
      receipt: 'Oz-Ware Purchase Invoice',
-     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
      'bill-to': 
       { street: '123 Tornado Alley\nSuite 16\n',
         city: 'East Centerville',
         state: 'KS' },
-     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
      'ship-to': 
       { street: '123 Tornado Alley\nSuite 16\n',
         city: 'East Centerville',
         state: 'KS' } },
-  src: 'test/yaml/document.hbs',
-  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-  filename: 'document.html',
-  basename: 'document',
-  ext: '.html',
-  extname: '.html',
   'bill-to': 
    { street: '123 Tornado Alley\nSuite 16\n',
      city: 'East Centerville',
      state: 'KS' },
-  dirname: 'test/actual/yaml',
-  prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
   'ship-to': 
    { street: '123 Tornado Alley\nSuite 16\n',
      city: 'East Centerville',
-     state: 'KS' } }
+     state: 'KS' },
+  pagename: 'document.html',
+  dirname: 'test/actual/yaml',
+  basename: 'document',
+  pageName: 'document.html',
+  extname: '.html',
+  src: 'test/yaml/document.hbs' }
 </pre>
 
       <ul>

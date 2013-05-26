@@ -71,27 +71,8 @@
 
 
 <pre class="json">
-{ dest: 'test/actual/multi/dest2/sub-dest/helpers.html',
-  assets: '../../../assets',
-  text: 'helpers.js',
-  src: 'test/files/helpers.hbs',
-  extname: '.html',
-  basename: 'helpers',
-  moreLinks: 
-   [ { url: 'one', text: 'two' },
-     { url: 'three', text: 'four' },
-     { url: 'five', text: 'size' },
-     [length]: 3 ],
-  url: 'http://gist.github.com/jonschlinkert/5193239',
-  pageName: 'helpers.html',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  pagename: 'helpers.html',
+{ src: 'test/files/helpers.hbs',
+  ext: '.html',
   data: 
    { url: 'http://gist.github.com/jonschlinkert/5193239',
      text: 'helpers.js',
@@ -101,10 +82,29 @@
         { url: 'three', text: 'four' },
         { url: 'five', text: 'size' },
         [length]: 3 ] },
+  moreLinks: 
+   [ { url: 'one', text: 'two' },
+     { url: 'three', text: 'four' },
+     { url: 'five', text: 'size' },
+     [length]: 3 ],
+  text: 'helpers.js',
+  dirname: 'test/actual/multi/dest2/sub-dest',
+  pageName: 'helpers.html',
+  basename: 'helpers',
+  dest: 'test/actual/multi/dest2/sub-dest/helpers.html',
+  assets: '../../../assets',
+  url: 'http://gist.github.com/jonschlinkert/5193239',
   filename: 'helpers.html',
-  ext: '.html',
-  links: [ 'one', 'two', 'three', [length]: 3 ],
-  dirname: 'test/actual/multi/dest2/sub-dest' }
+  pagename: 'helpers.html',
+  extname: '.html',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  links: [ 'one', 'two', 'three', [length]: 3 ] }
 </pre>
 
       <ul>
