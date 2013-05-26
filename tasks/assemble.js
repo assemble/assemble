@@ -254,15 +254,13 @@ module.exports = function(grunt) {
           grunt.verbose.writeln('AssetsPath: ' + assetsPath);
           grunt.verbose.writeln('DestFile: ' + path.dirname(destFile));
           assemble.options.assets = urlNormalize(
-            path.relative(
-              path.resolve(path.dirname(destFile)),
-              path.resolve(assetsPath)
-            ));
+            path.relative(path.resolve(path.dirname(destFile)), path.resolve(assetsPath))
+          );
 
           // if the assets relative path is blank, then it's the same folder
-          // so update to be '.'
+          // so update to be ''
           if(!assemble.options.assets || assemble.options.assets.length === 0) {
-            assemble.options.assets = '.';
+            assemble.options.assets = '';
           }
 
           grunt.verbose.writeln(('\t' + 'Src: '    + srcFile));
@@ -360,6 +358,8 @@ module.exports = function(grunt) {
       next(assemble);
     };
 
+    grunt.verbose.writeflags(assemble.options, 'Assemble options');
+
     // assemble everything
     var assembler = assemble.init(this)
       .step(optionsConfiguration)
@@ -375,6 +375,7 @@ module.exports = function(grunt) {
         }
         done();
       });
+
 
   });
 
