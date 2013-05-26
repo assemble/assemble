@@ -27,10 +27,33 @@
 
     <div class="container" style="display: none">
       <h3>Debug Info</h3>
-      ``` 
-{
-  src: 'test\\files\\page.hbs',
-  filename: 'page',
+
+
+<pre class="json">
+{ title: 'Partials Test',
+  links: 
+   [ './index',
+     'dest/context',
+     'dest/basic',
+     'dest/markdown',
+     [length]: 4 ],
+  dirname: 'test/actual',
+  filename: 'page.html',
+  pageName: 'page.html',
+  pagename: 'page.html',
+  basename: 'page',
+  src: 'test/files/page.hbs',
+  dest: 'test/actual/page.html',
+  assets: 'assets',
+  ext: '.html',
+  extname: '.html',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
   data: 
    { title: 'Partials Test',
      links: 
@@ -38,43 +61,80 @@
         'dest/context',
         'dest/basic',
         'dest/markdown',
-        [length]: 4 ] 
-},
-  dest: 'test\\actual\\page.html',
-  assets: 'assets',
-  page: 
-   { [Function]
-     [arguments]: null,
-     [caller]: null,
-     [name]: '',
-     [prototype]: { [constructor]: [Circular] },
-     [length]: 2 },
-  basename: 'page',
-  title: 'Partials Test',
-  ext: '.html',
-  links: 
-   [ './index',
-     'dest/context',
-     'dest/basic',
-     'dest/markdown',
-     [length]: 4 ] }
-```
+        [length]: 4 ] } }
+</pre>
 
       <ul>
       
         <!--
-          page.dest: test\actual\page.html
-          this.dest: test\actual\dates.html
-          filename: test\actual\page.html
-          dirname: test\actual
+        "this"
+        ===============================
+        this.dest:     test/actual/dates.html
+        this.absolute: 
+        this.dirname:  test/actual
+        this.filename: dates.html
+        this.pagename: dates.html
+        this.basename: dates
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/page.html
+        page.absolute: 
+        page.dirname:  test/actual
+        page.filename: page.html
+        page.pagename: page.html
+        page.basename: page
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/page.html
+        dirname:       test/actual
+        filename:      page.html
+        pagename:      page.html
+        basename:      page
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="dates.html">dates</a></li>
       
         <!--
-          page.dest: test\actual\page.html
-          this.dest: test\actual\page.html
-          filename: test\actual\page.html
-          dirname: test\actual
+        "this"
+        ===============================
+        this.dest:     test/actual/page.html
+        this.absolute: 
+        this.dirname:  test/actual
+        this.filename: page.html
+        this.pagename: page.html
+        this.basename: page
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/page.html
+        page.absolute: 
+        page.dirname:  test/actual
+        page.filename: page.html
+        page.pagename: page.html
+        page.basename: page
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/page.html
+        dirname:       test/actual
+        filename:      page.html
+        pagename:      page.html
+        basename:      page
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="page.html">page</a></li>
       

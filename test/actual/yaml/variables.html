@@ -29,102 +29,358 @@ other_thing: *NAME</code></pre>
 
     <div class="container" style="display: none">
       <h3>Debug Info</h3>
-      ``` 
-{
-  src: 'test\\yaml\\variables.hbs',
-  filename: 'variables',
-  data: 
-   { two: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
-     one: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
-     title: 'YAML Variables' 
-},
-  dest: 'test\\actual\\yaml\\variables.html',
-  assets: '../assets',
+
+
+<pre class="json">
+{ title: 'YAML Variables',
+  one: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
   two: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
+  dirname: 'test/actual/yaml',
+  filename: 'variables.html',
+  pageName: 'variables.html',
+  pagename: 'variables.html',
+  basename: 'variables',
+  src: 'test/yaml/variables.hbs',
+  dest: 'test/actual/yaml/variables.html',
+  assets: '../assets',
+  ext: '.html',
+  extname: '.html',
   page: 
    { [Function]
+     [length]: 2,
+     [name]: '',
      [arguments]: null,
      [caller]: null,
-     [name]: '',
-     [prototype]: { [constructor]: [Circular] },
-     [length]: 2 },
-  one: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
-  basename: 'variables',
-  title: 'YAML Variables',
-  ext: '.html' }
-```
+     [prototype]: { [constructor]: [Circular] } },
+  data: 
+   { title: 'YAML Variables',
+     one: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
+     two: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!' } }
+</pre>
 
       <ul>
       
         <!--
-          page.dest: test\actual\yaml\variables.html
-          this.dest: test\actual\yaml\associative-arrays.html
-          filename: test\actual\yaml\variables.html
-          dirname: test\actual\yaml
+        "this"
+        ===============================
+        this.dest:     test/actual/yaml/associative-arrays.html
+        this.absolute: 
+        this.dirname:  test/actual/yaml
+        this.filename: associative-arrays.html
+        this.pagename: associative-arrays.html
+        this.basename: associative-arrays
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/yaml/variables.html
+        page.absolute: 
+        page.dirname:  test/actual/yaml
+        page.filename: variables.html
+        page.pagename: variables.html
+        page.basename: variables
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/yaml/variables.html
+        dirname:       test/actual/yaml
+        filename:      variables.html
+        pagename:      variables.html
+        basename:      variables
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="associative-arrays.html">associative-arrays</a></li>
       
         <!--
-          page.dest: test\actual\yaml\variables.html
-          this.dest: test\actual\yaml\block-literals.html
-          filename: test\actual\yaml\variables.html
-          dirname: test\actual\yaml
+        "this"
+        ===============================
+        this.dest:     test/actual/yaml/block-literals.html
+        this.absolute: 
+        this.dirname:  test/actual/yaml
+        this.filename: block-literals.html
+        this.pagename: block-literals.html
+        this.basename: block-literals
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/yaml/variables.html
+        page.absolute: 
+        page.dirname:  test/actual/yaml
+        page.filename: variables.html
+        page.pagename: variables.html
+        page.basename: variables
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/yaml/variables.html
+        dirname:       test/actual/yaml
+        filename:      variables.html
+        pagename:      variables.html
+        basename:      variables
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="block-literals.html">block-literals</a></li>
       
         <!--
-          page.dest: test\actual\yaml\variables.html
-          this.dest: test\actual\yaml\comments.html
-          filename: test\actual\yaml\variables.html
-          dirname: test\actual\yaml
+        "this"
+        ===============================
+        this.dest:     test/actual/yaml/comments.html
+        this.absolute: 
+        this.dirname:  test/actual/yaml
+        this.filename: comments.html
+        this.pagename: comments.html
+        this.basename: comments
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/yaml/variables.html
+        page.absolute: 
+        page.dirname:  test/actual/yaml
+        page.filename: variables.html
+        page.pagename: variables.html
+        page.basename: variables
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/yaml/variables.html
+        dirname:       test/actual/yaml
+        filename:      variables.html
+        pagename:      variables.html
+        basename:      variables
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="comments.html">comments</a></li>
       
         <!--
-          page.dest: test\actual\yaml\variables.html
-          this.dest: test\actual\yaml\data-files.html
-          filename: test\actual\yaml\variables.html
-          dirname: test\actual\yaml
+        "this"
+        ===============================
+        this.dest:     test/actual/yaml/data-files.html
+        this.absolute: 
+        this.dirname:  test/actual/yaml
+        this.filename: data-files.html
+        this.pagename: data-files.html
+        this.basename: data-files
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/yaml/variables.html
+        page.absolute: 
+        page.dirname:  test/actual/yaml
+        page.filename: variables.html
+        page.pagename: variables.html
+        page.basename: variables
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/yaml/variables.html
+        dirname:       test/actual/yaml
+        filename:      variables.html
+        pagename:      variables.html
+        basename:      variables
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="data-files.html">data-files</a></li>
       
         <!--
-          page.dest: test\actual\yaml\variables.html
-          this.dest: test\actual\yaml\data-types.html
-          filename: test\actual\yaml\variables.html
-          dirname: test\actual\yaml
+        "this"
+        ===============================
+        this.dest:     test/actual/yaml/data-types.html
+        this.absolute: 
+        this.dirname:  test/actual/yaml
+        this.filename: data-types.html
+        this.pagename: data-types.html
+        this.basename: data-types
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/yaml/variables.html
+        page.absolute: 
+        page.dirname:  test/actual/yaml
+        page.filename: variables.html
+        page.pagename: variables.html
+        page.basename: variables
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/yaml/variables.html
+        dirname:       test/actual/yaml
+        filename:      variables.html
+        pagename:      variables.html
+        basename:      variables
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="data-types.html">data-types</a></li>
       
         <!--
-          page.dest: test\actual\yaml\variables.html
-          this.dest: test\actual\yaml\document.html
-          filename: test\actual\yaml\variables.html
-          dirname: test\actual\yaml
+        "this"
+        ===============================
+        this.dest:     test/actual/yaml/document.html
+        this.absolute: 
+        this.dirname:  test/actual/yaml
+        this.filename: document.html
+        this.pagename: document.html
+        this.basename: document
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/yaml/variables.html
+        page.absolute: 
+        page.dirname:  test/actual/yaml
+        page.filename: variables.html
+        page.pagename: variables.html
+        page.basename: variables
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/yaml/variables.html
+        dirname:       test/actual/yaml
+        filename:      variables.html
+        pagename:      variables.html
+        basename:      variables
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="document.html">document</a></li>
       
         <!--
-          page.dest: test\actual\yaml\variables.html
-          this.dest: test\actual\yaml\lists.html
-          filename: test\actual\yaml\variables.html
-          dirname: test\actual\yaml
+        "this"
+        ===============================
+        this.dest:     test/actual/yaml/lists.html
+        this.absolute: 
+        this.dirname:  test/actual/yaml
+        this.filename: lists.html
+        this.pagename: lists.html
+        this.basename: lists
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/yaml/variables.html
+        page.absolute: 
+        page.dirname:  test/actual/yaml
+        page.filename: variables.html
+        page.pagename: variables.html
+        page.basename: variables
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/yaml/variables.html
+        dirname:       test/actual/yaml
+        filename:      variables.html
+        pagename:      variables.html
+        basename:      variables
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="lists.html">lists</a></li>
       
         <!--
-          page.dest: test\actual\yaml\variables.html
-          this.dest: test\actual\yaml\relational-trees.html
-          filename: test\actual\yaml\variables.html
-          dirname: test\actual\yaml
+        "this"
+        ===============================
+        this.dest:     test/actual/yaml/relational-trees.html
+        this.absolute: 
+        this.dirname:  test/actual/yaml
+        this.filename: relational-trees.html
+        this.pagename: relational-trees.html
+        this.basename: relational-trees
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/yaml/variables.html
+        page.absolute: 
+        page.dirname:  test/actual/yaml
+        page.filename: variables.html
+        page.pagename: variables.html
+        page.basename: variables
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/yaml/variables.html
+        dirname:       test/actual/yaml
+        filename:      variables.html
+        pagename:      variables.html
+        basename:      variables
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="relational-trees.html">relational-trees</a></li>
       
         <!--
-          page.dest: test\actual\yaml\variables.html
-          this.dest: test\actual\yaml\variables.html
-          filename: test\actual\yaml\variables.html
-          dirname: test\actual\yaml
+        "this"
+        ===============================
+        this.dest:     test/actual/yaml/variables.html
+        this.absolute: 
+        this.dirname:  test/actual/yaml
+        this.filename: variables.html
+        this.pagename: variables.html
+        this.basename: variables
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/yaml/variables.html
+        page.absolute: 
+        page.dirname:  test/actual/yaml
+        page.filename: variables.html
+        page.pagename: variables.html
+        page.basename: variables
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/yaml/variables.html
+        dirname:       test/actual/yaml
+        filename:      variables.html
+        pagename:      variables.html
+        basename:      variables
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="variables.html">variables</a></li>
       

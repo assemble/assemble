@@ -86,7 +86,7 @@ module.exports = function(grunt) {
     };
 
     var assembleDefaultLayout = function(assemble, next) {
-      grunt.verbose.writeln('assembleing default layout');
+      grunt.verbose.writeln('assembling default layout');
       grunt.log.writeln('assembling'  + ' default layout'.cyan);
 
       // load default layout
@@ -130,7 +130,7 @@ module.exports = function(grunt) {
           var filename = _.first(filepath.match(assemble.filenameRegex)).replace(assemble.fileExtRegex, '');
           grunt.verbose.ok(('Processing ' + filename.cyan + ' partial'));
 
-          var partial = fs.readFileSync(filepath, 'utf8');
+          var partial = grunt.file.read(filepath);
 
           // If options.removeHbsWhitespace is true
           partial = removeHbsWhitespace(assemble,partial);
@@ -232,23 +232,18 @@ module.exports = function(grunt) {
 
         filePair.src.forEach(function(srcFile) {
 
-          srcFile  = path.normalize(srcFile);
+          srcFile  = urlNormalize(path.normalize(srcFile));
           filename = path.basename(srcFile, path.extname(srcFile));
 
           if(detectDestType(filePair.dest) === 'directory') {
-            destFile = (isExpandedPair) ?
-                        filePair.dest :
-                        path.join(filePair.dest,
-                                  (assemble.options.flatten ?
-                                    path.basename(srcFile) :
-                                    srcFile));
+            destFile = (isExpandedPair) ? filePair.dest : path.join(
+              filePair.dest, (assemble.options.flatten ? path.basename(srcFile) : srcFile)
+            );
           } else {
             destFile = filePair.dest;
           }
 
-          destFile = path.join(path.dirname(destFile),
-                               path.basename(destFile, path.extname(destFile))
-                              ) + assemble.options.ext;
+          destFile = urlNormalize(path.join(path.dirname(destFile), path.basename(destFile, path.extname(destFile)))) + assemble.options.ext;
 
           grunt.verbose.writeln('Reading ' + filename.magenta);
 
@@ -259,22 +254,20 @@ module.exports = function(grunt) {
           grunt.verbose.writeln('AssetsPath: ' + assetsPath);
           grunt.verbose.writeln('DestFile: ' + path.dirname(destFile));
           assemble.options.assets = urlNormalize(
-            path.relative(
-              path.resolve(path.dirname(destFile)),
-              path.resolve(assetsPath)
-            ));
+            path.relative(path.resolve(path.dirname(destFile)), path.resolve(assetsPath))
+          );
 
           // if the assets relative path is blank, then it's the same folder
-          // so update to be '.'
+          // so update to be ''
           if(!assemble.options.assets || assemble.options.assets.length === 0) {
-            assemble.options.assets = '.';
+            assemble.options.assets = '';
           }
 
           grunt.verbose.writeln(('\t' + 'Src: '    + srcFile));
           grunt.verbose.writeln(('\t' + 'Dest: '   + destFile));
           grunt.verbose.writeln(('\t' + 'Assets: ' + assemble.options.assets));
 
-          var page = fs.readFileSync(srcFile, 'utf8');
+          var page = grunt.file.read(srcFile);
           try {
             grunt.verbose.writeln('compiling page ' + filename.magenta);
             var pageContext = {};
@@ -295,12 +288,16 @@ module.exports = function(grunt) {
             });
 
             var pageObj = {
-              filename: filename,
-              basename: filename,
+              dirname : path.dirname(destFile),
+              filename: path.basename(destFile),
+              pageName: path.basename(destFile),
+              pagename: path.basename(destFile),
+              basename: path.basename(filename),
               src: srcFile,
               dest: destFile,
               assets: assemble.options.assets,
               ext: assemble.options.ext,
+              extname: assemble.options.ext,
               page: page,
               data: pageContext
             };
@@ -365,6 +362,8 @@ module.exports = function(grunt) {
       next(assemble);
     };
 
+    grunt.verbose.writeflags(assemble.options, 'Assemble options');
+
     // assemble everything
     var assembler = assemble.init(this)
       .step(optionsConfiguration)
@@ -380,6 +379,7 @@ module.exports = function(grunt) {
         }
         done();
       });
+
 
   });
 
@@ -508,11 +508,14 @@ module.exports = function(grunt) {
       context.assets = currentPage.assets;
 
       // add other page variables to the main context
-      context.pageName = currentPage.filename;
-      context.filename = currentPage.dest;
-      context.extname = currentPage.ext;
+      context.extname  = currentPage.ext;
       context.basename = currentPage.basename;
-      context.dirname = path.dirname(currentPage.dest);
+      context.absolute = currentPage.dest;
+      context.dirname  = path.dirname(currentPage.dest);
+      context.pagename = currentPage.filename;
+      context.filename = currentPage.filename;
+      // "pageName" is deprecated, use "pagename" or "filename"
+      context.pageName = currentPage.filename;
 
       assemble.options.registerPartial(assemble.engine, 'body', page);
 
@@ -568,7 +571,7 @@ module.exports = function(grunt) {
 
       // load layout
       layoutName = _.first(layout.match(assemble.filenameRegex)).replace(assemble.fileExtRegex,'');
-      layout = fs.readFileSync(layout, 'utf8');
+      layout = grunt.file.read(layout);
     }
 
     // If options.removeHbsWhitespace is true
@@ -626,8 +629,14 @@ module.exports = function(grunt) {
     return _(fileName.match(/[^.]*$/)).last();
   };
 
+  // Windows? (from grunt.file)
+  var win32 = process.platform === 'win32';
   var urlNormalize = function(urlString) {
+    if (win32) {
     return urlString.replace(/\\/g, '/');
+    } else {
+      return urlString;
+    }
   };
 
   var dataFileReaderFactory = function(ext) {

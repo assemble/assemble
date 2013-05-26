@@ -9,7 +9,18 @@
     <div class="container">
       
 
-<span class="alert alert-info"></span>
+
+
+<h1>Relative Helper</h1>
+<script src="../../../../../css/one/two/three.js"></script>
+<script src="../../../../../js/one/two/three.js"></script>
+<script src="../../../../../jsone/two/three.js"></script>
+<script src="./../../../../../jsone/two/three.js"></script>
+
+<h1>Assets Helper</h1>
+<script src="../../../assetsone/two/three.js"></script>
+<script src="../../../assets/one/two/three.js"></script>
+
 
     </div>
 
@@ -18,15 +29,14 @@
 
 
 <pre class="json">
-{ one: { two: 'This is an alert' },
-  dirname: 'test/actual/multi/dest1',
-  filename: 'alert.html',
-  pageName: 'alert.html',
-  pagename: 'alert.html',
-  basename: 'alert',
-  src: 'test/files/alert.hbs',
-  dest: 'test/actual/multi/dest1/alert.html',
-  assets: '../../assets',
+{ dirname: 'test/actual/multi/dest2/sub-dest',
+  filename: 'assets.html',
+  pageName: 'assets.html',
+  pagename: 'assets.html',
+  basename: 'assets',
+  src: 'test/files/assets.hbs',
+  dest: 'test/actual/multi/dest2/sub-dest/assets.html',
+  assets: '../../../assets',
   ext: '.html',
   extname: '.html',
   page: 
@@ -36,7 +46,7 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  data: { one: { two: 'This is an alert' } } }
+  data: {} }
 </pre>
 
       <ul>
@@ -55,27 +65,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="alert.html">alert</a></li>
+        <li><a href="../../dest1/alert.html">alert</a></li>
       
         <!--
         "this"
@@ -91,27 +101,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="assets.html">assets</a></li>
+        <li><a href="../../dest1/assets.html">assets</a></li>
       
         <!--
         "this"
@@ -127,27 +137,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="category.html">category</a></li>
+        <li><a href="../../dest1/category.html">category</a></li>
       
         <!--
         "this"
@@ -163,27 +173,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="category2.html">category2</a></li>
+        <li><a href="../../dest1/category2.html">category2</a></li>
       
         <!--
         "this"
@@ -199,27 +209,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="complex.html">complex</a></li>
+        <li><a href="../../dest1/complex.html">complex</a></li>
       
         <!--
         "this"
@@ -235,27 +245,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="dates.html">dates</a></li>
+        <li><a href="../../dest1/dates.html">dates</a></li>
       
         <!--
         "this"
@@ -271,27 +281,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="example.html">example</a></li>
+        <li><a href="../../dest1/example.html">example</a></li>
       
         <!--
         "this"
@@ -307,27 +317,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="helpers.html">helpers</a></li>
+        <li><a href="../../dest1/helpers.html">helpers</a></li>
       
         <!--
         "this"
@@ -343,27 +353,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="page.html">page</a></li>
+        <li><a href="../../dest1/page.html">page</a></li>
       
         <!--
         "this"
@@ -379,27 +389,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="nav.html">nav</a></li>
+        <li><a href="../../dest1/nav.html">nav</a></li>
       
         <!--
         "this"
@@ -415,27 +425,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="simple3.html">simple3</a></li>
+        <li><a href="../../dest1/simple3.html">simple3</a></li>
       
         <!--
         "this"
@@ -451,27 +461,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="tags_test.html">tags_test</a></li>
+        <li><a href="../../dest1/tags_test.html">tags_test</a></li>
       
         <!--
         "this"
@@ -487,27 +497,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="tags_test2.html">tags_test2</a></li>
+        <li><a href="../../dest1/tags_test2.html">tags_test2</a></li>
       
         <!--
         "this"
@@ -523,27 +533,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/complex1.html">complex1</a></li>
+        <li><a href="../complex1.html">complex1</a></li>
       
         <!--
         "this"
@@ -559,27 +569,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/md2.html">md2</a></li>
+        <li><a href="../md2.html">md2</a></li>
       
         <!--
         "this"
@@ -595,27 +605,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/simple1.html">simple1</a></li>
+        <li><a href="../simple1.html">simple1</a></li>
       
         <!--
         "this"
@@ -631,27 +641,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/alert.html">alert</a></li>
+        <li><a href="alert.html">alert</a></li>
       
         <!--
         "this"
@@ -667,27 +677,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/assets.html">assets</a></li>
+        <li><a href="assets.html">assets</a></li>
       
         <!--
         "this"
@@ -703,27 +713,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/category.html">category</a></li>
+        <li><a href="category.html">category</a></li>
       
         <!--
         "this"
@@ -739,27 +749,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/category2.html">category2</a></li>
+        <li><a href="category2.html">category2</a></li>
       
         <!--
         "this"
@@ -775,27 +785,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/complex.html">complex</a></li>
+        <li><a href="complex.html">complex</a></li>
       
         <!--
         "this"
@@ -811,27 +821,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/dates.html">dates</a></li>
+        <li><a href="dates.html">dates</a></li>
       
         <!--
         "this"
@@ -847,27 +857,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/example.html">example</a></li>
+        <li><a href="example.html">example</a></li>
       
         <!--
         "this"
@@ -883,27 +893,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/helpers.html">helpers</a></li>
+        <li><a href="helpers.html">helpers</a></li>
       
         <!--
         "this"
@@ -919,27 +929,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/page.html">page</a></li>
+        <li><a href="page.html">page</a></li>
       
         <!--
         "this"
@@ -955,27 +965,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/nav.html">nav</a></li>
+        <li><a href="nav.html">nav</a></li>
       
         <!--
         "this"
@@ -991,27 +1001,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/simple3.html">simple3</a></li>
+        <li><a href="simple3.html">simple3</a></li>
       
         <!--
         "this"
@@ -1027,27 +1037,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/tags_test.html">tags_test</a></li>
+        <li><a href="tags_test.html">tags_test</a></li>
       
         <!--
         "this"
@@ -1063,27 +1073,27 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/multi/dest1/alert.html
+        page.dest:     test/actual/multi/dest2/sub-dest/assets.html
         page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: alert.html
-        page.pagename: alert.html
-        page.basename: alert
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: assets.html
+        page.pagename: assets.html
+        page.basename: assets
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/multi/dest1/alert.html
-        dirname:       test/actual/multi/dest1
-        filename:      alert.html
-        pagename:      alert.html
-        basename:      alert
+        absolute:      test/actual/multi/dest2/sub-dest/assets.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      assets.html
+        pagename:      assets.html
+        basename:      assets
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/tags_test2.html">tags_test2</a></li>
+        <li><a href="tags_test2.html">tags_test2</a></li>
       
       </ul>
     </div>
