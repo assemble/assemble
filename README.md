@@ -1,4 +1,4 @@
-# [Assemble v0.3.78](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
+# [Assemble v0.3.79](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
 
 > Assemble makes it dead simple to build modular sites and components from reusable templates and data.
 
@@ -549,7 +549,7 @@ Copyright 2013 Assemble
 
 ---
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Wed May 22 2013 16:44:26._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sun May 26 2013 12:20:23._
 
 
 

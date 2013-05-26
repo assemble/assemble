@@ -12,15 +12,45 @@
 
     <div class="container" style="display: none">
       <h3>Debug Info</h3>
-      {{inspect page}}
+
+
+{{inspect page 'json'}}
 
       <ul>
       {{#each pages}}
         <!--
-          page.dest: {{../page.dest}}
-          this.dest: {{this.dest}}
-          filename: {{../filename}}
-          dirname: {{../dirname}}
+        "this"
+        ===============================
+        this.dest:     {{this.dest}}
+        this.absolute: {{this.absolute}}
+        this.dirname:  {{this.dirname}}
+        this.filename: {{this.filename}}
+        this.pagename: {{this.pagename}}
+        this.basename: {{this.basename}}
+        this.extname:  {{this.extname}}
+        this.ext:      {{this.ext}}
+
+        "page"
+        ===============================
+        page.dest:     {{../page.dest}}
+        page.absolute: {{../page.absolute}}
+        page.dirname:  {{../page.dirname}}
+        page.filename: {{../page.filename}}
+        page.pagename: {{../page.pagename}}
+        page.basename: {{../page.basename}}
+        page.extname:  {{../page.extname}}
+        page.ext:      {{../page.ext}}
+
+        "root"
+        ===============================
+        dest:          {{../dest}}
+        absolute:      {{../absolute}}
+        dirname:       {{../dirname}}
+        filename:      {{../filename}}
+        pagename:      {{../pagename}}
+        basename:      {{../basename}}
+        extname:       {{../extname}}
+        ext:           {{../ext}}
         -->
         <li><a href="{{relative ../page.dest this.dest}}">{{this.basename}}</a></li>
       {{/each}}
