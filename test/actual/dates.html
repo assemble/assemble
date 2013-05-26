@@ -9,7 +9,7 @@
     <div class="container">
       
 
-<div>Date: Sat May 25 2013 22:00:14 GMT-0400 (Eastern Daylight Time)</div>
+<div>Date: Sun May 26 2013 08:27:32 GMT-0400 (Eastern Daylight Time)</div>
 
 <div>Born 33 years ago</div>
 
@@ -22,35 +22,94 @@
   description: 'testing the dates helpers',
   css: '<link rel="stylesheet" href="/css/index.css"/>',
   js: 'document.write(\'foo bar!\');',
-  filename: 'dates',
+  dirname: 'test/actual',
+  filename: 'dates.html',
+  pageName: 'dates.html',
   basename: 'dates',
-  src: 'test/files/dates.hbs',
-  dest: 'test/actual/dates.html',
   assets: 'assets',
   ext: '.html',
-  page: [Function],
+  extname: '.html',
+  src: 'test/files/dates.hbs',
+  dest: 'test/actual/dates.html',
   data: 
    { description: 'testing the dates helpers',
      css: '<link rel="stylesheet" href="/css/index.css"/>',
      js: 'document.write(\'foo bar!\');' 
-} }
+},
+  page: [Function] }
 ```
 
       <ul>
       
         <!--
-          page.dest: test/actual/dates.html
-          this.dest: test/actual/dates.html
-          filename: test/actual/dates.html
-          dirname: test/actual
+        "this"
+        ===============================
+        this.dest:     test/actual/dates.html
+        this.absolute: 
+        this.dirname:  test/actual
+        this.filename: dates.html
+        this.pageName: dates.html
+        this.basename: dates
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/dates.html
+        page.absolute: N/A
+        page.dirname:  test/actual
+        page.filename: dates.html
+        page.pageName: dates.html
+        page.basename: dates
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/dates.html
+        dirname:       test/actual
+        filename:      dates.html
+        pageName:      dates.html
+        basename:      dates
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="dates.html">dates</a></li>
       
         <!--
-          page.dest: test/actual/dates.html
-          this.dest: test/actual/page.html
-          filename: test/actual/dates.html
-          dirname: test/actual
+        "this"
+        ===============================
+        this.dest:     test/actual/page.html
+        this.absolute: 
+        this.dirname:  test/actual
+        this.filename: page.html
+        this.pageName: page.html
+        this.basename: page
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/dates.html
+        page.absolute: N/A
+        page.dirname:  test/actual
+        page.filename: dates.html
+        page.pageName: dates.html
+        page.basename: dates
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/dates.html
+        dirname:       test/actual
+        filename:      dates.html
+        pageName:      dates.html
+        basename:      dates
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="page.html">page</a></li>
       

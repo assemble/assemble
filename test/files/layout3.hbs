@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>{{#if title}}{{title}}{{else}}YAML Test{{/if}}</title>
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
-    <link href="{{assets}}/css/layout3.css" rel="stylesheet">
+    <link href="{{assets}}/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
     <div class="container">
@@ -17,12 +17,6 @@
 
       <ul>
       {{#each pages}}
-        <!--
-          page.dest: {{../page.dest}}
-          this.dest: {{this.dest}}
-          filename: {{../filename}}
-          dirname: {{../dirname}}
-        -->
         <li><a href="{{relative ../page.dest this.dest}}">{{this.basename}}</a></li>
       {{/each}}
       </ul>

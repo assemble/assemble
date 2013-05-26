@@ -18,248 +18,1063 @@
       ``` 
 {
   foo: 'bar',
-  filename: 'simple3',
+  dirname: 'test/actual/multi/dest2/sub-dest',
+  filename: 'simple3.html',
+  pageName: 'simple3.html',
   basename: 'simple3',
-  src: 'test/files/simple3.hbs',
-  dest: 'test/actual/multi/dest2/sub-dest/simple3.html',
   assets: '../../../assets',
   ext: '.html',
-  page: [Function],
+  extname: '.html',
+  src: 'test/files/simple3.hbs',
+  dest: 'test/actual/multi/dest2/sub-dest/simple3.html',
   data: { foo: 'bar' 
-} }
+},
+  page: [Function] }
 ```
 
       <ul>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest1/alert.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest1/alert.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest1
+        this.filename: alert.html
+        this.pageName: alert.html
+        this.basename: alert
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="../../dest1/alert.html">alert</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest1/assets.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest1/assets.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest1
+        this.filename: assets.html
+        this.pageName: assets.html
+        this.basename: assets
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="../../dest1/assets.html">assets</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest1/category.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest1/category.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest1
+        this.filename: category.html
+        this.pageName: category.html
+        this.basename: category
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="../../dest1/category.html">category</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest1/category2.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest1/category2.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest1
+        this.filename: category2.html
+        this.pageName: category2.html
+        this.basename: category2
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="../../dest1/category2.html">category2</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest1/complex.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest1/complex.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest1
+        this.filename: complex.html
+        this.pageName: complex.html
+        this.basename: complex
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="../../dest1/complex.html">complex</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest1/dates.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest1/dates.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest1
+        this.filename: dates.html
+        this.pageName: dates.html
+        this.basename: dates
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="../../dest1/dates.html">dates</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest1/example.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest1/example.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest1
+        this.filename: example.html
+        this.pageName: example.html
+        this.basename: example
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="../../dest1/example.html">example</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest1/helpers.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest1/helpers.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest1
+        this.filename: helpers.html
+        this.pageName: helpers.html
+        this.basename: helpers
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="../../dest1/helpers.html">helpers</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest1/page.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest1/page.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest1
+        this.filename: page.html
+        this.pageName: page.html
+        this.basename: page
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="../../dest1/page.html">page</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest1/nav.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest1/nav.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest1
+        this.filename: nav.html
+        this.pageName: nav.html
+        this.basename: nav
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="../../dest1/nav.html">nav</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest1/simple3.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest1/simple3.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest1
+        this.filename: simple3.html
+        this.pageName: simple3.html
+        this.basename: simple3
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="../../dest1/simple3.html">simple3</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest1/tags_test.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest1/tags_test.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest1
+        this.filename: tags_test.html
+        this.pageName: tags_test.html
+        this.basename: tags_test
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="../../dest1/tags_test.html">tags_test</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest1/tags_test2.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest1/tags_test2.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest1
+        this.filename: tags_test2.html
+        this.pageName: tags_test2.html
+        this.basename: tags_test2
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="../../dest1/tags_test2.html">tags_test2</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest2/complex1.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest2/complex1.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest2
+        this.filename: complex1.html
+        this.pageName: complex1.html
+        this.basename: complex1
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="../complex1.html">complex1</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest2/md2.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest2/md2.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest2
+        this.filename: md2.html
+        this.pageName: md2.html
+        this.basename: md2
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="../md2.html">md2</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest2/simple1.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest2/simple1.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest2
+        this.filename: simple1.html
+        this.pageName: simple1.html
+        this.basename: simple1
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="../simple1.html">simple1</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest2/sub-dest/alert.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest2/sub-dest/alert.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest2/sub-dest
+        this.filename: alert.html
+        this.pageName: alert.html
+        this.basename: alert
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="alert.html">alert</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest2/sub-dest/assets.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest2/sub-dest/assets.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest2/sub-dest
+        this.filename: assets.html
+        this.pageName: assets.html
+        this.basename: assets
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="assets.html">assets</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest2/sub-dest/category.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest2/sub-dest/category.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest2/sub-dest
+        this.filename: category.html
+        this.pageName: category.html
+        this.basename: category
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="category.html">category</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest2/sub-dest/category2.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest2/sub-dest/category2.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest2/sub-dest
+        this.filename: category2.html
+        this.pageName: category2.html
+        this.basename: category2
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="category2.html">category2</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest2/sub-dest/complex.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest2/sub-dest/complex.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest2/sub-dest
+        this.filename: complex.html
+        this.pageName: complex.html
+        this.basename: complex
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="complex.html">complex</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest2/sub-dest/dates.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest2/sub-dest/dates.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest2/sub-dest
+        this.filename: dates.html
+        this.pageName: dates.html
+        this.basename: dates
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="dates.html">dates</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest2/sub-dest/example.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest2/sub-dest/example.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest2/sub-dest
+        this.filename: example.html
+        this.pageName: example.html
+        this.basename: example
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="example.html">example</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest2/sub-dest/helpers.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest2/sub-dest/helpers.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest2/sub-dest
+        this.filename: helpers.html
+        this.pageName: helpers.html
+        this.basename: helpers
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="helpers.html">helpers</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest2/sub-dest/page.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest2/sub-dest/page.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest2/sub-dest
+        this.filename: page.html
+        this.pageName: page.html
+        this.basename: page
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="page.html">page</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest2/sub-dest/nav.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest2/sub-dest/nav.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest2/sub-dest
+        this.filename: nav.html
+        this.pageName: nav.html
+        this.basename: nav
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="nav.html">nav</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest2/sub-dest
+        this.filename: simple3.html
+        this.pageName: simple3.html
+        this.basename: simple3
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="simple3.html">simple3</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest2/sub-dest/tags_test.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest2/sub-dest/tags_test.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest2/sub-dest
+        this.filename: tags_test.html
+        this.pageName: tags_test.html
+        this.basename: tags_test
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="tags_test.html">tags_test</a></li>
       
         <!--
-          page.dest: test/actual/multi/dest2/sub-dest/simple3.html
-          this.dest: test/actual/multi/dest2/sub-dest/tags_test2.html
-          filename: test/actual/multi/dest2/sub-dest/simple3.html
-          dirname: test/actual/multi/dest2/sub-dest
+        "this"
+        ===============================
+        this.dest:     test/actual/multi/dest2/sub-dest/tags_test2.html
+        this.absolute: 
+        this.dirname:  test/actual/multi/dest2/sub-dest
+        this.filename: tags_test2.html
+        this.pageName: tags_test2.html
+        this.basename: tags_test2
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/multi/dest2/sub-dest/simple3.html
+        page.absolute: N/A
+        page.dirname:  test/actual/multi/dest2/sub-dest
+        page.filename: simple3.html
+        page.pageName: simple3.html
+        page.basename: simple3
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/multi/dest2/sub-dest/simple3.html
+        dirname:       test/actual/multi/dest2/sub-dest
+        filename:      simple3.html
+        pageName:      simple3.html
+        basename:      simple3
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="tags_test2.html">tags_test2</a></li>
       

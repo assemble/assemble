@@ -29,36 +29,95 @@
       <h3>Debug Info</h3>
       ``` 
 {
-  filename: 'page',
+  title: 'Partials Test',
+  links: [ './index', 'dest/context', 'dest/basic', 'dest/markdown' ],
+  dirname: 'test/actual',
+  filename: 'page.html',
+  pageName: 'page.html',
   basename: 'page',
-  src: 'test/files/page.hbs',
-  dest: 'test/actual/page.html',
   assets: 'assets',
   ext: '.html',
-  page: [Function],
+  extname: '.html',
+  src: 'test/files/page.hbs',
+  dest: 'test/actual/page.html',
   data: 
    { title: 'Partials Test',
      links: [ './index', 'dest/context', 'dest/basic', 'dest/markdown' ] 
 },
-  title: 'Partials Test',
-  links: [ './index', 'dest/context', 'dest/basic', 'dest/markdown' ] }
+  page: [Function] }
 ```
 
       <ul>
       
         <!--
-          page.dest: test/actual/page.html
-          this.dest: test/actual/dates.html
-          filename: test/actual/page.html
-          dirname: test/actual
+        "this"
+        ===============================
+        this.dest:     test/actual/dates.html
+        this.absolute: 
+        this.dirname:  test/actual
+        this.filename: dates.html
+        this.pageName: dates.html
+        this.basename: dates
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/page.html
+        page.absolute: N/A
+        page.dirname:  test/actual
+        page.filename: page.html
+        page.pageName: page.html
+        page.basename: page
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/page.html
+        dirname:       test/actual
+        filename:      page.html
+        pageName:      page.html
+        basename:      page
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="dates.html">dates</a></li>
       
         <!--
-          page.dest: test/actual/page.html
-          this.dest: test/actual/page.html
-          filename: test/actual/page.html
-          dirname: test/actual
+        "this"
+        ===============================
+        this.dest:     test/actual/page.html
+        this.absolute: 
+        this.dirname:  test/actual
+        this.filename: page.html
+        this.pageName: page.html
+        this.basename: page
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/page.html
+        page.absolute: N/A
+        page.dirname:  test/actual
+        page.filename: page.html
+        page.pageName: page.html
+        page.basename: page
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/page.html
+        dirname:       test/actual
+        filename:      page.html
+        pageName:      page.html
+        basename:      page
+        extname:       .html
+        ext:           .html
         -->
         <li><a href="page.html">page</a></li>
       
