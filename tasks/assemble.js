@@ -66,7 +66,9 @@ module.exports = function(grunt) {
       var registerFunctions = function(engine) { engine.registerFunctions(); };
       assemble.options.registerFunctions = assemble.options.registerFunctions || registerFunctions;
 
-      var registerPartial = function(engine, filename, content) { engine.registerPartial(filename, content); };
+      var registerPartial = function(engine, filename, content) {
+        engine.registerPartial(_.first(filename.match(assemble.filenameRegex)).replace(assemble.fileExtRegex, ''), content);
+      };
       assemble.options.registerPartial = assemble.options.registerPartial || registerPartial;
 
       assemble.fileExt = extension(src);
@@ -127,8 +129,7 @@ module.exports = function(grunt) {
         grunt.verbose.write(('\n' + 'Processing partials...\n').grey);
 
         partials.forEach(function(filepath) {
-          var filename = _.first(filepath.match(assemble.filenameRegex)).replace(assemble.fileExtRegex, '');
-          grunt.verbose.ok(('Processing ' + filename.cyan + ' partial'));
+          grunt.verbose.ok(('Processing ' + filepath.cyan + ' partial'));
 
           var partial = grunt.file.read(filepath);
 
@@ -137,10 +138,10 @@ module.exports = function(grunt) {
 
           // get the data
           var partialInfo = assemble.data.readYFM(partial, {fromFile: false});
-          assemble.options.data[filename] = _.extend(partialInfo.context || {}, assemble.options.data[filename] || {});
+          assemble.options.data[filepath] = _.extend(partialInfo.context || {}, assemble.options.data[filepath] || {});
 
           // register the partial
-          assemble.options.registerPartial(assemble.engine, filename, partialInfo.content);
+          assemble.options.registerPartial(assemble.engine, filepath, partialInfo.content);
 
           complete++;
         });
