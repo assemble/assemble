@@ -292,7 +292,7 @@ module.exports = function(grunt) {
               filename: path.basename(destFile),
               pageName: path.basename(destFile),
               pagename: path.basename(destFile),
-              basename: path.basename(filename),
+              basename: path.basename(filename, path.extname(filename)),
               src: srcFile,
               dest: destFile,
               assets: assemble.options.assets,
