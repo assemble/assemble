@@ -12,8 +12,9 @@
 ### \{{#each pages}} "this" context
 {{#each pages}}
 #### {{this.filename}}
+this.assets:   {{this.assets}}
 this.dest:     {{this.dest}}
-this.absolute: 
+this.absolute:
 this.dirname:  {{this.dirname}}
 this.filename: {{this.filename}}
 this.pagename: {{this.pagename}}
@@ -25,6 +26,7 @@ this.ext:      {{this.ext}}
 ### \{{#each pages}}
 {{#each pages}}
 #### {{../filename}}
+page.assets:   {{../page.assets}}
 page.dest:     {{../page.dest}}
 page.absolute: {{../page.absolute}}
 page.dirname:  {{../page.dirname}}
@@ -38,6 +40,7 @@ page.ext:      {{../page.ext}}
 ### \{{#each pages}} "page" context
 {{#each pages}}
 #### {{../filename}}
+assets:        {{../assets}}
 dest:          {{../dest}}
 absolute:      {{../absolute}}
 dirname:       {{../dirname}}

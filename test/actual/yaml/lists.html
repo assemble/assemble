@@ -92,8 +92,26 @@
 
 
 <pre class="json">
-{ groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
-  methods: [ 'getter', 'setter', [length]: 2 ],
+{ movies: 
+   [ 'Casablanca',
+     'North by Northwest',
+     'The Man Who Wasn\'t There',
+     [length]: 3 ],
+  assets: '../assets',
+  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
+  filename: 'lists.html',
+  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
+  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
+  dest: 'test/actual/yaml/lists.html',
+  dirname: 'test/actual/yaml',
+  ext: '.html',
+  title: 'Almost a Haiku',
+  src: 'test/yaml/lists.hbs',
+  people: 
+   [ { name: 'John Smith', age: 33 },
+     { name: 'Mary Smith', age: 27 },
+     [length]: 2 ],
+  basename: 'lists',
   men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
   data: 
    { title: 'Almost a Haiku',
@@ -111,26 +129,6 @@
         [length]: 2 ],
      men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
      women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ] },
-  ext: '.html',
-  dirname: 'test/actual/yaml',
-  basename: 'lists',
-  pageName: 'lists.html',
-  dest: 'test/actual/yaml/lists.html',
-  title: 'Almost a Haiku',
-  assets: '../assets',
-  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
-  movies: 
-   [ 'Casablanca',
-     'North by Northwest',
-     'The Man Who Wasn\'t There',
-     [length]: 3 ],
-  filename: 'lists.html',
-  people: 
-   [ { name: 'John Smith', age: 33 },
-     { name: 'Mary Smith', age: 27 },
-     [length]: 2 ],
-  pagename: 'lists.html',
-  extname: '.html',
   page: 
    { [Function]
      [length]: 2,
@@ -138,8 +136,10 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
-  src: 'test/yaml/lists.hbs' }
+  extname: '.html',
+  pageName: 'lists.html',
+  pagename: 'lists.html',
+  methods: [ 'getter', 'setter', [length]: 2 ] }
 </pre>
 
       <ul>

@@ -1,4 +1,4 @@
-### assemble object
+## assemble object
 
 Methods to the assemble object can be created using:
 
@@ -15,6 +15,97 @@ assemble.options; // refers to the task.options merged with assemble defaults
 assemble.files;   // refers to the task.files
 ```
 
+### `init` method
+
+Describes `init` method to `assemble.engine`, and exposes engine on `assemble.engine`.
+
+
+#### Custom Engines
+
+If you don't wish to use Handlebars as your templates engine, you may add your own engine by providing an `init` function that takes in options from the assemble task/target. You may also override the `init` function in the task/target options by providing an `initializeEngine` function that takes the engine and the options:
+
+```js
+assemble: {
+  options: {
+    engine: 'consolidate',
+    initializeEngine: function(engine, options) {
+      engine.engine.swig.init(options);
+    }
+  },
+  docs: {
+    files: {
+      'docs/': ['src/templates/**/*.tmpl']
+    }
+  }
+}
+```
+
+Assemble will attempt to load an engine and automatically add it's own wrapper methods around it while holding an instance of the engine. This is a way for engine plugin authors to write adapters between other engines and assemble's wrapper. To make these functions on the options useful, we've exposed the underlying engine through the `assemble.engine` object so **developers can use the raw engine**. 
+
+This is particularly useful when **a)** a library such as [consolidate][] is used, where the engine is `consolidate`, and **b)** the developer wants to use another engine such as [handlebars](https://github.com/wycats/handlebars.js), [swig](https://github.com/paularmstrong/swig), [mustache](https://github.com/janl/mustache.js) etc.
+
+* The `init` function allows assemble to pass in options to be used in initializing this engine plugin.
+* `init` function is exposed, and [helper-lib](https://github.com/assemble/helper-lib) is registered inside the init so that options can be passed in.
+
+Admittedly, the `engine.engine` syntax is strange. This is "alpha", so feedback and pull requests are especially welcome if you have ideas for improving this.
+
+
+#### Register Helpers
+
+Call `registerFunctions` by passing in an engine. This is used if you need to register custom **helpers or "filters", etc.** beyond the helpers included in [helper-lib](http://github.com/assemble/helper-lib):
+
+```javascript
+registerFunctions(assemble.engine);
+```
+
+Example of how this would be setup in the `options` of the assemble task or target:
+
+```javascript
+assemble: {
+  options: {
+    registerFunctions: function(engine) {
+      var helperFunctions = {};
+      helperFunctions['foo'] = function() { return 'bar'; };
+      engine.engine.registerFunctions(helperFunctions);
+    }
+  },
+  site: {
+    files: {
+      'dist/': ['src/templates/**/*.tmpl']
+    }
+  }
+}
+```
+
+#### Register Partials
+
+Call `registerPartial` by passing in an engine:
+
+```javascript
+registerPartial(assemble.engine, 'partialName', content);
+```
+
+Example of how this would be setup in the `options` of the assemble task or target:
+
+```javascript
+assemble: {
+  options: {
+    registerPartial: function(engine, name, content) {
+      var tmpl = engine.compile(content);
+      engine.engine.registerPartial(name, tmpl);
+    }
+  },
+  blog: {
+    files: {
+      'dist/blog/': ['src/templates/**/*.tmpl']
+    }
+  }
+}
+```
+
+[consolidate]: https://github.com/visionmedia/consolidate.js/
+
+ 
 ### assemble steps
 
 There are also methods to setup the assemble steps, and then execute the build:
@@ -64,9 +155,78 @@ assemble.build(function(err, result) {
 });
 ```
 
-#### example `Gruntfile.js` file
+### Example custom Grunt.js plugin, "`steps`"
 
-The following code is an entire `Gruntfile.js` file that shows how to use `step` and `build` in the simpilest way
+This shows how to create a custom Grunt plugin using Assemble steps. 
+
+``` js
+grunt.registerMultiTask('steps', 'examples of using steps in assemble', function() {
+
+  var done = this.async();
+
+  grunt.verbose.writeln(('Running ' + this.name + ' - ' + this.target).cyan);
+
+  // require assemble
+  var assemble = require('assemble');
+
+  // initalize assemble with the currently running task
+  assemble = assemble.init(this);
+
+  // let's see what assemble has now
+  grunt.verbose.writeln(require('util').inspect(assemble));
+  grunt.verbose.writeln('');
+
+  // you can see there are some defaults that assemble sets up
+  // add the steps you want to execute
+
+  // add a custom string property to the assemble object
+  assemble.step(function(assemble, next) {
+    grunt.log.writeln('running step 1');
+    assemble.step1 = 'This is step 1';
+    next(assemble);
+  });
+
+  // add a custom object property to the assemble object
+  assemble.step(function(assemble, next) {
+    grunt.log.writeln('running step 2');
+    assemble.step2 = {
+      data: 'This is step 2'
+    };
+    next(assemble);
+  });
+
+  // add a custom array property to the assemble object
+  assemble.step(function(assemble, next) {
+    grunt.log.writeln('running step 3');
+    assemble.step3 = ['This is step 3'];
+    next(assemble);
+  });
+
+  // the last step will use the custom properties set up in the first 3 steps
+  assemble.step(function(assemble, next) {
+    grunt.log.writeln('running step 4');
+
+    grunt.log.writeln('  data from other steps: ');
+    grunt.log.writeln('    ' + assemble.step1);
+    grunt.log.writeln('    ' + assemble.step2.data);
+    grunt.log.writeln('    ' + assemble.step3[0]);
+    grunt.log.writeln('');
+
+    next(assemble);
+  });
+
+  // now run build
+  assemble.build(function(err, results) {
+    grunt.log.writeln('build finished');
+    done();
+  });
+
+});
+```
+
+### Example Gruntfile with `steps` task
+
+The following code is for an entire `Gruntfile.js`, with an example of how to use `step` and `build` in the simpilest way.
 
 ```javascript
 
@@ -74,166 +234,20 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-
-    // package.json
-    pkg: grunt.file.readJSON('package.json'),
-    jshint: {
-      options: {
-        jshintrc: './.jshintrc'
-      },
-      files: [
-        'Gruntfile.js'
-      ]
-    },
-
     steps: {
       target1: {
-
+        // do something
       },
       target2: {
-
+        // do something else
       }
     }
-
   });
 
   // Load npm plugins to provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  grunt.registerMultiTask('steps', 'examples of using steps in assemble', function() {
-
-    var done = this.async();
-
-    grunt.verbose.writeln(('Running ' + this.name + ' - ' + this.target).cyan);
-
-    // require assemble
-    var assemble = require('assemble');
-
-    // initalize assemble with the currently running task
-    assemble = assemble.init(this);
-
-    // let's see what assemble has now
-    grunt.verbose.writeln(require('util').inspect(assemble));
-    grunt.verbose.writeln('');
-
-    // you can see there are some defaults that assemble sets up
-    // add the steps you want to execute
-
-    // add a custom string property to the assemble object
-    assemble.step(function(assemble, next) {
-      grunt.log.writeln('running step 1');
-      assemble.step1 = 'This is step 1';
-      next(assemble);
-    });
-
-    // add a custom object property to the assemble object
-    assemble.step(function(assemble, next) {
-      grunt.log.writeln('running step 2');
-      assemble.step2 = {
-        data: 'This is step 2'
-      };
-      next(assemble);
-    });
-
-    // add a custom array property to the assemble object
-    assemble.step(function(assemble, next) {
-      grunt.log.writeln('running step 3');
-      assemble.step3 = ['This is step 3'];
-      next(assemble);
-    });
-
-    // the last step will use the custom properties set up in the first 3 steps
-    assemble.step(function(assemble, next) {
-      grunt.log.writeln('running step 4');
-
-      grunt.log.writeln('  data from other steps: ');
-      grunt.log.writeln('    ' + assemble.step1);
-      grunt.log.writeln('    ' + assemble.step2.data);
-      grunt.log.writeln('    ' + assemble.step3[0]);
-      grunt.log.writeln('');
-
-      next(assemble);
-    });
-
-    // now run build
-    assemble.build(function(err, results) {
-      grunt.log.writeln('build finished');
-      done();
-    });
-
-  });
-
   // Default task.
-  grunt.registerTask('default', [
-    'jshint',
-    'steps'
-  ]);
-
-  // Tests to be run.
-  grunt.registerTask('test', [
-    'jshint'
-  ]);
+  grunt.registerTask('default', ['jshint', 'steps']);
 };
 ```
-
-## Custom Engines
-
-### Register Functions and Partials
-
-Call `registerFunctions` and `registerPartial` by passing in an engine.
-
-```javascript
-registerFunctions(assemble.engine);
-registerPartial(assemble.engine, 'partialName', content);
-```
-
-Now this can be setup properly in the assemble options of a task or target like the following:
-
-```javascript
-assemble: {
-  target1: {
-    options: {
-      registerFunctions: function(engine) {
-        var helperFunctions = {};
-        helperFunctions['foo'] = function() { return 'bar'; };
-        engine.engine.registerFunctions(helperFunctions);
-      },
-      registerPartial: function(engine, name, content) {
-        var tmpl = engine.compile(content);
-        engine.engine.registerPartial(name, tmpl);
-      }
-    },
-    files: {
-      ...
-    }
-  }
-}
-```
-
-## `init` method
-
-Describes `init` method to `assemble.engine` and exposing engine on `assemble.engine`
-
-Engines can now provide an init function that takes in options (these are the options from the assemble task/target).
-
-Optionally, a user of assemble can override the init function in the task/target options by providing an initializeEngine function that takes the engine and the options...
-
-```js
-assemble: {
-  options: {
-    engine: 'consolidate',
-    initializeEngine: function(engine, options) {
-      engine.engine.swig.init(options);
-    }
-  }
-}
-```
-
-It also kind of looks weird doing the `engine.engine` syntax, but I'm not sure how else to describe this...
-
-Assemble will attempt to load an engine and automatically add it's own wrapper methods around it, while holding an instance of the engine. This is a way for engine plugin authors to write adapters between other engines and assemble's wrapper. To make these functions on the options useful, we've exposed the underlying engine through the assemble.engine object so developers can use the raw engine. This works better for cases like using consolidate where the engine is consolidate, but the developer wants to use another engine (handlebars, swig, mustache, etc...).
-
-This probably needs more work. Any feedback is welcome.
-
-* The init function allows assemble to pass in options to be used in initializing this engine plugin.
-* `init` function is exposed, and [helper-lib](https://github.com/assemble/helper-lib) is registered inside the init so that options can be passed in.
