@@ -1,3 +1,7 @@
+v0.3.80:
+  date: "2013-06-01"
+  changes:
+    - Fixing bug with null value in engine
 v0.3.77:
   date: "2013-05-07"
   changes:

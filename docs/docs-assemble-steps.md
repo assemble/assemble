@@ -1,3 +1,5 @@
+## Methods
+
 ### assemble object
 
 Methods to the assemble object can be created using:
@@ -175,65 +177,3 @@ module.exports = function(grunt) {
   ]);
 };
 ```
-
-## Custom Engines
-
-### Register Functions and Partials
-
-Call `registerFunctions` and `registerPartial` by passing in an engine.
-
-```javascript
-registerFunctions(assemble.engine);
-registerPartial(assemble.engine, 'partialName', content);
-```
-
-Now this can be setup properly in the assemble options of a task or target like the following:
-
-```javascript
-assemble: {
-  target1: {
-    options: {
-      registerFunctions: function(engine) {
-        var helperFunctions = {};
-        helperFunctions['foo'] = function() { return 'bar'; };
-        engine.engine.registerFunctions(helperFunctions);
-      },
-      registerPartial: function(engine, name, content) {
-        var tmpl = engine.compile(content);
-        engine.engine.registerPartial(name, tmpl);
-      }
-    },
-    files: {
-      ...
-    }
-  }
-}
-```
-
-## `init` method
-
-Describes `init` method to `assemble.engine` and exposing engine on `assemble.engine`
-
-Engines can now provide an init function that takes in options (these are the options from the assemble task/target).
-
-Optionally, a user of assemble can override the init function in the task/target options by providing an initializeEngine function that takes the engine and the options...
-
-```js
-assemble: {
-  options: {
-    engine: 'consolidate',
-    initializeEngine: function(engine, options) {
-      engine.engine.swig.init(options);
-    }
-  }
-}
-```
-
-It also kind of looks weird doing the `engine.engine` syntax, but I'm not sure how else to describe this...
-
-Assemble will attempt to load an engine and automatically add it's own wrapper methods around it, while holding an instance of the engine. This is a way for engine plugin authors to write adapters between other engines and assemble's wrapper. To make these functions on the options useful, we've exposed the underlying engine through the assemble.engine object so developers can use the raw engine. This works better for cases like using consolidate where the engine is consolidate, but the developer wants to use another engine (handlebars, swig, mustache, etc...).
-
-This probably needs more work. Any feedback is welcome.
-
-* The init function allows assemble to pass in options to be used in initializing this engine plugin.
-* `init` function is exposed, and [helper-lib](https://github.com/assemble/helper-lib) is registered inside the init so that options can be passed in.
