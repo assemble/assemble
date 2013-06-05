@@ -2,93 +2,130 @@
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>YAML Test</title>
+    <title>Helpers and custom variables</title>
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
     <div class="container">
       
-<h2>ul</h2>
-<ul class="nav"><li>
-  one
-</li>
-<li>
-  two
-</li>
-<li>
-  three
-</li></ul>
+<div class="page-header">
+  <h1>Helpers and custom variables</h1>
+  <p class="lead">Here we are using the &quot;css&quot; and &quot;js&quot; helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.
+</p>
+</div>
 
-<ul class="nav"><li>
-  <a href="one">two</a>
-</li>
-<li>
-  <a href="three">four</a>
-</li>
-<li>
-  <a href="five">size</a>
-</li></ul>
-
-<h2>ol</h2>
-<ol class="nav"><li>
-  one
-</li>
-<li>
-  two
-</li>
-<li>
-  three
-</li></ol>
-
-<ol class="nav"><li>
-  <a href="one">two</a>
-</li>
-<li>
-  <a href="three">four</a>
-</li>
-<li>
-  <a href="five">size</a>
-</li></ol>
+<h2>css helper</h2>
+Example of using the "css" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
+<link rel="stylesheet" href="../../../assets/css/css/bootstrap.css">
+<link rel="stylesheet" href="../../../assets/css/css/responsive.css">
+<link rel="stylesheet" href="../../../assets/css/css/main.css">
 
 
+<h2>js helper</h2>
+Example of using the "js" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
+<script src="../../../assets/js/js/bootstrap.js"></script>
+<script src="../../../assets/js/js/responsive.js"></script>
+<script src="../../../assets/js/js/main.js"></script>
 
 
-<h2>href</h2>
-<p><a class="" href="http://gist.github.com/jonschlinkert/5193239" title="helpers.js">helpers.js</a>
-<a class="" href="http://github.com" title="GitHub">GitHub</a>
-<a class="nav-link" href="http://github.com" title="GitHub">GitHub</a></p>
-<h2>gist</h2>
-<script src="https://gist.github.com/5193239.js"></script>
-
-
-<h2>debug</h2>
-
+<h2>custom variables</h2>
+<link rel="stylesheet" href="css/index.css"/>
+<script>document.write('foo bar!');</script>
 
     </div>
 
     <div class="container" style="display: none">
-      <h3>Debug Info</h3>
+      <ul>
+        
+        <li><a href="../../dest1/alert.html">alert</a></li>
+        
+        <li><a href="../../dest1/assets.html">assets</a></li>
+        
+        <li><a href="../../dest1/category.html">category</a></li>
+        
+        <li><a href="../../dest1/category2.html">category2</a></li>
+        
+        <li><a href="../../dest1/complex.html">complex</a></li>
+        
+        <li><a href="../../dest1/debug-helpers.html">debug-helpers</a></li>
+        
+        <li><a href="../../dest1/example.html">example</a></li>
+        
+        <li><a href="../../dest1/gist-helper.html">gist-helper</a></li>
+        
+        <li><a href="../../dest1/helpers.html">helpers</a></li>
+        
+        <li><a href="../../dest1/html-helpers.html">html-helpers</a></li>
+        
+        <li><a href="../../dest1/page.html">page</a></li>
+        
+        <li><a href="../../dest1/simple3.html">simple3</a></li>
+        
+        <li><a href="../../dest1/tags_test.html">tags_test</a></li>
+        
+        <li><a href="../../dest1/tags_test2.html">tags_test2</a></li>
+        
+        <li><a href="../complex1.html">complex1</a></li>
+        
+        <li><a href="../md2.html">md2</a></li>
+        
+        <li><a href="../simple1.html">simple1</a></li>
+        
+        <li><a href="alert.html">alert</a></li>
+        
+        <li><a href="assets.html">assets</a></li>
+        
+        <li><a href="category.html">category</a></li>
+        
+        <li><a href="category2.html">category2</a></li>
+        
+        <li><a href="complex.html">complex</a></li>
+        
+        <li><a href="debug-helpers.html">debug-helpers</a></li>
+        
+        <li><a href="example.html">example</a></li>
+        
+        <li><a href="gist-helper.html">gist-helper</a></li>
+        
+        <li><a href="helpers.html">helpers</a></li>
+        
+        <li><a href="html-helpers.html">html-helpers</a></li>
+        
+        <li><a href="page.html">page</a></li>
+        
+        <li><a href="simple3.html">simple3</a></li>
+        
+        <li><a href="tags_test.html">tags_test</a></li>
+        
+        <li><a href="tags_test2.html">tags_test2</a></li>
+        
+      </ul>
 
 
+<h3>Debug Info</h3>
 <pre class="json">
-{ url: 'http://gist.github.com/jonschlinkert/5193239',
-  text: 'helpers.js',
-  links: [ 'one', 'two', 'three', [length]: 3 ],
-  moreLinks: 
-   [ { url: 'one', text: 'two' },
-     { url: 'three', text: 'four' },
-     { url: 'five', text: 'size' },
-     [length]: 3 ],
+{ basename: 'helpers',
+  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
+  src: 'test/templates/pages/helpers.hbs',
   dirname: 'test/actual/multi/dest2/sub-dest',
   filename: 'helpers.html',
-  pageName: 'helpers.html',
-  pagename: 'helpers.html',
-  basename: 'helpers',
-  src: 'test/templates/pages/helpers.hbs',
-  dest: 'test/actual/multi/dest2/sub-dest/helpers.html',
-  assets: '../../../assets',
-  ext: '.html',
   extname: '.html',
+  styles: '<link rel="stylesheet" href="css/index.css"/>',
+  data: 
+   { title: 'Helpers and custom variables',
+     description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
+     stylesheets: 
+      [ 'css/bootstrap.css',
+        'css/responsive.css',
+        'css/main.css',
+        [length]: 3 ],
+     javascripts: 
+      [ 'js/bootstrap.js',
+        'js/responsive.js',
+        'js/main.js',
+        [length]: 3 ],
+     styles: '<link rel="stylesheet" href="css/index.css"/>',
+     scripts: 'document.write(\'foo bar!\');' },
   page: 
    { [Function]
      [length]: 2,
@@ -96,74 +133,24 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  data: 
-   { url: 'http://gist.github.com/jonschlinkert/5193239',
-     text: 'helpers.js',
-     links: [ 'one', 'two', 'three', [length]: 3 ],
-     moreLinks: 
-      [ { url: 'one', text: 'two' },
-        { url: 'three', text: 'four' },
-        { url: 'five', text: 'size' },
-        [length]: 3 ] } }
+  dest: 'test/actual/multi/dest2/sub-dest/helpers.html',
+  ext: '.html',
+  javascripts: 
+   [ 'js/bootstrap.js',
+     'js/responsive.js',
+     'js/main.js',
+     [length]: 3 ],
+  scripts: 'document.write(\'foo bar!\');',
+  pagename: 'helpers.html',
+  title: 'Helpers and custom variables',
+  assets: '../../../assets',
+  stylesheets: 
+   [ 'css/bootstrap.css',
+     'css/responsive.css',
+     'css/main.css',
+     [length]: 3 ],
+  pageName: 'helpers.html' }
 </pre>
-
-      <ul>
-      
-        <li><a href="../../dest1/alert.html">alert</a></li>
-      
-        <li><a href="../../dest1/assets.html">assets</a></li>
-      
-        <li><a href="../../dest1/category.html">category</a></li>
-      
-        <li><a href="../../dest1/category2.html">category2</a></li>
-      
-        <li><a href="../../dest1/complex.html">complex</a></li>
-      
-        <li><a href="../../dest1/dates.html">dates</a></li>
-      
-        <li><a href="../../dest1/example.html">example</a></li>
-      
-        <li><a href="../../dest1/helpers.html">helpers</a></li>
-      
-        <li><a href="../../dest1/page.html">page</a></li>
-      
-        <li><a href="../../dest1/simple3.html">simple3</a></li>
-      
-        <li><a href="../../dest1/tags_test.html">tags_test</a></li>
-      
-        <li><a href="../../dest1/tags_test2.html">tags_test2</a></li>
-      
-        <li><a href="../complex1.html">complex1</a></li>
-      
-        <li><a href="../md2.html">md2</a></li>
-      
-        <li><a href="../simple1.html">simple1</a></li>
-      
-        <li><a href="alert.html">alert</a></li>
-      
-        <li><a href="assets.html">assets</a></li>
-      
-        <li><a href="category.html">category</a></li>
-      
-        <li><a href="category2.html">category2</a></li>
-      
-        <li><a href="complex.html">complex</a></li>
-      
-        <li><a href="dates.html">dates</a></li>
-      
-        <li><a href="example.html">example</a></li>
-      
-        <li><a href="helpers.html">helpers</a></li>
-      
-        <li><a href="page.html">page</a></li>
-      
-        <li><a href="simple3.html">simple3</a></li>
-      
-        <li><a href="tags_test.html">tags_test</a></li>
-      
-        <li><a href="tags_test2.html">tags_test2</a></li>
-      
-      </ul>
     </div>
   </body>
 </html>

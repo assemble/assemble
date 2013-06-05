@@ -1,18 +1,15 @@
-# dates.md output
+# gist-helper.md output
 
 ## Debug Info
 
 ``` json
-{ description: 'testing the dates helpers',
-  css: '<link rel="stylesheet" href="/css/index.css"/>',
-  js: 'document.write(\'foo bar!\');',
-  dirname: 'test/actual/multi/dest1',
-  filename: 'dates.md',
-  pageName: 'dates.md',
-  pagename: 'dates.md',
-  basename: 'dates',
-  src: 'test/templates/pages/dates.hbs',
-  dest: 'test/actual/multi/dest1/dates.md',
+{ dirname: 'test/actual/multi/dest1',
+  filename: 'gist-helper.md',
+  pageName: 'gist-helper.md',
+  pagename: 'gist-helper.md',
+  basename: 'gist-helper',
+  src: 'test/templates/pages/gist-helper.hbs',
+  dest: 'test/actual/multi/dest1/gist-helper.md',
   assets: '../../assets',
   ext: '.md',
   extname: '.md',
@@ -23,10 +20,7 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  data: 
-   { description: 'testing the dates helpers',
-     css: '<link rel="stylesheet" href="/css/index.css"/>',
-     js: 'document.write(\'foo bar!\');' } }
+  data: {} }
 ```
 
 ### "{{#each pages}}" Links
@@ -35,9 +29,11 @@
 [category](category.md)
 [category2](category2.md)
 [complex](complex.md)
-[dates](dates.md)
+[debug-helpers](debug-helpers.md)
 [example](example.md)
+[gist-helper](gist-helper.md)
 [helpers](helpers.md)
+[html-helpers](html-helpers.md)
 [page](page.md)
 [simple3](simple3.md)
 [tags_test](tags_test.md)
@@ -102,14 +98,14 @@ this.basename: complex
 this.extname:  .md
 this.ext:      .md
 
-#### dates.md
+#### debug-helpers.md
 this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/dates.md
+this.dest:     test/actual/multi/dest1/debug-helpers.md
 this.absolute:
 this.dirname:  test/actual/multi/dest1
-this.filename: dates.md
-this.pagename: dates.md
-this.basename: dates
+this.filename: debug-helpers.md
+this.pagename: debug-helpers.md
+this.basename: debug-helpers
 this.extname:  .md
 this.ext:      .md
 
@@ -124,6 +120,17 @@ this.basename: example
 this.extname:  .md
 this.ext:      .md
 
+#### gist-helper.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/gist-helper.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: gist-helper.md
+this.pagename: gist-helper.md
+this.basename: gist-helper
+this.extname:  .md
+this.ext:      .md
+
 #### helpers.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/helpers.md
@@ -132,6 +139,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: helpers.md
 this.pagename: helpers.md
 this.basename: helpers
+this.extname:  .md
+this.ext:      .md
+
+#### html-helpers.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/html-helpers.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: html-helpers.md
+this.pagename: html-helpers.md
+this.basename: html-helpers
 this.extname:  .md
 this.ext:      .md
 
@@ -182,277 +200,321 @@ this.ext:      .md
 
 ### {{#each pages}}
 
-#### dates.md
+#### gist-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/dates.md
+page.dest:     test/actual/multi/dest1/gist-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: dates.md
-page.pagename: dates.md
-page.basename: dates
+page.filename: gist-helper.md
+page.pagename: gist-helper.md
+page.basename: gist-helper
 page.extname:  .md
 page.ext:      .md
 
-#### dates.md
+#### gist-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/dates.md
+page.dest:     test/actual/multi/dest1/gist-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: dates.md
-page.pagename: dates.md
-page.basename: dates
+page.filename: gist-helper.md
+page.pagename: gist-helper.md
+page.basename: gist-helper
 page.extname:  .md
 page.ext:      .md
 
-#### dates.md
+#### gist-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/dates.md
+page.dest:     test/actual/multi/dest1/gist-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: dates.md
-page.pagename: dates.md
-page.basename: dates
+page.filename: gist-helper.md
+page.pagename: gist-helper.md
+page.basename: gist-helper
 page.extname:  .md
 page.ext:      .md
 
-#### dates.md
+#### gist-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/dates.md
+page.dest:     test/actual/multi/dest1/gist-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: dates.md
-page.pagename: dates.md
-page.basename: dates
+page.filename: gist-helper.md
+page.pagename: gist-helper.md
+page.basename: gist-helper
 page.extname:  .md
 page.ext:      .md
 
-#### dates.md
+#### gist-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/dates.md
+page.dest:     test/actual/multi/dest1/gist-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: dates.md
-page.pagename: dates.md
-page.basename: dates
+page.filename: gist-helper.md
+page.pagename: gist-helper.md
+page.basename: gist-helper
 page.extname:  .md
 page.ext:      .md
 
-#### dates.md
+#### gist-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/dates.md
+page.dest:     test/actual/multi/dest1/gist-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: dates.md
-page.pagename: dates.md
-page.basename: dates
+page.filename: gist-helper.md
+page.pagename: gist-helper.md
+page.basename: gist-helper
 page.extname:  .md
 page.ext:      .md
 
-#### dates.md
+#### gist-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/dates.md
+page.dest:     test/actual/multi/dest1/gist-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: dates.md
-page.pagename: dates.md
-page.basename: dates
+page.filename: gist-helper.md
+page.pagename: gist-helper.md
+page.basename: gist-helper
 page.extname:  .md
 page.ext:      .md
 
-#### dates.md
+#### gist-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/dates.md
+page.dest:     test/actual/multi/dest1/gist-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: dates.md
-page.pagename: dates.md
-page.basename: dates
+page.filename: gist-helper.md
+page.pagename: gist-helper.md
+page.basename: gist-helper
 page.extname:  .md
 page.ext:      .md
 
-#### dates.md
+#### gist-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/dates.md
+page.dest:     test/actual/multi/dest1/gist-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: dates.md
-page.pagename: dates.md
-page.basename: dates
+page.filename: gist-helper.md
+page.pagename: gist-helper.md
+page.basename: gist-helper
 page.extname:  .md
 page.ext:      .md
 
-#### dates.md
+#### gist-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/dates.md
+page.dest:     test/actual/multi/dest1/gist-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: dates.md
-page.pagename: dates.md
-page.basename: dates
+page.filename: gist-helper.md
+page.pagename: gist-helper.md
+page.basename: gist-helper
 page.extname:  .md
 page.ext:      .md
 
-#### dates.md
+#### gist-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/dates.md
+page.dest:     test/actual/multi/dest1/gist-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: dates.md
-page.pagename: dates.md
-page.basename: dates
+page.filename: gist-helper.md
+page.pagename: gist-helper.md
+page.basename: gist-helper
 page.extname:  .md
 page.ext:      .md
 
-#### dates.md
+#### gist-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/dates.md
+page.dest:     test/actual/multi/dest1/gist-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: dates.md
-page.pagename: dates.md
-page.basename: dates
+page.filename: gist-helper.md
+page.pagename: gist-helper.md
+page.basename: gist-helper
+page.extname:  .md
+page.ext:      .md
+
+#### gist-helper.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/gist-helper.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: gist-helper.md
+page.pagename: gist-helper.md
+page.basename: gist-helper
+page.extname:  .md
+page.ext:      .md
+
+#### gist-helper.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/gist-helper.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: gist-helper.md
+page.pagename: gist-helper.md
+page.basename: gist-helper
 page.extname:  .md
 page.ext:      .md
 
 
 ### {{#each pages}} "page" context
 
-#### dates.md
+#### gist-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/dates.md
+absolute:      test/actual/multi/dest1/gist-helper.md
 dirname:       test/actual/multi/dest1
-filename:      dates.md
-pagename:      dates.md
-basename:      dates
+filename:      gist-helper.md
+pagename:      gist-helper.md
+basename:      gist-helper
 extname:       .md
 ext:           .md
 
-#### dates.md
+#### gist-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/dates.md
+absolute:      test/actual/multi/dest1/gist-helper.md
 dirname:       test/actual/multi/dest1
-filename:      dates.md
-pagename:      dates.md
-basename:      dates
+filename:      gist-helper.md
+pagename:      gist-helper.md
+basename:      gist-helper
 extname:       .md
 ext:           .md
 
-#### dates.md
+#### gist-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/dates.md
+absolute:      test/actual/multi/dest1/gist-helper.md
 dirname:       test/actual/multi/dest1
-filename:      dates.md
-pagename:      dates.md
-basename:      dates
+filename:      gist-helper.md
+pagename:      gist-helper.md
+basename:      gist-helper
 extname:       .md
 ext:           .md
 
-#### dates.md
+#### gist-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/dates.md
+absolute:      test/actual/multi/dest1/gist-helper.md
 dirname:       test/actual/multi/dest1
-filename:      dates.md
-pagename:      dates.md
-basename:      dates
+filename:      gist-helper.md
+pagename:      gist-helper.md
+basename:      gist-helper
 extname:       .md
 ext:           .md
 
-#### dates.md
+#### gist-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/dates.md
+absolute:      test/actual/multi/dest1/gist-helper.md
 dirname:       test/actual/multi/dest1
-filename:      dates.md
-pagename:      dates.md
-basename:      dates
+filename:      gist-helper.md
+pagename:      gist-helper.md
+basename:      gist-helper
 extname:       .md
 ext:           .md
 
-#### dates.md
+#### gist-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/dates.md
+absolute:      test/actual/multi/dest1/gist-helper.md
 dirname:       test/actual/multi/dest1
-filename:      dates.md
-pagename:      dates.md
-basename:      dates
+filename:      gist-helper.md
+pagename:      gist-helper.md
+basename:      gist-helper
 extname:       .md
 ext:           .md
 
-#### dates.md
+#### gist-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/dates.md
+absolute:      test/actual/multi/dest1/gist-helper.md
 dirname:       test/actual/multi/dest1
-filename:      dates.md
-pagename:      dates.md
-basename:      dates
+filename:      gist-helper.md
+pagename:      gist-helper.md
+basename:      gist-helper
 extname:       .md
 ext:           .md
 
-#### dates.md
+#### gist-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/dates.md
+absolute:      test/actual/multi/dest1/gist-helper.md
 dirname:       test/actual/multi/dest1
-filename:      dates.md
-pagename:      dates.md
-basename:      dates
+filename:      gist-helper.md
+pagename:      gist-helper.md
+basename:      gist-helper
 extname:       .md
 ext:           .md
 
-#### dates.md
+#### gist-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/dates.md
+absolute:      test/actual/multi/dest1/gist-helper.md
 dirname:       test/actual/multi/dest1
-filename:      dates.md
-pagename:      dates.md
-basename:      dates
+filename:      gist-helper.md
+pagename:      gist-helper.md
+basename:      gist-helper
 extname:       .md
 ext:           .md
 
-#### dates.md
+#### gist-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/dates.md
+absolute:      test/actual/multi/dest1/gist-helper.md
 dirname:       test/actual/multi/dest1
-filename:      dates.md
-pagename:      dates.md
-basename:      dates
+filename:      gist-helper.md
+pagename:      gist-helper.md
+basename:      gist-helper
 extname:       .md
 ext:           .md
 
-#### dates.md
+#### gist-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/dates.md
+absolute:      test/actual/multi/dest1/gist-helper.md
 dirname:       test/actual/multi/dest1
-filename:      dates.md
-pagename:      dates.md
-basename:      dates
+filename:      gist-helper.md
+pagename:      gist-helper.md
+basename:      gist-helper
 extname:       .md
 ext:           .md
 
-#### dates.md
+#### gist-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/dates.md
+absolute:      test/actual/multi/dest1/gist-helper.md
 dirname:       test/actual/multi/dest1
-filename:      dates.md
-pagename:      dates.md
-basename:      dates
+filename:      gist-helper.md
+pagename:      gist-helper.md
+basename:      gist-helper
+extname:       .md
+ext:           .md
+
+#### gist-helper.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/gist-helper.md
+dirname:       test/actual/multi/dest1
+filename:      gist-helper.md
+pagename:      gist-helper.md
+basename:      gist-helper
+extname:       .md
+ext:           .md
+
+#### gist-helper.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/gist-helper.md
+dirname:       test/actual/multi/dest1
+filename:      gist-helper.md
+pagename:      gist-helper.md
+basename:      gist-helper
 extname:       .md
 ext:           .md
 
 
 
 
-<div>Date: Wed Jun 05 2013 19:15:14 GMT-0400 (Eastern Daylight Time)</div>
+<h1>{{gist}} helper</h1>
+<script src="https://gist.github.com/5193239.js"></script>
 
-<div>Born 33 years ago</div>
 

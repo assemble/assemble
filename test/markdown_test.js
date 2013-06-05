@@ -32,13 +32,13 @@ describe('Converting Markdown files', function() {
     });
 
     it("read markdown file", function(done) {
-      var data = assembleData.readMarkdown('./test/files/simple1.md', opts);
+      var data = assembleData.readMarkdown('./test/templates/pages/simple1.md', opts);
       expect(data).to.equal(simpleExpected);
       done();
     });
 
     it("convert markdown file with code highlighting", function(done) {
-      var data = assembleData.readMarkdown('./test/files/complex1.md', opts);
+      var data = assembleData.readMarkdown('./test/templates/pages/complex1.md', opts);
       //console.log(data);
       //expect(complexExpected).to.deep.equal(data);
       done();

@@ -58,14 +58,13 @@ module.exports = function(grunt) {
           'test/actual/paths/': ['test/templates/pages/**/*.hbs']
         } 
       },
-      individual_pages: {
+      single_page: {
         options: {
           partials: 'test/templates/partials/*.hbs',
           layout: 'test/templates/layouts/layout.hbs'
         },
         files: {
-          'test/actual/page.html': ['test/templates/pages/page.hbs'],
-          'test/actual/dates.html': ['test/templates/pages/dates.hbs']
+          'test/actual/page.html': ['test/templates/pages/page.hbs']
         }
       },
       files_object: {

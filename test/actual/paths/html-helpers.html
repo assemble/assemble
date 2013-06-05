@@ -8,8 +8,54 @@
   <body style="padding-top: 60px;">
     <div class="container">
       
+<h2>HTML list helpers.</h2>
+<h3>{{ul}} helper</h3>
+<ul class="nav"><li>
+  one
+</li>
+<li>
+  two
+</li>
+<li>
+  three
+</li></ul>
 
-<span class="alert alert-info">This is an alert</span>
+<ul class="nav"><li>
+  <a href="one">two</a>
+</li>
+<li>
+  <a href="three">four</a>
+</li>
+<li>
+  <a href="five">size</a>
+</li></ul>
+
+<h3>{{ol}} helper</h3>
+<ol class="nav"><li>
+  one
+</li>
+<li>
+  two
+</li>
+<li>
+  three
+</li></ol>
+
+<ol class="nav"><li>
+  <a href="one">two</a>
+</li>
+<li>
+  <a href="three">four</a>
+</li>
+<li>
+  <a href="five">size</a>
+</li></ol>
+
+<h3>{{_link}} helper</h3>
+<p><a class="" href="" title="helpers.js">helpers.js</a>
+<a class="" href="http://github.com" title="GitHub">GitHub</a>
+<a class="nav-link" href="http://github.com" title="GitHub">GitHub</a></p>
+
 
     </div>
 
@@ -17,14 +63,20 @@
       <h3>Paths Examples</h3>
 
 <pre class="json">
-{ foo: 'bar',
+{ text: 'helpers.js',
+  links: [ 'one', 'two', 'three', [length]: 3 ],
+  moreLinks: 
+   [ { url: 'one', text: 'two' },
+     { url: 'three', text: 'four' },
+     { url: 'five', text: 'size' },
+     [length]: 3 ],
   dirname: 'test/actual/paths',
-  filename: 'simple3.html',
-  pageName: 'simple3.html',
-  pagename: 'simple3.html',
-  basename: 'simple3',
-  src: 'test/templates/pages/simple3.hbs',
-  dest: 'test/actual/paths/simple3.html',
+  filename: 'html-helpers.html',
+  pageName: 'html-helpers.html',
+  pagename: 'html-helpers.html',
+  basename: 'html-helpers',
+  src: 'test/templates/pages/html-helpers.hbs',
+  dest: 'test/actual/paths/html-helpers.html',
   assets: '../assets',
   ext: '.html',
   extname: '.html',
@@ -35,7 +87,14 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  data: { foo: 'bar' } }
+  data: 
+   { text: 'helpers.js',
+     links: [ 'one', 'two', 'three', [length]: 3 ],
+     moreLinks: 
+      [ { url: 'one', text: 'two' },
+        { url: 'three', text: 'four' },
+        { url: 'five', text: 'size' },
+        [length]: 3 ] } }
 </pre>
 
       <ul>
@@ -55,23 +114,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/simple3.html
+        page.dest:     test/actual/paths/html-helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: simple3.html
-        page.pagename: simple3.html
-        page.basename: simple3
+        page.filename: html-helpers.html
+        page.pagename: html-helpers.html
+        page.basename: html-helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/simple3.html
+        absolute:      test/actual/paths/html-helpers.html
         dirname:       test/actual/paths
-        filename:      simple3.html
-        pagename:      simple3.html
-        basename:      simple3
+        filename:      html-helpers.html
+        pagename:      html-helpers.html
+        basename:      html-helpers
         extname:       .html
         ext:           .html
         -->
@@ -91,23 +150,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/simple3.html
+        page.dest:     test/actual/paths/html-helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: simple3.html
-        page.pagename: simple3.html
-        page.basename: simple3
+        page.filename: html-helpers.html
+        page.pagename: html-helpers.html
+        page.basename: html-helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/simple3.html
+        absolute:      test/actual/paths/html-helpers.html
         dirname:       test/actual/paths
-        filename:      simple3.html
-        pagename:      simple3.html
-        basename:      simple3
+        filename:      html-helpers.html
+        pagename:      html-helpers.html
+        basename:      html-helpers
         extname:       .html
         ext:           .html
         -->
@@ -127,23 +186,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/simple3.html
+        page.dest:     test/actual/paths/html-helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: simple3.html
-        page.pagename: simple3.html
-        page.basename: simple3
+        page.filename: html-helpers.html
+        page.pagename: html-helpers.html
+        page.basename: html-helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/simple3.html
+        absolute:      test/actual/paths/html-helpers.html
         dirname:       test/actual/paths
-        filename:      simple3.html
-        pagename:      simple3.html
-        basename:      simple3
+        filename:      html-helpers.html
+        pagename:      html-helpers.html
+        basename:      html-helpers
         extname:       .html
         ext:           .html
         -->
@@ -163,23 +222,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/simple3.html
+        page.dest:     test/actual/paths/html-helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: simple3.html
-        page.pagename: simple3.html
-        page.basename: simple3
+        page.filename: html-helpers.html
+        page.pagename: html-helpers.html
+        page.basename: html-helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/simple3.html
+        absolute:      test/actual/paths/html-helpers.html
         dirname:       test/actual/paths
-        filename:      simple3.html
-        pagename:      simple3.html
-        basename:      simple3
+        filename:      html-helpers.html
+        pagename:      html-helpers.html
+        basename:      html-helpers
         extname:       .html
         ext:           .html
         -->
@@ -199,23 +258,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/simple3.html
+        page.dest:     test/actual/paths/html-helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: simple3.html
-        page.pagename: simple3.html
-        page.basename: simple3
+        page.filename: html-helpers.html
+        page.pagename: html-helpers.html
+        page.basename: html-helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/simple3.html
+        absolute:      test/actual/paths/html-helpers.html
         dirname:       test/actual/paths
-        filename:      simple3.html
-        pagename:      simple3.html
-        basename:      simple3
+        filename:      html-helpers.html
+        pagename:      html-helpers.html
+        basename:      html-helpers
         extname:       .html
         ext:           .html
         -->
@@ -235,23 +294,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/simple3.html
+        page.dest:     test/actual/paths/html-helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: simple3.html
-        page.pagename: simple3.html
-        page.basename: simple3
+        page.filename: html-helpers.html
+        page.pagename: html-helpers.html
+        page.basename: html-helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/simple3.html
+        absolute:      test/actual/paths/html-helpers.html
         dirname:       test/actual/paths
-        filename:      simple3.html
-        pagename:      simple3.html
-        basename:      simple3
+        filename:      html-helpers.html
+        pagename:      html-helpers.html
+        basename:      html-helpers
         extname:       .html
         ext:           .html
         -->
@@ -271,23 +330,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/simple3.html
+        page.dest:     test/actual/paths/html-helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: simple3.html
-        page.pagename: simple3.html
-        page.basename: simple3
+        page.filename: html-helpers.html
+        page.pagename: html-helpers.html
+        page.basename: html-helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/simple3.html
+        absolute:      test/actual/paths/html-helpers.html
         dirname:       test/actual/paths
-        filename:      simple3.html
-        pagename:      simple3.html
-        basename:      simple3
+        filename:      html-helpers.html
+        pagename:      html-helpers.html
+        basename:      html-helpers
         extname:       .html
         ext:           .html
         -->
@@ -307,23 +366,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/simple3.html
+        page.dest:     test/actual/paths/html-helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: simple3.html
-        page.pagename: simple3.html
-        page.basename: simple3
+        page.filename: html-helpers.html
+        page.pagename: html-helpers.html
+        page.basename: html-helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/simple3.html
+        absolute:      test/actual/paths/html-helpers.html
         dirname:       test/actual/paths
-        filename:      simple3.html
-        pagename:      simple3.html
-        basename:      simple3
+        filename:      html-helpers.html
+        pagename:      html-helpers.html
+        basename:      html-helpers
         extname:       .html
         ext:           .html
         -->
@@ -343,23 +402,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/simple3.html
+        page.dest:     test/actual/paths/html-helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: simple3.html
-        page.pagename: simple3.html
-        page.basename: simple3
+        page.filename: html-helpers.html
+        page.pagename: html-helpers.html
+        page.basename: html-helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/simple3.html
+        absolute:      test/actual/paths/html-helpers.html
         dirname:       test/actual/paths
-        filename:      simple3.html
-        pagename:      simple3.html
-        basename:      simple3
+        filename:      html-helpers.html
+        pagename:      html-helpers.html
+        basename:      html-helpers
         extname:       .html
         ext:           .html
         -->
@@ -379,23 +438,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/simple3.html
+        page.dest:     test/actual/paths/html-helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: simple3.html
-        page.pagename: simple3.html
-        page.basename: simple3
+        page.filename: html-helpers.html
+        page.pagename: html-helpers.html
+        page.basename: html-helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/simple3.html
+        absolute:      test/actual/paths/html-helpers.html
         dirname:       test/actual/paths
-        filename:      simple3.html
-        pagename:      simple3.html
-        basename:      simple3
+        filename:      html-helpers.html
+        pagename:      html-helpers.html
+        basename:      html-helpers
         extname:       .html
         ext:           .html
         -->
@@ -415,23 +474,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/simple3.html
+        page.dest:     test/actual/paths/html-helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: simple3.html
-        page.pagename: simple3.html
-        page.basename: simple3
+        page.filename: html-helpers.html
+        page.pagename: html-helpers.html
+        page.basename: html-helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/simple3.html
+        absolute:      test/actual/paths/html-helpers.html
         dirname:       test/actual/paths
-        filename:      simple3.html
-        pagename:      simple3.html
-        basename:      simple3
+        filename:      html-helpers.html
+        pagename:      html-helpers.html
+        basename:      html-helpers
         extname:       .html
         ext:           .html
         -->
@@ -451,23 +510,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/simple3.html
+        page.dest:     test/actual/paths/html-helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: simple3.html
-        page.pagename: simple3.html
-        page.basename: simple3
+        page.filename: html-helpers.html
+        page.pagename: html-helpers.html
+        page.basename: html-helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/simple3.html
+        absolute:      test/actual/paths/html-helpers.html
         dirname:       test/actual/paths
-        filename:      simple3.html
-        pagename:      simple3.html
-        basename:      simple3
+        filename:      html-helpers.html
+        pagename:      html-helpers.html
+        basename:      html-helpers
         extname:       .html
         ext:           .html
         -->
@@ -487,23 +546,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/simple3.html
+        page.dest:     test/actual/paths/html-helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: simple3.html
-        page.pagename: simple3.html
-        page.basename: simple3
+        page.filename: html-helpers.html
+        page.pagename: html-helpers.html
+        page.basename: html-helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/simple3.html
+        absolute:      test/actual/paths/html-helpers.html
         dirname:       test/actual/paths
-        filename:      simple3.html
-        pagename:      simple3.html
-        basename:      simple3
+        filename:      html-helpers.html
+        pagename:      html-helpers.html
+        basename:      html-helpers
         extname:       .html
         ext:           .html
         -->
@@ -523,23 +582,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/simple3.html
+        page.dest:     test/actual/paths/html-helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: simple3.html
-        page.pagename: simple3.html
-        page.basename: simple3
+        page.filename: html-helpers.html
+        page.pagename: html-helpers.html
+        page.basename: html-helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/simple3.html
+        absolute:      test/actual/paths/html-helpers.html
         dirname:       test/actual/paths
-        filename:      simple3.html
-        pagename:      simple3.html
-        basename:      simple3
+        filename:      html-helpers.html
+        pagename:      html-helpers.html
+        basename:      html-helpers
         extname:       .html
         ext:           .html
         -->

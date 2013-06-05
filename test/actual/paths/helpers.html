@@ -2,67 +2,35 @@
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Paths Test</title>
+    <title>Helpers and custom variables</title>
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
     <div class="container">
       
-<h2>ul</h2>
-<ul class="nav"><li>
-  one
-</li>
-<li>
-  two
-</li>
-<li>
-  three
-</li></ul>
+<div class="page-header">
+  <h1>Helpers and custom variables</h1>
+  <p class="lead">Here we are using the &quot;css&quot; and &quot;js&quot; helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.
+</p>
+</div>
 
-<ul class="nav"><li>
-  <a href="one">two</a>
-</li>
-<li>
-  <a href="three">four</a>
-</li>
-<li>
-  <a href="five">size</a>
-</li></ul>
-
-<h2>ol</h2>
-<ol class="nav"><li>
-  one
-</li>
-<li>
-  two
-</li>
-<li>
-  three
-</li></ol>
-
-<ol class="nav"><li>
-  <a href="one">two</a>
-</li>
-<li>
-  <a href="three">four</a>
-</li>
-<li>
-  <a href="five">size</a>
-</li></ol>
+<h2>css helper</h2>
+Example of using the "css" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
+<link rel="stylesheet" href="../assets/css/css/bootstrap.css">
+<link rel="stylesheet" href="../assets/css/css/responsive.css">
+<link rel="stylesheet" href="../assets/css/css/main.css">
 
 
+<h2>js helper</h2>
+Example of using the "js" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
+<script src="../assets/js/js/bootstrap.js"></script>
+<script src="../assets/js/js/responsive.js"></script>
+<script src="../assets/js/js/main.js"></script>
 
 
-<h2>href</h2>
-<p><a class="" href="http://gist.github.com/jonschlinkert/5193239" title="helpers.js">helpers.js</a>
-<a class="" href="http://github.com" title="GitHub">GitHub</a>
-<a class="nav-link" href="http://github.com" title="GitHub">GitHub</a></p>
-<h2>gist</h2>
-<script src="https://gist.github.com/5193239.js"></script>
-
-
-<h2>debug</h2>
-
+<h2>custom variables</h2>
+<link rel="stylesheet" href="css/index.css"/>
+<script>document.write('foo bar!');</script>
 
     </div>
 
@@ -70,24 +38,28 @@
       <h3>Paths Examples</h3>
 
 <pre class="json">
-{ url: 'http://gist.github.com/jonschlinkert/5193239',
-  text: 'helpers.js',
-  links: [ 'one', 'two', 'three', [length]: 3 ],
-  moreLinks: 
-   [ { url: 'one', text: 'two' },
-     { url: 'three', text: 'four' },
-     { url: 'five', text: 'size' },
-     [length]: 3 ],
+{ basename: 'helpers',
+  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
+  src: 'test/templates/pages/helpers.hbs',
   dirname: 'test/actual/paths',
   filename: 'helpers.html',
-  pageName: 'helpers.html',
-  pagename: 'helpers.html',
-  basename: 'helpers',
-  src: 'test/templates/pages/helpers.hbs',
-  dest: 'test/actual/paths/helpers.html',
-  assets: '../assets',
-  ext: '.html',
   extname: '.html',
+  styles: '<link rel="stylesheet" href="css/index.css"/>',
+  data: 
+   { title: 'Helpers and custom variables',
+     description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
+     stylesheets: 
+      [ 'css/bootstrap.css',
+        'css/responsive.css',
+        'css/main.css',
+        [length]: 3 ],
+     javascripts: 
+      [ 'js/bootstrap.js',
+        'js/responsive.js',
+        'js/main.js',
+        [length]: 3 ],
+     styles: '<link rel="stylesheet" href="css/index.css"/>',
+     scripts: 'document.write(\'foo bar!\');' },
   page: 
    { [Function]
      [length]: 2,
@@ -95,15 +67,23 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  data: 
-   { url: 'http://gist.github.com/jonschlinkert/5193239',
-     text: 'helpers.js',
-     links: [ 'one', 'two', 'three', [length]: 3 ],
-     moreLinks: 
-      [ { url: 'one', text: 'two' },
-        { url: 'three', text: 'four' },
-        { url: 'five', text: 'size' },
-        [length]: 3 ] } }
+  dest: 'test/actual/paths/helpers.html',
+  ext: '.html',
+  javascripts: 
+   [ 'js/bootstrap.js',
+     'js/responsive.js',
+     'js/main.js',
+     [length]: 3 ],
+  scripts: 'document.write(\'foo bar!\');',
+  pagename: 'helpers.html',
+  title: 'Helpers and custom variables',
+  assets: '../assets',
+  stylesheets: 
+   [ 'css/bootstrap.css',
+     'css/responsive.css',
+     'css/main.css',
+     [length]: 3 ],
+  pageName: 'helpers.html' }
 </pre>
 
       <ul>
@@ -288,16 +268,16 @@
         ext:           .html
         -->
       
-        <li><a href="dates.html">dates</a></li>
+        <li><a href="debug-helpers.html">debug-helpers</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/dates.html
+        this.dest:     test/actual/paths/debug-helpers.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: dates.html
-        this.pagename: dates.html
-        this.basename: dates
+        this.filename: debug-helpers.html
+        this.pagename: debug-helpers.html
+        this.basename: debug-helpers
         this.extname:  .html
         this.ext:      .html
 
@@ -360,6 +340,42 @@
         ext:           .html
         -->
       
+        <li><a href="gist-helper.html">gist-helper</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/gist-helper.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: gist-helper.html
+        this.pagename: gist-helper.html
+        this.basename: gist-helper
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/helpers.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/helpers.html
+        dirname:       test/actual/paths
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
+        extname:       .html
+        ext:           .html
+        -->
+      
         <li><a href="helpers.html">helpers</a></li>
         <!--
         "this"
@@ -370,6 +386,42 @@
         this.filename: helpers.html
         this.pagename: helpers.html
         this.basename: helpers
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/helpers.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/helpers.html
+        dirname:       test/actual/paths
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="html-helpers.html">html-helpers</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/html-helpers.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: html-helpers.html
+        this.pagename: html-helpers.html
+        this.basename: html-helpers
         this.extname:  .html
         this.ext:      .html
 

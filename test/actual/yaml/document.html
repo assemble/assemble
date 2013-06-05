@@ -113,30 +113,33 @@ Suite 16
     </div>
 
     <div class="container" style="display: none">
-      <h3>Debug Info</h3>
+      <ul>
+        
+        <li><a href="associative-arrays.html">associative-arrays</a></li>
+        
+        <li><a href="block-literals.html">block-literals</a></li>
+        
+        <li><a href="comments.html">comments</a></li>
+        
+        <li><a href="data-files.html">data-files</a></li>
+        
+        <li><a href="data-types.html">data-types</a></li>
+        
+        <li><a href="document.html">document</a></li>
+        
+        <li><a href="lists.html">lists</a></li>
+        
+        <li><a href="relational-trees.html">relational-trees</a></li>
+        
+        <li><a href="variables.html">variables</a></li>
+        
+      </ul>
 
 
+<h3>Debug Info</h3>
 <pre class="json">
-{ pageName: 'document.html',
-  receipt: 'Oz-Ware Purchase Invoice',
-  ext: '.html',
-  prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
-  extname: '.html',
-  pagename: 'document.html',
-  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
-  data: 
-   { receipt: 'Oz-Ware Purchase Invoice',
-     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
-     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
-     'ship-to': 
-      { street: '123 Tornado Alley\nSuite 16\n',
-        city: 'East Centerville',
-        state: 'KS' },
-     customer: { given: 'Dorothy', family: 'Gale' },
-     'bill-to': 
-      { street: '123 Tornado Alley\nSuite 16\n',
-        city: 'East Centerville',
-        state: 'KS' },
+{ data: 
+   { date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
      items: 
       [ { part_no: 'A4786',
           descrip: 'Water Bucket (Filled)',
@@ -148,7 +151,18 @@ Suite 16
           price: 100.27,
           quantity: 1 },
         [length]: 2 ],
-     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time) },
+     'ship-to': 
+      { street: '123 Tornado Alley\nSuite 16\n',
+        city: 'East Centerville',
+        state: 'KS' },
+     receipt: 'Oz-Ware Purchase Invoice',
+     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
+     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
+     'bill-to': 
+      { street: '123 Tornado Alley\nSuite 16\n',
+        city: 'East Centerville',
+        state: 'KS' },
+     customer: { given: 'Dorothy', family: 'Gale' } },
   page: 
    { [Function]
      [length]: 2,
@@ -156,21 +170,9 @@ Suite 16
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  dirname: 'test/actual/yaml',
-  assets: '../assets',
-  src: 'test/YAML/document.hbs',
-  filename: 'document.html',
-  'ship-to': 
-   { street: '123 Tornado Alley\nSuite 16\n',
-     city: 'East Centerville',
-     state: 'KS' },
-  customer: { given: 'Dorothy', family: 'Gale' },
   dest: 'test/actual/yaml/document.html',
-  'bill-to': 
-   { street: '123 Tornado Alley\nSuite 16\n',
-     city: 'East Centerville',
-     state: 'KS' },
-  basename: 'document',
+  ext: '.html',
+  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
   items: 
    [ { part_no: 'A4786',
        descrip: 'Water Bucket (Filled)',
@@ -182,30 +184,27 @@ Suite 16
        price: 100.27,
        quantity: 1 },
      [length]: 2 ],
-  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time) }
+  'ship-to': 
+   { street: '123 Tornado Alley\nSuite 16\n',
+     city: 'East Centerville',
+     state: 'KS' },
+  receipt: 'Oz-Ware Purchase Invoice',
+  pagename: 'document.html',
+  prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
+  basename: 'document',
+  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
+  dirname: 'test/actual/yaml',
+  src: 'test/YAML/document.hbs',
+  assets: '../assets',
+  'bill-to': 
+   { street: '123 Tornado Alley\nSuite 16\n',
+     city: 'East Centerville',
+     state: 'KS' },
+  filename: 'document.html',
+  extname: '.html',
+  pageName: 'document.html',
+  customer: { given: 'Dorothy', family: 'Gale' } }
 </pre>
-
-      <ul>
-      
-        <li><a href="associative-arrays.html">associative-arrays</a></li>
-      
-        <li><a href="block-literals.html">block-literals</a></li>
-      
-        <li><a href="comments.html">comments</a></li>
-      
-        <li><a href="data-files.html">data-files</a></li>
-      
-        <li><a href="data-types.html">data-types</a></li>
-      
-        <li><a href="document.html">document</a></li>
-      
-        <li><a href="lists.html">lists</a></li>
-      
-        <li><a href="relational-trees.html">relational-trees</a></li>
-      
-        <li><a href="variables.html">variables</a></li>
-      
-      </ul>
     </div>
   </body>
 </html>

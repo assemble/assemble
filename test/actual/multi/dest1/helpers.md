@@ -1,19 +1,30 @@
-# helpers.md output
+# Helpers and custom variables
 
 ## Debug Info
 
 ``` json
-{ extname: '.md',
-  pagename: 'helpers.md',
+{ basename: 'helpers',
+  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
+  src: 'test/templates/pages/helpers.hbs',
+  dirname: 'test/actual/multi/dest1',
+  filename: 'helpers.md',
+  extname: '.md',
+  styles: '<link rel="stylesheet" href="css/index.css"/>',
   data: 
-   { url: 'http://gist.github.com/jonschlinkert/5193239',
-     text: 'helpers.js',
-     links: [ 'one', 'two', 'three', [length]: 3 ],
-     moreLinks: 
-      [ { url: 'one', text: 'two' },
-        { url: 'three', text: 'four' },
-        { url: 'five', text: 'size' },
-        [length]: 3 ] },
+   { title: 'Helpers and custom variables',
+     description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
+     stylesheets: 
+      [ 'css/bootstrap.css',
+        'css/responsive.css',
+        'css/main.css',
+        [length]: 3 ],
+     javascripts: 
+      [ 'js/bootstrap.js',
+        'js/responsive.js',
+        'js/main.js',
+        [length]: 3 ],
+     styles: '<link rel="stylesheet" href="css/index.css"/>',
+     scripts: 'document.write(\'foo bar!\');' },
   page: 
    { [Function]
      [length]: 2,
@@ -21,22 +32,23 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  assets: '../../assets',
-  src: 'test/templates/pages/helpers.hbs',
-  filename: 'helpers.md',
   dest: 'test/actual/multi/dest1/helpers.md',
-  pageName: 'helpers.md',
-  links: [ 'one', 'two', 'three', [length]: 3 ],
-  text: 'helpers.js',
-  moreLinks: 
-   [ { url: 'one', text: 'two' },
-     { url: 'three', text: 'four' },
-     { url: 'five', text: 'size' },
+  ext: '.md',
+  javascripts: 
+   [ 'js/bootstrap.js',
+     'js/responsive.js',
+     'js/main.js',
      [length]: 3 ],
-  dirname: 'test/actual/multi/dest1',
-  url: 'http://gist.github.com/jonschlinkert/5193239',
-  basename: 'helpers',
-  ext: '.md' }
+  scripts: 'document.write(\'foo bar!\');',
+  pagename: 'helpers.md',
+  title: 'Helpers and custom variables',
+  assets: '../../assets',
+  stylesheets: 
+   [ 'css/bootstrap.css',
+     'css/responsive.css',
+     'css/main.css',
+     [length]: 3 ],
+  pageName: 'helpers.md' }
 ```
 
 ### "{{#each pages}}" Links
@@ -45,9 +57,11 @@
 [category](category.md)
 [category2](category2.md)
 [complex](complex.md)
-[dates](dates.md)
+[debug-helpers](debug-helpers.md)
 [example](example.md)
+[gist-helper](gist-helper.md)
 [helpers](helpers.md)
+[html-helpers](html-helpers.md)
 [page](page.md)
 [simple3](simple3.md)
 [tags_test](tags_test.md)
@@ -112,14 +126,14 @@ this.basename: complex
 this.extname:  .md
 this.ext:      .md
 
-#### dates.md
+#### debug-helpers.md
 this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/dates.md
+this.dest:     test/actual/multi/dest1/debug-helpers.md
 this.absolute:
 this.dirname:  test/actual/multi/dest1
-this.filename: dates.md
-this.pagename: dates.md
-this.basename: dates
+this.filename: debug-helpers.md
+this.pagename: debug-helpers.md
+this.basename: debug-helpers
 this.extname:  .md
 this.ext:      .md
 
@@ -134,6 +148,17 @@ this.basename: example
 this.extname:  .md
 this.ext:      .md
 
+#### gist-helper.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/gist-helper.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: gist-helper.md
+this.pagename: gist-helper.md
+this.basename: gist-helper
+this.extname:  .md
+this.ext:      .md
+
 #### helpers.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/helpers.md
@@ -142,6 +167,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: helpers.md
 this.pagename: helpers.md
 this.basename: helpers
+this.extname:  .md
+this.ext:      .md
+
+#### html-helpers.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/html-helpers.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: html-helpers.md
+this.pagename: html-helpers.md
+this.basename: html-helpers
 this.extname:  .md
 this.ext:      .md
 
@@ -191,6 +227,28 @@ this.ext:      .md
 
 
 ### {{#each pages}}
+
+#### helpers.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/helpers.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: helpers.md
+page.pagename: helpers.md
+page.basename: helpers
+page.extname:  .md
+page.ext:      .md
+
+#### helpers.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/helpers.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: helpers.md
+page.pagename: helpers.md
+page.basename: helpers
+page.extname:  .md
+page.ext:      .md
 
 #### helpers.md
 page.assets:   ../../assets
@@ -459,61 +517,51 @@ basename:      helpers
 extname:       .md
 ext:           .md
 
+#### helpers.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/helpers.md
+dirname:       test/actual/multi/dest1
+filename:      helpers.md
+pagename:      helpers.md
+basename:      helpers
+extname:       .md
+ext:           .md
 
-
-<h2>ul</h2>
-<ul class="nav"><li>
-  one
-</li>
-<li>
-  two
-</li>
-<li>
-  three
-</li></ul>
-
-<ul class="nav"><li>
-  <a href="one">two</a>
-</li>
-<li>
-  <a href="three">four</a>
-</li>
-<li>
-  <a href="five">size</a>
-</li></ul>
-
-<h2>ol</h2>
-<ol class="nav"><li>
-  one
-</li>
-<li>
-  two
-</li>
-<li>
-  three
-</li></ol>
-
-<ol class="nav"><li>
-  <a href="one">two</a>
-</li>
-<li>
-  <a href="three">four</a>
-</li>
-<li>
-  <a href="five">size</a>
-</li></ol>
+#### helpers.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/helpers.md
+dirname:       test/actual/multi/dest1
+filename:      helpers.md
+pagename:      helpers.md
+basename:      helpers
+extname:       .md
+ext:           .md
 
 
 
+<div class="page-header">
+  <h1>Helpers and custom variables</h1>
+  <p class="lead">Here we are using the &quot;css&quot; and &quot;js&quot; helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.
+</p>
+</div>
 
-<h2>href</h2>
-<p><a href="http://gist.github.com/jonschlinkert/5193239">helpers.js</a>
-<a href="http://github.com">GitHub</a>
-<a href="http://github.com">GitHub</a></p>
-<h2>gist</h2>
-<script src="https://gist.github.com/5193239.js"></script>
+<h2>css helper</h2>
+Example of using the "css" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
+<link rel="stylesheet" href="../../assets/css/css/bootstrap.css">
+<link rel="stylesheet" href="../../assets/css/css/responsive.css">
+<link rel="stylesheet" href="../../assets/css/css/main.css">
 
 
-<h2>debug</h2>
+<h2>js helper</h2>
+Example of using the "js" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
+<script src="../../assets/js/js/bootstrap.js"></script>
+<script src="../../assets/js/js/responsive.js"></script>
+<script src="../../assets/js/js/main.js"></script>
 
+
+<h2>custom variables</h2>
+<link rel="stylesheet" href="css/index.css"/>
+<script>document.write('foo bar!');</script>
 

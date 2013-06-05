@@ -1,0 +1,46 @@
+---
+text: helpers.js
+links:
+  - one
+  - two
+  - three
+
+moreLinks:
+  -
+    url: one
+    text: two
+  -
+    url: three
+    text: four
+  -
+    url: five
+    text: size
+---
+{{#markdown}}
+
+## HTML list helpers.
+
+### \{{ul}} helper
+{{#ul links class="nav"}}
+  {{.}}
+{{/ul}}
+
+{{#ul moreLinks class="nav"}}
+  <a href="{{url}}">{{text}}</a>
+{{/ul}}
+
+### \{{ol}} helper
+{{#ol links class="nav"}}
+  {{.}}
+{{/ol}}
+
+{{#ol moreLinks class="nav"}}
+  <a href="{{url}}">{{text}}</a>
+{{/ol}}
+
+### \{{_link}} helper
+{{_link url text}}
+{{_link 'http://github.com' 'GitHub'}}
+{{_link 'http://github.com' 'GitHub' 'nav-link'}}
+
+{{/markdown}}{{! /end markdown}}

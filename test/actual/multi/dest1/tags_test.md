@@ -34,9 +34,11 @@
 [category](category.md)
 [category2](category2.md)
 [complex](complex.md)
-[dates](dates.md)
+[debug-helpers](debug-helpers.md)
 [example](example.md)
+[gist-helper](gist-helper.md)
 [helpers](helpers.md)
+[html-helpers](html-helpers.md)
 [page](page.md)
 [simple3](simple3.md)
 [tags_test](tags_test.md)
@@ -101,14 +103,14 @@ this.basename: complex
 this.extname:  .md
 this.ext:      .md
 
-#### dates.md
+#### debug-helpers.md
 this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/dates.md
+this.dest:     test/actual/multi/dest1/debug-helpers.md
 this.absolute:
 this.dirname:  test/actual/multi/dest1
-this.filename: dates.md
-this.pagename: dates.md
-this.basename: dates
+this.filename: debug-helpers.md
+this.pagename: debug-helpers.md
+this.basename: debug-helpers
 this.extname:  .md
 this.ext:      .md
 
@@ -123,6 +125,17 @@ this.basename: example
 this.extname:  .md
 this.ext:      .md
 
+#### gist-helper.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/gist-helper.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: gist-helper.md
+this.pagename: gist-helper.md
+this.basename: gist-helper
+this.extname:  .md
+this.ext:      .md
+
 #### helpers.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/helpers.md
@@ -131,6 +144,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: helpers.md
 this.pagename: helpers.md
 this.basename: helpers
+this.extname:  .md
+this.ext:      .md
+
+#### html-helpers.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/html-helpers.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: html-helpers.md
+this.pagename: html-helpers.md
+this.basename: html-helpers
 this.extname:  .md
 this.ext:      .md
 
@@ -313,8 +337,52 @@ page.basename: tags_test
 page.extname:  .md
 page.ext:      .md
 
+#### tags_test.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/tags_test.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: tags_test.md
+page.pagename: tags_test.md
+page.basename: tags_test
+page.extname:  .md
+page.ext:      .md
+
+#### tags_test.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/tags_test.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: tags_test.md
+page.pagename: tags_test.md
+page.basename: tags_test
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### tags_test.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/tags_test.md
+dirname:       test/actual/multi/dest1
+filename:      tags_test.md
+pagename:      tags_test.md
+basename:      tags_test
+extname:       .md
+ext:           .md
+
+#### tags_test.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/tags_test.md
+dirname:       test/actual/multi/dest1
+filename:      tags_test.md
+pagename:      tags_test.md
+basename:      tags_test
+extname:       .md
+ext:           .md
 
 #### tags_test.md
 assets:        ../../assets

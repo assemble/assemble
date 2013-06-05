@@ -8,8 +8,9 @@
   <body style="padding-top: 60px;">
     <div class="container">
       
+<h3>{{debug}} helper</h3>
+<p>Uncomment the <code>debug</code> helper below, run <code>grunt assemble</code>, and watch the output in the command line to see how it works.</p>
 
-<span class="alert alert-info"></span>
 
     </div>
 
@@ -83,14 +84,13 @@
 
 <h3>Debug Info</h3>
 <pre class="json">
-{ one: { two: 'This is an alert' },
-  dirname: 'test/actual/multi/dest2/sub-dest',
-  filename: 'alert.html',
-  pageName: 'alert.html',
-  pagename: 'alert.html',
-  basename: 'alert',
-  src: 'test/templates/pages/alert.hbs',
-  dest: 'test/actual/multi/dest2/sub-dest/alert.html',
+{ dirname: 'test/actual/multi/dest2/sub-dest',
+  filename: 'debug-helpers.html',
+  pageName: 'debug-helpers.html',
+  pagename: 'debug-helpers.html',
+  basename: 'debug-helpers',
+  src: 'test/templates/pages/debug-helpers.hbs',
+  dest: 'test/actual/multi/dest2/sub-dest/debug-helpers.html',
   assets: '../../../assets',
   ext: '.html',
   extname: '.html',
@@ -101,7 +101,7 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  data: { one: { two: 'This is an alert' } } }
+  data: {} }
 </pre>
     </div>
   </body>

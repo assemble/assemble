@@ -1,17 +1,15 @@
-# complex.md output
+# debug-helpers.md output
 
 ## Debug Info
 
 ``` json
-{ foo: 'bar',
-  version: 2,
-  dirname: 'test/actual/multi/dest1',
-  filename: 'complex.md',
-  pageName: 'complex.md',
-  pagename: 'complex.md',
-  basename: 'complex',
-  src: 'test/templates/pages/complex.hbs',
-  dest: 'test/actual/multi/dest1/complex.md',
+{ dirname: 'test/actual/multi/dest1',
+  filename: 'debug-helpers.md',
+  pageName: 'debug-helpers.md',
+  pagename: 'debug-helpers.md',
+  basename: 'debug-helpers',
+  src: 'test/templates/pages/debug-helpers.hbs',
+  dest: 'test/actual/multi/dest1/debug-helpers.md',
   assets: '../../assets',
   ext: '.md',
   extname: '.md',
@@ -22,7 +20,7 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  data: { foo: 'bar', version: 2 } }
+  data: {} }
 ```
 
 ### "{{#each pages}}" Links
@@ -202,319 +200,320 @@ this.ext:      .md
 
 ### {{#each pages}}
 
-#### complex.md
+#### debug-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/debug-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: debug-helpers.md
+page.pagename: debug-helpers.md
+page.basename: debug-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### debug-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/debug-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: debug-helpers.md
+page.pagename: debug-helpers.md
+page.basename: debug-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### debug-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/debug-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: debug-helpers.md
+page.pagename: debug-helpers.md
+page.basename: debug-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### debug-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/debug-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: debug-helpers.md
+page.pagename: debug-helpers.md
+page.basename: debug-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### debug-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/debug-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: debug-helpers.md
+page.pagename: debug-helpers.md
+page.basename: debug-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### debug-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/debug-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: debug-helpers.md
+page.pagename: debug-helpers.md
+page.basename: debug-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### debug-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/debug-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: debug-helpers.md
+page.pagename: debug-helpers.md
+page.basename: debug-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### debug-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/debug-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: debug-helpers.md
+page.pagename: debug-helpers.md
+page.basename: debug-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### debug-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/debug-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: debug-helpers.md
+page.pagename: debug-helpers.md
+page.basename: debug-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### debug-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/debug-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: debug-helpers.md
+page.pagename: debug-helpers.md
+page.basename: debug-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### debug-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/debug-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: debug-helpers.md
+page.pagename: debug-helpers.md
+page.basename: debug-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### debug-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/debug-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: debug-helpers.md
+page.pagename: debug-helpers.md
+page.basename: debug-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### debug-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/debug-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: debug-helpers.md
+page.pagename: debug-helpers.md
+page.basename: debug-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### debug-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/debug-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: debug-helpers.md
+page.pagename: debug-helpers.md
+page.basename: debug-helpers
 page.extname:  .md
 page.ext:      .md
 
 
 ### {{#each pages}} "page" context
 
-#### complex.md
+#### debug-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/debug-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      debug-helpers.md
+pagename:      debug-helpers.md
+basename:      debug-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### debug-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/debug-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      debug-helpers.md
+pagename:      debug-helpers.md
+basename:      debug-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### debug-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/debug-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      debug-helpers.md
+pagename:      debug-helpers.md
+basename:      debug-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### debug-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/debug-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      debug-helpers.md
+pagename:      debug-helpers.md
+basename:      debug-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### debug-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/debug-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      debug-helpers.md
+pagename:      debug-helpers.md
+basename:      debug-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### debug-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/debug-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      debug-helpers.md
+pagename:      debug-helpers.md
+basename:      debug-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### debug-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/debug-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      debug-helpers.md
+pagename:      debug-helpers.md
+basename:      debug-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### debug-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/debug-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      debug-helpers.md
+pagename:      debug-helpers.md
+basename:      debug-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### debug-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/debug-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      debug-helpers.md
+pagename:      debug-helpers.md
+basename:      debug-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### debug-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/debug-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      debug-helpers.md
+pagename:      debug-helpers.md
+basename:      debug-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### debug-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/debug-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      debug-helpers.md
+pagename:      debug-helpers.md
+basename:      debug-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### debug-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/debug-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      debug-helpers.md
+pagename:      debug-helpers.md
+basename:      debug-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### debug-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/debug-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      debug-helpers.md
+pagename:      debug-helpers.md
+basename:      debug-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### debug-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/debug-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      debug-helpers.md
+pagename:      debug-helpers.md
+basename:      debug-helpers
 extname:       .md
 ext:           .md
 
 
 
+<h3>{{debug}} helper</h3>
+<p>Uncomment the <code>debug</code> helper below, run <code>grunt assemble</code>, and watch the output in the command line to see how it works.</p>
 
-<span class="alert alert-info">This is an alert</span>
 

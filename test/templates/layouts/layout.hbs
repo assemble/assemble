@@ -11,16 +11,15 @@
     </div>
 
     <div class="container" style="display: none">
-      <h3>Debug Info</h3>
-
-
-{{inspect page 'json'}}
-
       <ul>
-      {{#each pages}}
+        {{#each pages}}
         <li><a href="{{relative ../page.dest this.dest}}">{{this.basename}}</a></li>
-      {{/each}}
+        {{/each}}
       </ul>
+
+
+<h3>Debug Info</h3>
+{{inspect page 'json'}}
     </div>
   </body>
 </html>

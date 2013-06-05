@@ -1,17 +1,22 @@
-# complex.md output
+# html-helpers.md output
 
 ## Debug Info
 
 ``` json
-{ foo: 'bar',
-  version: 2,
+{ text: 'helpers.js',
+  links: [ 'one', 'two', 'three', [length]: 3 ],
+  moreLinks: 
+   [ { url: 'one', text: 'two' },
+     { url: 'three', text: 'four' },
+     { url: 'five', text: 'size' },
+     [length]: 3 ],
   dirname: 'test/actual/multi/dest1',
-  filename: 'complex.md',
-  pageName: 'complex.md',
-  pagename: 'complex.md',
-  basename: 'complex',
-  src: 'test/templates/pages/complex.hbs',
-  dest: 'test/actual/multi/dest1/complex.md',
+  filename: 'html-helpers.md',
+  pageName: 'html-helpers.md',
+  pagename: 'html-helpers.md',
+  basename: 'html-helpers',
+  src: 'test/templates/pages/html-helpers.hbs',
+  dest: 'test/actual/multi/dest1/html-helpers.md',
   assets: '../../assets',
   ext: '.md',
   extname: '.md',
@@ -22,7 +27,14 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  data: { foo: 'bar', version: 2 } }
+  data: 
+   { text: 'helpers.js',
+     links: [ 'one', 'two', 'three', [length]: 3 ],
+     moreLinks: 
+      [ { url: 'one', text: 'two' },
+        { url: 'three', text: 'four' },
+        { url: 'five', text: 'size' },
+        [length]: 3 ] } }
 ```
 
 ### "{{#each pages}}" Links
@@ -202,319 +214,365 @@ this.ext:      .md
 
 ### {{#each pages}}
 
-#### complex.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
 
 ### {{#each pages}} "page" context
 
-#### complex.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### complex.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/complex.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
 
 
+<h2>HTML list helpers.</h2>
+<h3>{{ul}} helper</h3>
+<ul class="nav"><li>
+  one
+</li>
+<li>
+  two
+</li>
+<li>
+  three
+</li></ul>
 
-<span class="alert alert-info">This is an alert</span>
+<ul class="nav"><li>
+  <a href="one">two</a>
+</li>
+<li>
+  <a href="three">four</a>
+</li>
+<li>
+  <a href="five">size</a>
+</li></ul>
+
+<h3>{{ol}} helper</h3>
+<ol class="nav"><li>
+  one
+</li>
+<li>
+  two
+</li>
+<li>
+  three
+</li></ol>
+
+<ol class="nav"><li>
+  <a href="one">two</a>
+</li>
+<li>
+  <a href="three">four</a>
+</li>
+<li>
+  <a href="five">size</a>
+</li></ol>
+
+<h3>{{_link}} helper</h3>
+<p><a href="">helpers.js</a>
+<a href="http://github.com">GitHub</a>
+<a href="http://github.com">GitHub</a></p>
+
 
