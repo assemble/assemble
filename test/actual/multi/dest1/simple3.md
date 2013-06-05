@@ -9,7 +9,7 @@
   pageName: 'simple3.md',
   pagename: 'simple3.md',
   basename: 'simple3',
-  src: 'test/templates/simple3.hbs',
+  src: 'test/templates/pages/simple3.hbs',
   dest: 'test/actual/multi/dest1/simple3.md',
   assets: '../../assets',
   ext: '.md',
@@ -30,10 +30,10 @@
 [category](category.md)
 [category2](category2.md)
 [complex](complex.md)
+[dates](dates.md)
 [example](example.md)
 [helpers](helpers.md)
 [page](page.md)
-[nav](nav.md)
 [simple3](simple3.md)
 [tags_test](tags_test.md)
 [tags_test2](tags_test2.md)
@@ -97,6 +97,17 @@ this.basename: complex
 this.extname:  .md
 this.ext:      .md
 
+#### dates.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/dates.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: dates.md
+this.pagename: dates.md
+this.basename: dates
+this.extname:  .md
+this.ext:      .md
+
 #### example.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/example.md
@@ -127,17 +138,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: page.md
 this.pagename: page.md
 this.basename: page
-this.extname:  .md
-this.ext:      .md
-
-#### nav.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/nav.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: nav.md
-this.pagename: nav.md
-this.basename: nav
 this.extname:  .md
 this.ext:      .md
 

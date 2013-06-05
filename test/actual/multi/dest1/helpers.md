@@ -3,21 +3,8 @@
 ## Debug Info
 
 ``` json
-{ ext: '.md',
-  text: 'helpers.js',
-  moreLinks: 
-   [ { url: 'one', text: 'two' },
-     { url: 'three', text: 'four' },
-     { url: 'five', text: 'size' },
-     [length]: 3 ],
-  basename: 'helpers',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
+{ extname: '.md',
+  pagename: 'helpers.md',
   data: 
    { url: 'http://gist.github.com/jonschlinkert/5193239',
      text: 'helpers.js',
@@ -27,16 +14,29 @@
         { url: 'three', text: 'four' },
         { url: 'five', text: 'size' },
         [length]: 3 ] },
-  src: 'test/templates/helpers.hbs',
-  pageName: 'helpers.md',
-  dirname: 'test/actual/multi/dest1',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
   assets: '../../assets',
-  url: 'http://gist.github.com/jonschlinkert/5193239',
-  links: [ 'one', 'two', 'three', [length]: 3 ],
+  src: 'test/templates/pages/helpers.hbs',
+  filename: 'helpers.md',
   dest: 'test/actual/multi/dest1/helpers.md',
-  pagename: 'helpers.md',
-  extname: '.md',
-  filename: 'helpers.md' }
+  pageName: 'helpers.md',
+  links: [ 'one', 'two', 'three', [length]: 3 ],
+  text: 'helpers.js',
+  moreLinks: 
+   [ { url: 'one', text: 'two' },
+     { url: 'three', text: 'four' },
+     { url: 'five', text: 'size' },
+     [length]: 3 ],
+  dirname: 'test/actual/multi/dest1',
+  url: 'http://gist.github.com/jonschlinkert/5193239',
+  basename: 'helpers',
+  ext: '.md' }
 ```
 
 ### "{{#each pages}}" Links
@@ -45,10 +45,10 @@
 [category](category.md)
 [category2](category2.md)
 [complex](complex.md)
+[dates](dates.md)
 [example](example.md)
 [helpers](helpers.md)
 [page](page.md)
-[nav](nav.md)
 [simple3](simple3.md)
 [tags_test](tags_test.md)
 [tags_test2](tags_test2.md)
@@ -112,6 +112,17 @@ this.basename: complex
 this.extname:  .md
 this.ext:      .md
 
+#### dates.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/dates.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: dates.md
+this.pagename: dates.md
+this.basename: dates
+this.extname:  .md
+this.ext:      .md
+
 #### example.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/example.md
@@ -142,17 +153,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: page.md
 this.pagename: page.md
 this.basename: page
-this.extname:  .md
-this.ext:      .md
-
-#### nav.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/nav.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: nav.md
-this.pagename: nav.md
-this.basename: nav
 this.extname:  .md
 this.ext:      .md
 

@@ -117,54 +117,26 @@ Suite 16
 
 
 <pre class="json">
-{ prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
-  ext: '.html',
-  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-  dirname: 'test/actual/yaml',
-  'ship-to': 
-   { street: '123 Tornado Alley\nSuite 16\n',
-     city: 'East Centerville',
-     state: 'KS' },
-  assets: '../assets',
-  'bill-to': 
-   { street: '123 Tornado Alley\nSuite 16\n',
-     city: 'East Centerville',
-     state: 'KS' },
-  basename: 'document',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
+{ pageName: 'document.html',
   receipt: 'Oz-Ware Purchase Invoice',
+  ext: '.html',
+  prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
+  extname: '.html',
   pagename: 'document.html',
-  dest: 'test/actual/yaml/document.html',
-  src: 'test/yaml/document.hbs',
-  items: 
-   [ { part_no: 'A4786',
-       descrip: 'Water Bucket (Filled)',
-       price: 1.47,
-       quantity: 4 },
-     { part_no: 'E1628',
-       descrip: 'High Heeled "Ruby" Slippers',
-       size: 8,
-       price: 100.27,
-       quantity: 1 },
-     [length]: 2 ],
+  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
   data: 
-   { prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
-     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+   { receipt: 'Oz-Ware Purchase Invoice',
+     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
+     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
      'ship-to': 
       { street: '123 Tornado Alley\nSuite 16\n',
         city: 'East Centerville',
         state: 'KS' },
+     customer: { given: 'Dorothy', family: 'Gale' },
      'bill-to': 
       { street: '123 Tornado Alley\nSuite 16\n',
         city: 'East Centerville',
         state: 'KS' },
-     receipt: 'Oz-Ware Purchase Invoice',
      items: 
       [ { part_no: 'A4786',
           descrip: 'Water Bucket (Filled)',
@@ -176,340 +148,62 @@ Suite 16
           price: 100.27,
           quantity: 1 },
         [length]: 2 ],
-     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
-     customer: { given: 'Dorothy', family: 'Gale' } },
-  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
-  pageName: 'document.html',
-  extname: '.html',
+     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time) },
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  dirname: 'test/actual/yaml',
+  assets: '../assets',
+  src: 'test/YAML/document.hbs',
+  filename: 'document.html',
+  'ship-to': 
+   { street: '123 Tornado Alley\nSuite 16\n',
+     city: 'East Centerville',
+     state: 'KS' },
   customer: { given: 'Dorothy', family: 'Gale' },
-  filename: 'document.html' }
+  dest: 'test/actual/yaml/document.html',
+  'bill-to': 
+   { street: '123 Tornado Alley\nSuite 16\n',
+     city: 'East Centerville',
+     state: 'KS' },
+  basename: 'document',
+  items: 
+   [ { part_no: 'A4786',
+       descrip: 'Water Bucket (Filled)',
+       price: 1.47,
+       quantity: 4 },
+     { part_no: 'E1628',
+       descrip: 'High Heeled "Ruby" Slippers',
+       size: 8,
+       price: 100.27,
+       quantity: 1 },
+     [length]: 2 ],
+  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time) }
 </pre>
 
       <ul>
       
         <li><a href="associative-arrays.html">associative-arrays</a></li>
-        <!--
-        "this"
-        ===============================
-        this.dest:     test/actual/yaml/associative-arrays.html
-        this.absolute: 
-        this.dirname:  test/actual/yaml
-        this.filename: associative-arrays.html
-        this.pagename: associative-arrays.html
-        this.basename: associative-arrays
-        this.extname:  .html
-        this.ext:      .html
-
-        "page"
-        ===============================
-        page.dest:     test/actual/yaml/document.html
-        page.absolute: 
-        page.dirname:  test/actual/yaml
-        page.filename: document.html
-        page.pagename: document.html
-        page.basename: document
-        page.extname:  .html
-        page.ext:      .html
-
-        "root"
-        ===============================
-        dest:          
-        absolute:      test/actual/yaml/document.html
-        dirname:       test/actual/yaml
-        filename:      document.html
-        pagename:      document.html
-        basename:      document
-        extname:       .html
-        ext:           .html
-        -->
       
         <li><a href="block-literals.html">block-literals</a></li>
-        <!--
-        "this"
-        ===============================
-        this.dest:     test/actual/yaml/block-literals.html
-        this.absolute: 
-        this.dirname:  test/actual/yaml
-        this.filename: block-literals.html
-        this.pagename: block-literals.html
-        this.basename: block-literals
-        this.extname:  .html
-        this.ext:      .html
-
-        "page"
-        ===============================
-        page.dest:     test/actual/yaml/document.html
-        page.absolute: 
-        page.dirname:  test/actual/yaml
-        page.filename: document.html
-        page.pagename: document.html
-        page.basename: document
-        page.extname:  .html
-        page.ext:      .html
-
-        "root"
-        ===============================
-        dest:          
-        absolute:      test/actual/yaml/document.html
-        dirname:       test/actual/yaml
-        filename:      document.html
-        pagename:      document.html
-        basename:      document
-        extname:       .html
-        ext:           .html
-        -->
       
         <li><a href="comments.html">comments</a></li>
-        <!--
-        "this"
-        ===============================
-        this.dest:     test/actual/yaml/comments.html
-        this.absolute: 
-        this.dirname:  test/actual/yaml
-        this.filename: comments.html
-        this.pagename: comments.html
-        this.basename: comments
-        this.extname:  .html
-        this.ext:      .html
-
-        "page"
-        ===============================
-        page.dest:     test/actual/yaml/document.html
-        page.absolute: 
-        page.dirname:  test/actual/yaml
-        page.filename: document.html
-        page.pagename: document.html
-        page.basename: document
-        page.extname:  .html
-        page.ext:      .html
-
-        "root"
-        ===============================
-        dest:          
-        absolute:      test/actual/yaml/document.html
-        dirname:       test/actual/yaml
-        filename:      document.html
-        pagename:      document.html
-        basename:      document
-        extname:       .html
-        ext:           .html
-        -->
       
         <li><a href="data-files.html">data-files</a></li>
-        <!--
-        "this"
-        ===============================
-        this.dest:     test/actual/yaml/data-files.html
-        this.absolute: 
-        this.dirname:  test/actual/yaml
-        this.filename: data-files.html
-        this.pagename: data-files.html
-        this.basename: data-files
-        this.extname:  .html
-        this.ext:      .html
-
-        "page"
-        ===============================
-        page.dest:     test/actual/yaml/document.html
-        page.absolute: 
-        page.dirname:  test/actual/yaml
-        page.filename: document.html
-        page.pagename: document.html
-        page.basename: document
-        page.extname:  .html
-        page.ext:      .html
-
-        "root"
-        ===============================
-        dest:          
-        absolute:      test/actual/yaml/document.html
-        dirname:       test/actual/yaml
-        filename:      document.html
-        pagename:      document.html
-        basename:      document
-        extname:       .html
-        ext:           .html
-        -->
       
         <li><a href="data-types.html">data-types</a></li>
-        <!--
-        "this"
-        ===============================
-        this.dest:     test/actual/yaml/data-types.html
-        this.absolute: 
-        this.dirname:  test/actual/yaml
-        this.filename: data-types.html
-        this.pagename: data-types.html
-        this.basename: data-types
-        this.extname:  .html
-        this.ext:      .html
-
-        "page"
-        ===============================
-        page.dest:     test/actual/yaml/document.html
-        page.absolute: 
-        page.dirname:  test/actual/yaml
-        page.filename: document.html
-        page.pagename: document.html
-        page.basename: document
-        page.extname:  .html
-        page.ext:      .html
-
-        "root"
-        ===============================
-        dest:          
-        absolute:      test/actual/yaml/document.html
-        dirname:       test/actual/yaml
-        filename:      document.html
-        pagename:      document.html
-        basename:      document
-        extname:       .html
-        ext:           .html
-        -->
       
         <li><a href="document.html">document</a></li>
-        <!--
-        "this"
-        ===============================
-        this.dest:     test/actual/yaml/document.html
-        this.absolute: 
-        this.dirname:  test/actual/yaml
-        this.filename: document.html
-        this.pagename: document.html
-        this.basename: document
-        this.extname:  .html
-        this.ext:      .html
-
-        "page"
-        ===============================
-        page.dest:     test/actual/yaml/document.html
-        page.absolute: 
-        page.dirname:  test/actual/yaml
-        page.filename: document.html
-        page.pagename: document.html
-        page.basename: document
-        page.extname:  .html
-        page.ext:      .html
-
-        "root"
-        ===============================
-        dest:          
-        absolute:      test/actual/yaml/document.html
-        dirname:       test/actual/yaml
-        filename:      document.html
-        pagename:      document.html
-        basename:      document
-        extname:       .html
-        ext:           .html
-        -->
       
         <li><a href="lists.html">lists</a></li>
-        <!--
-        "this"
-        ===============================
-        this.dest:     test/actual/yaml/lists.html
-        this.absolute: 
-        this.dirname:  test/actual/yaml
-        this.filename: lists.html
-        this.pagename: lists.html
-        this.basename: lists
-        this.extname:  .html
-        this.ext:      .html
-
-        "page"
-        ===============================
-        page.dest:     test/actual/yaml/document.html
-        page.absolute: 
-        page.dirname:  test/actual/yaml
-        page.filename: document.html
-        page.pagename: document.html
-        page.basename: document
-        page.extname:  .html
-        page.ext:      .html
-
-        "root"
-        ===============================
-        dest:          
-        absolute:      test/actual/yaml/document.html
-        dirname:       test/actual/yaml
-        filename:      document.html
-        pagename:      document.html
-        basename:      document
-        extname:       .html
-        ext:           .html
-        -->
       
         <li><a href="relational-trees.html">relational-trees</a></li>
-        <!--
-        "this"
-        ===============================
-        this.dest:     test/actual/yaml/relational-trees.html
-        this.absolute: 
-        this.dirname:  test/actual/yaml
-        this.filename: relational-trees.html
-        this.pagename: relational-trees.html
-        this.basename: relational-trees
-        this.extname:  .html
-        this.ext:      .html
-
-        "page"
-        ===============================
-        page.dest:     test/actual/yaml/document.html
-        page.absolute: 
-        page.dirname:  test/actual/yaml
-        page.filename: document.html
-        page.pagename: document.html
-        page.basename: document
-        page.extname:  .html
-        page.ext:      .html
-
-        "root"
-        ===============================
-        dest:          
-        absolute:      test/actual/yaml/document.html
-        dirname:       test/actual/yaml
-        filename:      document.html
-        pagename:      document.html
-        basename:      document
-        extname:       .html
-        ext:           .html
-        -->
       
         <li><a href="variables.html">variables</a></li>
-        <!--
-        "this"
-        ===============================
-        this.dest:     test/actual/yaml/variables.html
-        this.absolute: 
-        this.dirname:  test/actual/yaml
-        this.filename: variables.html
-        this.pagename: variables.html
-        this.basename: variables
-        this.extname:  .html
-        this.ext:      .html
-
-        "page"
-        ===============================
-        page.dest:     test/actual/yaml/document.html
-        page.absolute: 
-        page.dirname:  test/actual/yaml
-        page.filename: document.html
-        page.pagename: document.html
-        page.basename: document
-        page.extname:  .html
-        page.ext:      .html
-
-        "root"
-        ===============================
-        dest:          
-        absolute:      test/actual/yaml/document.html
-        dirname:       test/actual/yaml
-        filename:      document.html
-        pagename:      document.html
-        basename:      document
-        extname:       .html
-        ext:           .html
-        -->
       
       </ul>
     </div>

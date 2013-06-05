@@ -1,15 +1,18 @@
-# nav.md output
+# dates.md output
 
 ## Debug Info
 
 ``` json
-{ dirname: 'test/actual/multi/dest1',
-  filename: 'nav.md',
-  pageName: 'nav.md',
-  pagename: 'nav.md',
-  basename: 'nav',
-  src: 'test/templates/partials/nav.hbs',
-  dest: 'test/actual/multi/dest1/nav.md',
+{ description: 'testing the dates helpers',
+  css: '<link rel="stylesheet" href="/css/index.css"/>',
+  js: 'document.write(\'foo bar!\');',
+  dirname: 'test/actual/multi/dest1',
+  filename: 'dates.md',
+  pageName: 'dates.md',
+  pagename: 'dates.md',
+  basename: 'dates',
+  src: 'test/templates/pages/dates.hbs',
+  dest: 'test/actual/multi/dest1/dates.md',
   assets: '../../assets',
   ext: '.md',
   extname: '.md',
@@ -20,7 +23,10 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  data: {} }
+  data: 
+   { description: 'testing the dates helpers',
+     css: '<link rel="stylesheet" href="/css/index.css"/>',
+     js: 'document.write(\'foo bar!\');' } }
 ```
 
 ### "{{#each pages}}" Links
@@ -29,10 +35,10 @@
 [category](category.md)
 [category2](category2.md)
 [complex](complex.md)
+[dates](dates.md)
 [example](example.md)
 [helpers](helpers.md)
 [page](page.md)
-[nav](nav.md)
 [simple3](simple3.md)
 [tags_test](tags_test.md)
 [tags_test2](tags_test2.md)
@@ -96,6 +102,17 @@ this.basename: complex
 this.extname:  .md
 this.ext:      .md
 
+#### dates.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/dates.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: dates.md
+this.pagename: dates.md
+this.basename: dates
+this.extname:  .md
+this.ext:      .md
+
 #### example.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/example.md
@@ -126,17 +143,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: page.md
 this.pagename: page.md
 this.basename: page
-this.extname:  .md
-this.ext:      .md
-
-#### nav.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/nav.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: nav.md
-this.pagename: nav.md
-this.basename: nav
 this.extname:  .md
 this.ext:      .md
 
@@ -176,282 +182,277 @@ this.ext:      .md
 
 ### {{#each pages}}
 
-#### nav.md
+#### dates.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/nav.md
+page.dest:     test/actual/multi/dest1/dates.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: nav.md
-page.pagename: nav.md
-page.basename: nav
+page.filename: dates.md
+page.pagename: dates.md
+page.basename: dates
 page.extname:  .md
 page.ext:      .md
 
-#### nav.md
+#### dates.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/nav.md
+page.dest:     test/actual/multi/dest1/dates.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: nav.md
-page.pagename: nav.md
-page.basename: nav
+page.filename: dates.md
+page.pagename: dates.md
+page.basename: dates
 page.extname:  .md
 page.ext:      .md
 
-#### nav.md
+#### dates.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/nav.md
+page.dest:     test/actual/multi/dest1/dates.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: nav.md
-page.pagename: nav.md
-page.basename: nav
+page.filename: dates.md
+page.pagename: dates.md
+page.basename: dates
 page.extname:  .md
 page.ext:      .md
 
-#### nav.md
+#### dates.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/nav.md
+page.dest:     test/actual/multi/dest1/dates.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: nav.md
-page.pagename: nav.md
-page.basename: nav
+page.filename: dates.md
+page.pagename: dates.md
+page.basename: dates
 page.extname:  .md
 page.ext:      .md
 
-#### nav.md
+#### dates.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/nav.md
+page.dest:     test/actual/multi/dest1/dates.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: nav.md
-page.pagename: nav.md
-page.basename: nav
+page.filename: dates.md
+page.pagename: dates.md
+page.basename: dates
 page.extname:  .md
 page.ext:      .md
 
-#### nav.md
+#### dates.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/nav.md
+page.dest:     test/actual/multi/dest1/dates.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: nav.md
-page.pagename: nav.md
-page.basename: nav
+page.filename: dates.md
+page.pagename: dates.md
+page.basename: dates
 page.extname:  .md
 page.ext:      .md
 
-#### nav.md
+#### dates.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/nav.md
+page.dest:     test/actual/multi/dest1/dates.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: nav.md
-page.pagename: nav.md
-page.basename: nav
+page.filename: dates.md
+page.pagename: dates.md
+page.basename: dates
 page.extname:  .md
 page.ext:      .md
 
-#### nav.md
+#### dates.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/nav.md
+page.dest:     test/actual/multi/dest1/dates.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: nav.md
-page.pagename: nav.md
-page.basename: nav
+page.filename: dates.md
+page.pagename: dates.md
+page.basename: dates
 page.extname:  .md
 page.ext:      .md
 
-#### nav.md
+#### dates.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/nav.md
+page.dest:     test/actual/multi/dest1/dates.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: nav.md
-page.pagename: nav.md
-page.basename: nav
+page.filename: dates.md
+page.pagename: dates.md
+page.basename: dates
 page.extname:  .md
 page.ext:      .md
 
-#### nav.md
+#### dates.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/nav.md
+page.dest:     test/actual/multi/dest1/dates.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: nav.md
-page.pagename: nav.md
-page.basename: nav
+page.filename: dates.md
+page.pagename: dates.md
+page.basename: dates
 page.extname:  .md
 page.ext:      .md
 
-#### nav.md
+#### dates.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/nav.md
+page.dest:     test/actual/multi/dest1/dates.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: nav.md
-page.pagename: nav.md
-page.basename: nav
+page.filename: dates.md
+page.pagename: dates.md
+page.basename: dates
 page.extname:  .md
 page.ext:      .md
 
-#### nav.md
+#### dates.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/nav.md
+page.dest:     test/actual/multi/dest1/dates.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: nav.md
-page.pagename: nav.md
-page.basename: nav
+page.filename: dates.md
+page.pagename: dates.md
+page.basename: dates
 page.extname:  .md
 page.ext:      .md
 
 
 ### {{#each pages}} "page" context
 
-#### nav.md
+#### dates.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/nav.md
+absolute:      test/actual/multi/dest1/dates.md
 dirname:       test/actual/multi/dest1
-filename:      nav.md
-pagename:      nav.md
-basename:      nav
+filename:      dates.md
+pagename:      dates.md
+basename:      dates
 extname:       .md
 ext:           .md
 
-#### nav.md
+#### dates.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/nav.md
+absolute:      test/actual/multi/dest1/dates.md
 dirname:       test/actual/multi/dest1
-filename:      nav.md
-pagename:      nav.md
-basename:      nav
+filename:      dates.md
+pagename:      dates.md
+basename:      dates
 extname:       .md
 ext:           .md
 
-#### nav.md
+#### dates.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/nav.md
+absolute:      test/actual/multi/dest1/dates.md
 dirname:       test/actual/multi/dest1
-filename:      nav.md
-pagename:      nav.md
-basename:      nav
+filename:      dates.md
+pagename:      dates.md
+basename:      dates
 extname:       .md
 ext:           .md
 
-#### nav.md
+#### dates.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/nav.md
+absolute:      test/actual/multi/dest1/dates.md
 dirname:       test/actual/multi/dest1
-filename:      nav.md
-pagename:      nav.md
-basename:      nav
+filename:      dates.md
+pagename:      dates.md
+basename:      dates
 extname:       .md
 ext:           .md
 
-#### nav.md
+#### dates.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/nav.md
+absolute:      test/actual/multi/dest1/dates.md
 dirname:       test/actual/multi/dest1
-filename:      nav.md
-pagename:      nav.md
-basename:      nav
+filename:      dates.md
+pagename:      dates.md
+basename:      dates
 extname:       .md
 ext:           .md
 
-#### nav.md
+#### dates.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/nav.md
+absolute:      test/actual/multi/dest1/dates.md
 dirname:       test/actual/multi/dest1
-filename:      nav.md
-pagename:      nav.md
-basename:      nav
+filename:      dates.md
+pagename:      dates.md
+basename:      dates
 extname:       .md
 ext:           .md
 
-#### nav.md
+#### dates.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/nav.md
+absolute:      test/actual/multi/dest1/dates.md
 dirname:       test/actual/multi/dest1
-filename:      nav.md
-pagename:      nav.md
-basename:      nav
+filename:      dates.md
+pagename:      dates.md
+basename:      dates
 extname:       .md
 ext:           .md
 
-#### nav.md
+#### dates.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/nav.md
+absolute:      test/actual/multi/dest1/dates.md
 dirname:       test/actual/multi/dest1
-filename:      nav.md
-pagename:      nav.md
-basename:      nav
+filename:      dates.md
+pagename:      dates.md
+basename:      dates
 extname:       .md
 ext:           .md
 
-#### nav.md
+#### dates.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/nav.md
+absolute:      test/actual/multi/dest1/dates.md
 dirname:       test/actual/multi/dest1
-filename:      nav.md
-pagename:      nav.md
-basename:      nav
+filename:      dates.md
+pagename:      dates.md
+basename:      dates
 extname:       .md
 ext:           .md
 
-#### nav.md
+#### dates.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/nav.md
+absolute:      test/actual/multi/dest1/dates.md
 dirname:       test/actual/multi/dest1
-filename:      nav.md
-pagename:      nav.md
-basename:      nav
+filename:      dates.md
+pagename:      dates.md
+basename:      dates
 extname:       .md
 ext:           .md
 
-#### nav.md
+#### dates.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/nav.md
+absolute:      test/actual/multi/dest1/dates.md
 dirname:       test/actual/multi/dest1
-filename:      nav.md
-pagename:      nav.md
-basename:      nav
+filename:      dates.md
+pagename:      dates.md
+basename:      dates
 extname:       .md
 ext:           .md
 
-#### nav.md
+#### dates.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/nav.md
+absolute:      test/actual/multi/dest1/dates.md
 dirname:       test/actual/multi/dest1
-filename:      nav.md
-pagename:      nav.md
-basename:      nav
+filename:      dates.md
+pagename:      dates.md
+basename:      dates
 extname:       .md
 ext:           .md
 
 
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <ul class="nav">
-        
-      </ul>
-      <ul class="nav pull-right"><li><a href="">Visit Assemble</a></li></ul>
-    </div>
-  </div>
-</div>
+
+
+<div>Date: Wed Jun 05 2013 19:15:14 GMT-0400 (Eastern Daylight Time)</div>
+
+<div>Born 33 years ago</div>
 

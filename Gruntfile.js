@@ -48,23 +48,33 @@ module.exports = function(grunt) {
         flatten: true,
         assets: 'test/actual/assets'
       },
+      paths: {
+        options: {
+          partials: 'test/templates/partials/*.hbs',
+          layout: 'test/templates/layouts/paths-example.hbs',
+          data: ['test/data/*.json']
+        },
+        files: {
+          'test/actual/paths/': ['test/templates/pages/**/*.hbs']
+        } 
+      },
       individual_pages: {
         options: {
           partials: 'test/templates/partials/*.hbs',
           layout: 'test/templates/layouts/layout.hbs'
         },
         files: {
-          'test/actual/page.html': ['test/templates/page.hbs'],
-          'test/actual/dates.html': ['test/templates/dates.hbs']
+          'test/actual/page.html': ['test/templates/pages/page.hbs'],
+          'test/actual/dates.html': ['test/templates/pages/dates.hbs']
         }
       },
       files_object: {
         options: {
           layout: 'test/templates/layouts/layout.hbs',
-          data: 'test/yaml/data/**/*.*'
+          data: 'test/yaml/data/*.{json,yml}'
         },
         files: {
-          'test/actual/yaml/': ['test/yaml/*.hbs']
+          'test/actual/yaml/': ['test/YAML/*.hbs']
         }
       },
       multi: {
@@ -73,19 +83,9 @@ module.exports = function(grunt) {
           data: ['test/data/*.json']
         },
         files: {
-          'test/actual/multi/dest1/': [
-            'test/templates/**/*.hbs', 
-            '!test/templates/layouts/**', 
-            '!test/templates/dates.hbs'
-          ],
-          'test/actual/multi/dest2/': [
-            'test/templates/**/*.{md,markdown}'
-          ],
-          'test/actual/multi/dest2/sub-dest/': [
-            'test/templates/**/*.hbs', 
-            '!test/templates/layouts/**', 
-            '!test/templates/dates.hbs'
-          ]
+          'test/actual/multi/dest1/': ['test/templates/pages/**/*.hbs'],
+          'test/actual/multi/dest2/': ['test/templates/pages/**/*.{md,markdown}'],
+          'test/actual/multi/dest2/sub-dest/': ['test/templates/pages/**/*.hbs']
         }
       },
       markdown: {
@@ -94,11 +94,7 @@ module.exports = function(grunt) {
           ext: '.md'
         },
         files: {
-          'test/actual/multi/dest1/': [
-            'test/templates/**/*.hbs', 
-            '!test/templates/layouts/**', 
-            '!test/templates/dates.hbs'
-          ]
+          'test/actual/multi/dest1/': ['test/templates/pages/**/*.hbs']
         }
       },
       assets_one: {
@@ -107,7 +103,7 @@ module.exports = function(grunt) {
           assets_one: true
         },
         files: {
-          'test/actual/assets-public-folder.html': ['test/templates/assets.hbs']
+          'test/actual/assets-public-folder.html': ['test/templates/pages/assets.hbs']
         }
       },
       assets_two: {
@@ -116,7 +112,7 @@ module.exports = function(grunt) {
           assets_two: true
         },
         files: {
-          'test/actual/assets-same-folder.html': ['test/templates/assets.hbs']
+          'test/actual/assets-same-folder.html': ['test/templates/pages/assets.hbs']
         }
       },
       assets_three: {
@@ -125,7 +121,7 @@ module.exports = function(grunt) {
           assets_three: true
         },
         files: {
-          'test/actual/assets-root.html': ['test/templates/assets.hbs']
+          'test/actual/assets-root.html': ['test/templates/pages/assets.hbs']
         }
       }
     },
