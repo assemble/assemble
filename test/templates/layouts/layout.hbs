@@ -18,6 +18,7 @@
 
       <ul>
       {{#each pages}}
+        <li><a href="{{relative ../page.dest this.dest}}">{{this.basename}}</a></li>
         <!--
         "this"
         ===============================
@@ -52,7 +53,6 @@
         extname:       {{../extname}}
         ext:           {{../ext}}
         -->
-        <li><a href="{{relative ../page.dest this.dest}}">{{this.basename}}</a></li>
       {{/each}}
       </ul>
     </div>

@@ -45,7 +45,7 @@
   pageName: 'category.html',
   pagename: 'category.html',
   basename: 'category',
-  src: 'test/files/category.hbs',
+  src: 'test/templates/category.hbs',
   dest: 'test/actual/multi/dest1/category.html',
   assets: '../../assets',
   ext: '.html',
@@ -57,6 +57,7 @@
 
       <ul>
       
+        <li><a href="alert.html">alert</a></li>
         <!--
         "this"
         ===============================
@@ -91,8 +92,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="alert.html">alert</a></li>
       
+        <li><a href="assets.html">assets</a></li>
         <!--
         "this"
         ===============================
@@ -127,8 +128,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="assets.html">assets</a></li>
       
+        <li><a href="category.html">category</a></li>
         <!--
         "this"
         ===============================
@@ -163,8 +164,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="category.html">category</a></li>
       
+        <li><a href="category2.html">category2</a></li>
         <!--
         "this"
         ===============================
@@ -199,8 +200,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="category2.html">category2</a></li>
       
+        <li><a href="complex.html">complex</a></li>
         <!--
         "this"
         ===============================
@@ -235,44 +236,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="complex.html">complex</a></li>
       
-        <!--
-        "this"
-        ===============================
-        this.dest:     test/actual/multi/dest1/dates.html
-        this.absolute: 
-        this.dirname:  test/actual/multi/dest1
-        this.filename: dates.html
-        this.pagename: dates.html
-        this.basename: dates
-        this.extname:  .html
-        this.ext:      .html
-
-        "page"
-        ===============================
-        page.dest:     test/actual/multi/dest1/category.html
-        page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: category.html
-        page.pagename: category.html
-        page.basename: category
-        page.extname:  .html
-        page.ext:      .html
-
-        "root"
-        ===============================
-        dest:          
-        absolute:      test/actual/multi/dest1/category.html
-        dirname:       test/actual/multi/dest1
-        filename:      category.html
-        pagename:      category.html
-        basename:      category
-        extname:       .html
-        ext:           .html
-        -->
-        <li><a href="dates.html">dates</a></li>
-      
+        <li><a href="example.html">example</a></li>
         <!--
         "this"
         ===============================
@@ -307,8 +272,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="example.html">example</a></li>
       
+        <li><a href="helpers.html">helpers</a></li>
         <!--
         "this"
         ===============================
@@ -343,8 +308,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="helpers.html">helpers</a></li>
       
+        <li><a href="page.html">page</a></li>
         <!--
         "this"
         ===============================
@@ -379,8 +344,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="page.html">page</a></li>
       
+        <li><a href="nav.html">nav</a></li>
         <!--
         "this"
         ===============================
@@ -415,8 +380,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="nav.html">nav</a></li>
       
+        <li><a href="simple3.html">simple3</a></li>
         <!--
         "this"
         ===============================
@@ -451,8 +416,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="simple3.html">simple3</a></li>
       
+        <li><a href="tags_test.html">tags_test</a></li>
         <!--
         "this"
         ===============================
@@ -487,8 +452,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="tags_test.html">tags_test</a></li>
       
+        <li><a href="tags_test2.html">tags_test2</a></li>
         <!--
         "this"
         ===============================
@@ -523,8 +488,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="tags_test2.html">tags_test2</a></li>
       
+        <li><a href="../dest2/complex1.html">complex1</a></li>
         <!--
         "this"
         ===============================
@@ -559,8 +524,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/complex1.html">complex1</a></li>
       
+        <li><a href="../dest2/md2.html">md2</a></li>
         <!--
         "this"
         ===============================
@@ -595,8 +560,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/md2.html">md2</a></li>
       
+        <li><a href="../dest2/simple1.html">simple1</a></li>
         <!--
         "this"
         ===============================
@@ -631,8 +596,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/simple1.html">simple1</a></li>
       
+        <li><a href="../dest2/sub-dest/alert.html">alert</a></li>
         <!--
         "this"
         ===============================
@@ -667,8 +632,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/alert.html">alert</a></li>
       
+        <li><a href="../dest2/sub-dest/assets.html">assets</a></li>
         <!--
         "this"
         ===============================
@@ -703,8 +668,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/assets.html">assets</a></li>
       
+        <li><a href="../dest2/sub-dest/category.html">category</a></li>
         <!--
         "this"
         ===============================
@@ -739,8 +704,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/category.html">category</a></li>
       
+        <li><a href="../dest2/sub-dest/category2.html">category2</a></li>
         <!--
         "this"
         ===============================
@@ -775,8 +740,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/category2.html">category2</a></li>
       
+        <li><a href="../dest2/sub-dest/complex.html">complex</a></li>
         <!--
         "this"
         ===============================
@@ -811,44 +776,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/complex.html">complex</a></li>
       
-        <!--
-        "this"
-        ===============================
-        this.dest:     test/actual/multi/dest2/sub-dest/dates.html
-        this.absolute: 
-        this.dirname:  test/actual/multi/dest2/sub-dest
-        this.filename: dates.html
-        this.pagename: dates.html
-        this.basename: dates
-        this.extname:  .html
-        this.ext:      .html
-
-        "page"
-        ===============================
-        page.dest:     test/actual/multi/dest1/category.html
-        page.absolute: 
-        page.dirname:  test/actual/multi/dest1
-        page.filename: category.html
-        page.pagename: category.html
-        page.basename: category
-        page.extname:  .html
-        page.ext:      .html
-
-        "root"
-        ===============================
-        dest:          
-        absolute:      test/actual/multi/dest1/category.html
-        dirname:       test/actual/multi/dest1
-        filename:      category.html
-        pagename:      category.html
-        basename:      category
-        extname:       .html
-        ext:           .html
-        -->
-        <li><a href="../dest2/sub-dest/dates.html">dates</a></li>
-      
+        <li><a href="../dest2/sub-dest/example.html">example</a></li>
         <!--
         "this"
         ===============================
@@ -883,8 +812,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/example.html">example</a></li>
       
+        <li><a href="../dest2/sub-dest/helpers.html">helpers</a></li>
         <!--
         "this"
         ===============================
@@ -919,8 +848,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/helpers.html">helpers</a></li>
       
+        <li><a href="../dest2/sub-dest/page.html">page</a></li>
         <!--
         "this"
         ===============================
@@ -955,8 +884,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/page.html">page</a></li>
       
+        <li><a href="../dest2/sub-dest/nav.html">nav</a></li>
         <!--
         "this"
         ===============================
@@ -991,8 +920,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/nav.html">nav</a></li>
       
+        <li><a href="../dest2/sub-dest/simple3.html">simple3</a></li>
         <!--
         "this"
         ===============================
@@ -1027,8 +956,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/simple3.html">simple3</a></li>
       
+        <li><a href="../dest2/sub-dest/tags_test.html">tags_test</a></li>
         <!--
         "this"
         ===============================
@@ -1063,8 +992,8 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/tags_test.html">tags_test</a></li>
       
+        <li><a href="../dest2/sub-dest/tags_test2.html">tags_test2</a></li>
         <!--
         "this"
         ===============================
@@ -1099,7 +1028,6 @@
         extname:       .html
         ext:           .html
         -->
-        <li><a href="../dest2/sub-dest/tags_test2.html">tags_test2</a></li>
       
       </ul>
     </div>

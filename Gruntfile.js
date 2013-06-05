@@ -48,17 +48,19 @@ module.exports = function(grunt) {
         flatten: true,
         assets: 'test/actual/assets'
       },
-      compact: {
+      individual_pages: {
         options: {
-          partials: 'test/files/partials/*.hbs',
-          layout: 'test/files/layout.hbs'
+          partials: 'test/templates/partials/*.hbs',
+          layout: 'test/templates/layouts/layout.hbs'
         },
-        src:  ['test/files/dates.hbs', 'test/files/page.hbs'],
-        dest: 'test/actual/'
+        files: {
+          'test/actual/page.html': ['test/templates/page.hbs'],
+          'test/actual/dates.html': ['test/templates/dates.hbs']
+        }
       },
       files_object: {
         options: {
-          layout: 'test/files/layout.hbs',
+          layout: 'test/templates/layouts/layout.hbs',
           data: 'test/yaml/data/**/*.*'
         },
         files: {
@@ -67,42 +69,64 @@ module.exports = function(grunt) {
       },
       multi: {
         options: {
-          layout: 'test/files/layout.hbs',
+          layout: 'test/templates/layouts/layout.hbs',
           data: ['test/data/*.json']
         },
         files: {
-          'test/actual/multi/dest1/': ['test/files/**/*.hbs', '!test/files/layout*.*'],
-          'test/actual/multi/dest2/': ['test/files/**/*.{md,markdown}'],
-          'test/actual/multi/dest2/sub-dest/': ['test/files/**/*.hbs', '!test/files/layout*.*']
+          'test/actual/multi/dest1/': [
+            'test/templates/**/*.hbs', 
+            '!test/templates/layouts/**', 
+            '!test/templates/dates.hbs'
+          ],
+          'test/actual/multi/dest2/': [
+            'test/templates/**/*.{md,markdown}'
+          ],
+          'test/actual/multi/dest2/sub-dest/': [
+            'test/templates/**/*.hbs', 
+            '!test/templates/layouts/**', 
+            '!test/templates/dates.hbs'
+          ]
         }
       },
       markdown: {
         options: {
-          layout: 'test/layouts/default.md.hbs',
+          layout: 'test/templates/layouts/default.md.hbs',
           ext: '.md'
         },
-        files: {'test/actual/multi/dest1/': ['test/files/**/*.hbs', '!test/files/layout*.*']}
+        files: {
+          'test/actual/multi/dest1/': [
+            'test/templates/**/*.hbs', 
+            '!test/templates/layouts/**', 
+            '!test/templates/dates.hbs'
+          ]
+        }
       },
       assets_one: {
         options: {
           assets: 'test/actual/public',
           assets_one: true
         },
-        files: {'test/actual/assets-public-folder.html': ['test/files/assets.hbs']}
+        files: {
+          'test/actual/assets-public-folder.html': ['test/templates/assets.hbs']
+        }
       },
       assets_two: {
         options: {
           assets: 'test/actual',
           assets_two: true
         },
-        files: {'test/actual/assets-same-folder.html': ['test/files/assets.hbs']}
+        files: {
+          'test/actual/assets-same-folder.html': ['test/templates/assets.hbs']
+        }
       },
       assets_three: {
         options: {
           assets: '.',
           assets_three: true
         },
-        files: {'test/actual/assets-root.html': ['test/files/assets.hbs']}
+        files: {
+          'test/actual/assets-root.html': ['test/templates/assets.hbs']
+        }
       }
     },
 
@@ -122,7 +146,7 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'clean', 'assemble:compact']);
+  grunt.registerTask('default', ['jshint', 'clean', 'assemble']);
 
   // Tests to be run.
   grunt.registerTask('test', ['default', 'mochaTest']);

@@ -117,40 +117,20 @@ Suite 16
 
 
 <pre class="json">
-{ assets: '../assets',
-  basename: 'document',
-  receipt: 'Oz-Ware Purchase Invoice',
+{ prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
+  ext: '.html',
+  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+  dirname: 'test/actual/yaml',
+  'ship-to': 
+   { street: '123 Tornado Alley\nSuite 16\n',
+     city: 'East Centerville',
+     state: 'KS' },
+  assets: '../assets',
   'bill-to': 
    { street: '123 Tornado Alley\nSuite 16\n',
      city: 'East Centerville',
      state: 'KS' },
-  filename: 'document.html',
-  data: 
-   { receipt: 'Oz-Ware Purchase Invoice',
-     'bill-to': 
-      { street: '123 Tornado Alley\nSuite 16\n',
-        city: 'East Centerville',
-        state: 'KS' },
-     customer: { given: 'Dorothy', family: 'Gale' },
-     'ship-to': 
-      { street: '123 Tornado Alley\nSuite 16\n',
-        city: 'East Centerville',
-        state: 'KS' },
-     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
-     items: 
-      [ { part_no: 'A4786',
-          descrip: 'Water Bucket (Filled)',
-          price: 1.47,
-          quantity: 4 },
-        { part_no: 'E1628',
-          descrip: 'High Heeled "Ruby" Slippers',
-          size: 8,
-          price: 100.27,
-          quantity: 1 },
-        [length]: 2 ],
-     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>' },
-  customer: { given: 'Dorothy', family: 'Gale' },
+  basename: 'document',
   page: 
    { [Function]
      [length]: 2,
@@ -158,18 +138,10 @@ Suite 16
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  dest: 'test/actual/yaml/document.html',
-  extname: '.html',
-  dirname: 'test/actual/yaml',
-  pageName: 'document.html',
-  ext: '.html',
+  receipt: 'Oz-Ware Purchase Invoice',
   pagename: 'document.html',
-  'ship-to': 
-   { street: '123 Tornado Alley\nSuite 16\n',
-     city: 'East Centerville',
-     state: 'KS' },
-  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
+  dest: 'test/actual/yaml/document.html',
+  src: 'test/yaml/document.hbs',
   items: 
    [ { part_no: 'A4786',
        descrip: 'Water Bucket (Filled)',
@@ -181,12 +153,41 @@ Suite 16
        price: 100.27,
        quantity: 1 },
      [length]: 2 ],
-  src: 'test/yaml/document.hbs',
-  prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>' }
+  data: 
+   { prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
+     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+     'ship-to': 
+      { street: '123 Tornado Alley\nSuite 16\n',
+        city: 'East Centerville',
+        state: 'KS' },
+     'bill-to': 
+      { street: '123 Tornado Alley\nSuite 16\n',
+        city: 'East Centerville',
+        state: 'KS' },
+     receipt: 'Oz-Ware Purchase Invoice',
+     items: 
+      [ { part_no: 'A4786',
+          descrip: 'Water Bucket (Filled)',
+          price: 1.47,
+          quantity: 4 },
+        { part_no: 'E1628',
+          descrip: 'High Heeled "Ruby" Slippers',
+          size: 8,
+          price: 100.27,
+          quantity: 1 },
+        [length]: 2 ],
+     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
+     customer: { given: 'Dorothy', family: 'Gale' } },
+  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
+  pageName: 'document.html',
+  extname: '.html',
+  customer: { given: 'Dorothy', family: 'Gale' },
+  filename: 'document.html' }
 </pre>
 
       <ul>
       
+        <li><a href="associative-arrays.html">associative-arrays</a></li>
         <!--
         "this"
         ===============================
@@ -221,8 +222,8 @@ Suite 16
         extname:       .html
         ext:           .html
         -->
-        <li><a href="associative-arrays.html">associative-arrays</a></li>
       
+        <li><a href="block-literals.html">block-literals</a></li>
         <!--
         "this"
         ===============================
@@ -257,8 +258,8 @@ Suite 16
         extname:       .html
         ext:           .html
         -->
-        <li><a href="block-literals.html">block-literals</a></li>
       
+        <li><a href="comments.html">comments</a></li>
         <!--
         "this"
         ===============================
@@ -293,8 +294,8 @@ Suite 16
         extname:       .html
         ext:           .html
         -->
-        <li><a href="comments.html">comments</a></li>
       
+        <li><a href="data-files.html">data-files</a></li>
         <!--
         "this"
         ===============================
@@ -329,8 +330,8 @@ Suite 16
         extname:       .html
         ext:           .html
         -->
-        <li><a href="data-files.html">data-files</a></li>
       
+        <li><a href="data-types.html">data-types</a></li>
         <!--
         "this"
         ===============================
@@ -365,8 +366,8 @@ Suite 16
         extname:       .html
         ext:           .html
         -->
-        <li><a href="data-types.html">data-types</a></li>
       
+        <li><a href="document.html">document</a></li>
         <!--
         "this"
         ===============================
@@ -401,8 +402,8 @@ Suite 16
         extname:       .html
         ext:           .html
         -->
-        <li><a href="document.html">document</a></li>
       
+        <li><a href="lists.html">lists</a></li>
         <!--
         "this"
         ===============================
@@ -437,8 +438,8 @@ Suite 16
         extname:       .html
         ext:           .html
         -->
-        <li><a href="lists.html">lists</a></li>
       
+        <li><a href="relational-trees.html">relational-trees</a></li>
         <!--
         "this"
         ===============================
@@ -473,8 +474,8 @@ Suite 16
         extname:       .html
         ext:           .html
         -->
-        <li><a href="relational-trees.html">relational-trees</a></li>
       
+        <li><a href="variables.html">variables</a></li>
         <!--
         "this"
         ===============================
@@ -509,7 +510,6 @@ Suite 16
         extname:       .html
         ext:           .html
         -->
-        <li><a href="variables.html">variables</a></li>
       
       </ul>
     </div>

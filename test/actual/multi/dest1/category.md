@@ -16,7 +16,7 @@
   pageName: 'category.md',
   pagename: 'category.md',
   basename: 'category',
-  src: 'test/files/category.hbs',
+  src: 'test/templates/category.hbs',
   dest: 'test/actual/multi/dest1/category.md',
   assets: '../../assets',
   ext: '.md',
@@ -32,7 +32,6 @@
 [category](category.md)
 [category2](category2.md)
 [complex](complex.md)
-[dates](dates.md)
 [example](example.md)
 [helpers](helpers.md)
 [page](page.md)
@@ -97,17 +96,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: complex.md
 this.pagename: complex.md
 this.basename: complex
-this.extname:  .md
-this.ext:      .md
-
-#### dates.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/dates.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: dates.md
-this.pagename: dates.md
-this.basename: dates
 this.extname:  .md
 this.ext:      .md
 
@@ -323,30 +311,8 @@ page.basename: category
 page.extname:  .md
 page.ext:      .md
 
-#### category.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/category.md
-page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: category.md
-page.pagename: category.md
-page.basename: category
-page.extname:  .md
-page.ext:      .md
-
 
 ### {{#each pages}} "page" context
-
-#### category.md
-assets:        ../../assets
-dest:          
-absolute:      test/actual/multi/dest1/category.md
-dirname:       test/actual/multi/dest1
-filename:      category.md
-pagename:      category.md
-basename:      category
-extname:       .md
-ext:           .md
 
 #### category.md
 assets:        ../../assets
