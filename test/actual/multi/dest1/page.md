@@ -1,7 +1,26 @@
 # Partials Test
 
-## Debug Info
+## Content
 
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <ul class="nav">
+        <li><a href="./index.html">Index</a></li>
+        <li><a href="dest/context.html">Dest Context</a></li>
+        <li><a href="dest/basic.html">Dest Basic</a></li>
+        <li><a href="dest/markdown.html">Dest Markdown</a></li>
+        
+      </ul>
+      <ul class="nav pull-right"><li><a href="">Visit Assemble</a></li></ul>
+    </div>
+  </div>
+</div>
+
+
+
+## Debug Info
 ``` json
 { title: 'Partials Test',
   links: 
@@ -37,6 +56,7 @@
         [length]: 4 ] } }
 ```
 
+
 ### "{{#each pages}}" Links
 [alert](alert.md)
 [assets](assets.md)
@@ -47,6 +67,7 @@
 [example](example.md)
 [gist-helper](gist-helper.md)
 [helpers](helpers.md)
+[home](home.md)
 [html-helpers](html-helpers.md)
 [page](page.md)
 [simple3](simple3.md)
@@ -156,6 +177,17 @@ this.basename: helpers
 this.extname:  .md
 this.ext:      .md
 
+#### home.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/home.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: home.md
+this.pagename: home.md
+this.basename: home
+this.extname:  .md
+this.ext:      .md
+
 #### html-helpers.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/html-helpers.md
@@ -213,6 +245,17 @@ this.ext:      .md
 
 
 ### {{#each pages}}
+
+#### page.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/page.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: page.md
+page.pagename: page.md
+page.basename: page
+page.extname:  .md
+page.ext:      .md
 
 #### page.md
 page.assets:   ../../assets
@@ -525,20 +568,15 @@ basename:      page
 extname:       .md
 ext:           .md
 
+#### page.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/page.md
+dirname:       test/actual/multi/dest1
+filename:      page.md
+pagename:      page.md
+basename:      page
+extname:       .md
+ext:           .md
 
-
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <ul class="nav">
-        <li><a href="./index.html">Index</a></li>
-        <li><a href="dest/context.html">Dest Context</a></li>
-        <li><a href="dest/basic.html">Dest Basic</a></li>
-        <li><a href="dest/markdown.html">Dest Markdown</a></li>
-        
-      </ul>
-      <ul class="nav pull-right"><li><a href="">Visit Assemble</a></li></ul>
-    </div>
-  </div>
-</div>
 

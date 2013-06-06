@@ -52,7 +52,7 @@ module.exports = function(grunt) {
         options: {
           partials: 'test/templates/partials/*.hbs',
           layout: 'test/templates/layouts/paths-example.hbs',
-          data: ['test/data/*.json']
+          data: ['test/data/*.yml']
         },
         files: {
           'test/actual/paths/': ['test/templates/pages/**/*.hbs']
@@ -90,6 +90,7 @@ module.exports = function(grunt) {
       markdown: {
         options: {
           layout: 'test/templates/layouts/default.md.hbs',
+          data: ['test/data/*.json'],
           ext: '.md'
         },
         files: {

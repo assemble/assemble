@@ -1,7 +1,28 @@
 # Tags Test
 
-## Debug Info
+## Content
 
+
+
+<ul>
+
+	<li>tags</li>
+
+	<li>test</li>
+
+	<li>something</li>
+
+	<li>one</li>
+
+	<li>two</li>
+
+	<li>three</li>
+
+</ul>
+
+
+
+## Debug Info
 ``` json
 { page: 
    { [Function]
@@ -28,6 +49,7 @@
      tags: [ 'tags', 'test', 'something', [length]: 3 ] } }
 ```
 
+
 ### "{{#each pages}}" Links
 [alert](alert.md)
 [assets](assets.md)
@@ -38,6 +60,7 @@
 [example](example.md)
 [gist-helper](gist-helper.md)
 [helpers](helpers.md)
+[home](home.md)
 [html-helpers](html-helpers.md)
 [page](page.md)
 [simple3](simple3.md)
@@ -147,6 +170,17 @@ this.basename: helpers
 this.extname:  .md
 this.ext:      .md
 
+#### home.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/home.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: home.md
+this.pagename: home.md
+this.basename: home
+this.extname:  .md
+this.ext:      .md
+
 #### html-helpers.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/html-helpers.md
@@ -204,6 +238,17 @@ this.ext:      .md
 
 
 ### {{#each pages}}
+
+#### tags_test.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/tags_test.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: tags_test.md
+page.pagename: tags_test.md
+page.basename: tags_test
+page.extname:  .md
+page.ext:      .md
 
 #### tags_test.md
 page.assets:   ../../assets
@@ -516,22 +561,15 @@ basename:      tags_test
 extname:       .md
 ext:           .md
 
+#### tags_test.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/tags_test.md
+dirname:       test/actual/multi/dest1
+filename:      tags_test.md
+pagename:      tags_test.md
+basename:      tags_test
+extname:       .md
+ext:           .md
 
-
-
-<ul>
-
-	<li>tags</li>
-
-	<li>test</li>
-
-	<li>something</li>
-
-	<li>one</li>
-
-	<li>two</li>
-
-	<li>three</li>
-
-</ul>
 

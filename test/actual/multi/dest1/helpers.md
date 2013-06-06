@@ -1,15 +1,57 @@
 # Helpers and custom variables
 
-## Debug Info
+## Content
 
+
+<div class="page-header">
+  <h1>Helpers and custom variables</h1>
+  <p class="lead">Here we are using the &quot;css&quot; and &quot;js&quot; helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.
+</p>
+</div>
+
+<h2>css helper</h2>
+Example of using the "css" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
+<link rel="stylesheet" href="../../assets/css/css/bootstrap.css">
+<link rel="stylesheet" href="../../assets/css/css/responsive.css">
+<link rel="stylesheet" href="../../assets/css/css/main.css">
+
+
+<h2>js helper</h2>
+Example of using the "js" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
+<script src="../../assets/js/js/bootstrap.js"></script>
+<script src="../../assets/js/js/responsive.js"></script>
+<script src="../../assets/js/js/main.js"></script>
+
+
+<h2>custom variables</h2>
+<link rel="stylesheet" href="css/index.css"/>
+<script>document.write('foo bar!');</script>
+
+
+
+## Debug Info
 ``` json
-{ basename: 'helpers',
+{ javascripts: 
+   [ 'js/bootstrap.js',
+     'js/responsive.js',
+     'js/main.js',
+     [length]: 3 ],
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  pagename: 'helpers.md',
+  basename: 'helpers',
   description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
-  src: 'test/templates/pages/helpers.hbs',
-  dirname: 'test/actual/multi/dest1',
-  filename: 'helpers.md',
-  extname: '.md',
-  styles: '<link rel="stylesheet" href="css/index.css"/>',
+  stylesheets: 
+   [ 'css/bootstrap.css',
+     'css/responsive.css',
+     'css/main.css',
+     [length]: 3 ],
+  ext: '.md',
   data: 
    { title: 'Helpers and custom variables',
      description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
@@ -25,31 +67,18 @@
         [length]: 3 ],
      styles: '<link rel="stylesheet" href="css/index.css"/>',
      scripts: 'document.write(\'foo bar!\');' },
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  dest: 'test/actual/multi/dest1/helpers.md',
-  ext: '.md',
-  javascripts: 
-   [ 'js/bootstrap.js',
-     'js/responsive.js',
-     'js/main.js',
-     [length]: 3 ],
-  scripts: 'document.write(\'foo bar!\');',
-  pagename: 'helpers.md',
   title: 'Helpers and custom variables',
-  assets: '../../assets',
-  stylesheets: 
-   [ 'css/bootstrap.css',
-     'css/responsive.css',
-     'css/main.css',
-     [length]: 3 ],
-  pageName: 'helpers.md' }
+  src: 'test/templates/pages/helpers.hbs',
+  styles: '<link rel="stylesheet" href="css/index.css"/>',
+  pageName: 'helpers.md',
+  scripts: 'document.write(\'foo bar!\');',
+  extname: '.md',
+  dest: 'test/actual/multi/dest1/helpers.md',
+  dirname: 'test/actual/multi/dest1',
+  filename: 'helpers.md',
+  assets: '../../assets' }
 ```
+
 
 ### "{{#each pages}}" Links
 [alert](alert.md)
@@ -61,6 +90,7 @@
 [example](example.md)
 [gist-helper](gist-helper.md)
 [helpers](helpers.md)
+[home](home.md)
 [html-helpers](html-helpers.md)
 [page](page.md)
 [simple3](simple3.md)
@@ -170,6 +200,17 @@ this.basename: helpers
 this.extname:  .md
 this.ext:      .md
 
+#### home.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/home.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: home.md
+this.pagename: home.md
+this.basename: home
+this.extname:  .md
+this.ext:      .md
+
 #### html-helpers.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/html-helpers.md
@@ -227,6 +268,17 @@ this.ext:      .md
 
 
 ### {{#each pages}}
+
+#### helpers.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/helpers.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: helpers.md
+page.pagename: helpers.md
+page.basename: helpers
+page.extname:  .md
+page.ext:      .md
 
 #### helpers.md
 page.assets:   ../../assets
@@ -539,29 +591,15 @@ basename:      helpers
 extname:       .md
 ext:           .md
 
+#### helpers.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/helpers.md
+dirname:       test/actual/multi/dest1
+filename:      helpers.md
+pagename:      helpers.md
+basename:      helpers
+extname:       .md
+ext:           .md
 
-
-<div class="page-header">
-  <h1>Helpers and custom variables</h1>
-  <p class="lead">Here we are using the &quot;css&quot; and &quot;js&quot; helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.
-</p>
-</div>
-
-<h2>css helper</h2>
-Example of using the "css" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
-<link rel="stylesheet" href="../../assets/css/css/bootstrap.css">
-<link rel="stylesheet" href="../../assets/css/css/responsive.css">
-<link rel="stylesheet" href="../../assets/css/css/main.css">
-
-
-<h2>js helper</h2>
-Example of using the "js" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
-<script src="../../assets/js/js/bootstrap.js"></script>
-<script src="../../assets/js/js/responsive.js"></script>
-<script src="../../assets/js/js/main.js"></script>
-
-
-<h2>custom variables</h2>
-<link rel="stylesheet" href="css/index.css"/>
-<script>document.write('foo bar!');</script>
 

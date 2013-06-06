@@ -1,7 +1,21 @@
 # example.md output
 
-## Debug Info
+## Content
 
+
+
+This example shows that the properties from "example.json" and "example.hbs" are on the page object.
+
+<div>bar</div>
+<div></div>
+
+
+<div>bar</div>
+<div></div>
+
+
+
+## Debug Info
 ``` json
 { foo: 'bar',
   dirname: 'test/actual/multi/dest1',
@@ -24,6 +38,7 @@
   data: { foo: 'bar' } }
 ```
 
+
 ### "{{#each pages}}" Links
 [alert](alert.md)
 [assets](assets.md)
@@ -34,6 +49,7 @@
 [example](example.md)
 [gist-helper](gist-helper.md)
 [helpers](helpers.md)
+[home](home.md)
 [html-helpers](html-helpers.md)
 [page](page.md)
 [simple3](simple3.md)
@@ -143,6 +159,17 @@ this.basename: helpers
 this.extname:  .md
 this.ext:      .md
 
+#### home.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/home.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: home.md
+this.pagename: home.md
+this.basename: home
+this.extname:  .md
+this.ext:      .md
+
 #### html-helpers.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/html-helpers.md
@@ -200,6 +227,17 @@ this.ext:      .md
 
 
 ### {{#each pages}}
+
+#### example.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/example.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: example.md
+page.pagename: example.md
+page.basename: example
+page.extname:  .md
+page.ext:      .md
 
 #### example.md
 page.assets:   ../../assets
@@ -512,13 +550,15 @@ basename:      example
 extname:       .md
 ext:           .md
 
+#### example.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/example.md
+dirname:       test/actual/multi/dest1
+filename:      example.md
+pagename:      example.md
+basename:      example
+extname:       .md
+ext:           .md
 
-
-
-<div>bar</div>
-<div></div>
-
-
-<div>bar</div>
-<div></div>
 

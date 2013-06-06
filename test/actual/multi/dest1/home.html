@@ -2,28 +2,35 @@
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Tags Test</title>
+    <title>YFM title</title>
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
     <div class="container">
       
 
-<ul>
+Properties from "example.json" and "example.hbs" should be on the page object.
 
-	<li>tags</li>
+<div class="page-header">
+  <h1>Home</h1>
+  <p class="lead">Welcome to my amazing and mysterious site!</p>
+</div>
 
-	<li>test</li>
+<hr>
 
-	<li>something</li>
+<div class="page-header">
+  <h1>YFM title</h1>
+  <p class="lead">YFM description</p>
+</div>
 
-	<li>one</li>
+<hr>
 
-	<li>two</li>
+<div class="page-header">
+  <h1>YFM title</h1>
+  <p class="lead">YFM description</p>
+</div>
 
-	<li>three</li>
 
-</ul>
 
     </div>
 
@@ -101,29 +108,26 @@
 
 <h3>Debug Info</h3>
 <pre class="json">
-{ page: 
+{ title: 'YFM title',
+  description: 'YFM description',
+  dirname: 'test/actual/multi/dest1',
+  filename: 'home.html',
+  pageName: 'home.html',
+  pagename: 'home.html',
+  basename: 'home',
+  src: 'test/templates/pages/home.hbs',
+  dest: 'test/actual/multi/dest1/home.html',
+  assets: '../../assets',
+  ext: '.html',
+  extname: '.html',
+  page: 
    { [Function]
      [length]: 2,
      [name]: '',
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  title: 'Tags Test',
-  tags: [ 'tags', 'test', 'something', [length]: 3 ],
-  dirname: 'test/actual/multi/dest1',
-  filename: 'tags_test.html',
-  pageName: 'tags_test.html',
-  pagename: 'tags_test.html',
-  basename: 'tags_test',
-  src: 'test/templates/pages/tags_test.hbs',
-  dest: 'test/actual/multi/dest1/tags_test.html',
-  assets: '../../assets',
-  ext: '.html',
-  extname: '.html',
-  data: 
-   { page: null,
-     title: 'Tags Test',
-     tags: [ 'tags', 'test', 'something', [length]: 3 ] } }
+  data: { title: 'YFM title', description: 'YFM description' } }
 </pre>
     </div>
   </body>

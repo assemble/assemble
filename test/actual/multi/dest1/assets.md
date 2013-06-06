@@ -1,7 +1,27 @@
 # assets.md output
 
-## Debug Info
+## Content
 
+<p>Examples to test the "relative" and "assets" variables, and to show how they work</p>
+
+
+
+
+
+<h1>Relative Helper</h1>
+<script src="../../../../css/one/two/three.js"></script>
+<script src="../../../../js/one/two/three.js"></script>
+<script src="../../../../jsone/two/three.js"></script>
+<script src="./../../../../jsone/two/three.js"></script>
+
+<h1>Assets Helper</h1>
+<script src="../../assetsone/two/three.js"></script>
+<script src="../../assets/one/two/three.js"></script>
+
+
+
+
+## Debug Info
 ``` json
 { dirname: 'test/actual/multi/dest1',
   filename: 'assets.md',
@@ -23,6 +43,7 @@
   data: {} }
 ```
 
+
 ### "{{#each pages}}" Links
 [alert](alert.md)
 [assets](assets.md)
@@ -33,6 +54,7 @@
 [example](example.md)
 [gist-helper](gist-helper.md)
 [helpers](helpers.md)
+[home](home.md)
 [html-helpers](html-helpers.md)
 [page](page.md)
 [simple3](simple3.md)
@@ -142,6 +164,17 @@ this.basename: helpers
 this.extname:  .md
 this.ext:      .md
 
+#### home.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/home.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: home.md
+this.pagename: home.md
+this.basename: home
+this.extname:  .md
+this.ext:      .md
+
 #### html-helpers.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/html-helpers.md
@@ -199,6 +232,17 @@ this.ext:      .md
 
 
 ### {{#each pages}}
+
+#### assets.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/assets.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: assets.md
+page.pagename: assets.md
+page.basename: assets
+page.extname:  .md
+page.ext:      .md
 
 #### assets.md
 page.assets:   ../../assets
@@ -511,21 +555,15 @@ basename:      assets
 extname:       .md
 ext:           .md
 
-
-<p>Examples to test the "relative" and "assets" variables, and to show how they work</p>
-
-
-
-
-
-<h1>Relative Helper</h1>
-<script src="../../../../css/one/two/three.js"></script>
-<script src="../../../../js/one/two/three.js"></script>
-<script src="../../../../jsone/two/three.js"></script>
-<script src="./../../../../jsone/two/three.js"></script>
-
-<h1>Assets Helper</h1>
-<script src="../../assetsone/two/three.js"></script>
-<script src="../../assets/one/two/three.js"></script>
+#### assets.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/assets.md
+dirname:       test/actual/multi/dest1
+filename:      assets.md
+pagename:      assets.md
+basename:      assets
+extname:       .md
+ext:           .md
 
 

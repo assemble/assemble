@@ -113,19 +113,23 @@
 
 <h3>Debug Info</h3>
 <pre class="json">
-{ attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
-  movies: 
-   [ 'Casablanca',
-     'North by Northwest',
-     'The Man Who Wasn\'t There',
-     [length]: 3 ],
+{ groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
   men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
+  pagename: 'lists.html',
   basename: 'lists',
-  src: 'test/YAML/lists.hbs',
-  dirname: 'test/actual/yaml',
-  methods: [ 'getter', 'setter', [length]: 2 ],
-  filename: 'lists.html',
-  extname: '.html',
+  people: 
+   [ { name: 'John Smith', age: 33 },
+     { name: 'Mary Smith', age: 27 },
+     [length]: 2 ],
+  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
+  ext: '.html',
   data: 
    { title: 'Almost a Haiku',
      attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
@@ -142,25 +146,21 @@
         [length]: 2 ],
      men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
      women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ] },
-  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
-  dest: 'test/actual/yaml/lists.html',
-  ext: '.html',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  pagename: 'lists.html',
+  methods: [ 'getter', 'setter', [length]: 2 ],
   title: 'Almost a Haiku',
-  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
-  people: 
-   [ { name: 'John Smith', age: 33 },
-     { name: 'Mary Smith', age: 27 },
-     [length]: 2 ],
-  assets: '../assets',
-  pageName: 'lists.html' }
+  src: 'test/YAML/lists.hbs',
+  pageName: 'lists.html',
+  extname: '.html',
+  dest: 'test/actual/yaml/lists.html',
+  movies: 
+   [ 'Casablanca',
+     'North by Northwest',
+     'The Man Who Wasn\'t There',
+     [length]: 3 ],
+  dirname: 'test/actual/yaml',
+  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
+  filename: 'lists.html',
+  assets: '../assets' }
 </pre>
     </div>
   </body>

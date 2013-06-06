@@ -2,35 +2,35 @@
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Helpers and custom variables</title>
+    <title>YFM title</title>
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
     <div class="container">
       
+
+Properties from "example.json" and "example.hbs" should be on the page object.
+
 <div class="page-header">
-  <h1>Helpers and custom variables</h1>
-  <p class="lead">Here we are using the &quot;css&quot; and &quot;js&quot; helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.
-</p>
+  <h1></h1>
+  <p class="lead"></p>
 </div>
 
-<h2>css helper</h2>
-Example of using the "css" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
-<link rel="stylesheet" href="../assets/css/css/bootstrap.css">
-<link rel="stylesheet" href="../assets/css/css/responsive.css">
-<link rel="stylesheet" href="../assets/css/css/main.css">
+<hr>
+
+<div class="page-header">
+  <h1>YFM title</h1>
+  <p class="lead">YFM description</p>
+</div>
+
+<hr>
+
+<div class="page-header">
+  <h1>YFM title</h1>
+  <p class="lead">YFM description</p>
+</div>
 
 
-<h2>js helper</h2>
-Example of using the "js" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
-<script src="../assets/js/js/bootstrap.js"></script>
-<script src="../assets/js/js/responsive.js"></script>
-<script src="../assets/js/js/main.js"></script>
-
-
-<h2>custom variables</h2>
-<link rel="stylesheet" href="css/index.css"/>
-<script>document.write('foo bar!');</script>
 
     </div>
 
@@ -38,11 +38,18 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
       <h3>Paths Examples</h3>
 
 <pre class="json">
-{ javascripts: 
-   [ 'js/bootstrap.js',
-     'js/responsive.js',
-     'js/main.js',
-     [length]: 3 ],
+{ title: 'YFM title',
+  description: 'YFM description',
+  dirname: 'test/actual/paths',
+  filename: 'home.html',
+  pageName: 'home.html',
+  pagename: 'home.html',
+  basename: 'home',
+  src: 'test/templates/pages/home.hbs',
+  dest: 'test/actual/paths/home.html',
+  assets: '../assets',
+  ext: '.html',
+  extname: '.html',
   page: 
    { [Function]
      [length]: 2,
@@ -50,40 +57,7 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  pagename: 'helpers.html',
-  basename: 'helpers',
-  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
-  stylesheets: 
-   [ 'css/bootstrap.css',
-     'css/responsive.css',
-     'css/main.css',
-     [length]: 3 ],
-  ext: '.html',
-  data: 
-   { title: 'Helpers and custom variables',
-     description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
-     stylesheets: 
-      [ 'css/bootstrap.css',
-        'css/responsive.css',
-        'css/main.css',
-        [length]: 3 ],
-     javascripts: 
-      [ 'js/bootstrap.js',
-        'js/responsive.js',
-        'js/main.js',
-        [length]: 3 ],
-     styles: '<link rel="stylesheet" href="css/index.css"/>',
-     scripts: 'document.write(\'foo bar!\');' },
-  title: 'Helpers and custom variables',
-  src: 'test/templates/pages/helpers.hbs',
-  styles: '<link rel="stylesheet" href="css/index.css"/>',
-  pageName: 'helpers.html',
-  scripts: 'document.write(\'foo bar!\');',
-  extname: '.html',
-  dest: 'test/actual/paths/helpers.html',
-  dirname: 'test/actual/paths',
-  filename: 'helpers.html',
-  assets: '../assets' }
+  data: { title: 'YFM title', description: 'YFM description' } }
 </pre>
 
       <ul>
@@ -103,23 +77,23 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/helpers.html
+        page.dest:     test/actual/paths/home.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: helpers.html
-        page.pagename: helpers.html
-        page.basename: helpers
+        page.filename: home.html
+        page.pagename: home.html
+        page.basename: home
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/helpers.html
+        absolute:      test/actual/paths/home.html
         dirname:       test/actual/paths
-        filename:      helpers.html
-        pagename:      helpers.html
-        basename:      helpers
+        filename:      home.html
+        pagename:      home.html
+        basename:      home
         extname:       .html
         ext:           .html
         -->
@@ -139,23 +113,23 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/helpers.html
+        page.dest:     test/actual/paths/home.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: helpers.html
-        page.pagename: helpers.html
-        page.basename: helpers
+        page.filename: home.html
+        page.pagename: home.html
+        page.basename: home
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/helpers.html
+        absolute:      test/actual/paths/home.html
         dirname:       test/actual/paths
-        filename:      helpers.html
-        pagename:      helpers.html
-        basename:      helpers
+        filename:      home.html
+        pagename:      home.html
+        basename:      home
         extname:       .html
         ext:           .html
         -->
@@ -175,23 +149,23 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/helpers.html
+        page.dest:     test/actual/paths/home.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: helpers.html
-        page.pagename: helpers.html
-        page.basename: helpers
+        page.filename: home.html
+        page.pagename: home.html
+        page.basename: home
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/helpers.html
+        absolute:      test/actual/paths/home.html
         dirname:       test/actual/paths
-        filename:      helpers.html
-        pagename:      helpers.html
-        basename:      helpers
+        filename:      home.html
+        pagename:      home.html
+        basename:      home
         extname:       .html
         ext:           .html
         -->
@@ -211,23 +185,23 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/helpers.html
+        page.dest:     test/actual/paths/home.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: helpers.html
-        page.pagename: helpers.html
-        page.basename: helpers
+        page.filename: home.html
+        page.pagename: home.html
+        page.basename: home
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/helpers.html
+        absolute:      test/actual/paths/home.html
         dirname:       test/actual/paths
-        filename:      helpers.html
-        pagename:      helpers.html
-        basename:      helpers
+        filename:      home.html
+        pagename:      home.html
+        basename:      home
         extname:       .html
         ext:           .html
         -->
@@ -247,23 +221,23 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/helpers.html
+        page.dest:     test/actual/paths/home.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: helpers.html
-        page.pagename: helpers.html
-        page.basename: helpers
+        page.filename: home.html
+        page.pagename: home.html
+        page.basename: home
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/helpers.html
+        absolute:      test/actual/paths/home.html
         dirname:       test/actual/paths
-        filename:      helpers.html
-        pagename:      helpers.html
-        basename:      helpers
+        filename:      home.html
+        pagename:      home.html
+        basename:      home
         extname:       .html
         ext:           .html
         -->
@@ -283,23 +257,23 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/helpers.html
+        page.dest:     test/actual/paths/home.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: helpers.html
-        page.pagename: helpers.html
-        page.basename: helpers
+        page.filename: home.html
+        page.pagename: home.html
+        page.basename: home
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/helpers.html
+        absolute:      test/actual/paths/home.html
         dirname:       test/actual/paths
-        filename:      helpers.html
-        pagename:      helpers.html
-        basename:      helpers
+        filename:      home.html
+        pagename:      home.html
+        basename:      home
         extname:       .html
         ext:           .html
         -->
@@ -319,23 +293,23 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/helpers.html
+        page.dest:     test/actual/paths/home.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: helpers.html
-        page.pagename: helpers.html
-        page.basename: helpers
+        page.filename: home.html
+        page.pagename: home.html
+        page.basename: home
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/helpers.html
+        absolute:      test/actual/paths/home.html
         dirname:       test/actual/paths
-        filename:      helpers.html
-        pagename:      helpers.html
-        basename:      helpers
+        filename:      home.html
+        pagename:      home.html
+        basename:      home
         extname:       .html
         ext:           .html
         -->
@@ -355,23 +329,23 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/helpers.html
+        page.dest:     test/actual/paths/home.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: helpers.html
-        page.pagename: helpers.html
-        page.basename: helpers
+        page.filename: home.html
+        page.pagename: home.html
+        page.basename: home
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/helpers.html
+        absolute:      test/actual/paths/home.html
         dirname:       test/actual/paths
-        filename:      helpers.html
-        pagename:      helpers.html
-        basename:      helpers
+        filename:      home.html
+        pagename:      home.html
+        basename:      home
         extname:       .html
         ext:           .html
         -->
@@ -391,23 +365,23 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/helpers.html
+        page.dest:     test/actual/paths/home.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: helpers.html
-        page.pagename: helpers.html
-        page.basename: helpers
+        page.filename: home.html
+        page.pagename: home.html
+        page.basename: home
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/helpers.html
+        absolute:      test/actual/paths/home.html
         dirname:       test/actual/paths
-        filename:      helpers.html
-        pagename:      helpers.html
-        basename:      helpers
+        filename:      home.html
+        pagename:      home.html
+        basename:      home
         extname:       .html
         ext:           .html
         -->
@@ -427,23 +401,23 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/helpers.html
+        page.dest:     test/actual/paths/home.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: helpers.html
-        page.pagename: helpers.html
-        page.basename: helpers
+        page.filename: home.html
+        page.pagename: home.html
+        page.basename: home
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/helpers.html
+        absolute:      test/actual/paths/home.html
         dirname:       test/actual/paths
-        filename:      helpers.html
-        pagename:      helpers.html
-        basename:      helpers
+        filename:      home.html
+        pagename:      home.html
+        basename:      home
         extname:       .html
         ext:           .html
         -->
@@ -463,23 +437,23 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/helpers.html
+        page.dest:     test/actual/paths/home.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: helpers.html
-        page.pagename: helpers.html
-        page.basename: helpers
+        page.filename: home.html
+        page.pagename: home.html
+        page.basename: home
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/helpers.html
+        absolute:      test/actual/paths/home.html
         dirname:       test/actual/paths
-        filename:      helpers.html
-        pagename:      helpers.html
-        basename:      helpers
+        filename:      home.html
+        pagename:      home.html
+        basename:      home
         extname:       .html
         ext:           .html
         -->
@@ -499,23 +473,23 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/helpers.html
+        page.dest:     test/actual/paths/home.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: helpers.html
-        page.pagename: helpers.html
-        page.basename: helpers
+        page.filename: home.html
+        page.pagename: home.html
+        page.basename: home
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/helpers.html
+        absolute:      test/actual/paths/home.html
         dirname:       test/actual/paths
-        filename:      helpers.html
-        pagename:      helpers.html
-        basename:      helpers
+        filename:      home.html
+        pagename:      home.html
+        basename:      home
         extname:       .html
         ext:           .html
         -->
@@ -535,23 +509,23 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/helpers.html
+        page.dest:     test/actual/paths/home.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: helpers.html
-        page.pagename: helpers.html
-        page.basename: helpers
+        page.filename: home.html
+        page.pagename: home.html
+        page.basename: home
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/helpers.html
+        absolute:      test/actual/paths/home.html
         dirname:       test/actual/paths
-        filename:      helpers.html
-        pagename:      helpers.html
-        basename:      helpers
+        filename:      home.html
+        pagename:      home.html
+        basename:      home
         extname:       .html
         ext:           .html
         -->
@@ -571,23 +545,23 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/helpers.html
+        page.dest:     test/actual/paths/home.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: helpers.html
-        page.pagename: helpers.html
-        page.basename: helpers
+        page.filename: home.html
+        page.pagename: home.html
+        page.basename: home
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/helpers.html
+        absolute:      test/actual/paths/home.html
         dirname:       test/actual/paths
-        filename:      helpers.html
-        pagename:      helpers.html
-        basename:      helpers
+        filename:      home.html
+        pagename:      home.html
+        basename:      home
         extname:       .html
         ext:           .html
         -->
@@ -607,23 +581,23 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/helpers.html
+        page.dest:     test/actual/paths/home.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: helpers.html
-        page.pagename: helpers.html
-        page.basename: helpers
+        page.filename: home.html
+        page.pagename: home.html
+        page.basename: home
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/helpers.html
+        absolute:      test/actual/paths/home.html
         dirname:       test/actual/paths
-        filename:      helpers.html
-        pagename:      helpers.html
-        basename:      helpers
+        filename:      home.html
+        pagename:      home.html
+        basename:      home
         extname:       .html
         ext:           .html
         -->

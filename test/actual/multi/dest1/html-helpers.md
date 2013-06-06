@@ -1,7 +1,60 @@
 # html-helpers.md output
 
-## Debug Info
+## Content
 
+
+<h2>HTML list helpers.</h2>
+<h3>{{ul}} helper</h3>
+<ul class="nav"><li>
+  one
+</li>
+<li>
+  two
+</li>
+<li>
+  three
+</li></ul>
+
+<ul class="nav"><li>
+  <a href="one">two</a>
+</li>
+<li>
+  <a href="three">four</a>
+</li>
+<li>
+  <a href="five">size</a>
+</li></ul>
+
+<h3>{{ol}} helper</h3>
+<ol class="nav"><li>
+  one
+</li>
+<li>
+  two
+</li>
+<li>
+  three
+</li></ol>
+
+<ol class="nav"><li>
+  <a href="one">two</a>
+</li>
+<li>
+  <a href="three">four</a>
+</li>
+<li>
+  <a href="five">size</a>
+</li></ol>
+
+<h3>{{_link}} helper</h3>
+<p><a href="">helpers.js</a>
+<a href="http://github.com">GitHub</a>
+<a href="http://github.com">GitHub</a></p>
+
+
+
+
+## Debug Info
 ``` json
 { text: 'helpers.js',
   links: [ 'one', 'two', 'three', [length]: 3 ],
@@ -37,6 +90,7 @@
         [length]: 3 ] } }
 ```
 
+
 ### "{{#each pages}}" Links
 [alert](alert.md)
 [assets](assets.md)
@@ -47,6 +101,7 @@
 [example](example.md)
 [gist-helper](gist-helper.md)
 [helpers](helpers.md)
+[home](home.md)
 [html-helpers](html-helpers.md)
 [page](page.md)
 [simple3](simple3.md)
@@ -156,6 +211,17 @@ this.basename: helpers
 this.extname:  .md
 this.ext:      .md
 
+#### home.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/home.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: home.md
+this.pagename: home.md
+this.basename: home
+this.extname:  .md
+this.ext:      .md
+
 #### html-helpers.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/html-helpers.md
@@ -213,6 +279,17 @@ this.ext:      .md
 
 
 ### {{#each pages}}
+
+#### html-helpers.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/html-helpers.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
+page.extname:  .md
+page.ext:      .md
 
 #### html-helpers.md
 page.assets:   ../../assets
@@ -525,54 +602,15 @@ basename:      html-helpers
 extname:       .md
 ext:           .md
 
-
-
-<h2>HTML list helpers.</h2>
-<h3>{{ul}} helper</h3>
-<ul class="nav"><li>
-  one
-</li>
-<li>
-  two
-</li>
-<li>
-  three
-</li></ul>
-
-<ul class="nav"><li>
-  <a href="one">two</a>
-</li>
-<li>
-  <a href="three">four</a>
-</li>
-<li>
-  <a href="five">size</a>
-</li></ul>
-
-<h3>{{ol}} helper</h3>
-<ol class="nav"><li>
-  one
-</li>
-<li>
-  two
-</li>
-<li>
-  three
-</li></ol>
-
-<ol class="nav"><li>
-  <a href="one">two</a>
-</li>
-<li>
-  <a href="three">four</a>
-</li>
-<li>
-  <a href="five">size</a>
-</li></ol>
-
-<h3>{{_link}} helper</h3>
-<p><a href="">helpers.js</a>
-<a href="http://github.com">GitHub</a>
-<a href="http://github.com">GitHub</a></p>
+#### html-helpers.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/html-helpers.md
+dirname:       test/actual/multi/dest1
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
+extname:       .md
+ext:           .md
 
 

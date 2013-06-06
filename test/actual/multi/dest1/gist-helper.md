@@ -1,7 +1,16 @@
 # gist-helper.md output
 
-## Debug Info
+## Content
 
+
+
+<h1>{{gist}} helper</h1>
+<script src="https://gist.github.com/5193239.js"></script>
+
+
+
+
+## Debug Info
 ``` json
 { dirname: 'test/actual/multi/dest1',
   filename: 'gist-helper.md',
@@ -23,6 +32,7 @@
   data: {} }
 ```
 
+
 ### "{{#each pages}}" Links
 [alert](alert.md)
 [assets](assets.md)
@@ -33,6 +43,7 @@
 [example](example.md)
 [gist-helper](gist-helper.md)
 [helpers](helpers.md)
+[home](home.md)
 [html-helpers](html-helpers.md)
 [page](page.md)
 [simple3](simple3.md)
@@ -142,6 +153,17 @@ this.basename: helpers
 this.extname:  .md
 this.ext:      .md
 
+#### home.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/home.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: home.md
+this.pagename: home.md
+this.basename: home
+this.extname:  .md
+this.ext:      .md
+
 #### html-helpers.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/html-helpers.md
@@ -199,6 +221,17 @@ this.ext:      .md
 
 
 ### {{#each pages}}
+
+#### gist-helper.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/gist-helper.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: gist-helper.md
+page.pagename: gist-helper.md
+page.basename: gist-helper
+page.extname:  .md
+page.ext:      .md
 
 #### gist-helper.md
 page.assets:   ../../assets
@@ -511,10 +544,15 @@ basename:      gist-helper
 extname:       .md
 ext:           .md
 
-
-
-
-<h1>{{gist}} helper</h1>
-<script src="https://gist.github.com/5193239.js"></script>
+#### gist-helper.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/gist-helper.md
+dirname:       test/actual/multi/dest1
+filename:      gist-helper.md
+pagename:      gist-helper.md
+basename:      gist-helper
+extname:       .md
+ext:           .md
 
 

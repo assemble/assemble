@@ -1,7 +1,15 @@
 # debug-helpers.md output
 
-## Debug Info
+## Content
 
+
+<h3>{{debug}} helper</h3>
+<p>Uncomment the <code>debug</code> helper below, run <code>grunt assemble</code>, and watch the output in the command line to see how it works.</p>
+
+
+
+
+## Debug Info
 ``` json
 { dirname: 'test/actual/multi/dest1',
   filename: 'debug-helpers.md',
@@ -23,6 +31,7 @@
   data: {} }
 ```
 
+
 ### "{{#each pages}}" Links
 [alert](alert.md)
 [assets](assets.md)
@@ -33,6 +42,7 @@
 [example](example.md)
 [gist-helper](gist-helper.md)
 [helpers](helpers.md)
+[home](home.md)
 [html-helpers](html-helpers.md)
 [page](page.md)
 [simple3](simple3.md)
@@ -142,6 +152,17 @@ this.basename: helpers
 this.extname:  .md
 this.ext:      .md
 
+#### home.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/home.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: home.md
+this.pagename: home.md
+this.basename: home
+this.extname:  .md
+this.ext:      .md
+
 #### html-helpers.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/html-helpers.md
@@ -199,6 +220,17 @@ this.ext:      .md
 
 
 ### {{#each pages}}
+
+#### debug-helpers.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/debug-helpers.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: debug-helpers.md
+page.pagename: debug-helpers.md
+page.basename: debug-helpers
+page.extname:  .md
+page.ext:      .md
 
 #### debug-helpers.md
 page.assets:   ../../assets
@@ -511,9 +543,15 @@ basename:      debug-helpers
 extname:       .md
 ext:           .md
 
-
-
-<h3>{{debug}} helper</h3>
-<p>Uncomment the <code>debug</code> helper below, run <code>grunt assemble</code>, and watch the output in the command line to see how it works.</p>
+#### debug-helpers.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/debug-helpers.md
+dirname:       test/actual/multi/dest1
+filename:      debug-helpers.md
+pagename:      debug-helpers.md
+basename:      debug-helpers
+extname:       .md
+ext:           .md
 
 

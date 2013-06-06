@@ -1,23 +1,45 @@
-# alert.md output
+# YFM title
 
 ## Content
 
 
 
-<span class="alert alert-info"></span>
+Properties from "example.json" and "example.hbs" should be on the page object.
+
+<div class="page-header">
+  <h1>Home</h1>
+  <p class="lead">Welcome to my amazing and mysterious site!</p>
+</div>
+
+<hr>
+
+<div class="page-header">
+  <h1>YFM title</h1>
+  <p class="lead">YFM description</p>
+</div>
+
+<hr>
+
+<div class="page-header">
+  <h1>YFM title</h1>
+  <p class="lead">YFM description</p>
+</div>
+
+
 
 
 
 ## Debug Info
 ``` json
-{ one: { two: 'This is an alert' },
+{ title: 'YFM title',
+  description: 'YFM description',
   dirname: 'test/actual/multi/dest1',
-  filename: 'alert.md',
-  pageName: 'alert.md',
-  pagename: 'alert.md',
-  basename: 'alert',
-  src: 'test/templates/pages/alert.hbs',
-  dest: 'test/actual/multi/dest1/alert.md',
+  filename: 'home.md',
+  pageName: 'home.md',
+  pagename: 'home.md',
+  basename: 'home',
+  src: 'test/templates/pages/home.hbs',
+  dest: 'test/actual/multi/dest1/home.md',
   assets: '../../assets',
   ext: '.md',
   extname: '.md',
@@ -28,7 +50,7 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  data: { one: { two: 'This is an alert' } } }
+  data: { title: 'YFM title', description: 'YFM description' } }
 ```
 
 
@@ -221,336 +243,336 @@ this.ext:      .md
 
 ### {{#each pages}}
 
-#### alert.md
+#### home.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/alert.md
+page.dest:     test/actual/multi/dest1/home.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: alert.md
-page.pagename: alert.md
-page.basename: alert
+page.filename: home.md
+page.pagename: home.md
+page.basename: home
 page.extname:  .md
 page.ext:      .md
 
-#### alert.md
+#### home.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/alert.md
+page.dest:     test/actual/multi/dest1/home.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: alert.md
-page.pagename: alert.md
-page.basename: alert
+page.filename: home.md
+page.pagename: home.md
+page.basename: home
 page.extname:  .md
 page.ext:      .md
 
-#### alert.md
+#### home.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/alert.md
+page.dest:     test/actual/multi/dest1/home.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: alert.md
-page.pagename: alert.md
-page.basename: alert
+page.filename: home.md
+page.pagename: home.md
+page.basename: home
 page.extname:  .md
 page.ext:      .md
 
-#### alert.md
+#### home.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/alert.md
+page.dest:     test/actual/multi/dest1/home.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: alert.md
-page.pagename: alert.md
-page.basename: alert
+page.filename: home.md
+page.pagename: home.md
+page.basename: home
 page.extname:  .md
 page.ext:      .md
 
-#### alert.md
+#### home.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/alert.md
+page.dest:     test/actual/multi/dest1/home.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: alert.md
-page.pagename: alert.md
-page.basename: alert
+page.filename: home.md
+page.pagename: home.md
+page.basename: home
 page.extname:  .md
 page.ext:      .md
 
-#### alert.md
+#### home.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/alert.md
+page.dest:     test/actual/multi/dest1/home.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: alert.md
-page.pagename: alert.md
-page.basename: alert
+page.filename: home.md
+page.pagename: home.md
+page.basename: home
 page.extname:  .md
 page.ext:      .md
 
-#### alert.md
+#### home.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/alert.md
+page.dest:     test/actual/multi/dest1/home.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: alert.md
-page.pagename: alert.md
-page.basename: alert
+page.filename: home.md
+page.pagename: home.md
+page.basename: home
 page.extname:  .md
 page.ext:      .md
 
-#### alert.md
+#### home.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/alert.md
+page.dest:     test/actual/multi/dest1/home.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: alert.md
-page.pagename: alert.md
-page.basename: alert
+page.filename: home.md
+page.pagename: home.md
+page.basename: home
 page.extname:  .md
 page.ext:      .md
 
-#### alert.md
+#### home.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/alert.md
+page.dest:     test/actual/multi/dest1/home.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: alert.md
-page.pagename: alert.md
-page.basename: alert
+page.filename: home.md
+page.pagename: home.md
+page.basename: home
 page.extname:  .md
 page.ext:      .md
 
-#### alert.md
+#### home.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/alert.md
+page.dest:     test/actual/multi/dest1/home.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: alert.md
-page.pagename: alert.md
-page.basename: alert
+page.filename: home.md
+page.pagename: home.md
+page.basename: home
 page.extname:  .md
 page.ext:      .md
 
-#### alert.md
+#### home.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/alert.md
+page.dest:     test/actual/multi/dest1/home.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: alert.md
-page.pagename: alert.md
-page.basename: alert
+page.filename: home.md
+page.pagename: home.md
+page.basename: home
 page.extname:  .md
 page.ext:      .md
 
-#### alert.md
+#### home.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/alert.md
+page.dest:     test/actual/multi/dest1/home.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: alert.md
-page.pagename: alert.md
-page.basename: alert
+page.filename: home.md
+page.pagename: home.md
+page.basename: home
 page.extname:  .md
 page.ext:      .md
 
-#### alert.md
+#### home.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/alert.md
+page.dest:     test/actual/multi/dest1/home.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: alert.md
-page.pagename: alert.md
-page.basename: alert
+page.filename: home.md
+page.pagename: home.md
+page.basename: home
 page.extname:  .md
 page.ext:      .md
 
-#### alert.md
+#### home.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/alert.md
+page.dest:     test/actual/multi/dest1/home.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: alert.md
-page.pagename: alert.md
-page.basename: alert
+page.filename: home.md
+page.pagename: home.md
+page.basename: home
 page.extname:  .md
 page.ext:      .md
 
-#### alert.md
+#### home.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/alert.md
+page.dest:     test/actual/multi/dest1/home.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: alert.md
-page.pagename: alert.md
-page.basename: alert
+page.filename: home.md
+page.pagename: home.md
+page.basename: home
 page.extname:  .md
 page.ext:      .md
 
 
 ### {{#each pages}} "page" context
 
-#### alert.md
+#### home.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/alert.md
+absolute:      test/actual/multi/dest1/home.md
 dirname:       test/actual/multi/dest1
-filename:      alert.md
-pagename:      alert.md
-basename:      alert
+filename:      home.md
+pagename:      home.md
+basename:      home
 extname:       .md
 ext:           .md
 
-#### alert.md
+#### home.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/alert.md
+absolute:      test/actual/multi/dest1/home.md
 dirname:       test/actual/multi/dest1
-filename:      alert.md
-pagename:      alert.md
-basename:      alert
+filename:      home.md
+pagename:      home.md
+basename:      home
 extname:       .md
 ext:           .md
 
-#### alert.md
+#### home.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/alert.md
+absolute:      test/actual/multi/dest1/home.md
 dirname:       test/actual/multi/dest1
-filename:      alert.md
-pagename:      alert.md
-basename:      alert
+filename:      home.md
+pagename:      home.md
+basename:      home
 extname:       .md
 ext:           .md
 
-#### alert.md
+#### home.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/alert.md
+absolute:      test/actual/multi/dest1/home.md
 dirname:       test/actual/multi/dest1
-filename:      alert.md
-pagename:      alert.md
-basename:      alert
+filename:      home.md
+pagename:      home.md
+basename:      home
 extname:       .md
 ext:           .md
 
-#### alert.md
+#### home.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/alert.md
+absolute:      test/actual/multi/dest1/home.md
 dirname:       test/actual/multi/dest1
-filename:      alert.md
-pagename:      alert.md
-basename:      alert
+filename:      home.md
+pagename:      home.md
+basename:      home
 extname:       .md
 ext:           .md
 
-#### alert.md
+#### home.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/alert.md
+absolute:      test/actual/multi/dest1/home.md
 dirname:       test/actual/multi/dest1
-filename:      alert.md
-pagename:      alert.md
-basename:      alert
+filename:      home.md
+pagename:      home.md
+basename:      home
 extname:       .md
 ext:           .md
 
-#### alert.md
+#### home.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/alert.md
+absolute:      test/actual/multi/dest1/home.md
 dirname:       test/actual/multi/dest1
-filename:      alert.md
-pagename:      alert.md
-basename:      alert
+filename:      home.md
+pagename:      home.md
+basename:      home
 extname:       .md
 ext:           .md
 
-#### alert.md
+#### home.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/alert.md
+absolute:      test/actual/multi/dest1/home.md
 dirname:       test/actual/multi/dest1
-filename:      alert.md
-pagename:      alert.md
-basename:      alert
+filename:      home.md
+pagename:      home.md
+basename:      home
 extname:       .md
 ext:           .md
 
-#### alert.md
+#### home.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/alert.md
+absolute:      test/actual/multi/dest1/home.md
 dirname:       test/actual/multi/dest1
-filename:      alert.md
-pagename:      alert.md
-basename:      alert
+filename:      home.md
+pagename:      home.md
+basename:      home
 extname:       .md
 ext:           .md
 
-#### alert.md
+#### home.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/alert.md
+absolute:      test/actual/multi/dest1/home.md
 dirname:       test/actual/multi/dest1
-filename:      alert.md
-pagename:      alert.md
-basename:      alert
+filename:      home.md
+pagename:      home.md
+basename:      home
 extname:       .md
 ext:           .md
 
-#### alert.md
+#### home.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/alert.md
+absolute:      test/actual/multi/dest1/home.md
 dirname:       test/actual/multi/dest1
-filename:      alert.md
-pagename:      alert.md
-basename:      alert
+filename:      home.md
+pagename:      home.md
+basename:      home
 extname:       .md
 ext:           .md
 
-#### alert.md
+#### home.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/alert.md
+absolute:      test/actual/multi/dest1/home.md
 dirname:       test/actual/multi/dest1
-filename:      alert.md
-pagename:      alert.md
-basename:      alert
+filename:      home.md
+pagename:      home.md
+basename:      home
 extname:       .md
 ext:           .md
 
-#### alert.md
+#### home.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/alert.md
+absolute:      test/actual/multi/dest1/home.md
 dirname:       test/actual/multi/dest1
-filename:      alert.md
-pagename:      alert.md
-basename:      alert
+filename:      home.md
+pagename:      home.md
+basename:      home
 extname:       .md
 ext:           .md
 
-#### alert.md
+#### home.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/alert.md
+absolute:      test/actual/multi/dest1/home.md
 dirname:       test/actual/multi/dest1
-filename:      alert.md
-pagename:      alert.md
-basename:      alert
+filename:      home.md
+pagename:      home.md
+basename:      home
 extname:       .md
 ext:           .md
 
-#### alert.md
+#### home.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/alert.md
+absolute:      test/actual/multi/dest1/home.md
 dirname:       test/actual/multi/dest1
-filename:      alert.md
-pagename:      alert.md
-basename:      alert
+filename:      home.md
+pagename:      home.md
+basename:      home
 extname:       .md
 ext:           .md
 

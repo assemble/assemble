@@ -55,6 +55,8 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
         
         <li><a href="../../dest1/helpers.html">helpers</a></li>
         
+        <li><a href="../../dest1/home.html">home</a></li>
+        
         <li><a href="../../dest1/html-helpers.html">html-helpers</a></li>
         
         <li><a href="../../dest1/page.html">page</a></li>
@@ -89,6 +91,8 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
         
         <li><a href="helpers.html">helpers</a></li>
         
+        <li><a href="home.html">home</a></li>
+        
         <li><a href="html-helpers.html">html-helpers</a></li>
         
         <li><a href="page.html">page</a></li>
@@ -104,13 +108,27 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
 <h3>Debug Info</h3>
 <pre class="json">
-{ basename: 'helpers',
+{ javascripts: 
+   [ 'js/bootstrap.js',
+     'js/responsive.js',
+     'js/main.js',
+     [length]: 3 ],
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  pagename: 'helpers.html',
+  basename: 'helpers',
   description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
-  src: 'test/templates/pages/helpers.hbs',
-  dirname: 'test/actual/multi/dest2/sub-dest',
-  filename: 'helpers.html',
-  extname: '.html',
-  styles: '<link rel="stylesheet" href="css/index.css"/>',
+  stylesheets: 
+   [ 'css/bootstrap.css',
+     'css/responsive.css',
+     'css/main.css',
+     [length]: 3 ],
+  ext: '.html',
   data: 
    { title: 'Helpers and custom variables',
      description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
@@ -126,30 +144,16 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
         [length]: 3 ],
      styles: '<link rel="stylesheet" href="css/index.css"/>',
      scripts: 'document.write(\'foo bar!\');' },
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  dest: 'test/actual/multi/dest2/sub-dest/helpers.html',
-  ext: '.html',
-  javascripts: 
-   [ 'js/bootstrap.js',
-     'js/responsive.js',
-     'js/main.js',
-     [length]: 3 ],
-  scripts: 'document.write(\'foo bar!\');',
-  pagename: 'helpers.html',
   title: 'Helpers and custom variables',
-  assets: '../../../assets',
-  stylesheets: 
-   [ 'css/bootstrap.css',
-     'css/responsive.css',
-     'css/main.css',
-     [length]: 3 ],
-  pageName: 'helpers.html' }
+  src: 'test/templates/pages/helpers.hbs',
+  styles: '<link rel="stylesheet" href="css/index.css"/>',
+  pageName: 'helpers.html',
+  scripts: 'document.write(\'foo bar!\');',
+  extname: '.html',
+  dest: 'test/actual/multi/dest2/sub-dest/helpers.html',
+  dirname: 'test/actual/multi/dest2/sub-dest',
+  filename: 'helpers.html',
+  assets: '../../../assets' }
 </pre>
     </div>
   </body>

@@ -2,21 +2,35 @@
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>YAML Test</title>
+    <title>YFM title</title>
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
     <div class="container">
       
 
-This example shows that the properties from "example.json" and "example.hbs" are on the page object.
+Properties from "example.json" and "example.hbs" should be on the page object.
 
-<div>bar</div>
-<div></div>
+<div class="page-header">
+  <h1>Home</h1>
+  <p class="lead">Welcome to my amazing and mysterious site!</p>
+</div>
+
+<hr>
+
+<div class="page-header">
+  <h1>YFM title</h1>
+  <p class="lead">YFM description</p>
+</div>
+
+<hr>
+
+<div class="page-header">
+  <h1>YFM title</h1>
+  <p class="lead">YFM description</p>
+</div>
 
 
-<div>bar</div>
-<div></div>
 
     </div>
 
@@ -94,14 +108,15 @@ This example shows that the properties from "example.json" and "example.hbs" are
 
 <h3>Debug Info</h3>
 <pre class="json">
-{ foo: 'bar',
+{ title: 'YFM title',
+  description: 'YFM description',
   dirname: 'test/actual/multi/dest2/sub-dest',
-  filename: 'example.html',
-  pageName: 'example.html',
-  pagename: 'example.html',
-  basename: 'example',
-  src: 'test/templates/pages/example.hbs',
-  dest: 'test/actual/multi/dest2/sub-dest/example.html',
+  filename: 'home.html',
+  pageName: 'home.html',
+  pagename: 'home.html',
+  basename: 'home',
+  src: 'test/templates/pages/home.hbs',
+  dest: 'test/actual/multi/dest2/sub-dest/home.html',
   assets: '../../../assets',
   ext: '.html',
   extname: '.html',
@@ -112,7 +127,7 @@ This example shows that the properties from "example.json" and "example.hbs" are
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  data: { foo: 'bar' } }
+  data: { title: 'YFM title', description: 'YFM description' } }
 </pre>
     </div>
   </body>

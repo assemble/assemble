@@ -1,7 +1,14 @@
 # complex.md output
 
-## Debug Info
+## Content
 
+
+
+<span class="alert alert-info">This is an alert</span>
+
+
+
+## Debug Info
 ``` json
 { foo: 'bar',
   version: 2,
@@ -25,6 +32,7 @@
   data: { foo: 'bar', version: 2 } }
 ```
 
+
 ### "{{#each pages}}" Links
 [alert](alert.md)
 [assets](assets.md)
@@ -35,6 +43,7 @@
 [example](example.md)
 [gist-helper](gist-helper.md)
 [helpers](helpers.md)
+[home](home.md)
 [html-helpers](html-helpers.md)
 [page](page.md)
 [simple3](simple3.md)
@@ -144,6 +153,17 @@ this.basename: helpers
 this.extname:  .md
 this.ext:      .md
 
+#### home.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/home.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: home.md
+this.pagename: home.md
+this.basename: home
+this.extname:  .md
+this.ext:      .md
+
 #### html-helpers.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/html-helpers.md
@@ -201,6 +221,17 @@ this.ext:      .md
 
 
 ### {{#each pages}}
+
+#### complex.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/complex.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: complex.md
+page.pagename: complex.md
+page.basename: complex
+page.extname:  .md
+page.ext:      .md
 
 #### complex.md
 page.assets:   ../../assets
@@ -513,8 +544,15 @@ basename:      complex
 extname:       .md
 ext:           .md
 
+#### complex.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/complex.md
+dirname:       test/actual/multi/dest1
+filename:      complex.md
+pagename:      complex.md
+basename:      complex
+extname:       .md
+ext:           .md
 
-
-
-<span class="alert alert-info">This is an alert</span>
 
