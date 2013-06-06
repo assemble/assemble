@@ -2,7 +2,7 @@
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>{{#if title}}{{title}}{{else}}YAML Test{{/if}}</title>
+    <title>{{#if title}}{{title}}{{else}}Paths Test{{/if}}</title>
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
@@ -11,13 +11,13 @@
     </div>
 
     <div class="container" style="display: none">
-      <h3>Debug Info</h3>
-
+      <h3>Paths Examples</h3>
 
 {{inspect page 'json'}}
 
       <ul>
       {{#each pages}}
+        <li><a href="{{relative ../page.dest this.dest}}">{{this.basename}}</a></li>
         <!--
         "this"
         ===============================
@@ -52,7 +52,6 @@
         extname:       {{../extname}}
         ext:           {{../ext}}
         -->
-        <li><a href="{{relative ../page.dest this.dest}}">{{this.basename}}</a></li>
       {{/each}}
       </ul>
     </div>

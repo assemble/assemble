@@ -1,8 +1,13 @@
 # {{#if title}}{{title}}{{else}}{{this.filename}} output{{/if}}
 
-## Debug Info
+## Content
+{{! render "page" first}}
+{{> body }}
 
+
+## Debug Info
 {{inspect page 'json'}}
+
 
 ### "\{{#each pages}}" Links
 {{#each pages}}[{{this.basename}}]({{relative ../page.dest this.dest}})
@@ -51,4 +56,3 @@ extname:       {{../extname}}
 ext:           {{../ext}}
 {{/each}}
 
-{{> body }}

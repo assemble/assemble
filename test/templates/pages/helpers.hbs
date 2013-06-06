@@ -1,0 +1,34 @@
+---
+title: Helpers and custom variables
+description: >
+  Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.
+
+stylesheets: 
+- css/bootstrap.css
+- css/responsive.css
+- css/main.css
+javascripts: 
+- js/bootstrap.js
+- js/responsive.js
+- js/main.js
+styles: <link rel="stylesheet" href="css/index.css"/>
+scripts: document.write('foo bar!');
+---
+<div class="page-header">
+  <h1>{{title}}</h1>
+  <p class="lead">{{description}}</p>
+</div>
+
+<h2>css helper</h2>
+Example of using the "css" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
+{{css stylesheets}}
+
+
+<h2>js helper</h2>
+Example of using the "js" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
+{{js javascripts}}
+
+
+<h2>custom variables</h2>
+{{{styles}}}
+<script>{{{scripts}}}</script>

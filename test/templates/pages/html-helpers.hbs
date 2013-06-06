@@ -1,5 +1,4 @@
 ---
-url: http://gist.github.com/jonschlinkert/5193239
 text: helpers.js
 links:
   - one
@@ -19,7 +18,9 @@ moreLinks:
 ---
 {{#markdown}}
 
-## ul
+## HTML list helpers.
+
+### \{{ul}} helper
 {{#ul links class="nav"}}
   {{.}}
 {{/ul}}
@@ -28,7 +29,7 @@ moreLinks:
   <a href="{{url}}">{{text}}</a>
 {{/ul}}
 
-## ol
+### \{{ol}} helper
 {{#ol links class="nav"}}
   {{.}}
 {{/ol}}
@@ -37,26 +38,9 @@ moreLinks:
   <a href="{{url}}">{{text}}</a>
 {{/ol}}
 
+### \{{_link}} helper
+{{_link url text}}
+{{_link 'http://github.com' 'GitHub'}}
+{{_link 'http://github.com' 'GitHub' 'nav-link'}}
 
-
-
-## href
-{{href url text}}
-{{href 'http://github.com' 'GitHub'}}
-{{href 'http://github.com' 'GitHub' 'nav-link'}}
-
-
-
-## gist
-{{gist '5193239'}}
-
-
-## debug
-{{!debug text}}
-
-
-
-
-
-
-{{/markdown}}
+{{/markdown}}{{! /end markdown}}

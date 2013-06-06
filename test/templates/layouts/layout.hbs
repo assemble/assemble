@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>{{#if title}}{{title}}{{else}}YAML Test{{/if}}</title>
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
-    <link href="{{assets}}/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
     <div class="container">
@@ -12,14 +11,15 @@
     </div>
 
     <div class="container" style="display: none">
-      <h3>Debug Info</h3>
-      {{inspect page}}
-
       <ul>
-      {{#each pages}}
+        {{#each pages}}
         <li><a href="{{relative ../page.dest this.dest}}">{{this.basename}}</a></li>
-      {{/each}}
+        {{/each}}
       </ul>
+
+
+<h3>Debug Info</h3>
+{{inspect page 'json'}}
     </div>
   </body>
 </html>
