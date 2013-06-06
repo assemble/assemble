@@ -1,7 +1,28 @@
 # category.md output
 
-## Debug Info
+## Content
 
+
+
+<ul>
+
+  <li>categories</li>
+
+  <li>test</li>
+
+  <li>something</li>
+
+  <li>one</li>
+
+  <li>two</li>
+
+  <li>three</li>
+
+</ul>
+
+
+
+## Debug Info
 ``` json
 { page: 
    { [Function]
@@ -16,7 +37,7 @@
   pageName: 'category.md',
   pagename: 'category.md',
   basename: 'category',
-  src: 'test/files/category.hbs',
+  src: 'test/templates/pages/category.hbs',
   dest: 'test/actual/multi/dest1/category.md',
   assets: '../../assets',
   ext: '.md',
@@ -26,17 +47,20 @@
      categories: [ 'categories', 'test', 'something', [length]: 3 ] } }
 ```
 
+
 ### "{{#each pages}}" Links
 [alert](alert.md)
 [assets](assets.md)
 [category](category.md)
 [category2](category2.md)
 [complex](complex.md)
-[dates](dates.md)
+[debug-helpers](debug-helpers.md)
 [example](example.md)
+[gist-helper](gist-helper.md)
 [helpers](helpers.md)
+[home](home.md)
+[html-helpers](html-helpers.md)
 [page](page.md)
-[nav](nav.md)
 [simple3](simple3.md)
 [tags_test](tags_test.md)
 [tags_test2](tags_test2.md)
@@ -100,14 +124,14 @@ this.basename: complex
 this.extname:  .md
 this.ext:      .md
 
-#### dates.md
+#### debug-helpers.md
 this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/dates.md
+this.dest:     test/actual/multi/dest1/debug-helpers.md
 this.absolute:
 this.dirname:  test/actual/multi/dest1
-this.filename: dates.md
-this.pagename: dates.md
-this.basename: dates
+this.filename: debug-helpers.md
+this.pagename: debug-helpers.md
+this.basename: debug-helpers
 this.extname:  .md
 this.ext:      .md
 
@@ -122,6 +146,17 @@ this.basename: example
 this.extname:  .md
 this.ext:      .md
 
+#### gist-helper.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/gist-helper.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: gist-helper.md
+this.pagename: gist-helper.md
+this.basename: gist-helper
+this.extname:  .md
+this.ext:      .md
+
 #### helpers.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/helpers.md
@@ -133,6 +168,28 @@ this.basename: helpers
 this.extname:  .md
 this.ext:      .md
 
+#### home.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/home.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: home.md
+this.pagename: home.md
+this.basename: home
+this.extname:  .md
+this.ext:      .md
+
+#### html-helpers.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/html-helpers.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: html-helpers.md
+this.pagename: html-helpers.md
+this.basename: html-helpers
+this.extname:  .md
+this.ext:      .md
+
 #### page.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/page.md
@@ -141,17 +198,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: page.md
 this.pagename: page.md
 this.basename: page
-this.extname:  .md
-this.ext:      .md
-
-#### nav.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/nav.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: nav.md
-this.pagename: nav.md
-this.basename: nav
 this.extname:  .md
 this.ext:      .md
 
@@ -190,6 +236,28 @@ this.ext:      .md
 
 
 ### {{#each pages}}
+
+#### category.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/category.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: category.md
+page.pagename: category.md
+page.basename: category
+page.extname:  .md
+page.ext:      .md
+
+#### category.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/category.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: category.md
+page.pagename: category.md
+page.basename: category
+page.extname:  .md
+page.ext:      .md
 
 #### category.md
 page.assets:   ../../assets
@@ -480,22 +548,26 @@ basename:      category
 extname:       .md
 ext:           .md
 
+#### category.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/category.md
+dirname:       test/actual/multi/dest1
+filename:      category.md
+pagename:      category.md
+basename:      category
+extname:       .md
+ext:           .md
 
+#### category.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/category.md
+dirname:       test/actual/multi/dest1
+filename:      category.md
+pagename:      category.md
+basename:      category
+extname:       .md
+ext:           .md
 
-
-<ul>
-
-  <li>categories</li>
-
-  <li>test</li>
-
-  <li>something</li>
-
-  <li>one</li>
-
-  <li>two</li>
-
-  <li>three</li>
-
-</ul>
 
