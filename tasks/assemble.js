@@ -92,8 +92,15 @@ module.exports = function(grunt) {
       // load default layout
       var defaultLayoutData = {};
 
+      var layoutPath;
+      if(assemble.options.layoutdir) {
+        layoutPath = path.normalize(assemble.options.layoutdir + '/' + assemble.options.layout);
+      } else {
+        layoutPath = assemble.options.layout;
+      }
+
       loadLayout(
-        assemble.options.layout,
+        layoutPath,
         assemble,
         function(err, results) {
           if(!err) {
@@ -423,11 +430,13 @@ module.exports = function(grunt) {
     var src = currentPage.srcFile;
     var filename = currentPage.filename;
     var options = assemble.options;
+    var layoutPath = path.normalize(options.layoutdir + '/' + options.defaultLayout);
 
     grunt.verbose.writeln('currentPage: ' + currentPage);
     var page         = currentPage.page,
         pageContext  = currentPage.data,
         layout       = options.defaultLayout,
+        layoutdir      = layoutPath,
         data         = options.data,
         pages        = options.pages,
         engine       = options.engine,
@@ -445,12 +454,12 @@ module.exports = function(grunt) {
       var pageCollections = lodash.pick(pageContext, options.collections);
       pageContext = lodash.omit(pageContext, options.collections);
 
-      options.data   = undefined;
-      options.pages  = undefined;
-      options.layout = undefined;
-      context        = _.extend(context, options, data, pageContext);
-      options.data   = data;
-      options.pages  = pages;
+      options.data    = undefined;
+      options.pages   = undefined;
+      options.layout  = undefined;
+      context         = _.extend(context, options, data, pageContext);
+      options.data    = data;
+      options.pages   = pages;
 
       // if pageContext contains a layout, use that one instead
       // of the default layout
@@ -462,8 +471,15 @@ module.exports = function(grunt) {
 
         context = processContext(grunt, context);
 
+        var contextLayout;
+        if(assemble.options.layoutdir) {
+          contextLayout = path.normalize(assemble.options.layoutdir + '/' + context.layout);
+        } else {
+          contextLayout = context.layout;
+        }        
+
         loadLayout(
-          context.layout,
+          contextLayout,
           assemble,
           function(err, results) {
             if(!err) {
