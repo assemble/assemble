@@ -229,7 +229,6 @@ grunt.registerMultiTask('steps', 'examples of using steps in assemble', function
 The following code is for an entire `Gruntfile.js`, with an example of how to use `step` and `build` in the simpilest way.
 
 ```javascript
-
 module.exports = function(grunt) {
 
   // Project configuration.

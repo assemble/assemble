@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -12,8 +12,7 @@
 
     <div class="container" style="display: none">
       <ul>
-        {{#each pages}}
-        <li><a href="{{relative ../page.dest this.dest}}">{{this.basename}}</a></li>
+        {{#each pages}}<li><a href="{{relative ../page.dest this.dest}}">{{this.basename}}</a></li>
         {{/each}}
       </ul>
 

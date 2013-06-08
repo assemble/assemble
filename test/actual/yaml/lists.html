@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -89,23 +89,14 @@
 
     <div class="container" style="display: none">
       <ul>
-        
         <li><a href="associative-arrays.html">associative-arrays</a></li>
-        
         <li><a href="block-literals.html">block-literals</a></li>
-        
         <li><a href="comments.html">comments</a></li>
-        
         <li><a href="data-files.html">data-files</a></li>
-        
         <li><a href="data-types.html">data-types</a></li>
-        
         <li><a href="document.html">document</a></li>
-        
         <li><a href="lists.html">lists</a></li>
-        
         <li><a href="relational-trees.html">relational-trees</a></li>
-        
         <li><a href="variables.html">variables</a></li>
         
       </ul>
@@ -113,23 +104,7 @@
 
 <h3>Debug Info</h3>
 <pre class="json">
-{ groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
-  pagename: 'lists.html',
-  basename: 'lists',
-  people: 
-   [ { name: 'John Smith', age: 33 },
-     { name: 'Mary Smith', age: 27 },
-     [length]: 2 ],
-  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
-  ext: '.html',
+{ pageName: 'lists.html',
   data: 
    { title: 'Almost a Haiku',
      attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
@@ -147,20 +122,36 @@
      men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
      women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ] },
   methods: [ 'getter', 'setter', [length]: 2 ],
-  title: 'Almost a Haiku',
+  basename: 'lists',
   src: 'test/YAML/lists.hbs',
-  pageName: 'lists.html',
-  extname: '.html',
+  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
+  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
+  men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
+  dirname: 'test/actual/yaml',
+  pagename: 'lists.html',
+  title: 'Almost a Haiku',
   dest: 'test/actual/yaml/lists.html',
+  extname: '.html',
+  assets: '../assets',
+  people: 
+   [ { name: 'John Smith', age: 33 },
+     { name: 'Mary Smith', age: 27 },
+     [length]: 2 ],
   movies: 
    [ 'Casablanca',
      'North by Northwest',
      'The Man Who Wasn\'t There',
      [length]: 3 ],
-  dirname: 'test/actual/yaml',
   attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
   filename: 'lists.html',
-  assets: '../assets' }
+  ext: '.html',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } } }
 </pre>
     </div>
   </body>

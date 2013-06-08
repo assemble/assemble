@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -114,23 +114,14 @@ Suite 16
 
     <div class="container" style="display: none">
       <ul>
-        
         <li><a href="associative-arrays.html">associative-arrays</a></li>
-        
         <li><a href="block-literals.html">block-literals</a></li>
-        
         <li><a href="comments.html">comments</a></li>
-        
         <li><a href="data-files.html">data-files</a></li>
-        
         <li><a href="data-types.html">data-types</a></li>
-        
         <li><a href="document.html">document</a></li>
-        
         <li><a href="lists.html">lists</a></li>
-        
         <li><a href="relational-trees.html">relational-trees</a></li>
-        
         <li><a href="variables.html">variables</a></li>
         
       </ul>
@@ -138,27 +129,18 @@ Suite 16
 
 <h3>Debug Info</h3>
 <pre class="json">
-{ assets: '../assets',
-  src: 'test/YAML/document.hbs',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  receipt: 'Oz-Ware Purchase Invoice',
-  pageName: 'document.html',
-  prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
-  customer: { given: 'Dorothy', family: 'Gale' },
-  basename: 'document',
+{ pageName: 'document.html',
   pagename: 'document.html',
-  extname: '.html',
-  ext: '.html',
+  receipt: 'Oz-Ware Purchase Invoice',
+  prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
+  dest: 'test/actual/yaml/document.html',
   data: 
    { receipt: 'Oz-Ware Purchase Invoice',
      prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
-     customer: { given: 'Dorothy', family: 'Gale' },
+     'bill-to': 
+      { street: '123 Tornado Alley\nSuite 16\n',
+        city: 'East Centerville',
+        state: 'KS' },
      specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
      items: 
       [ { part_no: 'A4786',
@@ -171,16 +153,21 @@ Suite 16
           price: 100.27,
           quantity: 1 },
         [length]: 2 ],
-     'bill-to': 
-      { street: '123 Tornado Alley\nSuite 16\n',
-        city: 'East Centerville',
-        state: 'KS' },
      date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
      'ship-to': 
       { street: '123 Tornado Alley\nSuite 16\n',
         city: 'East Centerville',
-        state: 'KS' } },
-  dest: 'test/actual/yaml/document.html',
+        state: 'KS' },
+     customer: { given: 'Dorothy', family: 'Gale' } },
+  ext: '.html',
+  extname: '.html',
+  'bill-to': 
+   { street: '123 Tornado Alley\nSuite 16\n',
+     city: 'East Centerville',
+     state: 'KS' },
+  basename: 'document',
+  assets: '../assets',
+  src: 'test/YAML/document.hbs',
   specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
   items: 
    [ { part_no: 'A4786',
@@ -193,17 +180,21 @@ Suite 16
        price: 100.27,
        quantity: 1 },
      [length]: 2 ],
-  dirname: 'test/actual/yaml',
-  'bill-to': 
-   { street: '123 Tornado Alley\nSuite 16\n',
-     city: 'East Centerville',
-     state: 'KS' },
   date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+  dirname: 'test/actual/yaml',
   filename: 'document.html',
   'ship-to': 
    { street: '123 Tornado Alley\nSuite 16\n',
      city: 'East Centerville',
-     state: 'KS' } }
+     state: 'KS' },
+  customer: { given: 'Dorothy', family: 'Gale' },
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } } }
 </pre>
     </div>
   </body>

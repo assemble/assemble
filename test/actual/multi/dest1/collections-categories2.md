@@ -1,34 +1,50 @@
-# simple3.md output
+# collections-categories2.md output
 
 ## Content
 
 
 
-<span class="alert alert-info">This is an alert</span>
+<ul>
+
+  <li>one</li>
+
+  <li>two</li>
+
+  <li>three</li>
+
+  <li>categories</li>
+
+  <li>test</li>
+
+  <li>something</li>
+
+</ul>
 
 
 
 ## Debug Info
 ``` json
-{ foo: 'bar',
-  dirname: 'test/actual/multi/dest1',
-  filename: 'simple3.md',
-  pageName: 'simple3.md',
-  pagename: 'simple3.md',
-  basename: 'simple3',
-  src: 'test/templates/pages/simple3.hbs',
-  dest: 'test/actual/multi/dest1/simple3.md',
-  assets: '../../assets',
-  ext: '.md',
-  extname: '.md',
-  page: 
+{ page: 
    { [Function]
      [length]: 2,
      [name]: '',
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  data: { foo: 'bar' } }
+  categories: [ 'categories', 'test', 'something', [length]: 3 ],
+  dirname: 'test/actual/multi/dest1',
+  filename: 'collections-categories2.md',
+  pageName: 'collections-categories2.md',
+  pagename: 'collections-categories2.md',
+  basename: 'collections-categories2',
+  src: 'test/templates/pages/collections-categories2.hbs',
+  dest: 'test/actual/multi/dest1/collections-categories2.md',
+  assets: '../../assets',
+  ext: '.md',
+  extname: '.md',
+  data: 
+   { page: { title: 'Categories Test' },
+     categories: [ 'categories', 'test', 'something', [length]: 3 ] } }
 ```
 
 
@@ -221,336 +237,336 @@ this.ext:      .md
 
 ### {{#each pages}}
 
-#### simple3.md
+#### collections-categories2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/collections-categories2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: collections-categories2.md
+page.pagename: collections-categories2.md
+page.basename: collections-categories2
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### collections-categories2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/collections-categories2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: collections-categories2.md
+page.pagename: collections-categories2.md
+page.basename: collections-categories2
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### collections-categories2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/collections-categories2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: collections-categories2.md
+page.pagename: collections-categories2.md
+page.basename: collections-categories2
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### collections-categories2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/collections-categories2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: collections-categories2.md
+page.pagename: collections-categories2.md
+page.basename: collections-categories2
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### collections-categories2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/collections-categories2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: collections-categories2.md
+page.pagename: collections-categories2.md
+page.basename: collections-categories2
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### collections-categories2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/collections-categories2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: collections-categories2.md
+page.pagename: collections-categories2.md
+page.basename: collections-categories2
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### collections-categories2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/collections-categories2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: collections-categories2.md
+page.pagename: collections-categories2.md
+page.basename: collections-categories2
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### collections-categories2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/collections-categories2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: collections-categories2.md
+page.pagename: collections-categories2.md
+page.basename: collections-categories2
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### collections-categories2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/collections-categories2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: collections-categories2.md
+page.pagename: collections-categories2.md
+page.basename: collections-categories2
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### collections-categories2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/collections-categories2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: collections-categories2.md
+page.pagename: collections-categories2.md
+page.basename: collections-categories2
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### collections-categories2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/collections-categories2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: collections-categories2.md
+page.pagename: collections-categories2.md
+page.basename: collections-categories2
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### collections-categories2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/collections-categories2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: collections-categories2.md
+page.pagename: collections-categories2.md
+page.basename: collections-categories2
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### collections-categories2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/collections-categories2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: collections-categories2.md
+page.pagename: collections-categories2.md
+page.basename: collections-categories2
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### collections-categories2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/collections-categories2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: collections-categories2.md
+page.pagename: collections-categories2.md
+page.basename: collections-categories2
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### collections-categories2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/collections-categories2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: collections-categories2.md
+page.pagename: collections-categories2.md
+page.basename: collections-categories2
 page.extname:  .md
 page.ext:      .md
 
 
 ### {{#each pages}} "page" context
 
-#### simple3.md
+#### collections-categories2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/collections-categories2.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      collections-categories2.md
+pagename:      collections-categories2.md
+basename:      collections-categories2
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### collections-categories2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/collections-categories2.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      collections-categories2.md
+pagename:      collections-categories2.md
+basename:      collections-categories2
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### collections-categories2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/collections-categories2.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      collections-categories2.md
+pagename:      collections-categories2.md
+basename:      collections-categories2
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### collections-categories2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/collections-categories2.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      collections-categories2.md
+pagename:      collections-categories2.md
+basename:      collections-categories2
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### collections-categories2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/collections-categories2.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      collections-categories2.md
+pagename:      collections-categories2.md
+basename:      collections-categories2
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### collections-categories2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/collections-categories2.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      collections-categories2.md
+pagename:      collections-categories2.md
+basename:      collections-categories2
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### collections-categories2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/collections-categories2.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      collections-categories2.md
+pagename:      collections-categories2.md
+basename:      collections-categories2
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### collections-categories2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/collections-categories2.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      collections-categories2.md
+pagename:      collections-categories2.md
+basename:      collections-categories2
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### collections-categories2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/collections-categories2.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      collections-categories2.md
+pagename:      collections-categories2.md
+basename:      collections-categories2
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### collections-categories2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/collections-categories2.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      collections-categories2.md
+pagename:      collections-categories2.md
+basename:      collections-categories2
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### collections-categories2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/collections-categories2.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      collections-categories2.md
+pagename:      collections-categories2.md
+basename:      collections-categories2
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### collections-categories2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/collections-categories2.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      collections-categories2.md
+pagename:      collections-categories2.md
+basename:      collections-categories2
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### collections-categories2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/collections-categories2.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      collections-categories2.md
+pagename:      collections-categories2.md
+basename:      collections-categories2
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### collections-categories2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/collections-categories2.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      collections-categories2.md
+pagename:      collections-categories2.md
+basename:      collections-categories2
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### collections-categories2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/collections-categories2.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      collections-categories2.md
+pagename:      collections-categories2.md
+basename:      collections-categories2
 extname:       .md
 ext:           .md
 

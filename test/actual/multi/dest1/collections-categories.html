@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -11,17 +11,17 @@
 
 <ul>
 
-  <li>categories</li>
-
-  <li>test</li>
-
-  <li>something</li>
-
   <li>one</li>
 
   <li>two</li>
 
   <li>three</li>
+
+  <li>categories</li>
+
+  <li>test</li>
+
+  <li>something</li>
 
 </ul>
 
