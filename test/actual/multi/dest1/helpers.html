@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -36,99 +36,46 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
     <div class="container" style="display: none">
       <ul>
-        
         <li><a href="alert.html">alert</a></li>
-        
         <li><a href="assets.html">assets</a></li>
-        
-        <li><a href="category.html">category</a></li>
-        
-        <li><a href="category2.html">category2</a></li>
-        
+        <li><a href="collections-categories.html">collections-categories</a></li>
+        <li><a href="collections-categories2.html">collections-categories2</a></li>
+        <li><a href="collections-tags-2.html">collections-tags-2</a></li>
+        <li><a href="collections-tags.html">collections-tags</a></li>
         <li><a href="complex.html">complex</a></li>
-        
         <li><a href="debug-helpers.html">debug-helpers</a></li>
-        
         <li><a href="example.html">example</a></li>
-        
         <li><a href="gist-helper.html">gist-helper</a></li>
-        
         <li><a href="helpers.html">helpers</a></li>
-        
         <li><a href="home.html">home</a></li>
-        
         <li><a href="html-helpers.html">html-helpers</a></li>
-        
         <li><a href="page.html">page</a></li>
-        
         <li><a href="simple3.html">simple3</a></li>
-        
-        <li><a href="tags_test.html">tags_test</a></li>
-        
-        <li><a href="tags_test2.html">tags_test2</a></li>
-        
         <li><a href="../dest2/complex1.html">complex1</a></li>
-        
         <li><a href="../dest2/md2.html">md2</a></li>
-        
         <li><a href="../dest2/simple1.html">simple1</a></li>
-        
         <li><a href="../dest2/sub-dest/alert.html">alert</a></li>
-        
         <li><a href="../dest2/sub-dest/assets.html">assets</a></li>
-        
-        <li><a href="../dest2/sub-dest/category.html">category</a></li>
-        
-        <li><a href="../dest2/sub-dest/category2.html">category2</a></li>
-        
+        <li><a href="../dest2/sub-dest/collections-categories.html">collections-categories</a></li>
+        <li><a href="../dest2/sub-dest/collections-categories2.html">collections-categories2</a></li>
+        <li><a href="../dest2/sub-dest/collections-tags-2.html">collections-tags-2</a></li>
+        <li><a href="../dest2/sub-dest/collections-tags.html">collections-tags</a></li>
         <li><a href="../dest2/sub-dest/complex.html">complex</a></li>
-        
         <li><a href="../dest2/sub-dest/debug-helpers.html">debug-helpers</a></li>
-        
         <li><a href="../dest2/sub-dest/example.html">example</a></li>
-        
         <li><a href="../dest2/sub-dest/gist-helper.html">gist-helper</a></li>
-        
         <li><a href="../dest2/sub-dest/helpers.html">helpers</a></li>
-        
         <li><a href="../dest2/sub-dest/home.html">home</a></li>
-        
         <li><a href="../dest2/sub-dest/html-helpers.html">html-helpers</a></li>
-        
         <li><a href="../dest2/sub-dest/page.html">page</a></li>
-        
         <li><a href="../dest2/sub-dest/simple3.html">simple3</a></li>
-        
-        <li><a href="../dest2/sub-dest/tags_test.html">tags_test</a></li>
-        
-        <li><a href="../dest2/sub-dest/tags_test2.html">tags_test2</a></li>
         
       </ul>
 
 
 <h3>Debug Info</h3>
 <pre class="json">
-{ javascripts: 
-   [ 'js/bootstrap.js',
-     'js/responsive.js',
-     'js/main.js',
-     [length]: 3 ],
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  pagename: 'helpers.html',
-  basename: 'helpers',
-  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
-  stylesheets: 
-   [ 'css/bootstrap.css',
-     'css/responsive.css',
-     'css/main.css',
-     [length]: 3 ],
-  ext: '.html',
+{ pageName: 'helpers.html',
   data: 
    { title: 'Helpers and custom variables',
      description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
@@ -144,16 +91,36 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
         [length]: 3 ],
      styles: '<link rel="stylesheet" href="css/index.css"/>',
      scripts: 'document.write(\'foo bar!\');' },
-  title: 'Helpers and custom variables',
+  basename: 'helpers',
   src: 'test/templates/pages/helpers.hbs',
-  styles: '<link rel="stylesheet" href="css/index.css"/>',
-  pageName: 'helpers.html',
-  scripts: 'document.write(\'foo bar!\');',
-  extname: '.html',
-  dest: 'test/actual/multi/dest1/helpers.html',
+  stylesheets: 
+   [ 'css/bootstrap.css',
+     'css/responsive.css',
+     'css/main.css',
+     [length]: 3 ],
   dirname: 'test/actual/multi/dest1',
+  javascripts: 
+   [ 'js/bootstrap.js',
+     'js/responsive.js',
+     'js/main.js',
+     [length]: 3 ],
+  pagename: 'helpers.html',
+  title: 'Helpers and custom variables',
+  dest: 'test/actual/multi/dest1/helpers.html',
+  extname: '.html',
+  assets: '../../assets',
+  scripts: 'document.write(\'foo bar!\');',
+  styles: '<link rel="stylesheet" href="css/index.css"/>',
   filename: 'helpers.html',
-  assets: '../../assets' }
+  ext: '.html',
+  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } } }
 </pre>
     </div>
   </body>
