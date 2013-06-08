@@ -2,13 +2,17 @@
 
 > Assemble makes it dead simple to build modular sites and components from reusable templates and data.
 
-_This project just launched **so expect frequent changes**._ We love contributors, pull requests are welcome and followers are appreciated.
+We love contributors, pull requests are welcome and followers are appreciated.
+
+## Examples
 
 Visit the [assemble-examples](http://github.com/assemble/assemble-examples) repo to see a list of example projects, such as:
 
-* [assembling a basic site](http://github.com/assemble/assemble-examples-basic) 
+* [assembling a basic site](http://github.com/assemble/assemble-examples-basic)
 * [building a readme from templates](http://github.com/assemble/assemble-examples-readme): more useful for large or multi-projects, wikis etc.
-* [generating a sitemap](http://github.com/assemble/assemble-examples-sitemap) 
+* [generating a sitemap](http://github.com/assemble/assemble-examples-sitemap)
+* [cheatsheet component](http://github.com/upstage/cheatsheet): created for the new lesscss.org website (coming soon!)
+
 
 
 **Table of Contents**
@@ -21,10 +25,16 @@ Visit the [assemble-examples](http://github.com/assemble/assemble-examples) repo
 - [Methods](#methods)
 
 
+
 ## Getting started
-> It amazes me how flexible this whole system is, as we can dance   
-> around all the issues quite easily.  
+> It amazes me how flexible this whole system is, as we can dance
+> around all the issues quite easily.
 > -- [@Arkkimaagi](https://github.com/Arkkimaagi)
+
+> Thanks guys, this just goes to show how powerful assemble [is] -
+> I was expecting a short "no sorry, not possible", but instead
+> I've got multiple solutions.
+> -- [@matt-bailey](https://github.com/matt-bailey)
 
 If you're having trouble getting started, please [create an Issue](https://github.com/assemble/assemble/issues), we're happy to help.
 
@@ -581,7 +591,6 @@ grunt.registerMultiTask('steps', 'examples of using steps in assemble', function
 The following code is for an entire `Gruntfile.js`, with an example of how to use `step` and `build` in the simpilest way.
 
 ```javascript
-
 module.exports = function(grunt) {
 
   // Project configuration.
@@ -646,7 +655,7 @@ Copyright 2013 Assemble
 
 ---
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Wed Jun 05 2013 17:22:39._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Thu Jun 06 2013 23:59:16._
 
 
 

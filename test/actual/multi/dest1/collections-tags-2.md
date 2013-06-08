@@ -34,12 +34,12 @@
   title: 'Tags Test',
   tags: [ 'tags', 'test', 'something', [length]: 3 ],
   dirname: 'test/actual/multi/dest1',
-  filename: 'tags_test.md',
-  pageName: 'tags_test.md',
-  pagename: 'tags_test.md',
-  basename: 'tags_test',
-  src: 'test/templates/pages/tags_test.hbs',
-  dest: 'test/actual/multi/dest1/tags_test.md',
+  filename: 'collections-tags-2.md',
+  pageName: 'collections-tags-2.md',
+  pagename: 'collections-tags-2.md',
+  basename: 'collections-tags-2',
+  src: 'test/templates/pages/collections-tags-2.hbs',
+  dest: 'test/actual/multi/dest1/collections-tags-2.md',
   assets: '../../assets',
   ext: '.md',
   extname: '.md',
@@ -53,8 +53,10 @@
 ### "{{#each pages}}" Links
 [alert](alert.md)
 [assets](assets.md)
-[category](category.md)
-[category2](category2.md)
+[collections-categories](collections-categories.md)
+[collections-categories2](collections-categories2.md)
+[collections-tags-2](collections-tags-2.md)
+[collections-tags](collections-tags.md)
 [complex](complex.md)
 [debug-helpers](debug-helpers.md)
 [example](example.md)
@@ -64,8 +66,6 @@
 [html-helpers](html-helpers.md)
 [page](page.md)
 [simple3](simple3.md)
-[tags_test](tags_test.md)
-[tags_test2](tags_test2.md)
 
 
 
@@ -93,25 +93,47 @@ this.basename: assets
 this.extname:  .md
 this.ext:      .md
 
-#### category.md
+#### collections-categories.md
 this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/category.md
+this.dest:     test/actual/multi/dest1/collections-categories.md
 this.absolute:
 this.dirname:  test/actual/multi/dest1
-this.filename: category.md
-this.pagename: category.md
-this.basename: category
+this.filename: collections-categories.md
+this.pagename: collections-categories.md
+this.basename: collections-categories
 this.extname:  .md
 this.ext:      .md
 
-#### category2.md
+#### collections-categories2.md
 this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/category2.md
+this.dest:     test/actual/multi/dest1/collections-categories2.md
 this.absolute:
 this.dirname:  test/actual/multi/dest1
-this.filename: category2.md
-this.pagename: category2.md
-this.basename: category2
+this.filename: collections-categories2.md
+this.pagename: collections-categories2.md
+this.basename: collections-categories2
+this.extname:  .md
+this.ext:      .md
+
+#### collections-tags-2.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/collections-tags-2.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: collections-tags-2.md
+this.pagename: collections-tags-2.md
+this.basename: collections-tags-2
+this.extname:  .md
+this.ext:      .md
+
+#### collections-tags.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/collections-tags.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: collections-tags.md
+this.pagename: collections-tags.md
+this.basename: collections-tags
 this.extname:  .md
 this.ext:      .md
 
@@ -214,361 +236,339 @@ this.basename: simple3
 this.extname:  .md
 this.ext:      .md
 
-#### tags_test.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/tags_test.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: tags_test.md
-this.pagename: tags_test.md
-this.basename: tags_test
-this.extname:  .md
-this.ext:      .md
-
-#### tags_test2.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/tags_test2.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: tags_test2.md
-this.pagename: tags_test2.md
-this.basename: tags_test2
-this.extname:  .md
-this.ext:      .md
-
 
 ### {{#each pages}}
 
-#### tags_test.md
+#### collections-tags-2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/tags_test.md
+page.dest:     test/actual/multi/dest1/collections-tags-2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: tags_test.md
-page.pagename: tags_test.md
-page.basename: tags_test
+page.filename: collections-tags-2.md
+page.pagename: collections-tags-2.md
+page.basename: collections-tags-2
 page.extname:  .md
 page.ext:      .md
 
-#### tags_test.md
+#### collections-tags-2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/tags_test.md
+page.dest:     test/actual/multi/dest1/collections-tags-2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: tags_test.md
-page.pagename: tags_test.md
-page.basename: tags_test
+page.filename: collections-tags-2.md
+page.pagename: collections-tags-2.md
+page.basename: collections-tags-2
 page.extname:  .md
 page.ext:      .md
 
-#### tags_test.md
+#### collections-tags-2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/tags_test.md
+page.dest:     test/actual/multi/dest1/collections-tags-2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: tags_test.md
-page.pagename: tags_test.md
-page.basename: tags_test
+page.filename: collections-tags-2.md
+page.pagename: collections-tags-2.md
+page.basename: collections-tags-2
 page.extname:  .md
 page.ext:      .md
 
-#### tags_test.md
+#### collections-tags-2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/tags_test.md
+page.dest:     test/actual/multi/dest1/collections-tags-2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: tags_test.md
-page.pagename: tags_test.md
-page.basename: tags_test
+page.filename: collections-tags-2.md
+page.pagename: collections-tags-2.md
+page.basename: collections-tags-2
 page.extname:  .md
 page.ext:      .md
 
-#### tags_test.md
+#### collections-tags-2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/tags_test.md
+page.dest:     test/actual/multi/dest1/collections-tags-2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: tags_test.md
-page.pagename: tags_test.md
-page.basename: tags_test
+page.filename: collections-tags-2.md
+page.pagename: collections-tags-2.md
+page.basename: collections-tags-2
 page.extname:  .md
 page.ext:      .md
 
-#### tags_test.md
+#### collections-tags-2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/tags_test.md
+page.dest:     test/actual/multi/dest1/collections-tags-2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: tags_test.md
-page.pagename: tags_test.md
-page.basename: tags_test
+page.filename: collections-tags-2.md
+page.pagename: collections-tags-2.md
+page.basename: collections-tags-2
 page.extname:  .md
 page.ext:      .md
 
-#### tags_test.md
+#### collections-tags-2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/tags_test.md
+page.dest:     test/actual/multi/dest1/collections-tags-2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: tags_test.md
-page.pagename: tags_test.md
-page.basename: tags_test
+page.filename: collections-tags-2.md
+page.pagename: collections-tags-2.md
+page.basename: collections-tags-2
 page.extname:  .md
 page.ext:      .md
 
-#### tags_test.md
+#### collections-tags-2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/tags_test.md
+page.dest:     test/actual/multi/dest1/collections-tags-2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: tags_test.md
-page.pagename: tags_test.md
-page.basename: tags_test
+page.filename: collections-tags-2.md
+page.pagename: collections-tags-2.md
+page.basename: collections-tags-2
 page.extname:  .md
 page.ext:      .md
 
-#### tags_test.md
+#### collections-tags-2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/tags_test.md
+page.dest:     test/actual/multi/dest1/collections-tags-2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: tags_test.md
-page.pagename: tags_test.md
-page.basename: tags_test
+page.filename: collections-tags-2.md
+page.pagename: collections-tags-2.md
+page.basename: collections-tags-2
 page.extname:  .md
 page.ext:      .md
 
-#### tags_test.md
+#### collections-tags-2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/tags_test.md
+page.dest:     test/actual/multi/dest1/collections-tags-2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: tags_test.md
-page.pagename: tags_test.md
-page.basename: tags_test
+page.filename: collections-tags-2.md
+page.pagename: collections-tags-2.md
+page.basename: collections-tags-2
 page.extname:  .md
 page.ext:      .md
 
-#### tags_test.md
+#### collections-tags-2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/tags_test.md
+page.dest:     test/actual/multi/dest1/collections-tags-2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: tags_test.md
-page.pagename: tags_test.md
-page.basename: tags_test
+page.filename: collections-tags-2.md
+page.pagename: collections-tags-2.md
+page.basename: collections-tags-2
 page.extname:  .md
 page.ext:      .md
 
-#### tags_test.md
+#### collections-tags-2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/tags_test.md
+page.dest:     test/actual/multi/dest1/collections-tags-2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: tags_test.md
-page.pagename: tags_test.md
-page.basename: tags_test
+page.filename: collections-tags-2.md
+page.pagename: collections-tags-2.md
+page.basename: collections-tags-2
 page.extname:  .md
 page.ext:      .md
 
-#### tags_test.md
+#### collections-tags-2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/tags_test.md
+page.dest:     test/actual/multi/dest1/collections-tags-2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: tags_test.md
-page.pagename: tags_test.md
-page.basename: tags_test
+page.filename: collections-tags-2.md
+page.pagename: collections-tags-2.md
+page.basename: collections-tags-2
 page.extname:  .md
 page.ext:      .md
 
-#### tags_test.md
+#### collections-tags-2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/tags_test.md
+page.dest:     test/actual/multi/dest1/collections-tags-2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: tags_test.md
-page.pagename: tags_test.md
-page.basename: tags_test
+page.filename: collections-tags-2.md
+page.pagename: collections-tags-2.md
+page.basename: collections-tags-2
 page.extname:  .md
 page.ext:      .md
 
-#### tags_test.md
+#### collections-tags-2.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/tags_test.md
+page.dest:     test/actual/multi/dest1/collections-tags-2.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: tags_test.md
-page.pagename: tags_test.md
-page.basename: tags_test
+page.filename: collections-tags-2.md
+page.pagename: collections-tags-2.md
+page.basename: collections-tags-2
 page.extname:  .md
 page.ext:      .md
 
 
 ### {{#each pages}} "page" context
 
-#### tags_test.md
+#### collections-tags-2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/tags_test.md
+absolute:      test/actual/multi/dest1/collections-tags-2.md
 dirname:       test/actual/multi/dest1
-filename:      tags_test.md
-pagename:      tags_test.md
-basename:      tags_test
+filename:      collections-tags-2.md
+pagename:      collections-tags-2.md
+basename:      collections-tags-2
 extname:       .md
 ext:           .md
 
-#### tags_test.md
+#### collections-tags-2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/tags_test.md
+absolute:      test/actual/multi/dest1/collections-tags-2.md
 dirname:       test/actual/multi/dest1
-filename:      tags_test.md
-pagename:      tags_test.md
-basename:      tags_test
+filename:      collections-tags-2.md
+pagename:      collections-tags-2.md
+basename:      collections-tags-2
 extname:       .md
 ext:           .md
 
-#### tags_test.md
+#### collections-tags-2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/tags_test.md
+absolute:      test/actual/multi/dest1/collections-tags-2.md
 dirname:       test/actual/multi/dest1
-filename:      tags_test.md
-pagename:      tags_test.md
-basename:      tags_test
+filename:      collections-tags-2.md
+pagename:      collections-tags-2.md
+basename:      collections-tags-2
 extname:       .md
 ext:           .md
 
-#### tags_test.md
+#### collections-tags-2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/tags_test.md
+absolute:      test/actual/multi/dest1/collections-tags-2.md
 dirname:       test/actual/multi/dest1
-filename:      tags_test.md
-pagename:      tags_test.md
-basename:      tags_test
+filename:      collections-tags-2.md
+pagename:      collections-tags-2.md
+basename:      collections-tags-2
 extname:       .md
 ext:           .md
 
-#### tags_test.md
+#### collections-tags-2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/tags_test.md
+absolute:      test/actual/multi/dest1/collections-tags-2.md
 dirname:       test/actual/multi/dest1
-filename:      tags_test.md
-pagename:      tags_test.md
-basename:      tags_test
+filename:      collections-tags-2.md
+pagename:      collections-tags-2.md
+basename:      collections-tags-2
 extname:       .md
 ext:           .md
 
-#### tags_test.md
+#### collections-tags-2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/tags_test.md
+absolute:      test/actual/multi/dest1/collections-tags-2.md
 dirname:       test/actual/multi/dest1
-filename:      tags_test.md
-pagename:      tags_test.md
-basename:      tags_test
+filename:      collections-tags-2.md
+pagename:      collections-tags-2.md
+basename:      collections-tags-2
 extname:       .md
 ext:           .md
 
-#### tags_test.md
+#### collections-tags-2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/tags_test.md
+absolute:      test/actual/multi/dest1/collections-tags-2.md
 dirname:       test/actual/multi/dest1
-filename:      tags_test.md
-pagename:      tags_test.md
-basename:      tags_test
+filename:      collections-tags-2.md
+pagename:      collections-tags-2.md
+basename:      collections-tags-2
 extname:       .md
 ext:           .md
 
-#### tags_test.md
+#### collections-tags-2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/tags_test.md
+absolute:      test/actual/multi/dest1/collections-tags-2.md
 dirname:       test/actual/multi/dest1
-filename:      tags_test.md
-pagename:      tags_test.md
-basename:      tags_test
+filename:      collections-tags-2.md
+pagename:      collections-tags-2.md
+basename:      collections-tags-2
 extname:       .md
 ext:           .md
 
-#### tags_test.md
+#### collections-tags-2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/tags_test.md
+absolute:      test/actual/multi/dest1/collections-tags-2.md
 dirname:       test/actual/multi/dest1
-filename:      tags_test.md
-pagename:      tags_test.md
-basename:      tags_test
+filename:      collections-tags-2.md
+pagename:      collections-tags-2.md
+basename:      collections-tags-2
 extname:       .md
 ext:           .md
 
-#### tags_test.md
+#### collections-tags-2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/tags_test.md
+absolute:      test/actual/multi/dest1/collections-tags-2.md
 dirname:       test/actual/multi/dest1
-filename:      tags_test.md
-pagename:      tags_test.md
-basename:      tags_test
+filename:      collections-tags-2.md
+pagename:      collections-tags-2.md
+basename:      collections-tags-2
 extname:       .md
 ext:           .md
 
-#### tags_test.md
+#### collections-tags-2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/tags_test.md
+absolute:      test/actual/multi/dest1/collections-tags-2.md
 dirname:       test/actual/multi/dest1
-filename:      tags_test.md
-pagename:      tags_test.md
-basename:      tags_test
+filename:      collections-tags-2.md
+pagename:      collections-tags-2.md
+basename:      collections-tags-2
 extname:       .md
 ext:           .md
 
-#### tags_test.md
+#### collections-tags-2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/tags_test.md
+absolute:      test/actual/multi/dest1/collections-tags-2.md
 dirname:       test/actual/multi/dest1
-filename:      tags_test.md
-pagename:      tags_test.md
-basename:      tags_test
+filename:      collections-tags-2.md
+pagename:      collections-tags-2.md
+basename:      collections-tags-2
 extname:       .md
 ext:           .md
 
-#### tags_test.md
+#### collections-tags-2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/tags_test.md
+absolute:      test/actual/multi/dest1/collections-tags-2.md
 dirname:       test/actual/multi/dest1
-filename:      tags_test.md
-pagename:      tags_test.md
-basename:      tags_test
+filename:      collections-tags-2.md
+pagename:      collections-tags-2.md
+basename:      collections-tags-2
 extname:       .md
 ext:           .md
 
-#### tags_test.md
+#### collections-tags-2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/tags_test.md
+absolute:      test/actual/multi/dest1/collections-tags-2.md
 dirname:       test/actual/multi/dest1
-filename:      tags_test.md
-pagename:      tags_test.md
-basename:      tags_test
+filename:      collections-tags-2.md
+pagename:      collections-tags-2.md
+basename:      collections-tags-2
 extname:       .md
 ext:           .md
 
-#### tags_test.md
+#### collections-tags-2.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/tags_test.md
+absolute:      test/actual/multi/dest1/collections-tags-2.md
 dirname:       test/actual/multi/dest1
-filename:      tags_test.md
-pagename:      tags_test.md
-basename:      tags_test
+filename:      collections-tags-2.md
+pagename:      collections-tags-2.md
+basename:      collections-tags-2
 extname:       .md
 ext:           .md
 
