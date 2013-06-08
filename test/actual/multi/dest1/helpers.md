@@ -31,27 +31,7 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
 ## Debug Info
 ``` json
-{ javascripts: 
-   [ 'js/bootstrap.js',
-     'js/responsive.js',
-     'js/main.js',
-     [length]: 3 ],
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  pagename: 'helpers.md',
-  basename: 'helpers',
-  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
-  stylesheets: 
-   [ 'css/bootstrap.css',
-     'css/responsive.css',
-     'css/main.css',
-     [length]: 3 ],
-  ext: '.md',
+{ pageName: 'helpers.md',
   data: 
    { title: 'Helpers and custom variables',
      description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
@@ -67,24 +47,46 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
         [length]: 3 ],
      styles: '<link rel="stylesheet" href="css/index.css"/>',
      scripts: 'document.write(\'foo bar!\');' },
-  title: 'Helpers and custom variables',
+  basename: 'helpers',
   src: 'test/templates/pages/helpers.hbs',
-  styles: '<link rel="stylesheet" href="css/index.css"/>',
-  pageName: 'helpers.md',
-  scripts: 'document.write(\'foo bar!\');',
-  extname: '.md',
-  dest: 'test/actual/multi/dest1/helpers.md',
+  stylesheets: 
+   [ 'css/bootstrap.css',
+     'css/responsive.css',
+     'css/main.css',
+     [length]: 3 ],
   dirname: 'test/actual/multi/dest1',
+  javascripts: 
+   [ 'js/bootstrap.js',
+     'js/responsive.js',
+     'js/main.js',
+     [length]: 3 ],
+  pagename: 'helpers.md',
+  title: 'Helpers and custom variables',
+  dest: 'test/actual/multi/dest1/helpers.md',
+  extname: '.md',
+  assets: '../../assets',
+  scripts: 'document.write(\'foo bar!\');',
+  styles: '<link rel="stylesheet" href="css/index.css"/>',
   filename: 'helpers.md',
-  assets: '../../assets' }
+  ext: '.md',
+  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } } }
 ```
 
 
 ### "{{#each pages}}" Links
 [alert](alert.md)
 [assets](assets.md)
-[category](category.md)
-[category2](category2.md)
+[collections-categories](collections-categories.md)
+[collections-categories2](collections-categories2.md)
+[collections-tags-2](collections-tags-2.md)
+[collections-tags](collections-tags.md)
 [complex](complex.md)
 [debug-helpers](debug-helpers.md)
 [example](example.md)
@@ -94,8 +96,6 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 [html-helpers](html-helpers.md)
 [page](page.md)
 [simple3](simple3.md)
-[tags_test](tags_test.md)
-[tags_test2](tags_test2.md)
 
 
 
@@ -123,25 +123,47 @@ this.basename: assets
 this.extname:  .md
 this.ext:      .md
 
-#### category.md
+#### collections-categories.md
 this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/category.md
+this.dest:     test/actual/multi/dest1/collections-categories.md
 this.absolute:
 this.dirname:  test/actual/multi/dest1
-this.filename: category.md
-this.pagename: category.md
-this.basename: category
+this.filename: collections-categories.md
+this.pagename: collections-categories.md
+this.basename: collections-categories
 this.extname:  .md
 this.ext:      .md
 
-#### category2.md
+#### collections-categories2.md
 this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/category2.md
+this.dest:     test/actual/multi/dest1/collections-categories2.md
 this.absolute:
 this.dirname:  test/actual/multi/dest1
-this.filename: category2.md
-this.pagename: category2.md
-this.basename: category2
+this.filename: collections-categories2.md
+this.pagename: collections-categories2.md
+this.basename: collections-categories2
+this.extname:  .md
+this.ext:      .md
+
+#### collections-tags-2.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/collections-tags-2.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: collections-tags-2.md
+this.pagename: collections-tags-2.md
+this.basename: collections-tags-2
+this.extname:  .md
+this.ext:      .md
+
+#### collections-tags.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/collections-tags.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: collections-tags.md
+this.pagename: collections-tags.md
+this.basename: collections-tags
 this.extname:  .md
 this.ext:      .md
 
@@ -241,28 +263,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: simple3.md
 this.pagename: simple3.md
 this.basename: simple3
-this.extname:  .md
-this.ext:      .md
-
-#### tags_test.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/tags_test.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: tags_test.md
-this.pagename: tags_test.md
-this.basename: tags_test
-this.extname:  .md
-this.ext:      .md
-
-#### tags_test2.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/tags_test2.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: tags_test2.md
-this.pagename: tags_test2.md
-this.basename: tags_test2
 this.extname:  .md
 this.ext:      .md
 
