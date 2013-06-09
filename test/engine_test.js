@@ -1,4 +1,5 @@
-var assembleEngine = require('../lib/engine');
+var assembleEngine = require('../lib/engine'),
+    engineHelpers = require('../lib/engine/helpers'),
     expect = require('chai').expect;
 
 describe('Loading default handlebars engine', function() {
@@ -38,6 +39,33 @@ describe('Loading default handlebars engine', function() {
         done();
       });
     });
+  });
+
+  describe('Loading custom helpers', function() {
+
+    it('loads a custom helper from a file path', function(done) {
+      var engine = assembleEngine.load('handlebars');
+      var expected = '<!-- bar -->';
+      engine.init({
+        cwd: __dirname,
+        helpers: './lib/**/*.js'
+      });
+      engine.compile("{{{foo 'bar'}}}", null, function(err, tmpl) {
+        if(err) {
+          console.log('error: ' + err);
+          done(false);
+        }
+        engine.render(tmpl, {}, function(err, content) {
+          if(err) {
+            console.log('error: ' + err);
+            done(false);
+          }
+          expect(content).to.equal(expected);
+          done();
+        });
+      });
+    });
+
   });
 
 });
