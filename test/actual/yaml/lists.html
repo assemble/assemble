@@ -104,7 +104,12 @@
 
 <h3>Debug Info</h3>
 <pre class="json">
-{ pageName: 'lists.html',
+{ movies: 
+   [ 'Casablanca',
+     'North by Northwest',
+     'The Man Who Wasn\'t There',
+     [length]: 3 ],
+  extname: '.html',
   data: 
    { title: 'Almost a Haiku',
      attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
@@ -121,29 +126,24 @@
         [length]: 2 ],
      men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
      women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ] },
-  methods: [ 'getter', 'setter', [length]: 2 ],
-  basename: 'lists',
-  src: 'test/YAML/lists.hbs',
-  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
   women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
-  men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
-  dirname: 'test/actual/yaml',
-  pagename: 'lists.html',
-  title: 'Almost a Haiku',
-  dest: 'test/actual/yaml/lists.html',
-  extname: '.html',
-  assets: '../assets',
+  pageName: 'lists.html',
   people: 
    [ { name: 'John Smith', age: 33 },
      { name: 'Mary Smith', age: 27 },
      [length]: 2 ],
-  movies: 
-   [ 'Casablanca',
-     'North by Northwest',
-     'The Man Who Wasn\'t There',
-     [length]: 3 ],
-  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
+  methods: [ 'getter', 'setter', [length]: 2 ],
+  dirname: 'test/actual/yaml',
+  title: 'Almost a Haiku',
   filename: 'lists.html',
+  src: 'test/YAML/lists.hbs',
+  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
+  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
+  assets: '../assets',
+  men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
+  dest: 'test/actual/yaml/lists.html',
+  pagename: 'lists.html',
+  basename: 'lists',
   ext: '.html',
   page: 
    { [Function]

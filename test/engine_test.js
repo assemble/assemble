@@ -79,6 +79,12 @@ describe('Loading default handlebars engine', function() {
       runTest(engine, done);
     });
 
+    it('loads a custom helper without needing to set the cwd', function(done) {
+      var engine = assembleEngine.load('handlebars');
+      engine.init({helpers: './lib/**/*.js'});
+      runTest(engine, done);
+    });
+
   });
 
 });
