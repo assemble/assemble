@@ -81,8 +81,22 @@ describe('Loading default handlebars engine', function() {
 
     it('loads a custom helper without needing to set the cwd', function(done) {
       var engine = assembleEngine.load('handlebars');
-      engine.init({helpers: './lib/**/*.js'});
-      runTest(engine, done);
+      engine.init({helpers: './test/lib/**/*.js'});
+      var expected = '<!-- foo2 -->\n<!-- bar -->';
+      engine.compile("{{{foo2 'bar'}}}", null, function(err, tmpl) {
+        if(err) {
+          console.log('error: ' + err);
+          done(false);
+        }
+        engine.render(tmpl, {}, function(err, content) {
+          if(err) {
+            console.log('error: ' + err);
+            done(false);
+          }
+          expect(content).to.equal(expected);
+          done();
+        });
+      });
     });
 
   });
