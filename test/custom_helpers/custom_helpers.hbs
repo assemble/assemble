@@ -1,1 +1,11 @@
-{{{foo 'this is just a test'}}}
+<!doctype html>
+<html>
+  <head>
+    <title>Custom Helpers example</title>
+  </head>
+  <body>
+    <h3>Example using the foo helper</h3>
+    {{{foo 'Below is an example of using the opt helper and getting the version property from the passed in assemble.options'}}}
+    <div>Version: {{opt 'version'}}</div>
+  </body>
+</html>

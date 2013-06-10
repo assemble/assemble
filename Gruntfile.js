@@ -126,7 +126,8 @@ module.exports = function(grunt) {
       },
       custom_helpers: {
         options: {
-          helpers: ['test/lib/**/*.js']
+          helpers: ['test/lib/**/*.js'],
+          version: '<%= pkg.version %>'
         },
         files: {
           'test/actual/custom_helpers.html': ['test/custom_helpers/custom_helpers.hbs']

@@ -1,3 +1,8 @@
+v0.3.81:
+  date: "2013-06-10"
+  changes:
+    - Adding additional ways to load custom helpers. Now it's possible to use a glob pattern that points to a list of scripts with helpers to load.
+    - Adding examples and tests on how to use the new custom helper loading methods.
 v0.3.80:
   date: "2013-06-01"
   changes:
