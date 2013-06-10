@@ -104,7 +104,24 @@
 
 <h3>Debug Info</h3>
 <pre class="json">
-{ pageName: 'lists.html',
+{ extname: '.html',
+  dest: 'test/actual/yaml/lists.html',
+  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
+  people: 
+   [ { name: 'John Smith', age: 33 },
+     { name: 'Mary Smith', age: 27 },
+     [length]: 2 ],
+  pagename: 'lists.html',
+  src: 'test/YAML/lists.hbs',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  assets: '../assets',
+  dirname: 'test/actual/yaml',
   data: 
    { title: 'Almost a Haiku',
      attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
@@ -121,37 +138,20 @@
         [length]: 2 ],
      men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
      women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ] },
-  methods: [ 'getter', 'setter', [length]: 2 ],
-  basename: 'lists',
-  src: 'test/YAML/lists.hbs',
-  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
-  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
   men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
-  dirname: 'test/actual/yaml',
-  pagename: 'lists.html',
+  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
+  ext: '.html',
   title: 'Almost a Haiku',
-  dest: 'test/actual/yaml/lists.html',
-  extname: '.html',
-  assets: '../assets',
-  people: 
-   [ { name: 'John Smith', age: 33 },
-     { name: 'Mary Smith', age: 27 },
-     [length]: 2 ],
+  pageName: 'lists.html',
+  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
+  filename: 'lists.html',
+  basename: 'lists',
   movies: 
    [ 'Casablanca',
      'North by Northwest',
      'The Man Who Wasn\'t There',
      [length]: 3 ],
-  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
-  filename: 'lists.html',
-  ext: '.html',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } } }
+  methods: [ 'getter', 'setter', [length]: 2 ] }
 </pre>
     </div>
   </body>

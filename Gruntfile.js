@@ -56,7 +56,7 @@ module.exports = function(grunt) {
         },
         files: {
           'test/actual/paths/': ['test/templates/pages/**/*.hbs']
-        } 
+        }
       },
       single_page: {
         options: {
@@ -122,6 +122,14 @@ module.exports = function(grunt) {
         },
         files: {
           'test/actual/assets-root.html': ['test/templates/pages/assets.hbs']
+        }
+      },
+      custom_helpers: {
+        options: {
+          helpers: ['test/lib/**/*.js']
+        },
+        files: {
+          'test/actual/custom_helpers.html': ['test/custom_helpers/custom_helpers.hbs']
         }
       }
     },
