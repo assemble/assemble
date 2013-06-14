@@ -31,21 +31,7 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
 ## Debug Info
 ``` json
-{ pageName: 'helpers.md',
-  title: 'Helpers and custom variables',
-  basename: 'helpers',
-  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
-  extname: '.md',
-  ext: '.md',
-  pagename: 'helpers.md',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  filename: 'helpers.md',
+{ extname: '.md',
   data: 
    { title: 'Helpers and custom variables',
      description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
@@ -61,21 +47,35 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
         [length]: 3 ],
      styles: '<link rel="stylesheet" href="css/index.css"/>',
      scripts: 'document.write(\'foo bar!\');' },
+  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
   assets: '../../assets',
-  styles: '<link rel="stylesheet" href="css/index.css"/>',
-  dirname: 'test/actual/multi/dest1',
+  scripts: 'document.write(\'foo bar!\');',
+  basename: 'helpers',
   src: 'test/templates/pages/helpers.hbs',
-  stylesheets: 
-   [ 'css/bootstrap.css',
-     'css/responsive.css',
-     'css/main.css',
-     [length]: 3 ],
+  ext: '.md',
+  filename: 'helpers.md',
   javascripts: 
    [ 'js/bootstrap.js',
      'js/responsive.js',
      'js/main.js',
      [length]: 3 ],
-  scripts: 'document.write(\'foo bar!\');',
+  dirname: 'test/actual/multi/dest1',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  title: 'Helpers and custom variables',
+  styles: '<link rel="stylesheet" href="css/index.css"/>',
+  pagename: 'helpers.md',
+  pageName: 'helpers.md',
+  stylesheets: 
+   [ 'css/bootstrap.css',
+     'css/responsive.css',
+     'css/main.css',
+     [length]: 3 ],
   dest: 'test/actual/multi/dest1/helpers.md' }
 ```
 
