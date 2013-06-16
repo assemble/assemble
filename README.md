@@ -2,13 +2,17 @@
 
 > Assemble makes it dead simple to build modular sites and components from reusable templates and data.
 
-_This project just launched **so expect frequent changes**._ We love contributors, pull requests are welcome and followers are appreciated.
+We love contributors, pull requests are welcome and followers are appreciated.
+
+## Examples
 
 Visit the [assemble-examples](http://github.com/assemble/assemble-examples) repo to see a list of example projects, such as:
 
-* [assembling a basic site](http://github.com/assemble/assemble-examples-basic) 
+* [assembling a basic site](http://github.com/assemble/assemble-examples-basic)
 * [building a readme from templates](http://github.com/assemble/assemble-examples-readme): more useful for large or multi-projects, wikis etc.
-* [generating a sitemap](http://github.com/assemble/assemble-examples-sitemap) 
+* [generating a sitemap](http://github.com/assemble/assemble-examples-sitemap)
+* [cheatsheet component](http://github.com/upstage/cheatsheet): created for the new lesscss.org website (coming soon!)
+
 
 
 **Table of Contents**
@@ -21,10 +25,18 @@ Visit the [assemble-examples](http://github.com/assemble/assemble-examples) repo
 - [Methods](#methods)
 
 
+
 ## Getting started
-> It amazes me how flexible this whole system is, as we can dance   
-> around all the issues quite easily.  
+> It amazes me how flexible this whole system is, as we can dance
+> around all the issues quite easily.
 > -- [@Arkkimaagi](https://github.com/Arkkimaagi)
+
+<br>
+> Thanks guys, this just goes to show how powerful assemble [is] -
+> I was expecting a short "no sorry, not possible", but instead
+> I've got multiple solutions.
+> -- [@matt-bailey](https://github.com/matt-bailey)
+
 
 If you're having trouble getting started, please [create an Issue](https://github.com/assemble/assemble/issues), we're happy to help.
 
@@ -101,6 +113,12 @@ Default: `undefined`
 Specifies the Handlebars partials files, or paths to the directories of files to be used. 
 
 #### helpers
+Type: `Object|Array`
+Default: [helper-lib](http://github.com/assemble/helper-lib)
+
+Path defined to a directory of custom helpers to use with the specified template engine. Assemble currently includes more than **[100+ built-in Handlebars helpers](https://github.com/assemble/helper-lib)**, since Handlebars is the default engine for Assemble.
+
+#### engine
 Type: `Object|Array`
 Default: [helper-lib](http://github.com/assemble/helper-lib)
 
@@ -402,31 +420,81 @@ This is particularly useful when **a)** a library such as [consolidate][] is use
 Admittedly, the `engine.engine` syntax is strange. This is "alpha", so feedback and pull requests are especially welcome if you have ideas for improving this.
 
 
-#### Register Helpers
+## Registering custom helpers
 
-Call `registerFunctions` by passing in an engine. This is used if you need to register custom **helpers or "filters", etc.** beyond the helpers included in [helper-lib](http://github.com/assemble/helper-lib):
+Custom helpers may be loaded with the current engine via `options: { helpers: []}` in the assemble task or target. But _any helpers registered at the target level will override task-level helpers_.
 
-```javascript
-registerFunctions(assemble.engine);
-```
+Glob patterns may be used to specify the path to the helpers to be loaded:
 
-Example of how this would be setup in the `options` of the assemble task or target:
-
-```javascript
+```js
 assemble: {
   options: {
-    registerFunctions: function(engine) {
-      var helperFunctions = {};
-      helperFunctions['foo'] = function() { return 'bar'; };
-      engine.engine.registerFunctions(helperFunctions);
-    }
+    helpers: ['./lib/helpers/**/*.js']
+  }
+}
+```
+
+Helpers can either be an object or a single `register` function. If `register` is on the object, then it calls the `register` function passing in the engine, otherwise each method is registered as a helper. 
+
+For example, the following will result in 2 helpers being registered:
+
+```js
+module.exports.foo = function(msg) { return msg; };
+module.exports.bar = function(msg) { return msg; };
+```
+
+And this will result in the `foo` helper getting register directly through Handlebars:
+
+```js
+module.exports.register = function(Handlebars, options) {
+  Handlebars.registerHelper('foo', function(msg) {
+    return msg;
+  });
+};
+```
+
+## Passing `assemble.options` into helpers
+
+Any `assemble.options` may be passed to custom helpers when the helper defines the `register` method. For example:
+
+Given our `Gruntfile.js` has the following `assemble` task configuration:
+
+```js
+assemble: {
+  options: {
+    version: '0.1.0', // or we could use '<%= pkg.version %>'
+    helpers: ['lib/helpers/**/*.js']
   },
-  site: {
+  blog: {
     files: {
-      'dist/': ['src/templates/**/*.tmpl']
+      'articles/': ['src/posts/*.md']
     }
   }
 }
+```
+
+And given we have defined a custom helper, `opt`, which gets properties from the `assemble.options` object and returns them:
+
+```js
+module.exports.register = register = function(Handlebars, options) {
+
+  Handlebars.registerHelper('opt', function(key) {
+    return options[key] || '';
+  });
+
+};
+```
+
+We can now user our helper in a Handlebars template like this:
+
+``` html
+<div>Version: v{{opt 'version'}}</div>
+```
+
+And the output would be:
+
+``` html
+<div>Version: v0.1.0</div>
 ```
 
 #### Register Partials
@@ -581,7 +649,6 @@ grunt.registerMultiTask('steps', 'examples of using steps in assemble', function
 The following code is for an entire `Gruntfile.js`, with an example of how to use `step` and `build` in the simpilest way.
 
 ```javascript
-
 module.exports = function(grunt) {
 
   // Project configuration.
@@ -626,28 +693,28 @@ Copyright 2013 Assemble
 [MIT License](LICENSE-MIT)
 
 ## Release History
-* 2013-06-10			v0.3.81			Adding additional ways to load custom helpers. Now it's possible to use a glob pattern that points to a list of scripts with helpers to load.Adding examples and tests on how to use the new custom helper loading methods.
-* 2013-06-01			v0.3.80			Fixing bug with null value in engine
-* 2013-05-07			v0.3.77			Updated README with info about assemble methods
-* 2013-04-28			v0.3.74			Updating the assemble library to use the assemble-utils repo and unnecessary code.
-* 2013-04-21			v0.3.73			Fixing how the relative path helper worked and showing an example in the footer of the layout. This example is hidden, but can be seen by doing view source.
-* 2013-04-20			v0.3.72			Fixing the layout override issue happening in the page yaml headers. Something was missed during refactoring.
-* 2013-04-19			v0.3.9			Adding tags and categories to the root context and ensure that the current page context values don't override the root context values.
-* 2013-04-18			v0.3.8			Updating to use actual assets property from current page.
-* 2013-04-17			v0.3.7			Cleaning up some unused folders and tests
-* 2013-04-16			v0.3.6			Fixed missing assets property.
-* 2013-04-16			v0.3.5			Adding a sections array to the template engine so it can be used in helpers.
-* 2013-04-11			v0.3.4			More tests for helpers and global variables, organized tests. A number of bug fixes.
-* 2013-04-06			v0.3.3			helper-lib properly externalized and wired up. Global variables for filename, ext and pages
-* 2013-03-22			v0.3.22			Merged global and target level options so data and partial files can be joined
-* 2013-03-22			v0.3.21			Valid YAML now allowed in options.data object (along with JSON)
-* 2013-03-18			v0.3.14			new relative helper for resolving relative paths
+* 2013-06-10			v0.3.81			Adding additional ways to load custom helpers. Now it's possible to use a glob pattern that points to a list of scripts with helpers to load.  Adding examples and tests on how to use the new custom helper loading methods.  
+* 2013-06-01			v0.3.80			Fixing bug with null value in engine  
+* 2013-05-07			v0.3.77			Updated README with info about assemble methods  
+* 2013-04-28			v0.3.74			Updating the assemble library to use the assemble-utils repo and unnecessary code.  
+* 2013-04-21			v0.3.73			Fixing how the relative path helper worked and showing an example in the footer of the layout. This example is hidden, but can be seen by doing view source.  
+* 2013-04-20			v0.3.72			Fixing the layout override issue happening in the page yaml headers. Something was missed during refactoring.  
+* 2013-04-19			v0.3.9			Adding tags and categories to the root context and ensure that the current page context values don't override the root context values.  
+* 2013-04-18			v0.3.8			Updating to use actual assets property from current page.  
+* 2013-04-17			v0.3.7			Cleaning up some unused folders and tests  
+* 2013-04-16			v0.3.6			Fixed missing assets property.  
+* 2013-04-16			v0.3.5			Adding a sections array to the template engine so it can be used in helpers.  
+* 2013-04-11			v0.3.4			More tests for helpers and global variables, organized tests. A number of bug fixes.  
+* 2013-04-06			v0.3.3			helper-lib properly externalized and wired up. Global variables for filename, ext and pages  
+* 2013-03-22			v0.3.22			Merged global and target level options so data and partial files can be joined  
+* 2013-03-22			v0.3.21			Valid YAML now allowed in options.data object (along with JSON)  
+* 2013-03-18			v0.3.14			new relative helper for resolving relative paths  
 
 
 
 ---
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Mon Jun 10 2013 18:55:43._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sun Jun 16 2013 03:35:46._
 
 
 

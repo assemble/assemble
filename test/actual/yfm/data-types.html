@@ -2,17 +2,31 @@
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Comments in YAML front matter</title>
+    <title>Data Types</title>
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
     <div class="container">
       
 <div class="page-header">
-  <h4>Comments in YAML front matter</h4> 
+  <h4>Data Types</h4> 
 </div>
 
-Nothing.
+<div class="examples">
+  <h4>Casting data types</h4>
+  <dl class="dl-horizontal">
+    
+      <dt>a.</dt> <dd>123</dd>
+      <dt>b.</dt> <dd>123</dd>
+      <dt>c.</dt> <dd>123</dd>
+      <dt>d.</dt> <dd></dd>
+      <dt>e.</dt> <dd>123</dd>
+      <dt>f.</dt> <dd>Yes</dd>
+      <dt>g.</dt> <dd>Yes</dd>
+      <dt>h.</dt> <dd>Yes we have No bananas</dd>
+    
+  </dl>
+</div>
     </div>
 
     <div class="container" style="display: none">
@@ -32,14 +46,22 @@ Nothing.
 
 <h3>Debug Info</h3>
 <pre class="json">
-{ title: 'Comments in YAML front matter',
-  dirname: 'test/actual/yaml',
-  filename: 'comments.html',
-  pageName: 'comments.html',
-  pagename: 'comments.html',
-  basename: 'comments',
-  src: 'test/YAML/comments.hbs',
-  dest: 'test/actual/yaml/comments.html',
+{ title: 'Data Types',
+  dataTypes: 
+   { a: 123,
+     b: '123',
+     c: 123,
+     e: '123',
+     f: 'Yes',
+     g: 'Yes',
+     h: 'Yes we have No bananas' },
+  dirname: 'test/actual/yfm',
+  filename: 'data-types.html',
+  pageName: 'data-types.html',
+  pagename: 'data-types.html',
+  basename: 'data-types',
+  src: 'test/templates/pages/yfm/data-types.hbs',
+  dest: 'test/actual/yfm/data-types.html',
   assets: '../assets',
   ext: '.html',
   extname: '.html',
@@ -50,7 +72,16 @@ Nothing.
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  data: { title: 'Comments in YAML front matter' } }
+  data: 
+   { title: 'Data Types',
+     dataTypes: 
+      { a: 123,
+        b: '123',
+        c: 123,
+        e: '123',
+        f: 'Yes',
+        g: 'Yes',
+        h: 'Yes we have No bananas' } } }
 </pre>
     </div>
   </body>
