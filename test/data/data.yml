@@ -1,0 +1,5 @@
+# "data.yml" or "data.json" allows you to use the root 
+# of the context in your templates.
+one: first
+two: second
+three: third

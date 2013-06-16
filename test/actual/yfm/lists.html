@@ -104,8 +104,15 @@
 
 <h3>Debug Info</h3>
 <pre class="json">
-{ methods: [ 'getter', 'setter', [length]: 2 ],
-  extname: '.html',
+{ groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
+  methods: [ 'getter', 'setter', [length]: 2 ],
+  people: 
+   [ { name: 'John Smith', age: 33 },
+     { name: 'Mary Smith', age: 27 },
+     [length]: 2 ],
+  basename: 'lists',
+  dest: 'test/actual/yfm/lists.html',
+  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
   data: 
    { title: 'Almost a Haiku',
      attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
@@ -123,17 +130,19 @@
      men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
      women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ] },
   assets: '../assets',
-  people: 
-   [ { name: 'John Smith', age: 33 },
-     { name: 'Mary Smith', age: 27 },
-     [length]: 2 ],
-  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
-  basename: 'lists',
-  src: 'test/YAML/lists.hbs',
-  ext: '.html',
+  men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
   filename: 'lists.html',
-  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
-  dirname: 'test/actual/yaml',
+  movies: 
+   [ 'Casablanca',
+     'North by Northwest',
+     'The Man Who Wasn\'t There',
+     [length]: 3 ],
+  pagename: 'lists.html',
+  extname: '.html',
+  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
+  pageName: 'lists.html',
+  src: 'test/templates/pages/yfm/lists.hbs',
+  title: 'Almost a Haiku',
   page: 
    { [Function]
      [length]: 2,
@@ -141,17 +150,8 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  title: 'Almost a Haiku',
-  movies: 
-   [ 'Casablanca',
-     'North by Northwest',
-     'The Man Who Wasn\'t There',
-     [length]: 3 ],
-  pagename: 'lists.html',
-  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
-  pageName: 'lists.html',
-  men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
-  dest: 'test/actual/yaml/lists.html' }
+  ext: '.html',
+  dirname: 'test/actual/yfm' }
 </pre>
     </div>
   </body>

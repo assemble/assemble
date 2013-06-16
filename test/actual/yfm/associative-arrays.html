@@ -2,48 +2,29 @@
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>YAML Test</title>
+    <title>Associative arrays</title>
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
     <div class="container">
-      <div class="page-header">
-  <h4></h4>
-</div>
-
-<div class="examples">
-  <h4>test1.yaml</h4>
-  <div></div>
-</div>
-
+      
 <div class="page-header">
-  <h4></h4>
+  <h1>Associative arrays</h1> 
 </div>
 
 <div class="examples">
-  <h4>test2.yml</h4>
-  <div>bar2</div>
+  <h4>Associative arrays</h4>
+  <dl class="dl-horizontal">
+    
+      <dt>Name:</dt> <dd>John Smith</dd>
+      <dt>Age:</dt>  <dd>33</dd>
+    
+    
+      <dt>Name:</dt> <dd>Grace Jones</dd>
+      <dt>Age:</dt>  <dd>21</dd>
+    
+  </dl>
 </div>
-
-<div class="page-header">
-  <h4></h4>
-</div>
-
-<div class="examples">
-  <h4>test3.json</h4>
-  <div>bar3</div>
-</div>
-
-<div class="examples">
-  <h4>common1.json</h4>
-  <div></div>
-</div>
-
-<div class="examples">
-  <h4>common2.yml</h4>
-  <div></div>
-</div>
-
     </div>
 
     <div class="container" style="display: none">
@@ -63,13 +44,16 @@
 
 <h3>Debug Info</h3>
 <pre class="json">
-{ dirname: 'test/actual/yaml',
-  filename: 'data-files.html',
-  pageName: 'data-files.html',
-  pagename: 'data-files.html',
-  basename: 'data-files',
-  src: 'test/YAML/data-files.hbs',
-  dest: 'test/actual/yaml/data-files.html',
+{ title: 'Associative arrays',
+  people: { name: 'John Smith', age: 33 },
+  morePeople: { name: 'Grace Jones', age: 21 },
+  dirname: 'test/actual/yfm',
+  filename: 'associative-arrays.html',
+  pageName: 'associative-arrays.html',
+  pagename: 'associative-arrays.html',
+  basename: 'associative-arrays',
+  src: 'test/templates/pages/yfm/associative-arrays.hbs',
+  dest: 'test/actual/yfm/associative-arrays.html',
   assets: '../assets',
   ext: '.html',
   extname: '.html',
@@ -80,7 +64,10 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  data: {} }
+  data: 
+   { title: 'Associative arrays',
+     people: { name: 'John Smith', age: 33 },
+     morePeople: { name: 'Grace Jones', age: 21 } } }
 </pre>
     </div>
   </body>
