@@ -36,6 +36,12 @@ Default: [helper-lib](http://github.com/assemble/helper-lib)
 
 Path defined to a directory of custom helpers to use with the specified template engine. Assemble currently includes more than **[100+ built-in Handlebars helpers](https://github.com/assemble/helper-lib)**, since Handlebars is the default engine for Assemble.
 
+#### engine
+Type: `Object|Array`
+Default: [helper-lib](http://github.com/assemble/helper-lib)
+
+Path defined to a directory of custom helpers to use with the specified template engine. Assemble currently includes more than **[100+ built-in Handlebars helpers](https://github.com/assemble/helper-lib)**, since Handlebars is the default engine for Assemble.
+
 #### ext
 Type: `String`
 Default: `.html`

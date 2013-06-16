@@ -50,31 +50,81 @@ This is particularly useful when **a)** a library such as [consolidate][] is use
 Admittedly, the `engine.engine` syntax is strange. This is "alpha", so feedback and pull requests are especially welcome if you have ideas for improving this.
 
 
-#### Register Helpers
+## Registering custom helpers
 
-Call `registerFunctions` by passing in an engine. This is used if you need to register custom **helpers or "filters", etc.** beyond the helpers included in [helper-lib](http://github.com/assemble/helper-lib):
+Custom helpers may be loaded with the current engine via `options: { helpers: []}` in the assemble task or target. But _any helpers registered at the target level will override task-level helpers_.
 
-```javascript
-registerFunctions(assemble.engine);
-```
+Glob patterns may be used to specify the path to the helpers to be loaded:
 
-Example of how this would be setup in the `options` of the assemble task or target:
-
-```javascript
+```js
 assemble: {
   options: {
-    registerFunctions: function(engine) {
-      var helperFunctions = {};
-      helperFunctions['foo'] = function() { return 'bar'; };
-      engine.engine.registerFunctions(helperFunctions);
-    }
+    helpers: ['./lib/helpers/**/*.js']
+  }
+}
+```
+
+Helpers can either be an object or a single `register` function. If `register` is on the object, then it calls the `register` function passing in the engine, otherwise each method is registered as a helper. 
+
+For example, the following will result in 2 helpers being registered:
+
+```js
+module.exports.foo = function(msg) { return msg; };
+module.exports.bar = function(msg) { return msg; };
+```
+
+And this will result in the `foo` helper getting register directly through Handlebars:
+
+```js
+module.exports.register = function(Handlebars, options) {
+  Handlebars.registerHelper('foo', function(msg) {
+    return msg;
+  });
+};
+```
+
+## Passing `assemble.options` into helpers
+
+Any `assemble.options` may be passed to custom helpers when the helper defines the `register` method. For example:
+
+Given our `Gruntfile.js` has the following `assemble` task configuration:
+
+```js
+assemble: {
+  options: {
+    version: '0.1.0', // or we could use '<%= pkg.version %>'
+    helpers: ['lib/helpers/**/*.js']
   },
-  site: {
+  blog: {
     files: {
-      'dist/': ['src/templates/**/*.tmpl']
+      'articles/': ['src/posts/*.md']
     }
   }
 }
+```
+
+And given we have defined a custom helper, `opt`, which gets properties from the `assemble.options` object and returns them:
+
+```js
+module.exports.register = register = function(Handlebars, options) {
+
+  Handlebars.registerHelper('opt', function(key) {
+    return options[key] || '';
+  });
+
+};
+```
+
+We can now user our helper in a Handlebars template like this:
+
+``` html
+<div>Version: v{{opt 'version'}}</div>
+```
+
+And the output would be:
+
+``` html
+<div>Version: v0.1.0</div>
 ```
 
 #### Register Partials
@@ -229,7 +279,6 @@ grunt.registerMultiTask('steps', 'examples of using steps in assemble', function
 The following code is for an entire `Gruntfile.js`, with an example of how to use `step` and `build` in the simpilest way.
 
 ```javascript
-
 module.exports = function(grunt) {
 
   // Project configuration.
