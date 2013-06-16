@@ -129,35 +129,11 @@ Suite 16
 
 <h3>Debug Info</h3>
 <pre class="json">
-{ 'ship-to': 
-   { street: '123 Tornado Alley\nSuite 16\n',
-     city: 'East Centerville',
-     state: 'KS' },
-  receipt: 'Oz-Ware Purchase Invoice',
-  prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
-  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
-  filename: 'document.html',
-  pagename: 'document.html',
-  extname: '.html',
+{ customer: { given: 'Dorothy', family: 'Gale' },
   date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+  pagename: 'document.html',
   pageName: 'document.html',
-  src: 'test/templates/pages/yfm/document.hbs',
-  'bill-to': 
-   { street: '123 Tornado Alley\nSuite 16\n',
-     city: 'East Centerville',
-     state: 'KS' },
-  basename: 'document',
-  customer: { given: 'Dorothy', family: 'Gale' },
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  ext: '.html',
-  dest: 'test/actual/yfm/document.html',
-  dirname: 'test/actual/yfm',
+  prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
   items: 
    [ { part_no: 'A4786',
        descrip: 'Water Bucket (Filled)',
@@ -169,20 +145,21 @@ Suite 16
        price: 100.27,
        quantity: 1 },
      [length]: 2 ],
+  receipt: 'Oz-Ware Purchase Invoice',
+  extname: '.html',
+  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
+  dirname: 'test/actual/yfm',
+  'bill-to': 
+   { street: '123 Tornado Alley\nSuite 16\n',
+     city: 'East Centerville',
+     state: 'KS' },
+  assets: '../assets',
+  ext: '.html',
+  basename: 'document',
   data: 
-   { 'ship-to': 
-      { street: '123 Tornado Alley\nSuite 16\n',
-        city: 'East Centerville',
-        state: 'KS' },
-     receipt: 'Oz-Ware Purchase Invoice',
-     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
-     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
+   { customer: { given: 'Dorothy', family: 'Gale' },
      date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-     'bill-to': 
-      { street: '123 Tornado Alley\nSuite 16\n',
-        city: 'East Centerville',
-        state: 'KS' },
-     customer: { given: 'Dorothy', family: 'Gale' },
+     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
      items: 
       [ { part_no: 'A4786',
           descrip: 'Water Bucket (Filled)',
@@ -193,8 +170,31 @@ Suite 16
           size: 8,
           price: 100.27,
           quantity: 1 },
-        [length]: 2 ] },
-  assets: '../assets' }
+        [length]: 2 ],
+     receipt: 'Oz-Ware Purchase Invoice',
+     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
+     'bill-to': 
+      { street: '123 Tornado Alley\nSuite 16\n',
+        city: 'East Centerville',
+        state: 'KS' },
+     'ship-to': 
+      { street: '123 Tornado Alley\nSuite 16\n',
+        city: 'East Centerville',
+        state: 'KS' } },
+  dest: 'test/actual/yfm/document.html',
+  'ship-to': 
+   { street: '123 Tornado Alley\nSuite 16\n',
+     city: 'East Centerville',
+     state: 'KS' },
+  src: 'test/templates/pages/yfm/document.hbs',
+  filename: 'document.html',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } } }
 </pre>
     </div>
   </body>
