@@ -69,13 +69,8 @@ module.exports = function(grunt) {
       },
       yaml_front_matter: {
         options: {
-<<<<<<< HEAD
           layout: 'test/templates/layouts/layout.hbs',
           data: 'test/yaml/data/*.{json,yml}'
-=======
-          layout: 'layout.hbs',
-          data: 'test/data/*.{json,yml}'
->>>>>>> 174a29e... reorganize some test files
         },
         files: {
           'test/actual/yfm/': ['test/templates/pages/yfm/*.hbs']
@@ -159,5 +154,5 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['jshint', 'clean', 'assemble']);
 
   // Tests to be run.
-  grunt.registerTask('test', ['default', 'mochaTest']);
+  grunt.registerTask('test', ['default']);
 };
