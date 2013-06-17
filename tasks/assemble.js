@@ -303,7 +303,7 @@ module.exports = function(grunt) {
             };
 
             if(pageObj.data.published === false){
-              grunt.log.writeln('\n>> Skipping "'.grey + srcFile + '" since ' + '"published: false"'.grey + ' was set.');
+              grunt.log.write('\n>> Skipping "' + path.basename(srcFile).grey + '" since ' + '"published: false"'.cyan + ' was set.');
               return;
             }
 
