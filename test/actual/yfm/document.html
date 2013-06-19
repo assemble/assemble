@@ -6,7 +6,14 @@
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
+
     <div class="container">
+      <div class="categories">
+        <h2>Categories</h2>
+        <ul>
+        
+        </ul>
+      </div>
       
 <div class="page-header">
   <h4></h4> 
@@ -113,6 +120,7 @@ Suite 16
     </div>
 
     <div class="container" style="display: none">
+      <h2>Content</h2>
       <ul>
         <li><a href="associative-arrays.html">associative-arrays</a></li>
         <li><a href="block-literals.html">block-literals</a></li>
@@ -125,41 +133,42 @@ Suite 16
         <li><a href="variables.html">variables</a></li>
         
       </ul>
+    </div>
 
-
-<h3>Debug Info</h3>
-<pre class="json">
-{ 'ship-to': 
+    <div class="container" style="display: none">
+      <h2>Debug Info</h2>
+      <pre class="json">
+{ customer: { given: 'Dorothy', family: 'Gale' },
+  pagename: 'document.html',
+  basename: 'document',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
+  'ship-to': 
    { street: '123 Tornado Alley\nSuite 16\n',
      city: 'East Centerville',
      state: 'KS' },
-  extname: '.html',
-  items: 
-   [ { part_no: 'A4786',
-       descrip: 'Water Bucket (Filled)',
-       price: 1.47,
-       quantity: 4 },
-     { part_no: 'E1628',
-       descrip: 'High Heeled "Ruby" Slippers',
-       size: 8,
-       price: 100.27,
-       quantity: 1 },
-     [length]: 2 ],
-  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-  pagename: 'document.html',
-  src: 'test/templates/pages/yfm/document.hbs',
   pageName: 'document.html',
-  customer: { given: 'Dorothy', family: 'Gale' },
   dirname: 'test/actual/yfm',
-  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
-  basename: 'document',
   dest: 'test/actual/yfm/document.html',
+  prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
   filename: 'document.html',
+  extname: '.html',
+  assets: '../assets',
   data: 
-   { 'ship-to': 
+   { customer: { given: 'Dorothy', family: 'Gale' },
+     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
+     'ship-to': 
       { street: '123 Tornado Alley\nSuite 16\n',
         city: 'East Centerville',
         state: 'KS' },
+     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
+     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
      items: 
       [ { part_no: 'A4786',
           descrip: 'Water Bucket (Filled)',
@@ -171,31 +180,32 @@ Suite 16
           price: 100.27,
           quantity: 1 },
         [length]: 2 ],
-     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-     customer: { given: 'Dorothy', family: 'Gale' },
-     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
      receipt: 'Oz-Ware Purchase Invoice',
      'bill-to': 
       { street: '123 Tornado Alley\nSuite 16\n',
         city: 'East Centerville',
-        state: 'KS' },
-     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>' },
+        state: 'KS' } },
+  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+  ext: '.html',
+  src: 'test/templates/pages/yfm/document.hbs',
+  items: 
+   [ { part_no: 'A4786',
+       descrip: 'Water Bucket (Filled)',
+       price: 1.47,
+       quantity: 4 },
+     { part_no: 'E1628',
+       descrip: 'High Heeled "Ruby" Slippers',
+       size: 8,
+       price: 100.27,
+       quantity: 1 },
+     [length]: 2 ],
   receipt: 'Oz-Ware Purchase Invoice',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
   'bill-to': 
    { street: '123 Tornado Alley\nSuite 16\n',
      city: 'East Centerville',
-     state: 'KS' },
-  ext: '.html',
-  prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
-  assets: '../assets' }
+     state: 'KS' } }
 </pre>
     </div>
+
   </body>
 </html>

@@ -1,0 +1,79 @@
+---
+title: Collections
+description: Different ways to use collections.
+---
+<div class="page-header">
+  <h1>{{title}}</h1>  
+  <p class="lead">{{description}}</p>
+</div>
+
+<span class="nav-section-title">
+  Categories
+</span>
+<ul class="nav nav-pills nav-stacked">
+{{#categories}}
+  <li><a href="{{relative ../page.dest this.dest}}">{{category}}</a></li>
+{{/categories}}
+</ul>
+<span class="nav-section-title">
+  All tags
+</span>
+<ul class="nav nav-pills nav-stacked">
+  {{#tags}}
+  <li><a href="/tags/{{tag}}.html">{{tag}} <label class="badge badge-info">{{pages.length}}</label></a></li>
+  {{/tags}}
+</ul>
+
+<span class="nav-section-title">
+  All nav items
+</span>
+<ul class="nav nav-pills nav-stacked">
+  {{#items}}
+  <li><a href="/items/{{item}}.html">{{item}} <label class="badge badge-info">{{pages.length}}</label></a></li>
+  {{/items}}
+</ul>
+
+<span class="nav-section-title">
+  All categories
+</span>
+<ul class="nav nav-pills nav-stacked">
+  {{#categories}}
+  <li><a href="/categories/{{category}}.html">{{category}} <label class="badge badge-info">{{pages.length}}</label></a></li>
+  {{/categories}}
+</ul>
+
+<span class="nav-section-title">
+  Tags on this page
+</span>
+<p>{{#if page.tags}}{{page.tags.length}}{{else}}0{{/if}} tags</a></p>
+<ul class="nav nav-tabs nav-stacked">
+  <li>
+  {{#page.tags}}
+  <span class="label label-info">{{.}}</span>
+  {{/page.tags}}
+  </li>
+</ul>
+
+<span class="nav-section-title">
+  Items on this page
+</span>
+<p>{{#if page.items}}{{page.items.length}}{{else}}0{{/if}} items</a></p>
+<ul class="nav nav-tabs nav-stacked">
+  <li>
+  {{#page.items}}
+  <span class="label label-info">{{.}}</span>
+  {{/page.items}}
+  </li>
+</ul>
+
+<span class="nav-section-title">
+  Categories on this page
+</span>
+<p>{{#if page.categories}}{{page.categories.length}}{{else}}0{{/if}} categories</p>
+<ul class="nav nav-tabs nav-stacked">
+  <li>
+  {{#page.categories}}
+  <span class="label label-info">{{.}}</span>
+  {{/page.categories}}
+  </li>
+</ul>

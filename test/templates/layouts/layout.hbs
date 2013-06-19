@@ -6,19 +6,31 @@
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
+
     <div class="container">
+      <div class="categories">
+        <h2>Categories</h2>
+        <ul>
+        {{#categories}}
+          <li>{{category}}</li>
+        {{/categories}}
+        </ul>
+      </div>
       {{> body }}
     </div>
 
     <div class="container" style="display: none">
+      <h2>Content</h2>
       <ul>
         {{#each pages}}<li><a href="{{relative ../page.dest this.dest}}">{{this.basename}}</a></li>
         {{/each}}
       </ul>
-
-
-<h3>Debug Info</h3>
-{{inspect page 'json'}}
     </div>
+
+    <div class="container" style="display: none">
+      <h2>Debug Info</h2>
+      {{inspect page 'json'}}
+    </div>
+
   </body>
 </html>
