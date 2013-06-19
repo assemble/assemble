@@ -57,11 +57,11 @@ Default: `false`
 Remove anything after (and including) the first "." in the destination path, then append this value. In other words, when files are generated from different source folders this "flattens" them into the same destination directory. See [building the files object dynamically][files-object] for more information on `files` formats.
 
 
-### Custom "Options Variables"
+## Custom "Options Variables"
 
 You can add any custom variables directly to the options block:
 
-``` javascript
+```javascript
 assemble {
   myProject: {
     options: {
@@ -76,13 +76,15 @@ assemble {
 ```
 This offers a great deal of flexibility, but it's also something that should be done sparingly because your tasks and targets can get out of hand pretty quickly. 
 
+### Usage Examples
+
 Here are a couple of common use cases for custom options variables:
 
-**development stages**
+### development stages
 
 Add custom variables for development stages, such as `dev` and `prod`:
 
-``` javascript
+```javascript
 assemble {
   myProject: {
     options: {
@@ -107,8 +109,7 @@ Then we can wrap sections in our templates with these contexts to include or exc
 {{/prod}}
 ```
 
-
-**version consistency**
+#### version consistency
 
 Get or set metadata to/from `package.json`:
 
