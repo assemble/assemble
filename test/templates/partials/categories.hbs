@@ -1,0 +1,38 @@
+---
+title: Categories
+description: Different ways to use categories collections.
+---
+<div class="page-header">
+  <h1>{{title}}</h1>  
+  <p class="lead">{{description}}</p>
+</div>
+
+<span class="nav-section-title">
+  Categories
+</span>
+<ul class="nav nav-pills nav-stacked">
+{{#categories}}
+  <li><a href="{{relative ../page.dest this.dest}}">{{category}}</a></li>
+{{/categories}}
+</ul>
+
+<span class="nav-section-title">
+  All categories
+</span>
+<ul class="nav nav-pills nav-stacked">
+  {{#categories}}
+  <li><a href="/categories/{{category}}.html">{{category}} <label class="badge badge-info">{{pages.length}}</label></a></li>
+  {{/categories}}
+</ul>
+
+<span class="nav-section-title">
+  Categories on this page
+</span>
+<p>{{#if page.categories}}{{page.categories.length}}{{else}}0{{/if}} categories</p>
+<ul class="nav nav-tabs nav-stacked">
+  <li>
+  {{#page.categories}}
+  <span class="label label-info">{{.}}</span>
+  {{/page.categories}}
+  </li>
+</ul>

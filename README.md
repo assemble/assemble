@@ -1,4 +1,4 @@
-# [Assemble v0.3.82](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
+# [Assemble v0.3.83](http://github.com/assemble/assemble) [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
 
 > Assemble makes it dead simple to build modular sites and components from reusable templates and data.
 
@@ -27,15 +27,13 @@ Visit the [assemble-examples](http://github.com/assemble/assemble-examples) repo
 
 
 ## Getting started
-> It amazes me how flexible this whole system is, as we can dance
-> around all the issues quite easily.
-> -- [@Arkkimaagi](https://github.com/Arkkimaagi)
+> It amazes me how flexible this whole system is, as we can dance around all the issues quite easily. <br>
+> — [@Arkkimaagi](https://github.com/Arkkimaagi)
 
 <br>
-> Thanks guys, this just goes to show how powerful assemble [is] -
-> I was expecting a short "no sorry, not possible", but instead
-> I've got multiple solutions.
-> -- [@matt-bailey](https://github.com/matt-bailey)
+> Thanks guys, this just goes to show how powerful assemble [is], I was expecting a short "no sorry, not possible",  <br>
+> but instead I've got multiple solutions.  <br>
+> — [@matt-bailey](https://github.com/matt-bailey)
 
 
 If you're having trouble getting started, please [create an Issue](https://github.com/assemble/assemble/issues), we're happy to help.
@@ -139,11 +137,11 @@ Default: `false`
 Remove anything after (and including) the first "." in the destination path, then append this value. In other words, when files are generated from different source folders this "flattens" them into the same destination directory. See [building the files object dynamically][files-object] for more information on `files` formats.
 
 
-### Custom "Options Variables"
+## Custom "Options Variables"
 
 You can add any custom variables directly to the options block:
 
-``` javascript
+```javascript
 assemble {
   myProject: {
     options: {
@@ -158,13 +156,15 @@ assemble {
 ```
 This offers a great deal of flexibility, but it's also something that should be done sparingly because your tasks and targets can get out of hand pretty quickly. 
 
+### Usage Examples
+
 Here are a couple of common use cases for custom options variables:
 
-**development stages**
+### development stages
 
 Add custom variables for development stages, such as `dev` and `prod`:
 
-``` javascript
+```javascript
 assemble {
   myProject: {
     options: {
@@ -189,8 +189,7 @@ Then we can wrap sections in our templates with these contexts to include or exc
 {{/prod}}
 ```
 
-
-**version consistency**
+#### version consistency
 
 Get or set metadata to/from `package.json`:
 
@@ -714,7 +713,7 @@ Copyright 2013 Assemble
 
 ---
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sun Jun 16 2013 20:46:06._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Tue Jun 18 2013 22:09:29._
 
 
 

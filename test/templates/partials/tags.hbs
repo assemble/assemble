@@ -1,0 +1,25 @@
+---
+title: Tags
+description: Different ways to use tags collections.
+---
+<div class="page-header">
+  <h1>{{title}}</h1>  
+  <p class="lead">{{description}}</p>
+</div>
+
+<h2>All tags</h2>
+<ul class="nav nav-pills nav-stacked">
+  {{#tags}}
+  <li><a href="/tags/{{tag}}.html">{{tag}} <label class="badge badge-info">{{pages.length}}</label></a></li>
+  {{/tags}}
+</ul>
+
+<h2>Tags on this page</h2>
+<p>{{#if page.tags}}{{page.tags.length}}{{else}}0{{/if}} tags</p>
+<ul class="nav nav-tabs nav-stacked">
+  <li>
+  {{#page.tags}}
+  <span class="label label-info">{{.}}</span>
+  {{/page.tags}}
+  </li>
+</ul>

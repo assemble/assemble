@@ -6,7 +6,26 @@
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
+
     <div class="container">
+      <div class="categories">
+        <h2>Categories</h2>
+        <ul>
+        
+          <li>one</li>
+        
+          <li>two</li>
+        
+          <li>three</li>
+        
+          <li>categories</li>
+        
+          <li>test</li>
+        
+          <li>something</li>
+        
+        </ul>
+      </div>
       
 
 Properties from "example.json" and "example.hbs" should be on the page object.
@@ -35,6 +54,7 @@ Properties from "example.json" and "example.hbs" should be on the page object.
     </div>
 
     <div class="container" style="display: none">
+      <h2>Content</h2>
       <ul>
         <li><a href="alert.html">alert</a></li>
         <li><a href="assets.html">assets</a></li>
@@ -71,10 +91,11 @@ Properties from "example.json" and "example.hbs" should be on the page object.
         <li><a href="../dest2/sub-dest/simple3.html">simple3</a></li>
         
       </ul>
+    </div>
 
-
-<h3>Debug Info</h3>
-<pre class="json">
+    <div class="container" style="display: none">
+      <h2>Debug Info</h2>
+      <pre class="json">
 { title: 'YFM title',
   description: 'YFM description',
   dirname: 'test/actual/multi/dest1',
@@ -97,5 +118,6 @@ Properties from "example.json" and "example.hbs" should be on the page object.
   data: { title: 'YFM title', description: 'YFM description' } }
 </pre>
     </div>
+
   </body>
 </html>
