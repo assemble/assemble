@@ -113,19 +113,14 @@
     <div class="container" style="display: none">
       <h2>Debug Info</h2>
       <pre class="json">
-{ page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  src: 'test/templates/pages/yfm/lists.hbs',
-  title: 'Almost a Haiku',
-  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
-  methods: [ 'getter', 'setter', [length]: 2 ],
+{ dirname: 'test/actual/yfm',
   groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
-  men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
+  title: 'Almost a Haiku',
+  people: 
+   [ { name: 'John Smith', age: 33 },
+     { name: 'Mary Smith', age: 27 },
+     [length]: 2 ],
+  dest: 'test/actual/yfm/lists.html',
   data: 
    { title: 'Almost a Haiku',
      attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
@@ -142,25 +137,30 @@
         [length]: 2 ],
      men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
      women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ] },
+  assets: '../assets',
+  ext: '.html',
+  src: 'test/templates/pages/yfm/lists.hbs',
+  methods: [ 'getter', 'setter', [length]: 2 ],
+  pagename: 'lists.html',
+  basename: 'lists',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  pageName: 'lists.html',
+  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
+  filename: 'lists.html',
+  extname: '.html',
+  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
+  men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
   movies: 
    [ 'Casablanca',
      'North by Northwest',
      'The Man Who Wasn\'t There',
-     [length]: 3 ],
-  dest: 'test/actual/yfm/lists.html',
-  pageName: 'lists.html',
-  ext: '.html',
-  pagename: 'lists.html',
-  people: 
-   [ { name: 'John Smith', age: 33 },
-     { name: 'Mary Smith', age: 27 },
-     [length]: 2 ],
-  assets: '../assets',
-  basename: 'lists',
-  dirname: 'test/actual/yfm',
-  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
-  filename: 'lists.html',
-  extname: '.html' }
+     [length]: 3 ] }
 </pre>
     </div>
 

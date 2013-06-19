@@ -138,11 +138,56 @@ Suite 16
     <div class="container" style="display: none">
       <h2>Debug Info</h2>
       <pre class="json">
-{ dest: 'test/actual/yfm/document.html',
-  pageName: 'document.html',
-  ext: '.html',
+{ customer: { given: 'Dorothy', family: 'Gale' },
   pagename: 'document.html',
+  basename: 'document',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
+  'ship-to': 
+   { street: '123 Tornado Alley\nSuite 16\n',
+     city: 'East Centerville',
+     state: 'KS' },
+  pageName: 'document.html',
+  dirname: 'test/actual/yfm',
+  dest: 'test/actual/yfm/document.html',
+  prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
+  filename: 'document.html',
   extname: '.html',
+  assets: '../assets',
+  data: 
+   { customer: { given: 'Dorothy', family: 'Gale' },
+     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
+     'ship-to': 
+      { street: '123 Tornado Alley\nSuite 16\n',
+        city: 'East Centerville',
+        state: 'KS' },
+     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
+     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+     items: 
+      [ { part_no: 'A4786',
+          descrip: 'Water Bucket (Filled)',
+          price: 1.47,
+          quantity: 4 },
+        { part_no: 'E1628',
+          descrip: 'High Heeled "Ruby" Slippers',
+          size: 8,
+          price: 100.27,
+          quantity: 1 },
+        [length]: 2 ],
+     receipt: 'Oz-Ware Purchase Invoice',
+     'bill-to': 
+      { street: '123 Tornado Alley\nSuite 16\n',
+        city: 'East Centerville',
+        state: 'KS' } },
+  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+  ext: '.html',
+  src: 'test/templates/pages/yfm/document.hbs',
   items: 
    [ { part_no: 'A4786',
        descrip: 'Water Bucket (Filled)',
@@ -154,56 +199,11 @@ Suite 16
        price: 100.27,
        quantity: 1 },
      [length]: 2 ],
-  src: 'test/templates/pages/yfm/document.hbs',
-  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
-  assets: '../assets',
-  basename: 'document',
-  'ship-to': 
-   { street: '123 Tornado Alley\nSuite 16\n',
-     city: 'East Centerville',
-     state: 'KS' },
   receipt: 'Oz-Ware Purchase Invoice',
-  dirname: 'test/actual/yfm',
-  data: 
-   { items: 
-      [ { part_no: 'A4786',
-          descrip: 'Water Bucket (Filled)',
-          price: 1.47,
-          quantity: 4 },
-        { part_no: 'E1628',
-          descrip: 'High Heeled "Ruby" Slippers',
-          size: 8,
-          price: 100.27,
-          quantity: 1 },
-        [length]: 2 ],
-     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
-     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
-     'ship-to': 
-      { street: '123 Tornado Alley\nSuite 16\n',
-        city: 'East Centerville',
-        state: 'KS' },
-     receipt: 'Oz-Ware Purchase Invoice',
-     customer: { given: 'Dorothy', family: 'Gale' },
-     'bill-to': 
-      { street: '123 Tornado Alley\nSuite 16\n',
-        city: 'East Centerville',
-        state: 'KS' },
-     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time) },
-  customer: { given: 'Dorothy', family: 'Gale' },
   'bill-to': 
    { street: '123 Tornado Alley\nSuite 16\n',
      city: 'East Centerville',
-     state: 'KS' },
-  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-  filename: 'document.html' }
+     state: 'KS' } }
 </pre>
     </div>
 
