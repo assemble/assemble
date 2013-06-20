@@ -454,7 +454,7 @@ module.exports = function(grunt) {
 
       // if pageContext contains a layout, use that one instead
       // of the default layout
-      if(pageContext && pageContext.layout) {
+      if(pageContext && (pageContext.layout || pageContext.layout === false)) {
 
         var pageLayoutName = null,
             pageLayout = null,

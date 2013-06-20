@@ -134,20 +134,7 @@ Suite 16
    { street: '123 Tornado Alley\nSuite 16\n',
      city: 'East Centerville',
      state: 'KS' },
-  pageName: 'document.html',
-  basename: 'document',
-  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
-  dirname: 'test/actual/yaml',
-  src: 'test/YAML/document.hbs',
   extname: '.html',
-  ext: '.html',
-  'ship-to': 
-   { street: '123 Tornado Alley\nSuite 16\n',
-     city: 'East Centerville',
-     state: 'KS' },
-  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-  dest: 'test/actual/yaml/document.html',
-  pagename: 'document.html',
   page: 
    { [Function]
      [length]: 2,
@@ -155,20 +142,14 @@ Suite 16
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  receipt: 'Oz-Ware Purchase Invoice',
+  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
+  ext: '.html',
   filename: 'document.html',
-  customer: { given: 'Dorothy', family: 'Gale' },
-  items: 
-   [ { part_no: 'A4786',
-       descrip: 'Water Bucket (Filled)',
-       price: 1.47,
-       quantity: 4 },
-     { part_no: 'E1628',
-       descrip: 'High Heeled "Ruby" Slippers',
-       size: 8,
-       price: 100.27,
-       quantity: 1 },
-     [length]: 2 ],
+  pagename: 'document.html',
+  dirname: 'test/actual/yaml',
+  receipt: 'Oz-Ware Purchase Invoice',
+  pageName: 'document.html',
+  assets: '../assets',
   data: 
    { prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
      'bill-to': 
@@ -176,11 +157,6 @@ Suite 16
         city: 'East Centerville',
         state: 'KS' },
      specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
-     'ship-to': 
-      { street: '123 Tornado Alley\nSuite 16\n',
-        city: 'East Centerville',
-        state: 'KS' },
-     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
      receipt: 'Oz-Ware Purchase Invoice',
      customer: { given: 'Dorothy', family: 'Gale' },
      items: 
@@ -193,8 +169,32 @@ Suite 16
           size: 8,
           price: 100.27,
           quantity: 1 },
-        [length]: 2 ] },
-  assets: '../assets' }
+        [length]: 2 ],
+     'ship-to': 
+      { street: '123 Tornado Alley\nSuite 16\n',
+        city: 'East Centerville',
+        state: 'KS' },
+     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time) },
+  basename: 'document',
+  dest: 'test/actual/yaml/document.html',
+  customer: { given: 'Dorothy', family: 'Gale' },
+  items: 
+   [ { part_no: 'A4786',
+       descrip: 'Water Bucket (Filled)',
+       price: 1.47,
+       quantity: 4 },
+     { part_no: 'E1628',
+       descrip: 'High Heeled "Ruby" Slippers',
+       size: 8,
+       price: 100.27,
+       quantity: 1 },
+     [length]: 2 ],
+  src: 'test/YAML/document.hbs',
+  'ship-to': 
+   { street: '123 Tornado Alley\nSuite 16\n',
+     city: 'East Centerville',
+     state: 'KS' },
+  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time) }
 </pre>
     </div>
   </body>
