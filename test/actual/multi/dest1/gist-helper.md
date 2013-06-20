@@ -47,6 +47,7 @@
 [helpers](helpers.md)
 [home](home.md)
 [html-helpers](html-helpers.md)
+[no-layout](no-layout.md)
 [page](page.md)
 [simple3](simple3.md)
 
@@ -194,6 +195,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: html-helpers.md
 this.pagename: html-helpers.md
 this.basename: html-helpers
+this.extname:  .md
+this.ext:      .md
+
+#### no-layout.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/no-layout.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: no-layout.md
+this.pagename: no-layout.md
+this.basename: no-layout
 this.extname:  .md
 this.ext:      .md
 
@@ -387,8 +399,30 @@ page.basename: gist-helper
 page.extname:  .md
 page.ext:      .md
 
+#### gist-helper.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/gist-helper.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: gist-helper.md
+page.pagename: gist-helper.md
+page.basename: gist-helper
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### gist-helper.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/gist-helper.md
+dirname:       test/actual/multi/dest1
+filename:      gist-helper.md
+pagename:      gist-helper.md
+basename:      gist-helper
+extname:       .md
+ext:           .md
 
 #### gist-helper.md
 assets:        ../../assets

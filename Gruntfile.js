@@ -57,7 +57,7 @@ module.exports = function(grunt) {
           data: ['test/data/*.yml']
         },
         files: {
-          'test/actual/paths/': ['test/templates/pages/*.hbs']
+          'test/actual/paths/': ['test/templates/pages/**/*.hbs']
         }
       },
       single_page: {
@@ -69,13 +69,13 @@ module.exports = function(grunt) {
           'test/actual/page.html': ['test/templates/pages/page.hbs']
         }
       },
-      yaml_front_matter: {
+      files_object: {
         options: {
           layout: 'layout.hbs',
-          data: 'test/data/*.{json,yml}'
+          data: 'test/yaml/data/*.{json,yml}'
         },
         files: {
-          'test/actual/yfm/': ['test/templates/pages/yfm/*.hbs']
+          'test/actual/yaml/': ['test/YAML/*.hbs']
         }
       },
       multi: {
@@ -84,9 +84,9 @@ module.exports = function(grunt) {
           data: ['test/data/*.json']
         },
         files: {
-          'test/actual/multi/dest1/': ['test/templates/pages/*.hbs'],
-          'test/actual/multi/dest2/': ['test/templates/pages/*.{md,markdown}'],
-          'test/actual/multi/dest2/sub-dest/': ['test/templates/pages/*.hbs']
+          'test/actual/multi/dest1/': ['test/templates/pages/**/*.hbs'],
+          'test/actual/multi/dest2/': ['test/templates/pages/**/*.{md,markdown}'],
+          'test/actual/multi/dest2/sub-dest/': ['test/templates/pages/**/*.hbs']
         }
       },
       markdown: {
@@ -96,7 +96,7 @@ module.exports = function(grunt) {
           ext: '.md'
         },
         files: {
-          'test/actual/multi/dest1/': ['test/templates/pages/*.hbs']
+          'test/actual/multi/dest1/': ['test/templates/pages/**/*.hbs']
         }
       },
       assets_one: {
@@ -124,15 +124,6 @@ module.exports = function(grunt) {
         },
         files: {
           'test/actual/assets-root.html': ['test/templates/pages/assets.hbs']
-        }
-      },
-      custom_helpers: {
-        options: {
-          helpers: ['test/helpers/**/*.js'],
-          version: '<%= pkg.version %>'
-        },
-        files: {
-          'test/actual/custom-helpers.html': ['test/templates/pages/helpers/custom-helpers.hbs']
         }
       }
     },

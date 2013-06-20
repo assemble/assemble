@@ -104,19 +104,37 @@
 
 <h3>Debug Info</h3>
 <pre class="json">
-{ people: 
+{ pagename: 'lists.html',
+  men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
+  pageName: 'lists.html',
+  assets: '../assets',
+  title: 'Almost a Haiku',
+  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
+  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
+  basename: 'lists',
+  people: 
    [ { name: 'John Smith', age: 33 },
      { name: 'Mary Smith', age: 27 },
      [length]: 2 ],
-  pagename: 'lists.html',
-  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
-  extname: '.html',
+  src: 'test/YAML/lists.hbs',
   methods: [ 'getter', 'setter', [length]: 2 ],
+  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
+  extname: '.html',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  ext: '.html',
+  filename: 'lists.html',
   movies: 
    [ 'Casablanca',
      'North by Northwest',
      'The Man Who Wasn\'t There',
      [length]: 3 ],
+  dirname: 'test/actual/yaml',
   data: 
    { title: 'Almost a Haiku',
      attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
@@ -133,25 +151,7 @@
         [length]: 2 ],
      men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
      women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ] },
-  dest: 'test/actual/yfm/lists.html',
-  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
-  filename: 'lists.html',
-  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
-  men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
-  pageName: 'lists.html',
-  assets: '../assets',
-  basename: 'lists',
-  title: 'Almost a Haiku',
-  dirname: 'test/actual/yfm',
-  ext: '.html',
-  src: 'test/templates/pages/yfm/lists.hbs',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } } }
+  dest: 'test/actual/yaml/lists.html' }
 </pre>
     </div>
   </body>
