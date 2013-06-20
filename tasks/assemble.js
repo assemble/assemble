@@ -92,15 +92,8 @@ module.exports = function(grunt) {
       // load default layout
       var defaultLayoutData = {};
 
-      var layoutPath;
-      if(assemble.options.layoutdir) {
-        layoutPath = path.normalize(assemble.options.layoutdir + '/' + assemble.options.layout);
-      } else {
-        layoutPath = assemble.options.layout;
-      }
-
       loadLayout(
-        layoutPath,
+        assemble.options.layout,
         assemble,
         function(err, results) {
           if(!err) {
@@ -430,13 +423,11 @@ module.exports = function(grunt) {
     var src = currentPage.srcFile;
     var filename = currentPage.filename;
     var options = assemble.options;
-    var layoutPath = path.normalize(options.layoutdir + '/' + options.defaultLayout);
 
     grunt.verbose.writeln('currentPage: ' + currentPage);
     var page         = currentPage.page,
         pageContext  = currentPage.data,
         layout       = options.defaultLayout,
-        layoutdir      = layoutPath,
         data         = options.data,
         pages        = options.pages,
         engine       = options.engine,
@@ -471,15 +462,8 @@ module.exports = function(grunt) {
 
         context = processContext(grunt, context);
 
-        var contextLayout;
-        if(assemble.options.layoutdir) {
-          contextLayout = path.normalize(assemble.options.layoutdir + '/' + context.layout);
-        } else {
-          contextLayout = context.layout;
-        }        
-
         loadLayout(
-          contextLayout,
+          context.layout,
           assemble,
           function(err, results) {
             if(!err) {
@@ -565,15 +549,16 @@ module.exports = function(grunt) {
     var layoutName = 'layout';
 
     // if the src is empty, create a default layout in memory
-    if(src === '' || src.length === 0) {
+    grunt.log.writeln('src', src);
+    if(!src || src === false || src === '' || src.length === 0) {
       loadFile = false;
       layout = "{{>body}}";
     }
-    
+
     if(loadFile) {
       // validate that the layout file exists
       grunt.verbose.writeln(src);
-      layout = path.normalize(src);
+      layout = path.normalize(path.join(assemble.options.layoutdir || '', src));
       grunt.verbose.writeln(layout);
 
       if(!fs.existsSync(layout)) {
@@ -670,7 +655,7 @@ module.exports = function(grunt) {
     return reader;
   };
 
-  // Attempt to remove extra whitespace around Handlebars expressions 
+  // Attempt to remove extra whitespace around Handlebars expressions
   // in generated HTML, similar to what mustache.js does
   var removeHbsWhitespace = function(assemble, filecontent){
     if(assemble.options.removeHbsWhitespace){

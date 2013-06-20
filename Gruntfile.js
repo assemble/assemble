@@ -58,7 +58,7 @@ module.exports = function(grunt) {
         },
         files: {
           'test/actual/paths/': ['test/templates/pages/**/*.hbs']
-        } 
+        }
       },
       single_page: {
         options: {
