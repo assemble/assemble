@@ -46,6 +46,7 @@
 [helpers](helpers.md)
 [home](home.md)
 [html-helpers](html-helpers.md)
+[no-layout](no-layout.md)
 [page](page.md)
 [simple3](simple3.md)
 
@@ -193,6 +194,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: html-helpers.md
 this.pagename: html-helpers.md
 this.basename: html-helpers
+this.extname:  .md
+this.ext:      .md
+
+#### no-layout.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/no-layout.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: no-layout.md
+this.pagename: no-layout.md
+this.basename: no-layout
 this.extname:  .md
 this.ext:      .md
 
@@ -386,8 +398,30 @@ page.basename: debug-helpers
 page.extname:  .md
 page.ext:      .md
 
+#### debug-helpers.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/debug-helpers.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: debug-helpers.md
+page.pagename: debug-helpers.md
+page.basename: debug-helpers
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### debug-helpers.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/debug-helpers.md
+dirname:       test/actual/multi/dest1
+filename:      debug-helpers.md
+pagename:      debug-helpers.md
+basename:      debug-helpers
+extname:       .md
+ext:           .md
 
 #### debug-helpers.md
 assets:        ../../assets

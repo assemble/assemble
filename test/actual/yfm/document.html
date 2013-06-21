@@ -138,56 +138,7 @@ Suite 16
     <div class="container" style="display: none">
       <h2>Debug Info</h2>
       <pre class="json">
-{ customer: { given: 'Dorothy', family: 'Gale' },
-  pagename: 'document.html',
-  basename: 'document',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
-  'ship-to': 
-   { street: '123 Tornado Alley\nSuite 16\n',
-     city: 'East Centerville',
-     state: 'KS' },
-  pageName: 'document.html',
-  dirname: 'test/actual/yfm',
-  dest: 'test/actual/yfm/document.html',
-  prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
-  filename: 'document.html',
-  extname: '.html',
-  assets: '../assets',
-  data: 
-   { customer: { given: 'Dorothy', family: 'Gale' },
-     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
-     'ship-to': 
-      { street: '123 Tornado Alley\nSuite 16\n',
-        city: 'East Centerville',
-        state: 'KS' },
-     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
-     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-     items: 
-      [ { part_no: 'A4786',
-          descrip: 'Water Bucket (Filled)',
-          price: 1.47,
-          quantity: 4 },
-        { part_no: 'E1628',
-          descrip: 'High Heeled "Ruby" Slippers',
-          size: 8,
-          price: 100.27,
-          quantity: 1 },
-        [length]: 2 ],
-     receipt: 'Oz-Ware Purchase Invoice',
-     'bill-to': 
-      { street: '123 Tornado Alley\nSuite 16\n',
-        city: 'East Centerville',
-        state: 'KS' } },
-  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-  ext: '.html',
-  src: 'test/templates/pages/yfm/document.hbs',
+{ date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
   items: 
    [ { part_no: 'A4786',
        descrip: 'Water Bucket (Filled)',
@@ -199,11 +150,60 @@ Suite 16
        price: 100.27,
        quantity: 1 },
      [length]: 2 ],
+  customer: { given: 'Dorothy', family: 'Gale' },
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  pagename: 'document.html',
+  filename: 'document.html',
+  ext: '.html',
+  extname: '.html',
   receipt: 'Oz-Ware Purchase Invoice',
+  prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
+  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
   'bill-to': 
    { street: '123 Tornado Alley\nSuite 16\n',
      city: 'East Centerville',
-     state: 'KS' } }
+     state: 'KS' },
+  src: 'test/templates/pages/yfm/document.hbs',
+  data: 
+   { date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+     items: 
+      [ { part_no: 'A4786',
+          descrip: 'Water Bucket (Filled)',
+          price: 1.47,
+          quantity: 4 },
+        { part_no: 'E1628',
+          descrip: 'High Heeled "Ruby" Slippers',
+          size: 8,
+          price: 100.27,
+          quantity: 1 },
+        [length]: 2 ],
+     customer: { given: 'Dorothy', family: 'Gale' },
+     receipt: 'Oz-Ware Purchase Invoice',
+     prettyDate: '<%= grunt.template.date(date, \'yyyy-mm-dd\') %>',
+     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n',
+     'bill-to': 
+      { street: '123 Tornado Alley\nSuite 16\n',
+        city: 'East Centerville',
+        state: 'KS' },
+     'ship-to': 
+      { street: '123 Tornado Alley\nSuite 16\n',
+        city: 'East Centerville',
+        state: 'KS' } },
+  pageName: 'document.html',
+  'ship-to': 
+   { street: '123 Tornado Alley\nSuite 16\n',
+     city: 'East Centerville',
+     state: 'KS' },
+  dirname: 'test/actual/yfm',
+  basename: 'document',
+  assets: '../assets',
+  dest: 'test/actual/yfm/document.html' }
 </pre>
     </div>
 

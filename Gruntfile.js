@@ -46,12 +46,14 @@ module.exports = function(grunt) {
     assemble: {
       options: {
         flatten: true,
+        layout: 'layout.hbs',
+        layoutdir: 'test/templates/layouts',
         assets: 'test/actual/assets'
       },
       paths: {
         options: {
           partials: 'test/templates/partials/*.hbs',
-          layout: 'test/templates/layouts/paths-example.hbs',
+          layout: 'paths-example.hbs',
           data: ['test/data/*.yml']
         },
         files: {
@@ -61,7 +63,7 @@ module.exports = function(grunt) {
       single_page: {
         options: {
           partials: 'test/templates/partials/*.hbs',
-          layout: 'test/templates/layouts/layout.hbs'
+          layout: 'layout.hbs'
         },
         files: {
           'test/actual/page.html': ['test/templates/pages/page.hbs']
@@ -69,7 +71,7 @@ module.exports = function(grunt) {
       },
       yaml_front_matter: {
         options: {
-          layout: 'test/templates/layouts/layout.hbs',
+          layout: 'layout.hbs',
           data: 'test/yaml/data/*.{json,yml}'
         },
         files: {
@@ -78,7 +80,7 @@ module.exports = function(grunt) {
       },
       multi: {
         options: {
-          layout: 'test/templates/layouts/layout.hbs',
+          layout: 'layout.hbs',
           data: ['test/data/*.json']
         },
         files: {
@@ -89,7 +91,7 @@ module.exports = function(grunt) {
       },
       markdown: {
         options: {
-          layout: 'test/templates/layouts/default.md.hbs',
+          layout: 'default.md.hbs',
           data: ['test/data/*.json'],
           ext: '.md'
         },
@@ -154,5 +156,5 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['jshint', 'clean', 'assemble']);
 
   // Tests to be run.
-  grunt.registerTask('test', ['default']);
+  grunt.registerTask('test', ['default', 'mochaTest']);
 };

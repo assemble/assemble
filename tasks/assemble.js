@@ -445,16 +445,16 @@ module.exports = function(grunt) {
       var pageCollections = lodash.pick(pageContext, options.collections);
       pageContext = lodash.omit(pageContext, options.collections);
 
-      options.data   = undefined;
-      options.pages  = undefined;
-      options.layout = undefined;
-      context        = _.extend(context, options, data, pageContext);
-      options.data   = data;
-      options.pages  = pages;
+      options.data    = undefined;
+      options.pages   = undefined;
+      options.layout  = undefined;
+      context         = _.extend(context, options, data, pageContext);
+      options.data    = data;
+      options.pages   = pages;
 
       // if pageContext contains a layout, use that one instead
       // of the default layout
-      if(pageContext && pageContext.layout) {
+      if(pageContext && (pageContext.layout || pageContext.layout === false)) {
 
         var pageLayoutName = null,
             pageLayout = null,
@@ -549,15 +549,16 @@ module.exports = function(grunt) {
     var layoutName = 'layout';
 
     // if the src is empty, create a default layout in memory
-    if(src === '' || src.length === 0) {
+    grunt.log.writeln('src', src);
+    if(!src || src === false || src === '' || src.length === 0) {
       loadFile = false;
       layout = "{{>body}}";
     }
-    
+
     if(loadFile) {
       // validate that the layout file exists
       grunt.verbose.writeln(src);
-      layout = path.normalize(src);
+      layout = path.normalize(path.join(assemble.options.layoutdir || '', src));
       grunt.verbose.writeln(layout);
 
       if(!fs.existsSync(layout)) {
@@ -654,7 +655,7 @@ module.exports = function(grunt) {
     return reader;
   };
 
-  // Attempt to remove extra whitespace around Handlebars expressions 
+  // Attempt to remove extra whitespace around Handlebars expressions
   // in generated HTML, similar to what mustache.js does
   var removeHbsWhitespace = function(assemble, filecontent){
     if(assemble.options.removeHbsWhitespace){

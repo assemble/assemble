@@ -1,3 +1,7 @@
+v0.4.0:
+  date: "2013-06-20"
+  changes:
+    - New option "layoutdir" for defining the directory to be used for layouts. If layoutdir is defined, then layouts may be defined using only the name of the layout.
 v0.3.81:
   date: "2013-06-10"
   changes:

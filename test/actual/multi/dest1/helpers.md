@@ -31,14 +31,36 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
 ## Debug Info
 ``` json
-{ javascripts: 
+{ title: 'Helpers and custom variables',
+  javascripts: 
    [ 'js/bootstrap.js',
      'js/responsive.js',
      'js/main.js',
      [length]: 3 ],
+  filename: 'helpers.md',
+  scripts: 'document.write(\'foo bar!\');',
+  ext: '.md',
+  extname: '.md',
+  pageName: 'helpers.md',
+  basename: 'helpers',
   dirname: 'test/actual/multi/dest1',
   dest: 'test/actual/multi/dest1/helpers.md',
-  title: 'Helpers and custom variables',
+  styles: '<link rel="stylesheet" href="css/index.css"/>',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  stylesheets: 
+   [ 'css/bootstrap.css',
+     'css/responsive.css',
+     'css/main.css',
+     [length]: 3 ],
+  pagename: 'helpers.md',
+  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
+  src: 'test/templates/pages/helpers.hbs',
   data: 
    { title: 'Helpers and custom variables',
      description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
@@ -54,29 +76,7 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
         [length]: 3 ],
      styles: '<link rel="stylesheet" href="css/index.css"/>',
      scripts: 'document.write(\'foo bar!\');' },
-  assets: '../../assets',
-  styles: '<link rel="stylesheet" href="css/index.css"/>',
-  ext: '.md',
-  src: 'test/templates/pages/helpers.hbs',
-  pagename: 'helpers.md',
-  basename: 'helpers',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  stylesheets: 
-   [ 'css/bootstrap.css',
-     'css/responsive.css',
-     'css/main.css',
-     [length]: 3 ],
-  scripts: 'document.write(\'foo bar!\');',
-  pageName: 'helpers.md',
-  filename: 'helpers.md',
-  extname: '.md',
-  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n' }
+  assets: '../../assets' }
 ```
 
 
@@ -94,6 +94,7 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 [helpers](helpers.md)
 [home](home.md)
 [html-helpers](html-helpers.md)
+[no-layout](no-layout.md)
 [page](page.md)
 [simple3](simple3.md)
 
@@ -241,6 +242,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: html-helpers.md
 this.pagename: html-helpers.md
 this.basename: html-helpers
+this.extname:  .md
+this.ext:      .md
+
+#### no-layout.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/no-layout.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: no-layout.md
+this.pagename: no-layout.md
+this.basename: no-layout
 this.extname:  .md
 this.ext:      .md
 
@@ -434,8 +446,30 @@ page.basename: helpers
 page.extname:  .md
 page.ext:      .md
 
+#### helpers.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/helpers.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: helpers.md
+page.pagename: helpers.md
+page.basename: helpers
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### helpers.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/helpers.md
+dirname:       test/actual/multi/dest1
+filename:      helpers.md
+pagename:      helpers.md
+basename:      helpers
+extname:       .md
+ext:           .md
 
 #### helpers.md
 assets:        ../../assets
