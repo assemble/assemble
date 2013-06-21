@@ -38,14 +38,36 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
       <h3>Paths Examples</h3>
 
 <pre class="json">
-{ javascripts: 
+{ title: 'Helpers and custom variables',
+  javascripts: 
    [ 'js/bootstrap.js',
      'js/responsive.js',
      'js/main.js',
      [length]: 3 ],
+  filename: 'helpers.html',
+  scripts: 'document.write(\'foo bar!\');',
+  ext: '.html',
+  extname: '.html',
+  pageName: 'helpers.html',
+  basename: 'helpers',
   dirname: 'test/actual/paths',
   dest: 'test/actual/paths/helpers.html',
-  title: 'Helpers and custom variables',
+  styles: '<link rel="stylesheet" href="css/index.css"/>',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  stylesheets: 
+   [ 'css/bootstrap.css',
+     'css/responsive.css',
+     'css/main.css',
+     [length]: 3 ],
+  pagename: 'helpers.html',
+  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
+  src: 'test/templates/pages/helpers.hbs',
   data: 
    { title: 'Helpers and custom variables',
      description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
@@ -61,29 +83,7 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
         [length]: 3 ],
      styles: '<link rel="stylesheet" href="css/index.css"/>',
      scripts: 'document.write(\'foo bar!\');' },
-  assets: '../assets',
-  styles: '<link rel="stylesheet" href="css/index.css"/>',
-  ext: '.html',
-  src: 'test/templates/pages/helpers.hbs',
-  pagename: 'helpers.html',
-  basename: 'helpers',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  stylesheets: 
-   [ 'css/bootstrap.css',
-     'css/responsive.css',
-     'css/main.css',
-     [length]: 3 ],
-  scripts: 'document.write(\'foo bar!\');',
-  pageName: 'helpers.html',
-  filename: 'helpers.html',
-  extname: '.html',
-  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n' }
+  assets: '../assets' }
 </pre>
 
       <ul>
@@ -530,6 +530,42 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
         this.filename: html-helpers.html
         this.pagename: html-helpers.html
         this.basename: html-helpers
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/helpers.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/helpers.html
+        dirname:       test/actual/paths
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="no-layout.html">no-layout</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/no-layout.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: no-layout.html
+        this.pagename: no-layout.html
+        this.basename: no-layout
         this.extname:  .html
         this.ext:      .html
 
