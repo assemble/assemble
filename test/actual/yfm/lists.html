@@ -6,7 +6,14 @@
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
+
     <div class="container">
+      <div class="categories">
+        <h2>Categories</h2>
+        <ul>
+        
+        </ul>
+      </div>
       
 <div class="page-header">
   <h1>Almost a Haiku</h1> 
@@ -88,6 +95,7 @@
     </div>
 
     <div class="container" style="display: none">
+      <h2>Content</h2>
       <ul>
         <li><a href="associative-arrays.html">associative-arrays</a></li>
         <li><a href="block-literals.html">block-literals</a></li>
@@ -100,26 +108,25 @@
         <li><a href="variables.html">variables</a></li>
         
       </ul>
+    </div>
 
-
-<h3>Debug Info</h3>
-<pre class="json">
-{ pagename: 'lists.html',
-  men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
-  pageName: 'lists.html',
-  assets: '../assets',
-  title: 'Almost a Haiku',
-  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
-  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
-  basename: 'lists',
-  people: 
-   [ { name: 'John Smith', age: 33 },
-     { name: 'Mary Smith', age: 27 },
-     [length]: 2 ],
-  src: 'test/YAML/lists.hbs',
-  methods: [ 'getter', 'setter', [length]: 2 ],
-  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
+    <div class="container" style="display: none">
+      <h2>Debug Info</h2>
+      <pre class="json">
+{ title: 'Almost a Haiku',
+  filename: 'lists.html',
+  ext: '.html',
   extname: '.html',
+  pageName: 'lists.html',
+  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
+  movies: 
+   [ 'Casablanca',
+     'North by Northwest',
+     'The Man Who Wasn\'t There',
+     [length]: 3 ],
+  basename: 'lists',
+  dirname: 'test/actual/yfm',
+  dest: 'test/actual/yfm/lists.html',
   page: 
    { [Function]
      [length]: 2,
@@ -127,14 +134,16 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  ext: '.html',
-  filename: 'lists.html',
-  movies: 
-   [ 'Casablanca',
-     'North by Northwest',
-     'The Man Who Wasn\'t There',
-     [length]: 3 ],
-  dirname: 'test/actual/yaml',
+  pagename: 'lists.html',
+  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
+  methods: [ 'getter', 'setter', [length]: 2 ],
+  people: 
+   [ { name: 'John Smith', age: 33 },
+     { name: 'Mary Smith', age: 27 },
+     [length]: 2 ],
+  men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
+  src: 'test/templates/pages/yfm/lists.hbs',
+  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
   data: 
    { title: 'Almost a Haiku',
      attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
@@ -151,8 +160,9 @@
         [length]: 2 ],
      men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
      women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ] },
-  dest: 'test/actual/yaml/lists.html' }
+  assets: '../assets' }
 </pre>
     </div>
+
   </body>
 </html>

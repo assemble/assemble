@@ -6,7 +6,14 @@
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
+
     <div class="container">
+      <div class="categories">
+        <h2>Categories</h2>
+        <ul>
+        
+        </ul>
+      </div>
       <p>Examples to test the "relative" and "assets" variables, and to show how they work</p>
 
 
@@ -36,14 +43,16 @@ assets_three: {
     </div>
 
     <div class="container" style="display: none">
+      <h2>Content</h2>
       <ul>
         <li><a href="assets-root.html">assets</a></li>
         
       </ul>
+    </div>
 
-
-<h3>Debug Info</h3>
-<pre class="json">
+    <div class="container" style="display: none">
+      <h2>Debug Info</h2>
+      <pre class="json">
 { dirname: 'test/actual',
   filename: 'assets-root.html',
   pageName: 'assets-root.html',
@@ -64,5 +73,6 @@ assets_three: {
   data: {} }
 </pre>
     </div>
+
   </body>
 </html>
