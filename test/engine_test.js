@@ -65,7 +65,7 @@ describe('Loading default handlebars engine', function() {
       var engine = assembleEngine.load('handlebars');
       engine.init({
         cwd: __dirname,
-        helpers: './helpers/helpers.js'
+        helpers: './lib/helpers.js'
       });
       runTest(engine, done);
     });
@@ -74,14 +74,14 @@ describe('Loading default handlebars engine', function() {
       var engine = assembleEngine.load('handlebars');
       engine.init({
         cwd: __dirname,
-        helpers: './helpers/**/*.js'
+        helpers: './lib/**/*.js'
       });
       runTest(engine, done);
     });
 
     it('loads a custom helper without needing to set the cwd', function(done) {
       var engine = assembleEngine.load('handlebars');
-      engine.init({helpers: './test/helpers/**/*.js'});
+      engine.init({helpers: './test/lib/**/*.js'});
       var expected = '<!-- foo2 -->\n<!-- bar -->';
       engine.compile("{{{foo2 'bar'}}}", null, function(err, tmpl) {
         if(err) {

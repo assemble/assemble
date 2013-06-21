@@ -46,6 +46,7 @@
 [helpers](helpers.md)
 [home](home.md)
 [html-helpers](html-helpers.md)
+[no-layout](no-layout.md)
 [page](page.md)
 [simple3](simple3.md)
 
@@ -193,6 +194,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: html-helpers.md
 this.pagename: html-helpers.md
 this.basename: html-helpers
+this.extname:  .md
+this.ext:      .md
+
+#### no-layout.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/no-layout.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: no-layout.md
+this.pagename: no-layout.md
+this.basename: no-layout
 this.extname:  .md
 this.ext:      .md
 
@@ -386,8 +398,30 @@ page.basename: alert
 page.extname:  .md
 page.ext:      .md
 
+#### alert.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/alert.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: alert.md
+page.pagename: alert.md
+page.basename: alert
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### alert.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/alert.md
+dirname:       test/actual/multi/dest1
+filename:      alert.md
+pagename:      alert.md
+basename:      alert
+extname:       .md
+ext:           .md
 
 #### alert.md
 assets:        ../../assets

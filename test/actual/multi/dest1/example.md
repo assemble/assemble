@@ -53,6 +53,7 @@ This example shows that the properties from "example.json" and "example.hbs" are
 [helpers](helpers.md)
 [home](home.md)
 [html-helpers](html-helpers.md)
+[no-layout](no-layout.md)
 [page](page.md)
 [simple3](simple3.md)
 
@@ -200,6 +201,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: html-helpers.md
 this.pagename: html-helpers.md
 this.basename: html-helpers
+this.extname:  .md
+this.ext:      .md
+
+#### no-layout.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/no-layout.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: no-layout.md
+this.pagename: no-layout.md
+this.basename: no-layout
 this.extname:  .md
 this.ext:      .md
 
@@ -393,8 +405,30 @@ page.basename: example
 page.extname:  .md
 page.ext:      .md
 
+#### example.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/example.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: example.md
+page.pagename: example.md
+page.basename: example
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### example.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/example.md
+dirname:       test/actual/multi/dest1
+filename:      example.md
+pagename:      example.md
+basename:      example
+extname:       .md
+ext:           .md
 
 #### example.md
 assets:        ../../assets

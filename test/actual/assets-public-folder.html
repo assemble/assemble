@@ -1,4 +1,13 @@
-<p>Examples to test the "relative" and "assets" variables, and to show how they work</p>
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>YAML Test</title>
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+  </head>
+  <body style="padding-top: 60px;">
+    <div class="container">
+      <p>Examples to test the "relative" and "assets" variables, and to show how they work</p>
 
 
 <h1>"Public" Folder</h1>
@@ -23,3 +32,37 @@ assets_one: {
 <script src="publicone/two/three.js"></script>
 <script src="public/one/two/three.js"></script>
 
+
+    </div>
+
+    <div class="container" style="display: none">
+      <ul>
+        <li><a href="assets-public-folder.html">assets</a></li>
+        
+      </ul>
+
+
+<h3>Debug Info</h3>
+<pre class="json">
+{ dirname: 'test/actual',
+  filename: 'assets-public-folder.html',
+  pageName: 'assets-public-folder.html',
+  pagename: 'assets-public-folder.html',
+  basename: 'assets',
+  src: 'test/templates/pages/assets.hbs',
+  dest: 'test/actual/assets-public-folder.html',
+  assets: 'public',
+  ext: '.html',
+  extname: '.html',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  data: {} }
+</pre>
+    </div>
+  </body>
+</html>
