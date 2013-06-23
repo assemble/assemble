@@ -1,6 +1,4 @@
 # Extension Map
-# Format: [ext]: [engine]
-
 
 # Handlebars extensions
 handlebar: handlebars
@@ -18,10 +16,10 @@ tmpl: handlebars
 tpl: handlebars
 
 # Markdown
-markd   : markdown
+markd: markdown
 markdown: markdown
-md      : markdown
+md: markdown
 
 # YAML
-yml : yaml
+yml: yaml
 yaml: yaml

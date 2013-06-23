@@ -85,7 +85,7 @@ module.exports = function(grunt) {
         },
         files: {
           'test/actual/multi/dest1/': ['test/templates/pages/*.hbs'],
-          'test/actual/multi/dest2/': ['test/templates/pages/*.{md,markdown}'],
+          'test/actual/multi/dest2/': ['test/templates/pages/*.md'],
           'test/actual/multi/dest2/sub-dest/': ['test/templates/pages/*.hbs']
         }
       },
