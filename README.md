@@ -8,10 +8,12 @@ We love contributors, pull requests are welcome and followers are appreciated.
 
 Visit the [assemble-examples](http://github.com/assemble/assemble-examples) repo to see a list of example projects, such as:
 
-* [assembling a basic site](http://github.com/assemble/assemble-examples-basic)
-* [building a readme from templates](http://github.com/assemble/assemble-examples-readme): more useful for large or multi-projects, wikis etc.
-* [generating a sitemap](http://github.com/assemble/assemble-examples-sitemap)
-* [cheatsheet component](http://github.com/upstage/cheatsheet): created for the new lesscss.org website (coming soon!)
+* [Assemble's own documentation](http://assemble.io)
+* [Many ways to work with markdown](https://github.com/assemble/assemble-examples-markdown)
+* [assembling a basic site](https://github.com/assemble/assemble-examples-basic)
+* [building a readme from templates](https://github.com/assemble/assemble-examples-readme): more useful for large or multi-projects, wikis etc.
+* [generating a sitemap](https://github.com/assemble/assemble-examples-sitemap)
+* [cheatsheet component](https://github.com/upstage/cheatsheet): created for the new lesscss.org website (coming soon!)
 
 
 
@@ -319,7 +321,7 @@ Copyright 2013 Assemble
 
 ---
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sun Jun 23 2013 02:36:08._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sun Jun 23 2013 10:04:02._
 
 
 
