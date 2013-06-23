@@ -319,7 +319,7 @@ Copyright 2013 Assemble
 
 ---
 
-_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Fri Jun 21 2013 03:52:27._
+_This file was generated using Grunt and [assemble](http://github.com/assemble/assemble) on Sun Jun 23 2013 02:36:08._
 
 
 

@@ -1,23 +1,39 @@
-# simple3.md output
+# md helper
 
 ## Content
 
 
 
-<span class="alert alert-info">This is an alert</span>
+<div class="page-header">
+  <h1>md helper</h1>
+  <p class="lead">Use \{{md}} helper to pull in markdown</p>
+</div>
+
+<p> <h2>Some Markdown</h2>
+<ul>
+<li>one</li>
+<li>two</li>
+<li>three</li>
+</ul>
+<p><a href="http://github.com">Click here</a></p>
+ </p>
+
+
+
 
 
 
 ## Debug Info
 ``` json
-{ foo: 'bar',
+{ title: 'md helper',
+  description: 'Use \\{{md}} helper to pull in markdown',
   dirname: 'test/actual/multi/dest1',
-  filename: 'simple3.md',
-  pageName: 'simple3.md',
-  pagename: 'simple3.md',
-  basename: 'simple3',
-  src: 'test/templates/pages/simple3.hbs',
-  dest: 'test/actual/multi/dest1/simple3.md',
+  filename: 'md-helper.md',
+  pageName: 'md-helper.md',
+  pagename: 'md-helper.md',
+  basename: 'md-helper',
+  src: 'test/templates/pages/md-helper.hbs',
+  dest: 'test/actual/multi/dest1/md-helper.md',
   assets: '../../assets',
   ext: '.md',
   extname: '.md',
@@ -28,7 +44,9 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  data: { foo: 'bar' } }
+  data: 
+   { title: 'md helper',
+     description: 'Use \\{{md}} helper to pull in markdown' } }
 ```
 
 
@@ -245,380 +263,380 @@ this.ext:      .md
 
 ### {{#each pages}}
 
-#### simple3.md
+#### md-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/md-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: md-helper.md
+page.pagename: md-helper.md
+page.basename: md-helper
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### md-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/md-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: md-helper.md
+page.pagename: md-helper.md
+page.basename: md-helper
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### md-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/md-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: md-helper.md
+page.pagename: md-helper.md
+page.basename: md-helper
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### md-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/md-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: md-helper.md
+page.pagename: md-helper.md
+page.basename: md-helper
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### md-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/md-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: md-helper.md
+page.pagename: md-helper.md
+page.basename: md-helper
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### md-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/md-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: md-helper.md
+page.pagename: md-helper.md
+page.basename: md-helper
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### md-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/md-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: md-helper.md
+page.pagename: md-helper.md
+page.basename: md-helper
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### md-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/md-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: md-helper.md
+page.pagename: md-helper.md
+page.basename: md-helper
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### md-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/md-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: md-helper.md
+page.pagename: md-helper.md
+page.basename: md-helper
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### md-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/md-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: md-helper.md
+page.pagename: md-helper.md
+page.basename: md-helper
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### md-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/md-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: md-helper.md
+page.pagename: md-helper.md
+page.basename: md-helper
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### md-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/md-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: md-helper.md
+page.pagename: md-helper.md
+page.basename: md-helper
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### md-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/md-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: md-helper.md
+page.pagename: md-helper.md
+page.basename: md-helper
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### md-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/md-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: md-helper.md
+page.pagename: md-helper.md
+page.basename: md-helper
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### md-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/md-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: md-helper.md
+page.pagename: md-helper.md
+page.basename: md-helper
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### md-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/md-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: md-helper.md
+page.pagename: md-helper.md
+page.basename: md-helper
 page.extname:  .md
 page.ext:      .md
 
-#### simple3.md
+#### md-helper.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/simple3.md
+page.dest:     test/actual/multi/dest1/md-helper.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: simple3.md
-page.pagename: simple3.md
-page.basename: simple3
+page.filename: md-helper.md
+page.pagename: md-helper.md
+page.basename: md-helper
 page.extname:  .md
 page.ext:      .md
 
 
 ### {{#each pages}} "page" context
 
-#### simple3.md
+#### md-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/md-helper.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      md-helper.md
+pagename:      md-helper.md
+basename:      md-helper
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### md-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/md-helper.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      md-helper.md
+pagename:      md-helper.md
+basename:      md-helper
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### md-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/md-helper.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      md-helper.md
+pagename:      md-helper.md
+basename:      md-helper
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### md-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/md-helper.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      md-helper.md
+pagename:      md-helper.md
+basename:      md-helper
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### md-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/md-helper.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      md-helper.md
+pagename:      md-helper.md
+basename:      md-helper
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### md-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/md-helper.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      md-helper.md
+pagename:      md-helper.md
+basename:      md-helper
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### md-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/md-helper.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      md-helper.md
+pagename:      md-helper.md
+basename:      md-helper
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### md-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/md-helper.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      md-helper.md
+pagename:      md-helper.md
+basename:      md-helper
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### md-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/md-helper.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      md-helper.md
+pagename:      md-helper.md
+basename:      md-helper
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### md-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/md-helper.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      md-helper.md
+pagename:      md-helper.md
+basename:      md-helper
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### md-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/md-helper.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      md-helper.md
+pagename:      md-helper.md
+basename:      md-helper
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### md-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/md-helper.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      md-helper.md
+pagename:      md-helper.md
+basename:      md-helper
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### md-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/md-helper.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      md-helper.md
+pagename:      md-helper.md
+basename:      md-helper
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### md-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/md-helper.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      md-helper.md
+pagename:      md-helper.md
+basename:      md-helper
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### md-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/md-helper.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      md-helper.md
+pagename:      md-helper.md
+basename:      md-helper
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### md-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/md-helper.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      md-helper.md
+pagename:      md-helper.md
+basename:      md-helper
 extname:       .md
 ext:           .md
 
-#### simple3.md
+#### md-helper.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/simple3.md
+absolute:      test/actual/multi/dest1/md-helper.md
 dirname:       test/actual/multi/dest1
-filename:      simple3.md
-pagename:      simple3.md
-basename:      simple3
+filename:      md-helper.md
+pagename:      md-helper.md
+basename:      md-helper
 extname:       .md
 ext:           .md
 

@@ -2,26 +2,29 @@
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Partials Test</title>
+    <title>md helper</title>
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
     <div class="container">
       
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <ul class="nav">
-        <li><a href="./index.html">Index</a></li>
-        <li><a href="dest/context.html">Dest Context</a></li>
-        <li><a href="dest/basic.html">Dest Basic</a></li>
-        <li><a href="dest/markdown.html">Dest Markdown</a></li>
-        
-      </ul>
-      <ul class="nav pull-right"><li><a href="">Visit Assemble</a></li></ul>
-    </div>
-  </div>
+
+<div class="page-header">
+  <h1>md helper</h1>
+  <p class="lead">Use \{{md}} helper to pull in markdown</p>
 </div>
+
+<p> <h2>Some Markdown</h2>
+<ul>
+<li>one</li>
+<li>two</li>
+<li>three</li>
+</ul>
+<p><a href="http://github.com">Click here</a></p>
+ </p>
+
+
+
 
     </div>
 
@@ -29,20 +32,15 @@
       <h3>Paths Examples</h3>
 
 <pre class="json">
-{ title: 'Partials Test',
-  links: 
-   [ './index',
-     'dest/context',
-     'dest/basic',
-     'dest/markdown',
-     [length]: 4 ],
+{ title: 'md helper',
+  description: 'Use \\{{md}} helper to pull in markdown',
   dirname: 'test/actual/paths',
-  filename: 'page.html',
-  pageName: 'page.html',
-  pagename: 'page.html',
-  basename: 'page',
-  src: 'test/templates/pages/page.hbs',
-  dest: 'test/actual/paths/page.html',
+  filename: 'md-helper.html',
+  pageName: 'md-helper.html',
+  pagename: 'md-helper.html',
+  basename: 'md-helper',
+  src: 'test/templates/pages/md-helper.hbs',
+  dest: 'test/actual/paths/md-helper.html',
   assets: '../assets',
   ext: '.html',
   extname: '.html',
@@ -54,13 +52,8 @@
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
   data: 
-   { title: 'Partials Test',
-     links: 
-      [ './index',
-        'dest/context',
-        'dest/basic',
-        'dest/markdown',
-        [length]: 4 ] } }
+   { title: 'md helper',
+     description: 'Use \\{{md}} helper to pull in markdown' } }
 </pre>
 
       <ul>
@@ -80,23 +73,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/md-helper.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: md-helper.html
+        page.pagename: md-helper.html
+        page.basename: md-helper
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/md-helper.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      md-helper.html
+        pagename:      md-helper.html
+        basename:      md-helper
         extname:       .html
         ext:           .html
         -->
@@ -116,23 +109,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/md-helper.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: md-helper.html
+        page.pagename: md-helper.html
+        page.basename: md-helper
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/md-helper.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      md-helper.html
+        pagename:      md-helper.html
+        basename:      md-helper
         extname:       .html
         ext:           .html
         -->
@@ -152,23 +145,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/md-helper.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: md-helper.html
+        page.pagename: md-helper.html
+        page.basename: md-helper
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/md-helper.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      md-helper.html
+        pagename:      md-helper.html
+        basename:      md-helper
         extname:       .html
         ext:           .html
         -->
@@ -188,23 +181,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/md-helper.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: md-helper.html
+        page.pagename: md-helper.html
+        page.basename: md-helper
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/md-helper.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      md-helper.html
+        pagename:      md-helper.html
+        basename:      md-helper
         extname:       .html
         ext:           .html
         -->
@@ -224,23 +217,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/md-helper.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: md-helper.html
+        page.pagename: md-helper.html
+        page.basename: md-helper
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/md-helper.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      md-helper.html
+        pagename:      md-helper.html
+        basename:      md-helper
         extname:       .html
         ext:           .html
         -->
@@ -260,23 +253,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/md-helper.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: md-helper.html
+        page.pagename: md-helper.html
+        page.basename: md-helper
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/md-helper.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      md-helper.html
+        pagename:      md-helper.html
+        basename:      md-helper
         extname:       .html
         ext:           .html
         -->
@@ -296,23 +289,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/md-helper.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: md-helper.html
+        page.pagename: md-helper.html
+        page.basename: md-helper
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/md-helper.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      md-helper.html
+        pagename:      md-helper.html
+        basename:      md-helper
         extname:       .html
         ext:           .html
         -->
@@ -332,23 +325,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/md-helper.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: md-helper.html
+        page.pagename: md-helper.html
+        page.basename: md-helper
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/md-helper.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      md-helper.html
+        pagename:      md-helper.html
+        basename:      md-helper
         extname:       .html
         ext:           .html
         -->
@@ -368,23 +361,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/md-helper.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: md-helper.html
+        page.pagename: md-helper.html
+        page.basename: md-helper
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/md-helper.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      md-helper.html
+        pagename:      md-helper.html
+        basename:      md-helper
         extname:       .html
         ext:           .html
         -->
@@ -404,23 +397,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/md-helper.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: md-helper.html
+        page.pagename: md-helper.html
+        page.basename: md-helper
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/md-helper.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      md-helper.html
+        pagename:      md-helper.html
+        basename:      md-helper
         extname:       .html
         ext:           .html
         -->
@@ -440,23 +433,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/md-helper.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: md-helper.html
+        page.pagename: md-helper.html
+        page.basename: md-helper
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/md-helper.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      md-helper.html
+        pagename:      md-helper.html
+        basename:      md-helper
         extname:       .html
         ext:           .html
         -->
@@ -476,23 +469,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/md-helper.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: md-helper.html
+        page.pagename: md-helper.html
+        page.basename: md-helper
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/md-helper.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      md-helper.html
+        pagename:      md-helper.html
+        basename:      md-helper
         extname:       .html
         ext:           .html
         -->
@@ -512,23 +505,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/md-helper.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: md-helper.html
+        page.pagename: md-helper.html
+        page.basename: md-helper
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/md-helper.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      md-helper.html
+        pagename:      md-helper.html
+        basename:      md-helper
         extname:       .html
         ext:           .html
         -->
@@ -548,23 +541,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/md-helper.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: md-helper.html
+        page.pagename: md-helper.html
+        page.basename: md-helper
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/md-helper.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      md-helper.html
+        pagename:      md-helper.html
+        basename:      md-helper
         extname:       .html
         ext:           .html
         -->
@@ -584,23 +577,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/md-helper.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: md-helper.html
+        page.pagename: md-helper.html
+        page.basename: md-helper
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/md-helper.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      md-helper.html
+        pagename:      md-helper.html
+        basename:      md-helper
         extname:       .html
         ext:           .html
         -->
@@ -620,23 +613,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/md-helper.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: md-helper.html
+        page.pagename: md-helper.html
+        page.basename: md-helper
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/md-helper.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      md-helper.html
+        pagename:      md-helper.html
+        basename:      md-helper
         extname:       .html
         ext:           .html
         -->
@@ -656,23 +649,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/md-helper.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: md-helper.html
+        page.pagename: md-helper.html
+        page.basename: md-helper
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/md-helper.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      md-helper.html
+        pagename:      md-helper.html
+        basename:      md-helper
         extname:       .html
         ext:           .html
         -->
