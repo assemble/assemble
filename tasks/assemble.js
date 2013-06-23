@@ -35,7 +35,7 @@ module.exports = function(grunt) {
       grunt.verbose.writeln('validating options');
 
       if(_.endsWith(assemble.options.ext, '.')) {
-        grunt.warn("Invalid ext '" + assemble.options.ext + "'. ext cannot end with a period.");
+        grunt.warn('Invalid ext "' + assemble.options.ext + '". ext cannot end with a period.');
         done(false);
       }
 
@@ -71,7 +71,7 @@ module.exports = function(grunt) {
 
       assemble.fileExt = extension(src);
       assemble.filenameRegex = /[^\\\/:*?"<>|\r\n]+$/i;
-      assemble.fileExtRegex = new RegExp("\\." + assemble.fileExt + "$");
+      assemble.fileExtRegex = new RegExp('\\.' + assemble.fileExt + '$');
 
       assemble.partials = file.expand(assemble.options.partials);
       assemble.options.partials = {};
@@ -131,8 +131,8 @@ module.exports = function(grunt) {
           var partial = grunt.file.read(filepath);
 
           //If the partial is empty, lets still allow it to be used.
-          if(partial === ""){
-            partial = "{{!}}";
+          if(partial === ''){
+            partial = '{{!}}';
           }
 
           // If options.removeHbsWhitespace is true
@@ -171,7 +171,7 @@ module.exports = function(grunt) {
           var filecontent = grunt.file.read(filepath);
 
           //Skip empty data files, as they'd cause an error with compiler
-          if(filecontent === ""){
+          if(filecontent === ''){
             grunt.log.verbose.writeln('Reading '+filepath+'...empty, '+'skipping'.yellow);
           }else{
 
@@ -284,8 +284,8 @@ module.exports = function(grunt) {
 
             //If the page file is empty, we still want to process it.
             //compiler will choke on empty file, so lets pass it a non-rendering string instead.
-            if(page===""){
-              page="{{!}}";
+            if(page===''){
+              page='{{!}}';
             }
 
             // If options.removeHbsWhitespace is true
@@ -359,7 +359,7 @@ module.exports = function(grunt) {
           grunt.log.write('Assembling ' + (page.dest).cyan +' ');
 
           if(err) {
-            grunt.verbose.write(" ");
+            grunt.verbose.write(' ');
             grunt.log.error();
             grunt.warn(err);
             done(false);
@@ -567,7 +567,7 @@ module.exports = function(grunt) {
     // if the src is empty, create a default layout in memory
     if(!src || src === false || src === '' || src.length === 0) {
       loadFile = false;
-      layout = "{{>body}}";
+      layout = '{{>body}}';
     }
 
     if(loadFile) {
@@ -619,9 +619,9 @@ module.exports = function(grunt) {
 
   var detectDestType = function(dest) {
     if(_.endsWith(path.normalize(dest), path.sep)) {
-      return "directory";
+      return 'directory';
     } else {
-      return "file";
+      return 'file';
     }
   };
 
@@ -639,7 +639,7 @@ module.exports = function(grunt) {
   var extension = function(fileName) {
     grunt.verbose.writeln('extension');
     grunt.verbose.writeln(fileName);
-    if(kindOf(fileName) === "array" && fileName.length > 0) {
+    if(kindOf(fileName) === 'array' && fileName.length > 0) {
       fileName = fileName[0];
     }
     return _(fileName.match(/[^.]*$/)).last();
@@ -674,8 +674,8 @@ module.exports = function(grunt) {
   // in generated HTML, similar to what mustache.js does
   var removeHbsWhitespace = function(assemble, filecontent){
     if(assemble.options.removeHbsWhitespace){
-      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{\{[^}]+?\}\}\})(?=(\n|\r|\n\r))/gi,"$2");
-      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{[^}]+?\}\})(?=(\n|\r|\n\r))/gi,"$2");
+      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{\{[^}]+?\}\}\})(?=(\n|\r|\n\r))/gi,'$2');
+      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{[^}]+?\}\})(?=(\n|\r|\n\r))/gi,'$2');
     }
     return filecontent;
   };
