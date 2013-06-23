@@ -25,7 +25,7 @@ module.exports = function(grunt) {
   // Assemble utils
   var assemble = require('../lib/assemble');
 
-  grunt.registerMultiTask('assemble', 'Compile template files with specified engines', function(){
+  grunt.registerMultiTask('assemble', 'Compile template files with specified engines', function() {
 
     var done = this.async();
     var self = this;
@@ -35,7 +35,7 @@ module.exports = function(grunt) {
       grunt.verbose.writeln('validating options');
 
       if(_.endsWith(assemble.options.ext, '.')) {
-        grunt.warn("Invalid ext '" + assemble.options.ext + "'. ext cannot end with a period.");
+        grunt.warn('Invalid ext "' + assemble.options.ext + '". ext cannot end with a period.');
         done(false);
       }
 
@@ -71,7 +71,7 @@ module.exports = function(grunt) {
 
       assemble.fileExt = extension(src);
       assemble.filenameRegex = /[^\\\/:*?"<>|\r\n]+$/i;
-      assemble.fileExtRegex = new RegExp("\\." + assemble.fileExt + "$");
+      assemble.fileExtRegex = new RegExp('\\.' + assemble.fileExt + '$');
 
       assemble.partials = file.expand(assemble.options.partials);
       assemble.options.partials = {};
@@ -86,8 +86,7 @@ module.exports = function(grunt) {
     };
 
     var assembleDefaultLayout = function(assemble, next) {
-      grunt.verbose.writeln('assembling default layout');
-      grunt.log.writeln('assembling'  + ' default layout'.cyan);
+      grunt.log.writeln('Assembling'  + ' default layout'.cyan);
 
       // load default layout
       var defaultLayoutData = {};
@@ -113,8 +112,7 @@ module.exports = function(grunt) {
     };
 
     var assemblePartials = function(assemble, next) {
-      grunt.verbose.writeln('assembling partials');
-      grunt.log.writeln('assembling'  + ' partials'.cyan);
+      grunt.log.writeln('Assembling'  + ' partials'.cyan);
 
       var complete = 0;
       var increment = 10;
@@ -131,6 +129,11 @@ module.exports = function(grunt) {
           grunt.verbose.ok(('Processing ' + filename.cyan + ' partial'));
 
           var partial = grunt.file.read(filepath);
+
+          //If the partial is empty, lets still allow it to be used.
+          if(partial === '') {
+            partial = '{{!}}';
+          }
 
           // If options.removeHbsWhitespace is true
           partial = removeHbsWhitespace(assemble,partial);
@@ -150,14 +153,14 @@ module.exports = function(grunt) {
     };
 
     var assembleData = function(assemble, next) {
-      grunt.log.writeln('assembling' + ' data'.cyan);
+      grunt.log.writeln('Assembling' + ' data'.cyan);
 
       // load data if specified
       var dataFiles = assemble.dataFiles;
       if(dataFiles && dataFiles.length > 0) {
         complete = 0;
         increment = Math.round(dataFiles.length / 10);
-        grunt.verbose.writeln(('\n' + 'Begin processing data...').grey);
+        grunt.verbose.writeln(('\n' + 'Processing data...').grey);
 
         dataFiles.forEach(function(filepath) {
           var ext = path.extname(filepath);
@@ -165,21 +168,29 @@ module.exports = function(grunt) {
 
           var fileReader = dataFileReaderFactory(ext);
 
-          if(filename === 'data') {
-            // if this is the base data file, load it into the options.data object directly
-            assemble.options.data = _.extend(assemble.options.data || {}, fileReader(filepath));
+          var filecontent = grunt.file.read(filepath);
+
+          //Skip empty data files, as they'd cause an error with compiler
+          if(filecontent === '') {
+            grunt.log.verbose.writeln('Reading '+filepath+'...empty, '+'skipping'.yellow);
           } else {
-            // otherwise it's an element in options.data
-            var d = fileReader(filepath);
-            if(d[filename]) {
-              // json object contains root object name so extend it in options.json
-              assemble.options.data[filename] = _.extend(assemble.options.data[filename] || {}, d[filename]);
+
+            if(filename === 'data') {
+              // if this is the base data file, load it into the options.data object directly
+              assemble.options.data = _.extend(assemble.options.data || {}, fileReader(filepath));
             } else {
-              // add the entire object
-              assemble.options.data[filename] = _.extend(assemble.options.data[filename] || {}, d);
+              // otherwise it's an element in options.data
+              var d = fileReader(filepath);
+              if(d[filename]) {
+                // json object contains root object name so extend it in options.json
+                assemble.options.data[filename] = _.extend(assemble.options.data[filename] || {}, d[filename]);
+              } else {
+                // add the entire object
+                assemble.options.data[filename] = _.extend(assemble.options.data[filename] || {}, d);
+              }
             }
+            complete++;
           }
-          complete++;
         });
       }
 
@@ -187,7 +198,6 @@ module.exports = function(grunt) {
     };
 
     var assemblePages = function(assemble, next) {
-      grunt.verbose.writeln('assembling pages');
       // build each page
       grunt.verbose.writeln(('\n' + 'Building pages...').grey);
 
@@ -272,6 +282,12 @@ module.exports = function(grunt) {
             grunt.verbose.writeln('compiling page ' + filename.magenta);
             var pageContext = {};
 
+            //If the page file is empty, we still want to process it.
+            //compiler will choke on empty file, so lets pass it a non-rendering string instead.
+            if(page==='') {
+              page='{{!}}';
+            }
+
             // If options.removeHbsWhitespace is true
             page = removeHbsWhitespace(assemble,page);
 
@@ -302,7 +318,7 @@ module.exports = function(grunt) {
               data: pageContext
             };
 
-            if(pageObj.data.published === false){
+            if(pageObj.data.published === false) {
               grunt.log.write('\n>> Skipping "' + path.basename(srcFile).grey + '" since ' + '"published: false"'.cyan + ' was set.');
               return;
             }
@@ -340,11 +356,10 @@ module.exports = function(grunt) {
         grunt.verbose.writeln(require('util').inspect(page));
 
         build(page, assemble, function(err, result) {
-          grunt.log.notverbose.write('File "' + path.basename(page.dest).magenta +'" assembled...');
-          grunt.verbose.write('File "' + page.dest.magenta +'" assembled...');
+          grunt.log.write('Assembling ' + (page.dest).cyan +' ');
 
           if(err) {
-            grunt.verbose.write(" ");
+            grunt.verbose.write(' ');
             grunt.log.error();
             grunt.warn(err);
             done(false);
@@ -353,7 +368,8 @@ module.exports = function(grunt) {
           grunt.verbose.writeln('..');
           file.write(page.dest, result);
 
-          grunt.verbose.writeln('...File "' + (page.basename + page.ext).magenta +'" assembled. '+'OK'.green);
+          grunt.verbose.writeln('Assembled ' + (page.dest).cyan +' OK'.green);
+
           grunt.log.notverbose.ok();
         }); // build
       });
@@ -549,10 +565,9 @@ module.exports = function(grunt) {
     var layoutName = 'layout';
 
     // if the src is empty, create a default layout in memory
-    grunt.log.writeln('src', src);
     if(!src || src === false || src === '' || src.length === 0) {
       loadFile = false;
-      layout = "{{>body}}";
+      layout = '{{>body}}';
     }
 
     if(loadFile) {
@@ -604,9 +619,9 @@ module.exports = function(grunt) {
 
   var detectDestType = function(dest) {
     if(_.endsWith(path.normalize(dest), path.sep)) {
-      return "directory";
+      return 'directory';
     } else {
-      return "file";
+      return 'file';
     }
   };
 
@@ -624,7 +639,7 @@ module.exports = function(grunt) {
   var extension = function(fileName) {
     grunt.verbose.writeln('extension');
     grunt.verbose.writeln(fileName);
-    if(kindOf(fileName) === "array" && fileName.length > 0) {
+    if(kindOf(fileName) === 'array' && fileName.length > 0) {
       fileName = fileName[0];
     }
     return _(fileName.match(/[^.]*$/)).last();
@@ -657,10 +672,10 @@ module.exports = function(grunt) {
 
   // Attempt to remove extra whitespace around Handlebars expressions
   // in generated HTML, similar to what mustache.js does
-  var removeHbsWhitespace = function(assemble, filecontent){
-    if(assemble.options.removeHbsWhitespace){
-      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{\{[^}]+?\}\}\})(?=(\n|\r|\n\r))/gi,"$2");
-      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{[^}]+?\}\})(?=(\n|\r|\n\r))/gi,"$2");
+  var removeHbsWhitespace = function(assemble, filecontent) {
+    if(assemble.options.removeHbsWhitespace) {
+      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{\{[^}]+?\}\}\})(?=(\n|\r|\n\r))/gi,'$2');
+      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{[^}]+?\}\})(?=(\n|\r|\n\r))/gi,'$2');
     }
     return filecontent;
   };
