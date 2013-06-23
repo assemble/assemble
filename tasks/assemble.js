@@ -25,7 +25,7 @@ module.exports = function(grunt) {
   // Assemble utils
   var assemble = require('../lib/assemble');
 
-  grunt.registerMultiTask('assemble', 'Compile template files with specified engines', function(){
+  grunt.registerMultiTask('assemble', 'Compile template files with specified engines', function() {
 
     var done = this.async();
     var self = this;
@@ -131,7 +131,7 @@ module.exports = function(grunt) {
           var partial = grunt.file.read(filepath);
 
           //If the partial is empty, lets still allow it to be used.
-          if(partial === ''){
+          if(partial === '') {
             partial = '{{!}}';
           }
 
@@ -171,9 +171,9 @@ module.exports = function(grunt) {
           var filecontent = grunt.file.read(filepath);
 
           //Skip empty data files, as they'd cause an error with compiler
-          if(filecontent === ''){
+          if(filecontent === '') {
             grunt.log.verbose.writeln('Reading '+filepath+'...empty, '+'skipping'.yellow);
-          }else{
+          } else {
 
             if(filename === 'data') {
               // if this is the base data file, load it into the options.data object directly
@@ -284,7 +284,7 @@ module.exports = function(grunt) {
 
             //If the page file is empty, we still want to process it.
             //compiler will choke on empty file, so lets pass it a non-rendering string instead.
-            if(page===''){
+            if(page==='') {
               page='{{!}}';
             }
 
@@ -318,7 +318,7 @@ module.exports = function(grunt) {
               data: pageContext
             };
 
-            if(pageObj.data.published === false){
+            if(pageObj.data.published === false) {
               grunt.log.write('\n>> Skipping "' + path.basename(srcFile).grey + '" since ' + '"published: false"'.cyan + ' was set.');
               return;
             }
@@ -672,8 +672,8 @@ module.exports = function(grunt) {
 
   // Attempt to remove extra whitespace around Handlebars expressions
   // in generated HTML, similar to what mustache.js does
-  var removeHbsWhitespace = function(assemble, filecontent){
-    if(assemble.options.removeHbsWhitespace){
+  var removeHbsWhitespace = function(assemble, filecontent) {
+    if(assemble.options.removeHbsWhitespace) {
       filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{\{[^}]+?\}\}\})(?=(\n|\r|\n\r))/gi,'$2');
       filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{[^}]+?\}\})(?=(\n|\r|\n\r))/gi,'$2');
     }
