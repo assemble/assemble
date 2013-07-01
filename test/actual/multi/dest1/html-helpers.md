@@ -46,7 +46,7 @@
   <a href="five">size</a>
 </li></ol>
 
-<h3>{{_link}} helper</h3>
+<h3>{{link}} helper</h3>
 <p><a href="">helpers.js</a>
 <a href="http://github.com">GitHub</a>
 <a href="http://github.com">GitHub</a></p>

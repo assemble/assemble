@@ -9,10 +9,10 @@
 
 
 <h1>Relative Helper</h1>
-<script src="../../../../css/one/two/three.js"></script>
-<script src="../../../../js/one/two/three.js"></script>
-<script src="../../../../jsone/two/three.js"></script>
-<script src="./../../../../jsone/two/three.js"></script>
+<script src="css/one/two/three.js"></script>
+<script src="js/one/two/three.js"></script>
+<script src="jsone/two/three.js"></script>
+<script src="./jsone/two/three.js"></script>
 
 <h1>Assets Helper</h1>
 <script src="../../assetsone/two/three.js"></script>
@@ -23,45 +23,28 @@
 
 ## Debug Info
 ``` json
-{ dirname: 'test/actual/multi/dest1',
-  filename: 'assets.md',
-  pageName: 'assets.md',
-  pagename: 'assets.md',
-  basename: 'assets',
-  src: 'test/templates/pages/assets.hbs',
-  dest: 'test/actual/multi/dest1/assets.md',
-  assets: '../../assets',
-  ext: '.md',
-  extname: '.md',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  data: {} }
+'../../assets'
 ```
 
 
 ### "{{#each pages}}" Links
-[alert](alert.md)
-[assets](assets.md)
-[collections-categories](collections-categories.md)
-[collections-categories2](collections-categories2.md)
-[collections-tags-2](collections-tags-2.md)
-[collections-tags](collections-tags.md)
-[complex](complex.md)
-[debug-helpers](debug-helpers.md)
-[example](example.md)
-[gist-helper](gist-helper.md)
-[helpers](helpers.md)
-[home](home.md)
-[html-helpers](html-helpers.md)
-[md-helper](md-helper.md)
-[no-layout](no-layout.md)
-[page](page.md)
-[simple3](simple3.md)
+[alert](test/actual/multi/dest1/alert.md)
+[assets](test/actual/multi/dest1/assets.md)
+[collections-categories](test/actual/multi/dest1/collections-categories.md)
+[collections-categories2](test/actual/multi/dest1/collections-categories2.md)
+[collections-tags-2](test/actual/multi/dest1/collections-tags-2.md)
+[collections-tags](test/actual/multi/dest1/collections-tags.md)
+[complex](test/actual/multi/dest1/complex.md)
+[debug-helpers](test/actual/multi/dest1/debug-helpers.md)
+[example](test/actual/multi/dest1/example.md)
+[gist-helper](test/actual/multi/dest1/gist-helper.md)
+[helpers](test/actual/multi/dest1/helpers.md)
+[home](test/actual/multi/dest1/home.md)
+[html-helpers](test/actual/multi/dest1/html-helpers.md)
+[md-helper](test/actual/multi/dest1/md-helper.md)
+[no-layout](test/actual/multi/dest1/no-layout.md)
+[page](test/actual/multi/dest1/page.md)
+[simple3](test/actual/multi/dest1/simple3.md)
 
 
 
@@ -258,191 +241,191 @@ this.ext:      .md
 ### {{#each pages}}
 
 #### assets.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/assets.md
+page.assets:   
+page.dest:     
 page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: assets.md
-page.pagename: assets.md
-page.basename: assets
-page.extname:  .md
-page.ext:      .md
+page.dirname:  
+page.filename: 
+page.pagename: 
+page.basename: 
+page.extname:  
+page.ext:      
 
 #### assets.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/assets.md
+page.assets:   
+page.dest:     
 page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: assets.md
-page.pagename: assets.md
-page.basename: assets
-page.extname:  .md
-page.ext:      .md
+page.dirname:  
+page.filename: 
+page.pagename: 
+page.basename: 
+page.extname:  
+page.ext:      
 
 #### assets.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/assets.md
+page.assets:   
+page.dest:     
 page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: assets.md
-page.pagename: assets.md
-page.basename: assets
-page.extname:  .md
-page.ext:      .md
+page.dirname:  
+page.filename: 
+page.pagename: 
+page.basename: 
+page.extname:  
+page.ext:      
 
 #### assets.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/assets.md
+page.assets:   
+page.dest:     
 page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: assets.md
-page.pagename: assets.md
-page.basename: assets
-page.extname:  .md
-page.ext:      .md
+page.dirname:  
+page.filename: 
+page.pagename: 
+page.basename: 
+page.extname:  
+page.ext:      
 
 #### assets.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/assets.md
+page.assets:   
+page.dest:     
 page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: assets.md
-page.pagename: assets.md
-page.basename: assets
-page.extname:  .md
-page.ext:      .md
+page.dirname:  
+page.filename: 
+page.pagename: 
+page.basename: 
+page.extname:  
+page.ext:      
 
 #### assets.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/assets.md
+page.assets:   
+page.dest:     
 page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: assets.md
-page.pagename: assets.md
-page.basename: assets
-page.extname:  .md
-page.ext:      .md
+page.dirname:  
+page.filename: 
+page.pagename: 
+page.basename: 
+page.extname:  
+page.ext:      
 
 #### assets.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/assets.md
+page.assets:   
+page.dest:     
 page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: assets.md
-page.pagename: assets.md
-page.basename: assets
-page.extname:  .md
-page.ext:      .md
+page.dirname:  
+page.filename: 
+page.pagename: 
+page.basename: 
+page.extname:  
+page.ext:      
 
 #### assets.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/assets.md
+page.assets:   
+page.dest:     
 page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: assets.md
-page.pagename: assets.md
-page.basename: assets
-page.extname:  .md
-page.ext:      .md
+page.dirname:  
+page.filename: 
+page.pagename: 
+page.basename: 
+page.extname:  
+page.ext:      
 
 #### assets.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/assets.md
+page.assets:   
+page.dest:     
 page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: assets.md
-page.pagename: assets.md
-page.basename: assets
-page.extname:  .md
-page.ext:      .md
+page.dirname:  
+page.filename: 
+page.pagename: 
+page.basename: 
+page.extname:  
+page.ext:      
 
 #### assets.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/assets.md
+page.assets:   
+page.dest:     
 page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: assets.md
-page.pagename: assets.md
-page.basename: assets
-page.extname:  .md
-page.ext:      .md
+page.dirname:  
+page.filename: 
+page.pagename: 
+page.basename: 
+page.extname:  
+page.ext:      
 
 #### assets.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/assets.md
+page.assets:   
+page.dest:     
 page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: assets.md
-page.pagename: assets.md
-page.basename: assets
-page.extname:  .md
-page.ext:      .md
+page.dirname:  
+page.filename: 
+page.pagename: 
+page.basename: 
+page.extname:  
+page.ext:      
 
 #### assets.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/assets.md
+page.assets:   
+page.dest:     
 page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: assets.md
-page.pagename: assets.md
-page.basename: assets
-page.extname:  .md
-page.ext:      .md
+page.dirname:  
+page.filename: 
+page.pagename: 
+page.basename: 
+page.extname:  
+page.ext:      
 
 #### assets.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/assets.md
+page.assets:   
+page.dest:     
 page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: assets.md
-page.pagename: assets.md
-page.basename: assets
-page.extname:  .md
-page.ext:      .md
+page.dirname:  
+page.filename: 
+page.pagename: 
+page.basename: 
+page.extname:  
+page.ext:      
 
 #### assets.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/assets.md
+page.assets:   
+page.dest:     
 page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: assets.md
-page.pagename: assets.md
-page.basename: assets
-page.extname:  .md
-page.ext:      .md
+page.dirname:  
+page.filename: 
+page.pagename: 
+page.basename: 
+page.extname:  
+page.ext:      
 
 #### assets.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/assets.md
+page.assets:   
+page.dest:     
 page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: assets.md
-page.pagename: assets.md
-page.basename: assets
-page.extname:  .md
-page.ext:      .md
+page.dirname:  
+page.filename: 
+page.pagename: 
+page.basename: 
+page.extname:  
+page.ext:      
 
 #### assets.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/assets.md
+page.assets:   
+page.dest:     
 page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: assets.md
-page.pagename: assets.md
-page.basename: assets
-page.extname:  .md
-page.ext:      .md
+page.dirname:  
+page.filename: 
+page.pagename: 
+page.basename: 
+page.extname:  
+page.ext:      
 
 #### assets.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/assets.md
+page.assets:   
+page.dest:     
 page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: assets.md
-page.pagename: assets.md
-page.basename: assets
-page.extname:  .md
-page.ext:      .md
+page.dirname:  
+page.filename: 
+page.pagename: 
+page.basename: 
+page.extname:  
+page.ext:      
 
 
 ### {{#each pages}} "page" context

@@ -7,8 +7,8 @@
 Properties from "example.json" and "example.hbs" should be on the page object.
 
 <div class="page-header">
-  <h1>Home</h1>
-  <p class="lead">Welcome to my amazing and mysterious site!</p>
+  <h1>YFM title</h1>
+  <p class="lead">YFM description</p>
 </div>
 
 <hr>
