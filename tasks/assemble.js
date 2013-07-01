@@ -27,11 +27,17 @@ module.exports = function(grunt) {
 
   grunt.registerMultiTask('assemble', 'Compile template files with specified engines', function() {
 
+
     var done = this.async();
     var self = this;
 
+    debugger;
+
     // functions for use in build steps
     var optionsConfiguration = function(assemble, next) {
+
+      debugger;
+
       grunt.verbose.writeln('validating options');
 
       if(_.endsWith(assemble.options.ext, '.')) {
@@ -86,6 +92,8 @@ module.exports = function(grunt) {
     };
 
     var assembleDefaultLayout = function(assemble, next) {
+      debugger;
+
       grunt.log.writeln('Assembling'  + ' default layout'.cyan);
 
       // load default layout
@@ -112,6 +120,8 @@ module.exports = function(grunt) {
     };
 
     var assemblePartials = function(assemble, next) {
+      debugger;
+
       grunt.log.writeln('Assembling'  + ' partials'.cyan);
 
       var complete = 0;
@@ -153,6 +163,8 @@ module.exports = function(grunt) {
     };
 
     var assembleData = function(assemble, next) {
+      debugger;
+
       grunt.log.writeln('Assembling' + ' data'.cyan);
 
       // load data if specified
@@ -198,6 +210,8 @@ module.exports = function(grunt) {
     };
 
     var assemblePages = function(assemble, next) {
+      debugger;
+
       // build each page
       grunt.verbose.writeln(('\n' + 'Building pages...').grey);
 
@@ -348,6 +362,8 @@ module.exports = function(grunt) {
     };
 
     var renderPages = function(assemble, next) {
+      debugger;
+
 
       grunt.log.writeln(('\n' + 'Assembling pages...').grey);
 
@@ -435,6 +451,8 @@ module.exports = function(grunt) {
 
 
   var build = function(currentPage, assemble, callback) {
+    debugger;
+
 
     var src = currentPage.srcFile;
     var filename = currentPage.filename;
@@ -512,13 +530,16 @@ module.exports = function(grunt) {
       pageContext = lodash.merge(pageContext, pageCollections);
       context = processContext(grunt, context);
 
+      // process the current page data
+      currentPage.data = processContext(grunt, context, currentPage.data);
+
       // add the list of pages back to the context so
       // it's available in the templates
       context.pages = pages;
       context.page = currentPage;
 
       // apply any data for this page to the page object
-      context.page = _.extend(context[filename] || {}, currentPage.data, context.page);
+      context.page = _.extend(context[currentPage.basename] || {}, currentPage.data, context.page);
 
       // make sure the currentPage assets is used
       context.assets = currentPage.assets;
@@ -549,13 +570,20 @@ module.exports = function(grunt) {
     }
   };
 
-  var processContext = function(grunt, context) {
-      var originalConfigData = grunt.config.data;
-      grunt.config.data = _.extend(originalConfigData, context);
-      context = grunt.config.process(context);
-      grunt.config.data = originalConfigData;
+  var processContext = function(grunt, context, data) {
+    debugger;
 
-      return context;
+      var originalConfigData = lodash.cloneDeep(grunt.config.data);
+      grunt.config.data = _.extend(originalConfigData, context, data || {});
+
+      if(data) {
+        data = grunt.config.process(data);
+      } else {
+        context = grunt.config.process(context);
+      }
+      grunt.config.data = lodash.cloneDeep(originalConfigData);
+
+      return data || context;
   };
 
   var loadLayout = function(src, assemble, callback) {

@@ -7,7 +7,7 @@
 This example shows that the properties from "example.json" and "example.hbs" are on the page object.
 
 <div>bar</div>
-<div></div>
+<div>Congratulations! You have officially wasted time reading example content. But I&#x27;m sure it&#x27;s time well wasted... </div>
 
 
 <div>bar</div>
@@ -17,7 +17,8 @@ This example shows that the properties from "example.json" and "example.hbs" are
 
 ## Debug Info
 ``` json
-{ foo: 'bar',
+{ content: 'Congratulations! You have officially wasted time reading example content. But I\'m sure it\'s time well wasted... ',
+  foo: 'bar',
   dirname: 'test/actual/multi/dest1',
   filename: 'example.md',
   pageName: 'example.md',
