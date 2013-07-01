@@ -31,25 +31,39 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
 ## Debug Info
 ``` json
-{ styles: '<link rel="stylesheet" href="css/index.css"/>',
+{ javascripts: 
+   [ 'js/bootstrap.js',
+     'js/responsive.js',
+     'js/main.js',
+     [length]: 3 ],
   scripts: 'document.write(\'foo bar!\');',
-  src: 'test/templates/pages/helpers.hbs',
+  dest: 'test/actual/multi/dest1/helpers.md',
   stylesheets: 
    [ 'css/bootstrap.css',
      'css/responsive.css',
      'css/main.css',
      [length]: 3 ],
-  javascripts: 
-   [ 'js/bootstrap.js',
-     'js/responsive.js',
-     'js/main.js',
-     [length]: 3 ],
+  filename: 'helpers.md',
+  styles: '<link rel="stylesheet" href="css/index.css"/>',
   assets: '../../assets',
-  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
-  dest: 'test/actual/multi/dest1/helpers.md',
+  basename: 'helpers',
+  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
+  pagename: 'helpers.md',
+  extname: '.md',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  dirname: 'test/actual/multi/dest1',
+  src: 'test/templates/pages/helpers.hbs',
+  pageName: 'helpers.md',
+  ext: '.md',
   data: 
    { title: 'Helpers and custom variables',
-     description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\n',
+     description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
      stylesheets: 
       [ 'css/bootstrap.css',
         'css/responsive.css',
@@ -62,21 +76,7 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
         [length]: 3 ],
      styles: '<link rel="stylesheet" href="css/index.css"/>',
      scripts: 'document.write(\'foo bar!\');' },
-  extname: '.md',
-  title: 'Helpers and custom variables',
-  dirname: 'test/actual/multi/dest1',
-  pageName: 'helpers.md',
-  pagename: 'helpers.md',
-  ext: '.md',
-  filename: 'helpers.md',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  basename: 'helpers' }
+  title: 'Helpers and custom variables' }
 ```
 
 

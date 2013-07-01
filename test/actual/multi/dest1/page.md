@@ -22,14 +22,7 @@
 
 ## Debug Info
 ``` json
-{ title: 'Partials Test',
-  links: 
-   [ './index',
-     'dest/context',
-     'dest/basic',
-     'dest/markdown',
-     [length]: 4 ],
-  dirname: 'test/actual/multi/dest1',
+{ dirname: 'test/actual/multi/dest1',
   filename: 'page.md',
   pageName: 'page.md',
   pagename: 'page.md',
@@ -53,7 +46,14 @@
         'dest/context',
         'dest/basic',
         'dest/markdown',
-        [length]: 4 ] } }
+        [length]: 4 ] },
+  title: 'Partials Test',
+  links: 
+   [ './index',
+     'dest/context',
+     'dest/basic',
+     'dest/markdown',
+     [length]: 4 ] }
 ```
 
 
