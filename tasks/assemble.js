@@ -31,12 +31,10 @@ module.exports = function(grunt) {
     var done = this.async();
     var self = this;
 
-    debugger;
 
     // functions for use in build steps
     var optionsConfiguration = function(assemble, next) {
 
-      debugger;
 
       grunt.verbose.writeln('validating options');
 
@@ -92,7 +90,6 @@ module.exports = function(grunt) {
     };
 
     var assembleDefaultLayout = function(assemble, next) {
-      debugger;
 
       grunt.log.writeln('Assembling'  + ' default layout'.cyan);
 
@@ -120,7 +117,6 @@ module.exports = function(grunt) {
     };
 
     var assemblePartials = function(assemble, next) {
-      debugger;
 
       grunt.log.writeln('Assembling'  + ' partials'.cyan);
 
@@ -163,7 +159,6 @@ module.exports = function(grunt) {
     };
 
     var assembleData = function(assemble, next) {
-      debugger;
 
       grunt.log.writeln('Assembling' + ' data'.cyan);
 
@@ -210,7 +205,6 @@ module.exports = function(grunt) {
     };
 
     var assemblePages = function(assemble, next) {
-      debugger;
 
       // build each page
       grunt.verbose.writeln(('\n' + 'Building pages...').grey);
@@ -362,8 +356,6 @@ module.exports = function(grunt) {
     };
 
     var renderPages = function(assemble, next) {
-      debugger;
-
 
       grunt.log.writeln(('\n' + 'Assembling pages...').grey);
 
@@ -451,8 +443,6 @@ module.exports = function(grunt) {
 
 
   var build = function(currentPage, assemble, callback) {
-    debugger;
-
 
     var src = currentPage.srcFile;
     var filename = currentPage.filename;
@@ -571,7 +561,6 @@ module.exports = function(grunt) {
   };
 
   var processContext = function(grunt, context, data) {
-    debugger;
 
       var originalConfigData = lodash.cloneDeep(grunt.config.data);
       grunt.config.data = _.extend(originalConfigData, context, data || {});

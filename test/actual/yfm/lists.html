@@ -114,10 +114,17 @@
     <div class="container" style="display: none">
       <h2>Debug Info</h2>
       <pre class="json">
-{ methods: [ 'getter', 'setter', [length]: 2 ],
-  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
-  dirname: 'test/actual/yfm',
+{ people: 
+   [ { name: 'John Smith', age: 33 },
+     { name: 'Mary Smith', age: 27 },
+     [length]: 2 ],
+  pageName: 'lists.html',
+  src: 'test/templates/pages/yfm/lists.hbs',
+  dest: 'test/actual/yfm/lists.html',
+  basename: 'lists',
   extname: '.html',
+  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
+  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
   data: 
    { title: 'Almost a Haiku',
      attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
@@ -134,23 +141,15 @@
         [length]: 2 ],
      men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
      women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ] },
-  title: 'Almost a Haiku',
-  filename: 'lists.html',
-  dest: 'test/actual/yfm/lists.html',
   women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
-  men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
   ext: '.html',
-  pageName: 'lists.html',
-  pagename: 'lists.html',
-  basename: 'lists',
-  src: 'test/templates/pages/yfm/lists.hbs',
+  title: 'Almost a Haiku',
   movies: 
    [ 'Casablanca',
      'North by Northwest',
      'The Man Who Wasn\'t There',
      [length]: 3 ],
-  assets: '../assets',
-  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
+  men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
   page: 
    { [Function]
      [length]: 2,
@@ -158,10 +157,11 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  people: 
-   [ { name: 'John Smith', age: 33 },
-     { name: 'Mary Smith', age: 27 },
-     [length]: 2 ] }
+  assets: '../assets',
+  pagename: 'lists.html',
+  methods: [ 'getter', 'setter', [length]: 2 ],
+  dirname: 'test/actual/yfm',
+  filename: 'lists.html' }
 </pre>
     </div>
 
