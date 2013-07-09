@@ -1,7 +1,7 @@
 {
   "name": "assemble",
   "description": "Visit http://assemble.io. Assemble is a full-featured documentation, site and component generator built on Grunt.js.",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "homepage": "https://github.com/assemble/assemble",
   "author": {
     "name": "assemble",
@@ -48,9 +48,9 @@
   "devDependencies": {
     "chai": "~1.5.0",
     "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.1.0",
     "grunt-mocha-test": "~0.2.0",
-    "grunt-contrib-clean": "~0.4.1"
+    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.0"
   },
   "keywords": [
     "blog generator",

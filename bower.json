@@ -1,15 +1,16 @@
 {
   "name": "assemble",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "repo": "assemble/assemble",
   "main": [
     "./lib/assemble.js"
   ],
   "dependencies": {
-    "chai": "~1.5.0",
-    "grunt": "~0.4.0",
-    "grunt-contrib-jshint": "~0.1.0",
-    "grunt-contrib-watch": "~0.2.0",
-    "grunt-mocha-test": "~0.2.0"
+    "lodash": "~1.1.1",
+    "marked": "~0.2.8",
+    "highlight.js": "~7.3.0",
+    "assemble-handlebars": "https://github.com/assemble/assemble-handlebars/tarball/master",
+    "inflection": "~1.2.5",
+    "js-yaml": "~2.0.5"
   }
 }
