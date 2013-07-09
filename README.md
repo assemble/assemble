@@ -4,6 +4,8 @@
 
 We love contributors, pull requests are welcome and followers are appreciated.
 
+### Go to [Assemble's documentation](http://assemble.io) →
+
 ## Examples
 
 Visit the [assemble-examples](http://github.com/assemble/assemble-examples) repo to see a list of example projects, such as:
