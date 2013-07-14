@@ -214,7 +214,7 @@ module.exports = function(grunt) {
       var pages = [];
       var collections = {};
       assemble.options.collections.forEach(function(item) {
-        collections[item] = [];
+        collections[item] = {};
       });
 
       var assetsPath = assemble.options.assets;
