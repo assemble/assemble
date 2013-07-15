@@ -56,29 +56,23 @@
 
 ## Debug Info
 ``` json
-{ links: [ 'one', 'two', 'three', [length]: 3 ],
-  _page: 'all',
-  assets: '../../assets',
-  ext: '.md',
-  filename: 'html-helpers.md',
-  src: 'test/templates/pages/html-helpers.hbs',
+{ text: 'helpers.js',
+  links: [ 'one', 'two', 'three', [length]: 3 ],
   moreLinks: 
    [ { url: 'one', text: 'two' },
      { url: 'three', text: 'four' },
      { url: 'five', text: 'size' },
      [length]: 3 ],
+  _page: 'all',
+  dirname: 'test/actual/multi/dest1',
+  filename: 'html-helpers.md',
   pageName: 'html-helpers.md',
+  pagename: 'html-helpers.md',
   basename: 'html-helpers',
+  src: 'test/templates/pages/html-helpers.hbs',
   dest: 'test/actual/multi/dest1/html-helpers.md',
-  data: 
-   { text: 'helpers.js',
-     links: [ 'one', 'two', 'three', [length]: 3 ],
-     moreLinks: 
-      [ { url: 'one', text: 'two' },
-        { url: 'three', text: 'four' },
-        { url: 'five', text: 'size' },
-        [length]: 3 ] },
-  text: 'helpers.js',
+  assets: '../../assets',
+  ext: '.md',
   extname: '.md',
   page: 
    { [Function]
@@ -87,8 +81,14 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  dirname: 'test/actual/multi/dest1',
-  pagename: 'html-helpers.md' }
+  data: 
+   { text: 'helpers.js',
+     links: [ 'one', 'two', 'three', [length]: 3 ],
+     moreLinks: 
+      [ { url: 'one', text: 'two' },
+        { url: 'three', text: 'four' },
+        { url: 'five', text: 'size' },
+        [length]: 3 ] } }
 ```
 
 

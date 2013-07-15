@@ -36,8 +36,6 @@ module.exports = function(grunt) {
     // functions for use in build steps
     var optionsConfiguration = function(assemble, next) {
 
-      debugger;
-
       grunt.verbose.writeln('validating options');
 
       if(_.endsWith(assemble.options.ext, '.')) {
@@ -93,8 +91,6 @@ module.exports = function(grunt) {
 
     var assembleDefaultLayout = function(assemble, next) {
 
-      debugger;
-
       grunt.log.writeln('Assembling'  + ' default layout'.cyan);
 
       // load default layout
@@ -121,8 +117,6 @@ module.exports = function(grunt) {
     };
 
     var assemblePartials = function(assemble, next) {
-
-      debugger;
 
       grunt.log.writeln('Assembling'  + ' partials'.cyan);
 
@@ -165,8 +159,6 @@ module.exports = function(grunt) {
     };
 
     var assembleData = function(assemble, next) {
-
-      debugger;
 
       grunt.log.writeln('Assembling' + ' data'.cyan);
 
@@ -213,8 +205,6 @@ module.exports = function(grunt) {
     };
 
     var assemblePages = function(assemble, next) {
-
-      debugger;
 
       // build each page
       grunt.verbose.writeln(('\n' + 'Building pages...').grey);
@@ -366,8 +356,6 @@ module.exports = function(grunt) {
 
     var renderPages = function(assemble, next) {
 
-      debugger;
-
       grunt.log.writeln(('\n' + 'Assembling pages...').grey);
 
       assemble.options.pages.forEach(function(page) {
@@ -454,8 +442,6 @@ module.exports = function(grunt) {
 
 
   var build = function(currentPage, assemble, callback) {
-
-    debugger;
 
     var src = currentPage.srcFile;
     var filename = currentPage.filename;
