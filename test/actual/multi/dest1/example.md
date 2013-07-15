@@ -19,6 +19,7 @@ This example shows that the properties from "example.json" and "example.hbs" are
 ``` json
 { content: 'Congratulations! You have officially wasted time reading example content. But I\'m sure it\'s time well wasted... ',
   foo: 'bar',
+  _page: 'all',
   dirname: 'test/actual/multi/dest1',
   filename: 'example.md',
   pageName: 'example.md',
@@ -41,15 +42,15 @@ This example shows that the properties from "example.json" and "example.hbs" are
 
 
 ### "{{#each pages}}" Links
+[example](example.md)
 [alert](alert.md)
-[assets](assets.md)
 [collections-categories](collections-categories.md)
 [collections-categories2](collections-categories2.md)
 [collections-tags-2](collections-tags-2.md)
 [collections-tags](collections-tags.md)
 [complex](complex.md)
 [debug-helpers](debug-helpers.md)
-[example](example.md)
+[assets](assets.md)
 [gist-helper](gist-helper.md)
 [helpers](helpers.md)
 [home](home.md)
@@ -63,6 +64,17 @@ This example shows that the properties from "example.json" and "example.hbs" are
 
 ### {{#each pages}} "this" context
 
+#### example.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/example.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: example.md
+this.pagename: example.md
+this.basename: example
+this.extname:  .md
+this.ext:      .md
+
 #### alert.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/alert.md
@@ -71,17 +83,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: alert.md
 this.pagename: alert.md
 this.basename: alert
-this.extname:  .md
-this.ext:      .md
-
-#### assets.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/assets.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: assets.md
-this.pagename: assets.md
-this.basename: assets
 this.extname:  .md
 this.ext:      .md
 
@@ -151,14 +152,14 @@ this.basename: debug-helpers
 this.extname:  .md
 this.ext:      .md
 
-#### example.md
+#### assets.md
 this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/example.md
+this.dest:     test/actual/multi/dest1/assets.md
 this.absolute:
 this.dirname:  test/actual/multi/dest1
-this.filename: example.md
-this.pagename: example.md
-this.basename: example
+this.filename: assets.md
+this.pagename: assets.md
+this.basename: assets
 this.extname:  .md
 this.ext:      .md
 

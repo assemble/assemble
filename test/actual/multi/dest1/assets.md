@@ -28,15 +28,15 @@
 
 
 ### "{{#each pages}}" Links
+[example](test/actual/multi/dest1/example.md)
 [alert](test/actual/multi/dest1/alert.md)
-[assets](test/actual/multi/dest1/assets.md)
 [collections-categories](test/actual/multi/dest1/collections-categories.md)
 [collections-categories2](test/actual/multi/dest1/collections-categories2.md)
 [collections-tags-2](test/actual/multi/dest1/collections-tags-2.md)
 [collections-tags](test/actual/multi/dest1/collections-tags.md)
 [complex](test/actual/multi/dest1/complex.md)
 [debug-helpers](test/actual/multi/dest1/debug-helpers.md)
-[example](test/actual/multi/dest1/example.md)
+[assets](test/actual/multi/dest1/assets.md)
 [gist-helper](test/actual/multi/dest1/gist-helper.md)
 [helpers](test/actual/multi/dest1/helpers.md)
 [home](test/actual/multi/dest1/home.md)
@@ -50,6 +50,17 @@
 
 ### {{#each pages}} "this" context
 
+#### example.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/example.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: example.md
+this.pagename: example.md
+this.basename: example
+this.extname:  .md
+this.ext:      .md
+
 #### alert.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/alert.md
@@ -58,17 +69,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: alert.md
 this.pagename: alert.md
 this.basename: alert
-this.extname:  .md
-this.ext:      .md
-
-#### assets.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/assets.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: assets.md
-this.pagename: assets.md
-this.basename: assets
 this.extname:  .md
 this.ext:      .md
 
@@ -138,14 +138,14 @@ this.basename: debug-helpers
 this.extname:  .md
 this.ext:      .md
 
-#### example.md
+#### assets.md
 this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/example.md
+this.dest:     test/actual/multi/dest1/assets.md
 this.absolute:
 this.dirname:  test/actual/multi/dest1
-this.filename: example.md
-this.pagename: example.md
-this.basename: example
+this.filename: assets.md
+this.pagename: assets.md
+this.basename: assets
 this.extname:  .md
 this.ext:      .md
 

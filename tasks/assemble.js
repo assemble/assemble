@@ -20,6 +20,7 @@ module.exports = function(grunt) {
   var util   = require('util');
 
   // NPM utils
+  var inflection = require('inflection');
   var lodash = require('lodash'); // required to ensure correct version is used
 
   // Assemble utils
@@ -34,7 +35,6 @@ module.exports = function(grunt) {
 
     // functions for use in build steps
     var optionsConfiguration = function(assemble, next) {
-
 
       grunt.verbose.writeln('validating options');
 
@@ -211,12 +211,6 @@ module.exports = function(grunt) {
 
       var src = false;
 
-      var pages = [];
-      var collections = {};
-      assemble.options.collections.forEach(function(item) {
-        collections[item] = [];
-      });
-
       var assetsPath = assemble.options.assets;
 
       assemble.task.files.forEach(function(filePair) {
@@ -312,6 +306,7 @@ module.exports = function(grunt) {
             });
 
             var pageObj = {
+              '_page': 'all',
               dirname : path.dirname(destFile),
               filename: path.basename(destFile),
               pageName: path.basename(destFile),
@@ -331,10 +326,12 @@ module.exports = function(grunt) {
               return;
             }
 
-            pages.push(pageObj);
+            assemble.options.collections.pages.items[0].pages.push(pageObj);
 
-            assemble.options.collections.forEach(function(item) {
-              collections[item] = assemble.util.collection.update(item, collections[item], pageObj, pageContext);
+            lodash.each(assemble.options.collections, function(item, key) {
+              if(key !== 'pages') {
+                assemble.options.collections[key] = assemble.util.collection.update(item, pageObj, pageContext);
+              }
             });
 
           } catch(err) {
@@ -346,9 +343,11 @@ module.exports = function(grunt) {
 
       grunt.verbose.writeln('information compiled');
 
-      assemble.options.pages = pages;
-      assemble.options.collections.forEach(function(item) {
-        assemble.options[item] = collections[item];
+      assemble.options.pages = assemble.util.collection.sort(assemble.options.collections.pages).items[0].pages;
+      lodash.each(assemble.options.collections, function(item, key) {
+        if(key !== 'pages') {
+          assemble.options[key] = assemble.util.collection.sort(item).items;
+        }
       });
 
 
@@ -454,6 +453,7 @@ module.exports = function(grunt) {
         layout       = options.defaultLayout,
         data         = options.data,
         pages        = options.pages,
+        collections  = options.collections,
         engine       = options.engine,
         EngineLoader = options.EngineLoader,
         context      = {};
@@ -466,15 +466,17 @@ module.exports = function(grunt) {
     try {
 
       // omit the collections from pageContext when merging
-      var pageCollections = lodash.pick(pageContext, options.collections);
-      pageContext = lodash.omit(pageContext, options.collections);
+      var pageCollections = lodash.pick(pageContext, lodash.keys(collections));
+      pageContext = lodash.omit(pageContext, lodash.keys(collections));
 
       options.data    = undefined;
       options.pages   = undefined;
       options.layout  = undefined;
+      options.collections = undefined;
       context         = _.extend(context, options, data, pageContext);
       options.data    = data;
       options.pages   = pages;
+      options.collections = collections;
 
       // if pageContext contains a layout, use that one instead
       // of the default layout
@@ -509,9 +511,11 @@ module.exports = function(grunt) {
           options.data   = undefined;
           options.pages  = undefined;
           options.layout = undefined;
+          options.collections = undefined;
           context        = _.extend(context, options, data, pageContext);
           options.data   = data;
           options.pages  = pages;
+          options.collections = collections;
         }
       }
 
@@ -695,20 +699,6 @@ module.exports = function(grunt) {
       filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{[^}]+?\}\})(?=(\n|\r|\n\r))/gi,'$2');
     }
     return filecontent;
-  };
-
-  var mergeOptionsArrays = function(target, name) {
-    var globalArray = grunt.config(['assemble', 'options', name]) || [];
-    var targetArray = grunt.config(['assemble', target, 'options', name]) || [];
-    return _.union(globalArray, targetArray);
-  };
-
-  var updateTags = function(tags, page, context) {
-    return assemble.util.collection.update('tags', tags, page, context);
-  };
-
-  var updateCategories = function(categories, page, context) {
-    return assemble.util.collection.update('categories', categories, page, context);
   };
 
 };

@@ -31,25 +31,8 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
 ## Debug Info
 ``` json
-{ javascripts: 
-   [ 'js/bootstrap.js',
-     'js/responsive.js',
-     'js/main.js',
-     [length]: 3 ],
-  scripts: 'document.write(\'foo bar!\');',
-  dest: 'test/actual/multi/dest1/helpers.md',
-  stylesheets: 
-   [ 'css/bootstrap.css',
-     'css/responsive.css',
-     'css/main.css',
-     [length]: 3 ],
-  filename: 'helpers.md',
-  styles: '<link rel="stylesheet" href="css/index.css"/>',
-  assets: '../../assets',
+{ dirname: 'test/actual/multi/dest1',
   basename: 'helpers',
-  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
-  pagename: 'helpers.md',
-  extname: '.md',
   page: 
    { [Function]
      [length]: 2,
@@ -57,10 +40,28 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  dirname: 'test/actual/multi/dest1',
+  dest: 'test/actual/multi/dest1/helpers.md',
+  title: 'Helpers and custom variables',
+  javascripts: 
+   [ 'js/bootstrap.js',
+     'js/responsive.js',
+     'js/main.js',
+     [length]: 3 ],
+  filename: 'helpers.md',
   src: 'test/templates/pages/helpers.hbs',
+  stylesheets: 
+   [ 'css/bootstrap.css',
+     'css/responsive.css',
+     'css/main.css',
+     [length]: 3 ],
+  extname: '.md',
   pageName: 'helpers.md',
-  ext: '.md',
+  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
+  scripts: 'document.write(\'foo bar!\');',
+  _page: 'all',
+  assets: '../../assets',
+  pagename: 'helpers.md',
+  styles: '<link rel="stylesheet" href="css/index.css"/>',
   data: 
    { title: 'Helpers and custom variables',
      description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
@@ -76,20 +77,20 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
         [length]: 3 ],
      styles: '<link rel="stylesheet" href="css/index.css"/>',
      scripts: 'document.write(\'foo bar!\');' },
-  title: 'Helpers and custom variables' }
+  ext: '.md' }
 ```
 
 
 ### "{{#each pages}}" Links
+[example](example.md)
 [alert](alert.md)
-[assets](assets.md)
 [collections-categories](collections-categories.md)
 [collections-categories2](collections-categories2.md)
 [collections-tags-2](collections-tags-2.md)
 [collections-tags](collections-tags.md)
 [complex](complex.md)
 [debug-helpers](debug-helpers.md)
-[example](example.md)
+[assets](assets.md)
 [gist-helper](gist-helper.md)
 [helpers](helpers.md)
 [home](home.md)
@@ -103,6 +104,17 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
 ### {{#each pages}} "this" context
 
+#### example.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/example.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: example.md
+this.pagename: example.md
+this.basename: example
+this.extname:  .md
+this.ext:      .md
+
 #### alert.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/alert.md
@@ -111,17 +123,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: alert.md
 this.pagename: alert.md
 this.basename: alert
-this.extname:  .md
-this.ext:      .md
-
-#### assets.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/assets.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: assets.md
-this.pagename: assets.md
-this.basename: assets
 this.extname:  .md
 this.ext:      .md
 
@@ -191,14 +192,14 @@ this.basename: debug-helpers
 this.extname:  .md
 this.ext:      .md
 
-#### example.md
+#### assets.md
 this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/example.md
+this.dest:     test/actual/multi/dest1/assets.md
 this.absolute:
 this.dirname:  test/actual/multi/dest1
-this.filename: example.md
-this.pagename: example.md
-this.basename: example
+this.filename: assets.md
+this.pagename: assets.md
+this.basename: assets
 this.extname:  .md
 this.ext:      .md
 

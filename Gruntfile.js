@@ -81,7 +81,14 @@ module.exports = function(grunt) {
       multi: {
         options: {
           layout: 'layout.hbs',
-          data: ['test/data/*.json']
+          data: ['test/data/*.json'],
+          collections: [
+            {
+              title: 'tags',
+              inflection: 'tag',
+              sortorder: 'DESC'
+            }
+          ]
         },
         files: {
           'test/actual/multi/dest1/': ['test/templates/pages/*.hbs'],
