@@ -81,7 +81,14 @@ module.exports = function(grunt) {
       multi: {
         options: {
           layout: 'layout.hbs',
-          data: ['test/data/*.json']
+          data: ['test/data/*.json'],
+          collections: [
+            {
+              title: 'tags',
+              inflection: 'tag',
+              sortorder: 'DESC'
+            }
+          ]
         },
         files: {
           'test/actual/multi/dest1/': ['test/templates/pages/*.hbs'],
@@ -153,7 +160,7 @@ module.exports = function(grunt) {
   grunt.loadTasks('tasks');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'clean', 'assemble']);
+  grunt.registerTask('default', [/*'jshint', */'clean', 'assemble']);
 
   // Tests to be run.
   grunt.registerTask('test', ['default', 'mochaTest']);

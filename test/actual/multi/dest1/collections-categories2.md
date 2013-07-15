@@ -1,4 +1,4 @@
-# collections-categories2.md output
+# Categories Test
 
 ## Content
 
@@ -6,17 +6,17 @@
 
 <ul>
 
+  <li>categories</li>
+
   <li>one</li>
 
-  <li>two</li>
-
-  <li>three</li>
-
-  <li>categories</li>
+  <li>something</li>
 
   <li>test</li>
 
-  <li>something</li>
+  <li>three</li>
+
+  <li>two</li>
 
 </ul>
 
@@ -24,14 +24,9 @@
 
 ## Debug Info
 ``` json
-{ page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
+{ title: 'Categories Test',
   categories: [ 'categories', 'test', 'something', [length]: 3 ],
+  _page: 'all',
   dirname: 'test/actual/multi/dest1',
   filename: 'collections-categories2.md',
   pageName: 'collections-categories2.md',
@@ -42,22 +37,29 @@
   assets: '../../assets',
   ext: '.md',
   extname: '.md',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
   data: 
-   { page: { title: 'Categories Test' },
+   { title: 'Categories Test',
      categories: [ 'categories', 'test', 'something', [length]: 3 ] } }
 ```
 
 
 ### "{{#each pages}}" Links
+[example](example.md)
 [alert](alert.md)
-[assets](assets.md)
 [collections-categories](collections-categories.md)
 [collections-categories2](collections-categories2.md)
 [collections-tags-2](collections-tags-2.md)
 [collections-tags](collections-tags.md)
 [complex](complex.md)
 [debug-helpers](debug-helpers.md)
-[example](example.md)
+[assets](assets.md)
 [gist-helper](gist-helper.md)
 [helpers](helpers.md)
 [home](home.md)
@@ -71,6 +73,17 @@
 
 ### {{#each pages}} "this" context
 
+#### example.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/example.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: example.md
+this.pagename: example.md
+this.basename: example
+this.extname:  .md
+this.ext:      .md
+
 #### alert.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/alert.md
@@ -79,17 +92,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: alert.md
 this.pagename: alert.md
 this.basename: alert
-this.extname:  .md
-this.ext:      .md
-
-#### assets.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/assets.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: assets.md
-this.pagename: assets.md
-this.basename: assets
 this.extname:  .md
 this.ext:      .md
 
@@ -159,14 +161,14 @@ this.basename: debug-helpers
 this.extname:  .md
 this.ext:      .md
 
-#### example.md
+#### assets.md
 this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/example.md
+this.dest:     test/actual/multi/dest1/assets.md
 this.absolute:
 this.dirname:  test/actual/multi/dest1
-this.filename: example.md
-this.pagename: example.md
-this.basename: example
+this.filename: assets.md
+this.pagename: assets.md
+this.basename: assets
 this.extname:  .md
 this.ext:      .md
 

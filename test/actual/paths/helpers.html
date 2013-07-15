@@ -38,36 +38,26 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
       <h3>Paths Examples</h3>
 
 <pre class="json">
-{ javascripts: 
+{ _page: 'all',
+  assets: '../assets',
+  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
+  ext: '.html',
+  filename: 'helpers.html',
+  javascripts: 
    [ 'js/bootstrap.js',
      'js/responsive.js',
      'js/main.js',
      [length]: 3 ],
-  scripts: 'document.write(\'foo bar!\');',
+  src: 'test/templates/pages/helpers.hbs',
+  pageName: 'helpers.html',
+  basename: 'helpers',
+  styles: '<link rel="stylesheet" href="css/index.css"/>',
   dest: 'test/actual/paths/helpers.html',
   stylesheets: 
    [ 'css/bootstrap.css',
      'css/responsive.css',
      'css/main.css',
      [length]: 3 ],
-  filename: 'helpers.html',
-  styles: '<link rel="stylesheet" href="css/index.css"/>',
-  assets: '../assets',
-  basename: 'helpers',
-  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
-  pagename: 'helpers.html',
-  extname: '.html',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  dirname: 'test/actual/paths',
-  src: 'test/templates/pages/helpers.hbs',
-  pageName: 'helpers.html',
-  ext: '.html',
   data: 
    { title: 'Helpers and custom variables',
      description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
@@ -83,21 +73,32 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
         [length]: 3 ],
      styles: '<link rel="stylesheet" href="css/index.css"/>',
      scripts: 'document.write(\'foo bar!\');' },
-  title: 'Helpers and custom variables' }
+  scripts: 'document.write(\'foo bar!\');',
+  extname: '.html',
+  title: 'Helpers and custom variables',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  dirname: 'test/actual/paths',
+  pagename: 'helpers.html' }
 </pre>
 
       <ul>
       
-        <li><a href="alert.html">alert</a></li>
+        <li><a href="example.html">example</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/alert.html
+        this.dest:     test/actual/paths/example.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: alert.html
-        this.pagename: alert.html
-        this.basename: alert
+        this.filename: example.html
+        this.pagename: example.html
+        this.basename: example
         this.extname:  .html
         this.ext:      .html
 
@@ -124,16 +125,16 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
         ext:           .html
         -->
       
-        <li><a href="assets.html">assets</a></li>
+        <li><a href="alert.html">alert</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/assets.html
+        this.dest:     test/actual/paths/alert.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: assets.html
-        this.pagename: assets.html
-        this.basename: assets
+        this.filename: alert.html
+        this.pagename: alert.html
+        this.basename: alert
         this.extname:  .html
         this.ext:      .html
 
@@ -376,16 +377,16 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
         ext:           .html
         -->
       
-        <li><a href="example.html">example</a></li>
+        <li><a href="assets.html">assets</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/example.html
+        this.dest:     test/actual/paths/assets.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: example.html
-        this.pagename: example.html
-        this.basename: example
+        this.filename: assets.html
+        this.pagename: assets.html
+        this.basename: assets
         this.extname:  .html
         this.ext:      .html
 
