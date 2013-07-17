@@ -51,8 +51,13 @@ module.exports = function(grunt) {
       });
 
       if(!src || src.length === 0) {
-        grunt.warn('No source files found.');
-        done(false);
+        // check if there's a pages collection
+        if(!assemble.options.pages || assemble.options.pages.length === 0) {
+          grunt.warn('No source files found.');
+          done(false);
+        } else {
+          src = lodash.pluck(assemble.options.pages, ['filename']);
+        }
       }
 
       // find an engine to use
@@ -221,7 +226,7 @@ module.exports = function(grunt) {
           grunt.warn('Missing src property.');
           return false;
         }
-        if(filePair.src.length === 0) {
+        if(filePair.src.length === 0 && (!assemble.options.pages || assemble.options.pages.length === 0)) {
           grunt.warn('Source files not found.');
           return false;
         }
@@ -233,7 +238,7 @@ module.exports = function(grunt) {
         }
 
         src = src || filePair.src;
-        var basePath = findBasePath(src, true);
+        //var basePath = findBasePath(src, true);
 
         // some of the following code for figuring out
         // the destination files has been taken/inspired
@@ -242,10 +247,12 @@ module.exports = function(grunt) {
         var isExpandedPair = filePair.orig.expand || false;
         var destFile;
 
-        filePair.src.forEach(function(srcFile) {
+        var buildPage = function(srcFile, fileInfo) {
+
+          var useFileInfo = (typeof fileInfo !== 'undefined');
 
           srcFile  = urlNormalize(path.normalize(srcFile));
-          filename = path.basename(srcFile, path.extname(srcFile));
+          var filename = path.basename(srcFile, path.extname(srcFile));
 
           if(detectDestType(filePair.dest) === 'directory') {
             destFile = (isExpandedPair) ? filePair.dest : path.join(
@@ -279,7 +286,7 @@ module.exports = function(grunt) {
           grunt.verbose.writeln(('\t' + 'Dest: '   + destFile));
           grunt.verbose.writeln(('\t' + 'Assets: ' + assemble.options.assets));
 
-          var page = grunt.file.read(srcFile);
+          var page = useFileInfo ? (fileInfo.content || '') : grunt.file.read(srcFile);
           try {
             grunt.verbose.writeln('compiling page ' + filename.magenta);
             var pageContext = {};
@@ -291,10 +298,10 @@ module.exports = function(grunt) {
             }
 
             // If options.removeHbsWhitespace is true
-            page = removeHbsWhitespace(assemble,page);
+            page = removeHbsWhitespace(assemble, page);
 
             var pageInfo = assemble.data.readYFM(page, {fromFile: false});
-            pageContext = pageInfo.context;
+            pageContext = useFileInfo ? (fileInfo.data || {}) : pageInfo.context;
 
             // compile
             assemble.engine.compile(pageInfo.content, null, function(err, tmpl) {
@@ -336,9 +343,32 @@ module.exports = function(grunt) {
 
           } catch(err) {
             grunt.warn(err);
-            return;
+            return false;
+          }
+
+          return true;
+        };
+
+        // build all the pages defined in the source property
+        filePair.src.forEach(function(srcFile) {
+          if(!buildPage(srcFile)) {
+            return false;
           }
         }); // filePair.src.forEach
+
+        // if there is a pages property, build all those
+        if(assemble.options.pages) {
+          assemble.options.pages.forEach(function(fileInfo) {
+            if(!fileInfo.filename || fileInfo.filename.length === 0) {
+              grunt.warn('Pages need a filename.');
+              return false;
+            }
+            if(!buildPage(fileInfo.filename, fileInfo)) {
+              return false;
+            }
+          });
+        }
+
       }); // this.files.forEach
 
       grunt.verbose.writeln('information compiled');

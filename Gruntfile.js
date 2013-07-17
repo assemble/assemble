@@ -141,6 +141,43 @@ module.exports = function(grunt) {
         files: {
           'test/actual/custom-helpers.html': ['test/templates/pages/helpers/custom-helpers.hbs']
         }
+      },
+      inline_pages: {
+        options: {
+          engine: 'handlebars',
+          layout: "post.hbs",
+          site: {
+            title: "A Blog",
+            author: "Jon Schlinkert"
+          },
+          pages: [
+            {
+              filename: "post1",
+              data: {
+                title: "Blog Post #1",
+                gists: ["5898072"]
+              },
+              content: "This would get passed into the `body` tag, but it's not necessary if you only need to add a post from a gist."
+            },
+            {
+              filename: "post2",
+              data: {
+                title: "Blog Post #2",
+                gists: ["5898077", "5898078"]
+              }
+            },
+            {
+              filename: "post3",
+              data: {
+                title: "Blog Post #3",
+                gists: ["5909393"]
+              }
+            }
+          ]
+        },
+        files: {
+          'test/actual/blog/': []
+        }
       }
     },
 
@@ -161,6 +198,9 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'clean', 'assemble']);
+
+  // this is just for when doing debugging and jshint blows up
+  grunt.registerTask('dev', ['clean', 'assemble']);
 
   // Tests to be run.
   grunt.registerTask('test', ['default', 'mochaTest']);
