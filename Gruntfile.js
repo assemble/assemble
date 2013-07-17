@@ -13,7 +13,6 @@ module.exports = function(grunt) {
 
     // package.json
     pkg: grunt.file.readJSON('package.json'),
-    ignores: ['!test/templates/pages/helpers.hbs', '!test/templates/pages/html-helpers.hbs'],
     meta: {
       banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
         '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
@@ -59,7 +58,7 @@ module.exports = function(grunt) {
           data: ['test/data/*.yml']
         },
         files: {
-          'test/actual/paths/': ['test/templates/pages/*.hbs', '<%= ignores %>']
+          'test/actual/paths/': ['test/templates/pages/*.hbs']
         }
       },
       single_page: {
@@ -93,9 +92,9 @@ module.exports = function(grunt) {
           ]
         },
         files: {
-          'test/actual/multi/dest1/': ['test/templates/pages/*.hbs', '<%= ignores %>'],
+          'test/actual/multi/dest1/': ['test/templates/pages/*.hbs'],
           'test/actual/multi/dest2/': ['test/templates/pages/*.md'],
-          'test/actual/multi/dest2/sub-dest/': ['test/templates/pages/*.hbs', '<%= ignores %>']
+          'test/actual/multi/dest2/sub-dest/': ['test/templates/pages/*.hbs']
         }
       },
       markdown: {
@@ -105,7 +104,7 @@ module.exports = function(grunt) {
           ext: '.md'
         },
         files: {
-          'test/actual/multi/dest1/': ['test/templates/pages/*.hbs', '<%= ignores %>']
+          'test/actual/multi/dest1/': ['test/templates/pages/*.hbs']
         }
       },
       assets_one: {

@@ -1,28 +1,62 @@
-# gist-helper.md output
+# html-helpers.md output
 
 ## Content
 
 
+<h2>HTML list helpers.</h2>
+<h3>{{ul}} helper</h3>
+<ul class="nav"><li>
+  one
+</li>
+<li>
+  two
+</li>
+<li>
+  three
+</li></ul>
 
-<h1>{{gist}} helper</h1>
-<script src="https://gist.github.com/5193239.js"></script>
+<ul class="nav"><li>
+  <a href="one">two</a>
+</li>
+<li>
+  <a href="three">four</a>
+</li>
+<li>
+  <a href="five">size</a>
+</li></ul>
+
+<h3>{{ol}} helper</h3>
+<ol class="nav"><li>
+  one
+</li>
+<li>
+  two
+</li>
+<li>
+  three
+</li></ol>
+
+<ol class="nav"><li>
+  <a href="one">two</a>
+</li>
+<li>
+  <a href="three">four</a>
+</li>
+<li>
+  <a href="five">size</a>
+</li></ol>
+
+<h3>{{link}} helper</h3>
+<p><a href="">helpers.js</a>
+<a href="http://github.com">GitHub</a>
+<a href="http://github.com">GitHub</a></p>
 
 
 
 
 ## Debug Info
 ``` json
-{ _page: 'all',
-  dirname: 'test/actual/multi/dest1',
-  filename: 'gist-helper.md',
-  pageName: 'gist-helper.md',
-  pagename: 'gist-helper.md',
-  basename: 'gist-helper',
-  src: 'test/templates/pages/gist-helper.hbs',
-  dest: 'test/actual/multi/dest1/gist-helper.md',
-  assets: '../../assets',
-  ext: '.md',
-  extname: '.md',
+{ src: 'test/templates/pages/html-helpers.hbs',
   page: 
    { [Function]
      [length]: 2,
@@ -30,7 +64,31 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  data: {} }
+  moreLinks: 
+   [ { url: 'one', text: 'two' },
+     { url: 'three', text: 'four' },
+     { url: 'five', text: 'size' },
+     [length]: 3 ],
+  pageName: 'html-helpers.md',
+  links: [ 'one', 'two', 'three', [length]: 3 ],
+  extname: '.md',
+  filename: 'html-helpers.md',
+  pagename: 'html-helpers.md',
+  _page: 'all',
+  assets: '../../assets',
+  data: 
+   { text: 'helpers.js',
+     links: [ 'one', 'two', 'three', [length]: 3 ],
+     moreLinks: 
+      [ { url: 'one', text: 'two' },
+        { url: 'three', text: 'four' },
+        { url: 'five', text: 'size' },
+        [length]: 3 ] },
+  basename: 'html-helpers',
+  ext: '.md',
+  text: 'helpers.js',
+  dirname: 'test/actual/multi/dest1',
+  dest: 'test/actual/multi/dest1/html-helpers.md' }
 ```
 
 
@@ -247,380 +305,380 @@ this.ext:      .md
 
 ### {{#each pages}}
 
-#### gist-helper.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/gist-helper.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: gist-helper.md
-page.pagename: gist-helper.md
-page.basename: gist-helper
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### gist-helper.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/gist-helper.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: gist-helper.md
-page.pagename: gist-helper.md
-page.basename: gist-helper
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### gist-helper.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/gist-helper.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: gist-helper.md
-page.pagename: gist-helper.md
-page.basename: gist-helper
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### gist-helper.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/gist-helper.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: gist-helper.md
-page.pagename: gist-helper.md
-page.basename: gist-helper
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### gist-helper.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/gist-helper.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: gist-helper.md
-page.pagename: gist-helper.md
-page.basename: gist-helper
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### gist-helper.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/gist-helper.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: gist-helper.md
-page.pagename: gist-helper.md
-page.basename: gist-helper
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### gist-helper.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/gist-helper.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: gist-helper.md
-page.pagename: gist-helper.md
-page.basename: gist-helper
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### gist-helper.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/gist-helper.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: gist-helper.md
-page.pagename: gist-helper.md
-page.basename: gist-helper
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### gist-helper.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/gist-helper.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: gist-helper.md
-page.pagename: gist-helper.md
-page.basename: gist-helper
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### gist-helper.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/gist-helper.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: gist-helper.md
-page.pagename: gist-helper.md
-page.basename: gist-helper
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### gist-helper.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/gist-helper.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: gist-helper.md
-page.pagename: gist-helper.md
-page.basename: gist-helper
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### gist-helper.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/gist-helper.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: gist-helper.md
-page.pagename: gist-helper.md
-page.basename: gist-helper
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### gist-helper.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/gist-helper.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: gist-helper.md
-page.pagename: gist-helper.md
-page.basename: gist-helper
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### gist-helper.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/gist-helper.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: gist-helper.md
-page.pagename: gist-helper.md
-page.basename: gist-helper
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### gist-helper.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/gist-helper.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: gist-helper.md
-page.pagename: gist-helper.md
-page.basename: gist-helper
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### gist-helper.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/gist-helper.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: gist-helper.md
-page.pagename: gist-helper.md
-page.basename: gist-helper
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
-#### gist-helper.md
+#### html-helpers.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/gist-helper.md
+page.dest:     test/actual/multi/dest1/html-helpers.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: gist-helper.md
-page.pagename: gist-helper.md
-page.basename: gist-helper
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
 
 ### {{#each pages}} "page" context
 
-#### gist-helper.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/gist-helper.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      gist-helper.md
-pagename:      gist-helper.md
-basename:      gist-helper
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### gist-helper.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/gist-helper.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      gist-helper.md
-pagename:      gist-helper.md
-basename:      gist-helper
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### gist-helper.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/gist-helper.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      gist-helper.md
-pagename:      gist-helper.md
-basename:      gist-helper
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### gist-helper.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/gist-helper.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      gist-helper.md
-pagename:      gist-helper.md
-basename:      gist-helper
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### gist-helper.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/gist-helper.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      gist-helper.md
-pagename:      gist-helper.md
-basename:      gist-helper
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### gist-helper.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/gist-helper.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      gist-helper.md
-pagename:      gist-helper.md
-basename:      gist-helper
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### gist-helper.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/gist-helper.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      gist-helper.md
-pagename:      gist-helper.md
-basename:      gist-helper
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### gist-helper.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/gist-helper.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      gist-helper.md
-pagename:      gist-helper.md
-basename:      gist-helper
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### gist-helper.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/gist-helper.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      gist-helper.md
-pagename:      gist-helper.md
-basename:      gist-helper
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### gist-helper.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/gist-helper.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      gist-helper.md
-pagename:      gist-helper.md
-basename:      gist-helper
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### gist-helper.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/gist-helper.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      gist-helper.md
-pagename:      gist-helper.md
-basename:      gist-helper
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### gist-helper.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/gist-helper.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      gist-helper.md
-pagename:      gist-helper.md
-basename:      gist-helper
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### gist-helper.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/gist-helper.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      gist-helper.md
-pagename:      gist-helper.md
-basename:      gist-helper
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### gist-helper.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/gist-helper.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      gist-helper.md
-pagename:      gist-helper.md
-basename:      gist-helper
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### gist-helper.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/gist-helper.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      gist-helper.md
-pagename:      gist-helper.md
-basename:      gist-helper
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### gist-helper.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/gist-helper.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      gist-helper.md
-pagename:      gist-helper.md
-basename:      gist-helper
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 
-#### gist-helper.md
+#### html-helpers.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/gist-helper.md
+absolute:      test/actual/multi/dest1/html-helpers.md
 dirname:       test/actual/multi/dest1
-filename:      gist-helper.md
-pagename:      gist-helper.md
-basename:      gist-helper
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
 extname:       .md
 ext:           .md
 

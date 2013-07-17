@@ -27,8 +27,54 @@
         </ul>
       </div>
       
+<h2>HTML list helpers.</h2>
+<h3>{{ul}} helper</h3>
+<ul class="nav"><li>
+  one
+</li>
+<li>
+  two
+</li>
+<li>
+  three
+</li></ul>
 
-<span class="alert alert-info">This is an alert</span>
+<ul class="nav"><li>
+  <a href="one">two</a>
+</li>
+<li>
+  <a href="three">four</a>
+</li>
+<li>
+  <a href="five">size</a>
+</li></ul>
+
+<h3>{{ol}} helper</h3>
+<ol class="nav"><li>
+  one
+</li>
+<li>
+  two
+</li>
+<li>
+  three
+</li></ol>
+
+<ol class="nav"><li>
+  <a href="one">two</a>
+</li>
+<li>
+  <a href="three">four</a>
+</li>
+<li>
+  <a href="five">size</a>
+</li></ol>
+
+<h3>{{link}} helper</h3>
+<p><a class="" href="" title="helpers.js">helpers.js</a>
+<a class="" href="http://github.com" title="GitHub">GitHub</a>
+<a class="nav-link" href="http://github.com" title="GitHub">GitHub</a></p>
+
 
     </div>
 
@@ -79,16 +125,21 @@
     <div class="container" style="display: none">
       <h2>Debug Info</h2>
       <pre class="json">
-{ foo: 'bar',
-  version: 2,
+{ text: 'helpers.js',
+  links: [ 'one', 'two', 'three', [length]: 3 ],
+  moreLinks: 
+   [ { url: 'one', text: 'two' },
+     { url: 'three', text: 'four' },
+     { url: 'five', text: 'size' },
+     [length]: 3 ],
   _page: 'all',
   dirname: 'test/actual/multi/dest1',
-  filename: 'complex.html',
-  pageName: 'complex.html',
-  pagename: 'complex.html',
-  basename: 'complex',
-  src: 'test/templates/pages/complex.hbs',
-  dest: 'test/actual/multi/dest1/complex.html',
+  filename: 'html-helpers.html',
+  pageName: 'html-helpers.html',
+  pagename: 'html-helpers.html',
+  basename: 'html-helpers',
+  src: 'test/templates/pages/html-helpers.hbs',
+  dest: 'test/actual/multi/dest1/html-helpers.html',
   assets: '../../assets',
   ext: '.html',
   extname: '.html',
@@ -99,7 +150,14 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  data: { foo: 'bar', version: 2 } }
+  data: 
+   { text: 'helpers.js',
+     links: [ 'one', 'two', 'three', [length]: 3 ],
+     moreLinks: 
+      [ { url: 'one', text: 'two' },
+        { url: 'three', text: 'four' },
+        { url: 'five', text: 'size' },
+        [length]: 3 ] } }
 </pre>
     </div>
 

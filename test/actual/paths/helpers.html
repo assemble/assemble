@@ -2,18 +2,35 @@
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Tags Test</title>
+    <title>Helpers and custom variables</title>
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
     <div class="container">
       
+<div class="page-header">
+  <h1>Helpers and custom variables</h1>
+  <p class="lead">Here we are using the &quot;css&quot; and &quot;js&quot; helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the &quot;./test/helpers&quot; directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.
+</p>
+</div>
 
-<ul>
+<h2>css helper</h2>
+Example of using the "css" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
+<link rel="stylesheet" href="../assets/css/css/bootstrap.css">
+<link rel="stylesheet" href="../assets/css/css/responsive.css">
+<link rel="stylesheet" href="../assets/css/css/main.css">
 
-	<li></li>
 
-</ul>
+<h2>js helper</h2>
+Example of using the "js" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
+<script src="../assets/js/js/bootstrap.js"></script>
+<script src="../assets/js/js/responsive.js"></script>
+<script src="../assets/js/js/main.js"></script>
+
+
+<h2>custom variables</h2>
+<link rel="stylesheet" href="css/index.css"/>
+<script>document.write('foo bar!');</script>
 
     </div>
 
@@ -21,29 +38,51 @@
       <h3>Paths Examples</h3>
 
 <pre class="json">
-{ title: 'Tags Test',
-  tags: [ 'tags', 'test', 'something', [length]: 3 ],
-  _page: 'all',
-  dirname: 'test/actual/paths',
-  filename: 'collections-tags-2.html',
-  pageName: 'collections-tags-2.html',
-  pagename: 'collections-tags-2.html',
-  basename: 'collections-tags-2',
-  src: 'test/templates/pages/collections-tags-2.hbs',
-  dest: 'test/actual/paths/collections-tags-2.html',
-  assets: '../assets',
-  ext: '.html',
+[ 'test/helpers/helper-*.js',
+  scripts: 'document.write(\'foo bar!\');',
+  src: 'test/templates/pages/helpers.hbs',
+  page: { [Function]
+    [length]: 2,
+    [name]: '',
+    [arguments]: null,
+    [caller]: null,
+    [prototype]: { [constructor]: [Circular] } },
+  javascripts: [ 'js/bootstrap.js',
+    'js/responsive.js',
+    'js/main.js',
+    [length]: 3 ],
+  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
+  pageName: 'helpers.html',
+  styles: '<link rel="stylesheet" href="css/index.css"/>',
   extname: '.html',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  data: 
-   { title: 'Tags Test',
-     tags: [ 'tags', 'test', 'something', [length]: 3 ] } }
+  [length]: 1,
+  filename: 'helpers.html',
+  pagename: 'helpers.html',
+  _page: 'all',
+  assets: '../assets',
+  title: 'Helpers and custom variables',
+  basename: 'helpers',
+  ext: '.html',
+  data: { title: 'Helpers and custom variables',
+    description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
+    stylesheets: 
+     [ 'css/bootstrap.css',
+       'css/responsive.css',
+       'css/main.css',
+       [length]: 3 ],
+    javascripts: 
+     [ 'js/bootstrap.js',
+       'js/responsive.js',
+       'js/main.js',
+       [length]: 3 ],
+    styles: '<link rel="stylesheet" href="css/index.css"/>',
+    scripts: 'document.write(\'foo bar!\');' },
+  dirname: 'test/actual/paths',
+  stylesheets: [ 'css/bootstrap.css',
+    'css/responsive.css',
+    'css/main.css',
+    [length]: 3 ],
+  dest: 'test/actual/paths/helpers.html' ]
 </pre>
 
       <ul>
@@ -63,23 +102,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/collections-tags-2.html
+        page.dest:     test/actual/paths/helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: collections-tags-2.html
-        page.pagename: collections-tags-2.html
-        page.basename: collections-tags-2
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/collections-tags-2.html
+        absolute:      test/actual/paths/helpers.html
         dirname:       test/actual/paths
-        filename:      collections-tags-2.html
-        pagename:      collections-tags-2.html
-        basename:      collections-tags-2
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
         extname:       .html
         ext:           .html
         -->
@@ -99,23 +138,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/collections-tags-2.html
+        page.dest:     test/actual/paths/helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: collections-tags-2.html
-        page.pagename: collections-tags-2.html
-        page.basename: collections-tags-2
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/collections-tags-2.html
+        absolute:      test/actual/paths/helpers.html
         dirname:       test/actual/paths
-        filename:      collections-tags-2.html
-        pagename:      collections-tags-2.html
-        basename:      collections-tags-2
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
         extname:       .html
         ext:           .html
         -->
@@ -135,23 +174,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/collections-tags-2.html
+        page.dest:     test/actual/paths/helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: collections-tags-2.html
-        page.pagename: collections-tags-2.html
-        page.basename: collections-tags-2
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/collections-tags-2.html
+        absolute:      test/actual/paths/helpers.html
         dirname:       test/actual/paths
-        filename:      collections-tags-2.html
-        pagename:      collections-tags-2.html
-        basename:      collections-tags-2
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
         extname:       .html
         ext:           .html
         -->
@@ -171,23 +210,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/collections-tags-2.html
+        page.dest:     test/actual/paths/helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: collections-tags-2.html
-        page.pagename: collections-tags-2.html
-        page.basename: collections-tags-2
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/collections-tags-2.html
+        absolute:      test/actual/paths/helpers.html
         dirname:       test/actual/paths
-        filename:      collections-tags-2.html
-        pagename:      collections-tags-2.html
-        basename:      collections-tags-2
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
         extname:       .html
         ext:           .html
         -->
@@ -207,23 +246,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/collections-tags-2.html
+        page.dest:     test/actual/paths/helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: collections-tags-2.html
-        page.pagename: collections-tags-2.html
-        page.basename: collections-tags-2
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/collections-tags-2.html
+        absolute:      test/actual/paths/helpers.html
         dirname:       test/actual/paths
-        filename:      collections-tags-2.html
-        pagename:      collections-tags-2.html
-        basename:      collections-tags-2
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
         extname:       .html
         ext:           .html
         -->
@@ -243,23 +282,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/collections-tags-2.html
+        page.dest:     test/actual/paths/helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: collections-tags-2.html
-        page.pagename: collections-tags-2.html
-        page.basename: collections-tags-2
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/collections-tags-2.html
+        absolute:      test/actual/paths/helpers.html
         dirname:       test/actual/paths
-        filename:      collections-tags-2.html
-        pagename:      collections-tags-2.html
-        basename:      collections-tags-2
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
         extname:       .html
         ext:           .html
         -->
@@ -279,23 +318,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/collections-tags-2.html
+        page.dest:     test/actual/paths/helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: collections-tags-2.html
-        page.pagename: collections-tags-2.html
-        page.basename: collections-tags-2
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/collections-tags-2.html
+        absolute:      test/actual/paths/helpers.html
         dirname:       test/actual/paths
-        filename:      collections-tags-2.html
-        pagename:      collections-tags-2.html
-        basename:      collections-tags-2
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
         extname:       .html
         ext:           .html
         -->
@@ -315,23 +354,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/collections-tags-2.html
+        page.dest:     test/actual/paths/helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: collections-tags-2.html
-        page.pagename: collections-tags-2.html
-        page.basename: collections-tags-2
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/collections-tags-2.html
+        absolute:      test/actual/paths/helpers.html
         dirname:       test/actual/paths
-        filename:      collections-tags-2.html
-        pagename:      collections-tags-2.html
-        basename:      collections-tags-2
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
         extname:       .html
         ext:           .html
         -->
@@ -351,23 +390,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/collections-tags-2.html
+        page.dest:     test/actual/paths/helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: collections-tags-2.html
-        page.pagename: collections-tags-2.html
-        page.basename: collections-tags-2
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/collections-tags-2.html
+        absolute:      test/actual/paths/helpers.html
         dirname:       test/actual/paths
-        filename:      collections-tags-2.html
-        pagename:      collections-tags-2.html
-        basename:      collections-tags-2
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
         extname:       .html
         ext:           .html
         -->
@@ -387,23 +426,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/collections-tags-2.html
+        page.dest:     test/actual/paths/helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: collections-tags-2.html
-        page.pagename: collections-tags-2.html
-        page.basename: collections-tags-2
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/collections-tags-2.html
+        absolute:      test/actual/paths/helpers.html
         dirname:       test/actual/paths
-        filename:      collections-tags-2.html
-        pagename:      collections-tags-2.html
-        basename:      collections-tags-2
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
         extname:       .html
         ext:           .html
         -->
@@ -423,23 +462,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/collections-tags-2.html
+        page.dest:     test/actual/paths/helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: collections-tags-2.html
-        page.pagename: collections-tags-2.html
-        page.basename: collections-tags-2
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/collections-tags-2.html
+        absolute:      test/actual/paths/helpers.html
         dirname:       test/actual/paths
-        filename:      collections-tags-2.html
-        pagename:      collections-tags-2.html
-        basename:      collections-tags-2
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
         extname:       .html
         ext:           .html
         -->
@@ -459,23 +498,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/collections-tags-2.html
+        page.dest:     test/actual/paths/helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: collections-tags-2.html
-        page.pagename: collections-tags-2.html
-        page.basename: collections-tags-2
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/collections-tags-2.html
+        absolute:      test/actual/paths/helpers.html
         dirname:       test/actual/paths
-        filename:      collections-tags-2.html
-        pagename:      collections-tags-2.html
-        basename:      collections-tags-2
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
         extname:       .html
         ext:           .html
         -->
@@ -495,23 +534,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/collections-tags-2.html
+        page.dest:     test/actual/paths/helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: collections-tags-2.html
-        page.pagename: collections-tags-2.html
-        page.basename: collections-tags-2
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/collections-tags-2.html
+        absolute:      test/actual/paths/helpers.html
         dirname:       test/actual/paths
-        filename:      collections-tags-2.html
-        pagename:      collections-tags-2.html
-        basename:      collections-tags-2
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
         extname:       .html
         ext:           .html
         -->
@@ -531,23 +570,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/collections-tags-2.html
+        page.dest:     test/actual/paths/helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: collections-tags-2.html
-        page.pagename: collections-tags-2.html
-        page.basename: collections-tags-2
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/collections-tags-2.html
+        absolute:      test/actual/paths/helpers.html
         dirname:       test/actual/paths
-        filename:      collections-tags-2.html
-        pagename:      collections-tags-2.html
-        basename:      collections-tags-2
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
         extname:       .html
         ext:           .html
         -->
@@ -567,23 +606,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/collections-tags-2.html
+        page.dest:     test/actual/paths/helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: collections-tags-2.html
-        page.pagename: collections-tags-2.html
-        page.basename: collections-tags-2
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/collections-tags-2.html
+        absolute:      test/actual/paths/helpers.html
         dirname:       test/actual/paths
-        filename:      collections-tags-2.html
-        pagename:      collections-tags-2.html
-        basename:      collections-tags-2
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
         extname:       .html
         ext:           .html
         -->
@@ -603,23 +642,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/collections-tags-2.html
+        page.dest:     test/actual/paths/helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: collections-tags-2.html
-        page.pagename: collections-tags-2.html
-        page.basename: collections-tags-2
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/collections-tags-2.html
+        absolute:      test/actual/paths/helpers.html
         dirname:       test/actual/paths
-        filename:      collections-tags-2.html
-        pagename:      collections-tags-2.html
-        basename:      collections-tags-2
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
         extname:       .html
         ext:           .html
         -->
@@ -639,23 +678,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/collections-tags-2.html
+        page.dest:     test/actual/paths/helpers.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: collections-tags-2.html
-        page.pagename: collections-tags-2.html
-        page.basename: collections-tags-2
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/collections-tags-2.html
+        absolute:      test/actual/paths/helpers.html
         dirname:       test/actual/paths
-        filename:      collections-tags-2.html
-        pagename:      collections-tags-2.html
-        basename:      collections-tags-2
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
         extname:       .html
         ext:           .html
         -->
