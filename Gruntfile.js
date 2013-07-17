@@ -176,7 +176,7 @@ module.exports = function(grunt) {
           ]
         },
         files: {
-          'test/actual/blog/': []
+          'test/actual/blog/': ['test/templates/pages/blog/index.hbs']
         }
       }
     },
