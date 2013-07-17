@@ -49,6 +49,7 @@ module.exports = function(grunt) {
         flatten: true,
         layout: 'layout.hbs',
         layoutdir: 'test/templates/layouts',
+        helpers: 'test/helpers/helper-*.js',
         assets: 'test/actual/assets'
       },
       paths: {
