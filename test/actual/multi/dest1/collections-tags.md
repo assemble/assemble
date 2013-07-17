@@ -10,17 +10,17 @@
       
 <ul>
 
+	<li>one</li>
+
+	<li>something</li>
+
 	<li>tags</li>
 
 	<li>test</li>
 
-	<li>something</li>
-
-	<li>one</li>
+	<li>three</li>
 
 	<li>two</li>
-
-	<li>three</li>
 
 </ul>
 

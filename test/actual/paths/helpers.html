@@ -10,7 +10,7 @@
       
 <div class="page-header">
   <h1>Helpers and custom variables</h1>
-  <p class="lead">Here we are using the &quot;css&quot; and &quot;js&quot; helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.
+  <p class="lead">Here we are using the &quot;css&quot; and &quot;js&quot; helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the &quot;./test/helpers&quot; directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.
 </p>
 </div>
 
@@ -38,66 +38,65 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
       <h3>Paths Examples</h3>
 
 <pre class="json">
-{ javascripts: 
-   [ 'js/bootstrap.js',
-     'js/responsive.js',
-     'js/main.js',
-     [length]: 3 ],
+[ 'test/helpers/helper-*.js',
   scripts: 'document.write(\'foo bar!\');',
-  dest: 'test/actual/paths/helpers.html',
-  stylesheets: 
-   [ 'css/bootstrap.css',
-     'css/responsive.css',
-     'css/main.css',
-     [length]: 3 ],
-  filename: 'helpers.html',
-  styles: '<link rel="stylesheet" href="css/index.css"/>',
-  assets: '../assets',
-  basename: 'helpers',
-  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
-  pagename: 'helpers.html',
-  extname: '.html',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  dirname: 'test/actual/paths',
   src: 'test/templates/pages/helpers.hbs',
+  page: { [Function]
+    [length]: 2,
+    [name]: '',
+    [arguments]: null,
+    [caller]: null,
+    [prototype]: { [constructor]: [Circular] } },
+  javascripts: [ 'js/bootstrap.js',
+    'js/responsive.js',
+    'js/main.js',
+    [length]: 3 ],
+  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
   pageName: 'helpers.html',
+  styles: '<link rel="stylesheet" href="css/index.css"/>',
+  extname: '.html',
+  [length]: 1,
+  filename: 'helpers.html',
+  pagename: 'helpers.html',
+  _page: 'all',
+  assets: '../assets',
+  title: 'Helpers and custom variables',
+  basename: 'helpers',
   ext: '.html',
-  data: 
-   { title: 'Helpers and custom variables',
-     description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
-     stylesheets: 
-      [ 'css/bootstrap.css',
-        'css/responsive.css',
-        'css/main.css',
-        [length]: 3 ],
-     javascripts: 
-      [ 'js/bootstrap.js',
-        'js/responsive.js',
-        'js/main.js',
-        [length]: 3 ],
-     styles: '<link rel="stylesheet" href="css/index.css"/>',
-     scripts: 'document.write(\'foo bar!\');' },
-  title: 'Helpers and custom variables' }
+  data: { title: 'Helpers and custom variables',
+    description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
+    stylesheets: 
+     [ 'css/bootstrap.css',
+       'css/responsive.css',
+       'css/main.css',
+       [length]: 3 ],
+    javascripts: 
+     [ 'js/bootstrap.js',
+       'js/responsive.js',
+       'js/main.js',
+       [length]: 3 ],
+    styles: '<link rel="stylesheet" href="css/index.css"/>',
+    scripts: 'document.write(\'foo bar!\');' },
+  dirname: 'test/actual/paths',
+  stylesheets: [ 'css/bootstrap.css',
+    'css/responsive.css',
+    'css/main.css',
+    [length]: 3 ],
+  dest: 'test/actual/paths/helpers.html' ]
 </pre>
 
       <ul>
       
-        <li><a href="alert.html">alert</a></li>
+        <li><a href="example.html">example</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/alert.html
+        this.dest:     test/actual/paths/example.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: alert.html
-        this.pagename: alert.html
-        this.basename: alert
+        this.filename: example.html
+        this.pagename: example.html
+        this.basename: example
         this.extname:  .html
         this.ext:      .html
 
@@ -124,16 +123,16 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
         ext:           .html
         -->
       
-        <li><a href="assets.html">assets</a></li>
+        <li><a href="alert.html">alert</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/assets.html
+        this.dest:     test/actual/paths/alert.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: assets.html
-        this.pagename: assets.html
-        this.basename: assets
+        this.filename: alert.html
+        this.pagename: alert.html
+        this.basename: alert
         this.extname:  .html
         this.ext:      .html
 
@@ -376,16 +375,16 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
         ext:           .html
         -->
       
-        <li><a href="example.html">example</a></li>
+        <li><a href="assets.html">assets</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/example.html
+        this.dest:     test/actual/paths/assets.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: example.html
-        this.pagename: example.html
-        this.basename: example
+        this.filename: assets.html
+        this.pagename: assets.html
+        this.basename: assets
         this.extname:  .html
         this.ext:      .html
 

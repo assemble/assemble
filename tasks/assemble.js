@@ -20,6 +20,7 @@ module.exports = function(grunt) {
   var util   = require('util');
 
   // NPM utils
+  var inflection = require('inflection');
   var lodash = require('lodash'); // required to ensure correct version is used
 
   // Assemble utils
@@ -34,7 +35,6 @@ module.exports = function(grunt) {
 
     // functions for use in build steps
     var optionsConfiguration = function(assemble, next) {
-
 
       grunt.verbose.writeln('validating options');
 
@@ -51,8 +51,13 @@ module.exports = function(grunt) {
       });
 
       if(!src || src.length === 0) {
-        grunt.warn('No source files found.');
-        done(false);
+        // check if there's a pages collection
+        if(!assemble.options.pages || assemble.options.pages.length === 0) {
+          grunt.warn('No source files found.');
+          done(false);
+        } else {
+          src = lodash.pluck(assemble.options.pages, ['filename']);
+        }
       }
 
       // find an engine to use
@@ -211,12 +216,6 @@ module.exports = function(grunt) {
 
       var src = false;
 
-      var pages = [];
-      var collections = {};
-      assemble.options.collections.forEach(function(item) {
-        collections[item] = [];
-      });
-
       var assetsPath = assemble.options.assets;
 
       assemble.task.files.forEach(function(filePair) {
@@ -227,7 +226,7 @@ module.exports = function(grunt) {
           grunt.warn('Missing src property.');
           return false;
         }
-        if(filePair.src.length === 0) {
+        if(filePair.src.length === 0 && (!assemble.options.pages || assemble.options.pages.length === 0)) {
           grunt.warn('Source files not found.');
           return false;
         }
@@ -239,7 +238,7 @@ module.exports = function(grunt) {
         }
 
         src = src || filePair.src;
-        var basePath = findBasePath(src, true);
+        //var basePath = findBasePath(src, true);
 
         // some of the following code for figuring out
         // the destination files has been taken/inspired
@@ -248,10 +247,12 @@ module.exports = function(grunt) {
         var isExpandedPair = filePair.orig.expand || false;
         var destFile;
 
-        filePair.src.forEach(function(srcFile) {
+        var buildPage = function(srcFile, fileInfo) {
+
+          var useFileInfo = (typeof fileInfo !== 'undefined');
 
           srcFile  = urlNormalize(path.normalize(srcFile));
-          filename = path.basename(srcFile, path.extname(srcFile));
+          var filename = path.basename(srcFile, path.extname(srcFile));
 
           if(detectDestType(filePair.dest) === 'directory') {
             destFile = (isExpandedPair) ? filePair.dest : path.join(
@@ -285,7 +286,7 @@ module.exports = function(grunt) {
           grunt.verbose.writeln(('\t' + 'Dest: '   + destFile));
           grunt.verbose.writeln(('\t' + 'Assets: ' + assemble.options.assets));
 
-          var page = grunt.file.read(srcFile);
+          var page = useFileInfo ? (fileInfo.content || '') : grunt.file.read(srcFile);
           try {
             grunt.verbose.writeln('compiling page ' + filename.magenta);
             var pageContext = {};
@@ -297,10 +298,10 @@ module.exports = function(grunt) {
             }
 
             // If options.removeHbsWhitespace is true
-            page = removeHbsWhitespace(assemble,page);
+            page = removeHbsWhitespace(assemble, page);
 
             var pageInfo = assemble.data.readYFM(page, {fromFile: false});
-            pageContext = pageInfo.context;
+            pageContext = useFileInfo ? (fileInfo.data || {}) : pageInfo.context;
 
             // compile
             assemble.engine.compile(pageInfo.content, null, function(err, tmpl) {
@@ -312,6 +313,7 @@ module.exports = function(grunt) {
             });
 
             var pageObj = {
+              '_page': 'all',
               dirname : path.dirname(destFile),
               filename: path.basename(destFile),
               pageName: path.basename(destFile),
@@ -331,24 +333,51 @@ module.exports = function(grunt) {
               return;
             }
 
-            pages.push(pageObj);
+            assemble.options.collections.pages.items[0].pages.push(pageObj);
 
-            assemble.options.collections.forEach(function(item) {
-              collections[item] = assemble.util.collection.update(item, collections[item], pageObj, pageContext);
+            lodash.each(assemble.options.collections, function(item, key) {
+              if(key !== 'pages') {
+                assemble.options.collections[key] = assemble.util.collection.update(item, pageObj, pageContext);
+              }
             });
 
           } catch(err) {
             grunt.warn(err);
-            return;
+            return false;
+          }
+
+          return true;
+        };
+
+        // build all the pages defined in the source property
+        filePair.src.forEach(function(srcFile) {
+          if(!buildPage(srcFile)) {
+            return false;
           }
         }); // filePair.src.forEach
+
+        // if there is a pages property, build all those
+        if(assemble.options.pages) {
+          assemble.options.pages.forEach(function(fileInfo) {
+            if(!fileInfo.filename || fileInfo.filename.length === 0) {
+              grunt.warn('Pages need a filename.');
+              return false;
+            }
+            if(!buildPage(fileInfo.filename, fileInfo)) {
+              return false;
+            }
+          });
+        }
+
       }); // this.files.forEach
 
       grunt.verbose.writeln('information compiled');
 
-      assemble.options.pages = pages;
-      assemble.options.collections.forEach(function(item) {
-        assemble.options[item] = collections[item];
+      assemble.options.pages = assemble.util.collection.sort(assemble.options.collections.pages).items[0].pages;
+      lodash.each(assemble.options.collections, function(item, key) {
+        if(key !== 'pages') {
+          assemble.options[key] = assemble.util.collection.sort(item).items;
+        }
       });
 
 
@@ -454,6 +483,7 @@ module.exports = function(grunt) {
         layout       = options.defaultLayout,
         data         = options.data,
         pages        = options.pages,
+        collections  = options.collections,
         engine       = options.engine,
         EngineLoader = options.EngineLoader,
         context      = {};
@@ -466,15 +496,17 @@ module.exports = function(grunt) {
     try {
 
       // omit the collections from pageContext when merging
-      var pageCollections = lodash.pick(pageContext, options.collections);
-      pageContext = lodash.omit(pageContext, options.collections);
+      var pageCollections = lodash.pick(pageContext, lodash.keys(collections));
+      pageContext = lodash.omit(pageContext, lodash.keys(collections));
 
       options.data    = undefined;
       options.pages   = undefined;
       options.layout  = undefined;
+      options.collections = undefined;
       context         = _.extend(context, options, data, pageContext);
       options.data    = data;
       options.pages   = pages;
+      options.collections = collections;
 
       // if pageContext contains a layout, use that one instead
       // of the default layout
@@ -509,9 +541,11 @@ module.exports = function(grunt) {
           options.data   = undefined;
           options.pages  = undefined;
           options.layout = undefined;
+          options.collections = undefined;
           context        = _.extend(context, options, data, pageContext);
           options.data   = data;
           options.pages  = pages;
+          options.collections = collections;
         }
       }
 
@@ -695,20 +729,6 @@ module.exports = function(grunt) {
       filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{[^}]+?\}\})(?=(\n|\r|\n\r))/gi,'$2');
     }
     return filecontent;
-  };
-
-  var mergeOptionsArrays = function(target, name) {
-    var globalArray = grunt.config(['assemble', 'options', name]) || [];
-    var targetArray = grunt.config(['assemble', target, 'options', name]) || [];
-    return _.union(globalArray, targetArray);
-  };
-
-  var updateTags = function(tags, page, context) {
-    return assemble.util.collection.update('tags', tags, page, context);
-  };
-
-  var updateCategories = function(categories, page, context) {
-    return assemble.util.collection.update('categories', categories, page, context);
   };
 
 };

@@ -12,24 +12,24 @@
         <h2>Categories</h2>
         <ul>
         
+          <li>categories</li>
+        
           <li>one</li>
         
-          <li>two</li>
-        
-          <li>three</li>
-        
-          <li>categories</li>
+          <li>something</li>
         
           <li>test</li>
         
-          <li>something</li>
+          <li>three</li>
+        
+          <li>two</li>
         
         </ul>
       </div>
       
 <div class="page-header">
   <h1>Helpers and custom variables</h1>
-  <p class="lead">Here we are using the &quot;css&quot; and &quot;js&quot; helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.
+  <p class="lead">Here we are using the &quot;css&quot; and &quot;js&quot; helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the &quot;./test/helpers&quot; directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.
 </p>
 </div>
 
@@ -56,8 +56,8 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
     <div class="container" style="display: none">
       <h2>Content</h2>
       <ul>
+        <li><a href="../dest2/md.html">md</a></li>
         <li><a href="alert.html">alert</a></li>
-        <li><a href="assets.html">assets</a></li>
         <li><a href="collections-categories.html">collections-categories</a></li>
         <li><a href="collections-categories2.html">collections-categories2</a></li>
         <li><a href="collections-tags-2.html">collections-tags-2</a></li>
@@ -74,7 +74,7 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
         <li><a href="page.html">page</a></li>
         <li><a href="simple3.html">simple3</a></li>
         <li><a href="../dest2/complex1.html">complex1</a></li>
-        <li><a href="../dest2/md.html">md</a></li>
+        <li><a href="assets.html">assets</a></li>
         <li><a href="../dest2/simple1.html">simple1</a></li>
         <li><a href="../dest2/sub-dest/alert.html">alert</a></li>
         <li><a href="../dest2/sub-dest/assets.html">assets</a></li>
@@ -100,52 +100,51 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
     <div class="container" style="display: none">
       <h2>Debug Info</h2>
       <pre class="json">
-{ javascripts: 
-   [ 'js/bootstrap.js',
-     'js/responsive.js',
-     'js/main.js',
-     [length]: 3 ],
+[ 'test/helpers/helper-*.js',
   scripts: 'document.write(\'foo bar!\');',
-  dest: 'test/actual/multi/dest1/helpers.html',
-  stylesheets: 
-   [ 'css/bootstrap.css',
-     'css/responsive.css',
-     'css/main.css',
-     [length]: 3 ],
-  filename: 'helpers.html',
-  styles: '<link rel="stylesheet" href="css/index.css"/>',
-  assets: '../../assets',
-  basename: 'helpers',
-  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
-  pagename: 'helpers.html',
-  extname: '.html',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  dirname: 'test/actual/multi/dest1',
   src: 'test/templates/pages/helpers.hbs',
+  page: { [Function]
+    [length]: 2,
+    [name]: '',
+    [arguments]: null,
+    [caller]: null,
+    [prototype]: { [constructor]: [Circular] } },
+  javascripts: [ 'js/bootstrap.js',
+    'js/responsive.js',
+    'js/main.js',
+    [length]: 3 ],
+  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
   pageName: 'helpers.html',
+  styles: '<link rel="stylesheet" href="css/index.css"/>',
+  extname: '.html',
+  [length]: 1,
+  filename: 'helpers.html',
+  pagename: 'helpers.html',
+  _page: 'all',
+  assets: '../../assets',
+  title: 'Helpers and custom variables',
+  basename: 'helpers',
   ext: '.html',
-  data: 
-   { title: 'Helpers and custom variables',
-     description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
-     stylesheets: 
-      [ 'css/bootstrap.css',
-        'css/responsive.css',
-        'css/main.css',
-        [length]: 3 ],
-     javascripts: 
-      [ 'js/bootstrap.js',
-        'js/responsive.js',
-        'js/main.js',
-        [length]: 3 ],
-     styles: '<link rel="stylesheet" href="css/index.css"/>',
-     scripts: 'document.write(\'foo bar!\');' },
-  title: 'Helpers and custom variables' }
+  data: { title: 'Helpers and custom variables',
+    description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
+    stylesheets: 
+     [ 'css/bootstrap.css',
+       'css/responsive.css',
+       'css/main.css',
+       [length]: 3 ],
+    javascripts: 
+     [ 'js/bootstrap.js',
+       'js/responsive.js',
+       'js/main.js',
+       [length]: 3 ],
+    styles: '<link rel="stylesheet" href="css/index.css"/>',
+    scripts: 'document.write(\'foo bar!\');' },
+  dirname: 'test/actual/multi/dest1',
+  stylesheets: [ 'css/bootstrap.css',
+    'css/responsive.css',
+    'css/main.css',
+    [length]: 3 ],
+  dest: 'test/actual/multi/dest1/helpers.html' ]
 </pre>
     </div>
 
