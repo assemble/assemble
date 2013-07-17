@@ -28,19 +28,17 @@
 
 
 ### "{{#each pages}}" Links
-[example](test/actual/multi/dest1/example.md)
+[debug-helpers](test/actual/multi/dest1/debug-helpers.md)
 [alert](test/actual/multi/dest1/alert.md)
 [collections-categories](test/actual/multi/dest1/collections-categories.md)
 [collections-categories2](test/actual/multi/dest1/collections-categories2.md)
 [collections-tags-2](test/actual/multi/dest1/collections-tags-2.md)
 [collections-tags](test/actual/multi/dest1/collections-tags.md)
 [complex](test/actual/multi/dest1/complex.md)
-[debug-helpers](test/actual/multi/dest1/debug-helpers.md)
 [assets](test/actual/multi/dest1/assets.md)
+[example](test/actual/multi/dest1/example.md)
 [gist-helper](test/actual/multi/dest1/gist-helper.md)
-[helpers](test/actual/multi/dest1/helpers.md)
 [home](test/actual/multi/dest1/home.md)
-[html-helpers](test/actual/multi/dest1/html-helpers.md)
 [md-helper](test/actual/multi/dest1/md-helper.md)
 [no-layout](test/actual/multi/dest1/no-layout.md)
 [page](test/actual/multi/dest1/page.md)
@@ -50,14 +48,14 @@
 
 ### {{#each pages}} "this" context
 
-#### example.md
+#### debug-helpers.md
 this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/example.md
+this.dest:     test/actual/multi/dest1/debug-helpers.md
 this.absolute:
 this.dirname:  test/actual/multi/dest1
-this.filename: example.md
-this.pagename: example.md
-this.basename: example
+this.filename: debug-helpers.md
+this.pagename: debug-helpers.md
+this.basename: debug-helpers
 this.extname:  .md
 this.ext:      .md
 
@@ -127,17 +125,6 @@ this.basename: complex
 this.extname:  .md
 this.ext:      .md
 
-#### debug-helpers.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/debug-helpers.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: debug-helpers.md
-this.pagename: debug-helpers.md
-this.basename: debug-helpers
-this.extname:  .md
-this.ext:      .md
-
 #### assets.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/assets.md
@@ -146,6 +133,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: assets.md
 this.pagename: assets.md
 this.basename: assets
+this.extname:  .md
+this.ext:      .md
+
+#### example.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/example.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: example.md
+this.pagename: example.md
+this.basename: example
 this.extname:  .md
 this.ext:      .md
 
@@ -160,17 +158,6 @@ this.basename: gist-helper
 this.extname:  .md
 this.ext:      .md
 
-#### helpers.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/helpers.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: helpers.md
-this.pagename: helpers.md
-this.basename: helpers
-this.extname:  .md
-this.ext:      .md
-
 #### home.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/home.md
@@ -179,17 +166,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: home.md
 this.pagename: home.md
 this.basename: home
-this.extname:  .md
-this.ext:      .md
-
-#### html-helpers.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/html-helpers.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: html-helpers.md
-this.pagename: html-helpers.md
-this.basename: html-helpers
 this.extname:  .md
 this.ext:      .md
 
@@ -405,52 +381,8 @@ page.basename:
 page.extname:  
 page.ext:      
 
-#### assets.md
-page.assets:   
-page.dest:     
-page.absolute: 
-page.dirname:  
-page.filename: 
-page.pagename: 
-page.basename: 
-page.extname:  
-page.ext:      
-
-#### assets.md
-page.assets:   
-page.dest:     
-page.absolute: 
-page.dirname:  
-page.filename: 
-page.pagename: 
-page.basename: 
-page.extname:  
-page.ext:      
-
 
 ### {{#each pages}} "page" context
-
-#### assets.md
-assets:        ../../assets
-dest:          
-absolute:      test/actual/multi/dest1/assets.md
-dirname:       test/actual/multi/dest1
-filename:      assets.md
-pagename:      assets.md
-basename:      assets
-extname:       .md
-ext:           .md
-
-#### assets.md
-assets:        ../../assets
-dest:          
-absolute:      test/actual/multi/dest1/assets.md
-dirname:       test/actual/multi/dest1
-filename:      assets.md
-pagename:      assets.md
-basename:      assets
-extname:       .md
-ext:           .md
 
 #### assets.md
 assets:        ../../assets
