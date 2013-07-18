@@ -21,15 +21,9 @@
       <h3>Paths Examples</h3>
 
 <pre class="json">
-{ page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  title: 'Tags Test',
+{ title: 'Tags Test',
   tags: [ 'tags', 'test', 'something', [length]: 3 ],
+  _page: 'all',
   dirname: 'test/actual/paths',
   filename: 'collections-tags-2.html',
   pageName: 'collections-tags-2.html',
@@ -40,24 +34,30 @@
   assets: '../assets',
   ext: '.html',
   extname: '.html',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
   data: 
-   { page: null,
-     title: 'Tags Test',
+   { title: 'Tags Test',
      tags: [ 'tags', 'test', 'something', [length]: 3 ] } }
 </pre>
 
       <ul>
       
-        <li><a href="alert.html">alert</a></li>
+        <li><a href="example.html">example</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/alert.html
+        this.dest:     test/actual/paths/example.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: alert.html
-        this.pagename: alert.html
-        this.basename: alert
+        this.filename: example.html
+        this.pagename: example.html
+        this.basename: example
         this.extname:  .html
         this.ext:      .html
 
@@ -84,16 +84,16 @@
         ext:           .html
         -->
       
-        <li><a href="assets.html">assets</a></li>
+        <li><a href="alert.html">alert</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/assets.html
+        this.dest:     test/actual/paths/alert.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: assets.html
-        this.pagename: assets.html
-        this.basename: assets
+        this.filename: alert.html
+        this.pagename: alert.html
+        this.basename: alert
         this.extname:  .html
         this.ext:      .html
 
@@ -336,16 +336,16 @@
         ext:           .html
         -->
       
-        <li><a href="example.html">example</a></li>
+        <li><a href="assets.html">assets</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/example.html
+        this.dest:     test/actual/paths/assets.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: example.html
-        this.pagename: example.html
-        this.basename: example
+        this.filename: assets.html
+        this.pagename: assets.html
+        this.basename: assets
         this.extname:  .html
         this.ext:      .html
 
