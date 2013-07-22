@@ -32,16 +32,6 @@ module.exports = function(grunt) {
       ]
     },
 
-    // Run mocha tests.
-    mochaTest: {
-      files: ['test/**/*.js']
-    },
-    mochaTestConfig: {
-      options: {
-        reporter: 'nyan'
-      }
-    },
-
     // Included for running basic tests.
     assemble: {
       options: {
@@ -61,40 +51,22 @@ module.exports = function(grunt) {
           'test/actual/paths/': ['test/templates/pages/*.hbs']
         }
       },
+      // Build one page
       single_page: {
         options: {
-          partials: 'test/templates/partials/*.hbs',
-          layout: 'layout.hbs'
+          partials: 'test/templates/partials/*.hbs'
         },
         files: {
           'test/actual/page.html': ['test/templates/pages/page.hbs']
         }
       },
-      yaml_front_matter: {
+      // YAML front matter
+      yfm: {
         options: {
-          layout: 'layout.hbs',
-          data: 'test/yaml/data/*.{json,yml}'
+          data: 'test/data/*.{json,yml}'
         },
         files: {
           'test/actual/yfm/': ['test/templates/pages/yfm/*.hbs']
-        }
-      },
-      multi: {
-        options: {
-          layout: 'layout.hbs',
-          data: ['test/data/*.json'],
-          collections: [
-            {
-              title: 'tags',
-              inflection: 'tag',
-              sortorder: 'DESC'
-            }
-          ]
-        },
-        files: {
-          'test/actual/multi/dest1/': ['test/templates/pages/*.hbs'],
-          'test/actual/multi/dest2/': ['test/templates/pages/*.md'],
-          'test/actual/multi/dest2/sub-dest/': ['test/templates/pages/*.hbs']
         }
       },
       markdown: {
@@ -143,7 +115,24 @@ module.exports = function(grunt) {
           'test/actual/custom-helpers.html': ['test/templates/pages/helpers/custom-helpers.hbs']
         }
       },
-      inline_pages: {
+      collections_example: {
+        options: {
+          data: ['test/data/*.json'],
+          collections: [
+            {
+              title: 'tags',
+              inflection: 'tag',
+              sortorder: 'DESC'
+            }
+          ]
+        },
+        files: {
+          'test/actual/multi/dest1/': ['test/templates/pages/*.hbs'],
+          'test/actual/multi/dest2/': ['test/templates/pages/*.md'],
+          'test/actual/multi/dest2/sub-dest/': ['test/templates/pages/*.hbs']
+        }
+      },
+      pages_array: {
         options: {
           engine: 'handlebars',
           layout: "post.hbs",
@@ -164,8 +153,10 @@ module.exports = function(grunt) {
               filename: "post2",
               data: {
                 title: "Blog Post #2",
+                subtitle: "",
                 gists: ["5898077", "5898078"]
-              }
+              },
+              content: "<h1>{{title}} | {{site.title}}</h1>\n {{> <%= component.one %> }} The current version of Assemble is v<%= pkg.version %>."
             },
             {
               filename: "post3",
@@ -179,6 +170,19 @@ module.exports = function(grunt) {
         files: {
           'test/actual/blog/': ['test/templates/pages/blog/index.hbs']
         }
+      }
+    },
+    component: {
+      one: "alert"
+    },
+
+    // Run mocha tests.
+    mochaTest: {
+      files: ['test/**/*.js']
+    },
+    mochaTestConfig: {
+      options: {
+        reporter: 'nyan'
       }
     },
 
