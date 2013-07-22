@@ -1,0 +1,40 @@
+---
+title: Overview
+lead: Your new project!
+---
+
+<li><a href="#" id="title">{{title}}</a></li>
+<li><a href="#" id="this-title">{{this.title}}</a></li>
+<li><a href="#" id="page-title">{{page.title}}</a></li>
+<li><a href="#" id="data-title">{{data.title}}</a></li>
+
+<hr>
+
+<li><a href="#" id="basename">{{basename}}</a></li>
+<li><a href="#" id="this-basename">{{this.basename}}</a></li>
+<li><a href="#" id="page-basename">{{page.basename}}</a></li>
+<li><a href="#" id="data-basename">{{data.basename}}</a></li>
+
+<hr>
+
+<ul id="basename-collection">
+  {{#each pages}}
+    <li><a href="#" id="basename">{{basename}}</a></li>
+    <li><a href="#" id="parent-basename">{{../basename}}</a></li>
+    <li><a href="#" id="this-basename">{{this.basename}}</a></li>
+    <li><a href="#" id="page-basename">{{page.basename}}</a></li>
+    <li><a href="#" id="data-basename">{{data.basename}}</a></li>
+  {{/each}}
+</ul>
+
+<ul id="title-collection">
+  {{#each pages}}
+    <li><a href="#" id="title">{{title}}</a></li>
+    <li><a href="#" id="parent-title">{{../title}}</a></li>
+    <li><a href="#" id="this-title">{{this.title}}</a></li>
+    <li><a href="#" id="page-title">{{page.title}}</a></li>
+    <li><a href="#" id="data-title">{{data.title}}</a></li>
+  {{/each}}
+</ul>
+
+

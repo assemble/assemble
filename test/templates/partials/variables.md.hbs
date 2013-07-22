@@ -1,0 +1,74 @@
+---
+title: Markdown Example
+---
+### "\{{#each pages}}" Links
+{{#each pages}}[{{this.basename}}]({{relative ../page.dest this.dest}})
+{{/each}}
+
+
+dest:     {{dest}}
+absolute: 
+dirname:  {{dirname}}
+filename: {{filename}}
+pagename: {{pagename}}
+basename: {{basename}}
+extname:  {{extname}}
+ext:      {{ext}}
+
+page.dest:     {{page.dest}}
+page.absolute: {{page.absolute}}
+page.dirname:  {{page.dirname}}
+page.filename: {{page.filename}}
+page.pagename: {{page.pagename}}
+page.basename: {{page.basename}}
+page.extname:  {{page.extname}}
+page.ext:      {{page.ext}}
+
+this.dest:     {{this.dest}}
+this.absolute: 
+this.dirname:  {{this.dirname}}
+this.filename: {{this.filename}}
+this.pagename: {{this.pagename}}
+this.basename: {{this.basename}}
+this.extname:  {{this.extname}}
+this.ext:      {{this.ext}}
+
+### \{{#each pages}} "this" context
+{{#each pages}}
+#### {{this.filename}}
+this.dest:     {{this.dest}}
+this.absolute: 
+this.dirname:  {{this.dirname}}
+this.filename: {{this.filename}}
+this.pagename: {{this.pagename}}
+this.basename: {{this.basename}}
+this.extname:  {{this.extname}}
+this.ext:      {{this.ext}}
+{{/each}}
+
+### \{{#each pages}}
+{{#each pages}}
+#### {{../filename}}
+page.dest:     {{../page.dest}}
+page.absolute: {{../page.absolute}}
+page.dirname:  {{../page.dirname}}
+page.filename: {{../page.filename}}
+page.pagename: {{../page.pagename}}
+page.basename: {{../page.basename}}
+page.extname:  {{../page.extname}}
+page.ext:      {{../page.ext}}
+{{/each}}
+
+### \{{#each pages}} "page" context
+{{#each pages}}
+#### {{../filename}}
+dest:          {{../dest}}
+absolute:      {{../absolute}}
+dirname:       {{../dirname}}
+filename:      {{../filename}}
+pagename:      {{../pagename}}
+basename:      {{../basename}}
+extname:       {{../extname}}
+ext:           {{../ext}}
+{{/each}}
+
