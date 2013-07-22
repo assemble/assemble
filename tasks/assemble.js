@@ -184,7 +184,7 @@ module.exports = function(grunt) {
 
           //Skip empty data files, as they'd cause an error with compiler
           if(filecontent === '') {
-            grunt.log.verbose.writeln('Reading '+filepath+'...empty, '+'skipping'.yellow);
+            grunt.log.verbose.writeln('Reading ' + filepath + '...empty, ' + 'skipping'.yellow);
           } else {
 
             if(filename === 'data') {
@@ -201,7 +201,7 @@ module.exports = function(grunt) {
                 assemble.options.data[filename] = _.extend(assemble.options.data[filename] || {}, d);
               }
             }
-            complete++;
+            complete ++;
           }
         });
       }
