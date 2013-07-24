@@ -56,7 +56,24 @@
 
 ## Debug Info
 ``` json
-{ src: 'test/templates/pages/html-helpers.hbs',
+{ text: 'helpers.js',
+  links: [ 'one', 'two', 'three', [length]: 3 ],
+  moreLinks: 
+   [ { url: 'one', text: 'two' },
+     { url: 'three', text: 'four' },
+     { url: 'five', text: 'size' },
+     [length]: 3 ],
+  _page: 'all',
+  dirname: 'test/actual/multi/dest1',
+  filename: 'html-helpers.md',
+  pageName: 'html-helpers.md',
+  pagename: 'html-helpers.md',
+  basename: 'html-helpers',
+  src: 'test/templates/pages/html-helpers.hbs',
+  dest: 'test/actual/multi/dest1/html-helpers.md',
+  assets: '../../assets',
+  ext: '.md',
+  extname: '.md',
   page: 
    { [Function]
      [length]: 2,
@@ -64,18 +81,6 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  moreLinks: 
-   [ { url: 'one', text: 'two' },
-     { url: 'three', text: 'four' },
-     { url: 'five', text: 'size' },
-     [length]: 3 ],
-  pageName: 'html-helpers.md',
-  links: [ 'one', 'two', 'three', [length]: 3 ],
-  extname: '.md',
-  filename: 'html-helpers.md',
-  pagename: 'html-helpers.md',
-  _page: 'all',
-  assets: '../../assets',
   data: 
    { text: 'helpers.js',
      links: [ 'one', 'two', 'three', [length]: 3 ],
@@ -83,12 +88,7 @@
       [ { url: 'one', text: 'two' },
         { url: 'three', text: 'four' },
         { url: 'five', text: 'size' },
-        [length]: 3 ] },
-  basename: 'html-helpers',
-  ext: '.md',
-  text: 'helpers.js',
-  dirname: 'test/actual/multi/dest1',
-  dest: 'test/actual/multi/dest1/html-helpers.md' }
+        [length]: 3 ] } }
 ```
 
 
@@ -100,6 +100,7 @@
 [collections-tags-2](collections-tags-2.md)
 [collections-tags](collections-tags.md)
 [complex](complex.md)
+[context](context.md)
 [debug-helpers](debug-helpers.md)
 [assets](assets.md)
 [gist-helper](gist-helper.md)
@@ -189,6 +190,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: complex.md
 this.pagename: complex.md
 this.basename: complex
+this.extname:  .md
+this.ext:      .md
+
+#### context.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/context.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: context.md
+this.pagename: context.md
+this.basename: context
 this.extname:  .md
 this.ext:      .md
 
@@ -492,8 +504,30 @@ page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
+#### html-helpers.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/html-helpers.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### html-helpers.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/html-helpers.md
+dirname:       test/actual/multi/dest1
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
+extname:       .md
+ext:           .md
 
 #### html-helpers.md
 assets:        ../../assets

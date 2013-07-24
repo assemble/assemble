@@ -139,28 +139,15 @@ Suite 16
     <div class="container" style="display: none">
       <h2>Debug Info</h2>
       <pre class="json">
-{ extname: '.html',
-  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\r\n',
-  filename: 'document.html',
-  src: 'test/templates/pages/yfm/document.hbs',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-  pagename: 'document.html',
-  customer: { given: 'Dorothy', family: 'Gale' },
-  'bill-to': 
-   { street: '123 Tornado Alley\r\nSuite 16\r\n',
-     city: 'East Centerville',
-     state: 'KS' },
+{ specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\r\n',
+  _page: 'all',
   'ship-to': 
    { street: '123 Tornado Alley\r\nSuite 16\r\n',
      city: 'East Centerville',
      state: 'KS' },
+  pageName: 'document.html',
+  customer: { given: 'Dorothy', family: 'Gale' },
+  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
   items: 
    [ { part_no: 'A4786',
        descrip: 'Water Bucket (Filled)',
@@ -172,22 +159,27 @@ Suite 16
        price: 100.27,
        quantity: 1 },
      [length]: 2 ],
-  assets: '../assets',
-  _page: 'all',
-  basename: 'document',
-  ext: '.html',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  src: 'test/templates/pages/yfm/document.hbs',
+  filename: 'document.html',
+  dest: 'test/actual/yfm/document.html',
+  dirname: 'test/actual/yfm',
+  receipt: 'Oz-Ware Purchase Invoice',
+  pagename: 'document.html',
   data: 
    { specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\r\n',
-     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-     customer: { given: 'Dorothy', family: 'Gale' },
-     'bill-to': 
-      { street: '123 Tornado Alley\r\nSuite 16\r\n',
-        city: 'East Centerville',
-        state: 'KS' },
      'ship-to': 
       { street: '123 Tornado Alley\r\nSuite 16\r\n',
         city: 'East Centerville',
         state: 'KS' },
+     customer: { given: 'Dorothy', family: 'Gale' },
+     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
      items: 
       [ { part_no: 'A4786',
           descrip: 'Water Bucket (Filled)',
@@ -199,13 +191,21 @@ Suite 16
           price: 100.27,
           quantity: 1 },
         [length]: 2 ],
-     prettyDate: '2007-08-05',
-     receipt: 'Oz-Ware Purchase Invoice' },
-  pageName: 'document.html',
-  prettyDate: '2007-08-05',
-  dirname: 'test/actual/yfm',
-  receipt: 'Oz-Ware Purchase Invoice',
-  dest: 'test/actual/yfm/document.html' }
+     receipt: 'Oz-Ware Purchase Invoice',
+     'bill-to': 
+      { street: '123 Tornado Alley\r\nSuite 16\r\n',
+        city: 'East Centerville',
+        state: 'KS' },
+     prettyDate: '2007-08-05' },
+  extname: '.html',
+  basename: 'document',
+  assets: '../assets',
+  'bill-to': 
+   { street: '123 Tornado Alley\r\nSuite 16\r\n',
+     city: 'East Centerville',
+     state: 'KS' },
+  ext: '.html',
+  prettyDate: '2007-08-05' }
 </pre>
     </div>
 
