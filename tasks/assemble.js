@@ -467,8 +467,6 @@ module.exports = function(grunt) {
 
   var build = function(currentPage, assemble, callback) {
 
-    debugger;
-    
     var src = currentPage.srcFile;
     var filename = currentPage.filename;
     var options = assemble.options;
