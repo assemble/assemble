@@ -127,8 +127,27 @@
     <div class="container" style="display: none">
       <h2>Debug Info</h2>
       <pre class="json">
-{ src: 'test/templates/pages/html-helpers.hbs',
-  links: [ 'one', 'two', 'three', [length]: 3 ],
+{ moreLinks: 
+   [ { url: 'one', text: 'two' },
+     { url: 'three', text: 'four' },
+     { url: 'five', text: 'size' },
+     [length]: 3 ],
+  ext: '.html',
+  _page: 'all',
+  src: 'test/templates/pages/html-helpers.hbs',
+  dest: 'test/actual/multi/dest1/html-helpers.html',
+  dirname: 'test/actual/multi/dest1',
+  text: 'helpers.js',
+  pageName: 'html-helpers.html',
+  pagename: 'html-helpers.html',
+  assets: '../../assets',
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
   data: 
    { text: 'helpers.js',
      links: [ 'one', 'two', 'three', [length]: 3 ],
@@ -137,29 +156,10 @@
         { url: 'three', text: 'four' },
         { url: 'five', text: 'size' },
         [length]: 3 ] },
-  moreLinks: 
-   [ { url: 'one', text: 'two' },
-     { url: 'three', text: 'four' },
-     { url: 'five', text: 'size' },
-     [length]: 3 ],
-  basename: 'html-helpers',
-  text: 'helpers.js',
+  links: [ 'one', 'two', 'three', [length]: 3 ],
   extname: '.html',
-  _page: 'all',
-  pageName: 'html-helpers.html',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
   filename: 'html-helpers.html',
-  dest: 'test/actual/multi/dest1/html-helpers.html',
-  dirname: 'test/actual/multi/dest1',
-  pagename: 'html-helpers.html',
-  assets: '../../assets',
-  ext: '.html' }
+  basename: 'html-helpers' }
 </pre>
     </div>
 
