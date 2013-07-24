@@ -173,11 +173,11 @@ module.exports = function(grunt) {
       },
       nested_layouts: {
         options: {
-          layoutdir: 'test/templates/layouts/nested',
+          layoutdir: 'test/templates/layouts',
           layout: 'one.hbs'
         },
         files: {
-          'test/actual/nested/': ['test/templates/pages/nested/*.hbs']
+          'test/actual/nested-layouts/': ['test/templates/pages/*.hbs']
         }
       }
     },
@@ -213,8 +213,13 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', ['jshint', 'clean', 'assemble']);
 
+  grunt.registerTask('nested', ['assemble:nested_layouts']);
+
+
   // this is just for when doing debugging and jshint blows up
   grunt.registerTask('dev', ['clean', 'assemble']);
+
+
 
   // Tests to be run.
   grunt.registerTask('test', ['default', 'mochaTest']);
