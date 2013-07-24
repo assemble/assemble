@@ -170,6 +170,15 @@ module.exports = function(grunt) {
         files: {
           'test/actual/blog/': ['test/templates/pages/blog/index.hbs']
         }
+      },
+      nested_layouts: {
+        options: {
+          layoutdir: 'test/templates/layouts/nested',
+          layout: 'one.hbs'
+        },
+        files: {
+          'test/actual/nested/': ['test/templates/pages/nested/*.hbs']
+        }
       }
     },
     component: {
