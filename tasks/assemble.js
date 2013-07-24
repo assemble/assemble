@@ -482,7 +482,6 @@ module.exports = function(grunt) {
         EngineLoader = options.EngineLoader,
         context      = {};
 
-    //context.layoutName = _(options.defaultLayoutName).humanize();
     grunt.verbose.writeln('variables loaded');
 
     //options.data = null;
@@ -544,7 +543,7 @@ module.exports = function(grunt) {
 
       while(layoutInfo = layoutStack.shift()) {
 
-          context.layoutName = layoutInfo.layoutName;
+          context.layoutName = _(layoutInfo.layoutName).humanize();
           data = _.extend(data, layoutInfo.data);
 
           // extend again
