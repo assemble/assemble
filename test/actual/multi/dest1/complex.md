@@ -42,6 +42,7 @@
 [collections-tags-2](collections-tags-2.md)
 [collections-tags](collections-tags.md)
 [complex](complex.md)
+[context](context.md)
 [debug-helpers](debug-helpers.md)
 [assets](assets.md)
 [gist-helper](gist-helper.md)
@@ -131,6 +132,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: complex.md
 this.pagename: complex.md
 this.basename: complex
+this.extname:  .md
+this.ext:      .md
+
+#### context.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/context.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: context.md
+this.pagename: context.md
+this.basename: context
 this.extname:  .md
 this.ext:      .md
 
@@ -434,8 +446,30 @@ page.basename: complex
 page.extname:  .md
 page.ext:      .md
 
+#### complex.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/complex.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: complex.md
+page.pagename: complex.md
+page.basename: complex
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### complex.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/complex.md
+dirname:       test/actual/multi/dest1
+filename:      complex.md
+pagename:      complex.md
+basename:      complex
+extname:       .md
+ext:           .md
 
 #### complex.md
 assets:        ../../assets

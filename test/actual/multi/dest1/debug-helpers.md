@@ -41,6 +41,7 @@
 [collections-tags-2](collections-tags-2.md)
 [collections-tags](collections-tags.md)
 [complex](complex.md)
+[context](context.md)
 [debug-helpers](debug-helpers.md)
 [assets](assets.md)
 [gist-helper](gist-helper.md)
@@ -130,6 +131,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: complex.md
 this.pagename: complex.md
 this.basename: complex
+this.extname:  .md
+this.ext:      .md
+
+#### context.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/context.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: context.md
+this.pagename: context.md
+this.basename: context
 this.extname:  .md
 this.ext:      .md
 
@@ -433,8 +445,30 @@ page.basename: debug-helpers
 page.extname:  .md
 page.ext:      .md
 
+#### debug-helpers.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/debug-helpers.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: debug-helpers.md
+page.pagename: debug-helpers.md
+page.basename: debug-helpers
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### debug-helpers.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/debug-helpers.md
+dirname:       test/actual/multi/dest1
+filename:      debug-helpers.md
+pagename:      debug-helpers.md
+basename:      debug-helpers
+extname:       .md
+ext:           .md
 
 #### debug-helpers.md
 assets:        ../../assets

@@ -10,51 +10,55 @@
       
 <h2>HTML list helpers.</h2>
 <h3>{{ul}} helper</h3>
-<ul class="nav"><li>
+<p>&lt;ul class=&quot;nav&quot;&gt;&lt;li&gt;
   one
-</li>
-<li>
+&lt;/li&gt;
+&lt;li&gt;
   two
-</li>
-<li>
+&lt;/li&gt;
+&lt;li&gt;
   three
-</li></ul>
+&lt;/li&gt;&lt;/ul&gt;
 
-<ul class="nav"><li>
-  <a href="one">two</a>
-</li>
-<li>
-  <a href="three">four</a>
-</li>
-<li>
-  <a href="five">size</a>
-</li></ul>
+</p>
+<p>&lt;ul class=&quot;nav&quot;&gt;&lt;li&gt;
+  &lt;a href=&quot;one&quot;&gt;two&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+  &lt;a href=&quot;three&quot;&gt;four&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+  &lt;a href=&quot;five&quot;&gt;size&lt;/a&gt;
+&lt;/li&gt;&lt;/ul&gt;
 
+</p>
 <h3>{{ol}} helper</h3>
-<ol class="nav"><li>
+<p>&lt;ol class=&quot;nav&quot;&gt;&lt;li&gt;
   one
-</li>
-<li>
+&lt;/li&gt;
+&lt;li&gt;
   two
-</li>
-<li>
+&lt;/li&gt;
+&lt;li&gt;
   three
-</li></ol>
+&lt;/li&gt;&lt;/ol&gt;
 
-<ol class="nav"><li>
-  <a href="one">two</a>
-</li>
-<li>
-  <a href="three">four</a>
-</li>
-<li>
-  <a href="five">size</a>
-</li></ol>
+</p>
+<p>&lt;ol class=&quot;nav&quot;&gt;&lt;li&gt;
+  &lt;a href=&quot;one&quot;&gt;two&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+  &lt;a href=&quot;three&quot;&gt;four&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+  &lt;a href=&quot;five&quot;&gt;size&lt;/a&gt;
+&lt;/li&gt;&lt;/ol&gt;
 
+</p>
 <h3>{{link}} helper</h3>
-<p><a class="" href="" title="helpers.js">helpers.js</a>
-<a class="" href="http://github.com" title="GitHub">GitHub</a>
-<a class="nav-link" href="http://github.com" title="GitHub">GitHub</a></p>
+<p>&lt;a class=&quot;&quot; href=&quot;&quot; title=&quot;helpers.js&quot;&gt;helpers.js&lt;/a&gt;
+&lt;a class=&quot;&quot; href=&quot;http://github.com&quot; title=&quot;GitHub&quot;&gt;GitHub&lt;/a&gt;
+&lt;a class=&quot;nav-link&quot; href=&quot;http://github.com&quot; title=&quot;GitHub&quot;&gt;GitHub&lt;/a&gt;</p>
 
 
     </div>
@@ -326,6 +330,42 @@
         this.filename: complex.html
         this.pagename: complex.html
         this.basename: complex
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/html-helpers.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: html-helpers.html
+        page.pagename: html-helpers.html
+        page.basename: html-helpers
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/html-helpers.html
+        dirname:       test/actual/paths
+        filename:      html-helpers.html
+        pagename:      html-helpers.html
+        basename:      html-helpers
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="context.html">context</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/context.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: context.html
+        this.pagename: context.html
+        this.basename: context
         this.extname:  .html
         this.ext:      .html
 
