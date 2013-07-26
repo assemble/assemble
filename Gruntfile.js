@@ -120,7 +120,7 @@ module.exports = function(grunt) {
           data: ['test/data/*.json'],
           collections: [
             {
-              title: 'tags',
+              name: 'tags',
               inflection: 'tag',
               sortorder: 'DESC'
             }

@@ -115,6 +115,12 @@
       <h2>Debug Info</h2>
       <pre class="json">
 { src: 'test/templates/pages/yfm/lists.hbs',
+  people: 
+   [ { name: 'John Smith', age: 33 },
+     { name: 'Mary Smith', age: 27 },
+     [length]: 2 ],
+  dest: 'test/actual/yfm/lists.html',
+  basename: 'lists',
   page: 
    { [Function]
      [length]: 2,
@@ -122,29 +128,6 @@
      [arguments]: null,
      [caller]: null,
      [prototype]: { [constructor]: [Circular] } },
-  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
-  pageName: 'lists.html',
-  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
-  people: 
-   [ { name: 'John Smith', age: 33 },
-     { name: 'Mary Smith', age: 27 },
-     [length]: 2 ],
-  extname: '.html',
-  filename: 'lists.html',
-  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
-  pagename: 'lists.html',
-  movies: 
-   [ 'Casablanca',
-     'North by Northwest',
-     'The Man Who Wasn\'t There',
-     [length]: 3 ],
-  _page: 'all',
-  title: 'Almost a Haiku',
-  men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
-  basename: 'lists',
-  ext: '.html',
-  assets: '../assets',
-  methods: [ 'getter', 'setter', [length]: 2 ],
   data: 
    { title: 'Almost a Haiku',
      attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
@@ -161,8 +144,25 @@
         [length]: 2 ],
      men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
      women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ] },
+  methods: [ 'getter', 'setter', [length]: 2 ],
+  movies: 
+   [ 'Casablanca',
+     'North by Northwest',
+     'The Man Who Wasn\'t There',
+     [length]: 3 ],
+  _page: 'all',
   dirname: 'test/actual/yfm',
-  dest: 'test/actual/yfm/lists.html' }
+  assets: '../assets',
+  title: 'Almost a Haiku',
+  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
+  men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
+  filename: 'lists.html',
+  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
+  pageName: 'lists.html',
+  ext: '.html',
+  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
+  pagename: 'lists.html',
+  extname: '.html' }
 </pre>
     </div>
 
