@@ -5,8 +5,9 @@
 
 
 <h1>{{gist}} helper</h1>
-<script src="https://gist.github.com/5193239.js"></script>
+<p>&lt;script src=&quot;https://gist.github.com/5193239.js&quot;&gt;&lt;/script&gt;
 
+</p>
 
 
 
