@@ -36,7 +36,7 @@ module.exports = function(grunt) {
     assemble: {
       options: {
         flatten: true,
-        layout: 'layout.hbs',
+        layout: 'default.hbs',
         layoutdir: 'test/templates/layouts',
         helpers: 'test/helpers/helper-*.js',
         assets: 'test/actual/assets'
@@ -170,6 +170,15 @@ module.exports = function(grunt) {
         files: {
           'test/actual/blog/': ['test/templates/pages/blog/index.hbs']
         }
+      },
+      nested_layouts: {
+        options: {
+          layoutdir: 'test/templates/layouts',
+          layout: 'one.hbs'
+        },
+        files: {
+          'test/actual/nested-layouts/': ['test/templates/pages/*.hbs']
+        }
       }
     },
     component: {
@@ -204,8 +213,13 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', ['jshint', 'clean', 'assemble']);
 
+  grunt.registerTask('nested', ['assemble:nested_layouts']);
+
+
   // this is just for when doing debugging and jshint blows up
   grunt.registerTask('dev', ['clean', 'assemble']);
+
+
 
   // Tests to be run.
   grunt.registerTask('test', ['default', 'mochaTest']);

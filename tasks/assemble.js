@@ -106,17 +106,11 @@ module.exports = function(grunt) {
         assemble,
         function(err, results) {
           if(!err) {
-            assemble.options.defaultLayoutName = results.layoutName;
-            assemble.options.defaultLayout = results.layout;
-            defaultLayoutData = results.data;
+            assemble.options.defaultLayoutStack = results;
           } else {
             grunt.warn(err.message);
           }
         });
-
-      // merge any layoutData with options
-      assemble.options.data = _.extend(defaultLayoutData.context || {}, assemble.options.data || {});
-      grunt.verbose.writeln(assemble.options.data);
 
       next(assemble);
     };
@@ -480,7 +474,7 @@ module.exports = function(grunt) {
     grunt.verbose.writeln('currentPage: ' + currentPage);
     var page         = currentPage.page,
         pageContext  = currentPage.data,
-        layout       = options.defaultLayout,
+        layoutStack  = lodash.cloneDeep(options.defaultLayoutStack),
         data         = options.data,
         pages        = options.pages,
         collections  = options.collections,
@@ -488,7 +482,6 @@ module.exports = function(grunt) {
         EngineLoader = options.EngineLoader,
         context      = {};
 
-    context.layoutName = _(options.defaultLayoutName).humanize();
     grunt.verbose.writeln('variables loaded');
 
     //options.data = null;
@@ -512,9 +505,7 @@ module.exports = function(grunt) {
       // of the default layout
       if(pageContext && (pageContext.layout || pageContext.layout === false)) {
 
-        var pageLayoutName = null,
-            pageLayout = null,
-            pageLayoutContext = {};
+        var pageLayoutStack = [];
 
         context = processContext(grunt, context);
 
@@ -523,19 +514,37 @@ module.exports = function(grunt) {
           assemble,
           function(err, results) {
             if(!err) {
-              pageLayoutName = results.layoutName;
-              pageLayout = results.layout;
-              pageLayoutContext = results.data.context;
+              pageLayoutStack = results;
             } else {
               grunt.warn(err.message);
             }
           }
         );
 
-        if(pageLayout) {
-          layout = pageLayout;
-          context.layoutName = pageLayoutName;
-          data = _.extend(data, pageLayoutContext);
+        if(pageLayoutStack.length > 0) {
+          layoutStack = pageLayoutStack;
+        }
+      }
+
+      var layoutInfo;
+      var pageRenderCallback = function(err, content) {
+        if(err) {
+          callback(err);
+        }
+        context.body = content;
+      };
+
+      var layoutRenderCallback = function(err, content) {
+        if(err) {
+          callback(err);
+        }
+        page = content;
+      };
+
+      while(layoutInfo = layoutStack.shift()) {
+
+          context.layoutName = _(layoutInfo.layoutName).humanize();
+          data = _.extend(data, layoutInfo.data);
 
           // extend again
           options.data   = undefined;
@@ -546,47 +555,44 @@ module.exports = function(grunt) {
           options.data   = data;
           options.pages  = pages;
           options.collections = collections;
-        }
+
+          // add omitted collections back to pageContext
+          pageContext = lodash.merge(pageContext, pageCollections);
+          context = processContext(grunt, context);
+
+          // process the current page data
+          currentPage.data = processContext(grunt, context, currentPage.data);
+
+          // add the list of pages back to the context so
+          // it's available in the templates
+          context.pages = pages;
+          context.page = currentPage;
+
+          // apply any data for this page to the page object
+          context.page = _.extend(context[currentPage.basename] || {}, currentPage.data, context.page);
+
+          // make sure the currentPage assets is used
+          context.assets = currentPage.assets;
+
+          // add other page variables to the main context
+          context.extname  = currentPage.ext;
+          context.basename = currentPage.basename;
+          context.absolute = currentPage.dest;
+          context.dirname  = path.dirname(currentPage.dest);
+          context.pagename = currentPage.filename;
+          context.filename = currentPage.filename;
+          // "pageName" is deprecated, use "pagename" or "filename"
+          context.pageName = currentPage.filename;
+
+          //assemble.options.registerPartial(assemble.engine, 'body', page);
+
+          assemble.engine.render(page, context, pageRenderCallback);
+          assemble.engine.render(layoutInfo.layout, context, layoutRenderCallback);
       }
 
 
-      // add omitted collections back to pageContext
-      pageContext = lodash.merge(pageContext, pageCollections);
-      context = processContext(grunt, context);
+      callback(null, page);
 
-      // process the current page data
-      currentPage.data = processContext(grunt, context, currentPage.data);
-
-      // add the list of pages back to the context so
-      // it's available in the templates
-      context.pages = pages;
-      context.page = currentPage;
-
-      // apply any data for this page to the page object
-      context.page = _.extend(context[currentPage.basename] || {}, currentPage.data, context.page);
-
-      // make sure the currentPage assets is used
-      context.assets = currentPage.assets;
-
-      // add other page variables to the main context
-      context.extname  = currentPage.ext;
-      context.basename = currentPage.basename;
-      context.absolute = currentPage.dest;
-      context.dirname  = path.dirname(currentPage.dest);
-      context.pagename = currentPage.filename;
-      context.filename = currentPage.filename;
-      // "pageName" is deprecated, use "pagename" or "filename"
-      context.pageName = currentPage.filename;
-
-      assemble.options.registerPartial(assemble.engine, 'body', page);
-
-      assemble.engine.render(layout, context, function(err, content) {
-        if(err) {
-          callback(err);
-        }
-        page = content;
-        callback(null, page);
-      });
 
     } catch(err) {
       callback(err);
@@ -611,61 +617,76 @@ module.exports = function(grunt) {
 
   var loadLayout = function(src, assemble, callback) {
 
-    var loadFile = true;
-    var layout = '';
-    var layoutName = 'layout';
 
-    // if the src is empty, create a default layout in memory
-    if(!src || src === false || src === '' || src.length === 0) {
-      loadFile = false;
-      layout = '{{>body}}';
-    }
+    var layoutStack = [];
 
-    if(loadFile) {
-      // validate that the layout file exists
-      grunt.verbose.writeln(src);
-      layout = path.normalize(path.join(assemble.options.layoutdir || '', src));
-      grunt.verbose.writeln(layout);
+    var load = function(src) {
 
-      if(!fs.existsSync(layout)) {
-        var err = 'Layout file (' + layout + ') not found.';
-        grunt.warn(err);
-        if(callback) {
-          callback({message: err}, null);
-        }
-        return false;
+      var loadFile = true;
+      var layout = '';
+      var layoutName = 'layout';
+
+      // if the src is empty, create a default layout in memory
+      if(!src || src === false || src === '' || src.length === 0) {
+        loadFile = false;
+        layout = '{{{body}}}';
       }
 
-      // load layout
-      layoutName = _.first(layout.match(assemble.filenameRegex)).replace(assemble.fileExtRegex,'');
-      layout = grunt.file.read(layout);
-    }
+      if(loadFile) {
+        // validate that the layout file exists
+        grunt.verbose.writeln(src);
+        layout = path.normalize(path.join(assemble.options.layoutdir || '', src));
+        grunt.verbose.writeln(layout);
 
-    // If options.removeHbsWhitespace is true
-    layout = removeHbsWhitespace(assemble, layout);
-
-    var layoutInfo = assemble.data.readYFM(layout, {fromFile: false});
-    var layoutData = layoutInfo.context;
-    assemble.engine.compile(layoutInfo.content, null, function(err, tmpl) {
-      if(err) {
-        grunt.warn(err);
-        if(callback) {
-          callback(err);
+        if(!fs.existsSync(layout)) {
+          var err = 'Layout file (' + layout + ') not found.';
+          grunt.warn(err);
+          if(callback) {
+            callback({message: err}, null);
+          }
+          return false;
         }
-      }
-      layout = tmpl;
-    });
 
-    var results = {
-      layoutName: layoutName,
-      layout: layout,
-      data: layoutData
+        // load layout
+        layoutName = _.first(layout.match(assemble.filenameRegex)).replace(assemble.fileExtRegex,'');
+        layout = grunt.file.read(layout);
+        layout = layout.replace(/{{>\s*body\s*}}/, '{{{body}}}');
+      }
+
+      // If options.removeHbsWhitespace is true
+      layout = removeHbsWhitespace(assemble, layout);
+
+      var layoutInfo = assemble.data.readYFM(layout, {fromFile: false});
+      var layoutData = layoutInfo.context;
+      assemble.engine.compile(layoutInfo.content, null, function(err, tmpl) {
+        if(err) {
+          grunt.warn(err);
+          if(callback) {
+            callback(err);
+          }
+        }
+        layout = tmpl;
+      });
+
+      var results = {
+        layoutName: layoutName,
+        layout: layout,
+        data: layoutData
+      };
+
+      layoutStack.push(results);
+
+      if(layoutData && (layoutData.layout || layoutData.layout === false)) {
+        load(layoutData.layout);
+      }
     };
 
+    load(src);
+
     if(callback) {
-      callback(null, results);
+      callback(null, layoutStack);
     }
-    return results;
+    return layoutStack;
   };
 
   var detectDestType = function(dest) {
