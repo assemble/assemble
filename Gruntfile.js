@@ -36,7 +36,7 @@ module.exports = function(grunt) {
     assemble: {
       options: {
         flatten: true,
-        layout: 'layout.hbs',
+        layout: 'default.hbs',
         layoutdir: 'test/templates/layouts',
         helpers: 'test/helpers/helper-*.js',
         assets: 'test/actual/assets'
