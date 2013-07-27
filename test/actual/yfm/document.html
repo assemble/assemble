@@ -139,7 +139,25 @@ Suite 16
     <div class="container" style="display: none">
       <h2>Debug Info</h2>
       <pre class="json">
-{ src: 'test/templates/pages/yfm/document.hbs',
+{ receipt: 'Oz-Ware Purchase Invoice',
+  _page: 'all',
+  src: 'test/templates/pages/yfm/document.hbs',
+  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+  page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  prettyDate: '2007-08-05',
+  customer: { given: 'Dorothy', family: 'Gale' },
+  'bill-to': 
+   { street: '123 Tornado Alley\r\nSuite 16\r\n',
+     city: 'East Centerville',
+     state: 'KS' },
+  extname: '.html',
+  filename: 'document.html',
   items: 
    [ { part_no: 'A4786',
        descrip: 'Water Bucket (Filled)',
@@ -151,21 +169,16 @@ Suite 16
        price: 100.27,
        quantity: 1 },
      [length]: 2 ],
-  pageName: 'document.html',
-  ext: '.html',
-  dest: 'test/actual/yfm/document.html',
-  basename: 'document',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  receipt: 'Oz-Ware Purchase Invoice',
-  pagename: 'document.html',
   data: 
-   { items: 
+   { receipt: 'Oz-Ware Purchase Invoice',
+     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+     prettyDate: '2007-08-05',
+     customer: { given: 'Dorothy', family: 'Gale' },
+     'bill-to': 
+      { street: '123 Tornado Alley\r\nSuite 16\r\n',
+        city: 'East Centerville',
+        state: 'KS' },
+     items: 
       [ { part_no: 'A4786',
           descrip: 'Water Bucket (Filled)',
           price: 1.47,
@@ -176,36 +189,23 @@ Suite 16
           price: 100.27,
           quantity: 1 },
         [length]: 2 ],
-     receipt: 'Oz-Ware Purchase Invoice',
-     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-     customer: { given: 'Dorothy', family: 'Gale' },
-     'bill-to': 
-      { street: '123 Tornado Alley\r\nSuite 16\r\n',
-        city: 'East Centerville',
-        state: 'KS' },
+     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\r\n',
      'ship-to': 
       { street: '123 Tornado Alley\r\nSuite 16\r\n',
         city: 'East Centerville',
-        state: 'KS' },
-     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\r\n',
-     prettyDate: '2007-08-05' },
-  extname: '.html',
-  _page: 'all',
-  assets: '../assets',
-  date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-  customer: { given: 'Dorothy', family: 'Gale' },
-  'bill-to': 
-   { street: '123 Tornado Alley\r\nSuite 16\r\n',
-     city: 'East Centerville',
-     state: 'KS' },
+        state: 'KS' } },
+  pageName: 'document.html',
+  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\r\n',
   'ship-to': 
    { street: '123 Tornado Alley\r\nSuite 16\r\n',
      city: 'East Centerville',
      state: 'KS' },
-  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\r\n',
-  prettyDate: '2007-08-05',
-  filename: 'document.html',
-  dirname: 'test/actual/yfm' }
+  dirname: 'test/actual/yfm',
+  assets: '../assets',
+  ext: '.html',
+  dest: 'test/actual/yfm/document.html',
+  pagename: 'document.html',
+  basename: 'document' }
 </pre>
     </div>
 
