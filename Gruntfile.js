@@ -147,7 +147,7 @@ module.exports = function(grunt) {
                 title: "Blog Post #1",
                 gists: ["5898072"]
               },
-              content: "This would get passed into the `body` tag, but it's not necessary if you only need to add a post from a gist."
+              content: "This \"content\" property is optional and would get passed into the `body` tag. But if you only need to pass the page's metadata to the layout then the content property is unnecessary."
             },
             {
               filename: "post2",
