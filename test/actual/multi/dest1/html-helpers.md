@@ -5,51 +5,47 @@
 
 <h2>HTML list helpers.</h2>
 <h3>{{ul}} helper</h3>
-<p>&lt;ul class=&quot;nav&quot;&gt;&lt;li&gt;
+<ul class="nav"><li>
   one
-&lt;/li&gt;
-&lt;li&gt;
+</li>
+<li>
   two
-&lt;/li&gt;
-&lt;li&gt;
+</li>
+<li>
   three
-&lt;/li&gt;&lt;/ul&gt;
+</li></ul>
 
-</p>
-<p>&lt;ul class=&quot;nav&quot;&gt;&lt;li&gt;
-  &lt;a href=&quot;one&quot;&gt;two&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;
-  &lt;a href=&quot;three&quot;&gt;four&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;
-  &lt;a href=&quot;five&quot;&gt;size&lt;/a&gt;
-&lt;/li&gt;&lt;/ul&gt;
+<ul class="nav"><li>
+  <a href="one">two</a>
+</li>
+<li>
+  <a href="three">four</a>
+</li>
+<li>
+  <a href="five">size</a>
+</li></ul>
 
-</p>
 <h3>{{ol}} helper</h3>
-<p>&lt;ol class=&quot;nav&quot;&gt;&lt;li&gt;
+<ol class="nav"><li>
   one
-&lt;/li&gt;
-&lt;li&gt;
+</li>
+<li>
   two
-&lt;/li&gt;
-&lt;li&gt;
+</li>
+<li>
   three
-&lt;/li&gt;&lt;/ol&gt;
+</li></ol>
 
-</p>
-<p>&lt;ol class=&quot;nav&quot;&gt;&lt;li&gt;
-  &lt;a href=&quot;one&quot;&gt;two&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;
-  &lt;a href=&quot;three&quot;&gt;four&lt;/a&gt;
-&lt;/li&gt;
-&lt;li&gt;
-  &lt;a href=&quot;five&quot;&gt;size&lt;/a&gt;
-&lt;/li&gt;&lt;/ol&gt;
+<ol class="nav"><li>
+  <a href="one">two</a>
+</li>
+<li>
+  <a href="three">four</a>
+</li>
+<li>
+  <a href="five">size</a>
+</li></ol>
 
-</p>
 <h3>{{link}} helper</h3>
 <p><a href="">helpers.js</a>
 <a href="http://github.com">GitHub</a>
