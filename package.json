@@ -50,7 +50,8 @@
     "grunt": "~0.4.1",
     "grunt-mocha-test": "~0.2.0",
     "grunt-contrib-clean": "~0.4.1",
-    "grunt-contrib-jshint": "~0.6.0"
+    "grunt-contrib-jshint": "~0.6.0",
+    "assemble-internal": "~0.2.0"
   },
   "keywords": [
     "blog generator",
