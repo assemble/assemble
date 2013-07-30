@@ -13,13 +13,22 @@ module.exports = function(grunt) {
 
     // package.json
     pkg: grunt.file.readJSON('package.json'),
+
+    // Metadata
     meta: {
-      banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-        '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-        '<%= pkg.homepage ? "* " + pkg.homepage + "\n" : "" %>' +
-        '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-        ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */'
+      license: '<%= _.pluck(pkg.licenses, "type").join(", ") %>',
+      copyright: 'Copyright (c) <%= grunt.template.today("yyyy") %>',
+      banner:
+        '/* \n' +
+        ' * <%= pkg.name %> v<%= pkg.version %> \n' +
+        ' * http://assemble.io \n' +
+        ' * \n' +
+        ' * <%= meta.copyright %>, <%= pkg.author.name %> \n' +
+        ' * Licensed under the <%= meta.license %> License. \n' +
+        ' * \n' +
+        ' */ \n\n'
     },
+
     jshint: {
       options: {
         jshintrc: 'tasks/.jshintrc'
@@ -147,7 +156,7 @@ module.exports = function(grunt) {
                 title: "Blog Post #1",
                 gists: ["5898072"]
               },
-              content: "This would get passed into the `body` tag, but it's not necessary if you only need to add a post from a gist."
+              content: "This \"content\" property is optional and would get passed into the `body` tag. But if you only need to pass the page's metadata to the layout then the content property is unnecessary."
             },
             {
               filename: "post2",
@@ -172,6 +181,7 @@ module.exports = function(grunt) {
         }
       }
     },
+    // Example config for metadata
     component: {
       one: "alert"
     },
@@ -194,6 +204,7 @@ module.exports = function(grunt) {
   });
 
   // Load npm plugins to provide necessary tasks.
+  grunt.loadNpmTasks('assemble-internal');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
@@ -204,9 +215,7 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', ['jshint', 'clean', 'assemble']);
 
-  // this is just for when doing debugging and jshint blows up
-  grunt.registerTask('dev', ['clean', 'assemble']);
-
   // Tests to be run.
   grunt.registerTask('test', ['default', 'mochaTest']);
+  grunt.registerTask('docs', ['assemble-internal']);
 };

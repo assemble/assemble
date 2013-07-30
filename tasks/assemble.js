@@ -291,10 +291,10 @@ module.exports = function(grunt) {
             grunt.verbose.writeln('compiling page ' + filename.magenta);
             var pageContext = {};
 
-            //If the page file is empty, we still want to process it.
-            //compiler will choke on empty file, so lets pass it a non-rendering string instead.
-            if(page==='') {
-              page='{{!}}';
+            // If the page file is empty, we still want to process it. Since the compiler
+            // will choke on empty files let's pass it a non-rendering string instead.
+            if(page === '') {
+              page = '{{!}}';
             }
 
             // If options.removeHbsWhitespace is true
