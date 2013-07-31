@@ -1,4 +1,4 @@
-See the [Options](http://assemble.io/docs/Options.html) section on the Wiki for more information.
+See the documentation for [Options](http://assemble.io/docs/Options.html) for more information.
 
 ## [assets](http://assemble.io/docs/options-assets.html)
 Type: `String`
@@ -40,12 +40,6 @@ Path to the custom helper or helpers to use with the current template engine.
 
 Assemble includes [handlebars-helpers](http://assemble.io/docs/helpers/index.html) as a dependency, so any helpers from that library may be used in your templates.
 
-## [engine](http://assemble.io/docs/options-engine.html)
-Type: `String`
-Default: Handlebars
-
-Specify the engine to use for compiling templates. Handlebars is the default.
-
 ## [ext](http://assemble.io/docs/options-ext.html)
 Type: `String`
 Default: `.html`
@@ -56,8 +50,13 @@ Specify the file extension for destination files. Example:
 Type: `Object`
 Default: Marked.js defaults
 
-Specify the options to use when converting from markdown to HTML.
+Specify the [Marked.js options](https://github.com/chjj/marked#options-1) to use when converting from markdown to HTML.
 
+## [engine](http://assemble.io/docs/options-engine.html)
+Type: `String`
+Default: Handlebars
+
+Specify the engine to use for compiling templates. Handlebars is the default.
 
 ## flatten
 Type: `Boolean`
@@ -65,3 +64,5 @@ Default: `false`
 
 Remove anything after (and including) the first "." in the destination path, then append this value. In other words, when files are generated from different source folders this "flattens" them into the same destination directory. See [building the files object dynamically][files-object] for more information on `files` formats.
 
+
+Visit [Assemble's documentation](http://assemble.io) for more information about options.

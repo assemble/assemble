@@ -30,8 +30,8 @@ In your project's Gruntfile, add a section named `assemble` to the data object p
 assemble: {
   options: {
     assets: 'assets',
-    partials: 'docs/includes',
-    data: 'docs/data'
+    partials: ['docs/includes/**/*.hbs'],
+    data: ['docs/data/**/*.{json,yml}']
   },
   pages: {
     src: ['docs/*.hbs'],
@@ -40,7 +40,7 @@ assemble: {
 },
 ```
 
-See the [Options](http://assemble.io/docs/Options.html) section on the Wiki for more information.
+See the documentation for [Options](http://assemble.io/docs/Options.html) for more information.
 
 #### [assets](http://assemble.io/docs/options-assets.html)
 Type: `String`
@@ -82,12 +82,6 @@ Path to the custom helper or helpers to use with the current template engine.
 
 Assemble includes [handlebars-helpers](http://assemble.io/docs/helpers/index.html) as a dependency, so any helpers from that library may be used in your templates.
 
-#### [engine](http://assemble.io/docs/options-engine.html)
-Type: `String`
-Default: Handlebars
-
-Specify the engine to use for compiling templates. Handlebars is the default.
-
 #### [ext](http://assemble.io/docs/options-ext.html)
 Type: `String`
 Default: `.html`
@@ -98,8 +92,13 @@ Specify the file extension for destination files. Example:
 Type: `Object`
 Default: Marked.js defaults
 
-Specify the options to use when converting from markdown to HTML.
+Specify the [Marked.js options](https://github.com/chjj/marked#options-1) to use when converting from markdown to HTML.
 
+#### [engine](http://assemble.io/docs/options-engine.html)
+Type: `String`
+Default: Handlebars
+
+Specify the engine to use for compiling templates. Handlebars is the default.
 
 #### flatten
 Type: `Boolean`
@@ -108,16 +107,17 @@ Default: `false`
 Remove anything after (and including) the first "." in the destination path, then append this value. In other words, when files are generated from different source folders this "flattens" them into the same destination directory. See [building the files object dynamically][files-object] for more information on `files` formats.
 
 
+Visit [Assemble's documentation](http://assemble.io) for more information about options.
 ### Usage examples
 
 Simple example of using data files in both `.json` and `.yml` format to build Handlebars templates.
 
 ```javascript
 assemble: {
+  options: {
+    data: 'src/data/**/*.{json,yml}'
+  },
   docs: {
-    options: {
-      data: 'src/data/**/*.{json,yml}'
-    },
     files: {
       'dist/': ['src/templates/**/*.hbs']
     }
@@ -125,7 +125,41 @@ assemble: {
 }
 ```
 
+#### Using multiple targets
 
+```js
+assemble: {
+  options: {
+    assets: 'assets',
+    layoutdir: 'docs/layouts'
+    partials: ['docs/includes/**/*.hbs'],
+    data: ['docs/data/**/*.{json,yml}']
+  },
+  site: {
+    options: {
+      layout: 'default.hbs'
+    },
+    src: ['templates/site/*.hbs'],
+    dest: './'
+  },
+  blog: {
+    options: {
+      layout: 'blog-layout.hbs'
+    },
+    src: ['templates/blog/*.hbs'],
+    dest: 'articles/'
+  },
+  docs: {
+    options: {
+      layout: 'docs-layout.hbs'
+    },
+    src: ['templates/docs/*.hbs'],
+    dest: 'docs/'
+  }
+},
+```
+
+Visit [Assemble's documentation](http://assemble.io) for many more examples and pointers on getting started.
 
 ## Release History
 
@@ -151,4 +185,4 @@ assemble: {
 
 Project authored by [Jon Schlinkert](https://github.com/jonschlinkert/).
 
-_This file was generated on Tue Jul 30 2013 07:15:24._
+_This file was generated on Wed Jul 31 2013 16:28:53._
