@@ -6,8 +6,8 @@ In your project's Gruntfile, add a section named `assemble` to the data object p
 assemble: {
   options: {
     assets: 'assets',
-    partials: 'docs/includes',
-    data: 'docs/data'
+    partials: ['docs/includes/**/*.hbs'],
+    data: ['docs/data/**/*.{json,yml}']
   },
   pages: {
     src: ['docs/*.hbs'],
