@@ -10,17 +10,17 @@
 </div>
 
 <h2>css helper</h2>
-Example of using the "css" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
-<link rel="stylesheet" href="../../assets/css/css/bootstrap.css">
-<link rel="stylesheet" href="../../assets/css/css/responsive.css">
-<link rel="stylesheet" href="../../assets/css/css/main.css">
+Example of using a custom "css" helper.
+<link rel="stylesheet" href="../../assets/css/css/bootstrap.css?v=1375341911370">
+<link rel="stylesheet" href="../../assets/css/css/responsive.css?v=1375341911370">
+<link rel="stylesheet" href="../../assets/css/css/main.css?v=1375341911370">
 
 
 <h2>js helper</h2>
-Example of using the "js" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
-<script src="../../assets/js/js/bootstrap.js"></script>
-<script src="../../assets/js/js/responsive.js"></script>
-<script src="../../assets/js/js/main.js"></script>
+Example of using a custom "js" helper.
+<script src="../../assets/js/js/bootstrap.js?v=1375341911370"></script>
+<script src="../../assets/js/js/responsive.js?v=1375341911370"></script>
+<script src="../../assets/js/js/main.js?v=1375341911370"></script>
 
 
 <h2>custom variables</h2>
@@ -33,25 +33,24 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 ``` json
 [ 'test/helpers/helper-*.js',
   [length]: 1,
-  pagename: 'helpers.md',
-  assets: '../../assets',
-  stylesheets: [ 'css/bootstrap.css',
-    'css/responsive.css',
-    'css/main.css',
-    [length]: 3 ],
-  title: 'Helpers and custom variables',
-  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
+  _page: 'all',
+  dest: 'test/actual/multi/dest1/helpers.md',
   styles: '<link rel="stylesheet" href="css/index.css"/>',
-  scripts: 'document.write(\'foo bar!\');',
-  dirname: 'test/actual/multi/dest1',
   javascripts: [ 'js/bootstrap.js',
     'js/responsive.js',
     'js/main.js',
     [length]: 3 ],
   filename: 'helpers.md',
-  dest: 'test/actual/multi/dest1/helpers.md',
+  assets: '../../assets',
   ext: '.md',
-  _page: 'all',
+  stylesheets: [ 'css/bootstrap.css',
+    'css/responsive.css',
+    'css/main.css',
+    [length]: 3 ],
+  pageName: 'helpers.md',
+  dirname: 'test/actual/multi/dest1',
+  basename: 'helpers',
+  src: 'test/templates/pages/helpers.hbs',
   extname: '.md',
   data: { title: 'Helpers and custom variables',
     description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
@@ -66,16 +65,17 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
        'js/main.js',
        [length]: 3 ],
     styles: '<link rel="stylesheet" href="css/index.css"/>',
-    scripts: 'document.write(\'foo bar!\');' },
-  pageName: 'helpers.md',
-  src: 'test/templates/pages/helpers.hbs',
-  basename: 'helpers',
+    script: 'document.write(\'foo bar!\');' },
+  title: 'Helpers and custom variables',
+  pagename: 'helpers.md',
+  script: 'document.write(\'foo bar!\');',
   page: { [Function]
     [length]: 2,
     [name]: '',
     [arguments]: null,
     [caller]: null,
-    [prototype]: { [constructor]: [Circular] } } ]
+    [prototype]: { [constructor]: [Circular] } },
+  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n' ]
 ```
 
 
