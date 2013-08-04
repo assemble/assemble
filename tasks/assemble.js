@@ -285,10 +285,10 @@ module.exports = function(grunt) {
             grunt.verbose.writeln('compiling page ' + filename.magenta);
             var pageContext = {};
 
-            //If the page file is empty, we still want to process it.
-            //compiler will choke on empty file, so lets pass it a non-rendering string instead.
-            if(page==='') {
-              page='{{!}}';
+            // If the page file is empty, we still want to process it. Since the compiler
+            // will choke on empty files let's pass it a non-rendering string instead.
+            if(page === '') {
+              page = '{{!}}';
             }
 
             // If options.removeHbsWhitespace is true
@@ -496,7 +496,7 @@ module.exports = function(grunt) {
       options.pages   = undefined;
       options.layout  = undefined;
       options.collections = undefined;
-      context         = _.extend(context, options, data, pageContext);
+      context         = _.extend(context, assemble.util.filterProperties(options), data, pageContext);
       options.data    = data;
       options.pages   = pages;
       options.collections = collections;
@@ -551,7 +551,7 @@ module.exports = function(grunt) {
           options.pages  = undefined;
           options.layout = undefined;
           options.collections = undefined;
-          context        = _.extend(context, options, data, pageContext);
+          context        = _.extend(context, assemble.util.filterProperties(options), data, pageContext);
           options.data   = data;
           options.pages  = pages;
           options.collections = collections;
