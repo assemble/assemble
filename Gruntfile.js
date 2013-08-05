@@ -179,6 +179,15 @@ module.exports = function(grunt) {
         files: {
           'test/actual/blog/': ['test/templates/pages/blog/index.hbs']
         }
+      },
+      nested_layouts: {
+        options: {
+          layoutdir: 'test/templates/layouts',
+          layout: 'one.hbs'
+        },
+        files: {
+          'test/actual/nested-layouts/': ['test/templates/pages/*.hbs']
+        }
       }
     },
     // Example config for metadata
@@ -214,6 +223,11 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'clean', 'assemble']);
+
+  grunt.registerTask('nested', ['assemble:nested_layouts']);
+
+
+
 
   // Tests to be run.
   grunt.registerTask('test', ['default', 'mochaTest']);

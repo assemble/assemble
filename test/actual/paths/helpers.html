@@ -39,27 +39,26 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 
 <pre class="json">
 [ 'test/helpers/helper-*.js',
-  [length]: 1,
+  _page: 'all',
   pagename: 'helpers.html',
-  assets: '../assets',
-  stylesheets: [ 'css/bootstrap.css',
-    'css/responsive.css',
-    'css/main.css',
-    [length]: 3 ],
   title: 'Helpers and custom variables',
-  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
   styles: '<link rel="stylesheet" href="css/index.css"/>',
+  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
+  ext: '.html',
   scripts: 'document.write(\'foo bar!\');',
-  dirname: 'test/actual/paths',
+  dest: 'test/actual/paths/helpers.html',
+  assets: '../assets',
   javascripts: [ 'js/bootstrap.js',
     'js/responsive.js',
     'js/main.js',
     [length]: 3 ],
-  filename: 'helpers.html',
-  dest: 'test/actual/paths/helpers.html',
-  ext: '.html',
-  _page: 'all',
   extname: '.html',
+  stylesheets: [ 'css/bootstrap.css',
+    'css/responsive.css',
+    'css/main.css',
+    [length]: 3 ],
+  src: 'test/templates/pages/helpers.hbs',
+  dirname: 'test/actual/paths',
   data: { title: 'Helpers and custom variables',
     description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
     stylesheets: 
@@ -75,14 +74,15 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
     styles: '<link rel="stylesheet" href="css/index.css"/>',
     scripts: 'document.write(\'foo bar!\');' },
   pageName: 'helpers.html',
-  src: 'test/templates/pages/helpers.hbs',
-  basename: 'helpers',
   page: { [Function]
     [length]: 2,
     [name]: '',
     [arguments]: null,
     [caller]: null,
-    [prototype]: { [constructor]: [Circular] } } ]
+    [prototype]: { [constructor]: [Circular] } },
+  basename: 'helpers',
+  [length]: 1,
+  filename: 'helpers.html' ]
 </pre>
 
       <ul>
@@ -411,6 +411,42 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
         ext:           .html
         -->
       
+        <li><a href="deep-nested-layouts.html">deep-nested-layouts</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/deep-nested-layouts.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: deep-nested-layouts.html
+        this.pagename: deep-nested-layouts.html
+        this.basename: deep-nested-layouts
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/helpers.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/helpers.html
+        dirname:       test/actual/paths
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
+        extname:       .html
+        ext:           .html
+        -->
+      
         <li><a href="assets.html">assets</a></li>
         <!--
         "this"
@@ -601,6 +637,42 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
         this.filename: md-helper.html
         this.pagename: md-helper.html
         this.basename: md-helper
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/helpers.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: helpers.html
+        page.pagename: helpers.html
+        page.basename: helpers
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/helpers.html
+        dirname:       test/actual/paths
+        filename:      helpers.html
+        pagename:      helpers.html
+        basename:      helpers
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="nested-layouts.html">nested-layouts</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/nested-layouts.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: nested-layouts.html
+        this.pagename: nested-layouts.html
+        this.basename: nested-layouts
         this.extname:  .html
         this.ext:      .html
 
