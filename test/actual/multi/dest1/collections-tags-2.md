@@ -60,12 +60,14 @@
 [complex](complex.md)
 [context](context.md)
 [debug-helpers](debug-helpers.md)
+[deep-nested-layouts](deep-nested-layouts.md)
 [assets](assets.md)
 [gist-helper](gist-helper.md)
 [helpers](helpers.md)
 [home](home.md)
 [html-helpers](html-helpers.md)
 [md-helper](md-helper.md)
+[nested-layouts](nested-layouts.md)
 [no-layout](no-layout.md)
 [page](page.md)
 [simple3](simple3.md)
@@ -173,6 +175,17 @@ this.basename: debug-helpers
 this.extname:  .md
 this.ext:      .md
 
+#### deep-nested-layouts.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/deep-nested-layouts.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: deep-nested-layouts.md
+this.pagename: deep-nested-layouts.md
+this.basename: deep-nested-layouts
+this.extname:  .md
+this.ext:      .md
+
 #### assets.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/assets.md
@@ -236,6 +249,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: md-helper.md
 this.pagename: md-helper.md
 this.basename: md-helper
+this.extname:  .md
+this.ext:      .md
+
+#### nested-layouts.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/nested-layouts.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: nested-layouts.md
+this.pagename: nested-layouts.md
+this.basename: nested-layouts
 this.extname:  .md
 this.ext:      .md
 
@@ -473,8 +497,52 @@ page.basename: collections-tags-2
 page.extname:  .md
 page.ext:      .md
 
+#### collections-tags-2.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/collections-tags-2.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: collections-tags-2.md
+page.pagename: collections-tags-2.md
+page.basename: collections-tags-2
+page.extname:  .md
+page.ext:      .md
+
+#### collections-tags-2.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/collections-tags-2.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: collections-tags-2.md
+page.pagename: collections-tags-2.md
+page.basename: collections-tags-2
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### collections-tags-2.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/collections-tags-2.md
+dirname:       test/actual/multi/dest1
+filename:      collections-tags-2.md
+pagename:      collections-tags-2.md
+basename:      collections-tags-2
+extname:       .md
+ext:           .md
+
+#### collections-tags-2.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/collections-tags-2.md
+dirname:       test/actual/multi/dest1
+filename:      collections-tags-2.md
+pagename:      collections-tags-2.md
+basename:      collections-tags-2
+extname:       .md
+ext:           .md
 
 #### collections-tags-2.md
 assets:        ../../assets
