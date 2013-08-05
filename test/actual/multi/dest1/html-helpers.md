@@ -102,12 +102,14 @@
 [complex](complex.md)
 [context](context.md)
 [debug-helpers](debug-helpers.md)
+[deep-nested-layouts](deep-nested-layouts.md)
 [assets](assets.md)
 [gist-helper](gist-helper.md)
 [helpers](helpers.md)
 [home](home.md)
 [html-helpers](html-helpers.md)
 [md-helper](md-helper.md)
+[nested-layouts](nested-layouts.md)
 [no-layout](no-layout.md)
 [page](page.md)
 [simple3](simple3.md)
@@ -215,6 +217,17 @@ this.basename: debug-helpers
 this.extname:  .md
 this.ext:      .md
 
+#### deep-nested-layouts.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/deep-nested-layouts.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: deep-nested-layouts.md
+this.pagename: deep-nested-layouts.md
+this.basename: deep-nested-layouts
+this.extname:  .md
+this.ext:      .md
+
 #### assets.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/assets.md
@@ -278,6 +291,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: md-helper.md
 this.pagename: md-helper.md
 this.basename: md-helper
+this.extname:  .md
+this.ext:      .md
+
+#### nested-layouts.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/nested-layouts.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: nested-layouts.md
+this.pagename: nested-layouts.md
+this.basename: nested-layouts
 this.extname:  .md
 this.ext:      .md
 
@@ -515,8 +539,52 @@ page.basename: html-helpers
 page.extname:  .md
 page.ext:      .md
 
+#### html-helpers.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/html-helpers.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
+page.extname:  .md
+page.ext:      .md
+
+#### html-helpers.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/html-helpers.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: html-helpers.md
+page.pagename: html-helpers.md
+page.basename: html-helpers
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### html-helpers.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/html-helpers.md
+dirname:       test/actual/multi/dest1
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
+extname:       .md
+ext:           .md
+
+#### html-helpers.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/html-helpers.md
+dirname:       test/actual/multi/dest1
+filename:      html-helpers.md
+pagename:      html-helpers.md
+basename:      html-helpers
+extname:       .md
+ext:           .md
 
 #### html-helpers.md
 assets:        ../../assets

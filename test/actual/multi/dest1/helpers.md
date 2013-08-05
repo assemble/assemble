@@ -32,35 +32,26 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 ## Debug Info
 ``` json
 [ 'test/helpers/helper-*.js',
-  [length]: 1,
+  _page: 'all',
   pagename: 'helpers.md',
-  assets: '../../assets',
-  stylesheets: [ 'css/bootstrap.css',
-    'css/responsive.css',
-    'css/main.css',
-    [length]: 3 ],
+  title: 'Helpers and custom variables',
   styles: '<link rel="stylesheet" href="css/index.css"/>',
+  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
+  ext: '.md',
   scripts: 'document.write(\'foo bar!\');',
-  dirname: 'test/actual/multi/dest1',
+  dest: 'test/actual/multi/dest1/helpers.md',
+  assets: '../../assets',
   javascripts: [ 'js/bootstrap.js',
     'js/responsive.js',
     'js/main.js',
     [length]: 3 ],
-  filename: 'helpers.md',
-  dest: 'test/actual/multi/dest1/helpers.md',
-  ext: '.md',
-  _page: 'all',
   extname: '.md',
-  page: { [Function]
-    [length]: 2,
-    [name]: '',
-    [arguments]: null,
-    [caller]: null,
-    [prototype]: { [constructor]: [Circular] } },
   stylesheets: [ 'css/bootstrap.css',
     'css/responsive.css',
     'css/main.css',
     [length]: 3 ],
+  src: 'test/templates/pages/helpers.hbs',
+  dirname: 'test/actual/multi/dest1',
   data: { title: 'Helpers and custom variables',
     description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
     stylesheets: 
@@ -75,12 +66,16 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
        [length]: 3 ],
     styles: '<link rel="stylesheet" href="css/index.css"/>',
     scripts: 'document.write(\'foo bar!\');' },
-  src: 'test/templates/pages/helpers.hbs',
+  pageName: 'helpers.md',
+  page: { [Function]
+    [length]: 2,
+    [name]: '',
+    [arguments]: null,
+    [caller]: null,
+    [prototype]: { [constructor]: [Circular] } },
   basename: 'helpers',
-    [prototype]: { [constructor]: [Circular] } } ]
-  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
-  scripts: 'document.write(\'foo bar!\');',
-  extname: '.md',
+  [length]: 1,
+  filename: 'helpers.md' ]
 ```
 
 
@@ -94,12 +89,14 @@ Example of using the "js" helper from <a href="http://github.com/assemble/helper
 [complex](complex.md)
 [context](context.md)
 [debug-helpers](debug-helpers.md)
+[deep-nested-layouts](deep-nested-layouts.md)
 [assets](assets.md)
 [gist-helper](gist-helper.md)
 [helpers](helpers.md)
 [home](home.md)
 [html-helpers](html-helpers.md)
 [md-helper](md-helper.md)
+[nested-layouts](nested-layouts.md)
 [no-layout](no-layout.md)
 [page](page.md)
 [simple3](simple3.md)
@@ -207,6 +204,17 @@ this.basename: debug-helpers
 this.extname:  .md
 this.ext:      .md
 
+#### deep-nested-layouts.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/deep-nested-layouts.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: deep-nested-layouts.md
+this.pagename: deep-nested-layouts.md
+this.basename: deep-nested-layouts
+this.extname:  .md
+this.ext:      .md
+
 #### assets.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/assets.md
@@ -270,6 +278,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: md-helper.md
 this.pagename: md-helper.md
 this.basename: md-helper
+this.extname:  .md
+this.ext:      .md
+
+#### nested-layouts.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/nested-layouts.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: nested-layouts.md
+this.pagename: nested-layouts.md
+this.basename: nested-layouts
 this.extname:  .md
 this.ext:      .md
 
@@ -507,8 +526,52 @@ page.basename: helpers
 page.extname:  .md
 page.ext:      .md
 
+#### helpers.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/helpers.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: helpers.md
+page.pagename: helpers.md
+page.basename: helpers
+page.extname:  .md
+page.ext:      .md
+
+#### helpers.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/helpers.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: helpers.md
+page.pagename: helpers.md
+page.basename: helpers
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### helpers.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/helpers.md
+dirname:       test/actual/multi/dest1
+filename:      helpers.md
+pagename:      helpers.md
+basename:      helpers
+extname:       .md
+ext:           .md
+
+#### helpers.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/helpers.md
+dirname:       test/actual/multi/dest1
+filename:      helpers.md
+pagename:      helpers.md
+basename:      helpers
+extname:       .md
+ext:           .md
 
 #### helpers.md
 assets:        ../../assets
