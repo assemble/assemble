@@ -410,7 +410,7 @@ module.exports = function(grunt) {
     grunt.verbose.writeflags(assemble.options, 'Assemble options');
 
     // assemble everything
-    var assembler = assemble.init(this)
+    var assembler = assemble.init(this, grunt)
       .step(optionsConfiguration)
       .step(assembleDefaultLayout)
       .step(assemblePartials)
