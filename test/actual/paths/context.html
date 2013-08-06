@@ -129,6 +129,12 @@
   
     <li><a href="#" id="basename">[object Object]</a></li>
     <li><a href="#" id="parent-basename">context</a></li>
+    <li><a href="#" id="this-basename">no-layout-none</a></li>
+    <li><a href="#" id="page-basename"></a></li>
+    <li><a href="#" id="data-basename"></a></li>
+  
+    <li><a href="#" id="basename">[object Object]</a></li>
+    <li><a href="#" id="parent-basename">context</a></li>
     <li><a href="#" id="this-basename">no-layout</a></li>
     <li><a href="#" id="page-basename"></a></li>
     <li><a href="#" id="data-basename"></a></li>
@@ -250,6 +256,12 @@
     <li><a href="#" id="this-title"></a></li>
     <li><a href="#" id="page-title"></a></li>
     <li><a href="#" id="data-title">Home Page</a></li>
+  
+    <li><a href="#" id="title"></a></li>
+    <li><a href="#" id="parent-title">Overview</a></li>
+    <li><a href="#" id="this-title"></a></li>
+    <li><a href="#" id="page-title"></a></li>
+    <li><a href="#" id="data-title"></a></li>
   
     <li><a href="#" id="title"></a></li>
     <li><a href="#" id="parent-title">Overview</a></li>
@@ -890,6 +902,42 @@
         this.filename: nested-layouts.html
         this.pagename: nested-layouts.html
         this.basename: nested-layouts
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/context.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: context.html
+        page.pagename: context.html
+        page.basename: context
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/context.html
+        dirname:       test/actual/paths
+        filename:      context.html
+        pagename:      context.html
+        basename:      context
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="no-layout-none.html">no-layout-none</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/no-layout-none.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: no-layout-none.html
+        this.pagename: no-layout-none.html
+        this.basename: no-layout-none
         this.extname:  .html
         this.ext:      .html
 

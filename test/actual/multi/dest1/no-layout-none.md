@@ -1,0 +1,10 @@
+
+<!doctype html>
+<html>
+  <head>
+    <title>Has no layout</title>
+  </head>
+  <body>
+    <div>Straight file with no layout</div>
+  </body>
+</html>
