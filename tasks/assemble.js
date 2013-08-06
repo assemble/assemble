@@ -501,7 +501,7 @@ module.exports = function(grunt) {
 
       // if pageContext contains a layout, use that one instead
       // of the default layout
-      if(pageContext && (pageContext.layout || pageContext.layout === false)) {
+      if(pageContext && (pageContext.layout || pageContext.layout === false || pageContext.layout === 'none')) {
 
         var pageLayout = null;
 
@@ -608,7 +608,7 @@ module.exports = function(grunt) {
       var layoutName = 'layout';
 
       // if the src is empty, create a default layout in memory
-      if(!src || src === false || src === '' || src.length === 0) {
+      if(!src || src === false || src === '' || src.length === 0 || src === 'none') {
         loadFile = false;
         layout = '{{>body}}';
       }
@@ -648,7 +648,7 @@ module.exports = function(grunt) {
 
       layoutStack.push(results);
 
-      if(layoutData && (layoutData.layout || layoutData.layout === false)) {
+      if(layoutData && (layoutData.layout || layoutData.layout === false || layoutData.layout === 'none')) {
         load(layoutData.layout);
       }
     };

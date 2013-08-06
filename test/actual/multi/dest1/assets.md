@@ -45,6 +45,7 @@
 [html-helpers](test/actual/multi/dest1/html-helpers.md)
 [md-helper](test/actual/multi/dest1/md-helper.md)
 [nested-layouts](test/actual/multi/dest1/nested-layouts.md)
+[no-layout-none](test/actual/multi/dest1/no-layout-none.md)
 [no-layout](test/actual/multi/dest1/no-layout.md)
 [page](test/actual/multi/dest1/page.md)
 [simple3](test/actual/multi/dest1/simple3.md)
@@ -237,6 +238,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: nested-layouts.md
 this.pagename: nested-layouts.md
 this.basename: nested-layouts
+this.extname:  .md
+this.ext:      .md
+
+#### no-layout-none.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/no-layout-none.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: no-layout-none.md
+this.pagename: no-layout-none.md
+this.basename: no-layout-none
 this.extname:  .md
 this.ext:      .md
 
@@ -496,8 +508,30 @@ page.basename:
 page.extname:  
 page.ext:      
 
+#### assets.md
+page.assets:   
+page.dest:     
+page.absolute: 
+page.dirname:  
+page.filename: 
+page.pagename: 
+page.basename: 
+page.extname:  
+page.ext:      
+
 
 ### {{#each pages}} "page" context
+
+#### assets.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/assets.md
+dirname:       test/actual/multi/dest1
+filename:      assets.md
+pagename:      assets.md
+basename:      assets
+extname:       .md
+ext:           .md
 
 #### assets.md
 assets:        ../../assets
