@@ -59,6 +59,7 @@ This example shows that the properties from "example.json" and "example.hbs" are
 [html-helpers](html-helpers.md)
 [md-helper](md-helper.md)
 [nested-layouts](nested-layouts.md)
+[no-layout-none](no-layout-none.md)
 [no-layout](no-layout.md)
 [page](page.md)
 [simple3](simple3.md)
@@ -251,6 +252,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: nested-layouts.md
 this.pagename: nested-layouts.md
 this.basename: nested-layouts
+this.extname:  .md
+this.ext:      .md
+
+#### no-layout-none.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/no-layout-none.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: no-layout-none.md
+this.pagename: no-layout-none.md
+this.basename: no-layout-none
 this.extname:  .md
 this.ext:      .md
 
@@ -510,8 +522,30 @@ page.basename: example
 page.extname:  .md
 page.ext:      .md
 
+#### example.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/example.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: example.md
+page.pagename: example.md
+page.basename: example
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### example.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/example.md
+dirname:       test/actual/multi/dest1
+filename:      example.md
+pagename:      example.md
+basename:      example
+extname:       .md
+ext:           .md
 
 #### example.md
 assets:        ../../assets
