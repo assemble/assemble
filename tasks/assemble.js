@@ -51,12 +51,12 @@ module.exports = function(grunt) {
       });
 
       if(!src || src.length === 0) {
-        // check if there's a pages collection
-        if(!assemble.options.pages || assemble.options.pages.length === 0) {
+        // check if there's a pages
+        if(!assemble.options.pages) {
           grunt.warn('No source files found.');
           done(false);
         } else {
-          src = lodash.pluck(assemble.options.pages, ['filename']);
+          src = lodash.keys(assemble.options.pages);
         }
       }
 
@@ -218,7 +218,7 @@ module.exports = function(grunt) {
           grunt.warn('Missing src property.');
           return false;
         }
-        if(filePair.src.length === 0 && (!assemble.options.pages || assemble.options.pages.length === 0)) {
+        if(filePair.src.length === 0 && (!assemble.options.pages)) {
           grunt.warn('Source files not found.');
           return false;
         }
@@ -350,12 +350,12 @@ module.exports = function(grunt) {
 
         // if there is a pages property, build all those
         if(assemble.options.pages) {
-          assemble.options.pages.forEach(function(fileInfo) {
-            if(!fileInfo.filename || fileInfo.filename.length === 0) {
+          lodash.forOwn(assemble.options.pages, function(fileInfo, filename) {
+            if(!filename || filename.length === 0) {
               grunt.warn('Pages need a filename.');
               return false;
             }
-            if(!buildPage(fileInfo.filename, fileInfo)) {
+            if(!buildPage(filename, fileInfo)) {
               return false;
             }
           });
