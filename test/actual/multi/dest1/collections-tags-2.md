@@ -37,13 +37,7 @@
   assets: '../../assets',
   ext: '.md',
   extname: '.md',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
+  page: '\n\n<ul>\n{{#tags}}\n\t<li>{{tag}}</li>\n{{/tags}}\n</ul>\n',
   data: 
    { title: 'Tags Test',
      tags: [ 'tags', 'test', 'something', [length]: 3 ] } }

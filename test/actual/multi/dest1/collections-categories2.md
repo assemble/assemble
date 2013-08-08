@@ -37,13 +37,7 @@
   assets: '../../assets',
   ext: '.md',
   extname: '.md',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
+  page: '\n\n<ul>\n{{#categories}}\n  <li>{{category}}</li>\n{{/categories}}\n</ul>\n',
   data: 
    { title: 'Categories Test',
      categories: [ 'categories', 'test', 'something', [length]: 3 ] } }

@@ -54,31 +54,25 @@
     <div class="container" style="display: none">
       <h2>Debug Info</h2>
       <pre class="json">
-{ title: 'Associative arrays',
+{ _page: 'all',
   people: { name: 'John Smith', age: 33 },
-  morePeople: { name: 'Grace Jones', age: 21 },
-  _page: 'all',
-  dirname: 'test/actual/yfm',
-  filename: 'associative-arrays.html',
-  pageName: 'associative-arrays.html',
   pagename: 'associative-arrays.html',
-  basename: 'associative-arrays',
-  src: 'test/templates/pages/yfm/associative-arrays.hbs',
+  title: 'Associative arrays',
+  extname: '.html',
+  ext: '.html',
   dest: 'test/actual/yfm/associative-arrays.html',
   assets: '../assets',
-  ext: '.html',
-  extname: '.html',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
+  src: 'test/templates/pages/yfm/associative-arrays.hbs',
+  dirname: 'test/actual/yfm',
   data: 
    { title: 'Associative arrays',
      people: { name: 'John Smith', age: 33 },
-     morePeople: { name: 'Grace Jones', age: 21 } } }
+     morePeople: { name: 'Grace Jones', age: 21 } },
+  morePeople: { name: 'Grace Jones', age: 21 },
+  pageName: 'associative-arrays.html',
+  page: '\n<div class="page-header">\n  <h1>{{{title}}}</h1> \n</div>\n\n<div class="examples">\n  <h4>Associative arrays</h4>\n  <dl class="dl-horizontal">\n    {{#people}}\n      <dt>Name:</dt> <dd>{{name}}</dd>\n      <dt>Age:</dt>  <dd>{{age}}</dd>\n    {{/people}}\n    {{#morePeople}}\n      <dt>Name:</dt> <dd>{{name}}</dd>\n      <dt>Age:</dt>  <dd>{{age}}</dd>\n    {{/morePeople}}\n  </dl>\n</div>',
+  basename: 'associative-arrays',
+  filename: 'associative-arrays.html' }
 </pre>
     </div>
 

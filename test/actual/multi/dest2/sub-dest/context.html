@@ -662,13 +662,7 @@
   assets: '../../../assets',
   ext: '.html',
   extname: '.html',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
+  page: '\n\n<li><a href="#" id="title">{{title}}</a></li>\n<li><a href="#" id="this-title">{{this.title}}</a></li>\n<li><a href="#" id="page-title">{{page.title}}</a></li>\n<li><a href="#" id="data-title">{{data.title}}</a></li>\n\n<hr>\n\n<li><a href="#" id="basename">{{basename}}</a></li>\n<li><a href="#" id="this-basename">{{this.basename}}</a></li>\n<li><a href="#" id="page-basename">{{page.basename}}</a></li>\n<li><a href="#" id="data-basename">{{data.basename}}</a></li>\n\n<hr>\n\n<ul id="basename-collection">\n  {{#each pages}}\n    <li><a href="#" id="basename">{{basename}}</a></li>\n    <li><a href="#" id="parent-basename">{{../basename}}</a></li>\n    <li><a href="#" id="this-basename">{{this.basename}}</a></li>\n    <li><a href="#" id="page-basename">{{page.basename}}</a></li>\n    <li><a href="#" id="data-basename">{{data.basename}}</a></li>\n  {{/each}}\n</ul>\n\n<ul id="title-collection">\n  {{#each pages}}\n    <li><a href="#" id="title">{{title}}</a></li>\n    <li><a href="#" id="parent-title">{{../title}}</a></li>\n    <li><a href="#" id="this-title">{{this.title}}</a></li>\n    <li><a href="#" id="page-title">{{page.title}}</a></li>\n    <li><a href="#" id="data-title">{{data.title}}</a></li>\n  {{/each}}\n</ul>\n\n\n',
   data: { title: 'Overview', lead: 'Your new project!' } }
 </pre>
     </div>

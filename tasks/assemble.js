@@ -295,14 +295,14 @@ module.exports = function(grunt) {
             var pageInfo = assemble.data.readYFM(page, {fromFile: false});
             pageContext = useFileInfo ? (fileInfo.data || {}) : pageInfo.context;
 
-            // compile
-            assemble.engine.compile(pageInfo.content, null, function(err, tmpl) {
-              if(err) {
-                grunt.warn(err);
-                done(false);
-              }
-              page = tmpl;
-            });
+            // // compile
+            // assemble.engine.compile(pageInfo.content, null, function(err, tmpl) {
+            //   if(err) {
+            //     grunt.warn(err);
+            //     done(false);
+            //   }
+            //   page = tmpl;
+            // });
 
             var pageObj = {
               '_page': 'all',
@@ -316,7 +316,7 @@ module.exports = function(grunt) {
               assets: assemble.options.assets,
               ext: assemble.options.ext,
               extname: assemble.options.ext,
-              page: page,
+              page: pageInfo.content,
               data: pageContext
             };
 
