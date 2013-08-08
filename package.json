@@ -41,9 +41,10 @@
     "lodash": "~1.1.1",
     "marked": "~0.2.8",
     "highlight.js": "~7.3.0",
-    "assemble-handlebars": "https://github.com/assemble/assemble-handlebars/tarball/master",
     "inflection": "~1.2.5",
-    "js-yaml": "~2.0.5"
+    "js-yaml": "~2.0.5",
+    "grunt": "~0.4.1",
+    "assemble-handlebars": "~0.1.6"
   },
   "devDependencies": {
     "chai": "~1.5.0",
