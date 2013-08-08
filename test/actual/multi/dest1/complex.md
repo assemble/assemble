@@ -23,13 +23,7 @@
   assets: '../../assets',
   ext: '.md',
   extname: '.md',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
+  page: '\n\n<span class="alert alert-info">This is an alert</span>\n',
   data: { foo: 'bar', version: 2 } }
 ```
 
