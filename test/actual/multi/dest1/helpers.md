@@ -11,16 +11,16 @@
 
 <h2>css helper</h2>
 Example of using a custom "css" helper.
-<link rel="stylesheet" href="../../assets/css/css/bootstrap.css?v=1375341911370">
-<link rel="stylesheet" href="../../assets/css/css/responsive.css?v=1375341911370">
-<link rel="stylesheet" href="../../assets/css/css/main.css?v=1375341911370">
+<link rel="stylesheet" href="../../assets/css/css/bootstrap.css?v=1375933348218">
+<link rel="stylesheet" href="../../assets/css/css/responsive.css?v=1375933348218">
+<link rel="stylesheet" href="../../assets/css/css/main.css?v=1375933348218">
 
 
 <h2>js helper</h2>
 Example of using a custom "js" helper.
-<script src="../../assets/js/js/bootstrap.js?v=1375341911370"></script>
-<script src="../../assets/js/js/responsive.js?v=1375341911370"></script>
-<script src="../../assets/js/js/main.js?v=1375341911370"></script>
+<script src="../../assets/js/js/bootstrap.js?v=1375933348218"></script>
+<script src="../../assets/js/js/responsive.js?v=1375933348218"></script>
+<script src="../../assets/js/js/main.js?v=1375933348218"></script>
 
 
 <h2>custom variables</h2>
@@ -32,26 +32,35 @@ Example of using a custom "js" helper.
 ## Debug Info
 ``` json
 [ 'test/helpers/helper-*.js',
-  [length]: 1,
-  _page: 'all',
-  dest: 'test/actual/multi/dest1/helpers.md',
-  styles: '<link rel="stylesheet" href="css/index.css"/>',
-  javascripts: [ 'js/bootstrap.js',
-    'js/responsive.js',
-    'js/main.js',
-    [length]: 3 ],
-  filename: 'helpers.md',
-  assets: '../../assets',
+  script: 'document.write(\'foo bar!\');',
+  src: 'test/templates/pages/helpers.hbs',
   ext: '.md',
+  title: 'Helpers and custom variables',
+  extname: '.md',
+  [length]: 1,
+  basename: 'helpers',
+  pagename: 'helpers.md',
+  dirname: 'test/actual/multi/dest1',
+  page: { [Function]
+    [length]: 2,
+    [name]: '',
+    [arguments]: null,
+    [caller]: null,
+    [prototype]: { [constructor]: [Circular] } },
+  filename: 'helpers.md',
+  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
+  dest: 'test/actual/multi/dest1/helpers.md',
   stylesheets: [ 'css/bootstrap.css',
     'css/responsive.css',
     'css/main.css',
     [length]: 3 ],
+  javascripts: [ 'js/bootstrap.js',
+    'js/responsive.js',
+    'js/main.js',
+    [length]: 3 ],
   pageName: 'helpers.md',
-  dirname: 'test/actual/multi/dest1',
-  basename: 'helpers',
-  src: 'test/templates/pages/helpers.hbs',
-  extname: '.md',
+  styles: '<link rel="stylesheet" href="css/index.css"/>',
+  assets: '../../assets',
   data: { title: 'Helpers and custom variables',
     description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
     stylesheets: 
@@ -66,16 +75,7 @@ Example of using a custom "js" helper.
        [length]: 3 ],
     styles: '<link rel="stylesheet" href="css/index.css"/>',
     script: 'document.write(\'foo bar!\');' },
-  title: 'Helpers and custom variables',
-  pagename: 'helpers.md',
-  script: 'document.write(\'foo bar!\');',
-  page: { [Function]
-    [length]: 2,
-    [name]: '',
-    [arguments]: null,
-    [caller]: null,
-    [prototype]: { [constructor]: [Circular] } },
-  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n' ]
+  _page: 'all' ]
 ```
 
 
@@ -89,12 +89,15 @@ Example of using a custom "js" helper.
 [complex](complex.md)
 [context](context.md)
 [debug-helpers](debug-helpers.md)
+[deep-nested-layouts](deep-nested-layouts.md)
 [assets](assets.md)
 [gist-helper](gist-helper.md)
 [helpers](helpers.md)
 [home](home.md)
 [html-helpers](html-helpers.md)
 [md-helper](md-helper.md)
+[nested-layouts](nested-layouts.md)
+[no-layout-none](no-layout-none.md)
 [no-layout](no-layout.md)
 [page](page.md)
 [simple3](simple3.md)
@@ -202,6 +205,17 @@ this.basename: debug-helpers
 this.extname:  .md
 this.ext:      .md
 
+#### deep-nested-layouts.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/deep-nested-layouts.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: deep-nested-layouts.md
+this.pagename: deep-nested-layouts.md
+this.basename: deep-nested-layouts
+this.extname:  .md
+this.ext:      .md
+
 #### assets.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/assets.md
@@ -265,6 +279,28 @@ this.dirname:  test/actual/multi/dest1
 this.filename: md-helper.md
 this.pagename: md-helper.md
 this.basename: md-helper
+this.extname:  .md
+this.ext:      .md
+
+#### nested-layouts.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/nested-layouts.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: nested-layouts.md
+this.pagename: nested-layouts.md
+this.basename: nested-layouts
+this.extname:  .md
+this.ext:      .md
+
+#### no-layout-none.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/no-layout-none.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: no-layout-none.md
+this.pagename: no-layout-none.md
+this.basename: no-layout-none
 this.extname:  .md
 this.ext:      .md
 
@@ -502,8 +538,74 @@ page.basename: helpers
 page.extname:  .md
 page.ext:      .md
 
+#### helpers.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/helpers.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: helpers.md
+page.pagename: helpers.md
+page.basename: helpers
+page.extname:  .md
+page.ext:      .md
+
+#### helpers.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/helpers.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: helpers.md
+page.pagename: helpers.md
+page.basename: helpers
+page.extname:  .md
+page.ext:      .md
+
+#### helpers.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/helpers.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: helpers.md
+page.pagename: helpers.md
+page.basename: helpers
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### helpers.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/helpers.md
+dirname:       test/actual/multi/dest1
+filename:      helpers.md
+pagename:      helpers.md
+basename:      helpers
+extname:       .md
+ext:           .md
+
+#### helpers.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/helpers.md
+dirname:       test/actual/multi/dest1
+filename:      helpers.md
+pagename:      helpers.md
+basename:      helpers
+extname:       .md
+ext:           .md
+
+#### helpers.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/helpers.md
+dirname:       test/actual/multi/dest1
+filename:      helpers.md
+pagename:      helpers.md
+basename:      helpers
+extname:       .md
+ext:           .md
 
 #### helpers.md
 assets:        ../../assets

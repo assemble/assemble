@@ -4,8 +4,6 @@
 
 ### [See the live docs →](http://assemble.io)
 
-
-
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
 
@@ -189,4 +187,4 @@ Visit [Assemble's documentation](http://assemble.io) for many more examples and 
 
 Project authored by [Jon Schlinkert](https://github.com/jonschlinkert/).
 
-_This file was generated on Thu Aug 01 2013 01:48:53._
+_This file was generated on Wed Aug 07 2013 23:40:11._

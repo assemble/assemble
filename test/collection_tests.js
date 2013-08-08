@@ -6,7 +6,7 @@ var grunt = require('grunt');
 var path = require('path');
 
 var getCollection = function(file) {
-  return grunt.file.readJSON(path.join('.', 'test', 'data', 'collections', file));
+  return grunt.file.readJSON(path.join('./test/data/collections', file));
 };
 
 var fakeCollection = getCollection('fakeCollection.json');

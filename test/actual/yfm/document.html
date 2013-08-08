@@ -139,39 +139,31 @@ Suite 16
     <div class="container" style="display: none">
       <h2>Debug Info</h2>
       <pre class="json">
-{ 'ship-to': 
+{ page: 
+   { [Function]
+     [length]: 2,
+     [name]: '',
+     [arguments]: null,
+     [caller]: null,
+     [prototype]: { [constructor]: [Circular] } },
+  src: 'test/templates/pages/yfm/document.hbs',
+  ext: '.html',
+  filename: 'document.html',
+  customer: { given: 'Dorothy', family: 'Gale' },
+  extname: '.html',
+  dest: 'test/actual/yfm/document.html',
+  basename: 'document',
+  assets: '../assets',
+  pageName: 'document.html',
+  prettyDate: '2007-08-05',
+  'bill-to': 
    { street: '123 Tornado Alley\r\nSuite 16\r\n',
      city: 'East Centerville',
      state: 'KS' },
-  data: 
-   { 'ship-to': 
-      { street: '123 Tornado Alley\r\nSuite 16\r\n',
-        city: 'East Centerville',
-        state: 'KS' },
-     customer: { given: 'Dorothy', family: 'Gale' },
-     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-     items: 
-      [ { part_no: 'A4786',
-          descrip: 'Water Bucket (Filled)',
-          price: 1.47,
-          quantity: 4 },
-        { part_no: 'E1628',
-          descrip: 'High Heeled "Ruby" Slippers',
-          size: 8,
-          price: 100.27,
-          quantity: 1 },
-        [length]: 2 ],
-     receipt: 'Oz-Ware Purchase Invoice',
-     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\r\n',
-     'bill-to': 
-      { street: '123 Tornado Alley\r\nSuite 16\r\n',
-        city: 'East Centerville',
-        state: 'KS' },
-     prettyDate: '2007-08-05' },
-  _page: 'all',
-  customer: { given: 'Dorothy', family: 'Gale' },
+  receipt: 'Oz-Ware Purchase Invoice',
+  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\r\n',
   date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
-  dest: 'test/actual/yfm/document.html',
+  dirname: 'test/actual/yfm',
   items: 
    [ { part_no: 'A4786',
        descrip: 'Water Bucket (Filled)',
@@ -184,28 +176,36 @@ Suite 16
        quantity: 1 },
      [length]: 2 ],
   pagename: 'document.html',
-  receipt: 'Oz-Ware Purchase Invoice',
-  specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\r\n',
-  filename: 'document.html',
-  assets: '../assets',
-  'bill-to': 
+  data: 
+   { customer: { given: 'Dorothy', family: 'Gale' },
+     prettyDate: '2007-08-05',
+     'bill-to': 
+      { street: '123 Tornado Alley\r\nSuite 16\r\n',
+        city: 'East Centerville',
+        state: 'KS' },
+     receipt: 'Oz-Ware Purchase Invoice',
+     specialDelivery: 'Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\r\n',
+     date: Sun Aug 05 2007 20:00:00 GMT-0400 (Eastern Daylight Time),
+     items: 
+      [ { part_no: 'A4786',
+          descrip: 'Water Bucket (Filled)',
+          price: 1.47,
+          quantity: 4 },
+        { part_no: 'E1628',
+          descrip: 'High Heeled "Ruby" Slippers',
+          size: 8,
+          price: 100.27,
+          quantity: 1 },
+        [length]: 2 ],
+     'ship-to': 
+      { street: '123 Tornado Alley\r\nSuite 16\r\n',
+        city: 'East Centerville',
+        state: 'KS' } },
+  'ship-to': 
    { street: '123 Tornado Alley\r\nSuite 16\r\n',
      city: 'East Centerville',
      state: 'KS' },
-  pageName: 'document.html',
-  dirname: 'test/actual/yfm',
-  basename: 'document',
-  src: 'test/templates/pages/yfm/document.hbs',
-  extname: '.html',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
-  ext: '.html',
-  prettyDate: '2007-08-05' }
+  _page: 'all' }
 </pre>
     </div>
 
