@@ -565,9 +565,10 @@ module.exports = function(grunt) {
       // "pageName" is deprecated, use "pagename" or "filename"
       context.pageName = currentPage.filename;
 
-      assemble.options.registerPartial(assemble.engine, 'body', page);
+      //assemble.options.registerPartial(assemble.engine, 'body', page);
+      page = layout.layout.replace(assemble.engine.bodyRegex, page);
 
-      assemble.engine.render(layout.layout, context, function(err, content) {
+      assemble.engine.render(page, context, function(err, content) {
         if(err) {
           callback(err);
         }
@@ -610,7 +611,7 @@ module.exports = function(grunt) {
       // if the src is empty, create a default layout in memory
       if(!src || src === false || src === '' || src.length === 0 || src === 'none') {
         loadFile = false;
-        layout = '{{>body}}';
+        layout = assemble.engine.startDelimiter + ' body ' + assemble.engine.endDelimiter; // '{{>body}}';
       }
 
       if(loadFile) {
@@ -631,7 +632,7 @@ module.exports = function(grunt) {
         // load layout
         layoutName = _.first(layout.match(assemble.filenameRegex)).replace(assemble.fileExtRegex,'');
         layout = grunt.file.read(layout);
-        //layout = layout.replace(/{{>\s*body\s*}}/, '{{{body}}}');
+        layout = layout.replace(/{{>\s*body\s*}}/, assemble.engine.startDelimiter + ' body ' + assemble.engine.endDelimiter);
       }
 
       // If options.removeHbsWhitespace is true
@@ -657,25 +658,25 @@ module.exports = function(grunt) {
 
     var finalResults = {
       layoutName: '',
-      layout: '{{>body}}',
+      layout: assemble.engine.startDelimiter + 'body' + assemble.engine.endDelimiter, // '{{>body}}',
       data: {}
     };
 
     while (layoutInfo = layoutStack.pop()) {
-      finalResults.layout = finalResults.layout.replace(/{{>\s*body\s*}}/, layoutInfo.layout);
+      finalResults.layout = finalResults.layout.replace(assemble.engine.bodyRegex, layoutInfo.layout);
       finalResults.data = _.extend(finalResults.data, layoutInfo.data);
       finalResults.layoutName = layoutInfo.layoutName;
     }
     
-    assemble.engine.compile(finalResults.layout, null, function(err, tmpl) {
-      if(err) {
-        grunt.warn(err);
-        if(callback) {
-          callback(err);
-        }
-      }
-      finalResults.layout = tmpl;
-    });
+    // assemble.engine.compile(finalResults.layout, null, function(err, tmpl) {
+    //   if(err) {
+    //     grunt.warn(err);
+    //     if(callback) {
+    //       callback(err);
+    //     }
+    //   }
+    //   finalResults.layout = tmpl;
+    // });
 
 
     if(callback) {
