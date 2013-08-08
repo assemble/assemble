@@ -7,7 +7,7 @@ Default: `undefined`
 Used with the `{{assets}}` variable to resolve the relative path from the _dest file_ to the _assets_ folder.
 
 ## [data](http://assemble.io/docs/options-data.html)
-Type: `Object|Array`
+Type: `String|Array`
 Default: `src/data`
 
 Specify the data to supply to your templates. Data may be formatted in `JSON`, `YAML` or [YAML front matter](http://assemble.io/docs/YAML-front-matter.html).
@@ -27,13 +27,13 @@ If set, this defines the layout file to use for the [task or target][tasks-and-t
 [tasks-and-targets]: http://gruntjs.com/configuring-tasks#task-configuration-and-targets
 
 ## [partials](http://assemble.io/docs/options-partials.html)
-Type:  `Object|Array`
+Type:  `String|Array`
 Default: `undefined`
 
 Specifies the Handlebars partials files, or paths to the directories of files to be used.
 
 ## [helpers](http://assemble.io/docs/options-helpers.html)
-Type: `Object|Array`
+Type: `String|Array`
 Default: [handlebars-helpers](http://github.com/assemble/handlebars-helpers)
 
 Path to the custom helper or helpers to use with the current template engine.
