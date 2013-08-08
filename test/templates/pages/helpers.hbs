@@ -12,7 +12,7 @@ javascripts:
 - js/responsive.js
 - js/main.js
 styles: <link rel="stylesheet" href="css/index.css"/>
-scripts: document.write('foo bar!');
+script: document.write('foo bar!');
 ---
 <div class="page-header">
   <h1>{{title}}</h1>
@@ -20,15 +20,15 @@ scripts: document.write('foo bar!');
 </div>
 
 <h2>css helper</h2>
-Example of using the "css" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
+Example of using a custom "css" helper.
 {{css stylesheets}}
 
 
 <h2>js helper</h2>
-Example of using the "js" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
+Example of using a custom "js" helper.
 {{js javascripts}}
 
 
 <h2>custom variables</h2>
 {{{styles}}}
-<script>{{{scripts}}}</script>
+<script>{{{script}}}</script>
