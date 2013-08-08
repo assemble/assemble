@@ -56,31 +56,19 @@
 
 ## Debug Info
 ``` json
-{ text: 'helpers.js',
-  links: [ 'one', 'two', 'three', [length]: 3 ],
+{ _page: 'all',
+  pagename: 'html-helpers.md',
+  extname: '.md',
   moreLinks: 
    [ { url: 'one', text: 'two' },
      { url: 'three', text: 'four' },
      { url: 'five', text: 'size' },
      [length]: 3 ],
-  _page: 'all',
-  dirname: 'test/actual/multi/dest1',
-  filename: 'html-helpers.md',
-  pageName: 'html-helpers.md',
-  pagename: 'html-helpers.md',
-  basename: 'html-helpers',
-  src: 'test/templates/pages/html-helpers.hbs',
+  ext: '.md',
   dest: 'test/actual/multi/dest1/html-helpers.md',
   assets: '../../assets',
-  ext: '.md',
-  extname: '.md',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
+  src: 'test/templates/pages/html-helpers.hbs',
+  dirname: 'test/actual/multi/dest1',
   data: 
    { text: 'helpers.js',
      links: [ 'one', 'two', 'three', [length]: 3 ],
@@ -88,7 +76,13 @@
       [ { url: 'one', text: 'two' },
         { url: 'three', text: 'four' },
         { url: 'five', text: 'size' },
-        [length]: 3 ] } }
+        [length]: 3 ] },
+  text: 'helpers.js',
+  pageName: 'html-helpers.md',
+  page: '\n{{#markdown}}\n\n## HTML list helpers.\n\n### \\{{ul}} helper\n{{#ul links class="nav"}}\n  {{.}}\n{{/ul}}\n\n{{#ul moreLinks class="nav"}}\n  <a href="{{url}}">{{text}}</a>\n{{/ul}}\n\n### \\{{ol}} helper\n{{#ol links class="nav"}}\n  {{.}}\n{{/ol}}\n\n{{#ol moreLinks class="nav"}}\n  <a href="{{url}}">{{text}}</a>\n{{/ol}}\n\n### \\{{link}} helper\n{{_link url text}}\n{{_link \'http://github.com\' \'GitHub\'}}\n{{_link \'http://github.com\' \'GitHub\' \'nav-link\'}}\n\n{{/markdown}}{{! /end markdown}}\n',
+  links: [ 'one', 'two', 'three', [length]: 3 ],
+  basename: 'html-helpers',
+  filename: 'html-helpers.md' }
 ```
 
 

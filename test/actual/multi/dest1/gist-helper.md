@@ -23,13 +23,7 @@
   assets: '../../assets',
   ext: '.md',
   extname: '.md',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
+  page: '\n\n{{#markdown}}\n\n# \\{{gist}} helper\n{{gist \'5193239\'}}\n\n{{/markdown}}',
   data: {} }
 ```
 

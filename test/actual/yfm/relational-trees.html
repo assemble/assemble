@@ -205,13 +205,7 @@
   assets: '../assets',
   ext: '.html',
   extname: '.html',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
+  page: '\n<div class="page-header">\n  <h4>{{{title}}}</h4> \n</div>\n\n<div class="examples">\n  <h4>Associative arrays</h4>\n  <dl class="dl-horizontal">\n    {{#each steps}}\n      {{#each step}}\n        <dt>{{@key}}</dt> \n        <dd>{{.}}</dd>\n      {{/each}}\n      <hr>\n    {{/each}}\n  </dl>\n</div>',
   data: 
    { title: 'Relational Trees - References',
      steps: 

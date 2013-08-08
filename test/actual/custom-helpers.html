@@ -22,7 +22,7 @@
   <body>
     <h3>Example using the foo helper</h3>
     <!-- Below is an example of using the opt helper and getting the version property from the passed-in assemble.options -->
-    <div>Version: 0.4.3</div>
+    <div>Version: 0.4.4</div>
   </body>
 </html>
 
@@ -50,13 +50,7 @@
   assets: 'assets',
   ext: '.html',
   extname: '.html',
-  page: 
-   { [Function]
-     [length]: 2,
-     [name]: '',
-     [arguments]: null,
-     [caller]: null,
-     [prototype]: { [constructor]: [Circular] } },
+  page: '<!doctype html>\n<html>\n  <head>\n    <title>Custom Helpers example</title>\n  </head>\n  <body>\n    <h3>Example using the foo helper</h3>\n    {{{foo \'Below is an example of using the opt helper and getting the version property from the passed-in assemble.options\'}}}\n    <div>Version: {{opt \'version\'}}</div>\n  </body>\n</html>\n',
   data: {} }
 </pre>
     </div>
