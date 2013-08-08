@@ -13,7 +13,6 @@ module.exports = function(grunt) {
 
     // package.json
     pkg: grunt.file.readJSON('package.json'),
-    blog: grunt.file.readJSON('test/data/blog.json'),
 
     // Metadata
     meta: {
@@ -31,18 +30,15 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      options: {jshintrc: '.jshintrc'},
+      options: {
+        jshintrc: 'tasks/.jshintrc'
+      },
       files: [
         'Gruntfile.js',
         'lib/**/*.js',
         'tasks/**/*.js',
         'test/**/*.js'
       ]
-    },
-
-    // Example data for "pages_array" and "pages_object" targets
-    component: {
-      one: "alert"
     },
 
     // Included for running basic tests.
@@ -148,10 +144,10 @@ module.exports = function(grunt) {
       pages_array: {
         options: {
           engine: 'handlebars',
-          layout: 'post.hbs',
+          layout: "post.hbs",
           site: {
-            title: 'A Blog',
-            author: 'Jon Schlinkert'
+            title: "A Blog",
+            author: "Jon Schlinkert"
           },
           pages: [
             {
@@ -195,10 +191,10 @@ module.exports = function(grunt) {
           pages: {
             'sweet-blog-post-1': {
               data: {
-                title: 'Sweet Blog Post #1',
+                title: "Sweet Blog Post #1",
                 gists: ['5898072']
               },
-              content: 'This "content" property is optional and would get passed into the "body" tag. But if you only need to pass the page\'s metadata to the layout then the content property is unnecessary.'
+              content: 'This "content" property is optional and would get passed into the `body` tag. But if you only need to pass the page\'s metadata to the layout then the content property is unnecessary.'
             },
             'awesome-blog-post-2': {
               data: {
@@ -230,7 +226,12 @@ module.exports = function(grunt) {
         }
       }
     },
+    // Example config for metadata
+    component: {
+      one: "alert"
+    },
 
+    // Run mocha tests.
     mochaTest: {
       files: ['test/**/*.js']
     },
@@ -240,8 +241,8 @@ module.exports = function(grunt) {
       }
     },
 
-    // Before generating new files,
-    // remove files from previous build.
+    // Before assembling new files, removed previously
+    // created files.
     clean: {
       tests: ['test/actual/**/*.{html,md}']
     }
@@ -253,18 +254,17 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
 
-  // Load the 'assemble' plugin.
+  // Load local tasks.
   grunt.loadTasks('tasks');
 
-  // Test nested layouts seperately.
+  // Default task.
+  grunt.registerTask('default', ['jshint', 'clean', 'assemble']);
+
   grunt.registerTask('nested', ['assemble:nested_layouts']);
 
+  //grunt.registerTask('debug', ['clean', 'assemble']);
+
   // Tests to be run.
-  grunt.registerTask('test', ['jshint', 'default', 'mochaTest']);
-
-  // Generate readme.
+  grunt.registerTask('test', ['default', 'mochaTest']);
   grunt.registerTask('docs', ['assemble-internal']);
-
-  // Default task.
-  grunt.registerTask('default', ['clean', 'assemble']);
 };

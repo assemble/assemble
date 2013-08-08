@@ -10,17 +10,17 @@
 </div>
 
 <h2>css helper</h2>
-Example of using a custom "css" helper.
-<link rel="stylesheet" href="../../assets/css/css/bootstrap.css?v=1375933348218">
-<link rel="stylesheet" href="../../assets/css/css/responsive.css?v=1375933348218">
-<link rel="stylesheet" href="../../assets/css/css/main.css?v=1375933348218">
+Example of using the "css" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
+<link rel="stylesheet" href="../../assets/css/css/bootstrap.css">
+<link rel="stylesheet" href="../../assets/css/css/responsive.css">
+<link rel="stylesheet" href="../../assets/css/css/main.css">
 
 
 <h2>js helper</h2>
-Example of using a custom "js" helper.
-<script src="../../assets/js/js/bootstrap.js?v=1375933348218"></script>
-<script src="../../assets/js/js/responsive.js?v=1375933348218"></script>
-<script src="../../assets/js/js/main.js?v=1375933348218"></script>
+Example of using the "js" helper from <a href="http://github.com/assemble/helper-lib">helper-lib</a>.
+<script src="../../assets/js/js/bootstrap.js"></script>
+<script src="../../assets/js/js/responsive.js"></script>
+<script src="../../assets/js/js/main.js"></script>
 
 
 <h2>custom variables</h2>
@@ -32,35 +32,26 @@ Example of using a custom "js" helper.
 ## Debug Info
 ``` json
 [ 'test/helpers/helper-*.js',
-  script: 'document.write(\'foo bar!\');',
-  src: 'test/templates/pages/helpers.hbs',
-  ext: '.md',
-  title: 'Helpers and custom variables',
-  extname: '.md',
-  [length]: 1,
-  basename: 'helpers',
+  _page: 'all',
   pagename: 'helpers.md',
-  dirname: 'test/actual/multi/dest1',
-  page: { [Function]
-    [length]: 2,
-    [name]: '',
-    [arguments]: null,
-    [caller]: null,
-    [prototype]: { [constructor]: [Circular] } },
-  filename: 'helpers.md',
+  title: 'Helpers and custom variables',
+  styles: '<link rel="stylesheet" href="css/index.css"/>',
   description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
+  ext: '.md',
+  scripts: 'document.write(\'foo bar!\');',
   dest: 'test/actual/multi/dest1/helpers.md',
-  stylesheets: [ 'css/bootstrap.css',
-    'css/responsive.css',
-    'css/main.css',
-    [length]: 3 ],
+  assets: '../../assets',
   javascripts: [ 'js/bootstrap.js',
     'js/responsive.js',
     'js/main.js',
     [length]: 3 ],
-  pageName: 'helpers.md',
-  styles: '<link rel="stylesheet" href="css/index.css"/>',
-  assets: '../../assets',
+  extname: '.md',
+  stylesheets: [ 'css/bootstrap.css',
+    'css/responsive.css',
+    'css/main.css',
+    [length]: 3 ],
+  src: 'test/templates/pages/helpers.hbs',
+  dirname: 'test/actual/multi/dest1',
   data: { title: 'Helpers and custom variables',
     description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
     stylesheets: 
@@ -74,8 +65,17 @@ Example of using a custom "js" helper.
        'js/main.js',
        [length]: 3 ],
     styles: '<link rel="stylesheet" href="css/index.css"/>',
-    script: 'document.write(\'foo bar!\');' },
-  _page: 'all' ]
+    scripts: 'document.write(\'foo bar!\');' },
+  pageName: 'helpers.md',
+  page: { [Function]
+    [length]: 2,
+    [name]: '',
+    [arguments]: null,
+    [caller]: null,
+    [prototype]: { [constructor]: [Circular] } },
+  basename: 'helpers',
+  [length]: 1,
+  filename: 'helpers.md' ]
 ```
 
 
