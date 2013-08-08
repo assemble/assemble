@@ -76,6 +76,12 @@
   
     <li><a href="#" id="basename">[object Object]</a></li>
     <li><a href="#" id="parent-basename">context</a></li>
+    <li><a href="#" id="this-basename">deep-nested-layouts</a></li>
+    <li><a href="#" id="page-basename"></a></li>
+    <li><a href="#" id="data-basename"></a></li>
+  
+    <li><a href="#" id="basename">[object Object]</a></li>
+    <li><a href="#" id="parent-basename">context</a></li>
     <li><a href="#" id="this-basename">assets</a></li>
     <li><a href="#" id="page-basename"></a></li>
     <li><a href="#" id="data-basename"></a></li>
@@ -107,6 +113,18 @@
     <li><a href="#" id="basename">[object Object]</a></li>
     <li><a href="#" id="parent-basename">context</a></li>
     <li><a href="#" id="this-basename">md-helper</a></li>
+    <li><a href="#" id="page-basename"></a></li>
+    <li><a href="#" id="data-basename"></a></li>
+  
+    <li><a href="#" id="basename">[object Object]</a></li>
+    <li><a href="#" id="parent-basename">context</a></li>
+    <li><a href="#" id="this-basename">nested-layouts</a></li>
+    <li><a href="#" id="page-basename"></a></li>
+    <li><a href="#" id="data-basename"></a></li>
+  
+    <li><a href="#" id="basename">[object Object]</a></li>
+    <li><a href="#" id="parent-basename">context</a></li>
+    <li><a href="#" id="this-basename">no-layout-none</a></li>
     <li><a href="#" id="page-basename"></a></li>
     <li><a href="#" id="data-basename"></a></li>
   
@@ -190,6 +208,12 @@
     <li><a href="#" id="parent-title">Overview</a></li>
     <li><a href="#" id="this-title"></a></li>
     <li><a href="#" id="page-title"></a></li>
+    <li><a href="#" id="data-title">Three layouts deep</a></li>
+  
+    <li><a href="#" id="title"></a></li>
+    <li><a href="#" id="parent-title">Overview</a></li>
+    <li><a href="#" id="this-title"></a></li>
+    <li><a href="#" id="page-title"></a></li>
     <li><a href="#" id="data-title"></a></li>
   
     <li><a href="#" id="title"></a></li>
@@ -221,6 +245,18 @@
     <li><a href="#" id="this-title"></a></li>
     <li><a href="#" id="page-title"></a></li>
     <li><a href="#" id="data-title">md helper</a></li>
+  
+    <li><a href="#" id="title"></a></li>
+    <li><a href="#" id="parent-title">Overview</a></li>
+    <li><a href="#" id="this-title"></a></li>
+    <li><a href="#" id="page-title"></a></li>
+    <li><a href="#" id="data-title">Home Page</a></li>
+  
+    <li><a href="#" id="title"></a></li>
+    <li><a href="#" id="parent-title">Overview</a></li>
+    <li><a href="#" id="this-title"></a></li>
+    <li><a href="#" id="page-title"></a></li>
+    <li><a href="#" id="data-title"></a></li>
   
     <li><a href="#" id="title"></a></li>
     <li><a href="#" id="parent-title">Overview</a></li>
@@ -282,12 +318,15 @@
 [complex](complex.md)
 [context](context.md)
 [debug-helpers](debug-helpers.md)
+[deep-nested-layouts](deep-nested-layouts.md)
 [assets](assets.md)
 [gist-helper](gist-helper.md)
 [helpers](helpers.md)
 [home](home.md)
 [html-helpers](html-helpers.md)
 [md-helper](md-helper.md)
+[nested-layouts](nested-layouts.md)
+[no-layout-none](no-layout-none.md)
 [no-layout](no-layout.md)
 [page](page.md)
 [simple3](simple3.md)
@@ -395,6 +434,17 @@ this.basename: debug-helpers
 this.extname:  .md
 this.ext:      .md
 
+#### deep-nested-layouts.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/deep-nested-layouts.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: deep-nested-layouts.md
+this.pagename: deep-nested-layouts.md
+this.basename: deep-nested-layouts
+this.extname:  .md
+this.ext:      .md
+
 #### assets.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/assets.md
@@ -458,6 +508,28 @@ this.dirname:  test/actual/multi/dest1
 this.filename: md-helper.md
 this.pagename: md-helper.md
 this.basename: md-helper
+this.extname:  .md
+this.ext:      .md
+
+#### nested-layouts.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/nested-layouts.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: nested-layouts.md
+this.pagename: nested-layouts.md
+this.basename: nested-layouts
+this.extname:  .md
+this.ext:      .md
+
+#### no-layout-none.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/no-layout-none.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: no-layout-none.md
+this.pagename: no-layout-none.md
+this.basename: no-layout-none
 this.extname:  .md
 this.ext:      .md
 
@@ -695,8 +767,74 @@ page.basename: context
 page.extname:  .md
 page.ext:      .md
 
+#### context.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/context.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: context.md
+page.pagename: context.md
+page.basename: context
+page.extname:  .md
+page.ext:      .md
+
+#### context.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/context.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: context.md
+page.pagename: context.md
+page.basename: context
+page.extname:  .md
+page.ext:      .md
+
+#### context.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/context.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: context.md
+page.pagename: context.md
+page.basename: context
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### context.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/context.md
+dirname:       test/actual/multi/dest1
+filename:      context.md
+pagename:      context.md
+basename:      context
+extname:       .md
+ext:           .md
+
+#### context.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/context.md
+dirname:       test/actual/multi/dest1
+filename:      context.md
+pagename:      context.md
+basename:      context
+extname:       .md
+ext:           .md
+
+#### context.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/context.md
+dirname:       test/actual/multi/dest1
+filename:      context.md
+pagename:      context.md
+basename:      context
+extname:       .md
+ext:           .md
 
 #### context.md
 assets:        ../../assets

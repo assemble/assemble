@@ -177,6 +177,51 @@ module.exports = function(grunt) {
         files: {
           'test/actual/blog/': ['test/templates/pages/blog/index.hbs']
         }
+      },
+      pages_object: {
+        options: {
+          engine: 'handlebars',
+          layout: 'post.hbs',
+          site: {
+            title: 'Another Blog',
+            author: 'Brian Woodward'
+          },
+          pages: {
+            'sweet-blog-post-1': {
+              data: {
+                title: "Sweet Blog Post #1",
+                gists: ['5898072']
+              },
+              content: 'This "content" property is optional and would get passed into the `body` tag. But if you only need to pass the page\'s metadata to the layout then the content property is unnecessary.'
+            },
+            'awesome-blog-post-2': {
+              data: {
+                title: 'Awesome Blog Post #2',
+                subtitle: '',
+                gists: ['5898077', '5898078']
+              },
+              content: "<h1>{{title}} | {{site.title}}</h1>\n {{> <%= component.one %> }} The current version of Assemble is v<%= pkg.version %>."
+            },
+            'super-sweet-and-awesome-blog-post-3': {
+              data: {
+                title: "Super Sweet and Awesome Blog Post #3",
+                gists: ['5898072']
+              }
+            }
+          }
+        },
+        files: {
+          'test/actual/object-blog/': ['test/templates/pages/blog/index.hbs']
+        }
+      },
+      nested_layouts: {
+        options: {
+          layoutdir: 'test/templates/layouts',
+          layout: 'one.hbs'
+        },
+        files: {
+          'test/actual/nested-layouts/': ['test/templates/pages/*.hbs']
+        }
       }
     },
     // Example config for metadata
@@ -212,6 +257,10 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'clean', 'assemble']);
+
+  grunt.registerTask('nested', ['assemble:nested_layouts']);
+
+  //grunt.registerTask('debug', ['clean', 'assemble']);
 
   // Tests to be run.
   grunt.registerTask('test', ['default', 'mochaTest']);
