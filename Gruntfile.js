@@ -1,12 +1,14 @@
 /*
  * Assemble
  * http://github.com/assemble/assemble
- *
  * Copyright (c) 2013 Assemble
  * MIT License
  */
 
 module.exports = function(grunt) {
+
+  // Report elapsed execution time of grunt tasks.
+  require('time-grunt')(grunt);
 
   // Project configuration.
   grunt.initConfig({
@@ -39,51 +41,50 @@ module.exports = function(grunt) {
       ]
     },
 
-    // Included for running basic tests.
     assemble: {
       options: {
         flatten: true,
         layout: 'layout.hbs',
-        layoutdir: 'test/templates/layouts',
+        layoutdir: 'test/fixtures/layouts',
         helpers: 'test/helpers/helper-*.js',
         assets: 'test/actual/assets'
       },
       paths: {
         options: {
-          partials: 'test/templates/partials/*.hbs',
+          partials: 'test/fixtures/partials/*.hbs',
           layout: 'paths-example.hbs',
-          data: ['test/data/*.yml']
+          data: ['test/fixtures/data/*.yml']
         },
         files: {
-          'test/actual/paths/': ['test/templates/pages/*.hbs']
+          'test/actual/paths/': ['test/fixtures/pages/*.hbs']
         }
       },
       // Build one page
       single_page: {
         options: {
-          partials: 'test/templates/partials/*.hbs'
+          partials: 'test/fixtures/partials/*.hbs'
         },
         files: {
-          'test/actual/page.html': ['test/templates/pages/page.hbs']
+          'test/actual/page.html': ['test/fixtures/pages/page.hbs']
         }
       },
       // YAML front matter
       yfm: {
         options: {
-          data: 'test/data/*.{json,yml}'
+          data: 'test/fixtures/data/*.{json,yml}'
         },
         files: {
-          'test/actual/yfm/': ['test/templates/pages/yfm/*.hbs']
+          'test/actual/yfm/': ['test/fixtures/pages/yfm/*.hbs']
         }
       },
       markdown: {
         options: {
           layout: 'default.md.hbs',
-          data: ['test/data/*.json'],
+          data: ['test/fixtures/data/*.json'],
           ext: '.md'
         },
         files: {
-          'test/actual/multi/dest1/': ['test/templates/pages/*.hbs']
+          'test/actual/multi/dest1/': ['test/fixtures/pages/*.hbs']
         }
       },
       assets_one: {
@@ -92,7 +93,7 @@ module.exports = function(grunt) {
           assets_one: true
         },
         files: {
-          'test/actual/assets-public-folder.html': ['test/templates/pages/assets.hbs']
+          'test/actual/assets-public-folder.html': ['test/fixtures/pages/assets.hbs']
         }
       },
       assets_two: {
@@ -101,7 +102,7 @@ module.exports = function(grunt) {
           assets_two: true
         },
         files: {
-          'test/actual/assets-same-folder.html': ['test/templates/pages/assets.hbs']
+          'test/actual/assets-same-folder.html': ['test/fixtures/pages/assets.hbs']
         }
       },
       assets_three: {
@@ -110,7 +111,7 @@ module.exports = function(grunt) {
           assets_three: true
         },
         files: {
-          'test/actual/assets-root.html': ['test/templates/pages/assets.hbs']
+          'test/actual/assets-root.html': ['test/fixtures/pages/assets.hbs']
         }
       },
       custom_helpers: {
@@ -119,12 +120,12 @@ module.exports = function(grunt) {
           version: '<%= pkg.version %>'
         },
         files: {
-          'test/actual/custom-helpers.html': ['test/templates/pages/helpers/custom-helpers.hbs']
+          'test/actual/custom-helpers.html': ['test/fixtures/pages/helpers/custom-helpers.hbs']
         }
       },
       collections_example: {
         options: {
-          data: ['test/data/*.json'],
+          data: ['test/fixtures/data/*.json'],
           collections: [
             {
               name: 'tags',
@@ -134,9 +135,9 @@ module.exports = function(grunt) {
           ]
         },
         files: {
-          'test/actual/multi/dest1/': ['test/templates/pages/*.hbs'],
-          'test/actual/multi/dest2/': ['test/templates/pages/*.md'],
-          'test/actual/multi/dest2/sub-dest/': ['test/templates/pages/*.hbs']
+          'test/actual/multi/dest1/': ['test/fixtures/pages/*.hbs'],
+          'test/actual/multi/dest2/': ['test/fixtures/pages/*.md'],
+          'test/actual/multi/dest2/sub-dest/': ['test/fixtures/pages/*.hbs']
         }
       },
       pages_array: {
@@ -154,28 +155,28 @@ module.exports = function(grunt) {
                 title: "Blog Post #1",
                 gists: ["5898072"]
               },
-              content: "This \"content\" property is optional and would get passed into the `body` tag. But if you only need to pass the page's metadata to the layout then the content property is unnecessary."
+              content: 'This \"content\" property is optional and would get passed into the `body` tag. But if you only need to pass the page\'s metadata to the layout then the content property is unnecessary.'
             },
             {
-              filename: "post2",
+              filename: 'post2',
               data: {
-                title: "Blog Post #2",
+                title: 'Blog Post #2',
                 subtitle: "",
-                gists: ["5898077", "5898078"]
+                gists: ['5898077', '5898078']
               },
-              content: "<h1>{{title}} | {{site.title}}</h1>\n {{> <%= component.one %> }} The current version of Assemble is v<%= pkg.version %>."
+              content: '<h1>{{title}} | {{site.title}}</h1>\n {{> <%= component.one %> }} The current version of Assemble is v<%= pkg.version %>.'
             },
             {
-              filename: "post3",
+              filename: 'post3',
               data: {
-                title: "Blog Post #3",
-                gists: ["5909393"]
+                title: 'Blog Post #3',
+                gists: ['5909393']
               }
             }
           ]
         },
         files: {
-          'test/actual/blog/': ['test/templates/pages/blog/index.hbs']
+          'test/actual/blog/': ['test/fixtures/pages/blog/index.hbs']
         }
       },
       pages_object: {
@@ -189,7 +190,7 @@ module.exports = function(grunt) {
           pages: {
             'sweet-blog-post-1': {
               data: {
-                title: "Sweet Blog Post #1",
+                title: 'Sweet Blog Post #1',
                 gists: ['5898072']
               },
               content: 'This "content" property is optional and would get passed into the `body` tag. But if you only need to pass the page\'s metadata to the layout then the content property is unnecessary.'
@@ -200,33 +201,33 @@ module.exports = function(grunt) {
                 subtitle: '',
                 gists: ['5898077', '5898078']
               },
-              content: "<h1>{{title}} | {{site.title}}</h1>\n {{> <%= component.one %> }} The current version of Assemble is v<%= pkg.version %>."
+              content: '<h1>{{title}} | {{site.title}}</h1>\n {{> <%= component.one %> }} The current version of Assemble is v<%= pkg.version %>.'
             },
             'super-sweet-and-awesome-blog-post-3': {
               data: {
-                title: "Super Sweet and Awesome Blog Post #3",
+                title: 'Super Sweet and Awesome Blog Post #3',
                 gists: ['5898072']
               }
             }
           }
         },
         files: {
-          'test/actual/object-blog/': ['test/templates/pages/blog/index.hbs']
+          'test/actual/object-blog/': ['test/fixtures/pages/blog/index.hbs']
         }
       },
       nested_layouts: {
         options: {
-          layoutdir: 'test/templates/layouts',
+          layoutdir: 'test/fixtures/layouts',
           layout: 'one.hbs'
         },
         files: {
-          'test/actual/nested-layouts/': ['test/templates/pages/*.hbs']
+          'test/actual/nested-layouts/': ['test/fixtures/pages/*.hbs']
         }
       }
     },
     // Example config for metadata
     component: {
-      one: "alert"
+      one: 'alert'
     },
 
     // Run mocha tests.
