@@ -38,7 +38,6 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "assemble-handlebars": "https://github.com/assemble/assemble-handlebars/tarball/master",
     "highlight.js": "~7.3.0",
     "inflection": "~1.2.6",
     "js-yaml": "~2.1.0",
