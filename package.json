@@ -43,8 +43,9 @@
     "inflection": "~1.2.6",
     "js-yaml": "~2.1.0",
     "lodash": "~1.3.1",
-    "marked": "~0.2.9",    
-    "time-grunt": "~0.1.1"
+    "marked": "~0.2.9",
+    "time-grunt": "~0.1.1",
+    "assemble-front-matter": "~0.1.0"
   },
   "devDependencies": {
     "chai": "~1.5.0",
