@@ -17,7 +17,7 @@
   pageName: 'debug-helpers.md',
   pagename: 'debug-helpers.md',
   basename: 'debug-helpers',
-  src: 'test/templates/pages/debug-helpers.hbs',
+  src: 'test/fixtures/pages/debug-helpers.hbs',
   dest: 'test/actual/multi/dest1/debug-helpers.md',
   assets: '../../assets',
   ext: '.md',

@@ -96,7 +96,7 @@ module.exports = function(grunt) {
 
     var assembleDefaultLayout = function(assemble, next) {
 
-      grunt.log.writeln('Assembling'  + ' default layout'.cyan);
+      grunt.verbose.writeln('Assembling default layout'.cyan);
 
       // load default layout
       loadLayout(
@@ -115,7 +115,7 @@ module.exports = function(grunt) {
 
     var assemblePartials = function(assemble, next) {
 
-      grunt.log.writeln('Assembling'  + ' partials'.cyan);
+      grunt.verbose.writeln('Assembling partials'.cyan);
 
       var complete = 0;
       var increment = 10;
@@ -157,7 +157,7 @@ module.exports = function(grunt) {
 
     var assembleData = function(assemble, next) {
 
-      grunt.log.writeln('Assembling' + ' data'.cyan);
+      grunt.verbose.writeln('Assembling data'.cyan);
 
       // load data if specified
       var dataFiles = assemble.dataFiles;
@@ -378,7 +378,7 @@ module.exports = function(grunt) {
 
     var renderPages = function(assemble, next) {
 
-      grunt.log.writeln(('\n' + 'Assembling pages...').grey);
+      grunt.verbose.writeln(('\n' + 'Assembling pages...').yellow);
 
       assemble.options.pages.forEach(function(page) {
 
@@ -402,7 +402,7 @@ module.exports = function(grunt) {
           grunt.log.notverbose.ok();
         }); // build
       });
-      grunt.log.ok('Assembled ' + ((assemble.options.pages).length).toString().cyan + ' pages.');
+      grunt.log.ok(((assemble.options.pages).length).toString() + ' pages assembled.');
 
       next(assemble);
     };
@@ -677,7 +677,6 @@ module.exports = function(grunt) {
     //   }
     //   finalResults.layout = tmpl;
     // });
-
 
     if(callback) {
       callback(null, finalResults);

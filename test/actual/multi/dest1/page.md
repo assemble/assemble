@@ -28,7 +28,7 @@
   pageName: 'page.md',
   pagename: 'page.md',
   basename: 'page',
-  src: 'test/templates/pages/page.hbs',
+  src: 'test/fixtures/pages/page.hbs',
   dest: 'test/actual/multi/dest1/page.md',
   assets: '../../assets',
   ext: '.md',

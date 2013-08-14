@@ -11,14 +11,14 @@ layout: false
   </head>
   <body>
   	{{#each pages}}
-  	{{#unless_eq ../filename compare=filename}}
-  		<div>{{../data.title}}</div>
-  		<div>
-  			{{#each ../data.gists}}
-  			{{gist this}}
-  			{{/each}}
-  		</div>
-  	{{/unless_eq}}
+    	{{#unless_eq ../filename compare=filename}}
+    		<div>{{../data.title}}</div>
+    		<div>
+    			{{#each ../data.gists}}
+    			{{gist this}}
+    			{{/each}}
+    		</div>
+    	{{/unless_eq}}
   	{{/each}}
     <script src="http://libs.github.io/bootstrap/css/bootstrap.min.js"></script>
   </body>

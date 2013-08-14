@@ -32,7 +32,7 @@
   pageName: 'collections-categories2.md',
   pagename: 'collections-categories2.md',
   basename: 'collections-categories2',
-  src: 'test/templates/pages/collections-categories2.hbs',
+  src: 'test/fixtures/pages/collections-categories2.hbs',
   dest: 'test/actual/multi/dest1/collections-categories2.md',
   assets: '../../assets',
   ext: '.md',

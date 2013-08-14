@@ -32,7 +32,7 @@
   pageName: 'collections-tags-2.md',
   pagename: 'collections-tags-2.md',
   basename: 'collections-tags-2',
-  src: 'test/templates/pages/collections-tags-2.hbs',
+  src: 'test/fixtures/pages/collections-tags-2.hbs',
   dest: 'test/actual/multi/dest1/collections-tags-2.md',
   assets: '../../assets',
   ext: '.md',

@@ -18,7 +18,7 @@
   pageName: 'gist-helper.md',
   pagename: 'gist-helper.md',
   basename: 'gist-helper',
-  src: 'test/templates/pages/gist-helper.hbs',
+  src: 'test/fixtures/pages/gist-helper.hbs',
   dest: 'test/actual/multi/dest1/gist-helper.md',
   assets: '../../assets',
   ext: '.md',
