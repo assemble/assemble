@@ -39,7 +39,7 @@ Properties from "example.json" and "example.hbs" should be on the page object.
   pageName: 'home.md',
   pagename: 'home.md',
   basename: 'home',
-  src: 'test/templates/pages/home.hbs',
+  src: 'test/fixtures/pages/home.hbs',
   dest: 'test/actual/multi/dest1/home.md',
   assets: '../../assets',
   ext: '.md',

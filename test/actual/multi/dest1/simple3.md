@@ -17,7 +17,7 @@
   pageName: 'simple3.md',
   pagename: 'simple3.md',
   basename: 'simple3',
-  src: 'test/templates/pages/simple3.hbs',
+  src: 'test/fixtures/pages/simple3.hbs',
   dest: 'test/actual/multi/dest1/simple3.md',
   assets: '../../assets',
   ext: '.md',

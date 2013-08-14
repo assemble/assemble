@@ -33,12 +33,12 @@
   pageName: 'md-helper.md',
   pagename: 'md-helper.md',
   basename: 'md-helper',
-  src: 'test/templates/pages/md-helper.hbs',
+  src: 'test/fixtures/pages/md-helper.hbs',
   dest: 'test/actual/multi/dest1/md-helper.md',
   assets: '../../assets',
   ext: '.md',
   extname: '.md',
-  page: '\n\n<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n<p> {{{md \'./test/templates/pages/md.md\'}}} </p>\n\n\n\n',
+  page: '\n\n<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n<p> {{{md \'./test/fixtures/pages/md.md\'}}} </p>\n\n\n\n',
   data: 
    { title: 'md helper',
      description: 'Use \\{{md}} helper to pull in markdown' } }

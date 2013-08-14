@@ -18,7 +18,7 @@
   pageName: 'complex.md',
   pagename: 'complex.md',
   basename: 'complex',
-  src: 'test/templates/pages/complex.hbs',
+  src: 'test/fixtures/pages/complex.hbs',
   dest: 'test/actual/multi/dest1/complex.md',
   assets: '../../assets',
   ext: '.md',

@@ -292,7 +292,7 @@
   pageName: 'context.md',
   pagename: 'context.md',
   basename: 'context',
-  src: 'test/templates/pages/context.hbs',
+  src: 'test/fixtures/pages/context.hbs',
   dest: 'test/actual/multi/dest1/context.md',
   assets: '../../assets',
   ext: '.md',
