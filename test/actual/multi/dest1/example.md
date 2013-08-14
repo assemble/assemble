@@ -25,7 +25,7 @@ This example shows that the properties from "example.json" and "example.hbs" are
   pageName: 'example.md',
   pagename: 'example.md',
   basename: 'example',
-  src: 'test/templates/pages/example.hbs',
+  src: 'test/fixtures/pages/example.hbs',
   dest: 'test/actual/multi/dest1/example.md',
   assets: '../../assets',
   ext: '.md',

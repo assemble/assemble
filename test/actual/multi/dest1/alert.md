@@ -17,7 +17,7 @@
   pageName: 'alert.md',
   pagename: 'alert.md',
   basename: 'alert',
-  src: 'test/templates/pages/alert.hbs',
+  src: 'test/fixtures/pages/alert.hbs',
   dest: 'test/actual/multi/dest1/alert.md',
   assets: '../../assets',
   ext: '.md',

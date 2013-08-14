@@ -15,6 +15,7 @@ module.exports = function(grunt) {
 
     // package.json
     pkg: grunt.file.readJSON('package.json'),
+    config: grunt.file.readJSON('test/fixtures/data/config.json'),
 
     // Metadata
     meta: {
@@ -148,32 +149,7 @@ module.exports = function(grunt) {
             title: "A Blog",
             author: "Jon Schlinkert"
           },
-          pages: [
-            {
-              filename: "post1",
-              data: {
-                title: "Blog Post #1",
-                gists: ["5898072"]
-              },
-              content: 'This \"content\" property is optional and would get passed into the `body` tag. But if you only need to pass the page\'s metadata to the layout then the content property is unnecessary.'
-            },
-            {
-              filename: 'post2',
-              data: {
-                title: 'Blog Post #2',
-                subtitle: "",
-                gists: ['5898077', '5898078']
-              },
-              content: '<h1>{{title}} | {{site.title}}</h1>\n {{> <%= component.one %> }} The current version of Assemble is v<%= pkg.version %>.'
-            },
-            {
-              filename: 'post3',
-              data: {
-                title: 'Blog Post #3',
-                gists: ['5909393']
-              }
-            }
-          ]
+          pages: '<%= config.pages.one %>'
         },
         files: {
           'test/actual/blog/': ['test/fixtures/pages/blog/index.hbs']
@@ -187,47 +163,23 @@ module.exports = function(grunt) {
             title: 'Another Blog',
             author: 'Brian Woodward'
           },
-          pages: {
-            'sweet-blog-post-1': {
-              data: {
-                title: 'Sweet Blog Post #1',
-                gists: ['5898072']
-              },
-              content: 'This "content" property is optional and would get passed into the `body` tag. But if you only need to pass the page\'s metadata to the layout then the content property is unnecessary.'
-            },
-            'awesome-blog-post-2': {
-              data: {
-                title: 'Awesome Blog Post #2',
-                subtitle: '',
-                gists: ['5898077', '5898078']
-              },
-              content: '<h1>{{title}} | {{site.title}}</h1>\n {{> <%= component.one %> }} The current version of Assemble is v<%= pkg.version %>.'
-            },
-            'super-sweet-and-awesome-blog-post-3': {
-              data: {
-                title: 'Super Sweet and Awesome Blog Post #3',
-                gists: ['5898072']
-              }
-            }
-          }
+          pages: '<%= config.pages.two %>'
         },
         files: {
           'test/actual/object-blog/': ['test/fixtures/pages/blog/index.hbs']
         }
       },
       nested_layouts: {
-        options: {
-          layoutdir: 'test/fixtures/layouts',
-          layout: 'one.hbs'
-        },
+        options: {layout: 'one.hbs'},
         files: {
           'test/actual/nested-layouts/': ['test/fixtures/pages/*.hbs']
         }
       }
     },
-    // Example config for metadata
+
+    // Example data for "pages_array" and "pages_object" targets
     component: {
-      one: 'alert'
+      one: "alert"
     },
 
     // Run mocha tests.
@@ -261,9 +213,10 @@ module.exports = function(grunt) {
 
   grunt.registerTask('nested', ['assemble:nested_layouts']);
 
-  //grunt.registerTask('debug', ['clean', 'assemble']);
 
   // Tests to be run.
   grunt.registerTask('test', ['default', 'mochaTest']);
+
+  // Build
   grunt.registerTask('docs', ['assemble-internal']);
 };
