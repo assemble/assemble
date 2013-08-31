@@ -566,7 +566,7 @@ module.exports = function(grunt) {
       context.pageName = currentPage.filename;
 
       //assemble.options.registerPartial(assemble.engine, 'body', page);
-      page = layout.layout.replace(assemble.engine.bodyRegex, function() { return page; });
+      page = injectBody(layout.layout, page);
 
       assemble.engine.render(page, context, function(err, content) {
         if(err) {
@@ -663,7 +663,7 @@ module.exports = function(grunt) {
     };
 
     while (layoutInfo = layoutStack.pop()) {
-      finalResults.layout = finalResults.layout.replace(assemble.engine.bodyRegex, layoutInfo.layout);
+      finalResults.layout = injectBody(finalResults.layout, layoutInfo.layout);
       finalResults.data = _.extend(finalResults.data, layoutInfo.data);
       finalResults.layoutName = layoutInfo.layoutName;
     }
@@ -682,6 +682,10 @@ module.exports = function(grunt) {
       callback(null, finalResults);
     }
     return finalResults;
+  };
+
+  var injectBody = function(layout, body) {
+    return layout.replace(assemble.engine.bodyRegex, function() { return body; });
   };
 
   var detectDestType = function(dest) {
