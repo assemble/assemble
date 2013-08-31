@@ -663,7 +663,7 @@ module.exports = function(grunt) {
     };
 
     while (layoutInfo = layoutStack.pop()) {
-      finalResults.layout = finalResults.layout.replace(assemble.engine.bodyRegex, layoutInfo.layout);
+      finalResults.layout = finalResults.layout.replace(assemble.engine.bodyRegex, function() { return layoutInfo.layout; });
       finalResults.data = _.extend(finalResults.data, layoutInfo.data);
       finalResults.layoutName = layoutInfo.layoutName;
     }
