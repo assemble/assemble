@@ -566,7 +566,7 @@ module.exports = function(grunt) {
       context.pageName = currentPage.filename;
 
       //assemble.options.registerPartial(assemble.engine, 'body', page);
-      page = layout.layout.replace(assemble.engine.bodyRegex, page);
+      page = layout.layout.replace(assemble.engine.bodyRegex, function() { return page; });
 
       assemble.engine.render(page, context, function(err, content) {
         if(err) {

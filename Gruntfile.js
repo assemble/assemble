@@ -219,4 +219,8 @@ module.exports = function(grunt) {
 
   // Build
   grunt.registerTask('docs', ['assemble-internal']);
+
+  // Debugging
+  grunt.registerTask('debug', ['clean', 'assemble']);
+  
 };
