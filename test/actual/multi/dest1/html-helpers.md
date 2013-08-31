@@ -56,8 +56,19 @@
 
 ## Debug Info
 ``` json
-{ filename: 'html-helpers.md',
-  basename: 'html-helpers',
+{ _page: 'all',
+  pagename: 'html-helpers.md',
+  extname: '.md',
+  moreLinks: 
+   [ { url: 'one', text: 'two' },
+     { url: 'three', text: 'four' },
+     { url: 'five', text: 'size' },
+     [length]: 3 ],
+  ext: '.md',
+  dest: 'test/actual/multi/dest1/html-helpers.md',
+  assets: '../../assets',
+  src: 'test/fixtures/pages/html-helpers.hbs',
+  dirname: 'test/actual/multi/dest1',
   data: 
    { text: 'helpers.js',
      links: [ 'one', 'two', 'three', [length]: 3 ],
@@ -66,23 +77,12 @@
         { url: 'three', text: 'four' },
         { url: 'five', text: 'size' },
         [length]: 3 ] },
-  src: 'test/fixtures/pages/html-helpers.hbs',
-  assets: '../../assets',
-  _page: 'all',
   text: 'helpers.js',
-  dest: 'test/actual/multi/dest1/html-helpers.md',
-  pagename: 'html-helpers.md',
-  links: [ 'one', 'two', 'three', [length]: 3 ],
-  extname: '.md',
   pageName: 'html-helpers.md',
-  ext: '.md',
-  dirname: 'test/actual/multi/dest1',
   page: '\n{{#markdown}}\n\n## HTML list helpers.\n\n### \\{{ul}} helper\n{{#ul links class="nav"}}\n  {{.}}\n{{/ul}}\n\n{{#ul moreLinks class="nav"}}\n  <a href="{{url}}">{{text}}</a>\n{{/ul}}\n\n### \\{{ol}} helper\n{{#ol links class="nav"}}\n  {{.}}\n{{/ol}}\n\n{{#ol moreLinks class="nav"}}\n  <a href="{{url}}">{{text}}</a>\n{{/ol}}\n\n### \\{{link}} helper\n{{_link url text}}\n{{_link \'http://github.com\' \'GitHub\'}}\n{{_link \'http://github.com\' \'GitHub\' \'nav-link\'}}\n\n{{/markdown}}{{! /end markdown}}\n',
-  moreLinks: 
-   [ { url: 'one', text: 'two' },
-     { url: 'three', text: 'four' },
-     { url: 'five', text: 'size' },
-     [length]: 3 ] }
+  links: [ 'one', 'two', 'three', [length]: 3 ],
+  basename: 'html-helpers',
+  filename: 'html-helpers.md' }
 ```
 
 
