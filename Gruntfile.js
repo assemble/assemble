@@ -169,6 +169,20 @@ module.exports = function(grunt) {
           'test/actual/object-blog/': ['test/fixtures/pages/blog/index.hbs']
         }
       },
+      pages_metadata: {
+        options: {
+          engine: 'handlebars',
+          layout: 'post.hbs',
+          site: {
+            title: 'Another Blog with Meta',
+            author: 'Brian Woodward'
+          },
+          pages: '<%= config.pages.three %>'
+        },
+        files: {
+          'test/actual/metadata-blog/': ['test/fixtures/pages/blog/index.hbs']
+        }
+      },
       nested_layouts: {
         options: {layout: 'one.hbs'},
         files: {
