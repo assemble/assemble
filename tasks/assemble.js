@@ -293,7 +293,7 @@ module.exports = function(grunt) {
             page = removeHbsWhitespace(assemble, page);
 
             var pageInfo = assemble.data.readYFM(page, {fromFile: false});
-            pageContext = useFileInfo ? (fileInfo.data || {}) : pageInfo.context;
+            pageContext = useFileInfo ? (fileInfo.data || fileInfo.metadata || {}) : pageInfo.context;
 
             // // compile
             // assemble.engine.compile(pageInfo.content, null, function(err, tmpl) {
