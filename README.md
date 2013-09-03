@@ -2,8 +2,6 @@
 
 > Visit http://assemble.io. Assemble is a full-featured documentation, site and component generator built on Grunt.js.
 
-### [See the live docs →](http://assemble.io)
-
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
 
@@ -18,6 +16,7 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 ```js
 grunt.loadNpmTasks('assemble');
 ```
+
 
 
 
@@ -165,6 +164,7 @@ Visit [Assemble's documentation](http://assemble.io) for many more examples and 
 
 ## Release History
 
+ * 2013-09-03   v0.4.5   Bug fix: allow page content containing $. Add alias metadata for data on pages configuration object.
  * 2013-08-01   v0.4.4   Adds "nested layouts" Adds option for pages in JSON/YAML collections to be defined as either objects or keys in an array.
  * 2013-08-01   v0.4.3   Adds "options.pages" for passing in an array of pages in JSON or YAML format.
  * 2013-06-20   v0.4.0   Adds "layoutdir" option for defining the directory to be used for layouts. If layoutdir is defined, then layouts may be defined using only the name of the layout.
@@ -189,4 +189,4 @@ Visit [Assemble's documentation](http://assemble.io) for many more examples and 
 
 Project authored by [Jon Schlinkert](https://github.com/jonschlinkert/).
 
-_This file was generated on Thu Aug 08 2013 00:46:51._
+_This file was generated on Tue Sep 03 2013 10:46:02._
