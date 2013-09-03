@@ -1,7 +1,7 @@
 {
   "name": "assemble",
   "description": "Visit http://assemble.io. Assemble is a full-featured documentation, site and component generator built on Grunt.js.",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "homepage": "https://github.com/assemble/assemble",
   "author": {
     "name": "assemble",
