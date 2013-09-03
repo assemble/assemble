@@ -1,6 +1,8 @@
 # assemble [![NPM version](https://badge.fury.io/js/assemble.png)](http://badge.fury.io/js/assemble)  [![Build Status](https://travis-ci.org/assemble/assemble.png?branch=master)](https://travis-ci.org/assemble/assemble)
 
-> Visit http://assemble.io. Assemble is a full-featured documentation, site and component generator built on Grunt.js.
+> Visit http://assemble.io. Assemble is a full-featured documentation generator, static site generator and component builder. Created from the ground up as a plugin for Grunt.js.
+
+### [See the live docs →](http://assemble.io)
 
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
@@ -16,7 +18,6 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 ```js
 grunt.loadNpmTasks('assemble');
 ```
-
 
 
 
@@ -189,4 +190,4 @@ Visit [Assemble's documentation](http://assemble.io) for many more examples and 
 
 Project authored by [Jon Schlinkert](https://github.com/jonschlinkert/).
 
-_This file was generated on Tue Sep 03 2013 10:46:02._
+_This file was generated on Tue Sep 03 2013 16:26:04._
