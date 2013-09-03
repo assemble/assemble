@@ -1,3 +1,8 @@
+v0.4.5:
+  date: "2013-09-03"
+  changes:
+    - Bug fix: allow page content containing $
+    - Add alias metadata for data on pages configuration object.
 v0.4.4:
   date: "2013-08-01"
   changes:
