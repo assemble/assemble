@@ -1,8 +1,14 @@
 /*
  * Assemble
- * http://github.com/assemble/assemble
- * Copyright (c) 2013 Assemble
- * MIT License
+ * Created and maintained by Jon Schlinkert and Brian Woodward
+ * http://assemble.io
+ *
+ * Assemble is a full-featured documentation generator,
+ * static site generator and component builder. Created
+ * from the ground up as a plugin for Grunt.js.
+ *
+ * Copyright (c) 2013 Upstage
+ * Licensed under the MIT License (MIT).
  */
 
 module.exports = function(grunt) {
@@ -191,7 +197,7 @@ module.exports = function(grunt) {
       }
     },
 
-    // Example data for "pages_array" and "pages_object" targets
+    // Example config data for "pages_array" and "pages_object" targets
     component: {
       one: "alert"
     },
@@ -213,28 +219,25 @@ module.exports = function(grunt) {
     }
   });
 
-  // Load npm plugins to provide necessary tasks.
+  // Load NPM plugins to provide the necessary tasks.
   grunt.loadNpmTasks('assemble-internal');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
 
-  // Load local tasks.
+  // Load this plugin.
   grunt.loadTasks('tasks');
-
-  // Default task.
-  grunt.registerTask('default', ['jshint', 'clean', 'assemble']);
-
-  grunt.registerTask('nested', ['assemble:nested_layouts']);
-
-
-  // Tests to be run.
-  grunt.registerTask('test', ['default', 'mochaTest']);
 
   // Build
   grunt.registerTask('docs', ['assemble-internal']);
 
   // Debugging
   grunt.registerTask('debug', ['clean', 'assemble']);
-  
+ 
+  // Tests to be run.
+  grunt.registerTask('test', ['assemble', 'mochaTest']);
+
+  // Default task.
+  grunt.registerTask('default', ['jshint', 'clean', 'test']);
+ 
 };
