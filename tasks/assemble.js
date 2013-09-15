@@ -269,9 +269,32 @@ module.exports = function(grunt) {
           );
 
           // if the assets relative path is blank, then it's the same folder
-          // so update to be ''
-          if(!assemble.options.assets || assemble.options.assets.length === 0) {
-            assemble.options.assets = '';
+          // so update to be '' or './'
+          if (!assemble.options.assets || assemble.options.assets.length === 0) {
+            // if the original path had a trailing slash
+            if (hasTrailingSlash(assetsPath)) {
+              // return './'
+              assemble.options.assets = './';
+            } else {
+              // otherwise return ''
+              assemble.options.assets = '';
+            }
+          }
+
+          // if the original path had a trailing slash
+          // and the calculated path does not,
+          // add a trailing slash
+          if (hasTrailingSlash(assetsPath) && !hasTrailingSlash(assemble.options.assets)) {
+
+            assemble.options.assets += '/';
+
+          // if the original path did not have a trailing slash
+          // and the calculated path does,
+          // remove the trailing slash
+          } else if (!hasTrailingSlash(assetsPath) && hasTrailingSlash(assemble.options.assets)) {
+
+            assemble.options.assets = assemble.options.assets.substring(0, assemble.options.assets.length - 2);
+
           }
 
           grunt.verbose.writeln(('\t' + 'Src: '    + srcFile));
@@ -694,6 +717,10 @@ module.exports = function(grunt) {
     } else {
       return 'file';
     }
+  };
+
+  var hasTrailingSlash = function(filePath) {
+    return _.endsWith(path.normalize(filePath), path.sep);
   };
 
   var logBlock = function(heading, message) {

@@ -17,18 +17,18 @@
       <p>Examples to test the "relative" and "assets" variables, and to show how they work</p>
 
 
-<h1>"Public" Folder</h1>
-<p>Public (assets) folder is in the project root</p>
+
+
+
+
+<h1>Same Folder With Slash</h1>
+<p>Assets folder is in the same dir as dest files</p>
 <pre>
-assets_one: {
-  options: {assets: 'test/actual/public'},
-  files: {'test/actual/assets-public-folder.html': ['test/files/assets.hbs']}
-},
+assets_five: {
+  options: {assets: 'test/actual'},
+  files: {'test/actual/assets-same-folder-with-slash.html': ['test/files/assets.hbs']}
+}
 </pre>
-
-
-
-
 
 
 <h1>Relative Helper</h1>
@@ -38,8 +38,8 @@ assets_one: {
 <script src="./jsone/two/three.js"></script>
 
 <h1>Assets Helper</h1>
-<script src="publicone/two/three.js"></script>
-<script src="public/one/two/three.js"></script>
+<script src="./one/two/three.js"></script>
+<script src=".//one/two/three.js"></script>
 
 
     </div>
@@ -47,7 +47,7 @@ assets_one: {
     <div class="container" style="display: none">
       <h2>Content</h2>
       <ul>
-        <li><a href="test/actual/assets-public-folder.html">assets</a></li>
+        <li><a href="test/actual/assets-same-folder-with-slash.html">assets</a></li>
         
       </ul>
     </div>
@@ -55,7 +55,7 @@ assets_one: {
     <div class="container" style="display: none">
       <h2>Debug Info</h2>
       <pre class="json">
-'public'
+'./'
 </pre>
     </div>
 

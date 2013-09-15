@@ -121,6 +121,24 @@ module.exports = function(grunt) {
           'test/actual/assets-root.html': ['test/fixtures/pages/assets.hbs']
         }
       },
+      assets_four: {
+        options: {
+          assets: './',
+          assets_four: true
+        },
+        files: {
+          'test/actual/assets-root-with-slash.html': ['test/fixtures/pages/assets.hbs']
+        }
+      },
+      assets_five: {
+        options: {
+          assets: 'test/actual/',
+          assets_five: true
+        },
+        files: {
+          'test/actual/assets-same-folder-with-slash.html': ['test/fixtures/pages/assets.hbs']
+        }
+      },
       custom_helpers: {
         options: {
           helpers: ['test/helpers/**/*.js'],
