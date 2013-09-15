@@ -30,6 +30,26 @@ assets_three: {
 }
 </pre>
 {{/assets_three}}
+{{#assets_four}}
+<h1>Project Root With Slash</h1>
+<p>Assets folder is in the project rool, which is not the same dir as the dest files.</p>
+<pre>
+assets_four: {
+  options: {assets: './'},
+  files: {'test/actual/assets-root-with-slash.html': ['test/files/assets.hbs']}
+}
+</pre>
+{{/assets_four}}
+{{#assets_five}}
+<h1>Same Folder With Slash</h1>
+<p>Assets folder is in the same dir as dest files</p>
+<pre>
+assets_five: {
+  options: {assets: 'test/actual'},
+  files: {'test/actual/assets-same-folder-with-slash.html': ['test/files/assets.hbs']}
+}
+</pre>
+{{/assets_five}}
 
 <h1>Relative Helper</h1>
 <script src="{{relative page.dest 'css'}}/one/two/three.js"></script>
