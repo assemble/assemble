@@ -59,25 +59,25 @@ old pond . . . a frog leaps in water’s sound
     <div class="container" style="display: none">
       <h2>Debug Info</h2>
       <pre class="json">
-{ _page: 'all',
-  pagename: 'block-literals.html',
-  title: 'Block Literals',
-  extname: '.html',
+{ poem: 'old pond . . .\r\na frog leaps in\r\nwater’s sound\r\n',
   ext: '.html',
-  dest: 'test/actual/yfm/block-literals.html',
-  assets: '../assets',
+  title: 'Block Literals',
+  pagename: 'block-literals.html',
   src: 'test/fixtures/pages/yfm/block-literals.hbs',
+  dest: 'test/actual/yfm/block-literals.html',
+  page: '\n<div class="page-header">\n  <h4>{{{title}}}</h4> \n</div>\n\n<h4>Newlines preserved</h4>\n<div class="almost-haiku">\n{{{poem}}}\n</div>\n\n<h4>Newlines folded</h4>\n<div class="another">\n{{{another}}}\n</div>\n\n\n\n\n',
+  pageName: 'block-literals.html',
   dirname: 'test/actual/yfm',
-  another: 'old pond . . . a frog leaps in water’s sound\r\n',
+  assets: '../assets',
+  basename: 'block-literals',
+  filename: 'block-literals.html',
   data: 
    { title: 'Block Literals',
      poem: 'old pond . . .\r\na frog leaps in\r\nwater’s sound\r\n',
      another: 'old pond . . . a frog leaps in water’s sound\r\n' },
-  poem: 'old pond . . .\r\na frog leaps in\r\nwater’s sound\r\n',
-  pageName: 'block-literals.html',
-  page: '\n<div class="page-header">\n  <h4>{{{title}}}</h4> \n</div>\n\n<h4>Newlines preserved</h4>\n<div class="almost-haiku">\n{{{poem}}}\n</div>\n\n<h4>Newlines folded</h4>\n<div class="another">\n{{{another}}}\n</div>\n\n\n\n\n',
-  basename: 'block-literals',
-  filename: 'block-literals.html' }
+  extname: '.html',
+  _page: 'all',
+  another: 'old pond . . . a frog leaps in water’s sound\r\n' }
 </pre>
     </div>
 
