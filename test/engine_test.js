@@ -25,12 +25,12 @@ describe('Loading default handlebars engine', function() {
   it('renders a template', function(done) {
     var engine = assembleEngine.load('handlebars');
     var expected = 'bar';
-    engine.compile('{{foo}}', null, function(err, tmpl) {
+    engine.compile('{{baz}}', null, function(err, tmpl) {
       if(err) {
         console.log('error: ' + err);
         done(false);
       }
-      engine.render(tmpl, {foo: 'bar'}, function(err, content) {
+      engine.render(tmpl, {baz: 'bar'}, function(err, content) {
         if(err) {
           console.log('error: ' + err);
           done(false);
