@@ -242,20 +242,21 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-sync-pkg');
 
   // Load this plugin.
   grunt.loadTasks('tasks');
 
   // Build
-  grunt.registerTask('docs', ['assemble-internal']);
+  grunt.registerTask('docs', ['assemble-internal', 'sync']);
 
   // Debugging
   grunt.registerTask('debug', ['clean', 'assemble']);
- 
+
   // Tests to be run.
   grunt.registerTask('test', ['assemble', 'mochaTest']);
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'clean', 'test']);
- 
+  grunt.registerTask('default', ['jshint', 'clean', 'test', 'sync']);
+
 };

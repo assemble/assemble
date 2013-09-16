@@ -1,16 +1,28 @@
 {
   "name": "assemble",
-  "version": "0.4.4",
+  "version": "0.4.6",
   "repo": "assemble/assemble",
   "main": [
-    "./lib/assemble.js"
+    "./lib/assemble"
   ],
   "dependencies": {
-    "lodash": "~1.1.1",
-    "marked": "~0.2.8",
+    "assemble-front-matter": "~0.1.0",
+    "assemble-handlebars": "~0.1.6",
     "highlight.js": "~7.3.0",
-    "assemble-handlebars": "https://github.com/assemble/assemble-handlebars/tarball/master",
-    "inflection": "~1.2.5",
-    "js-yaml": "~2.0.5"
+    "inflection": "~1.2.6",
+    "js-yaml": "~2.1.0",
+    "lodash": "~1.3.1",
+    "marked": "~0.2.9",
+    "resolve-dep": "~0.1.1"
+  },
+  "devDependencies": {
+    "assemble-internal": "~0.2.0",
+    "chai": "~1.7.2",
+    "grunt": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-mocha-test": "~0.6.3",
+    "time-grunt": "~0.1.1",
+    "grunt-sync-pkg": "~0.1.0"
   }
 }
