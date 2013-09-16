@@ -45,7 +45,6 @@
     "js-yaml": "~2.1.0",
     "lodash": "~1.3.1",
     "marked": "~0.2.9",
-    "time-grunt": "~0.1.1",
     "resolve-dep": "~0.1.1"
   },
   "devDependencies": {
@@ -54,7 +53,8 @@
     "grunt": "~0.4.1",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-jshint": "~0.6.4",
-    "grunt-mocha-test": "~0.6.3"
+    "grunt-mocha-test": "~0.6.3",
+    "time-grunt": "~0.1.1"
   },
   "keywords": [
     "blog generator",

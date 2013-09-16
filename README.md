@@ -2,6 +2,8 @@
 
 > Visit http://assemble.io. Assemble is a full-featured documentation generator, static site generator and component builder. Created from the ground up as a plugin for Grunt.js.
 
+### [See the live docs →](http://assemble.io)
+
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
 
