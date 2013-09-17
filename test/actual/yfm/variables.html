@@ -54,25 +54,25 @@ other_thing: *NAME</code></pre>
     <div class="container" style="display: none">
       <h2>Debug Info</h2>
       <pre class="json">
-{ ext: '.html',
-  title: 'YAML Variables',
+{ _page: 'all',
   pagename: 'variables.html',
-  src: 'test/fixtures/pages/yfm/variables.hbs',
+  title: 'YAML Variables',
+  extname: '.html',
+  ext: '.html',
   dest: 'test/actual/yfm/variables.html',
-  page: '\n<div class="page-header">\n  <h4>{{{title}}}</h4> \n</div>\n\n{{{two}}}\n\n{{#markdown}}\nThis would output the variable as literal text.\n``` yaml\nthree: But this doesn\'t work. *DOOWB \n```\nAnd this would throw an error:\n\n``` yaml\nthree: *DOOWB But this doesn\'t work. \n```\n\nYAML supports **variables**, or **repeated nodes**. The simplest explanation is that you define something as a variable by preceding it with "&NAME value" and you can refer to it with "*NAME" e.g.:\n\n``` yaml\n# YAML\nsome_thing: &NAME foobar\nother_thing: *NAME\n```\nParses to:\n``` json\n{"other_thing": "foobar", "some_thing": "foobar"}\n```\n{{/markdown}}',
-  pageName: 'variables.html',
-  dirname: 'test/actual/yfm',
   assets: '../assets',
-  basename: 'variables',
+  src: 'test/fixtures/pages/yfm/variables.hbs',
+  dirname: 'test/actual/yfm',
   two: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
-  filename: 'variables.html',
+  one: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
   data: 
    { title: 'YAML Variables',
      one: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
      two: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!' },
-  extname: '.html',
-  _page: 'all',
-  one: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!' }
+  pageName: 'variables.html',
+  page: '\n<div class="page-header">\n  <h4>{{{title}}}</h4> \n</div>\n\n{{{two}}}\n\n{{#markdown}}\nThis would output the variable as literal text.\n``` yaml\nthree: But this doesn\'t work. *DOOWB \n```\nAnd this would throw an error:\n\n``` yaml\nthree: *DOOWB But this doesn\'t work. \n```\n\nYAML supports **variables**, or **repeated nodes**. The simplest explanation is that you define something as a variable by preceding it with "&NAME value" and you can refer to it with "*NAME" e.g.:\n\n``` yaml\n# YAML\nsome_thing: &NAME foobar\nother_thing: *NAME\n```\nParses to:\n``` json\n{"other_thing": "foobar", "some_thing": "foobar"}\n```\n{{/markdown}}',
+  basename: 'variables',
+  filename: 'variables.html' }
 </pre>
     </div>
 
