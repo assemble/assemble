@@ -277,7 +277,7 @@ module.exports = function(grunt) {
               assemble.options.assets = './';
             } else {
               // otherwise return ''
-              assemble.options.assets = '';
+              assemble.options.assets = '.';
             }
           }
 

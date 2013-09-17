@@ -63,23 +63,19 @@
       <h3>Paths Examples</h3>
 
 <pre class="json">
-{ ext: '.html',
+{ _page: 'all',
   pagename: 'html-helpers.html',
-  src: 'test/fixtures/pages/html-helpers.hbs',
-  dest: 'test/actual/paths/html-helpers.html',
-  page: '\n{{#markdown}}\n\n## HTML list helpers.\n\n### \\{{ul}} helper\n{{#ul links class="nav"}}\n  {{.}}\n{{/ul}}\n\n{{#ul moreLinks class="nav"}}\n  <a href="{{url}}">{{text}}</a>\n{{/ul}}\n\n### \\{{ol}} helper\n{{#ol links class="nav"}}\n  {{.}}\n{{/ol}}\n\n{{#ol moreLinks class="nav"}}\n  <a href="{{url}}">{{text}}</a>\n{{/ol}}\n\n### \\{{link}} helper\n{{_link url text}}\n{{_link \'http://github.com\' \'GitHub\'}}\n{{_link \'http://github.com\' \'GitHub\' \'nav-link\'}}\n\n{{/markdown}}{{! /end markdown}}\n',
-  links: [ 'one', 'two', 'three', [length]: 3 ],
-  pageName: 'html-helpers.html',
-  dirname: 'test/actual/paths',
-  assets: '../assets',
-  basename: 'html-helpers',
-  text: 'helpers.js',
-  filename: 'html-helpers.html',
+  extname: '.html',
   moreLinks: 
    [ { url: 'one', text: 'two' },
      { url: 'three', text: 'four' },
      { url: 'five', text: 'size' },
      [length]: 3 ],
+  ext: '.html',
+  dest: 'test/actual/paths/html-helpers.html',
+  assets: '../assets',
+  src: 'test/fixtures/pages/html-helpers.hbs',
+  dirname: 'test/actual/paths',
   data: 
    { text: 'helpers.js',
      links: [ 'one', 'two', 'three', [length]: 3 ],
@@ -88,8 +84,12 @@
         { url: 'three', text: 'four' },
         { url: 'five', text: 'size' },
         [length]: 3 ] },
-  extname: '.html',
-  _page: 'all' }
+  text: 'helpers.js',
+  pageName: 'html-helpers.html',
+  page: '\n{{#markdown}}\n\n## HTML list helpers.\n\n### \\{{ul}} helper\n{{#ul links class="nav"}}\n  {{.}}\n{{/ul}}\n\n{{#ul moreLinks class="nav"}}\n  <a href="{{url}}">{{text}}</a>\n{{/ul}}\n\n### \\{{ol}} helper\n{{#ol links class="nav"}}\n  {{.}}\n{{/ol}}\n\n{{#ol moreLinks class="nav"}}\n  <a href="{{url}}">{{text}}</a>\n{{/ol}}\n\n### \\{{link}} helper\n{{_link url text}}\n{{_link \'http://github.com\' \'GitHub\'}}\n{{_link \'http://github.com\' \'GitHub\' \'nav-link\'}}\n\n{{/markdown}}{{! /end markdown}}\n',
+  links: [ 'one', 'two', 'three', [length]: 3 ],
+  basename: 'html-helpers',
+  filename: 'html-helpers.html' }
 </pre>
 
       <ul>
