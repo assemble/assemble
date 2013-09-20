@@ -230,6 +230,13 @@ module.exports = function(grunt) {
       }
     },
 
+    readme: {
+      options: {
+        sep: '',
+        docs: ['docs/']
+      }
+    },
+
     // Before assembling new files, removed previously
     // created files.
     clean: {
@@ -238,17 +245,17 @@ module.exports = function(grunt) {
   });
 
   // Load NPM plugins to provide the necessary tasks.
-  grunt.loadNpmTasks('assemble-internal');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-readme');
   grunt.loadNpmTasks('grunt-sync-pkg');
 
   // Load this plugin.
   grunt.loadTasks('tasks');
 
   // Build
-  grunt.registerTask('docs', ['assemble-internal', 'sync']);
+  grunt.registerTask('docs', ['readme', 'sync']);
 
   // Debugging
   grunt.registerTask('debug', ['clean', 'assemble']);

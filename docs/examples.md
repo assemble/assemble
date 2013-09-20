@@ -1,5 +1,3 @@
-# Usage examples
-
 Simple example of using data files in both `.json` and `.yml` format to build Handlebars templates.
 
 ```javascript
@@ -15,7 +13,7 @@ assemble: {
 }
 ```
 
-## Using multiple targets
+### Using multiple targets
 
 ```js
 assemble: {
