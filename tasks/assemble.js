@@ -452,6 +452,7 @@ module.exports = function(grunt) {
   // ==========================================================================
   // HELPERS
   // ==========================================================================
+
   var findBasePath = function(srcFiles, basePath) {
     if (basePath === false) {
       return '';
@@ -483,6 +484,10 @@ module.exports = function(grunt) {
     return foundPath;
   };
 
+
+  // ==========================================================================
+  // BUILD
+  // ==========================================================================
 
   var build = function(currentPage, assemble, callback) {
 
@@ -688,7 +693,7 @@ module.exports = function(grunt) {
       finalResults.data = _.extend(finalResults.data, layoutInfo.data);
       finalResults.layoutName = layoutInfo.layoutName;
     }
-    
+
     // assemble.engine.compile(finalResults.layout, null, function(err, tmpl) {
     //   if(err) {
     //     grunt.warn(err);
