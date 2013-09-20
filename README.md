@@ -1,29 +1,28 @@
-# assemble [![NPM version](https://badge.fury.io/js/assemble.png)](http://badge.fury.io/js/assemble)  [![Build Status](https://travis-ci.org/assemble/assemble.png?branch=master)](https://travis-ci.org/assemble/assemble)
+# assemble [![NPM version](https://badge.fury.io/js/assemble.png)](http://badge.fury.io/js/assemble)  [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
 
 > Visit http://assemble.io. Assemble is a full-featured documentation generator, static site generator and component builder. Created from the ground up as a plugin for Grunt.js.
 
 ### [See the live docs →](http://assemble.io)
 
 ## Getting Started
-This plugin requires Grunt `~0.4.1`
+Assemble requires Grunt `~0.4.1`
 
-If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
+_If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._
 
-```shell
+From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install Assemble with the following command:
+
+```bash
 npm install assemble --save-dev
 ```
 
-Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
+Once that's done, add this line to your project's Gruntfile:
 
 ```js
 grunt.loadNpmTasks('assemble');
 ```
 
-
-
-
-## Assemble task
-_Run this task with the `grunt assemble` command._
+## The "assemble" task
+_Run the "assemble" task with the `grunt assemble` command._
 
 Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 
@@ -43,6 +42,11 @@ assemble: {
 },
 ```
 
+[grunt]: http://gruntjs.com/
+[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
+[package.json]: https://npmjs.org/doc/json.html
+
+## Options
 See the documentation for [Options](http://assemble.io/docs/Options.html) for more information.
 
 #### [assets](http://assemble.io/docs/options-assets.html)
@@ -101,18 +105,18 @@ Specify the [Marked.js options](https://github.com/chjj/marked#options-1) to use
 Type: `String`
 Default: Handlebars
 
-Specify the engine to use for compiling templates. Handlebars is the default.
+Specify the engine to use for compiling templates. Both Handlebars and [Swig Templates](https://github.com/paularmstrong) are supported. Currently Handlebars is the default but this may change.
 
 #### flatten
 Type: `Boolean`
 Default: `false`
 
-Remove anything after (and including) the first "." in the destination path, then append this value. In other words, when files are generated from different source folders this "flattens" them into the same destination directory. See [building the files object dynamically][files-object] for more information on `files` formats.
+Remove anything after (and including) the first `.` in the destination path, then append this value. In other words, when files are generated from different source folders this "flattens" them into the same destination directory. See [building the files object dynamically][files-object] for more information on `files` formats.
 
 
 Visit [Assemble's documentation](http://assemble.io) for more information about options.
-### Usage examples
 
+## Usage Examples
 Simple example of using data files in both `.json` and `.yml` format to build Handlebars templates.
 
 ```javascript
@@ -128,7 +132,7 @@ assemble: {
 }
 ```
 
-#### Using multiple targets
+### Using multiple targets
 
 ```js
 assemble: {
@@ -164,6 +168,14 @@ assemble: {
 
 Visit [Assemble's documentation](http://assemble.io) for many more examples and pointers on getting started.
 
+## Contributing
+Please see the [Contributing to Assemble](http://assemble.io/contributing) guide for information on contributing to this project.
+
+## Author
+
++ [Jon Schlinkert](https://github.com/jonschlinkert/)
++ [Brian Woodward](https://github.com/doowb/)
+
 ## Release History
 
  * 2013-09-15   v0.4.6   Updating how the assets path is calculated. Adding resolve-dep and ability to load helpers from node modules using minimatch patterns
@@ -188,8 +200,10 @@ Visit [Assemble's documentation](http://assemble.io) for many more examples and 
  * 2013-03-22   v0.3.21   Valid YAML now allowed in options.data object (along with JSON)
  * 2013-03-18   v0.3.14   new relative helper for resolving relative paths
 
+## License
+Copyright (c) 2013 Sellside Inc.
+Released under the [MIT License](./LICENSE-MIT).
+
 ***
 
-Project authored by [Jon Schlinkert](https://github.com/jonschlinkert/).
-
-_This file was generated on Sun Sep 15 2013 20:53:37._
+_This file was generated on Fri Sep 20 2013 19:31:00._
