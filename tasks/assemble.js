@@ -83,8 +83,6 @@ module.exports = function(grunt) {
       assemble.fileExtRegex = new RegExp('\\.' + assemble.fileExt + '$');
 
       assemble.partials = file.expand(assemble.options.partials);
-      assemble.options.partials = {};
-
       assemble.dataFiles = file.expand(assemble.options.data);
       assemble.options.data = {};
 
