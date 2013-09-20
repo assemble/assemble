@@ -1,3 +1,8 @@
+v0.4.7:
+  date: "2013-09-20"
+  changes:
+    - Adds grunt-readme to make it easier to keep the readme updated using templates.
+    - Keep options.partials intact so they can be used in helpers.
 v0.4.6:
   date: "2013-09-15"
   changes:
