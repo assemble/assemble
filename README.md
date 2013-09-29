@@ -21,7 +21,7 @@ Once that's done, add this line to your project's Gruntfile:
 grunt.loadNpmTasks('assemble');
 ```
 
-## The "assemble" task
+### The "assemble" task
 _Run the "assemble" task with the `grunt assemble` command._
 
 Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
@@ -49,25 +49,25 @@ assemble: {
 ## Options
 See the documentation for [Options](http://assemble.io/docs/Options.html) for more information.
 
-#### [assets](http://assemble.io/docs/options-assets.html)
+##### [assets](http://assemble.io/docs/options-assets.html)
 Type: `String`
 Default: `undefined`
 
 Used with the `{{assets}}` variable to resolve the relative path from the _dest file_ to the _assets_ folder.
 
-#### [data](http://assemble.io/docs/options-data.html)
+##### [data](http://assemble.io/docs/options-data.html)
 Type: `String|Array`
 Default: `src/data`
 
 Specify the data to supply to your templates. Data may be formatted in `JSON`, `YAML` or [YAML front matter](http://assemble.io/docs/YAML-front-matter.html).
 
-#### [layoutdir](http://assemble.io/docs/options-layoutdir.html)
+##### [layoutdir](http://assemble.io/docs/options-layoutdir.html)
 Type: `String`
 Default: `undefined`
 
 The directory to use as the "cwd" for [layouts](http://assemble.io/docs/options-layout.html). When this option is defined, layouts may be defined using only the name of the layout.
 
-#### [layout](http://assemble.io/docs/options-layout.html)
+##### [layout](http://assemble.io/docs/options-layout.html)
 Type: `String`
 Default: `undefined`
 
@@ -75,13 +75,13 @@ If set, this defines the layout file to use for the [task or target][tasks-and-t
 
 [tasks-and-targets]: http://gruntjs.com/configuring-tasks#task-configuration-and-targets
 
-#### [partials](http://assemble.io/docs/options-partials.html)
+##### [partials](http://assemble.io/docs/options-partials.html)
 Type:  `String|Array`
 Default: `undefined`
 
 Specifies the Handlebars partials files, or paths to the directories of files to be used.
 
-#### [helpers](http://assemble.io/docs/options-helpers.html)
+##### [helpers](http://assemble.io/docs/options-helpers.html)
 Type: `String|Array`
 Default: [handlebars-helpers](http://github.com/assemble/handlebars-helpers)
 
@@ -89,25 +89,25 @@ Path to the custom helper or helpers to use with the current template engine.
 
 Assemble includes [handlebars-helpers](http://assemble.io/docs/helpers/index.html) as a dependency, so any helpers from that library may be used in your templates.
 
-#### [ext](http://assemble.io/docs/options-ext.html)
+##### [ext](http://assemble.io/docs/options-ext.html)
 Type: `String`
 Default: `.html`
 
 Specify the file extension for destination files. Example:
 
-#### [marked](http://assemble.io/docs/options-marked.html)
+##### [marked](http://assemble.io/docs/options-marked.html)
 Type: `Object`
 Default: Marked.js defaults
 
 Specify the [Marked.js options](https://github.com/chjj/marked#options-1) to use when converting from markdown to HTML.
 
-#### [engine](http://assemble.io/docs/options-engine.html)
+##### [engine](http://assemble.io/docs/options-engine.html)
 Type: `String`
 Default: Handlebars
 
 Specify the engine to use for compiling templates. Both Handlebars and [Swig Templates](https://github.com/paularmstrong) are supported. Currently Handlebars is the default but this may change.
 
-#### flatten
+##### flatten
 Type: `Boolean`
 Default: `false`
 
@@ -132,7 +132,7 @@ assemble: {
 }
 ```
 
-### Using multiple targets
+#### Using multiple targets
 
 ```js
 assemble: {
@@ -171,35 +171,43 @@ Visit [Assemble's documentation](http://assemble.io) for many more examples and 
 ## Contributing
 Please see the [Contributing to Assemble](http://assemble.io/contributing) guide for information on contributing to this project.
 
-## Author
+## Authors
 
-+ [Jon Schlinkert](https://github.com/jonschlinkert/)
-+ [Brian Woodward](https://github.com/doowb/)
+**Jon Schlinkert**
+
++ [twitter.com/jonschlinkert](http://twitter.com/jonschlinkert)
++ [github.com/jonschlinkert](http://github.com/jonschlinkert)
+
+**Brian Woodward**
+
++ [twitter.com/doowb](http://twitter.com/doowb)
++ [github.com/doowb](http://github.com/doowb)
+
 
 ## Release History
 
- * 2013-09-20   **v0.4.7**   Adds grunt-readme to make it easier to keep the readme updated using templates. Keep options.partials intact so they can be used in helpers.
- * 2013-09-15   **v0.4.6**   Updating how the assets path is calculated. Adding resolve-dep and ability to load helpers from node modules using minimatch patterns
- * 2013-09-03   **v0.4.5**   Bug fix: allow page content containing $. Add alias metadata for data on pages configuration object.
- * 2013-08-01   **v0.4.4**   Adds "nested layouts" Adds option for pages in JSON/YAML collections to be defined as either objects or keys in an array.
- * 2013-08-01   **v0.4.3**   Adds "options.pages" for passing in an array of pages in JSON or YAML format.
- * 2013-06-20   **v0.4.0**   Adds "layoutdir" option for defining the directory to be used for layouts. If layoutdir is defined, then layouts may be defined using only the name of the layout.
- * 2013-06-10   **v0.3.81**   Adds additional ways to load custom helpers. Now it's possible to use a glob pattern that points to a list of scripts with helpers to load. Adds examples and tests on how to use the new custom helper loading methods.
- * 2013-06-01   **v0.3.80**   Fixing bug with null value in engine
- * 2013-05-07   **v0.3.77**   Updated README with info about assemble methods
- * 2013-04-28   **v0.3.74**   Updating the assemble library to use the assemble-utils repo and unnecessary code.
- * 2013-04-21   **v0.3.73**   Fixing how the relative path helper worked and showing an example in the footer of the layout. This example is hidden, but can be seen by doing view source.
- * 2013-04-20   **v0.3.72**   Fixing the layout override issue happening in the page yaml headers. Something was missed during refactoring.
- * 2013-04-19   **v0.3.9**   Adds tags and categories to the root context and ensure that the current page context values don't override the root context values.
- * 2013-04-18   **v0.3.8**   Updating to use actual assets property from current page.
- * 2013-04-17   **v0.3.7**   Cleaning up some unused folders and tests
- * 2013-04-16   **v0.3.6**   Fixed missing assets property.
- * 2013-04-16   **v0.3.5**   Adds a sections array to the template engine so it can be used in helpers.
- * 2013-04-11   **v0.3.4**   More tests for helpers and global variables, organized tests. A number of bug fixes.
- * 2013-04-06   **v0.3.3**   helper-lib properly externalized and wired up. Global variables for filename, ext and pages
- * 2013-03-22   **v0.3.22**   Merged global and target level options so data and partial files can be joined
- * 2013-03-22   **v0.3.21**   Valid YAML now allowed in options.data object (along with JSON)
- * 2013-03-18   **v0.3.14**   new relative helper for resolving relative paths
+ * 2013-09-20   v0.4.7   Adds grunt-readme to make it easier to keep the readme updated using templates. Keep options.partials intact so they can be used in helpers.
+ * 2013-09-15   v0.4.6   Updating how the assets path is calculated. Adding resolve-dep and ability to load helpers from node modules using minimatch patterns
+ * 2013-09-03   v0.4.5   Bug fix: allow page content containing $. Add alias metadata for data on pages configuration object.
+ * 2013-08-01   v0.4.4   Adds "nested layouts" Adds option for pages in JSON/YAML collections to be defined as either objects or keys in an array.
+ * 2013-08-01   v0.4.3   Adds "options.pages" for passing in an array of pages in JSON or YAML format.
+ * 2013-06-20   v0.4.0   Adds "layoutdir" option for defining the directory to be used for layouts. If layoutdir is defined, then layouts may be defined using only the name of the layout.
+ * 2013-06-10   v0.3.81   Adds additional ways to load custom helpers. Now it's possible to use a glob pattern that points to a list of scripts with helpers to load. Adds examples and tests on how to use the new custom helper loading methods.
+ * 2013-06-01   v0.3.80   Fixing bug with null value in engine
+ * 2013-05-07   v0.3.77   Updated README with info about assemble methods
+ * 2013-04-28   v0.3.74   Updating the assemble library to use the assemble-utils repo and unnecessary code.
+ * 2013-04-21   v0.3.73   Fixing how the relative path helper worked and showing an example in the footer of the layout. This example is hidden, but can be seen by doing view source.
+ * 2013-04-20   v0.3.72   Fixing the layout override issue happening in the page yaml headers. Something was missed during refactoring.
+ * 2013-04-19   v0.3.9   Adds tags and categories to the root context and ensure that the current page context values don't override the root context values.
+ * 2013-04-18   v0.3.8   Updating to use actual assets property from current page.
+ * 2013-04-17   v0.3.7   Cleaning up some unused folders and tests
+ * 2013-04-16   v0.3.6   Fixed missing assets property.
+ * 2013-04-16   v0.3.5   Adds a sections array to the template engine so it can be used in helpers.
+ * 2013-04-11   v0.3.4   More tests for helpers and global variables, organized tests. A number of bug fixes.
+ * 2013-04-06   v0.3.3   helper-lib properly externalized and wired up. Global variables for filename, ext and pages
+ * 2013-03-22   v0.3.22   Merged global and target level options so data and partial files can be joined
+ * 2013-03-22   v0.3.21   Valid YAML now allowed in options.data object (along with JSON)
+ * 2013-03-18   v0.3.14   new relative helper for resolving relative paths
 
 ## License
 Copyright (c) 2013 Sellside Inc.
@@ -207,4 +215,4 @@ Released under the [MIT License](./LICENSE-MIT).
 
 ***
 
-_This file was generated on Thu Sep 26 2013 10:25:57._
+_This file was generated on Sun Sep 29 2013 18:31:54._
