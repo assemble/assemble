@@ -11,16 +11,16 @@
 
 <h2>css helper</h2>
 Example of using a custom "css" helper.
-<link rel="stylesheet" href="../../assets/css/css/bootstrap.css?v=1380492399325">
-<link rel="stylesheet" href="../../assets/css/css/responsive.css?v=1380492399325">
-<link rel="stylesheet" href="../../assets/css/css/main.css?v=1380492399325">
+<link rel="stylesheet" href="../../assets/css/css/bootstrap.css">
+<link rel="stylesheet" href="../../assets/css/css/responsive.css">
+<link rel="stylesheet" href="../../assets/css/css/main.css">
 
 
 <h2>js helper</h2>
 Example of using a custom "js" helper.
-<script src="../../assets/js/js/bootstrap.js?v=1380492399325"></script>
-<script src="../../assets/js/js/responsive.js?v=1380492399325"></script>
-<script src="../../assets/js/js/main.js?v=1380492399325"></script>
+<script src="../../assets/js/js/bootstrap.js"></script>
+<script src="../../assets/js/js/responsive.js"></script>
+<script src="../../assets/js/js/main.js"></script>
 
 
 <h2>custom variables</h2>
