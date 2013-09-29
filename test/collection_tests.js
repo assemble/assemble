@@ -1,3 +1,11 @@
+/**
+ * Assemble <http://assemble.io>
+ * Created and maintained by Jon Schlinkert and Brian Woodward
+ *
+ * Copyright (c) 2013 Upstage.
+ * Licensed under the MIT License (MIT).
+ */
+
 /*global require:true */
 var expect = require('chai').expect;
 var util = require('../lib/util');
