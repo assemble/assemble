@@ -21,14 +21,13 @@ module.exports.register = function(Handlebars, options) {
   };
 
   Handlebars.registerHelper("js", function(context) {
-    var time = new Date().getTime();
     if (!Array.isArray(context)) {
       context = [context];
     }
     return new Handlebars.SafeString(context.map(function(item) {
       var ext = getExt(item);
-      var js = '<script src="' + options.assets + '/js/' + item + '?v=' + time + '"></script>';
-      var coffee = '<script type="text/coffeescript" src="' + options.assets + '/js/' + item + '?v=' + time + '"></script>';
+      var js = '<script src="' + options.assets + '/js/' + item + '"></script>';
+      var coffee = '<script type="text/coffeescript" src="' + options.assets + '/js/' + item + '"></script>';
       switch (ext) {
         case "js":
           return js;
