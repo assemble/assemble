@@ -178,28 +178,28 @@ Please see the [Contributing to Assemble](http://assemble.io/contributing) guide
 
 ## Release History
 
- * 2013-09-20   v0.4.7   Adds grunt-readme to make it easier to keep the readme updated using templates. Keep options.partials intact so they can be used in helpers.
- * 2013-09-15   v0.4.6   Updating how the assets path is calculated. Adding resolve-dep and ability to load helpers from node modules using minimatch patterns
- * 2013-09-03   v0.4.5   Bug fix: allow page content containing $. Add alias metadata for data on pages configuration object.
- * 2013-08-01   v0.4.4   Adds "nested layouts" Adds option for pages in JSON/YAML collections to be defined as either objects or keys in an array.
- * 2013-08-01   v0.4.3   Adds "options.pages" for passing in an array of pages in JSON or YAML format.
- * 2013-06-20   v0.4.0   Adds "layoutdir" option for defining the directory to be used for layouts. If layoutdir is defined, then layouts may be defined using only the name of the layout.
- * 2013-06-10   v0.3.81   Adds additional ways to load custom helpers. Now it's possible to use a glob pattern that points to a list of scripts with helpers to load. Adds examples and tests on how to use the new custom helper loading methods.
- * 2013-06-01   v0.3.80   Fixing bug with null value in engine
- * 2013-05-07   v0.3.77   Updated README with info about assemble methods
- * 2013-04-28   v0.3.74   Updating the assemble library to use the assemble-utils repo and unnecessary code.
- * 2013-04-21   v0.3.73   Fixing how the relative path helper worked and showing an example in the footer of the layout. This example is hidden, but can be seen by doing view source.
- * 2013-04-20   v0.3.72   Fixing the layout override issue happening in the page yaml headers. Something was missed during refactoring.
- * 2013-04-19   v0.3.9   Adds tags and categories to the root context and ensure that the current page context values don't override the root context values.
- * 2013-04-18   v0.3.8   Updating to use actual assets property from current page.
- * 2013-04-17   v0.3.7   Cleaning up some unused folders and tests
- * 2013-04-16   v0.3.6   Fixed missing assets property.
- * 2013-04-16   v0.3.5   Adds a sections array to the template engine so it can be used in helpers.
- * 2013-04-11   v0.3.4   More tests for helpers and global variables, organized tests. A number of bug fixes.
- * 2013-04-06   v0.3.3   helper-lib properly externalized and wired up. Global variables for filename, ext and pages
- * 2013-03-22   v0.3.22   Merged global and target level options so data and partial files can be joined
- * 2013-03-22   v0.3.21   Valid YAML now allowed in options.data object (along with JSON)
- * 2013-03-18   v0.3.14   new relative helper for resolving relative paths
+ * 2013-09-20   **v0.4.7**   Adds grunt-readme to make it easier to keep the readme updated using templates. Keep options.partials intact so they can be used in helpers.
+ * 2013-09-15   **v0.4.6**   Updating how the assets path is calculated. Adding resolve-dep and ability to load helpers from node modules using minimatch patterns
+ * 2013-09-03   **v0.4.5**   Bug fix: allow page content containing $. Add alias metadata for data on pages configuration object.
+ * 2013-08-01   **v0.4.4**   Adds "nested layouts" Adds option for pages in JSON/YAML collections to be defined as either objects or keys in an array.
+ * 2013-08-01   **v0.4.3**   Adds "options.pages" for passing in an array of pages in JSON or YAML format.
+ * 2013-06-20   **v0.4.0**   Adds "layoutdir" option for defining the directory to be used for layouts. If layoutdir is defined, then layouts may be defined using only the name of the layout.
+ * 2013-06-10   **v0.3.81**   Adds additional ways to load custom helpers. Now it's possible to use a glob pattern that points to a list of scripts with helpers to load. Adds examples and tests on how to use the new custom helper loading methods.
+ * 2013-06-01   **v0.3.80**   Fixing bug with null value in engine
+ * 2013-05-07   **v0.3.77**   Updated README with info about assemble methods
+ * 2013-04-28   **v0.3.74**   Updating the assemble library to use the assemble-utils repo and unnecessary code.
+ * 2013-04-21   **v0.3.73**   Fixing how the relative path helper worked and showing an example in the footer of the layout. This example is hidden, but can be seen by doing view source.
+ * 2013-04-20   **v0.3.72**   Fixing the layout override issue happening in the page yaml headers. Something was missed during refactoring.
+ * 2013-04-19   **v0.3.9**   Adds tags and categories to the root context and ensure that the current page context values don't override the root context values.
+ * 2013-04-18   **v0.3.8**   Updating to use actual assets property from current page.
+ * 2013-04-17   **v0.3.7**   Cleaning up some unused folders and tests
+ * 2013-04-16   **v0.3.6**   Fixed missing assets property.
+ * 2013-04-16   **v0.3.5**   Adds a sections array to the template engine so it can be used in helpers.
+ * 2013-04-11   **v0.3.4**   More tests for helpers and global variables, organized tests. A number of bug fixes.
+ * 2013-04-06   **v0.3.3**   helper-lib properly externalized and wired up. Global variables for filename, ext and pages
+ * 2013-03-22   **v0.3.22**   Merged global and target level options so data and partial files can be joined
+ * 2013-03-22   **v0.3.21**   Valid YAML now allowed in options.data object (along with JSON)
+ * 2013-03-18   **v0.3.14**   new relative helper for resolving relative paths
 
 ## License
 Copyright (c) 2013 Sellside Inc.
@@ -207,4 +207,4 @@ Released under the [MIT License](./LICENSE-MIT).
 
 ***
 
-_This file was generated on Fri Sep 20 2013 19:42:36._
+_This file was generated on Thu Sep 26 2013 10:25:57._

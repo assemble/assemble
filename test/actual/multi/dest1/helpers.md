@@ -11,16 +11,16 @@
 
 <h2>css helper</h2>
 Example of using a custom "css" helper.
-<link rel="stylesheet" href="../../assets/css/css/bootstrap.css?v=1379390362280">
-<link rel="stylesheet" href="../../assets/css/css/responsive.css?v=1379390362280">
-<link rel="stylesheet" href="../../assets/css/css/main.css?v=1379390362280">
+<link rel="stylesheet" href="../../assets/css/css/bootstrap.css?v=1380492399325">
+<link rel="stylesheet" href="../../assets/css/css/responsive.css?v=1380492399325">
+<link rel="stylesheet" href="../../assets/css/css/main.css?v=1380492399325">
 
 
 <h2>js helper</h2>
 Example of using a custom "js" helper.
-<script src="../../assets/js/js/bootstrap.js?v=1379390362280"></script>
-<script src="../../assets/js/js/responsive.js?v=1379390362280"></script>
-<script src="../../assets/js/js/main.js?v=1379390362280"></script>
+<script src="../../assets/js/js/bootstrap.js?v=1380492399325"></script>
+<script src="../../assets/js/js/responsive.js?v=1380492399325"></script>
+<script src="../../assets/js/js/main.js?v=1380492399325"></script>
 
 
 <h2>custom variables</h2>
@@ -32,25 +32,16 @@ Example of using a custom "js" helper.
 ## Debug Info
 ``` json
 [ 'test/helpers/helper-*.js',
-  _page: 'all',
-  pagename: 'helpers.md',
-  title: 'Helpers and custom variables',
-  styles: '<link rel="stylesheet" href="css/index.css"/>',
-  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
-  ext: '.md',
-  extname: '.md',
-  dest: 'test/actual/multi/dest1/helpers.md',
-  assets: '../../assets',
-  javascripts: [ 'js/bootstrap.js',
-    'js/responsive.js',
-    'js/main.js',
-    [length]: 3 ],
-  script: 'document.write(\'foo bar!\');',
   stylesheets: [ 'css/bootstrap.css',
     'css/responsive.css',
     'css/main.css',
     [length]: 3 ],
-  src: 'test/fixtures/pages/helpers.hbs',
+  filename: 'helpers.md',
+  extname: '.md',
+  dest: 'test/actual/multi/dest1/helpers.md',
+  basename: 'helpers',
+  description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
+  _page: 'all',
   dirname: 'test/actual/multi/dest1',
   data: { title: 'Helpers and custom variables',
     description: 'Here we are using the "css" and "js" helpers to output the stylesheets and scripts that we want for this page. These are custom helpers that can found in the "./test/helpers" directory To show another approach (as well as the advantage of using helpers), we also demonstrate adding styles and scrips with custom variables.\r\n',
@@ -66,11 +57,20 @@ Example of using a custom "js" helper.
        [length]: 3 ],
     styles: '<link rel="stylesheet" href="css/index.css"/>',
     script: 'document.write(\'foo bar!\');' },
+  assets: '../../assets',
+  title: 'Helpers and custom variables',
+  ext: '.md',
   pageName: 'helpers.md',
   page: '\n<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n<h2>css helper</h2>\nExample of using a custom "css" helper.\n{{css stylesheets}}\n\n\n<h2>js helper</h2>\nExample of using a custom "js" helper.\n{{js javascripts}}\n\n\n<h2>custom variables</h2>\n{{{styles}}}\n<script>{{{script}}}</script>\n',
-  basename: 'helpers',
+  script: 'document.write(\'foo bar!\');',
+  javascripts: [ 'js/bootstrap.js',
+    'js/responsive.js',
+    'js/main.js',
+    [length]: 3 ],
   [length]: 1,
-  filename: 'helpers.md' ]
+  src: 'test/fixtures/pages/helpers.hbs',
+  pagename: 'helpers.md',
+  styles: '<link rel="stylesheet" href="css/index.css"/>' ]
 ```
 
 
