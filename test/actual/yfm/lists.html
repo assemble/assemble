@@ -114,24 +114,13 @@
     <div class="container" style="display: none">
       <h2>Debug Info</h2>
       <pre class="json">
-{ _page: 'all',
-  page: '\n<div class="page-header">\n  <h1>{{{title}}}</h1> \n</div>\n\n<div class="attributes">\n  <h4>Attributes</h4>\n  <ul>\n  {{#each attributes}}<li>{{.}}</li>\n  {{/each}}\n  </ul>\n</div>\n\n<hr>\n\n<div class="methods">\n  <h4>Methods</h4>\n  <ul>\n  {{#each methods}}<li>{{.}}</li>\n  {{/each}}\n  </ul>\n</div>\n\n<hr>\n\n<div class="examples">\n  <h3>Lists</h3>\n  <h4>Movies</h4>\n  <dl class="dl-horizontal">\n    {{#each movies}}\n      <dt>Movie:</dt> <dd>{{.}}</dd>\n    {{/each}}\n  </dl>\n\n  <h4>Groceries</h4>\n  <dl class="dl-horizontal">\n    {{#each groceries}}\n      <dt>Item:</dt> <dd>{{.}}</dd>\n    {{/each}}\n  </dl>\n</div>\n\n<hr>\n\n<div class="examples">\n  <h3>Hierarchical combinations of elements</h3>\n  <h4>Lists of associative arrays</h4>\n  <dl class="dl-horizontal">\n    {{#each people}}\n      <dt>Name:</dt> <dd>{{name}}</dd>\n      <dt>Age:</dt>  <dd>{{age}}</dd>\n    {{/each}}\n  </dl>\n\n  <h4>Associative arrays of lists</h4>\n  <dl class="dl-horizontal">\n    <div><strong>Men</strong></div>\n    {{#each men}}<dt>Name:</dt> <dd>{{.}}</dd>{{/each}}\n    <div><strong>Women</strong></div>\n    {{#each women}}<dt>Name:</dt> <dd>{{.}}</dd>{{/each}}\n  </dl>\n</div>',
-  people: 
-   [ { name: 'John Smith', age: 33 },
-     { name: 'Mary Smith', age: 27 },
-     [length]: 2 ],
-  pagename: 'lists.html',
-  title: 'Almost a Haiku',
+{ filename: 'lists.html',
   extname: '.html',
-  ext: '.html',
   dest: 'test/actual/yfm/lists.html',
-  assets: '../assets',
-  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
-  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
+  basename: 'lists',
   men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
-  src: 'test/fixtures/pages/yfm/lists.hbs',
+  _page: 'all',
   dirname: 'test/actual/yfm',
-  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
   data: 
    { title: 'Almost a Haiku',
      attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
@@ -148,15 +137,26 @@
         [length]: 2 ],
      men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
      women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ] },
+  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
+  assets: '../assets',
+  title: 'Almost a Haiku',
   movies: 
    [ 'Casablanca',
      'North by Northwest',
      'The Man Who Wasn\'t There',
      [length]: 3 ],
   pageName: 'lists.html',
+  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
+  page: '\n<div class="page-header">\n  <h1>{{{title}}}</h1> \n</div>\n\n<div class="attributes">\n  <h4>Attributes</h4>\n  <ul>\n  {{#each attributes}}<li>{{.}}</li>\n  {{/each}}\n  </ul>\n</div>\n\n<hr>\n\n<div class="methods">\n  <h4>Methods</h4>\n  <ul>\n  {{#each methods}}<li>{{.}}</li>\n  {{/each}}\n  </ul>\n</div>\n\n<hr>\n\n<div class="examples">\n  <h3>Lists</h3>\n  <h4>Movies</h4>\n  <dl class="dl-horizontal">\n    {{#each movies}}\n      <dt>Movie:</dt> <dd>{{.}}</dd>\n    {{/each}}\n  </dl>\n\n  <h4>Groceries</h4>\n  <dl class="dl-horizontal">\n    {{#each groceries}}\n      <dt>Item:</dt> <dd>{{.}}</dd>\n    {{/each}}\n  </dl>\n</div>\n\n<hr>\n\n<div class="examples">\n  <h3>Hierarchical combinations of elements</h3>\n  <h4>Lists of associative arrays</h4>\n  <dl class="dl-horizontal">\n    {{#each people}}\n      <dt>Name:</dt> <dd>{{name}}</dd>\n      <dt>Age:</dt>  <dd>{{age}}</dd>\n    {{/each}}\n  </dl>\n\n  <h4>Associative arrays of lists</h4>\n  <dl class="dl-horizontal">\n    <div><strong>Men</strong></div>\n    {{#each men}}<dt>Name:</dt> <dd>{{.}}</dd>{{/each}}\n    <div><strong>Women</strong></div>\n    {{#each women}}<dt>Name:</dt> <dd>{{.}}</dd>{{/each}}\n  </dl>\n</div>',
+  ext: '.html',
+  src: 'test/fixtures/pages/yfm/lists.hbs',
+  people: 
+   [ { name: 'John Smith', age: 33 },
+     { name: 'Mary Smith', age: 27 },
+     [length]: 2 ],
+  pagename: 'lists.html',
   methods: [ 'getter', 'setter', [length]: 2 ],
-  basename: 'lists',
-  filename: 'lists.html' }
+  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ] }
 </pre>
     </div>
 
