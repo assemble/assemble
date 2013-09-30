@@ -16,7 +16,7 @@
           "subtitle": "",
           "gists": ["5898077", "5898078"]
         },
-        "content": "<h1>{{title}} | {{site.title}}</h1>\n {{> <%= component.one %> }} The current version of Assemble is v<%= pkg.version %>."
+        "content": "<h1>{{title}} | {{site.title}}</h1>\n {{> <%= component.one %> }} This project is brought to you by <%= pkg.name %>."
       },
       {
         "filename": "post3",
@@ -40,7 +40,7 @@
           "subtitle": "",
           "gists": ["5898077", "5898078"]
         },
-        "content": "<h1>{{title}} | {{site.title}}</h1>\n {{> <%= component.one %> }} The current version of Assemble is v<%= pkg.version %>."
+        "content": "<h1>{{title}} | {{site.title}}</h1>\n {{> <%= component.one %> }} This project is brought to you by <%= pkg.name %>."
       },
       "super-sweet-and-awesome-blog-post-3": {
         "data": {
@@ -63,7 +63,7 @@
           "subtitle": "",
           "gists": ["5898077", "5898078"]
         },
-        "content": "<h1>{{title}} | {{site.title}}</h1>\n {{> <%= component.one %> }} The current version of Assemble is v<%= pkg.version %>."
+        "content": "<h1>{{title}} | {{site.title}}</h1>\n {{> <%= component.one %> }} This project is brought to you by <%= pkg.name %>."
       },
       "meta-super-sweet-and-awesome-blog-post-3": {
         "metadata": {

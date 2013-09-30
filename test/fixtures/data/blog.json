@@ -20,7 +20,7 @@
           "5898078"
         ]
       },
-      "content": "<h1>{{title}} | {{site.title}}</h1>\n {{> alert }} The current version of Assemble is v<%= pkg.version %>."
+      "content": "<h1>{{title}} | {{site.title}}</h1>\n {{> alert }} This project is brought to you by <%= pkg.name %>."
     },
     {
       "filename": "post3",

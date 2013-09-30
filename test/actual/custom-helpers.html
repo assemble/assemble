@@ -21,8 +21,8 @@
   </head>
   <body>
     <h3>Example using the foo helper</h3>
-    <!-- Below is an example of using the opt helper and getting the version property from the passed-in assemble.options -->
-    <div>Version: 0.4.7</div>
+    <!-- Below is an example of using the opt helper and getting the name property from the passed-in assemble.options -->
+    <div>Version: </div>
   </body>
 </html>
 
@@ -50,7 +50,7 @@
   assets: 'assets',
   ext: '.html',
   extname: '.html',
-  page: '<!doctype html>\n<html>\n  <head>\n    <title>Custom Helpers example</title>\n  </head>\n  <body>\n    <h3>Example using the foo helper</h3>\n    {{{foo \'Below is an example of using the opt helper and getting the version property from the passed-in assemble.options\'}}}\n    <div>Version: {{opt \'version\'}}</div>\n  </body>\n</html>\n',
+  page: '<!doctype html>\n<html>\n  <head>\n    <title>Custom Helpers example</title>\n  </head>\n  <body>\n    <h3>Example using the foo helper</h3>\n    {{{foo \'Below is an example of using the opt helper and getting the name property from the passed-in assemble.options\'}}}\n    <div>Version: {{opt \'name\'}}</div>\n  </body>\n</html>\n',
   data: {} }
 </pre>
     </div>

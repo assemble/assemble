@@ -38,4 +38,4 @@ Released under the [MIT License](./LICENSE-MIT).
 
 ***
 
-_This file was generated on {%= grunt.template.today() %}._
+_This file was generated on {%= grunt.template.date("fullDate") %}._

@@ -6,7 +6,7 @@
     "./lib/assemble"
   ],
   "dependencies": {
-    "assemble-front-matter": "~0.1.0",
+    "assemble-yaml": "~0.1.5",
     "assemble-handlebars": "~0.1.6",
     "highlight.js": "~7.3.0",
     "inflection": "~1.2.6",
