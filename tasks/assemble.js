@@ -623,18 +623,8 @@ module.exports = function(grunt) {
   };
 
   var processContext = function(grunt, context, data) {
-
-      var originalConfigData = _.cloneDeep(grunt.config.data);
-      grunt.config.data = _.extend(originalConfigData, context, data || {});
-
-      if(data) {
-        data = grunt.config.process(data);
-      } else {
-        context = grunt.config.process(context);
-      }
-      grunt.config.data = _.cloneDeep(originalConfigData);
-
-      return data || context;
+    grunt.config.data = _.extend({}, grunt.config.data, context, data);
+    return grunt.config.process(data || context);
   };
 
   var loadLayout = function(src, assemble, callback) {
