@@ -1,3 +1,7 @@
+v0.4.8:
+  date: "2013-09-30"
+  changes:
+    - Assemble now builds 30-50% faster due to some refactoring to async and how context is calculated.
 v0.4.7:
   date: "2013-09-20"
   changes:
