@@ -13,6 +13,7 @@ module.exports = function(grunt) {
   var log    = grunt.log;
   var kindOf = grunt.util.kindOf;
   var _      = grunt.util._;
+  var async  = grunt.util.async;
 
   // Node utils
   var path   = require('path');
@@ -208,200 +209,217 @@ module.exports = function(grunt) {
 
       var assetsPath = assemble.options.assets;
 
-      assemble.task.files.forEach(function(filePair) {
+      async.waterfall([
+        function(stepDone){
+          async.forEach(assemble.task.files, function(filePair, done) {
 
-        // validate that the source object exists
-        // and there are files at the source.
-        if(!filePair.src) {
-          grunt.warn('Missing src property.');
-          return false;
-        }
-        if(filePair.src.length === 0 && (!assemble.options.pages)) {
-          grunt.warn('Source files not found.');
-          return false;
-        }
-
-        // validate that the dest object exists
-        if(!filePair.dest || filePair.dest.length === 0) {
-          grunt.warn('Missing dest property.');
-          return false;
-        }
-
-        src = src || filePair.src;
-        //var basePath = findBasePath(src, true);
-
-        // some of the following code for figuring out
-        // the destination files has been taken/inspired
-        // by the grunt-contrib-copy project
-        //https://github.com/gruntjs/grunt-contrib-copy
-        var isExpandedPair = filePair.orig.expand || false;
-        var destFile;
-
-        var buildPage = function(srcFile, fileInfo) {
-
-          var useFileInfo = (typeof fileInfo !== 'undefined');
-
-          srcFile  = urlNormalize(path.normalize(srcFile));
-          var filename = path.basename(srcFile, path.extname(srcFile));
-
-          if(detectDestType(filePair.dest) === 'directory') {
-            destFile = (isExpandedPair) ? filePair.dest : path.join(
-              filePair.dest, (assemble.options.flatten ? path.basename(srcFile) : srcFile)
-            );
-          } else {
-            destFile = filePair.dest;
-          }
-
-          destFile = urlNormalize(path.join(path.dirname(destFile), path.basename(destFile, path.extname(destFile)))) + assemble.options.ext;
-
-          grunt.verbose.writeln('Reading ' + filename.magenta);
-
-          // setup options.assets so it's the relative path to the
-          // dest assets folder from the new dest file
-          // TODO: this needs to be looked at again after the
-          // other dest changes
-          grunt.verbose.writeln('AssetsPath: ' + assetsPath);
-          grunt.verbose.writeln('DestFile: ' + path.dirname(destFile));
-          assemble.options.assets = urlNormalize(
-            path.relative(path.resolve(path.dirname(destFile)), path.resolve(assetsPath))
-          );
-
-          // if the assets relative path is blank, then it's the same folder
-          // so update to be '' or './'
-          if (!assemble.options.assets || assemble.options.assets.length === 0) {
-            // if the original path had a trailing slash
-            if (hasTrailingSlash(assetsPath)) {
-              // return './'
-              assemble.options.assets = './';
-            } else {
-              // otherwise return ''
-              assemble.options.assets = '.';
+            // validate that the source object exists
+            // and there are files at the source.
+            if(!filePair.src) {
+              grunt.warn('Missing src property.');
+              return false;
             }
-          }
-
-          // if the original path had a trailing slash
-          // and the calculated path does not,
-          // add a trailing slash
-          if (hasTrailingSlash(assetsPath) && !hasTrailingSlash(assemble.options.assets)) {
-
-            assemble.options.assets += '/';
-
-          // if the original path did not have a trailing slash
-          // and the calculated path does,
-          // remove the trailing slash
-          } else if (!hasTrailingSlash(assetsPath) && hasTrailingSlash(assemble.options.assets)) {
-
-            assemble.options.assets = assemble.options.assets.substring(0, assemble.options.assets.length - 2);
-
-          }
-
-          grunt.verbose.writeln(('\t' + 'Src: '    + srcFile));
-          grunt.verbose.writeln(('\t' + 'Dest: '   + destFile));
-          grunt.verbose.writeln(('\t' + 'Assets: ' + assemble.options.assets));
-
-          var page = useFileInfo ? (fileInfo.content || '') : grunt.file.read(srcFile);
-          try {
-            grunt.verbose.writeln('compiling page ' + filename.magenta);
-            var pageContext = {};
-
-            // If the page file is empty, we still want to process it. Since the compiler
-            // will choke on empty files let's pass it a non-rendering string instead.
-            if(page === '') {
-              page = '{{!}}';
+            if(filePair.src.length === 0 && (!assemble.options.pages)) {
+              grunt.warn('Source files not found.');
+              return false;
             }
 
-            // If options.removeHbsWhitespace is true
-            page = removeHbsWhitespace(assemble, page);
+            // validate that the dest object exists
+            if(!filePair.dest || filePair.dest.length === 0) {
+              grunt.warn('Missing dest property.');
+              return false;
+            }
 
-            var pageInfo = assemble.data.readYFM(page, {fromFile: false});
-            pageContext = useFileInfo ? (fileInfo.data || fileInfo.metadata || {}) : pageInfo.context;
+            src = src || filePair.src;
+            //var basePath = findBasePath(src, true);
 
-            // // compile
-            // assemble.engine.compile(pageInfo.content, null, function(err, tmpl) {
-            //   if(err) {
-            //     grunt.warn(err);
-            //     done(false);
-            //   }
-            //   page = tmpl;
-            // });
+            // some of the following code for figuring out
+            // the destination files has been taken/inspired
+            // by the grunt-contrib-copy project
+            //https://github.com/gruntjs/grunt-contrib-copy
+            var isExpandedPair = filePair.orig.expand || false;
+            var destFile;
 
-            var pageObj = {
-              '_page': 'all',
-              dirname : path.dirname(destFile),
-              filename: path.basename(destFile),
-              pageName: path.basename(destFile),
-              pagename: path.basename(destFile),
-              basename: path.basename(filename, path.extname(filename)),
-              src: srcFile,
-              dest: destFile,
-              assets: assemble.options.assets,
-              ext: assemble.options.ext,
-              extname: assemble.options.ext,
-              page: pageInfo.content,
-              data: pageContext
+            var buildPage = function(srcFile, fileInfo) {
+
+              var useFileInfo = (typeof fileInfo !== 'undefined');
+
+              srcFile  = urlNormalize(path.normalize(srcFile));
+              var filename = path.basename(srcFile, path.extname(srcFile));
+
+              if(detectDestType(filePair.dest) === 'directory') {
+                destFile = (isExpandedPair) ? filePair.dest : path.join(
+                  filePair.dest, (assemble.options.flatten ? path.basename(srcFile) : srcFile)
+                );
+              } else {
+                destFile = filePair.dest;
+              }
+
+              destFile = urlNormalize(path.join(path.dirname(destFile), path.basename(destFile, path.extname(destFile)))) + assemble.options.ext;
+
+              grunt.verbose.writeln('Reading ' + filename.magenta);
+
+              // setup options.assets so it's the relative path to the
+              // dest assets folder from the new dest file
+              // TODO: this needs to be looked at again after the
+              // other dest changes
+              grunt.verbose.writeln('AssetsPath: ' + assetsPath);
+              grunt.verbose.writeln('DestFile: ' + path.dirname(destFile));
+              assemble.options.assets = urlNormalize(
+                path.relative(path.resolve(path.dirname(destFile)), path.resolve(assetsPath))
+              );
+
+              // if the assets relative path is blank, then it's the same folder
+              // so update to be '' or './'
+              if (!assemble.options.assets || assemble.options.assets.length === 0) {
+                // if the original path had a trailing slash
+                if (hasTrailingSlash(assetsPath)) {
+                  // return './'
+                  assemble.options.assets = './';
+                } else {
+                  // otherwise return ''
+                  assemble.options.assets = '.';
+                }
+              }
+
+              // if the original path had a trailing slash
+              // and the calculated path does not,
+              // add a trailing slash
+              if (hasTrailingSlash(assetsPath) && !hasTrailingSlash(assemble.options.assets)) {
+
+                assemble.options.assets += '/';
+
+                // if the original path did not have a trailing slash
+                // and the calculated path does,
+                // remove the trailing slash
+              } else if (!hasTrailingSlash(assetsPath) && hasTrailingSlash(assemble.options.assets)) {
+
+                assemble.options.assets = assemble.options.assets.substring(0, assemble.options.assets.length - 2);
+
+              }
+
+              grunt.verbose.writeln(('\t' + 'Src: '    + srcFile));
+              grunt.verbose.writeln(('\t' + 'Dest: '   + destFile));
+              grunt.verbose.writeln(('\t' + 'Assets: ' + assemble.options.assets));
+
+              var page = useFileInfo ? (fileInfo.content || '') : grunt.file.read(srcFile);
+              try {
+                grunt.verbose.writeln('compiling page ' + filename.magenta);
+                var pageContext = {};
+
+                // If the page file is empty, we still want to process it. Since the compiler
+                // will choke on empty files let's pass it a non-rendering string instead.
+                if(page === '') {
+                  page = '{{!}}';
+                }
+
+                // If options.removeHbsWhitespace is true
+                page = removeHbsWhitespace(assemble, page);
+
+                var pageInfo = assemble.data.readYFM(page, {fromFile: false});
+                pageContext = useFileInfo ? (fileInfo.data || fileInfo.metadata || {}) : pageInfo.context;
+
+                // // compile
+                // assemble.engine.compile(pageInfo.content, null, function(err, tmpl) {
+                //   if(err) {
+                //     grunt.warn(err);
+                //     done(false);
+                //   }
+                //   page = tmpl;
+                // });
+
+                var pageObj = {
+                  '_page': 'all',
+                  dirname : path.dirname(destFile),
+                  filename: path.basename(destFile),
+                  pageName: path.basename(destFile),
+                  pagename: path.basename(destFile),
+                  basename: path.basename(filename, path.extname(filename)),
+                  src: srcFile,
+                  dest: destFile,
+                  assets: assemble.options.assets,
+                  ext: assemble.options.ext,
+                  extname: assemble.options.ext,
+                  page: pageInfo.content,
+                  data: pageContext
+                };
+
+                if(pageObj.data.published === false) {
+                  grunt.log.write('\n>> Skipping "' + path.basename(srcFile).grey + '" since ' + '"published: false"'.cyan + ' was set.');
+                  return;
+                }
+
+                assemble.options.collections.pages.items[0].pages.push(pageObj);
+
+                lodash.each(assemble.options.collections, function(item, key) {
+                  if(key !== 'pages') {
+                    assemble.options.collections[key] = assemble.util.collection.update(item, pageObj, pageContext);
+                  }
+                });
+
+              } catch(err) {
+                grunt.warn(err);
+                return false;
+              }
+
+              return true;
             };
 
-            if(pageObj.data.published === false) {
-              grunt.log.write('\n>> Skipping "' + path.basename(srcFile).grey + '" since ' + '"published: false"'.cyan + ' was set.');
-              return;
-            }
+            async.parallel([
+              function(buildDone){
+                // build all the pages defined in the source property
+                async.forEach(filePair.src, function(srcFile, pairDone) {
+                  if(!buildPage(srcFile)) {
+                    pairDone();
+                    return false;
+                  }
 
-            assemble.options.collections.pages.items[0].pages.push(pageObj);
+                  pairDone();
+                }, buildDone); // filePair.src.forEach
+              },
 
-            lodash.each(assemble.options.collections, function(item, key) {
-              if(key !== 'pages') {
-                assemble.options.collections[key] = assemble.util.collection.update(item, pageObj, pageContext);
+              function(buildDone){
+                // if there is a pages property, build all those
+                if(assemble.options.pages) {
+                  lodash.forOwn(assemble.options.pages, function(fileInfo, filename) {
+                    if(!filename || filename.length === 0) {
+                      grunt.warn('Pages need a filename.');
+                      buildDone();
+                      return false;
+                    }
+
+                    if(!buildPage(filename, fileInfo)) {
+                      buildDone();
+                      return false;
+                    }
+                  });
+                }
+
+                buildDone();
               }
-            });
+            ], done);
+          }, stepDone); // this.files.forEach
+        },
+        function(stepDone){
+          grunt.verbose.writeln('information compiled');
 
-          } catch(err) {
-            grunt.warn(err);
-            return false;
-          }
-
-          return true;
-        };
-
-        // build all the pages defined in the source property
-        filePair.src.forEach(function(srcFile) {
-          if(!buildPage(srcFile)) {
-            return false;
-          }
-        }); // filePair.src.forEach
-
-        // if there is a pages property, build all those
-        if(assemble.options.pages) {
-          lodash.forOwn(assemble.options.pages, function(fileInfo, filename) {
-            if(!filename || filename.length === 0) {
-              grunt.warn('Pages need a filename.');
-              return false;
-            }
-            if(!buildPage(filename, fileInfo)) {
-              return false;
+          assemble.options.pages = assemble.util.collection.sort(assemble.options.collections.pages).items[0].pages;
+          lodash.each(assemble.options.collections, function(item, key) {
+            if(key !== 'pages') {
+              assemble.options[key] = assemble.util.collection.sort(item).items;
             }
           });
+
+          stepDone();
         }
-
-      }); // this.files.forEach
-
-      grunt.verbose.writeln('information compiled');
-
-      assemble.options.pages = assemble.util.collection.sort(assemble.options.collections.pages).items[0].pages;
-      lodash.each(assemble.options.collections, function(item, key) {
-        if(key !== 'pages') {
-          assemble.options[key] = assemble.util.collection.sort(item).items;
-        }
-      });
-
-
-      next(assemble);
+      ], function(){ next(assemble); });
     };
 
     var renderPages = function(assemble, next) {
 
       grunt.verbose.writeln(('\n' + 'Assembling pages...').yellow);
 
-      assemble.options.pages.forEach(function(page) {
+      async.forEach(assemble.options.pages, function(page, done) {
 
         grunt.verbose.writeln(require('util').inspect(page));
 
@@ -421,11 +439,13 @@ module.exports = function(grunt) {
           grunt.verbose.writeln('Assembled ' + (page.dest).cyan +' OK'.green);
 
           grunt.log.notverbose.ok();
+          done();
         }); // build
-      });
-      grunt.log.ok(((assemble.options.pages).length).toString() + ' pages assembled.');
+      }, function(){
+        grunt.log.ok(((assemble.options.pages).length).toString() + ' pages assembled.');
 
-      next(assemble);
+        next(assemble);
+      });
     };
 
     grunt.verbose.writeflags(assemble.options, 'Assemble options');
