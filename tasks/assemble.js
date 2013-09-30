@@ -12,7 +12,7 @@ module.exports = function(grunt) {
   var file   = grunt.file;
   var log    = grunt.log;
   var kindOf = grunt.util.kindOf;
-  var _      = grunt.util._;
+  var _str   = grunt.util._.str;
   var async  = grunt.util.async;
 
   // Node utils
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
 
   // NPM utils
   var inflection = require('inflection');
-  var lodash = require('lodash'); // required to ensure correct version is used
+  var _ = require('lodash');
 
   // Assemble utils
   var assemble = require('../lib/assemble');
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
 
       grunt.verbose.writeln('validating options');
 
-      if(_.endsWith(assemble.options.ext, '.')) {
+      if(_str.endsWith(assemble.options.ext, '.')) {
         grunt.warn('Invalid ext "' + assemble.options.ext + '". ext cannot end with a period.');
         done(false);
       }
@@ -57,7 +57,7 @@ module.exports = function(grunt) {
           grunt.warn('No source files found.');
           done(false);
         } else {
-          src = lodash.keys(assemble.options.pages);
+          src = _.keys(assemble.options.pages);
         }
       }
 
@@ -142,7 +142,7 @@ module.exports = function(grunt) {
 
           // get the data
           var partialInfo = assemble.data.readYFM(partial, {fromFile: false});
-          assemble.options.data[filename] = _.extend(partialInfo.context || {}, assemble.options.data[filename] || {});
+          assemble.options.data[filename] = _.extend({}, partialInfo.context || {}, assemble.options.data[filename] || {});
 
           // register the partial
           assemble.options.registerPartial(assemble.engine, filename, partialInfo.content);
@@ -180,16 +180,16 @@ module.exports = function(grunt) {
 
             if(filename === 'data') {
               // if this is the base data file, load it into the options.data object directly
-              assemble.options.data = _.extend(assemble.options.data || {}, fileReader(filepath));
+              assemble.options.data = _.extend({}, assemble.options.data || {}, fileReader(filepath));
             } else {
               // otherwise it's an element in options.data
               var d = fileReader(filepath);
               if(d[filename]) {
                 // json object contains root object name so extend it in options.json
-                assemble.options.data[filename] = _.extend(assemble.options.data[filename] || {}, d[filename]);
+                assemble.options.data[filename] = _.extend({}, assemble.options.data[filename] || {}, d[filename]);
               } else {
                 // add the entire object
-                assemble.options.data[filename] = _.extend(assemble.options.data[filename] || {}, d);
+                assemble.options.data[filename] = _.extend({}, assemble.options.data[filename] || {}, d);
               }
             }
             complete ++;
@@ -319,15 +319,6 @@ module.exports = function(grunt) {
                 var pageInfo = assemble.data.readYFM(page, {fromFile: false});
                 pageContext = useFileInfo ? (fileInfo.data || fileInfo.metadata || {}) : pageInfo.context;
 
-                // // compile
-                // assemble.engine.compile(pageInfo.content, null, function(err, tmpl) {
-                //   if(err) {
-                //     grunt.warn(err);
-                //     done(false);
-                //   }
-                //   page = tmpl;
-                // });
-
                 var pageObj = {
                   '_page': 'all',
                   dirname : path.dirname(destFile),
@@ -351,7 +342,7 @@ module.exports = function(grunt) {
 
                 assemble.options.collections.pages.items[0].pages.push(pageObj);
 
-                lodash.each(assemble.options.collections, function(item, key) {
+                _.each(assemble.options.collections, function(item, key) {
                   if(key !== 'pages') {
                     assemble.options.collections[key] = assemble.util.collection.update(item, pageObj, pageContext);
                   }
@@ -381,7 +372,7 @@ module.exports = function(grunt) {
               function(buildDone){
                 // if there is a pages property, build all those
                 if(assemble.options.pages) {
-                  lodash.forOwn(assemble.options.pages, function(fileInfo, filename) {
+                  _.forOwn(assemble.options.pages, function(fileInfo, filename) {
                     if(!filename || filename.length === 0) {
                       grunt.warn('Pages need a filename.');
                       buildDone();
@@ -404,7 +395,7 @@ module.exports = function(grunt) {
           grunt.verbose.writeln('information compiled');
 
           assemble.options.pages = assemble.util.collection.sort(assemble.options.collections.pages).items[0].pages;
-          lodash.each(assemble.options.collections, function(item, key) {
+          _.each(assemble.options.collections, function(item, key) {
             if(key !== 'pages') {
               assemble.options[key] = assemble.util.collection.sort(item).items;
             }
@@ -479,7 +470,7 @@ module.exports = function(grunt) {
     }
 
     if (grunt.util.kindOf(basePath) === 'string' && basePath.length >= 1) {
-      return grunt.util._(path.normalize(basePath)).trim(path.sep);
+      return _(path.normalize(basePath)).trim(path.sep);
     }
 
     var foundPath;
@@ -493,7 +484,7 @@ module.exports = function(grunt) {
       basePaths.push(dirName.split(path.sep));
     });
 
-    basePaths = grunt.util._.intersection.apply([], basePaths);
+    basePaths = _.intersection.apply([], basePaths);
 
     foundPath = path.join.apply(path, basePaths);
 
@@ -518,7 +509,7 @@ module.exports = function(grunt) {
     grunt.verbose.writeln('currentPage: ' + currentPage);
     var page         = currentPage.page,
         pageContext  = currentPage.data,
-        layout       = lodash.cloneDeep(options.defaultLayout),
+        layout       = _.cloneDeep(options.defaultLayout),
         data         = options.data,
         pages        = options.pages,
         collections  = options.collections,
@@ -533,14 +524,14 @@ module.exports = function(grunt) {
     try {
 
       // omit the collections from pageContext when merging
-      var pageCollections = lodash.pick(pageContext, lodash.keys(collections));
-      pageContext = lodash.omit(pageContext, lodash.keys(collections));
+      var pageCollections = _.pick(pageContext, _.keys(collections));
+      pageContext = _.omit(pageContext, _.keys(collections));
 
       options.data    = undefined;
       options.pages   = undefined;
       options.layout  = undefined;
       options.collections = undefined;
-      context         = _.extend(context, assemble.util.filterProperties(options), data, pageContext);
+      context         = _.extend({}, context, assemble.util.filterProperties(options), data, pageContext);
       options.data    = data;
       options.pages   = pages;
       options.collections = collections;
@@ -568,14 +559,14 @@ module.exports = function(grunt) {
         if(pageLayout) {
           layout = pageLayout;
           context.layoutName = pageLayout.layoutName;
-          data = _.extend(data, pageLayout.data);
+          data = _.extend({}, data, pageLayout.data);
 
           // extend again
           options.data = undefined;
           options.pages = undefined;
           options.layout = undefined;
           options.collections = undefined;
-          context = _.extend(context, assemble.util.filterProperties(options), data, pageContext);
+          context = _.extend({}, context, assemble.util.filterProperties(options), data, pageContext);
           options.data = data;
           options.pages = pages;
           options.collections = collections;
@@ -584,7 +575,7 @@ module.exports = function(grunt) {
 
 
       // add omitted collections back to pageContext
-      pageContext = lodash.merge(pageContext, pageCollections);
+      pageContext = _.merge(pageContext, pageCollections);
       context = processContext(grunt, context);
 
       // process the current page data
@@ -596,10 +587,11 @@ module.exports = function(grunt) {
       context.page = currentPage;
 
       // apply any data for this page to the page object
-      context.page = _.extend(context[currentPage.basename] || {}, currentPage.data, context.page);
+      context.page = _.extend({}, (context[currentPage.basename] || {}), currentPage.data, context.page);
 
       // make sure the currentPage assets is used
       context.assets = currentPage.assets;
+
 
       // add other page variables to the main context
       context.extname = currentPage.ext;
@@ -610,6 +602,7 @@ module.exports = function(grunt) {
       context.filename = currentPage.filename;
       // "pageName" is deprecated, use "pagename" or "filename"
       context.pageName = currentPage.filename;
+
 
       //assemble.options.registerPartial(assemble.engine, 'body', page);
       page = injectBody(layout.layout, page);
@@ -631,7 +624,7 @@ module.exports = function(grunt) {
 
   var processContext = function(grunt, context, data) {
 
-      var originalConfigData = lodash.cloneDeep(grunt.config.data);
+      var originalConfigData = _.cloneDeep(grunt.config.data);
       grunt.config.data = _.extend(originalConfigData, context, data || {});
 
       if(data) {
@@ -639,7 +632,7 @@ module.exports = function(grunt) {
       } else {
         context = grunt.config.process(context);
       }
-      grunt.config.data = lodash.cloneDeep(originalConfigData);
+      grunt.config.data = _.cloneDeep(originalConfigData);
 
       return data || context;
   };
@@ -710,19 +703,9 @@ module.exports = function(grunt) {
 
     while (layoutInfo = layoutStack.pop()) {
       finalResults.layout = injectBody(finalResults.layout, layoutInfo.layout);
-      finalResults.data = _.extend(finalResults.data, layoutInfo.data);
+      finalResults.data = _.extend({}, finalResults.data, layoutInfo.data);
       finalResults.layoutName = layoutInfo.layoutName;
     }
-
-    // assemble.engine.compile(finalResults.layout, null, function(err, tmpl) {
-    //   if(err) {
-    //     grunt.warn(err);
-    //     if(callback) {
-    //       callback(err);
-    //     }
-    //   }
-    //   finalResults.layout = tmpl;
-    // });
 
     if(callback) {
       callback(null, finalResults);
@@ -730,12 +713,20 @@ module.exports = function(grunt) {
     return finalResults;
   };
 
+
+
+  /**
+   * Inject content from a page into a layout at the `{{> body }}` insertion point
+   * @param  {String} layout  The raw layout
+   * @param  {String} body    The raw page
+   * @return {String}         The raw, assembled, uncompiled and unprocessed page
+   */
   var injectBody = function(layout, body) {
     return layout.replace(assemble.engine.bodyRegex, function() { return body; });
   };
 
   var detectDestType = function(dest) {
-    if(_.endsWith(path.normalize(dest), path.sep)) {
+    if(_str.endsWith(path.normalize(dest), path.sep)) {
       return 'directory';
     } else {
       return 'file';
@@ -743,7 +734,7 @@ module.exports = function(grunt) {
   };
 
   var hasTrailingSlash = function(filePath) {
-    return _.endsWith(path.normalize(filePath), path.sep);
+    return _str.endsWith(path.normalize(filePath), path.sep);
   };
 
   var logBlock = function(heading, message) {
