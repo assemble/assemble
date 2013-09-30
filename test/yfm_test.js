@@ -21,12 +21,12 @@ describe('Reading From Files', function() {
   };
 
   var complexExpected = {
+    originalContent: "---\nfoo: bar\nversion: 2\n---\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
+    content: "\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
     context: {
       "foo": "bar",
       "version": 2
-    },
-    originalContent: "---\nfoo: bar\nversion: 2\n---\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
-    content: "\n\n<span class=\"alert alert-info\">This is an alert</span>\n"
+    }
   };
 
 
@@ -73,12 +73,12 @@ describe('Reading From Strings', function() {
   var complex = "---\nfoo: bar\nversion: 2\n---\n\n<span class=\"alert alert-info\">This is an alert</span>\n";
 
   var complexExpected = {
+    originalContent: "---\nfoo: bar\nversion: 2\n---\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
+    content: "\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
     context: {
       "foo": "bar",
       "version": 2
-    },
-    originalContent: "---\nfoo: bar\nversion: 2\n---\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
-    content: "\n\n<span class=\"alert alert-info\">This is an alert</span>\n"
+    }
   };
 
   it("yaml string starts with --- no content", function(done) {
