@@ -213,30 +213,30 @@ module.exports = function(grunt) {
         function(stepDone){
           async.forEach(assemble.task.files, function(filePair, done) {
 
-            // validate that the source object exists
-            // and there are files at the source.
+            // validate that the source object exists and there are files at the source.
             if(!filePair.src) {
               grunt.warn('Missing src property.');
+              done();
               return false;
             }
             if(filePair.src.length === 0 && (!assemble.options.pages)) {
               grunt.warn('Source files not found.');
+              done();
               return false;
             }
 
             // validate that the dest object exists
             if(!filePair.dest || filePair.dest.length === 0) {
               grunt.warn('Missing dest property.');
+              done();
               return false;
             }
 
             src = src || filePair.src;
             //var basePath = findBasePath(src, true);
 
-            // some of the following code for figuring out
-            // the destination files has been taken/inspired
-            // by the grunt-contrib-copy project
-            //https://github.com/gruntjs/grunt-contrib-copy
+            // some of the code for calculating destination paths files was
+            // inspired by https://github.com/gruntjs/grunt-contrib-copy
             var isExpandedPair = filePair.orig.expand || false;
             var destFile;
 
@@ -259,9 +259,8 @@ module.exports = function(grunt) {
 
               grunt.verbose.writeln('Reading ' + filename.magenta);
 
-              // setup options.assets so it's the relative path to the
-              // dest assets folder from the new dest file
-              // TODO: this needs to be looked at again after the
+              // setup options.assets so it's the relative path to the dest assets folder
+              // from the new dest file TODO: this needs to be looked at again after the
               // other dest changes
               grunt.verbose.writeln('AssetsPath: ' + assetsPath);
               grunt.verbose.writeln('DestFile: ' + path.dirname(destFile));
@@ -269,8 +268,8 @@ module.exports = function(grunt) {
                 path.relative(path.resolve(path.dirname(destFile)), path.resolve(assetsPath))
               );
 
-              // if the assets relative path is blank, then it's the same folder
-              // so update to be '' or './'
+              // if the assets relative path is blank, then it's the same folder so update
+              // to be '' or './'
               if (!assemble.options.assets || assemble.options.assets.length === 0) {
                 // if the original path had a trailing slash
                 if (hasTrailingSlash(assetsPath)) {
@@ -282,16 +281,14 @@ module.exports = function(grunt) {
                 }
               }
 
-              // if the original path had a trailing slash
-              // and the calculated path does not,
-              // add a trailing slash
+              // if the original path had a trailing slash and the calculated path does
+              // not, add a trailing slash
               if (hasTrailingSlash(assetsPath) && !hasTrailingSlash(assemble.options.assets)) {
 
                 assemble.options.assets += '/';
 
-                // if the original path did not have a trailing slash
-                // and the calculated path does,
-                // remove the trailing slash
+                // if the original path did not have a trailing slash and the calculated
+                // path does, remove the trailing slash
               } else if (!hasTrailingSlash(assetsPath) && hasTrailingSlash(assemble.options.assets)) {
 
                 assemble.options.assets = assemble.options.assets.substring(0, assemble.options.assets.length - 2);
@@ -581,8 +578,7 @@ module.exports = function(grunt) {
       // process the current page data
       currentPage.data = processContext(grunt, context, currentPage.data);
 
-      // add the list of pages back to the context so
-      // it's available in the templates
+      // add the list of pages back to the context so it's available in the templates
       context.pages = pages;
       context.page = currentPage;
 
