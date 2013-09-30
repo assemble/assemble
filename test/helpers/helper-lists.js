@@ -7,6 +7,7 @@
  */
 
 module.exports.register = function(Handlebars, options) {
+  /*jshint eqnull: true */
 
   var toString = function(val) {
     if (val == null) {

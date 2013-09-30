@@ -1,3 +1,4 @@
+/*global require:true */
 /**
  * Assemble <http://assemble.io>
  * Created and maintained by Jon Schlinkert and Brian Woodward
@@ -6,13 +7,12 @@
  * Licensed under the MIT License (MIT).
  */
 
-/*global require:true */
-var assembleData = require('../lib/data'),
-    expect = require('chai').expect;
+var yfm    = require('assemble-yaml');
+var expect = require('chai').expect;
+
 
 
 describe('Reading From Files', function() {
-
 
   var simpleExpected = {
     context: {
@@ -31,25 +31,25 @@ describe('Reading From Files', function() {
 
 
   it("yaml file starts with --- no content", function(done) {
-    var data = assembleData.readYFM('./test/fixtures/pages/simple1.yml');
+    var data = yfm.extract('./test/fixtures/pages/simple1.yml');
     expect(simpleExpected.context).to.deep.equal(data.context);
     done();
   });
 
   it("yaml file starts and ends with --- no content", function(done) {
-    var data = assembleData.readYFM('./test/fixtures/pages/simple2.yml');
+    var data = yfm.extract('./test/fixtures/pages/simple2.yml');
     expect(simpleExpected.context).to.deep.equal(data.context);
     done();
   });
 
   it("yaml file starts and ends with --- has content", function(done) {
-    var data = assembleData.readYFM('./test/fixtures/pages/simple3.hbs');
+    var data = yfm.extract('./test/fixtures/pages/simple3.hbs');
     expect(simpleExpected.context).to.deep.equal(data.context);
     done();
   });
 
   it("hbs file with complex yaml data and content", function(done) {
-    var data = assembleData.readYFM("./test/fixtures/pages/complex.hbs");
+    var data = yfm.extract("./test/fixtures/pages/complex.hbs");
     expect(complexExpected).to.deep.equal(data);
     done();
   });
@@ -82,25 +82,25 @@ describe('Reading From Strings', function() {
   };
 
   it("yaml string starts with --- no content", function(done) {
-    var data = assembleData.readYFM(simple1, opts);
+    var data = yfm.extract(simple1, opts);
     expect(simpleExpected.context).to.deep.equal(data.context);
     done();
   });
 
   it("yaml string starts and ends with --- no content", function(done) {
-    var data = assembleData.readYFM(simple2, opts);
+    var data = yfm.extract(simple2, opts);
     expect(simpleExpected.context).to.deep.equal(data.context);
     done();
   });
 
   it("yaml string starts and ends with --- has content", function(done) {
-    var data = assembleData.readYFM(simple3, opts);
+    var data = yfm.extract(simple3, opts);
     expect(simpleExpected.context).to.deep.equal(data.context);
     done();
   });
 
   it("hbs string with complex yaml data and content", function(done) {
-    var data = assembleData.readYFM(complex, opts);
+    var data = yfm.extract(complex, opts);
     expect(complexExpected).to.deep.equal(data);
     done();
   });
