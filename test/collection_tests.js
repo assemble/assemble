@@ -27,7 +27,7 @@ describe('Collections', function() {
       var expected = getCollection('expected-sortby-item-asc.json');
       var col = _.cloneDeep(fakeCollection);
       var actual = util.collection.sort(col);
-      console.log(require('util').inspect(actual, null, 10));
+      grunt.verbose.writeln(require('util').inspect(actual, null, 10));
       expect(actual).to.deep.equal(expected);
       done();
     });
@@ -37,7 +37,7 @@ describe('Collections', function() {
       var col = _.cloneDeep(fakeCollection);
       col.sortorder = 'DESC';
       var actual = util.collection.sort(col);
-      console.log(require('util').inspect(actual, null, 10));
+      grunt.verbose.writeln(require('util').inspect(actual, null, 10));
       expect(actual).to.deep.equal(expected);
       done();
     });
@@ -47,7 +47,7 @@ describe('Collections', function() {
       var col = _.cloneDeep(fakeCollection);
       col.sortby = 'title';
       var actual = util.collection.sort(col);
-      console.log(require('util').inspect(actual, null, 10));
+      grunt.verbose.writeln(require('util').inspect(actual, null, 10));
       expect(actual).to.deep.equal(expected);
       done();
     });
@@ -58,7 +58,7 @@ describe('Collections', function() {
       col.sortorder = 'DESC';
       col.sortby = 'title';
       var actual = util.collection.sort(col);
-      console.log(require('util').inspect(actual, null, 10));
+      grunt.verbose.writeln(require('util').inspect(actual, null, 10));
       expect(actual).to.deep.equal(expected);
       done();
     });
