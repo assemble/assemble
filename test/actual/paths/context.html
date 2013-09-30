@@ -7,9 +7,7 @@
   </head>
   <body style="padding-top: 60px;">
     <div class="container">
-      
-
-<li><a href="#" id="title">Overview</a></li>
+      <li><a href="#" id="title">Overview</a></li>
 <li><a href="#" id="this-title">Overview</a></li>
 <li><a href="#" id="page-title">Overview</a></li>
 <li><a href="#" id="data-title"></a></li>
@@ -27,7 +25,7 @@
   
     <li><a href="#" id="basename">[object Object]</a></li>
     <li><a href="#" id="parent-basename">context</a></li>
-    <li><a href="#" id="this-basename">example</a></li>
+    <li><a href="#" id="this-basename">gist-helper</a></li>
     <li><a href="#" id="page-basename"></a></li>
     <li><a href="#" id="data-basename"></a></li>
   
@@ -87,13 +85,13 @@
   
     <li><a href="#" id="basename">[object Object]</a></li>
     <li><a href="#" id="parent-basename">context</a></li>
-    <li><a href="#" id="this-basename">assets</a></li>
+    <li><a href="#" id="this-basename">example</a></li>
     <li><a href="#" id="page-basename"></a></li>
     <li><a href="#" id="data-basename"></a></li>
   
     <li><a href="#" id="basename">[object Object]</a></li>
     <li><a href="#" id="parent-basename">context</a></li>
-    <li><a href="#" id="this-basename">gist-helper</a></li>
+    <li><a href="#" id="this-basename">assets</a></li>
     <li><a href="#" id="page-basename"></a></li>
     <li><a href="#" id="data-basename"></a></li>
   
@@ -141,6 +139,12 @@
   
     <li><a href="#" id="basename">[object Object]</a></li>
     <li><a href="#" id="parent-basename">context</a></li>
+    <li><a href="#" id="this-basename">no-yfm</a></li>
+    <li><a href="#" id="page-basename"></a></li>
+    <li><a href="#" id="data-basename"></a></li>
+  
+    <li><a href="#" id="basename">[object Object]</a></li>
+    <li><a href="#" id="parent-basename">context</a></li>
     <li><a href="#" id="this-basename">page</a></li>
     <li><a href="#" id="page-basename"></a></li>
     <li><a href="#" id="data-basename"></a></li>
@@ -165,7 +169,7 @@
     <li><a href="#" id="parent-title">Overview</a></li>
     <li><a href="#" id="this-title"></a></li>
     <li><a href="#" id="page-title"></a></li>
-    <li><a href="#" id="data-title"></a></li>
+    <li><a href="#" id="data-title">Title for &quot;alert.hbs&quot;</a></li>
   
     <li><a href="#" id="title"></a></li>
     <li><a href="#" id="parent-title">Overview</a></li>
@@ -273,6 +277,12 @@
     <li><a href="#" id="parent-title">Overview</a></li>
     <li><a href="#" id="this-title"></a></li>
     <li><a href="#" id="page-title"></a></li>
+    <li><a href="#" id="data-title"></a></li>
+  
+    <li><a href="#" id="title"></a></li>
+    <li><a href="#" id="parent-title">Overview</a></li>
+    <li><a href="#" id="this-title"></a></li>
+    <li><a href="#" id="page-title"></a></li>
     <li><a href="#" id="data-title">Partials Test</a></li>
   
     <li><a href="#" id="title"></a></li>
@@ -304,22 +314,22 @@
   assets: '../assets',
   ext: '.html',
   extname: '.html',
-  page: '\n\n<li><a href="#" id="title">{{title}}</a></li>\n<li><a href="#" id="this-title">{{this.title}}</a></li>\n<li><a href="#" id="page-title">{{page.title}}</a></li>\n<li><a href="#" id="data-title">{{data.title}}</a></li>\n\n<hr>\n\n<li><a href="#" id="basename">{{basename}}</a></li>\n<li><a href="#" id="this-basename">{{this.basename}}</a></li>\n<li><a href="#" id="page-basename">{{page.basename}}</a></li>\n<li><a href="#" id="data-basename">{{data.basename}}</a></li>\n\n<hr>\n\n<ul id="basename-collection">\n  {{#each pages}}\n    <li><a href="#" id="basename">{{basename}}</a></li>\n    <li><a href="#" id="parent-basename">{{../basename}}</a></li>\n    <li><a href="#" id="this-basename">{{this.basename}}</a></li>\n    <li><a href="#" id="page-basename">{{page.basename}}</a></li>\n    <li><a href="#" id="data-basename">{{data.basename}}</a></li>\n  {{/each}}\n</ul>\n\n<ul id="title-collection">\n  {{#each pages}}\n    <li><a href="#" id="title">{{title}}</a></li>\n    <li><a href="#" id="parent-title">{{../title}}</a></li>\n    <li><a href="#" id="this-title">{{this.title}}</a></li>\n    <li><a href="#" id="page-title">{{page.title}}</a></li>\n    <li><a href="#" id="data-title">{{data.title}}</a></li>\n  {{/each}}\n</ul>\n\n\n',
+  page: '<li><a href="#" id="title">{{title}}</a></li>\n<li><a href="#" id="this-title">{{this.title}}</a></li>\n<li><a href="#" id="page-title">{{page.title}}</a></li>\n<li><a href="#" id="data-title">{{data.title}}</a></li>\n\n<hr>\n\n<li><a href="#" id="basename">{{basename}}</a></li>\n<li><a href="#" id="this-basename">{{this.basename}}</a></li>\n<li><a href="#" id="page-basename">{{page.basename}}</a></li>\n<li><a href="#" id="data-basename">{{data.basename}}</a></li>\n\n<hr>\n\n<ul id="basename-collection">\n  {{#each pages}}\n    <li><a href="#" id="basename">{{basename}}</a></li>\n    <li><a href="#" id="parent-basename">{{../basename}}</a></li>\n    <li><a href="#" id="this-basename">{{this.basename}}</a></li>\n    <li><a href="#" id="page-basename">{{page.basename}}</a></li>\n    <li><a href="#" id="data-basename">{{data.basename}}</a></li>\n  {{/each}}\n</ul>\n\n<ul id="title-collection">\n  {{#each pages}}\n    <li><a href="#" id="title">{{title}}</a></li>\n    <li><a href="#" id="parent-title">{{../title}}</a></li>\n    <li><a href="#" id="this-title">{{this.title}}</a></li>\n    <li><a href="#" id="page-title">{{page.title}}</a></li>\n    <li><a href="#" id="data-title">{{data.title}}</a></li>\n  {{/each}}\n</ul>\n\n\n',
   data: { title: 'Overview', lead: 'Your new project!' } }
 </pre>
 
       <ul>
       
-        <li><a href="example.html">example</a></li>
+        <li><a href="gist-helper.html">gist-helper</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/example.html
+        this.dest:     test/actual/paths/gist-helper.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: example.html
-        this.pagename: example.html
-        this.basename: example
+        this.filename: gist-helper.html
+        this.pagename: gist-helper.html
+        this.basename: gist-helper
         this.extname:  .html
         this.ext:      .html
 
@@ -670,16 +680,16 @@
         ext:           .html
         -->
       
-        <li><a href="assets.html">assets</a></li>
+        <li><a href="example.html">example</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/assets.html
+        this.dest:     test/actual/paths/example.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: assets.html
-        this.pagename: assets.html
-        this.basename: assets
+        this.filename: example.html
+        this.pagename: example.html
+        this.basename: example
         this.extname:  .html
         this.ext:      .html
 
@@ -706,16 +716,16 @@
         ext:           .html
         -->
       
-        <li><a href="gist-helper.html">gist-helper</a></li>
+        <li><a href="assets.html">assets</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/gist-helper.html
+        this.dest:     test/actual/paths/assets.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: gist-helper.html
-        this.pagename: gist-helper.html
-        this.basename: gist-helper
+        this.filename: assets.html
+        this.pagename: assets.html
+        this.basename: assets
         this.extname:  .html
         this.ext:      .html
 
@@ -968,6 +978,42 @@
         this.filename: no-layout.html
         this.pagename: no-layout.html
         this.basename: no-layout
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/context.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: context.html
+        page.pagename: context.html
+        page.basename: context
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/context.html
+        dirname:       test/actual/paths
+        filename:      context.html
+        pagename:      context.html
+        basename:      context
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="no-yfm.html">no-yfm</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/no-yfm.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: no-yfm.html
+        this.pagename: no-yfm.html
+        this.basename: no-yfm
         this.extname:  .html
         this.ext:      .html
 

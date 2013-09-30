@@ -7,9 +7,7 @@
   </head>
   <body style="padding-top: 60px;">
     <div class="container">
-      
-
-Properties from "example.json" and "example.hbs" should be on the page object.
+      Properties from "example.json" and "example.hbs" should be on the page object.
 
 <div class="page-header">
   <h1></h1>
@@ -51,22 +49,22 @@ Properties from "example.json" and "example.hbs" should be on the page object.
   assets: '../assets',
   ext: '.html',
   extname: '.html',
-  page: '\n\nProperties from "example.json" and "example.hbs" should be on the page object.\n\n<div class="page-header">\n  <h1>{{home.title}}</h1>\n  <p class="lead">{{home.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{page.title}}</h1>\n  <p class="lead">{{page.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n\n',
+  page: 'Properties from "example.json" and "example.hbs" should be on the page object.\n\n<div class="page-header">\n  <h1>{{home.title}}</h1>\n  <p class="lead">{{home.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{page.title}}</h1>\n  <p class="lead">{{page.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n\n',
   data: { title: 'YFM title', description: 'YFM description' } }
 </pre>
 
       <ul>
       
-        <li><a href="example.html">example</a></li>
+        <li><a href="gist-helper.html">gist-helper</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/example.html
+        this.dest:     test/actual/paths/gist-helper.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: example.html
-        this.pagename: example.html
-        this.basename: example
+        this.filename: gist-helper.html
+        this.pagename: gist-helper.html
+        this.basename: gist-helper
         this.extname:  .html
         this.ext:      .html
 
@@ -417,16 +415,16 @@ Properties from "example.json" and "example.hbs" should be on the page object.
         ext:           .html
         -->
       
-        <li><a href="assets.html">assets</a></li>
+        <li><a href="example.html">example</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/assets.html
+        this.dest:     test/actual/paths/example.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: assets.html
-        this.pagename: assets.html
-        this.basename: assets
+        this.filename: example.html
+        this.pagename: example.html
+        this.basename: example
         this.extname:  .html
         this.ext:      .html
 
@@ -453,16 +451,16 @@ Properties from "example.json" and "example.hbs" should be on the page object.
         ext:           .html
         -->
       
-        <li><a href="gist-helper.html">gist-helper</a></li>
+        <li><a href="assets.html">assets</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/gist-helper.html
+        this.dest:     test/actual/paths/assets.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: gist-helper.html
-        this.pagename: gist-helper.html
-        this.basename: gist-helper
+        this.filename: assets.html
+        this.pagename: assets.html
+        this.basename: assets
         this.extname:  .html
         this.ext:      .html
 
@@ -715,6 +713,42 @@ Properties from "example.json" and "example.hbs" should be on the page object.
         this.filename: no-layout.html
         this.pagename: no-layout.html
         this.basename: no-layout
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/home.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: home.html
+        page.pagename: home.html
+        page.basename: home
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/home.html
+        dirname:       test/actual/paths
+        filename:      home.html
+        pagename:      home.html
+        basename:      home
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="no-yfm.html">no-yfm</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/no-yfm.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: no-yfm.html
+        this.pagename: no-yfm.html
+        this.basename: no-yfm
         this.extname:  .html
         this.ext:      .html
 

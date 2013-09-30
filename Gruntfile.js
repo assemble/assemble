@@ -84,6 +84,14 @@ module.exports = function(grunt) {
           'test/actual/yfm/': ['test/fixtures/pages/yfm/*.hbs']
         }
       },
+      noyfm: {
+        options: {
+          data: 'test/fixtures/data/*.{json,yml}'
+        },
+        files: {
+          'test/actual/yfm/': ['test/fixtures/pages/no-yfm.hbs']
+        }
+      },
       markdown: {
         options: {
           layout: 'default.md.hbs',
@@ -94,51 +102,40 @@ module.exports = function(grunt) {
           'test/actual/multi/dest1/': ['test/fixtures/pages/*.hbs']
         }
       },
+
+      // Assets paths
       assets_one: {
-        options: {
-          assets: 'test/actual/public',
-          assets_one: true
-        },
+        options: {assets: 'test/actual/public', assets_one: true},
         files: {
           'test/actual/assets-public-folder.html': ['test/fixtures/pages/assets.hbs']
         }
       },
       assets_two: {
-        options: {
-          assets: 'test/actual',
-          assets_two: true
-        },
+        options: {assets: 'test/actual', assets_two: true},
         files: {
           'test/actual/assets-same-folder.html': ['test/fixtures/pages/assets.hbs']
         }
       },
       assets_three: {
-        options: {
-          assets: '.',
-          assets_three: true
-        },
+        options: {assets: '', assets_three: true},
         files: {
           'test/actual/assets-root.html': ['test/fixtures/pages/assets.hbs']
         }
       },
       assets_four: {
-        options: {
-          assets: './',
-          assets_four: true
-        },
+        options: {assets: './', assets_four: true},
         files: {
           'test/actual/assets-root-with-slash.html': ['test/fixtures/pages/assets.hbs']
         }
       },
       assets_five: {
-        options: {
-          assets: 'test/actual/',
-          assets_five: true
-        },
+        options: {assets: 'test/actual/', assets_five: true},
         files: {
           'test/actual/assets-same-folder-with-slash.html': ['test/fixtures/pages/assets.hbs']
         }
       },
+
+
       custom_helpers: {
         options: {
           helpers: ['test/helpers/**/*.js'],

@@ -2,8 +2,6 @@
 
 ## Content
 
-
-
 Properties from "example.json" and "example.hbs" should be on the page object.
 
 <div class="page-header">
@@ -44,13 +42,13 @@ Properties from "example.json" and "example.hbs" should be on the page object.
   assets: '../../assets',
   ext: '.md',
   extname: '.md',
-  page: '\n\nProperties from "example.json" and "example.hbs" should be on the page object.\n\n<div class="page-header">\n  <h1>{{home.title}}</h1>\n  <p class="lead">{{home.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{page.title}}</h1>\n  <p class="lead">{{page.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n\n',
+  page: 'Properties from "example.json" and "example.hbs" should be on the page object.\n\n<div class="page-header">\n  <h1>{{home.title}}</h1>\n  <p class="lead">{{home.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{page.title}}</h1>\n  <p class="lead">{{page.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n\n',
   data: { title: 'YFM title', description: 'YFM description' } }
 ```
 
 
 ### "{{#each pages}}" Links
-[example](example.md)
+[gist-helper](gist-helper.md)
 [alert](alert.md)
 [collections-categories](collections-categories.md)
 [collections-categories2](collections-categories2.md)
@@ -60,8 +58,8 @@ Properties from "example.json" and "example.hbs" should be on the page object.
 [context](context.md)
 [debug-helpers](debug-helpers.md)
 [deep-nested-layouts](deep-nested-layouts.md)
+[example](example.md)
 [assets](assets.md)
-[gist-helper](gist-helper.md)
 [helpers](helpers.md)
 [home](home.md)
 [html-helpers](html-helpers.md)
@@ -69,6 +67,7 @@ Properties from "example.json" and "example.hbs" should be on the page object.
 [nested-layouts](nested-layouts.md)
 [no-layout-none](no-layout-none.md)
 [no-layout](no-layout.md)
+[no-yfm](no-yfm.md)
 [page](page.md)
 [simple3](simple3.md)
 
@@ -76,14 +75,14 @@ Properties from "example.json" and "example.hbs" should be on the page object.
 
 ### {{#each pages}} "this" context
 
-#### example.md
+#### gist-helper.md
 this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/example.md
+this.dest:     test/actual/multi/dest1/gist-helper.md
 this.absolute:
 this.dirname:  test/actual/multi/dest1
-this.filename: example.md
-this.pagename: example.md
-this.basename: example
+this.filename: gist-helper.md
+this.pagename: gist-helper.md
+this.basename: gist-helper
 this.extname:  .md
 this.ext:      .md
 
@@ -186,6 +185,17 @@ this.basename: deep-nested-layouts
 this.extname:  .md
 this.ext:      .md
 
+#### example.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/example.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: example.md
+this.pagename: example.md
+this.basename: example
+this.extname:  .md
+this.ext:      .md
+
 #### assets.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/assets.md
@@ -194,17 +204,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: assets.md
 this.pagename: assets.md
 this.basename: assets
-this.extname:  .md
-this.ext:      .md
-
-#### gist-helper.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/gist-helper.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: gist-helper.md
-this.pagename: gist-helper.md
-this.basename: gist-helper
 this.extname:  .md
 this.ext:      .md
 
@@ -282,6 +281,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: no-layout.md
 this.pagename: no-layout.md
 this.basename: no-layout
+this.extname:  .md
+this.ext:      .md
+
+#### no-yfm.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/no-yfm.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: no-yfm.md
+this.pagename: no-yfm.md
+this.basename: no-yfm
 this.extname:  .md
 this.ext:      .md
 
@@ -541,8 +551,30 @@ page.basename: home
 page.extname:  .md
 page.ext:      .md
 
+#### home.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/home.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: home.md
+page.pagename: home.md
+page.basename: home
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### home.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/home.md
+dirname:       test/actual/multi/dest1
+filename:      home.md
+pagename:      home.md
+basename:      home
+extname:       .md
+ext:           .md
 
 #### home.md
 assets:        ../../assets

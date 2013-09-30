@@ -14,8 +14,7 @@
         
         </ul>
       </div>
-      
-<div class="page-header">
+      <div class="page-header">
   <h1>Almost a Haiku</h1> 
 </div>
 
@@ -147,7 +146,7 @@
      [length]: 3 ],
   pageName: 'lists.html',
   attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
-  page: '\n<div class="page-header">\n  <h1>{{{title}}}</h1> \n</div>\n\n<div class="attributes">\n  <h4>Attributes</h4>\n  <ul>\n  {{#each attributes}}<li>{{.}}</li>\n  {{/each}}\n  </ul>\n</div>\n\n<hr>\n\n<div class="methods">\n  <h4>Methods</h4>\n  <ul>\n  {{#each methods}}<li>{{.}}</li>\n  {{/each}}\n  </ul>\n</div>\n\n<hr>\n\n<div class="examples">\n  <h3>Lists</h3>\n  <h4>Movies</h4>\n  <dl class="dl-horizontal">\n    {{#each movies}}\n      <dt>Movie:</dt> <dd>{{.}}</dd>\n    {{/each}}\n  </dl>\n\n  <h4>Groceries</h4>\n  <dl class="dl-horizontal">\n    {{#each groceries}}\n      <dt>Item:</dt> <dd>{{.}}</dd>\n    {{/each}}\n  </dl>\n</div>\n\n<hr>\n\n<div class="examples">\n  <h3>Hierarchical combinations of elements</h3>\n  <h4>Lists of associative arrays</h4>\n  <dl class="dl-horizontal">\n    {{#each people}}\n      <dt>Name:</dt> <dd>{{name}}</dd>\n      <dt>Age:</dt>  <dd>{{age}}</dd>\n    {{/each}}\n  </dl>\n\n  <h4>Associative arrays of lists</h4>\n  <dl class="dl-horizontal">\n    <div><strong>Men</strong></div>\n    {{#each men}}<dt>Name:</dt> <dd>{{.}}</dd>{{/each}}\n    <div><strong>Women</strong></div>\n    {{#each women}}<dt>Name:</dt> <dd>{{.}}</dd>{{/each}}\n  </dl>\n</div>',
+  page: '<div class="page-header">\n  <h1>{{{title}}}</h1> \n</div>\n\n<div class="attributes">\n  <h4>Attributes</h4>\n  <ul>\n  {{#each attributes}}<li>{{.}}</li>\n  {{/each}}\n  </ul>\n</div>\n\n<hr>\n\n<div class="methods">\n  <h4>Methods</h4>\n  <ul>\n  {{#each methods}}<li>{{.}}</li>\n  {{/each}}\n  </ul>\n</div>\n\n<hr>\n\n<div class="examples">\n  <h3>Lists</h3>\n  <h4>Movies</h4>\n  <dl class="dl-horizontal">\n    {{#each movies}}\n      <dt>Movie:</dt> <dd>{{.}}</dd>\n    {{/each}}\n  </dl>\n\n  <h4>Groceries</h4>\n  <dl class="dl-horizontal">\n    {{#each groceries}}\n      <dt>Item:</dt> <dd>{{.}}</dd>\n    {{/each}}\n  </dl>\n</div>\n\n<hr>\n\n<div class="examples">\n  <h3>Hierarchical combinations of elements</h3>\n  <h4>Lists of associative arrays</h4>\n  <dl class="dl-horizontal">\n    {{#each people}}\n      <dt>Name:</dt> <dd>{{name}}</dd>\n      <dt>Age:</dt>  <dd>{{age}}</dd>\n    {{/each}}\n  </dl>\n\n  <h4>Associative arrays of lists</h4>\n  <dl class="dl-horizontal">\n    <div><strong>Men</strong></div>\n    {{#each men}}<dt>Name:</dt> <dd>{{.}}</dd>{{/each}}\n    <div><strong>Women</strong></div>\n    {{#each women}}<dt>Name:</dt> <dd>{{.}}</dd>{{/each}}\n  </dl>\n</div>',
   ext: '.html',
   src: 'test/fixtures/pages/yfm/lists.hbs',
   people: 

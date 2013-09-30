@@ -2,13 +2,12 @@
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Paths Test</title>
+    <title>Title for "alert.hbs"</title>
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
     <div class="container">
-      
-
+      <h2>Title for "alert.hbs"</h2>
 <span class="alert alert-info">This is an alert</span>
 
     </div>
@@ -17,7 +16,8 @@
       <h3>Paths Examples</h3>
 
 <pre class="json">
-{ one: { two: 'This is an alert' },
+{ title: 'Title for "alert.hbs"',
+  one: { two: 'This is an alert' },
   _page: 'all',
   dirname: 'test/actual/paths',
   filename: 'alert.html',
@@ -29,22 +29,24 @@
   assets: '../assets',
   ext: '.html',
   extname: '.html',
-  page: '\n\n<span class="alert alert-info">{{alert.one.two}}</span>\n',
-  data: { one: { two: 'This is an alert' } } }
+  page: '<h2>{{{title}}}</h2>\n<span class="alert alert-info">{{{one.two}}}</span>\n',
+  data: 
+   { title: 'Title for "alert.hbs"',
+     one: { two: 'This is an alert' } } }
 </pre>
 
       <ul>
       
-        <li><a href="example.html">example</a></li>
+        <li><a href="gist-helper.html">gist-helper</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/example.html
+        this.dest:     test/actual/paths/gist-helper.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: example.html
-        this.pagename: example.html
-        this.basename: example
+        this.filename: gist-helper.html
+        this.pagename: gist-helper.html
+        this.basename: gist-helper
         this.extname:  .html
         this.ext:      .html
 
@@ -395,16 +397,16 @@
         ext:           .html
         -->
       
-        <li><a href="assets.html">assets</a></li>
+        <li><a href="example.html">example</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/assets.html
+        this.dest:     test/actual/paths/example.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: assets.html
-        this.pagename: assets.html
-        this.basename: assets
+        this.filename: example.html
+        this.pagename: example.html
+        this.basename: example
         this.extname:  .html
         this.ext:      .html
 
@@ -431,16 +433,16 @@
         ext:           .html
         -->
       
-        <li><a href="gist-helper.html">gist-helper</a></li>
+        <li><a href="assets.html">assets</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/gist-helper.html
+        this.dest:     test/actual/paths/assets.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: gist-helper.html
-        this.pagename: gist-helper.html
-        this.basename: gist-helper
+        this.filename: assets.html
+        this.pagename: assets.html
+        this.basename: assets
         this.extname:  .html
         this.ext:      .html
 
@@ -693,6 +695,42 @@
         this.filename: no-layout.html
         this.pagename: no-layout.html
         this.basename: no-layout
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/alert.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: alert.html
+        page.pagename: alert.html
+        page.basename: alert
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/alert.html
+        dirname:       test/actual/paths
+        filename:      alert.html
+        pagename:      alert.html
+        basename:      alert
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="no-yfm.html">no-yfm</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/no-yfm.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: no-yfm.html
+        this.pagename: no-yfm.html
+        this.basename: no-yfm
         this.extname:  .html
         this.ext:      .html
 

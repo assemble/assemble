@@ -14,8 +14,7 @@
         
         </ul>
       </div>
-      
-<p>Note that templates {{one}}, {{two}} and {{three}} get their data from "test/fixtures/data.yml".
+      <p>Note that templates {{one}}, {{two}} and {{three}} get their data from "test/fixtures/data.yml".
 When a data file is created with the name "data", it gives you access to the root of the context.</p>
 
 <div class="page-header">
@@ -93,7 +92,7 @@ When a data file is created with the name "data", it gives you access to the roo
   assets: '../assets',
   ext: '.html',
   extname: '.html',
-  page: '\n<p>Note that templates \\{{one}}, \\{{two}} and \\{{three}} get their data from "test/fixtures/data.yml".\nWhen a data file is created with the name "data", it gives you access to the root of the context.</p>\n\n<div class="page-header">\n  <h4>{{one}}</h4>\n  <h4>{{two}}</h4>\n  <h4>{{three}}</h4>\n</div>\n\n<div class="examples">\n  <h4>person.yml</h4>\n  <div>{{person.name}}</div>\n</div>\n\n<div class="examples">\n  <h4>person.yml - YFM</h4>\n  <div>jon: {{jon}}</div>\n  <div>page.jon: {{page.jon}}</div>\n  <div>underscore.jon: {{underscore.jon}}</div>\n  <div>data.jon: {{data.jon}}</div>\n  <div>underscore.data.jon: {{underscore.data.jon}}</div>\n</div>\n\n<div class="examples">\n  <h4>contact.yml</h4>\n  <div>{{contact.phone}}</div>\n</div>\n\n<div class="examples">\n  <h4>animal.json</h4>\n  <div>{{animal.type}}</div>\n  <p>{{animal.description}}</p>\n</div>\n\n<div class="examples">\n  <h4>example.json</h4>\n  <div>{{example.content}}</div>\n</div>\n\n<div class="examples">\n  <h4>example.yml</h4>\n  <div>{{example.info}}</div>\n</div>\n',
+  page: '<p>Note that templates \\{{one}}, \\{{two}} and \\{{three}} get their data from "test/fixtures/data.yml".\nWhen a data file is created with the name "data", it gives you access to the root of the context.</p>\n\n<div class="page-header">\n  <h4>{{one}}</h4>\n  <h4>{{two}}</h4>\n  <h4>{{three}}</h4>\n</div>\n\n<div class="examples">\n  <h4>person.yml</h4>\n  <div>{{person.name}}</div>\n</div>\n\n<div class="examples">\n  <h4>person.yml - YFM</h4>\n  <div>jon: {{jon}}</div>\n  <div>page.jon: {{page.jon}}</div>\n  <div>underscore.jon: {{underscore.jon}}</div>\n  <div>data.jon: {{data.jon}}</div>\n  <div>underscore.data.jon: {{underscore.data.jon}}</div>\n</div>\n\n<div class="examples">\n  <h4>contact.yml</h4>\n  <div>{{contact.phone}}</div>\n</div>\n\n<div class="examples">\n  <h4>animal.json</h4>\n  <div>{{animal.type}}</div>\n  <p>{{animal.description}}</p>\n</div>\n\n<div class="examples">\n  <h4>example.json</h4>\n  <div>{{example.content}}</div>\n</div>\n\n<div class="examples">\n  <h4>example.yml</h4>\n  <div>{{example.info}}</div>\n</div>\n',
   data: { jon: 'Jon Schlinkert' } }
 </pre>
     </div>

@@ -10,6 +10,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
 <h1>Relative Helper</h1>
 <script src="css/one/two/three.js"></script>
 <script src="js/one/two/three.js"></script>
@@ -30,7 +39,7 @@
 
 
 ### "{{#each pages}}" Links
-[example](test/actual/multi/dest1/example.md)
+[gist-helper](test/actual/multi/dest1/gist-helper.md)
 [alert](test/actual/multi/dest1/alert.md)
 [collections-categories](test/actual/multi/dest1/collections-categories.md)
 [collections-categories2](test/actual/multi/dest1/collections-categories2.md)
@@ -40,8 +49,8 @@
 [context](test/actual/multi/dest1/context.md)
 [debug-helpers](test/actual/multi/dest1/debug-helpers.md)
 [deep-nested-layouts](test/actual/multi/dest1/deep-nested-layouts.md)
+[example](test/actual/multi/dest1/example.md)
 [assets](test/actual/multi/dest1/assets.md)
-[gist-helper](test/actual/multi/dest1/gist-helper.md)
 [helpers](test/actual/multi/dest1/helpers.md)
 [home](test/actual/multi/dest1/home.md)
 [html-helpers](test/actual/multi/dest1/html-helpers.md)
@@ -49,6 +58,7 @@
 [nested-layouts](test/actual/multi/dest1/nested-layouts.md)
 [no-layout-none](test/actual/multi/dest1/no-layout-none.md)
 [no-layout](test/actual/multi/dest1/no-layout.md)
+[no-yfm](test/actual/multi/dest1/no-yfm.md)
 [page](test/actual/multi/dest1/page.md)
 [simple3](test/actual/multi/dest1/simple3.md)
 
@@ -56,14 +66,14 @@
 
 ### {{#each pages}} "this" context
 
-#### example.md
+#### gist-helper.md
 this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/example.md
+this.dest:     test/actual/multi/dest1/gist-helper.md
 this.absolute:
 this.dirname:  test/actual/multi/dest1
-this.filename: example.md
-this.pagename: example.md
-this.basename: example
+this.filename: gist-helper.md
+this.pagename: gist-helper.md
+this.basename: gist-helper
 this.extname:  .md
 this.ext:      .md
 
@@ -166,6 +176,17 @@ this.basename: deep-nested-layouts
 this.extname:  .md
 this.ext:      .md
 
+#### example.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/example.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: example.md
+this.pagename: example.md
+this.basename: example
+this.extname:  .md
+this.ext:      .md
+
 #### assets.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/assets.md
@@ -174,17 +195,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: assets.md
 this.pagename: assets.md
 this.basename: assets
-this.extname:  .md
-this.ext:      .md
-
-#### gist-helper.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/gist-helper.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: gist-helper.md
-this.pagename: gist-helper.md
-this.basename: gist-helper
 this.extname:  .md
 this.ext:      .md
 
@@ -262,6 +272,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: no-layout.md
 this.pagename: no-layout.md
 this.basename: no-layout
+this.extname:  .md
+this.ext:      .md
+
+#### no-yfm.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/no-yfm.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: no-yfm.md
+this.pagename: no-yfm.md
+this.basename: no-yfm
 this.extname:  .md
 this.ext:      .md
 
@@ -521,8 +542,30 @@ page.basename:
 page.extname:  
 page.ext:      
 
+#### assets.md
+page.assets:   
+page.dest:     
+page.absolute: 
+page.dirname:  
+page.filename: 
+page.pagename: 
+page.basename: 
+page.extname:  
+page.ext:      
+
 
 ### {{#each pages}} "page" context
+
+#### assets.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/assets.md
+dirname:       test/actual/multi/dest1
+filename:      assets.md
+pagename:      assets.md
+basename:      assets
+extname:       .md
+ext:           .md
 
 #### assets.md
 assets:        ../../assets

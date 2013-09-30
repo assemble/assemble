@@ -7,9 +7,7 @@
   </head>
   <body style="padding-top: 60px;">
     <div class="container">
-      
-
-<ul>
+      <ul>
 
   <li></li>
 
@@ -34,7 +32,7 @@
   assets: '../assets',
   ext: '.html',
   extname: '.html',
-  page: '\n\n<ul>\n{{#categories}}\n  <li>{{category}}</li>\n{{/categories}}\n</ul>\n',
+  page: '<ul>\n{{#categories}}\n  <li>{{category}}</li>\n{{/categories}}\n</ul>\n',
   data: 
    { title: 'Categories Test',
      categories: [ 'categories', 'test', 'something', [length]: 3 ] } }
@@ -42,16 +40,16 @@
 
       <ul>
       
-        <li><a href="example.html">example</a></li>
+        <li><a href="gist-helper.html">gist-helper</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/example.html
+        this.dest:     test/actual/paths/gist-helper.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: example.html
-        this.pagename: example.html
-        this.basename: example
+        this.filename: gist-helper.html
+        this.pagename: gist-helper.html
+        this.basename: gist-helper
         this.extname:  .html
         this.ext:      .html
 
@@ -402,16 +400,16 @@
         ext:           .html
         -->
       
-        <li><a href="assets.html">assets</a></li>
+        <li><a href="example.html">example</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/assets.html
+        this.dest:     test/actual/paths/example.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: assets.html
-        this.pagename: assets.html
-        this.basename: assets
+        this.filename: example.html
+        this.pagename: example.html
+        this.basename: example
         this.extname:  .html
         this.ext:      .html
 
@@ -438,16 +436,16 @@
         ext:           .html
         -->
       
-        <li><a href="gist-helper.html">gist-helper</a></li>
+        <li><a href="assets.html">assets</a></li>
         <!--
         "this"
         ===============================
-        this.dest:     test/actual/paths/gist-helper.html
+        this.dest:     test/actual/paths/assets.html
         this.absolute: 
         this.dirname:  test/actual/paths
-        this.filename: gist-helper.html
-        this.pagename: gist-helper.html
-        this.basename: gist-helper
+        this.filename: assets.html
+        this.pagename: assets.html
+        this.basename: assets
         this.extname:  .html
         this.ext:      .html
 
@@ -700,6 +698,42 @@
         this.filename: no-layout.html
         this.pagename: no-layout.html
         this.basename: no-layout
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/collections-categories2.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: collections-categories2.html
+        page.pagename: collections-categories2.html
+        page.basename: collections-categories2
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/collections-categories2.html
+        dirname:       test/actual/paths
+        filename:      collections-categories2.html
+        pagename:      collections-categories2.html
+        basename:      collections-categories2
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="no-yfm.html">no-yfm</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/no-yfm.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: no-yfm.html
+        this.pagename: no-yfm.html
+        this.basename: no-yfm
         this.extname:  .html
         this.ext:      .html
 

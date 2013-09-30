@@ -1,16 +1,16 @@
-# alert.md output
+# Title for &quot;alert.hbs&quot;
 
 ## Content
 
-
-
-<span class="alert alert-info"></span>
+<h2>Title for "alert.hbs"</h2>
+<span class="alert alert-info">This is an alert</span>
 
 
 
 ## Debug Info
 ``` json
-{ one: { two: 'This is an alert' },
+{ title: 'Title for "alert.hbs"',
+  one: { two: 'This is an alert' },
   _page: 'all',
   dirname: 'test/actual/multi/dest1',
   filename: 'alert.md',
@@ -22,13 +22,15 @@
   assets: '../../assets',
   ext: '.md',
   extname: '.md',
-  page: '\n\n<span class="alert alert-info">{{alert.one.two}}</span>\n',
-  data: { one: { two: 'This is an alert' } } }
+  page: '<h2>{{{title}}}</h2>\n<span class="alert alert-info">{{{one.two}}}</span>\n',
+  data: 
+   { title: 'Title for "alert.hbs"',
+     one: { two: 'This is an alert' } } }
 ```
 
 
 ### "{{#each pages}}" Links
-[example](example.md)
+[gist-helper](gist-helper.md)
 [alert](alert.md)
 [collections-categories](collections-categories.md)
 [collections-categories2](collections-categories2.md)
@@ -38,8 +40,8 @@
 [context](context.md)
 [debug-helpers](debug-helpers.md)
 [deep-nested-layouts](deep-nested-layouts.md)
+[example](example.md)
 [assets](assets.md)
-[gist-helper](gist-helper.md)
 [helpers](helpers.md)
 [home](home.md)
 [html-helpers](html-helpers.md)
@@ -47,6 +49,7 @@
 [nested-layouts](nested-layouts.md)
 [no-layout-none](no-layout-none.md)
 [no-layout](no-layout.md)
+[no-yfm](no-yfm.md)
 [page](page.md)
 [simple3](simple3.md)
 
@@ -54,14 +57,14 @@
 
 ### {{#each pages}} "this" context
 
-#### example.md
+#### gist-helper.md
 this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/example.md
+this.dest:     test/actual/multi/dest1/gist-helper.md
 this.absolute:
 this.dirname:  test/actual/multi/dest1
-this.filename: example.md
-this.pagename: example.md
-this.basename: example
+this.filename: gist-helper.md
+this.pagename: gist-helper.md
+this.basename: gist-helper
 this.extname:  .md
 this.ext:      .md
 
@@ -164,6 +167,17 @@ this.basename: deep-nested-layouts
 this.extname:  .md
 this.ext:      .md
 
+#### example.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/example.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: example.md
+this.pagename: example.md
+this.basename: example
+this.extname:  .md
+this.ext:      .md
+
 #### assets.md
 this.assets:   ../../assets
 this.dest:     test/actual/multi/dest1/assets.md
@@ -172,17 +186,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: assets.md
 this.pagename: assets.md
 this.basename: assets
-this.extname:  .md
-this.ext:      .md
-
-#### gist-helper.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/gist-helper.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: gist-helper.md
-this.pagename: gist-helper.md
-this.basename: gist-helper
 this.extname:  .md
 this.ext:      .md
 
@@ -260,6 +263,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: no-layout.md
 this.pagename: no-layout.md
 this.basename: no-layout
+this.extname:  .md
+this.ext:      .md
+
+#### no-yfm.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/no-yfm.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: no-yfm.md
+this.pagename: no-yfm.md
+this.basename: no-yfm
 this.extname:  .md
 this.ext:      .md
 
@@ -519,8 +533,30 @@ page.basename: alert
 page.extname:  .md
 page.ext:      .md
 
+#### alert.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/alert.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: alert.md
+page.pagename: alert.md
+page.basename: alert
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### alert.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/alert.md
+dirname:       test/actual/multi/dest1
+filename:      alert.md
+pagename:      alert.md
+basename:      alert
+extname:       .md
+ext:           .md
 
 #### alert.md
 assets:        ../../assets

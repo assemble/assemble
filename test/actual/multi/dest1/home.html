@@ -26,9 +26,7 @@
         
         </ul>
       </div>
-      
-
-Properties from "example.json" and "example.hbs" should be on the page object.
+      Properties from "example.json" and "example.hbs" should be on the page object.
 
 <div class="page-header">
   <h1>YFM title</h1>
@@ -75,6 +73,7 @@ Properties from "example.json" and "example.hbs" should be on the page object.
         <li><a href="nested-layouts.html">nested-layouts</a></li>
         <li><a href="no-layout-none.html">no-layout-none</a></li>
         <li><a href="no-layout.html">no-layout</a></li>
+        <li><a href="no-yfm.html">no-yfm</a></li>
         <li><a href="page.html">page</a></li>
         <li><a href="simple3.html">simple3</a></li>
         <li><a href="../dest2/complex1.html">complex1</a></li>
@@ -99,6 +98,7 @@ Properties from "example.json" and "example.hbs" should be on the page object.
         <li><a href="../dest2/sub-dest/nested-layouts.html">nested-layouts</a></li>
         <li><a href="../dest2/sub-dest/no-layout-none.html">no-layout-none</a></li>
         <li><a href="../dest2/sub-dest/no-layout.html">no-layout</a></li>
+        <li><a href="../dest2/sub-dest/no-yfm.html">no-yfm</a></li>
         <li><a href="../dest2/sub-dest/page.html">page</a></li>
         <li><a href="../dest2/sub-dest/simple3.html">simple3</a></li>
         
@@ -121,7 +121,7 @@ Properties from "example.json" and "example.hbs" should be on the page object.
   assets: '../../assets',
   ext: '.html',
   extname: '.html',
-  page: '\n\nProperties from "example.json" and "example.hbs" should be on the page object.\n\n<div class="page-header">\n  <h1>{{home.title}}</h1>\n  <p class="lead">{{home.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{page.title}}</h1>\n  <p class="lead">{{page.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n\n',
+  page: 'Properties from "example.json" and "example.hbs" should be on the page object.\n\n<div class="page-header">\n  <h1>{{home.title}}</h1>\n  <p class="lead">{{home.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{page.title}}</h1>\n  <p class="lead">{{page.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n\n',
   data: { title: 'YFM title', description: 'YFM description' } }
 </pre>
     </div>

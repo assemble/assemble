@@ -26,9 +26,7 @@
         
         </ul>
       </div>
-      
-
-<div class="page-header">
+      <div class="page-header">
   <h1>md helper</h1>
   <p class="lead">Use \{{md}} helper to pull in markdown</p>
 </div>
@@ -69,6 +67,7 @@
         <li><a href="nested-layouts.html">nested-layouts</a></li>
         <li><a href="no-layout-none.html">no-layout-none</a></li>
         <li><a href="no-layout.html">no-layout</a></li>
+        <li><a href="no-yfm.html">no-yfm</a></li>
         <li><a href="page.html">page</a></li>
         <li><a href="simple3.html">simple3</a></li>
         <li><a href="../dest2/complex1.html">complex1</a></li>
@@ -93,6 +92,7 @@
         <li><a href="../dest2/sub-dest/nested-layouts.html">nested-layouts</a></li>
         <li><a href="../dest2/sub-dest/no-layout-none.html">no-layout-none</a></li>
         <li><a href="../dest2/sub-dest/no-layout.html">no-layout</a></li>
+        <li><a href="../dest2/sub-dest/no-yfm.html">no-yfm</a></li>
         <li><a href="../dest2/sub-dest/page.html">page</a></li>
         <li><a href="../dest2/sub-dest/simple3.html">simple3</a></li>
         
@@ -115,7 +115,7 @@
   assets: '../../assets',
   ext: '.html',
   extname: '.html',
-  page: '\n\n<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n<p> {{{md \'./test/fixtures/pages/md.md\'}}} </p>\n\n\n\n',
+  page: '<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n<p> {{{md \'./test/fixtures/pages/md.md\'}}} </p>\n\n\n\n',
   data: 
    { title: 'md helper',
      description: 'Use \\{{md}} helper to pull in markdown' } }

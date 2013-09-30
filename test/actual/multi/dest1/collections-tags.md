@@ -7,8 +7,7 @@
   </head>
   <body style="padding-top: 60px;">
     <div class="container">
-      
-<ul>
+      <ul>
 
 	<li>one</li>
 

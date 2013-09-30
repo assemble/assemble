@@ -2,7 +2,7 @@
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>YAML Test</title>
+    <title>Title for "alert.hbs"</title>
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
@@ -26,9 +26,8 @@
         
         </ul>
       </div>
-      
-
-<span class="alert alert-info"></span>
+      <h2>Title for "alert.hbs"</h2>
+<span class="alert alert-info">This is an alert</span>
 
     </div>
 
@@ -54,6 +53,7 @@
         <li><a href="nested-layouts.html">nested-layouts</a></li>
         <li><a href="no-layout-none.html">no-layout-none</a></li>
         <li><a href="no-layout.html">no-layout</a></li>
+        <li><a href="no-yfm.html">no-yfm</a></li>
         <li><a href="page.html">page</a></li>
         <li><a href="simple3.html">simple3</a></li>
         <li><a href="../dest2/complex1.html">complex1</a></li>
@@ -78,6 +78,7 @@
         <li><a href="../dest2/sub-dest/nested-layouts.html">nested-layouts</a></li>
         <li><a href="../dest2/sub-dest/no-layout-none.html">no-layout-none</a></li>
         <li><a href="../dest2/sub-dest/no-layout.html">no-layout</a></li>
+        <li><a href="../dest2/sub-dest/no-yfm.html">no-yfm</a></li>
         <li><a href="../dest2/sub-dest/page.html">page</a></li>
         <li><a href="../dest2/sub-dest/simple3.html">simple3</a></li>
         
@@ -87,7 +88,8 @@
     <div class="container" style="display: none">
       <h2>Debug Info</h2>
       <pre class="json">
-{ one: { two: 'This is an alert' },
+{ title: 'Title for "alert.hbs"',
+  one: { two: 'This is an alert' },
   _page: 'all',
   dirname: 'test/actual/multi/dest1',
   filename: 'alert.html',
@@ -99,8 +101,10 @@
   assets: '../../assets',
   ext: '.html',
   extname: '.html',
-  page: '\n\n<span class="alert alert-info">{{alert.one.two}}</span>\n',
-  data: { one: { two: 'This is an alert' } } }
+  page: '<h2>{{{title}}}</h2>\n<span class="alert alert-info">{{{one.two}}}</span>\n',
+  data: 
+   { title: 'Title for "alert.hbs"',
+     one: { two: 'This is an alert' } } }
 </pre>
     </div>
 

@@ -26,8 +26,7 @@
         
         </ul>
       </div>
-      
-<h2>HTML list helpers.</h2>
+      <h2>HTML list helpers.</h2>
 <h3>{{ul}} helper</h3>
 <ul class="nav"><li>
   one
@@ -100,6 +99,7 @@
         <li><a href="../../dest1/nested-layouts.html">nested-layouts</a></li>
         <li><a href="../../dest1/no-layout-none.html">no-layout-none</a></li>
         <li><a href="../../dest1/no-layout.html">no-layout</a></li>
+        <li><a href="../../dest1/no-yfm.html">no-yfm</a></li>
         <li><a href="../../dest1/page.html">page</a></li>
         <li><a href="../../dest1/simple3.html">simple3</a></li>
         <li><a href="../complex1.html">complex1</a></li>
@@ -124,6 +124,7 @@
         <li><a href="nested-layouts.html">nested-layouts</a></li>
         <li><a href="no-layout-none.html">no-layout-none</a></li>
         <li><a href="no-layout.html">no-layout</a></li>
+        <li><a href="no-yfm.html">no-yfm</a></li>
         <li><a href="page.html">page</a></li>
         <li><a href="simple3.html">simple3</a></li>
         
@@ -156,7 +157,7 @@
   assets: '../../../assets',
   ext: '.html',
   pageName: 'html-helpers.html',
-  page: '\n{{#markdown}}\n\n## HTML list helpers.\n\n### \\{{ul}} helper\n{{#ul links class="nav"}}\n  {{.}}\n{{/ul}}\n\n{{#ul moreLinks class="nav"}}\n  <a href="{{url}}">{{text}}</a>\n{{/ul}}\n\n### \\{{ol}} helper\n{{#ol links class="nav"}}\n  {{.}}\n{{/ol}}\n\n{{#ol moreLinks class="nav"}}\n  <a href="{{url}}">{{text}}</a>\n{{/ol}}\n\n### \\{{link}} helper\n{{_link url text}}\n{{_link \'http://github.com\' \'GitHub\'}}\n{{_link \'http://github.com\' \'GitHub\' \'nav-link\'}}\n\n{{/markdown}}{{! /end markdown}}\n',
+  page: '{{#markdown}}\n\n## HTML list helpers.\n\n### \\{{ul}} helper\n{{#ul links class="nav"}}\n  {{.}}\n{{/ul}}\n\n{{#ul moreLinks class="nav"}}\n  <a href="{{url}}">{{text}}</a>\n{{/ul}}\n\n### \\{{ol}} helper\n{{#ol links class="nav"}}\n  {{.}}\n{{/ol}}\n\n{{#ol moreLinks class="nav"}}\n  <a href="{{url}}">{{text}}</a>\n{{/ol}}\n\n### \\{{link}} helper\n{{_link url text}}\n{{_link \'http://github.com\' \'GitHub\'}}\n{{_link \'http://github.com\' \'GitHub\' \'nav-link\'}}\n\n{{/markdown}}{{! /end markdown}}\n',
   text: 'helpers.js',
   src: 'test/fixtures/pages/html-helpers.hbs',
   pagename: 'html-helpers.html' }

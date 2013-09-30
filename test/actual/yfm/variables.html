@@ -14,8 +14,7 @@
         
         </ul>
       </div>
-      
-<div class="page-header">
+      <div class="page-header">
   <h4>YAML Variables</h4> 
 </div>
 
@@ -70,7 +69,7 @@ other_thing: *NAME</code></pre>
   title: 'YAML Variables',
   ext: '.html',
   pageName: 'variables.html',
-  page: '\n<div class="page-header">\n  <h4>{{{title}}}</h4> \n</div>\n\n{{{two}}}\n\n{{#markdown}}\nThis would output the variable as literal text.\n``` yaml\nthree: But this doesn\'t work. *DOOWB \n```\nAnd this would throw an error:\n\n``` yaml\nthree: *DOOWB But this doesn\'t work. \n```\n\nYAML supports **variables**, or **repeated nodes**. The simplest explanation is that you define something as a variable by preceding it with "&NAME value" and you can refer to it with "*NAME" e.g.:\n\n``` yaml\n# YAML\nsome_thing: &NAME foobar\nother_thing: *NAME\n```\nParses to:\n``` json\n{"other_thing": "foobar", "some_thing": "foobar"}\n```\n{{/markdown}}',
+  page: '<div class="page-header">\n  <h4>{{{title}}}</h4> \n</div>\n\n{{{two}}}\n\n{{#markdown}}\nThis would output the variable as literal text.\n``` yaml\nthree: But this doesn\'t work. *DOOWB \n```\nAnd this would throw an error:\n\n``` yaml\nthree: *DOOWB But this doesn\'t work. \n```\n\nYAML supports **variables**, or **repeated nodes**. The simplest explanation is that you define something as a variable by preceding it with "&NAME value" and you can refer to it with "*NAME" e.g.:\n\n``` yaml\n# YAML\nsome_thing: &NAME foobar\nother_thing: *NAME\n```\nParses to:\n``` json\n{"other_thing": "foobar", "some_thing": "foobar"}\n```\n{{/markdown}}',
   src: 'test/fixtures/pages/yfm/variables.hbs',
   pagename: 'variables.html' }
 </pre>
