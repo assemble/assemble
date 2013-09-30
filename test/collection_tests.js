@@ -1,3 +1,4 @@
+/*global require:true */
 /**
  * Assemble <http://assemble.io>
  * Created and maintained by Jon Schlinkert and Brian Woodward
@@ -6,15 +7,16 @@
  * Licensed under the MIT License (MIT).
  */
 
-/*global require:true */
-var expect = require('chai').expect;
-var util = require('../lib/util');
-var _ = require('lodash');
-var grunt = require('grunt');
-var path = require('path');
+var collection = require('../lib/collection');
+var expect     = require('chai').expect;
+var grunt      = require('grunt');
+var path       = require('path');
+var _          = require('lodash');
+
+
 
 var getCollection = function(file) {
-  return grunt.file.readJSON(path.join('.', 'test', 'fixtures', 'data', 'collections', file));
+  return grunt.file.readJSON(path.join('./test/fixtures/data/collections', file));
 };
 
 var fakeCollection = getCollection('fakeCollection.json');
@@ -26,7 +28,7 @@ describe('Collections', function() {
     it("by item name asc", function(done) {
       var expected = getCollection('expected-sortby-item-asc.json');
       var col = _.cloneDeep(fakeCollection);
-      var actual = util.collection.sort(col);
+      var actual = collection.sort(col);
       grunt.verbose.writeln(require('util').inspect(actual, null, 10));
       expect(actual).to.deep.equal(expected);
       done();
@@ -36,7 +38,7 @@ describe('Collections', function() {
       var expected = getCollection('expected-sortby-item-desc.json');
       var col = _.cloneDeep(fakeCollection);
       col.sortorder = 'DESC';
-      var actual = util.collection.sort(col);
+      var actual = collection.sort(col);
       grunt.verbose.writeln(require('util').inspect(actual, null, 10));
       expect(actual).to.deep.equal(expected);
       done();
@@ -46,7 +48,7 @@ describe('Collections', function() {
       var expected = getCollection('expected-sortby-page-property-asc.json');
       var col = _.cloneDeep(fakeCollection);
       col.sortby = 'title';
-      var actual = util.collection.sort(col);
+      var actual = collection.sort(col);
       grunt.verbose.writeln(require('util').inspect(actual, null, 10));
       expect(actual).to.deep.equal(expected);
       done();
@@ -57,7 +59,7 @@ describe('Collections', function() {
       var col = _.cloneDeep(fakeCollection);
       col.sortorder = 'DESC';
       col.sortby = 'title';
-      var actual = util.collection.sort(col);
+      var actual = collection.sort(col);
       grunt.verbose.writeln(require('util').inspect(actual, null, 10));
       expect(actual).to.deep.equal(expected);
       done();

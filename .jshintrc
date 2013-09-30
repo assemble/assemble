@@ -8,7 +8,6 @@
   "sub": true,
   "undef": false,
   "boss": true,
-  "eqnull": true,
   "globals": {
     "module": true,
     "exports": true,

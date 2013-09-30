@@ -6,8 +6,10 @@
  * Licensed under the MIT License (MIT).
  */
 
-var assembleData = require('../lib/data');
-    expect = require('chai').expect;
+var markdown = require('../lib/markdown');
+var expect   = require('chai').expect;
+
+
 
 describe('Converting Markdown files', function() {
 
@@ -34,19 +36,19 @@ describe('Converting Markdown files', function() {
   describe('Using new style', function() {
 
     it("convert markdown string", function(done) {
-      var data = assembleData.convertMarkdown(simple, opts);
+      var data = markdown.convert(simple, opts);
       //expect(data).to.equal(simpleExpected);
       done();
     });
 
     it("read markdown file", function(done) {
-      var data = assembleData.readMarkdown('./test/fixtures/pages/simple1.md', opts);
+      var data = markdown.read('./test/fixtures/pages/simple1.md', opts);
       expect(data).to.equal(simpleExpected);
       done();
     });
 
     it("convert markdown file with code highlighting", function(done) {
-      var data = assembleData.readMarkdown('./test/fixtures/pages/complex1.md', opts);
+      var data = markdown.read('./test/fixtures/pages/complex1.md', opts);
       //console.log(data);
       //expect(complexExpected).to.deep.equal(data);
       done();
