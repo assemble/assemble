@@ -6,9 +6,11 @@
  * Licensed under the MIT License (MIT).
  */
 
-var assembleEngine = require('../lib/engine'),
-    engineHelpers = require('../lib/engine/helpers'),
-    expect = require('chai').expect;
+var assembleEngine  = require('../lib/engine');
+var assembleHelpers = require('../lib/helpers');
+var expect          = require('chai').expect;
+
+
 
 describe('Loading default handlebars engine', function() {
 
