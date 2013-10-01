@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Paths Test</title>
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+  </head>
+  <body style="padding-top: 60px;">
+    <div class="container">
+      <!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js no-placeholder" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Title</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+</head>
+<body>
+<h1> test </h1>
+    </div>
+
+    <div class="container" style="display: none">
+      <h3>Paths Examples</h3>
+
+<pre class="json">
+{ _page: 'all',
+  dirname: 'test/actual/paths',
+  filename: 'index.html',
+  pageName: 'index.html',
+  pagename: 'index.html',
+  basename: 'index',
+  src: 'test/fixtures/pages/index.hbs',
+  dest: 'test/actual/paths/index.html',
+  assets: '../assets',
+  ext: '.html',
+  extname: '.html',
+  page: '{{> _header }}\n<h1> test </h1>',
+  data: {} }
+</pre>
+
+      <ul>
+      
+        <li><a href="helpers.html">helpers</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/helpers.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: helpers.html
+        this.pagename: helpers.html
+        this.basename: helpers
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="alert.html">alert</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/alert.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: alert.html
+        this.pagename: alert.html
+        this.basename: alert
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="collections-categories.html">collections-categories</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/collections-categories.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: collections-categories.html
+        this.pagename: collections-categories.html
+        this.basename: collections-categories
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="collections-categories2.html">collections-categories2</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/collections-categories2.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: collections-categories2.html
+        this.pagename: collections-categories2.html
+        this.basename: collections-categories2
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="collections-tags-2.html">collections-tags-2</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/collections-tags-2.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: collections-tags-2.html
+        this.pagename: collections-tags-2.html
+        this.basename: collections-tags-2
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="collections-tags.html">collections-tags</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/collections-tags.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: collections-tags.html
+        this.pagename: collections-tags.html
+        this.basename: collections-tags
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="complex.html">complex</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/complex.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: complex.html
+        this.pagename: complex.html
+        this.basename: complex
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="context.html">context</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/context.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: context.html
+        this.pagename: context.html
+        this.basename: context
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="debug-helpers.html">debug-helpers</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/debug-helpers.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: debug-helpers.html
+        this.pagename: debug-helpers.html
+        this.basename: debug-helpers
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="deep-nested-layouts.html">deep-nested-layouts</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/deep-nested-layouts.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: deep-nested-layouts.html
+        this.pagename: deep-nested-layouts.html
+        this.basename: deep-nested-layouts
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="example.html">example</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/example.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: example.html
+        this.pagename: example.html
+        this.basename: example
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="gist-helper.html">gist-helper</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/gist-helper.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: gist-helper.html
+        this.pagename: gist-helper.html
+        this.basename: gist-helper
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="assets.html">assets</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/assets.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: assets.html
+        this.pagename: assets.html
+        this.basename: assets
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="home.html">home</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/home.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: home.html
+        this.pagename: home.html
+        this.basename: home
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="html-helpers.html">html-helpers</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/html-helpers.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: html-helpers.html
+        this.pagename: html-helpers.html
+        this.basename: html-helpers
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="index.html">index</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/index.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: index.html
+        this.pagename: index.html
+        this.basename: index
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="md-helper.html">md-helper</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/md-helper.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: md-helper.html
+        this.pagename: md-helper.html
+        this.basename: md-helper
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="nested-layouts.html">nested-layouts</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/nested-layouts.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: nested-layouts.html
+        this.pagename: nested-layouts.html
+        this.basename: nested-layouts
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="no-layout-none.html">no-layout-none</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/no-layout-none.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: no-layout-none.html
+        this.pagename: no-layout-none.html
+        this.basename: no-layout-none
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="no-layout.html">no-layout</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/no-layout.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: no-layout.html
+        this.pagename: no-layout.html
+        this.basename: no-layout
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="no-yfm.html">no-yfm</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/no-yfm.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: no-yfm.html
+        this.pagename: no-yfm.html
+        this.basename: no-yfm
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="page.html">page</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/page.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: page.html
+        this.pagename: page.html
+        this.basename: page
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="postprocess.html">postprocess</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/postprocess.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: postprocess.html
+        this.pagename: postprocess.html
+        this.basename: postprocess
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="postprocess2.html">postprocess2</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/postprocess2.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: postprocess2.html
+        this.pagename: postprocess2.html
+        this.basename: postprocess2
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+        <li><a href="simple3.html">simple3</a></li>
+        <!--
+        "this"
+        ===============================
+        this.dest:     test/actual/paths/simple3.html
+        this.absolute: 
+        this.dirname:  test/actual/paths
+        this.filename: simple3.html
+        this.pagename: simple3.html
+        this.basename: simple3
+        this.extname:  .html
+        this.ext:      .html
+
+        "page"
+        ===============================
+        page.dest:     test/actual/paths/index.html
+        page.absolute: 
+        page.dirname:  test/actual/paths
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
+        page.extname:  .html
+        page.ext:      .html
+
+        "root"
+        ===============================
+        dest:          
+        absolute:      test/actual/paths/index.html
+        dirname:       test/actual/paths
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
+        extname:       .html
+        ext:           .html
+        -->
+      
+      </ul>
+    </div>
+  </body>
+</html>

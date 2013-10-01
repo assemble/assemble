@@ -31,13 +31,13 @@ describe('Reading From Files', function() {
 
 
   it("yaml file starts with --- no content", function(done) {
-    var data = yfm.extract('./test/fixtures/pages/simple1.yml');
+    var data = yfm.extract('./test/fixtures/data/mocha/simple1.yml');
     expect(simpleExpected.context).to.deep.equal(data.context);
     done();
   });
 
   it("yaml file starts and ends with --- no content", function(done) {
-    var data = yfm.extract('./test/fixtures/pages/simple2.yml');
+    var data = yfm.extract('./test/fixtures/data/mocha/simple2.yml');
     expect(simpleExpected.context).to.deep.equal(data.context);
     done();
   });

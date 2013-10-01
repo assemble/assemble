@@ -22,6 +22,7 @@ module.exports = function(grunt) {
     // package.json
     pkg: grunt.file.readJSON('package.json'),
     config: grunt.file.readJSON('test/fixtures/data/config.json'),
+    translation: require('./test/fixtures/data/translations'),
 
     // Metadata
     meta: {
@@ -50,11 +51,20 @@ module.exports = function(grunt) {
 
     assemble: {
       options: {
-        flatten: true,
-        layout: 'layout.hbs',
+        assets: 'test/actual/assets',
+        helpers: 'test/helpers/*.js',
         layoutdir: 'test/fixtures/layouts',
-        helpers: 'test/helpers/helper-*.js',
-        assets: 'test/actual/assets'
+        layout: 'layout.hbs',
+        flatten: true
+      },
+      layout_ext: {
+        options: {
+          layout: 'none', // override default, layout is redefined in YFM
+          layoutext: '.hbs'
+        },
+        files: {
+          'test/actual/paths/': ['test/fixtures/pages/layoutext/layoutext.hbs']
+        }
       },
       paths: {
         options: {
@@ -64,6 +74,30 @@ module.exports = function(grunt) {
         },
         files: {
           'test/actual/paths/': ['test/fixtures/pages/*.hbs']
+        }
+      },
+      // Post-process function
+      postprocess: {
+        options: {
+          postprocess: function(src) {
+            return require('frep').replaceStr(src, grunt.config.process('<%= translation.patterns %>'));
+          }
+        },
+        files: {
+          'test/actual/postprocess.html': ['test/fixtures/pages/postprocess.hbs']
+        }
+      },
+      postprocess2: {
+        options: {
+          postprocess: function(src) {
+            return require('js-prettify').html(src, {
+              indent_size: 2,
+              indent_inner_html: true
+            }).replace(/(\r\n|\n\r|\n|\r){2,}/g, '\n');
+          }
+        },
+        files: {
+          'test/actual/postprocess2.html': ['test/fixtures/pages/postprocess2.hbs']
         }
       },
       // Build one page
