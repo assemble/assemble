@@ -94,8 +94,15 @@ module.exports = function(grunt) {
       next(assemble);
     };
 
-    var assembleDefaultLayout = function(assemble, next) {
 
+
+    /**
+     * Layout
+     * @param  {[type]}   assemble [description]
+     * @param  {Function} next     [description]
+     * @return {[type]}            [description]
+     */
+    var assembleDefaultLayout = function(assemble, next) {
       grunt.verbose.writeln('Assembling default layout'.cyan);
 
       // load default layout
@@ -113,8 +120,14 @@ module.exports = function(grunt) {
       next(assemble);
     };
 
-    var assemblePartials = function(assemble, next) {
 
+    /**
+     * Partials
+     * @param  {[type]}   assemble [description]
+     * @param  {Function} next     [description]
+     * @return {[type]}            [description]
+     */
+    var assemblePartials = function(assemble, next) {
       grunt.verbose.writeln('Assembling partials'.cyan);
 
       var complete = 0;
@@ -155,8 +168,14 @@ module.exports = function(grunt) {
       next(assemble);
     };
 
-    var assembleData = function(assemble, next) {
 
+    /**
+     * Data
+     * @param  {[type]}   assemble [description]
+     * @param  {Function} next     [description]
+     * @return {[type]}            [description]
+     */
+    var assembleData = function(assemble, next) {
       grunt.verbose.writeln('Assembling data'.cyan);
 
       // load data if specified
@@ -169,9 +188,7 @@ module.exports = function(grunt) {
         dataFiles.forEach(function(filepath) {
           var ext = path.extname(filepath);
           var filename = path.basename(filepath, ext);
-
           var fileReader = Utils.dataFileReaderFactory(ext);
-
           var filecontent = grunt.file.read(filepath);
 
           //Skip empty data files, as they'd cause an error with compiler
@@ -197,17 +214,20 @@ module.exports = function(grunt) {
           }
         });
       }
-
       next(assemble);
     };
 
+
+
+    /**
+     * Pages
+     * @param  {[type]}   assemble [description]
+     * @param  {Function} next     [description]
+     * @return {[type]}            [description]
+     */
     var assemblePages = function(assemble, next) {
-
-      // build each page
       grunt.verbose.writeln(('\n' + 'Building pages...').grey);
-
       var src = false;
-
       var assetsPath = assemble.options.assets;
 
       async.waterfall([
@@ -267,7 +287,6 @@ module.exports = function(grunt) {
               /**
                * Calculate "assets" path
                */
-
 
               // `options.assets` generate the relative path to the dest "assets"
               // directory from the location of the newly generated dest file
@@ -351,12 +370,10 @@ module.exports = function(grunt) {
                   }
                 });
 
-
               } catch(err) {
                 grunt.warn(err);
                 return false;
               }
-
               return true;
             };
 
@@ -469,12 +486,13 @@ module.exports = function(grunt) {
   });
 
 
+
+
   // ==========================================================================
   // BUILD
   // ==========================================================================
 
   var build = function(currentPage, assemble, callback) {
-
     var src      = currentPage.srcFile;
     var filename = currentPage.filename;
     var options  = assemble.options;
@@ -595,13 +613,28 @@ module.exports = function(grunt) {
     }
   };
 
+
+  /**
+   * Process Context
+   * @param  {[type]} grunt   [description]
+   * @param  {[type]} context [description]
+   * @param  {[type]} data    [description]
+   * @return {[type]}         [description]
+   */
   var processContext = function(grunt, context, data) {
     grunt.config.data = _.extend({}, grunt.config.data, context, data);
     return grunt.config.process(data || context);
   };
 
-  var loadLayout = function(src, assemble, callback) {
 
+  /**
+   * Load Layout
+   * @param  {[type]}   src      [description]
+   * @param  {[type]}   assemble [description]
+   * @param  {Function} callback [description]
+   * @return {[type]}            [description]
+   */
+  var loadLayout = function(src, assemble, callback) {
     var layoutStack = [];
 
     var load = function(src) {
