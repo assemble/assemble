@@ -31,6 +31,8 @@ Utils.pathNormalize = function(urlString) {
 };
 
 
+Utils.filenameRegex = /[^\\\/:*?"<>|\r\n]+$/i;
+
 Utils.extension = function(filename) {
   grunt.verbose.writeln('extension');
   grunt.verbose.writeln(filename);
@@ -39,6 +41,9 @@ Utils.extension = function(filename) {
   }
   return _(filename.match(/[^.]*$/)).last();
 };
+
+
+
 
 /**
  * Is the given path a directory or a file?

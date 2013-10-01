@@ -66,6 +66,7 @@
 [helpers](helpers.md)
 [home](home.md)
 [html-helpers](html-helpers.md)
+[index](index.md)
 [md-helper](md-helper.md)
 [nested-layouts](nested-layouts.md)
 [no-layout-none](no-layout-none.md)
@@ -240,6 +241,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: html-helpers.md
 this.pagename: html-helpers.md
 this.basename: html-helpers
+this.extname:  .md
+this.ext:      .md
+
+#### index.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/index.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: index.md
+this.pagename: index.md
+this.basename: index
 this.extname:  .md
 this.ext:      .md
 
@@ -565,8 +577,30 @@ page.basename: assets
 page.extname:  .md
 page.ext:      .md
 
+#### assets.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/assets.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: assets.md
+page.pagename: assets.md
+page.basename: assets
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### assets.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/assets.md
+dirname:       test/actual/multi/dest1
+filename:      assets.md
+pagename:      assets.md
+basename:      assets
+extname:       .md
+ext:           .md
 
 #### assets.md
 assets:        ../../assets

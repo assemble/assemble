@@ -2,26 +2,24 @@
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Partials Test</title>
+    <title>Paths Test</title>
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
     <div class="container">
-      <div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <ul class="nav">
-        <li><a href="./index.html">Index</a></li>
-        <li><a href="dest/context.html">Dest Context</a></li>
-        <li><a href="dest/basic.html">Dest Basic</a></li>
-        <li><a href="dest/markdown.html">Dest Markdown</a></li>
-        
-      </ul>
-      <ul class="nav pull-right"><li><a href="">Visit Assemble</a></li></ul>
-    </div>
-  </div>
-</div>
-
+      <!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js no-placeholder" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Title</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+</head>
+<body>
+<h1> test </h1>
     </div>
 
     <div class="container" style="display: none">
@@ -30,31 +28,17 @@
 <pre class="json">
 { _page: 'all',
   dirname: 'test/actual/paths',
-  filename: 'page.html',
-  pageName: 'page.html',
-  pagename: 'page.html',
-  basename: 'page',
-  src: 'test/fixtures/pages/page.hbs',
-  dest: 'test/actual/paths/page.html',
+  filename: 'index.html',
+  pageName: 'index.html',
+  pagename: 'index.html',
+  basename: 'index',
+  src: 'test/fixtures/pages/index.hbs',
+  dest: 'test/actual/paths/index.html',
   assets: '../assets',
   ext: '.html',
   extname: '.html',
-  page: '{{> nav }}',
-  data: 
-   { title: 'Partials Test',
-     links: 
-      [ './index',
-        'dest/context',
-        'dest/basic',
-        'dest/markdown',
-        [length]: 4 ] },
-  title: 'Partials Test',
-  links: 
-   [ './index',
-     'dest/context',
-     'dest/basic',
-     'dest/markdown',
-     [length]: 4 ] }
+  page: '{{> _header }}\n<h1> test </h1>',
+  data: {} }
 </pre>
 
       <ul>
@@ -74,23 +58,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -110,23 +94,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -146,23 +130,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -182,23 +166,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -218,23 +202,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -254,23 +238,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -290,23 +274,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -326,23 +310,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -362,23 +346,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -398,23 +382,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -434,23 +418,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -470,23 +454,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -506,23 +490,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -542,23 +526,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -578,23 +562,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -614,23 +598,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -650,23 +634,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -686,23 +670,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -722,23 +706,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -758,23 +742,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -794,23 +778,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -830,23 +814,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->
@@ -866,23 +850,23 @@
 
         "page"
         ===============================
-        page.dest:     test/actual/paths/page.html
+        page.dest:     test/actual/paths/index.html
         page.absolute: 
         page.dirname:  test/actual/paths
-        page.filename: page.html
-        page.pagename: page.html
-        page.basename: page
+        page.filename: index.html
+        page.pagename: index.html
+        page.basename: index
         page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
         dest:          
-        absolute:      test/actual/paths/page.html
+        absolute:      test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      page.html
-        pagename:      page.html
-        basename:      page
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         extname:       .html
         ext:           .html
         -->

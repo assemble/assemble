@@ -1,31 +1,36 @@
-# no-yfm.md output
+# index.md output
 
 ## Content
 
-There is no YAML front matter in this page.
-
-
-<div></div>
-<div></div>
-
-
-
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js no-placeholder" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Title</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+</head>
+<body>
+<h1> test </h1>
 
 
 ## Debug Info
 ``` json
 { _page: 'all',
   dirname: 'test/actual/multi/dest1',
-  filename: 'no-yfm.md',
-  pageName: 'no-yfm.md',
-  pagename: 'no-yfm.md',
-  basename: 'no-yfm',
-  src: 'test/fixtures/pages/no-yfm.hbs',
-  dest: 'test/actual/multi/dest1/no-yfm.md',
+  filename: 'index.md',
+  pageName: 'index.md',
+  pagename: 'index.md',
+  basename: 'index',
+  src: 'test/fixtures/pages/index.hbs',
+  dest: 'test/actual/multi/dest1/index.md',
   assets: '../../assets',
   ext: '.md',
   extname: '.md',
-  page: 'There is no YAML front matter in this page.\n\n\n<div>{{noyfm.one}}</div>\n<div>{{noyfm.two}}</div>\n\n\n',
+  page: '{{> _header }}\n<h1> test </h1>',
   data: {} }
 ```
 
@@ -315,512 +320,512 @@ this.ext:      .md
 
 ### {{#each pages}}
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
+#### index.md
 page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
+page.dest:     test/actual/multi/dest1/index.md
 page.absolute: 
 page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
+page.filename: index.md
+page.pagename: index.md
+page.basename: index
 page.extname:  .md
 page.ext:      .md
 
 
 ### {{#each pages}} "page" context
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 
-#### no-yfm.md
+#### index.md
 assets:        ../../assets
 dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
+absolute:      test/actual/multi/dest1/index.md
 dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
+filename:      index.md
+pagename:      index.md
+basename:      index
 extname:       .md
 ext:           .md
 

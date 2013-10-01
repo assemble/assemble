@@ -58,6 +58,7 @@
 [helpers](helpers.md)
 [home](home.md)
 [html-helpers](html-helpers.md)
+[index](index.md)
 [md-helper](md-helper.md)
 [nested-layouts](nested-layouts.md)
 [no-layout-none](no-layout-none.md)
@@ -232,6 +233,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: html-helpers.md
 this.pagename: html-helpers.md
 this.basename: html-helpers
+this.extname:  .md
+this.ext:      .md
+
+#### index.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/index.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: index.md
+this.pagename: index.md
+this.basename: index
 this.extname:  .md
 this.ext:      .md
 
@@ -557,8 +569,30 @@ page.basename: collections-categories2
 page.extname:  .md
 page.ext:      .md
 
+#### collections-categories2.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/collections-categories2.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: collections-categories2.md
+page.pagename: collections-categories2.md
+page.basename: collections-categories2
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### collections-categories2.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/collections-categories2.md
+dirname:       test/actual/multi/dest1
+filename:      collections-categories2.md
+pagename:      collections-categories2.md
+basename:      collections-categories2
+extname:       .md
+ext:           .md
 
 #### collections-categories2.md
 assets:        ../../assets

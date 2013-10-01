@@ -69,6 +69,9 @@ module.exports = function(grunt) {
         done(false);
       }
 
+      assemble.fileExtRegex = new RegExp('\\.' + Utils.extension(src) + '$');
+
+
       assemble.engine.load(assemble.options.engine);
 
       var initializeEngine = function(engine, options) { engine.init(options); };
@@ -79,10 +82,6 @@ module.exports = function(grunt) {
 
       var registerPartial = function(engine, filename, content) { engine.registerPartial(filename, content); };
       assemble.options.registerPartial = assemble.options.registerPartial || registerPartial;
-
-      assemble.fileExt = Utils.extension(src);
-      assemble.filenameRegex = /[^\\\/:*?"<>|\r\n]+$/i;
-      assemble.fileExtRegex = new RegExp('\\.' + assemble.fileExt + '$');
 
       assemble.partials = file.expand(assemble.options.partials);
       assemble.dataFiles = file.expand(assemble.options.data);
@@ -141,7 +140,7 @@ module.exports = function(grunt) {
         grunt.verbose.write(('\n' + 'Processing partials...\n').grey);
 
         partials.forEach(function(filepath) {
-          var filename = _.first(filepath.match(assemble.filenameRegex)).replace(assemble.fileExtRegex, '');
+          var filename = _.first(filepath.match(Utils.filenameRegex)).replace(assemble.fileExtRegex, '');
           grunt.verbose.ok(('Processing ' + filename.cyan + ' partial'));
 
           var partial = grunt.file.read(filepath);
@@ -585,14 +584,13 @@ module.exports = function(grunt) {
 
 
       // add other page variables to the main context
-      context.extname = currentPage.ext;
-      context.basename = currentPage.basename;
+      context.dirname  = path.dirname(currentPage.dest);
       context.absolute = currentPage.dest;
-      context.dirname = path.dirname(currentPage.dest);
-      context.pagename = currentPage.filename;
       context.filename = currentPage.filename;
-      // "pageName" is deprecated, use "pagename" or "filename"
-      context.pageName = currentPage.filename;
+      context.pageName = currentPage.filename; // "pageName" is deprecated, use "pagename" or "filename"
+      context.pagename = currentPage.filename;
+      context.basename = currentPage.basename;
+      context.extname  = currentPage.ext;
 
 
       //assemble.options.registerPartial(assemble.engine, 'body', page);
@@ -635,24 +633,27 @@ module.exports = function(grunt) {
    * @return {[type]}            [description]
    */
   var loadLayout = function(src, assemble, callback) {
-    var layoutStack = [];
+
+    var layoutStack   = [];
+    var loadFile      = true;
+    var layoutName    = 'layout';
+    var defaultLayout = assemble.engine.startDelimiter + ' body ' + assemble.engine.endDelimiter; // '{{> body }}';
+
+    var layoutext     = assemble.options.layoutext || '';
+    var layout        = '';
+    var layoutdir     = assemble.options.layoutdir || assemble.options.layouts || '';
 
     var load = function(src) {
-
-      var loadFile = true;
-      var layout = '';
-      var layoutName = 'layout';
-
       // if the src is empty, create a default layout in memory
       if(!src || src === false || src === '' || src.length === 0 || src === 'none') {
         loadFile = false;
-        layout = assemble.engine.startDelimiter + ' body ' + assemble.engine.endDelimiter; // '{{>body}}';
+        layout = defaultLayout; // '{{>body}}';
       }
 
       if(loadFile) {
         // validate that the layout file exists
         grunt.verbose.writeln(src);
-        layout = path.normalize(path.join(assemble.options.layoutdir || '', src));
+        layout = path.normalize(path.join(layoutdir, src + layoutext));
         grunt.verbose.writeln(layout);
 
         if(!fs.existsSync(layout)) {
@@ -665,10 +666,12 @@ module.exports = function(grunt) {
         }
 
         // load layout
-        layoutName = _.first(layout.match(assemble.filenameRegex)).replace(assemble.fileExtRegex,'');
+        layoutName = _.first(layout.match(Utils.filenameRegex)).replace(assemble.fileExtRegex,'');
+
         layout = grunt.file.read(layout);
-        layout = layout.replace(/{{>\s*body\s*}}/, assemble.engine.startDelimiter + ' body ' + assemble.engine.endDelimiter);
+        layout = layout.replace(/\{{>\s*body\s*}}/, defaultLayout);
       }
+
 
       // If options.removeHbsWhitespace is true
       layout = removeHbsWhitespace(assemble, layout);
@@ -693,7 +696,7 @@ module.exports = function(grunt) {
 
     var finalResults = {
       layoutName: '',
-      layout: assemble.engine.startDelimiter + 'body' + assemble.engine.endDelimiter, // '{{>body}}',
+      layout: defaultLayout, // '{{>body}}',
       data: {}
     };
 
