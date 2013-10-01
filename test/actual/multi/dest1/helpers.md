@@ -91,6 +91,7 @@ Example of using a custom "js" helper.
 [helpers](helpers.md)
 [home](home.md)
 [html-helpers](html-helpers.md)
+[index](index.md)
 [md-helper](md-helper.md)
 [nested-layouts](nested-layouts.md)
 [no-layout-none](no-layout-none.md)
@@ -265,6 +266,17 @@ this.dirname:  test/actual/multi/dest1
 this.filename: html-helpers.md
 this.pagename: html-helpers.md
 this.basename: html-helpers
+this.extname:  .md
+this.ext:      .md
+
+#### index.md
+this.assets:   ../../assets
+this.dest:     test/actual/multi/dest1/index.md
+this.absolute:
+this.dirname:  test/actual/multi/dest1
+this.filename: index.md
+this.pagename: index.md
+this.basename: index
 this.extname:  .md
 this.ext:      .md
 
@@ -590,8 +602,30 @@ page.basename: helpers
 page.extname:  .md
 page.ext:      .md
 
+#### helpers.md
+page.assets:   ../../assets
+page.dest:     test/actual/multi/dest1/helpers.md
+page.absolute: 
+page.dirname:  test/actual/multi/dest1
+page.filename: helpers.md
+page.pagename: helpers.md
+page.basename: helpers
+page.extname:  .md
+page.ext:      .md
+
 
 ### {{#each pages}} "page" context
+
+#### helpers.md
+assets:        ../../assets
+dest:          
+absolute:      test/actual/multi/dest1/helpers.md
+dirname:       test/actual/multi/dest1
+filename:      helpers.md
+pagename:      helpers.md
+basename:      helpers
+extname:       .md
+ext:           .md
 
 #### helpers.md
 assets:        ../../assets

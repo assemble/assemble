@@ -56,6 +56,15 @@ module.exports = function(grunt) {
         helpers: 'test/helpers/helper-*.js',
         assets: 'test/actual/assets'
       },
+      layout_ext: {
+        options: {
+          layout: 'none',
+          layoutext: '.hbs'
+        },
+        files: {
+          'test/actual/paths/': ['test/fixtures/pages/layoutext/layoutext.hbs']
+        }
+      },
       paths: {
         options: {
           partials: 'test/fixtures/partials/*.hbs',
