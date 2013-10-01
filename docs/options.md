@@ -40,6 +40,36 @@ Path to the custom helper or helpers to use with the current template engine.
 
 Assemble includes [handlebars-helpers](http://assemble.io/docs/helpers/index.html) as a dependency, so any helpers from that library may be used in your templates.
 
+#### postprocess
+Type: `Function`
+Default: `undefined`
+
+Function to use for post-processing generated HTML. Example:
+
+```js
+options: {
+  postprocess: function(src) {
+    return require('frep').replaceStr(src, [
+      {
+        // replace "then" with "now"
+        pattern: "then",
+        replacement: "now"
+      },
+      {
+        // replace "Ruby" with "JavaScript"
+        pattern: "Ruby",
+        replacement: "JavaScript"
+      },
+      {
+        // replace "Jekyll" with "Assemble"
+        pattern: "Jekyll",
+        replacement: "Assemble"
+      }
+    ]);
+  }
+}
+```
+
 #### [ext](http://assemble.io/docs/options-ext.html)
 Type: `String`
 Default: `.html`
@@ -54,9 +84,9 @@ Specify the [Marked.js options](https://github.com/chjj/marked#options-1) to use
 
 #### [engine](http://assemble.io/docs/options-engine.html)
 Type: `String`
-Default: Handlebars
+Default: `Handlebars` only use this option if you are **not** using Handlebars
 
-Specify the engine to use for compiling templates. Both Handlebars and [Swig Templates](https://github.com/paularmstrong) are supported. Currently Handlebars is the default but this may change.
+Specify the engine to use for compiling templates **if you are not using Handlebars**. Currently, Handlebars is already set by default, but [assemble-swig](https://github.com/assemble/assemble-swig) is available for compiling [Swig Templates](https://github.com/paularmstrong).
 
 #### flatten
 Type: `Boolean`
