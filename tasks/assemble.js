@@ -321,7 +321,6 @@ module.exports = function(grunt) {
               grunt.verbose.writeln(('\t' + 'assets: '   + assemble.options.assets));
 
 
-
               var page = useFileInfo ? (fileInfo.content || '') : grunt.file.read(srcFile);
               try {
                 grunt.verbose.writeln('Compiling page ' + filename.magenta);
@@ -448,8 +447,12 @@ module.exports = function(grunt) {
           }
           grunt.verbose.writeln('..');
 
+          function postprocess(src, fn) {return fn(src);}
+          var processFn = function(src) { return src; };
+
           // Write the file.
-          file.write(page.dest, result);
+          file.write(page.dest, postprocess(result, assemble.options.postprocess || processFn));
+          // file.write(page.dest, result);
 
           grunt.verbose.writeln('Assembled ' + (page.dest).cyan +' OK'.green);
           grunt.log.notverbose.ok();
