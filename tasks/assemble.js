@@ -608,6 +608,9 @@ module.exports = function(grunt) {
           context: context
         }, next);
       }, function (err) {
+        if(err) {
+          callback(err);
+        }
         assemble.engine.render(page, context, function(err, content) {
           if(err) {
             callback(err);
