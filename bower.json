@@ -24,6 +24,8 @@
     "grunt-mocha-test": "~0.6.3",
     "time-grunt": "~0.1.1",
     "grunt-sync-pkg": "~0.1.0",
-    "grunt-readme": "~0.1.1"
+    "grunt-readme": "~0.1.1",
+    "frep": "~0.1.1",
+    "js-prettify": "~1.4.0"
   }
 }
