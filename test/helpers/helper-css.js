@@ -8,24 +8,12 @@
 
 module.exports.register = function(Handlebars, options) {
   var path = require('path');
-
-  var getExt = function(str) {
-    var extname = path.extname(str);
-    if (extname) {
-      str = extname;
-    }
-    if (str[0] === ".") {
-      str = str.substring(1);
-    }
-    return str;
-  };
+  var Utils = require('./utils');
 
   Handlebars.registerHelper("css", function(context) {
-    if (!Array.isArray(context)) {
-      context = [context];
-    }
+    if (!Array.isArray(context)) {context = [context]; }
     return new Handlebars.SafeString(context.map(function(item) {
-      var ext = getExt(item);
+      var ext = Utils.getext(item);
       var css = '<link rel="stylesheet" href="' + options.assets + '/css/' + item + '">';
       var less = '<link rel="stylesheet/less" href="' + options.assets + '/less/' + item + '">';
       switch (ext) {
