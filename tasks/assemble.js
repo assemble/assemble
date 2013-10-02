@@ -90,6 +90,8 @@ module.exports = function(grunt) {
       assemble.options.initializeEngine(assemble.engine, assemble.options);
       assemble.options.registerFunctions(assemble.engine);
 
+      assemble.options.plugins = assemble.options.plugins || [];
+
       next(assemble);
     };
 
@@ -599,12 +601,20 @@ module.exports = function(grunt) {
       //assemble.options.registerPartial(assemble.engine, 'body', page);
       page = injectBody(layout.layout, page);
 
-      assemble.engine.render(page, context, function(err, content) {
-        if(err) {
-          callback(err);
-        }
-        page = content;
-        callback(null, page);
+      async.forEachSeries(assemble.options.plugins, function (plugin, next) {
+        plugin({
+          grunt: grunt,
+          assemble: assemble,
+          context: context
+        }, next);
+      }, function (err) {
+        assemble.engine.render(page, context, function(err, content) {
+          if(err) {
+            callback(err);
+          }
+          page = content;
+          callback(null, page);
+        });
       });
 
 
