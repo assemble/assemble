@@ -45,7 +45,6 @@ There is no YAML front matter in this page.
 [gist-helper](gist-helper.md)
 [assets](assets.md)
 [home](home.md)
-[html-helpers](html-helpers.md)
 [index](index.md)
 [md-helper](md-helper.md)
 [nested-layouts](nested-layouts.md)
@@ -212,17 +211,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: home.md
 this.pagename: home.md
 this.basename: home
-this.extname:  .md
-this.ext:      .md
-
-#### html-helpers.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/html-helpers.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: html-helpers.md
-this.pagename: html-helpers.md
-this.basename: html-helpers
 this.extname:  .md
 this.ext:      .md
 
@@ -603,30 +591,8 @@ page.basename: no-yfm
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
-page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
-page.extname:  .md
-page.ext:      .md
-
 
 ### {{#each pages}} "page" context
-
-#### no-yfm.md
-assets:        ../../assets
-dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
-dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
-extname:       .md
-ext:           .md
 
 #### no-yfm.md
 assets:        ../../assets

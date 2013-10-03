@@ -66,7 +66,6 @@
 [gist-helper](gist-helper.md)
 [assets](assets.md)
 [home](home.md)
-[html-helpers](html-helpers.md)
 [index](index.md)
 [md-helper](md-helper.md)
 [nested-layouts](nested-layouts.md)
@@ -233,17 +232,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: home.md
 this.pagename: home.md
 this.basename: home
-this.extname:  .md
-this.ext:      .md
-
-#### html-helpers.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/html-helpers.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: html-helpers.md
-this.pagename: html-helpers.md
-this.basename: html-helpers
 this.extname:  .md
 this.ext:      .md
 
@@ -624,30 +612,8 @@ page.basename: page
 page.extname:  .md
 page.ext:      .md
 
-#### page.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/page.md
-page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: page.md
-page.pagename: page.md
-page.basename: page
-page.extname:  .md
-page.ext:      .md
-
 
 ### {{#each pages}} "page" context
-
-#### page.md
-assets:        ../../assets
-dest:          
-absolute:      test/actual/multi/dest1/page.md
-dirname:       test/actual/multi/dest1
-filename:      page.md
-pagename:      page.md
-basename:      page
-extname:       .md
-ext:           .md
 
 #### page.md
 assets:        ../../assets
