@@ -169,14 +169,13 @@ module.exports = function(grunt) {
         }
       },
 
-
       custom_helpers: {
         options: {
-          helpers: ['test/helpers/**/*.js'],
+          helpers: ['test/helpers/*.js'],
           version: '<%= pkg.version %>'
         },
         files: {
-          'test/actual/custom-helpers.html': ['test/fixtures/pages/helpers/custom-helpers.hbs']
+          'test/actual/': ['test/fixtures/pages/helpers/*.hbs']
         }
       },
       collections_example: {

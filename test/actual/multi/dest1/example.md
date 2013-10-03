@@ -8,7 +8,8 @@ This example shows that the properties from "example.json" and "example.hbs" are
 <div>Congratulations! You have officially wasted time reading example content. But I&#x27;m sure it&#x27;s time well wasted... </div>
 
 
-<div>&lt;!-- [object Object] --&gt;</div>
+<div>&lt;!-- foo --&gt;
+&lt;!-- [object Object] --&gt;</div>
 <div></div>
 
 
@@ -48,7 +49,6 @@ This example shows that the properties from "example.json" and "example.hbs" are
 [gist-helper](gist-helper.md)
 [assets](assets.md)
 [home](home.md)
-[html-helpers](html-helpers.md)
 [index](index.md)
 [md-helper](md-helper.md)
 [nested-layouts](nested-layouts.md)
@@ -215,17 +215,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: home.md
 this.pagename: home.md
 this.basename: home
-this.extname:  .md
-this.ext:      .md
-
-#### html-helpers.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/html-helpers.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: html-helpers.md
-this.pagename: html-helpers.md
-this.basename: html-helpers
 this.extname:  .md
 this.ext:      .md
 
@@ -606,30 +595,8 @@ page.basename: example
 page.extname:  .md
 page.ext:      .md
 
-#### example.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/example.md
-page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: example.md
-page.pagename: example.md
-page.basename: example
-page.extname:  .md
-page.ext:      .md
-
 
 ### {{#each pages}} "page" context
-
-#### example.md
-assets:        ../../assets
-dest:          
-absolute:      test/actual/multi/dest1/example.md
-dirname:       test/actual/multi/dest1
-filename:      example.md
-pagename:      example.md
-basename:      example
-extname:       .md
-ext:           .md
 
 #### example.md
 assets:        ../../assets

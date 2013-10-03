@@ -62,7 +62,6 @@ Properties from "example.json" and "example.hbs" should be on the page object.
 [gist-helper](gist-helper.md)
 [assets](assets.md)
 [home](home.md)
-[html-helpers](html-helpers.md)
 [index](index.md)
 [md-helper](md-helper.md)
 [nested-layouts](nested-layouts.md)
@@ -229,17 +228,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: home.md
 this.pagename: home.md
 this.basename: home
-this.extname:  .md
-this.ext:      .md
-
-#### html-helpers.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/html-helpers.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: html-helpers.md
-this.pagename: html-helpers.md
-this.basename: html-helpers
 this.extname:  .md
 this.ext:      .md
 
@@ -620,30 +608,8 @@ page.basename: home
 page.extname:  .md
 page.ext:      .md
 
-#### home.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/home.md
-page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: home.md
-page.pagename: home.md
-page.basename: home
-page.extname:  .md
-page.ext:      .md
-
 
 ### {{#each pages}} "page" context
-
-#### home.md
-assets:        ../../assets
-dest:          
-absolute:      test/actual/multi/dest1/home.md
-dirname:       test/actual/multi/dest1
-filename:      home.md
-pagename:      home.md
-basename:      home
-extname:       .md
-ext:           .md
 
 #### home.md
 assets:        ../../assets

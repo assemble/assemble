@@ -8,8 +8,8 @@
 
 module.exports.register = function(Handlebars, options) {
 
-  Handlebars.registerHelper('foo2', function(msg) {
-    return '<!-- foo2 -->\n<!-- ' + msg + ' -->';
+  Handlebars.registerHelper('foo', function(msg) {
+    return '<!-- foo -->\n<!-- ' + msg + ' -->';
   });
 
   Handlebars.registerHelper('opt', function(key) {

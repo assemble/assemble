@@ -746,7 +746,6 @@ module.exports = function(grunt) {
 
   var getEngineOf = function(fileName) {
     var ext = Utils.extension(fileName);
-    console.log(assemble.engine.extensions[ext]);
     return  _( _(assemble.engine.extensions).keys() ).include(ext) ? assemble.engine.extensions[ext] : false;
   };
 
