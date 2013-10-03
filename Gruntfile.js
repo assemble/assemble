@@ -52,7 +52,8 @@ module.exports = function(grunt) {
     assemble: {
       options: {
         assets: 'test/actual/assets',
-        helpers: 'test/helpers/*.js',
+        helpers: ['test/helpers/*.js'],
+        plugins: ['permalinks'],
         layoutdir: 'test/fixtures/layouts',
         layout: 'layout.hbs',
         flatten: true
@@ -64,6 +65,25 @@ module.exports = function(grunt) {
         },
         files: {
           'test/actual/paths/': ['test/fixtures/pages/layoutext/layoutext.hbs']
+        }
+      },
+      plugins: {
+        options: {
+          plugins: ['test/plugins/*.js']
+        },
+        files: {
+          'test/actual/plugins/': ['test/fixtures/plugins/*.hbs']
+        }
+      },
+      permalinks: {
+        options: {
+          permalinks: {
+            dateFormats: ["YYYY-MM-DD", "MM-DD-YYYY", "YYYY-MM-DDTHH:mm:ss.SSS"],
+            pattern: ':year/:MMM/:day/:mm/:slug/index.html'
+          }
+        },
+        files: {
+          'test/actual/permalinks/': ['test/fixtures/permalinks/*.hbs']
         }
       },
       paths: {
@@ -169,14 +189,13 @@ module.exports = function(grunt) {
         }
       },
 
-
       custom_helpers: {
         options: {
-          helpers: ['test/helpers/**/*.js'],
+          helpers: ['test/helpers/*.js'],
           version: '<%= pkg.version %>'
         },
         files: {
-          'test/actual/custom-helpers.html': ['test/fixtures/pages/helpers/custom-helpers.hbs']
+          'test/actual/': ['test/fixtures/pages/helpers/*.hbs']
         }
       },
       collections_example: {
@@ -271,7 +290,8 @@ module.exports = function(grunt) {
     // Before assembling new files, removed previously
     // created files.
     clean: {
-      tests: ['test/actual/**/*.{html,md}']
+      tests: ['test/actual/**/*.{html,md}'],
+      permalinks: ['test/actual/2013/**']
     }
   });
 
@@ -296,5 +316,4 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'clean', 'test', 'docs']);
-
 };

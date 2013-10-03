@@ -6,8 +6,8 @@
  * Licensed under the MIT License (MIT).
  */
 
-var foo = function(msg) {
+var bar = function(msg) {
   return '<!-- ' + msg + ' -->';
 };
 
-module.exports.foo = foo;
+module.exports.bar = bar;
