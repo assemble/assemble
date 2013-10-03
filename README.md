@@ -73,6 +73,18 @@ Default: `undefined`
 
 If set, this defines the layout file to use for the [task or target][tasks-and-targets]. However, when specifying a layout, unlike Jekyll, _Assemble requires a file extension_ since you are not limited to using a single file type.
 
+##### layoutext
+Type: `String`
+Default: `undefined`
+
+Specify the extension to use for layouts, enabling layouts in YAML front matter to defined without an extension:
+
+```yaml
+---
+layout: default
+---
+```
+
 [tasks-and-targets]: http://gruntjs.com/configuring-tasks#task-configuration-and-targets
 
 ##### [partials](http://assemble.io/docs/options-partials.html)
@@ -127,9 +139,9 @@ Specify the file extension for destination files. Example:
 
 ##### [marked](http://assemble.io/docs/options-marked.html)
 Type: `Object`
-Default: Marked.js defaults
+Default: [Marked.js defaults](https://github.com/chjj/marked#options-1)
 
-Specify the [Marked.js options](https://github.com/chjj/marked#options-1) to use when converting from markdown to HTML.
+Specify the [Marked.js options](https://github.com/chjj/marked#options-1) for the `{{#markdown}}{{/markdown}}` and `{{md ""}}` helpers to use when converting content.
 
 ##### [engine](http://assemble.io/docs/options-engine.html)
 Type: `String`
@@ -216,6 +228,7 @@ Please see the [Contributing to Assemble](http://assemble.io/contributing) guide
 
 ## Release History
 
+ * 2013-10-02   v0.4.9   Adds `layoutext` and `postprocess` options.
  * 2013-09-30   v0.4.8   Assemble now builds 30-50% faster due to some refactoring to async and how context is calculated.
  * 2013-09-20   v0.4.7   Adds grunt-readme to make it easier to keep the readme updated using templates. Keep options.partials intact so they can be used in helpers.
  * 2013-09-15   v0.4.6   Updating how the assets path is calculated. Adding resolve-dep and ability to load helpers from node modules using minimatch patterns
@@ -246,4 +259,4 @@ Released under the [MIT License](./LICENSE-MIT).
 
 ***
 
-_This file was generated on Tuesday, October 1, 2013._
+_This file was generated on Thursday, October 3, 2013._

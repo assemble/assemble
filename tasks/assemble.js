@@ -452,11 +452,10 @@ module.exports = function(grunt) {
           grunt.verbose.writeln('..');
 
           function postprocess(src, fn) {return fn(src);}
-          var processFn = function(src) { return src; };
+          var processFn = function(src) {return src;};
 
           // Write the file.
           file.write(page.dest, postprocess(result, assemble.options.postprocess || processFn));
-          // file.write(page.dest, result);
 
           grunt.verbose.writeln('Assembled ' + (page.dest).cyan +' OK'.green);
           grunt.log.notverbose.ok();
@@ -653,7 +652,6 @@ module.exports = function(grunt) {
   var loadLayout = function(src, assemble, callback) {
 
     var layoutStack   = [];
-    var loadFile      = true;
     var layoutName    = 'layout';
     var defaultLayout = assemble.engine.startDelimiter + ' body ' + assemble.engine.endDelimiter; // '{{> body }}';
 
@@ -662,6 +660,9 @@ module.exports = function(grunt) {
     var layoutdir     = assemble.options.layoutdir || assemble.options.layouts || '';
 
     var load = function(src) {
+
+      var loadFile = true;
+
       // if the src is empty, create a default layout in memory
       if(!src || src === false || src === '' || src.length === 0 || src === 'none') {
         loadFile = false;
@@ -745,10 +746,12 @@ module.exports = function(grunt) {
 
   var getEngineOf = function(fileName) {
     var ext = Utils.extension(fileName);
-    console.log(assemble.engine.extensions[ext]);
     return  _( _(assemble.engine.extensions).keys() ).include(ext) ? assemble.engine.extensions[ext] : false;
   };
 
+  // Deprecated. This will be removed. Processing options and plugins
+  // can do this now.
+  //
   // Attempt to remove extra whitespace around Handlebars expressions
   // in generated HTML, similar to what mustache.js does
   var removeHbsWhitespace = function(assemble, filecontent) {

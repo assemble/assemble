@@ -104,12 +104,6 @@
   
     <li><a href="#" id="basename">[object Object]</a></li>
     <li><a href="#" id="parent-basename">context</a></li>
-    <li><a href="#" id="this-basename">html-helpers</a></li>
-    <li><a href="#" id="page-basename"></a></li>
-    <li><a href="#" id="data-basename"></a></li>
-  
-    <li><a href="#" id="basename">[object Object]</a></li>
-    <li><a href="#" id="parent-basename">context</a></li>
     <li><a href="#" id="this-basename">index</a></li>
     <li><a href="#" id="page-basename"></a></li>
     <li><a href="#" id="data-basename"></a></li>
@@ -266,12 +260,6 @@
     <li><a href="#" id="parent-title">Overview</a></li>
     <li><a href="#" id="this-title"></a></li>
     <li><a href="#" id="page-title"></a></li>
-    <li><a href="#" id="data-title"></a></li>
-  
-    <li><a href="#" id="title"></a></li>
-    <li><a href="#" id="parent-title">Overview</a></li>
-    <li><a href="#" id="this-title"></a></li>
-    <li><a href="#" id="page-title"></a></li>
     <li><a href="#" id="data-title">md helper</a></li>
   
     <li><a href="#" id="title"></a></li>
@@ -363,7 +351,6 @@
 [gist-helper](gist-helper.md)
 [assets](assets.md)
 [home](home.md)
-[html-helpers](html-helpers.md)
 [index](index.md)
 [md-helper](md-helper.md)
 [nested-layouts](nested-layouts.md)
@@ -530,17 +517,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: home.md
 this.pagename: home.md
 this.basename: home
-this.extname:  .md
-this.ext:      .md
-
-#### html-helpers.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/html-helpers.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: html-helpers.md
-this.pagename: html-helpers.md
-this.basename: html-helpers
 this.extname:  .md
 this.ext:      .md
 
@@ -921,30 +897,8 @@ page.basename: context
 page.extname:  .md
 page.ext:      .md
 
-#### context.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/context.md
-page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: context.md
-page.pagename: context.md
-page.basename: context
-page.extname:  .md
-page.ext:      .md
-
 
 ### {{#each pages}} "page" context
-
-#### context.md
-assets:        ../../assets
-dest:          
-absolute:      test/actual/multi/dest1/context.md
-dirname:       test/actual/multi/dest1
-filename:      context.md
-pagename:      context.md
-basename:      context
-extname:       .md
-ext:           .md
 
 #### context.md
 assets:        ../../assets

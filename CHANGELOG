@@ -1,3 +1,11 @@
+v0.4.10:
+  date: "2013-10-03"
+  changes:
+    - Adds plugin support to Assemble! using the `plugins` option.
+v0.4.9:
+  date: "2013-10-02"
+  changes:
+    - Adds `layoutext` and `postprocess` options.
 v0.4.8:
   date: "2013-09-30"
   changes:
