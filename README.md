@@ -228,6 +228,7 @@ Please see the [Contributing to Assemble](http://assemble.io/contributing) guide
 
 ## Release History
 
+ * 2013-10-03   v0.4.10   Adds plugin support to Assemble! using the `plugins` option.
  * 2013-10-02   v0.4.9   Adds `layoutext` and `postprocess` options.
  * 2013-09-30   v0.4.8   Assemble now builds 30-50% faster due to some refactoring to async and how context is calculated.
  * 2013-09-20   v0.4.7   Adds grunt-readme to make it easier to keep the readme updated using templates. Keep options.partials intact so they can be used in helpers.
