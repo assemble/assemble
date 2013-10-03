@@ -66,6 +66,7 @@ module.exports = function(grunt) {
           'test/actual/paths/': ['test/fixtures/pages/layoutext/layoutext.hbs']
         }
       },
+
       paths: {
         options: {
           partials: 'test/fixtures/partials/*.hbs',
