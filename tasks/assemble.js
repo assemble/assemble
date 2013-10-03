@@ -90,22 +90,9 @@ module.exports = function(grunt) {
       assemble.options.initializeEngine(assemble.engine, assemble.options);
       assemble.options.registerFunctions(assemble.engine);
 
-      var actualPlugins = [];
       // save original plugins option
       assemble.options._plugins = assemble.options.plugins;
-      assemble.options.plugins = assemble.options.plugins || [];
-      assemble.options.plugins.forEach(function (plugin) {
-        if (_.isString(plugin)) {
-          var requiredPlugins = grunt.file.expand(plugin).map(function(plugin) {
-            return require(path.join(process.cwd(), plugin));
-          });
-          actualPlugins = actualPlugins.concat(requiredPlugins);
-        }
-        else {
-          actualPlugins.push(plugin);
-        }
-      });
-      assemble.options.plugins = actualPlugins;
+      assemble.options.plugins = assemble.plugins.resolve(assemble.options.plugins, assemble.options);
 
       next(assemble);
     };
