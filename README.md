@@ -259,4 +259,4 @@ Released under the [MIT License](./LICENSE-MIT).
 
 ***
 
-_This file was generated on Wednesday, October 2, 2013._
+_This file was generated on Thursday, October 3, 2013._
