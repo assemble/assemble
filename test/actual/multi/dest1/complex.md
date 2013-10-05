@@ -8,21 +8,27 @@
 
 ## Debug Info
 ``` json
-{ foo: 'bar',
-  version: 2,
-  _page: 'all',
-  dirname: 'test/actual/multi/dest1',
-  filename: 'complex.md',
-  pageName: 'complex.md',
-  pagename: 'complex.md',
-  basename: 'complex',
-  src: 'test/fixtures/pages/complex.hbs',
-  dest: 'test/actual/multi/dest1/complex.md',
-  assets: '../../assets',
-  ext: '.md',
+{ filename: 'complex.md',
   extname: '.md',
+  dest: 'test/actual/multi/dest1/complex.md',
+  basename: 'complex',
+  _page: 'all',
+  version: 2,
+  dirname: 'test/actual/multi/dest1',
+  data: { foo: 'bar', version: 2 },
+  foo: 'bar',
+  assets: '../../assets',
+  filePair: 
+   { src: [Getter],
+     dest: 'test/actual/multi/dest1/',
+     orig: 
+      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
+        dest: 'test/actual/multi/dest1/' } },
+  ext: '.md',
+  pageName: 'complex.md',
   page: '<span class="alert alert-info">This is an alert</span>\n',
-  data: { foo: 'bar', version: 2 } }
+  src: 'test/fixtures/pages/complex.hbs',
+  pagename: 'complex.md' }
 ```
 
 

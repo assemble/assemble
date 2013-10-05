@@ -7,7 +7,7 @@
  */
 
 var bar = function(msg) {
-  return '<!-- ' + msg + ' -->';
+  return '<!-- foo -->\n<!-- ' + msg + ' -->';
 };
 
 module.exports.bar = bar;

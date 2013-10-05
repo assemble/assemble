@@ -15,21 +15,27 @@
       <h3>Paths Examples</h3>
 
 <pre class="json">
-{ foo: 'bar',
-  version: 2,
-  _page: 'all',
-  dirname: 'test/actual/paths',
-  filename: 'complex.html',
-  pageName: 'complex.html',
-  pagename: 'complex.html',
-  basename: 'complex',
-  src: 'test/fixtures/pages/complex.hbs',
-  dest: 'test/actual/paths/complex.html',
-  assets: '../assets',
-  ext: '.html',
+{ filename: 'complex.html',
   extname: '.html',
+  dest: 'test/actual/paths/complex.html',
+  basename: 'complex',
+  _page: 'all',
+  version: 2,
+  dirname: 'test/actual/paths',
+  data: { foo: 'bar', version: 2 },
+  foo: 'bar',
+  assets: '../assets',
+  filePair: 
+   { src: [Getter],
+     dest: 'test/actual/paths/',
+     orig: 
+      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
+        dest: 'test/actual/paths/' } },
+  ext: '.html',
+  pageName: 'complex.html',
   page: '<span class="alert alert-info">This is an alert</span>\n',
-  data: { foo: 'bar', version: 2 } }
+  src: 'test/fixtures/pages/complex.hbs',
+  pagename: 'complex.html' }
 </pre>
 
       <ul>

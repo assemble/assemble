@@ -306,21 +306,27 @@
 
 ## Debug Info
 ``` json
-{ title: 'Overview',
-  lead: 'Your new project!',
-  _page: 'all',
-  dirname: 'test/actual/multi/dest1',
-  filename: 'context.md',
-  pageName: 'context.md',
-  pagename: 'context.md',
-  basename: 'context',
-  src: 'test/fixtures/pages/context.hbs',
-  dest: 'test/actual/multi/dest1/context.md',
-  assets: '../../assets',
-  ext: '.md',
+{ filename: 'context.md',
   extname: '.md',
+  dest: 'test/actual/multi/dest1/context.md',
+  basename: 'context',
+  _page: 'all',
+  lead: 'Your new project!',
+  dirname: 'test/actual/multi/dest1',
+  data: { title: 'Overview', lead: 'Your new project!' },
+  assets: '../../assets',
+  filePair: 
+   { src: [Getter],
+     dest: 'test/actual/multi/dest1/',
+     orig: 
+      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
+        dest: 'test/actual/multi/dest1/' } },
+  title: 'Overview',
+  ext: '.md',
+  pageName: 'context.md',
   page: '<li><a href="#" id="title">{{title}}</a></li>\n<li><a href="#" id="this-title">{{this.title}}</a></li>\n<li><a href="#" id="page-title">{{page.title}}</a></li>\n<li><a href="#" id="data-title">{{data.title}}</a></li>\n\n<hr>\n\n<li><a href="#" id="basename">{{basename}}</a></li>\n<li><a href="#" id="this-basename">{{this.basename}}</a></li>\n<li><a href="#" id="page-basename">{{page.basename}}</a></li>\n<li><a href="#" id="data-basename">{{data.basename}}</a></li>\n\n<hr>\n\n<ul id="basename-collection">\n  {{#each pages}}\n    <li><a href="#" id="basename">{{basename}}</a></li>\n    <li><a href="#" id="parent-basename">{{../basename}}</a></li>\n    <li><a href="#" id="this-basename">{{this.basename}}</a></li>\n    <li><a href="#" id="page-basename">{{page.basename}}</a></li>\n    <li><a href="#" id="data-basename">{{data.basename}}</a></li>\n  {{/each}}\n</ul>\n\n<ul id="title-collection">\n  {{#each pages}}\n    <li><a href="#" id="title">{{title}}</a></li>\n    <li><a href="#" id="parent-title">{{../title}}</a></li>\n    <li><a href="#" id="this-title">{{this.title}}</a></li>\n    <li><a href="#" id="page-title">{{page.title}}</a></li>\n    <li><a href="#" id="data-title">{{data.title}}</a></li>\n  {{/each}}\n</ul>\n\n\n',
-  data: { title: 'Overview', lead: 'Your new project!' } }
+  src: 'test/fixtures/pages/context.hbs',
+  pagename: 'context.md' }
 ```
 
 
