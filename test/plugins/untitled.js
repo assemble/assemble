@@ -1,5 +1,6 @@
 /**
  * Adds "Untitled" to any page that doesn't have a title in the page context.
+ * Use `page.title` in your templates.
  * @author: https://github.com/adjohnson916,
  * https://github.com/assemble/assemble/pull/325#issuecomment-25510116
  * @param  {[type]}   params   [description]
@@ -7,10 +8,12 @@
  * @return {[type]}            [description]
  */
 var untitled = function(params, callback) {
-  var pages = params.context.pages;
-  pages.map(function(page) {
-    page.data.title = page.data.title || 'Untitled';
-  });
+  var context = params.context;
+  var _ = params.grunt.util._;
+  context.page.data = context.page.data || {};
+  context.page.data.title = context.page.data.title || 'Untitled';
+  _.extend(context.page, context.page.data);
+  _.extend(context, context.page.data);
   callback();
 };
 
