@@ -1,163 +1,83 @@
 <!DOCTYPE html>
-  <html lang="en">
+<html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Almost a Haiku</title>
+    <title>Almost a Haiku - Layout 2</title>
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
-
     <div class="container">
-      <div class="categories">
-        <h2>Categories</h2>
+      <div class="page-header">
+        <h1>Almost a Haiku</h1> 
+      </div>
+      <div class="attributes">
+        <h4>Attributes</h4>
         <ul>
-        
+          <li>attr1</li>
+          <li>attr2</li>
+          <li>attr3</li>
         </ul>
       </div>
-      <div class="page-header">
-  <h1>Almost a Haiku</h1> 
-</div>
-
-<div class="attributes">
-  <h4>Attributes</h4>
-  <ul>
-  <li>attr1</li>
-  <li>attr2</li>
-  <li>attr3</li>
-  
-  </ul>
-</div>
-
-<hr>
-
-<div class="methods">
-  <h4>Methods</h4>
-  <ul>
-  <li>getter</li>
-  <li>setter</li>
-  
-  </ul>
-</div>
-
-<hr>
-
-<div class="examples">
-  <h3>Lists</h3>
-  <h4>Movies</h4>
-  <dl class="dl-horizontal">
-    
-      <dt>Movie:</dt> <dd>Casablanca</dd>
-    
-      <dt>Movie:</dt> <dd>North by Northwest</dd>
-    
-      <dt>Movie:</dt> <dd>The Man Who Wasn&#x27;t There</dd>
-    
-  </dl>
-
-  <h4>Groceries</h4>
-  <dl class="dl-horizontal">
-    
-      <dt>Item:</dt> <dd>milk</dd>
-    
-      <dt>Item:</dt> <dd>pumpkin pie</dd>
-    
-      <dt>Item:</dt> <dd>eggs</dd>
-    
-      <dt>Item:</dt> <dd>juice</dd>
-    
-  </dl>
-</div>
-
-<hr>
-
-<div class="examples">
-  <h3>Hierarchical combinations of elements</h3>
-  <h4>Lists of associative arrays</h4>
-  <dl class="dl-horizontal">
-    
-      <dt>Name:</dt> <dd>John Smith</dd>
-      <dt>Age:</dt>  <dd>33</dd>
-    
-      <dt>Name:</dt> <dd>Mary Smith</dd>
-      <dt>Age:</dt>  <dd>27</dd>
-    
-  </dl>
-
-  <h4>Associative arrays of lists</h4>
-  <dl class="dl-horizontal">
-    <div><strong>Men</strong></div>
-    <dt>Name:</dt> <dd>John Smith</dd><dt>Name:</dt> <dd>Bill Jones</dd>
-    <div><strong>Women</strong></div>
-    <dt>Name:</dt> <dd>Mary Smith</dd><dt>Name:</dt> <dd>Susan Williams</dd>
-  </dl>
-</div>
+      <hr>
+      <div class="methods">
+        <h4>Methods</h4>
+        <ul>
+          <li>getter</li>
+          <li>setter</li>
+        </ul>
+      </div>
+      <hr>
+      <div class="examples">
+        <h3>Lists</h3>
+        <h4>Movies</h4>
+        <dl class="dl-horizontal">
+          <dt>Movie:</dt> 
+          <dd>Casablanca</dd>
+          <dt>Movie:</dt> 
+          <dd>North by Northwest</dd>
+          <dt>Movie:</dt> 
+          <dd>The Man Who Wasn&#x27;t There</dd>
+        </dl>
+        <h4>Groceries</h4>
+        <dl class="dl-horizontal">
+          <dt>Item:</dt> 
+          <dd>milk</dd>
+          <dt>Item:</dt> 
+          <dd>pumpkin pie</dd>
+          <dt>Item:</dt> 
+          <dd>eggs</dd>
+          <dt>Item:</dt> 
+          <dd>juice</dd>
+        </dl>
+      </div>
+      <hr>
+      <div class="examples">
+        <h3>Hierarchical combinations of elements</h3>
+        <h4>Lists of associative arrays</h4>
+        <dl class="dl-horizontal">
+          <dt>Name:</dt> 
+          <dd>John Smith</dd>
+          <dt>Age:</dt> 
+          <dd>33</dd>
+          <dt>Name:</dt> 
+          <dd>Mary Smith</dd>
+          <dt>Age:</dt> 
+          <dd>27</dd>
+        </dl>
+        <h4>Associative arrays of lists</h4>
+        <dl class="dl-horizontal">
+          <div><strong>Men</strong>
+          </div>
+          <dt>Name:</dt> 
+          <dd>John Smith</dd><dt>Name:</dt> 
+          <dd>Bill Jones</dd>
+          <div><strong>Women</strong>
+          </div>
+          <dt>Name:</dt> 
+          <dd>Mary Smith</dd><dt>Name:</dt> 
+          <dd>Susan Williams</dd>
+        </dl>
+      </div>
     </div>
-
-    <div class="container" style="display: none">
-      <h2>Content</h2>
-      <ul>
-        <li><a href="associative-arrays.html">associative-arrays</a></li>
-        <li><a href="block-literals.html">block-literals</a></li>
-        <li><a href="comments.html">comments</a></li>
-        <li><a href="data-files.html">data-files</a></li>
-        <li><a href="data-types.html">data-types</a></li>
-        <li><a href="document.html">document</a></li>
-        <li><a href="lists.html">lists</a></li>
-        <li><a href="relational-trees.html">relational-trees</a></li>
-        <li><a href="underscore.html">underscore</a></li>
-        <li><a href="variables.html">variables</a></li>
-        
-      </ul>
-    </div>
-
-    <div class="container" style="display: none">
-      <h2>Debug Info</h2>
-      <pre class="json">
-{ filename: 'lists.html',
-  extname: '.html',
-  dest: 'test/actual/yfm/lists.html',
-  basename: 'lists',
-  men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
-  _page: 'all',
-  dirname: 'test/actual/yfm',
-  data: 
-   { title: 'Almost a Haiku',
-     attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
-     methods: [ 'getter', 'setter', [length]: 2 ],
-     movies: 
-      [ 'Casablanca',
-        'North by Northwest',
-        'The Man Who Wasn\'t There',
-        [length]: 3 ],
-     groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ],
-     people: 
-      [ { name: 'John Smith', age: 33 },
-        { name: 'Mary Smith', age: 27 },
-        [length]: 2 ],
-     men: [ 'John Smith', 'Bill Jones', [length]: 2 ],
-     women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ] },
-  women: [ 'Mary Smith', 'Susan Williams', [length]: 2 ],
-  assets: '../assets',
-  title: 'Almost a Haiku',
-  movies: 
-   [ 'Casablanca',
-     'North by Northwest',
-     'The Man Who Wasn\'t There',
-     [length]: 3 ],
-  pageName: 'lists.html',
-  attributes: [ 'attr1', 'attr2', 'attr3', [length]: 3 ],
-  page: '<div class="page-header">\n  <h1>{{{title}}}</h1> \n</div>\n\n<div class="attributes">\n  <h4>Attributes</h4>\n  <ul>\n  {{#each attributes}}<li>{{.}}</li>\n  {{/each}}\n  </ul>\n</div>\n\n<hr>\n\n<div class="methods">\n  <h4>Methods</h4>\n  <ul>\n  {{#each methods}}<li>{{.}}</li>\n  {{/each}}\n  </ul>\n</div>\n\n<hr>\n\n<div class="examples">\n  <h3>Lists</h3>\n  <h4>Movies</h4>\n  <dl class="dl-horizontal">\n    {{#each movies}}\n      <dt>Movie:</dt> <dd>{{.}}</dd>\n    {{/each}}\n  </dl>\n\n  <h4>Groceries</h4>\n  <dl class="dl-horizontal">\n    {{#each groceries}}\n      <dt>Item:</dt> <dd>{{.}}</dd>\n    {{/each}}\n  </dl>\n</div>\n\n<hr>\n\n<div class="examples">\n  <h3>Hierarchical combinations of elements</h3>\n  <h4>Lists of associative arrays</h4>\n  <dl class="dl-horizontal">\n    {{#each people}}\n      <dt>Name:</dt> <dd>{{name}}</dd>\n      <dt>Age:</dt>  <dd>{{age}}</dd>\n    {{/each}}\n  </dl>\n\n  <h4>Associative arrays of lists</h4>\n  <dl class="dl-horizontal">\n    <div><strong>Men</strong></div>\n    {{#each men}}<dt>Name:</dt> <dd>{{.}}</dd>{{/each}}\n    <div><strong>Women</strong></div>\n    {{#each women}}<dt>Name:</dt> <dd>{{.}}</dd>{{/each}}\n  </dl>\n</div>',
-  ext: '.html',
-  src: 'test/fixtures/pages/yfm/lists.hbs',
-  people: 
-   [ { name: 'John Smith', age: 33 },
-     { name: 'Mary Smith', age: 27 },
-     [length]: 2 ],
-  pagename: 'lists.html',
-  methods: [ 'getter', 'setter', [length]: 2 ],
-  groceries: [ 'milk', 'pumpkin pie', 'eggs', 'juice', [length]: 4 ] }
-</pre>
-    </div>
-
   </body>
 </html>

@@ -31,7 +31,7 @@ There is no YAML front matter in this page.
 
 
 ### "{{#each pages}}" Links
-[helpers](helpers.md)
+[gist-helper](gist-helper.md)
 [alert](alert.md)
 [collections-categories](collections-categories.md)
 [collections-categories2](collections-categories2.md)
@@ -42,7 +42,6 @@ There is no YAML front matter in this page.
 [debug-helpers](debug-helpers.md)
 [deep-nested-layouts](deep-nested-layouts.md)
 [example](example.md)
-[gist-helper](gist-helper.md)
 [assets](assets.md)
 [home](home.md)
 [index](index.md)
@@ -60,14 +59,14 @@ There is no YAML front matter in this page.
 
 ### {{#each pages}} "this" context
 
-#### helpers.md
+#### gist-helper.md
 this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/helpers.md
+this.dest:     test/actual/multi/dest1/gist-helper.md
 this.absolute:
 this.dirname:  test/actual/multi/dest1
-this.filename: helpers.md
-this.pagename: helpers.md
-this.basename: helpers
+this.filename: gist-helper.md
+this.pagename: gist-helper.md
+this.basename: gist-helper
 this.extname:  .md
 this.ext:      .md
 
@@ -178,17 +177,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: example.md
 this.pagename: example.md
 this.basename: example
-this.extname:  .md
-this.ext:      .md
-
-#### gist-helper.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/gist-helper.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: gist-helper.md
-this.pagename: gist-helper.md
-this.basename: gist-helper
 this.extname:  .md
 this.ext:      .md
 
@@ -580,30 +568,8 @@ page.basename: no-yfm
 page.extname:  .md
 page.ext:      .md
 
-#### no-yfm.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/no-yfm.md
-page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: no-yfm.md
-page.pagename: no-yfm.md
-page.basename: no-yfm
-page.extname:  .md
-page.ext:      .md
-
 
 ### {{#each pages}} "page" context
-
-#### no-yfm.md
-assets:        ../../assets
-dest:          
-absolute:      test/actual/multi/dest1/no-yfm.md
-dirname:       test/actual/multi/dest1
-filename:      no-yfm.md
-pagename:      no-yfm.md
-basename:      no-yfm
-extname:       .md
-ext:           .md
 
 #### no-yfm.md
 assets:        ../../assets
