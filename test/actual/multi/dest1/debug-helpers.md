@@ -23,7 +23,13 @@
   ext: '.md',
   extname: '.md',
   page: '\n{{#markdown}}\n\n### \\{{debug}} helper\nUncomment the `debug` helper below, run `grunt assemble`, and watch the output in the command line to see how it works.\n{{!debug text}}\n\n{{/markdown}}\n',
-  data: {} }
+  data: {},
+  filePair: 
+   { src: [Getter],
+     dest: 'test/actual/multi/dest1/',
+     orig: 
+      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
+        dest: 'test/actual/multi/dest1/' } } }
 ```
 
 

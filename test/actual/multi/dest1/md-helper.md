@@ -23,23 +23,29 @@
 
 ## Debug Info
 ``` json
-{ title: 'md helper',
+{ filename: 'md-helper.md',
+  extname: '.md',
+  dest: 'test/actual/multi/dest1/md-helper.md',
+  basename: 'md-helper',
   description: 'Use \\{{md}} helper to pull in markdown',
   _page: 'all',
   dirname: 'test/actual/multi/dest1',
-  filename: 'md-helper.md',
-  pageName: 'md-helper.md',
-  pagename: 'md-helper.md',
-  basename: 'md-helper',
-  src: 'test/fixtures/pages/md-helper.hbs',
-  dest: 'test/actual/multi/dest1/md-helper.md',
-  assets: '../../assets',
-  ext: '.md',
-  extname: '.md',
-  page: '<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n<p> {{{md \'./test/fixtures/pages/md.md\'}}} </p>\n\n\n\n',
   data: 
    { title: 'md helper',
-     description: 'Use \\{{md}} helper to pull in markdown' } }
+     description: 'Use \\{{md}} helper to pull in markdown' },
+  assets: '../../assets',
+  filePair: 
+   { src: [Getter],
+     dest: 'test/actual/multi/dest1/',
+     orig: 
+      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
+        dest: 'test/actual/multi/dest1/' } },
+  title: 'md helper',
+  ext: '.md',
+  pageName: 'md-helper.md',
+  page: '<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n<p> {{{md \'./test/fixtures/pages/md.md\'}}} </p>\n\n\n\n',
+  src: 'test/fixtures/pages/md-helper.hbs',
+  pagename: 'md-helper.md' }
 ```
 
 

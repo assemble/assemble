@@ -29,21 +29,27 @@ Properties from "example.json" and "example.hbs" should be on the page object.
 
 ## Debug Info
 ``` json
-{ title: 'YFM title',
+{ filename: 'home.md',
+  extname: '.md',
+  dest: 'test/actual/multi/dest1/home.md',
+  basename: 'home',
   description: 'YFM description',
   _page: 'all',
   dirname: 'test/actual/multi/dest1',
-  filename: 'home.md',
-  pageName: 'home.md',
-  pagename: 'home.md',
-  basename: 'home',
-  src: 'test/fixtures/pages/home.hbs',
-  dest: 'test/actual/multi/dest1/home.md',
+  data: { title: 'YFM title', description: 'YFM description' },
   assets: '../../assets',
+  filePair: 
+   { src: [Getter],
+     dest: 'test/actual/multi/dest1/',
+     orig: 
+      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
+        dest: 'test/actual/multi/dest1/' } },
+  title: 'YFM title',
   ext: '.md',
-  extname: '.md',
+  pageName: 'home.md',
   page: 'Properties from "example.json" and "example.hbs" should be on the page object.\n\n<div class="page-header">\n  <h1>{{home.title}}</h1>\n  <p class="lead">{{home.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{page.title}}</h1>\n  <p class="lead">{{page.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n\n',
-  data: { title: 'YFM title', description: 'YFM description' } }
+  src: 'test/fixtures/pages/home.hbs',
+  pagename: 'home.md' }
 ```
 
 

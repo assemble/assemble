@@ -31,7 +31,13 @@
   ext: '.md',
   extname: '.md',
   page: '{{> _header }}\n<h1> test </h1>',
-  data: {} }
+  data: {},
+  filePair: 
+   { src: [Getter],
+     dest: 'test/actual/multi/dest1/',
+     orig: 
+      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
+        dest: 'test/actual/multi/dest1/' } } }
 ```
 
 

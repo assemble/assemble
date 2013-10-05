@@ -9,23 +9,29 @@
 
 ## Debug Info
 ``` json
-{ title: 'Title for "alert.hbs"',
-  one: { two: 'This is an alert' },
+{ one: { two: 'This is an alert' },
+  filename: 'alert.md',
+  dest: 'test/actual/multi/dest1/alert.md',
+  extname: '.md',
+  basename: 'alert',
   _page: 'all',
   dirname: 'test/actual/multi/dest1',
-  filename: 'alert.md',
-  pageName: 'alert.md',
-  pagename: 'alert.md',
-  basename: 'alert',
-  src: 'test/fixtures/pages/alert.hbs',
-  dest: 'test/actual/multi/dest1/alert.md',
-  assets: '../../assets',
-  ext: '.md',
-  extname: '.md',
-  page: '<h2>{{{title}}}</h2>\n<span class="alert alert-info">{{{one.two}}}</span>\n',
   data: 
    { title: 'Title for "alert.hbs"',
-     one: { two: 'This is an alert' } } }
+     one: { two: 'This is an alert' } },
+  assets: '../../assets',
+  filePair: 
+   { src: [Getter],
+     dest: 'test/actual/multi/dest1/',
+     orig: 
+      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
+        dest: 'test/actual/multi/dest1/' } },
+  title: 'Title for "alert.hbs"',
+  ext: '.md',
+  pageName: 'alert.md',
+  page: '<h2>{{{title}}}</h2>\n<span class="alert alert-info">{{{one.two}}}</span>\n',
+  src: 'test/fixtures/pages/alert.hbs',
+  pagename: 'alert.md' }
 ```
 
 
