@@ -188,11 +188,10 @@ module.exports = function(grunt) {
           'test/actual/assets-same-folder-with-slash.html': ['test/fixtures/pages/assets.hbs']
         }
       },
-
       custom_helpers: {
         options: {
           helpers: ['test/helpers/*.js'],
-          version: '<%= pkg.version %>'
+          name: '<%= pkg.name %>'
         },
         files: {
           'test/actual/': ['test/fixtures/pages/helpers/*.hbs']
