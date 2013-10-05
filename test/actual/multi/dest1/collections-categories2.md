@@ -22,23 +22,29 @@
 
 ## Debug Info
 ``` json
-{ title: 'Categories Test',
+{ filename: 'collections-categories2.md',
+  extname: '.md',
+  dest: 'test/actual/multi/dest1/collections-categories2.md',
+  basename: 'collections-categories2',
   categories: [ 'categories', 'test', 'something', [length]: 3 ],
   _page: 'all',
   dirname: 'test/actual/multi/dest1',
-  filename: 'collections-categories2.md',
-  pageName: 'collections-categories2.md',
-  pagename: 'collections-categories2.md',
-  basename: 'collections-categories2',
-  src: 'test/fixtures/pages/collections-categories2.hbs',
-  dest: 'test/actual/multi/dest1/collections-categories2.md',
-  assets: '../../assets',
-  ext: '.md',
-  extname: '.md',
-  page: '<ul>\n{{#categories}}\n  <li>{{category}}</li>\n{{/categories}}\n</ul>\n',
   data: 
    { title: 'Categories Test',
-     categories: [ 'categories', 'test', 'something', [length]: 3 ] } }
+     categories: [ 'categories', 'test', 'something', [length]: 3 ] },
+  assets: '../../assets',
+  filePair: 
+   { src: [Getter],
+     dest: 'test/actual/multi/dest1/',
+     orig: 
+      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
+        dest: 'test/actual/multi/dest1/' } },
+  title: 'Categories Test',
+  ext: '.md',
+  pageName: 'collections-categories2.md',
+  page: '<ul>\n{{#categories}}\n  <li>{{category}}</li>\n{{/categories}}\n</ul>\n',
+  src: 'test/fixtures/pages/collections-categories2.hbs',
+  pagename: 'collections-categories2.md' }
 ```
 
 

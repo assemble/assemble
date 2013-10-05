@@ -22,23 +22,29 @@
 
 ## Debug Info
 ``` json
-{ title: 'Tags Test',
+{ filename: 'collections-tags-2.md',
+  extname: '.md',
+  dest: 'test/actual/multi/dest1/collections-tags-2.md',
+  basename: 'collections-tags-2',
   tags: [ 'tags', 'test', 'something', [length]: 3 ],
   _page: 'all',
   dirname: 'test/actual/multi/dest1',
-  filename: 'collections-tags-2.md',
-  pageName: 'collections-tags-2.md',
-  pagename: 'collections-tags-2.md',
-  basename: 'collections-tags-2',
-  src: 'test/fixtures/pages/collections-tags-2.hbs',
-  dest: 'test/actual/multi/dest1/collections-tags-2.md',
-  assets: '../../assets',
-  ext: '.md',
-  extname: '.md',
-  page: '<ul>\n{{#tags}}\n\t<li>{{tag}}</li>\n{{/tags}}\n</ul>\n',
   data: 
    { title: 'Tags Test',
-     tags: [ 'tags', 'test', 'something', [length]: 3 ] } }
+     tags: [ 'tags', 'test', 'something', [length]: 3 ] },
+  assets: '../../assets',
+  filePair: 
+   { src: [Getter],
+     dest: 'test/actual/multi/dest1/',
+     orig: 
+      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
+        dest: 'test/actual/multi/dest1/' } },
+  title: 'Tags Test',
+  ext: '.md',
+  pageName: 'collections-tags-2.md',
+  page: '<ul>\n{{#tags}}\n\t<li>{{tag}}</li>\n{{/tags}}\n</ul>\n',
+  src: 'test/fixtures/pages/collections-tags-2.hbs',
+  pagename: 'collections-tags-2.md' }
 ```
 
 

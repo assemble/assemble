@@ -24,7 +24,13 @@
   ext: '.md',
   extname: '.md',
   page: '\n\n{{#markdown}}\n\n# \\{{gist}} helper\n{{gist \'5193239\'}}\n\n{{/markdown}}',
-  data: {} }
+  data: {},
+  filePair: 
+   { src: [Getter],
+     dest: 'test/actual/multi/dest1/',
+     orig: 
+      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
+        dest: 'test/actual/multi/dest1/' } } }
 ```
 
 

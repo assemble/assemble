@@ -21,18 +21,12 @@
 
 ## Debug Info
 ``` json
-{ _page: 'all',
-  dirname: 'test/actual/multi/dest1',
-  filename: 'page.md',
-  pageName: 'page.md',
-  pagename: 'page.md',
-  basename: 'page',
-  src: 'test/fixtures/pages/page.hbs',
-  dest: 'test/actual/multi/dest1/page.md',
-  assets: '../../assets',
-  ext: '.md',
+{ filename: 'page.md',
   extname: '.md',
-  page: '{{> nav }}',
+  dest: 'test/actual/multi/dest1/page.md',
+  basename: 'page',
+  _page: 'all',
+  dirname: 'test/actual/multi/dest1',
   data: 
    { title: 'Partials Test',
      links: 
@@ -41,13 +35,25 @@
         'dest/basic',
         'dest/markdown',
         [length]: 4 ] },
-  title: 'Partials Test',
   links: 
    [ './index',
      'dest/context',
      'dest/basic',
      'dest/markdown',
-     [length]: 4 ] }
+     [length]: 4 ],
+  assets: '../../assets',
+  filePair: 
+   { src: [Getter],
+     dest: 'test/actual/multi/dest1/',
+     orig: 
+      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
+        dest: 'test/actual/multi/dest1/' } },
+  ext: '.md',
+  title: 'Partials Test',
+  pageName: 'page.md',
+  page: '{{> nav }}',
+  src: 'test/fixtures/pages/page.hbs',
+  pagename: 'page.md' }
 ```
 
 

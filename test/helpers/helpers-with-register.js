@@ -9,7 +9,7 @@
 module.exports.register = function(Handlebars, options) {
 
   Handlebars.registerHelper('foo', function(msg) {
-    return '<!-- foo -->\n<!-- ' + msg + ' -->';
+    return '<!-- ' + msg + ' -->';
   });
 
   Handlebars.registerHelper('opt', function(key) {

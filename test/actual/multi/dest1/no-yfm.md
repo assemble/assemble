@@ -26,7 +26,13 @@ There is no YAML front matter in this page.
   ext: '.md',
   extname: '.md',
   page: 'There is no YAML front matter in this page.\n\n\n<div>{{noyfm.one}}</div>\n<div>{{noyfm.two}}</div>\n\n\n',
-  data: {} }
+  data: {},
+  filePair: 
+   { src: [Getter],
+     dest: 'test/actual/multi/dest1/',
+     orig: 
+      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
+        dest: 'test/actual/multi/dest1/' } } }
 ```
 
 
