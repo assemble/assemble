@@ -1,101 +1,47 @@
 <!DOCTYPE html>
-  <html lang="en">
+<html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>YAML Test</title>
+    <title>YAML Test - Layout 2</title>
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
-
     <div class="container">
-      <div class="categories">
-        <h2>Categories</h2>
-        <ul>
-        
-        </ul>
+      <p>Note that templates {{one}}, {{two}} and {{three}} get their data from "test/fixtures/data.yml". When a data file is created with the name "data", it gives you access to the root of the context.</p>
+      <div class="page-header">
+        <h4>first</h4>
+        <h4>second</h4>
+        <h4>third</h4>
       </div>
-      <p>Note that templates {{one}}, {{two}} and {{three}} get their data from "test/fixtures/data.yml".
-When a data file is created with the name "data", it gives you access to the root of the context.</p>
-
-<div class="page-header">
-  <h4>first</h4>
-  <h4>second</h4>
-  <h4>third</h4>
-</div>
-
-<div class="examples">
-  <h4>person.yml</h4>
-  <div>Jon Schlinkert</div>
-</div>
-
-<div class="examples">
-  <h4>person.yml - YFM</h4>
-  <div>jon: Jon Schlinkert</div>
-  <div>page.jon: Jon Schlinkert</div>
-  <div>underscore.jon: </div>
-  <div>data.jon: </div>
-  <div>underscore.data.jon: </div>
-</div>
-
-<div class="examples">
-  <h4>contact.yml</h4>
-  <div>8005551212</div>
-</div>
-
-<div class="examples">
-  <h4>animal.json</h4>
-  <div>Aardvark</div>
-  <p>Kind of like an ant eater?</p>
-</div>
-
-<div class="examples">
-  <h4>example.json</h4>
-  <div>Congratulations! You have officially wasted time reading example content. But I&#x27;m sure it&#x27;s time well wasted... </div>
-</div>
-
-<div class="examples">
-  <h4>example.yml</h4>
-  <div>Congratulations! You have officially wasted time reading example content. But I&#x27;m sure it&#x27;s time well wasted...</div>
-</div>
-
+      <div class="examples">
+        <h4>person.yml</h4>
+        <div>Jon Schlinkert</div>
+      </div>
+      <div class="examples">
+        <h4>person.yml - YFM</h4>
+        <div>jon: Jon Schlinkert</div>
+        <div>page.jon: Jon Schlinkert</div>
+        <div>underscore.jon:</div>
+        <div>data.jon:</div>
+        <div>underscore.data.jon:</div>
+      </div>
+      <div class="examples">
+        <h4>contact.yml</h4>
+        <div>8005551212</div>
+      </div>
+      <div class="examples">
+        <h4>animal.json</h4>
+        <div>Aardvark</div>
+        <p>Kind of like an ant eater?</p>
+      </div>
+      <div class="examples">
+        <h4>example.json</h4>
+        <div>Congratulations! You have officially wasted time reading example content. But I&#x27;m sure it&#x27;s time well wasted...</div>
+      </div>
+      <div class="examples">
+        <h4>example.yml</h4>
+        <div>Congratulations! You have officially wasted time reading example content. But I&#x27;m sure it&#x27;s time well wasted...</div>
+      </div>
     </div>
-
-    <div class="container" style="display: none">
-      <h2>Content</h2>
-      <ul>
-        <li><a href="associative-arrays.html">associative-arrays</a></li>
-        <li><a href="block-literals.html">block-literals</a></li>
-        <li><a href="comments.html">comments</a></li>
-        <li><a href="data-files.html">data-files</a></li>
-        <li><a href="data-types.html">data-types</a></li>
-        <li><a href="document.html">document</a></li>
-        <li><a href="lists.html">lists</a></li>
-        <li><a href="relational-trees.html">relational-trees</a></li>
-        <li><a href="underscore.html">underscore</a></li>
-        <li><a href="variables.html">variables</a></li>
-        
-      </ul>
-    </div>
-
-    <div class="container" style="display: none">
-      <h2>Debug Info</h2>
-      <pre class="json">
-{ jon: 'Jon Schlinkert',
-  _page: 'all',
-  dirname: 'test/actual/yfm',
-  filename: 'underscore.html',
-  pageName: 'underscore.html',
-  pagename: 'underscore.html',
-  basename: 'underscore',
-  src: 'test/fixtures/pages/yfm/underscore.hbs',
-  dest: 'test/actual/yfm/underscore.html',
-  assets: '../assets',
-  ext: '.html',
-  extname: '.html',
-  page: '<p>Note that templates \\{{one}}, \\{{two}} and \\{{three}} get their data from "test/fixtures/data.yml".\nWhen a data file is created with the name "data", it gives you access to the root of the context.</p>\n\n<div class="page-header">\n  <h4>{{one}}</h4>\n  <h4>{{two}}</h4>\n  <h4>{{three}}</h4>\n</div>\n\n<div class="examples">\n  <h4>person.yml</h4>\n  <div>{{person.name}}</div>\n</div>\n\n<div class="examples">\n  <h4>person.yml - YFM</h4>\n  <div>jon: {{jon}}</div>\n  <div>page.jon: {{page.jon}}</div>\n  <div>underscore.jon: {{underscore.jon}}</div>\n  <div>data.jon: {{data.jon}}</div>\n  <div>underscore.data.jon: {{underscore.data.jon}}</div>\n</div>\n\n<div class="examples">\n  <h4>contact.yml</h4>\n  <div>{{contact.phone}}</div>\n</div>\n\n<div class="examples">\n  <h4>animal.json</h4>\n  <div>{{animal.type}}</div>\n  <p>{{animal.description}}</p>\n</div>\n\n<div class="examples">\n  <h4>example.json</h4>\n  <div>{{example.content}}</div>\n</div>\n\n<div class="examples">\n  <h4>example.yml</h4>\n  <div>{{example.info}}</div>\n</div>\n',
-  data: { jon: 'Jon Schlinkert' } }
-</pre>
-    </div>
-
   </body>
 </html>
