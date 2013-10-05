@@ -1,79 +1,26 @@
 <!DOCTYPE html>
-  <html lang="en">
+<html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>YAML Variables</title>
+    <title>YAML Variables - Layout 2</title>
     <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
   </head>
   <body style="padding-top: 60px;">
-
     <div class="container">
-      <div class="categories">
-        <h2>Categories</h2>
-        <ul>
-        
-        </ul>
-      </div>
       <div class="page-header">
-  <h4>YAML Variables</h4> 
-</div>
-
-This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!
-
-<p>This would output the variable as literal text.</p>
-<pre><code class="language-yaml">three: But this doesn&#39;t work. *DOOWB</code></pre>
-<p>And this would throw an error:</p>
-<pre><code class="language-yaml">three: *DOOWB But this doesn&#39;t work.</code></pre>
-<p>YAML supports <strong>variables</strong>, or <strong>repeated nodes</strong>. The simplest explanation is that you define something as a variable by preceding it with &quot;&amp;NAME value&quot; and you can refer to it with &quot;*NAME&quot; e.g.:</p>
-<pre><code class="language-yaml"># YAML
+        <h4>YAML Variables</h4>
+      </div>
+      This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!
+      <p>This would output the variable as literal text.</p>
+      <pre><code class="language-yaml">three: But this doesn&#39;t work. *DOOWB</code></pre>
+      <p>And this would throw an error:</p>
+      <pre><code class="language-yaml">three: *DOOWB But this doesn&#39;t work.</code></pre>
+      <p>YAML supports <strong>variables</strong>, or <strong>repeated nodes</strong>. The simplest explanation is that you define something as a variable by preceding it with &quot;&amp;NAME value&quot; and you can refer to it with &quot;*NAME&quot; e.g.:</p>
+      <pre><code class="language-yaml"># YAML
 some_thing: &amp;NAME foobar
 other_thing: *NAME</code></pre>
-<p>Parses to:</p>
-<pre><code class="language-json">{"<span class="attribute">other_thing</span>": <span class="value"><span class="string">"foobar"</span></span>, "<span class="attribute">some_thing</span>": <span class="value"><span class="string">"foobar"</span>}</span></code></pre>
-
+      <p>Parses to:</p>
+      <pre><code class="language-json">{"<span class="attribute">other_thing</span>": <span class="value"><span class="string">"foobar"</span></span>, "<span class="attribute">some_thing</span>": <span class="value"><span class="string">"foobar"</span>}</span></code></pre>
     </div>
-
-    <div class="container" style="display: none">
-      <h2>Content</h2>
-      <ul>
-        <li><a href="associative-arrays.html">associative-arrays</a></li>
-        <li><a href="block-literals.html">block-literals</a></li>
-        <li><a href="comments.html">comments</a></li>
-        <li><a href="data-files.html">data-files</a></li>
-        <li><a href="data-types.html">data-types</a></li>
-        <li><a href="document.html">document</a></li>
-        <li><a href="lists.html">lists</a></li>
-        <li><a href="relational-trees.html">relational-trees</a></li>
-        <li><a href="underscore.html">underscore</a></li>
-        <li><a href="variables.html">variables</a></li>
-        
-      </ul>
-    </div>
-
-    <div class="container" style="display: none">
-      <h2>Debug Info</h2>
-      <pre class="json">
-{ one: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
-  filename: 'variables.html',
-  dest: 'test/actual/yfm/variables.html',
-  extname: '.html',
-  basename: 'variables',
-  two: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
-  _page: 'all',
-  dirname: 'test/actual/yfm',
-  data: 
-   { title: 'YAML Variables',
-     one: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!',
-     two: 'This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!' },
-  assets: '../assets',
-  title: 'YAML Variables',
-  ext: '.html',
-  pageName: 'variables.html',
-  page: '<div class="page-header">\n  <h4>{{{title}}}</h4> \n</div>\n\n{{{two}}}\n\n{{#markdown}}\nThis would output the variable as literal text.\n``` yaml\nthree: But this doesn\'t work. *DOOWB \n```\nAnd this would throw an error:\n\n``` yaml\nthree: *DOOWB But this doesn\'t work. \n```\n\nYAML supports **variables**, or **repeated nodes**. The simplest explanation is that you define something as a variable by preceding it with "&NAME value" and you can refer to it with "*NAME" e.g.:\n\n``` yaml\n# YAML\nsome_thing: &NAME foobar\nother_thing: *NAME\n```\nParses to:\n``` json\n{"other_thing": "foobar", "some_thing": "foobar"}\n```\n{{/markdown}}',
-  src: 'test/fixtures/pages/yfm/variables.hbs',
-  pagename: 'variables.html' }
-</pre>
-    </div>
-
   </body>
 </html>

@@ -75,7 +75,7 @@ describe('Loading default handlebars engine', function() {
       var engine = assembleEngine.load('handlebars');
       engine.init({
         cwd: __dirname,
-        helpers: './helpers/helpers.js'
+        helpers: './test/helpers/helpers.js'
       });
       runTest(engine, done);
     });
@@ -84,7 +84,7 @@ describe('Loading default handlebars engine', function() {
       var engine = assembleEngine.load('handlebars');
       engine.init({
         cwd: __dirname,
-        helpers: './helpers/*.js'
+        helpers: './test/helpers/*.js'
       });
       runTest(engine, done);
     });

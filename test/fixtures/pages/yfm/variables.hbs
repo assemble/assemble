@@ -5,7 +5,7 @@ one: &DOOWB This is an example YAML variable. Variables need to be the first thi
 two: *DOOWB
 ---
 <div class="page-header">
-  <h4>{{{title}}}</h4> 
+  <h4>{{{title}}}</h4>
 </div>
 
 {{{two}}}
@@ -13,12 +13,12 @@ two: *DOOWB
 {{#markdown}}
 This would output the variable as literal text.
 ``` yaml
-three: But this doesn't work. *DOOWB 
+three: But this doesn't work. *DOOWB
 ```
 And this would throw an error:
 
 ``` yaml
-three: *DOOWB But this doesn't work. 
+three: *DOOWB But this doesn't work.
 ```
 
 YAML supports **variables**, or **repeated nodes**. The simplest explanation is that you define something as a variable by preceding it with "&NAME value" and you can refer to it with "*NAME" e.g.:
