@@ -27,7 +27,7 @@
 
 
 ### "{{#each pages}}" Links
-[helpers](helpers.md)
+[gist-helper](gist-helper.md)
 [alert](alert.md)
 [collections-categories](collections-categories.md)
 [collections-categories2](collections-categories2.md)
@@ -38,7 +38,6 @@
 [debug-helpers](debug-helpers.md)
 [deep-nested-layouts](deep-nested-layouts.md)
 [example](example.md)
-[gist-helper](gist-helper.md)
 [assets](assets.md)
 [home](home.md)
 [index](index.md)
@@ -56,14 +55,14 @@
 
 ### {{#each pages}} "this" context
 
-#### helpers.md
+#### gist-helper.md
 this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/helpers.md
+this.dest:     test/actual/multi/dest1/gist-helper.md
 this.absolute:
 this.dirname:  test/actual/multi/dest1
-this.filename: helpers.md
-this.pagename: helpers.md
-this.basename: helpers
+this.filename: gist-helper.md
+this.pagename: gist-helper.md
+this.basename: gist-helper
 this.extname:  .md
 this.ext:      .md
 
@@ -174,17 +173,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: example.md
 this.pagename: example.md
 this.basename: example
-this.extname:  .md
-this.ext:      .md
-
-#### gist-helper.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/gist-helper.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: gist-helper.md
-this.pagename: gist-helper.md
-this.basename: gist-helper
 this.extname:  .md
 this.ext:      .md
 
@@ -576,30 +564,8 @@ page.basename: complex
 page.extname:  .md
 page.ext:      .md
 
-#### complex.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/complex.md
-page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: complex.md
-page.pagename: complex.md
-page.basename: complex
-page.extname:  .md
-page.ext:      .md
-
 
 ### {{#each pages}} "page" context
-
-#### complex.md
-assets:        ../../assets
-dest:          
-absolute:      test/actual/multi/dest1/complex.md
-dirname:       test/actual/multi/dest1
-filename:      complex.md
-pagename:      complex.md
-basename:      complex
-extname:       .md
-ext:           .md
 
 #### complex.md
 assets:        ../../assets

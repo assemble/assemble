@@ -13,6 +13,14 @@
 
 module.exports = function(grunt) {
 
+  var prettify = function(src) {
+    return require('js-prettify').html(src, {
+      indent_size: 2,
+      indent_inner_html: true
+    }).replace(/(\r\n|\n\r|\n|\r){2,}/g, '\n');
+  };
+
+
   // Report elapsed execution time of grunt tasks.
   require('time-grunt')(grunt);
 
@@ -109,12 +117,7 @@ module.exports = function(grunt) {
       },
       postprocess2: {
         options: {
-          postprocess: function(src) {
-            return require('js-prettify').html(src, {
-              indent_size: 2,
-              indent_inner_html: true
-            }).replace(/(\r\n|\n\r|\n|\r){2,}/g, '\n');
-          }
+          postprocess: prettify
         },
         files: {
           'test/actual/postprocess2.html': ['test/fixtures/pages/postprocess2.hbs']
@@ -132,7 +135,9 @@ module.exports = function(grunt) {
       // YAML front matter
       yfm: {
         options: {
-          data: 'test/fixtures/data/*.{json,yml}'
+          layout: 'layout2.hbs',
+          data: 'test/fixtures/data/*.{json,yml}',
+          postprocess: prettify
         },
         files: {
           'test/actual/yfm/': ['test/fixtures/pages/yfm/*.hbs']
@@ -191,7 +196,8 @@ module.exports = function(grunt) {
       custom_helpers: {
         options: {
           helpers: ['test/helpers/*.js'],
-          name: '<%= pkg.name %>'
+          name: '<%= pkg.name %>',
+          postprocess: prettify
         },
         files: {
           'test/actual/': ['test/fixtures/pages/helpers/*.hbs']
@@ -216,7 +222,6 @@ module.exports = function(grunt) {
       },
       pages_array: {
         options: {
-          engine: 'handlebars',
           layout: "post.hbs",
           site: {
             title: "A Blog",
@@ -230,7 +235,6 @@ module.exports = function(grunt) {
       },
       pages_object: {
         options: {
-          engine: 'handlebars',
           layout: 'post.hbs',
           site: {
             title: 'Another Blog',
@@ -244,7 +248,6 @@ module.exports = function(grunt) {
       },
       pages_metadata: {
         options: {
-          engine: 'handlebars',
           layout: 'post.hbs',
           site: {
             title: 'Another Blog with Meta',
