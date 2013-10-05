@@ -357,7 +357,8 @@ module.exports = function(grunt) {
                   ext     : assemble.options.ext,
                   extname : assemble.options.ext,
                   page    : pageInfo.content,
-                  data    : pageContext
+                  data    : pageContext,
+                  filePair: filePair
                 };
 
                 if(pageObj.data.published === false) {
