@@ -57,7 +57,6 @@
 [gist-helper](gist-helper.md)
 [assets](assets.md)
 [home](home.md)
-[html-helpers](html-helpers.md)
 [index](index.md)
 [md-helper](md-helper.md)
 [nested-layouts](nested-layouts.md)
@@ -224,17 +223,6 @@ this.dirname:  test/actual/multi/dest1
 this.filename: home.md
 this.pagename: home.md
 this.basename: home
-this.extname:  .md
-this.ext:      .md
-
-#### html-helpers.md
-this.assets:   ../../assets
-this.dest:     test/actual/multi/dest1/html-helpers.md
-this.absolute:
-this.dirname:  test/actual/multi/dest1
-this.filename: html-helpers.md
-this.pagename: html-helpers.md
-this.basename: html-helpers
 this.extname:  .md
 this.ext:      .md
 
@@ -615,30 +603,8 @@ page.basename: collections-tags-2
 page.extname:  .md
 page.ext:      .md
 
-#### collections-tags-2.md
-page.assets:   ../../assets
-page.dest:     test/actual/multi/dest1/collections-tags-2.md
-page.absolute: 
-page.dirname:  test/actual/multi/dest1
-page.filename: collections-tags-2.md
-page.pagename: collections-tags-2.md
-page.basename: collections-tags-2
-page.extname:  .md
-page.ext:      .md
-
 
 ### {{#each pages}} "page" context
-
-#### collections-tags-2.md
-assets:        ../../assets
-dest:          
-absolute:      test/actual/multi/dest1/collections-tags-2.md
-dirname:       test/actual/multi/dest1
-filename:      collections-tags-2.md
-pagename:      collections-tags-2.md
-basename:      collections-tags-2
-extname:       .md
-ext:           .md
 
 #### collections-tags-2.md
 assets:        ../../assets
