@@ -21,7 +21,13 @@
   ext: '.md',
   extname: '.md',
   page: '<span class="alert alert-info">This is an alert</span>\n',
-  data: { foo: 'bar' } }
+  data: { foo: 'bar' },
+  filePair: 
+   { src: [Getter],
+     dest: 'test/actual/multi/dest1/',
+     orig: 
+      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
+        dest: 'test/actual/multi/dest1/' } } }
 ```
 
 

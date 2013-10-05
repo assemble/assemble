@@ -8,29 +8,34 @@ This example shows that the properties from "example.json" and "example.hbs" are
 <div>Congratulations! You have officially wasted time reading example content. But I&#x27;m sure it&#x27;s time well wasted... </div>
 
 
-<div>&lt;!-- foo --&gt;
-&lt;!-- [object Object] --&gt;</div>
+<div>&lt;!-- [object Object] --&gt;</div>
 <div></div>
 
 
 
 ## Debug Info
 ``` json
-{ content: 'Congratulations! You have officially wasted time reading example content. But I\'m sure it\'s time well wasted... ',
-  foo: 'bar',
+{ filename: 'example.md',
+  extname: '.md',
+  dest: 'test/actual/multi/dest1/example.md',
+  basename: 'example',
   _page: 'all',
   dirname: 'test/actual/multi/dest1',
-  filename: 'example.md',
-  pageName: 'example.md',
-  pagename: 'example.md',
-  basename: 'example',
-  src: 'test/fixtures/pages/example.hbs',
-  dest: 'test/actual/multi/dest1/example.md',
+  data: { foo: 'bar' },
+  foo: 'bar',
+  content: 'Congratulations! You have officially wasted time reading example content. But I\'m sure it\'s time well wasted... ',
   assets: '../../assets',
+  filePair: 
+   { src: [Getter],
+     dest: 'test/actual/multi/dest1/',
+     orig: 
+      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
+        dest: 'test/actual/multi/dest1/' } },
   ext: '.md',
-  extname: '.md',
+  pageName: 'example.md',
   page: 'This example shows that the properties from "example.json" and "example.hbs" are on the page object.\n\n<div>{{page.foo}}</div>\n<div>{{page.content}}</div>\n\n\n<div>{{foo}}</div>\n<div>{{content}}</div>\n',
-  data: { foo: 'bar' } }
+  src: 'test/fixtures/pages/example.hbs',
+  pagename: 'example.md' }
 ```
 
 

@@ -55,7 +55,7 @@ describe('Loading default handlebars engine', function() {
 
     var runTest = function(engine, done) {
       var expected = '<!-- foo -->\n<!-- bar -->';
-      engine.compile("{{{foo 'bar'}}}", null, function(err, tmpl) {
+      engine.compile("{{{bar 'bar'}}}", null, function(err, tmpl) {
         if(err) {
           console.log('error: ' + err);
           done(false);
@@ -75,16 +75,17 @@ describe('Loading default handlebars engine', function() {
       var engine = assembleEngine.load('handlebars');
       engine.init({
         cwd: __dirname,
-        helpers: './test/helpers/helpers.js'
+        helpers: './helpers/helpers.js'
       });
       runTest(engine, done);
     });
+    console.log(__dirname);
 
     it('loads a custom helper from a glob pattern', function(done) {
       var engine = assembleEngine.load('handlebars');
       engine.init({
         cwd: __dirname,
-        helpers: './test/helpers/*.js'
+        helpers: './helpers/helpers/*.js'
       });
       runTest(engine, done);
     });
@@ -93,7 +94,7 @@ describe('Loading default handlebars engine', function() {
       var engine = assembleEngine.load('handlebars');
       engine.init({helpers: './test/helpers/*.js'});
       var expected = '<!-- bar -->';
-      engine.compile("{{{bar 'bar'}}}", null, function(err, tmpl) {
+      engine.compile("{{{foo 'bar'}}}", null, function(err, tmpl) {
         if(err) {
           console.log('error: ' + err);
           done(false);
@@ -110,5 +111,4 @@ describe('Loading default handlebars engine', function() {
     });
 
   });
-
 });

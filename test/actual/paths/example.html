@@ -13,8 +13,7 @@
 <div></div>
 
 
-<div>&lt;!-- foo --&gt;
-&lt;!-- [object Object] --&gt;</div>
+<div>&lt;!-- [object Object] --&gt;</div>
 <div></div>
 
     </div>
@@ -23,21 +22,27 @@
       <h3>Paths Examples</h3>
 
 <pre class="json">
-{ info: 'Congratulations! You have officially wasted time reading example content. But I\'m sure it\'s time well wasted...',
-  foo: 'bar',
+{ filename: 'example.html',
+  extname: '.html',
+  dest: 'test/actual/paths/example.html',
+  basename: 'example',
   _page: 'all',
   dirname: 'test/actual/paths',
-  filename: 'example.html',
-  pageName: 'example.html',
-  pagename: 'example.html',
-  basename: 'example',
-  src: 'test/fixtures/pages/example.hbs',
-  dest: 'test/actual/paths/example.html',
+  data: { foo: 'bar' },
+  foo: 'bar',
   assets: '../assets',
+  filePair: 
+   { src: [Getter],
+     dest: 'test/actual/paths/',
+     orig: 
+      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
+        dest: 'test/actual/paths/' } },
   ext: '.html',
-  extname: '.html',
+  pageName: 'example.html',
   page: 'This example shows that the properties from "example.json" and "example.hbs" are on the page object.\n\n<div>{{page.foo}}</div>\n<div>{{page.content}}</div>\n\n\n<div>{{foo}}</div>\n<div>{{content}}</div>\n',
-  data: { foo: 'bar' } }
+  src: 'test/fixtures/pages/example.hbs',
+  pagename: 'example.html',
+  info: 'Congratulations! You have officially wasted time reading example content. But I\'m sure it\'s time well wasted...' }
 </pre>
 
       <ul>

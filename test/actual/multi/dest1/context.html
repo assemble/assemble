@@ -699,21 +699,27 @@
     <div class="container" style="display: none">
       <h2>Debug Info</h2>
       <pre class="json">
-{ title: 'Overview',
-  lead: 'Your new project!',
-  _page: 'all',
-  dirname: 'test/actual/multi/dest1',
-  filename: 'context.html',
-  pageName: 'context.html',
-  pagename: 'context.html',
-  basename: 'context',
-  src: 'test/fixtures/pages/context.hbs',
-  dest: 'test/actual/multi/dest1/context.html',
-  assets: '../../assets',
-  ext: '.html',
+{ filename: 'context.html',
   extname: '.html',
+  dest: 'test/actual/multi/dest1/context.html',
+  basename: 'context',
+  _page: 'all',
+  lead: 'Your new project!',
+  dirname: 'test/actual/multi/dest1',
+  data: { title: 'Overview', lead: 'Your new project!' },
+  assets: '../../assets',
+  filePair: 
+   { src: [Getter],
+     dest: 'test/actual/multi/dest1/',
+     orig: 
+      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
+        dest: 'test/actual/multi/dest1/' } },
+  title: 'Overview',
+  ext: '.html',
+  pageName: 'context.html',
   page: '<li><a href="#" id="title">{{title}}</a></li>\n<li><a href="#" id="this-title">{{this.title}}</a></li>\n<li><a href="#" id="page-title">{{page.title}}</a></li>\n<li><a href="#" id="data-title">{{data.title}}</a></li>\n\n<hr>\n\n<li><a href="#" id="basename">{{basename}}</a></li>\n<li><a href="#" id="this-basename">{{this.basename}}</a></li>\n<li><a href="#" id="page-basename">{{page.basename}}</a></li>\n<li><a href="#" id="data-basename">{{data.basename}}</a></li>\n\n<hr>\n\n<ul id="basename-collection">\n  {{#each pages}}\n    <li><a href="#" id="basename">{{basename}}</a></li>\n    <li><a href="#" id="parent-basename">{{../basename}}</a></li>\n    <li><a href="#" id="this-basename">{{this.basename}}</a></li>\n    <li><a href="#" id="page-basename">{{page.basename}}</a></li>\n    <li><a href="#" id="data-basename">{{data.basename}}</a></li>\n  {{/each}}\n</ul>\n\n<ul id="title-collection">\n  {{#each pages}}\n    <li><a href="#" id="title">{{title}}</a></li>\n    <li><a href="#" id="parent-title">{{../title}}</a></li>\n    <li><a href="#" id="this-title">{{this.title}}</a></li>\n    <li><a href="#" id="page-title">{{page.title}}</a></li>\n    <li><a href="#" id="data-title">{{data.title}}</a></li>\n  {{/each}}\n</ul>\n\n\n',
-  data: { title: 'Overview', lead: 'Your new project!' } }
+  src: 'test/fixtures/pages/context.hbs',
+  pagename: 'context.html' }
 </pre>
     </div>
 
