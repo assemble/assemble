@@ -2,6 +2,8 @@
 
 ## Content
 
+
+
 <ul>
 
   <li>categories</li>
@@ -42,7 +44,7 @@
   title: 'Categories Test',
   ext: '.md',
   pageName: 'collections-categories2.md',
-  page: '<ul>\n{{#categories}}\n  <li>{{category}}</li>\n{{/categories}}\n</ul>\n',
+  page: '\n\n<ul>\n{{#categories}}\n  <li>{{category}}</li>\n{{/categories}}\n</ul>\n',
   src: 'test/fixtures/pages/collections-categories2.hbs',
   pagename: 'collections-categories2.md' }
 ```

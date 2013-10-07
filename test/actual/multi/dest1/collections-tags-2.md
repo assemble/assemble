@@ -2,6 +2,8 @@
 
 ## Content
 
+
+
 <ul>
 
 	<li>one</li>
@@ -42,7 +44,7 @@
   title: 'Tags Test',
   ext: '.md',
   pageName: 'collections-tags-2.md',
-  page: '<ul>\n{{#tags}}\n\t<li>{{tag}}</li>\n{{/tags}}\n</ul>\n',
+  page: '\n\n<ul>\n{{#tags}}\n\t<li>{{tag}}</li>\n{{/tags}}\n</ul>\n',
   src: 'test/fixtures/pages/collections-tags-2.hbs',
   pagename: 'collections-tags-2.md' }
 ```

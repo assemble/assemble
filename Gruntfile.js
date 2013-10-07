@@ -61,7 +61,6 @@ module.exports = function(grunt) {
       options: {
         assets: 'test/actual/assets',
         helpers: ['test/helpers/*.js'],
-        plugins: ['permalinks'],
         layoutdir: 'test/fixtures/layouts',
         layout: 'layout.hbs',
         flatten: true
@@ -75,24 +74,13 @@ module.exports = function(grunt) {
           'test/actual/paths/': ['test/fixtures/pages/layoutext/layoutext.hbs']
         }
       },
-      plugins: {
+      plugin_untitled: {
         options: {
-          plugins: ['test/plugins/*.js']
+          plugins: ['./test/plugins/*.js']
         },
-        files: {
-          'test/actual/plugins/': ['test/fixtures/plugins/*.hbs']
-        }
-      },
-      permalinks: {
-        options: {
-          permalinks: {
-            dateFormats: ["YYYY-MM-DD", "MM-DD-YYYY", "YYYY-MM-DDTHH:mm:ss.SSS"],
-            pattern: ':year/:MMM/:day/:mm/:slug/index.html'
-          }
-        },
-        files: {
-          'test/actual/permalinks/': ['test/fixtures/permalinks/*.hbs']
-        }
+        files: [
+          {expand: true, cwd: 'test/fixtures/plugins', src: ['*.hbs'], dest: 'test/actual/plugins/', ext: '.html'}
+        ]
       },
       paths: {
         options: {
@@ -108,7 +96,7 @@ module.exports = function(grunt) {
       postprocess: {
         options: {
           postprocess: function(src) {
-            return require('frep').replaceStr(src, grunt.config.process('<%= translation.patterns %>'));
+            return require('frep').strWithArr(src, grunt.config.process('<%= translation.patterns %>'));
           }
         },
         files: {

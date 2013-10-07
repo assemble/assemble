@@ -1,6 +1,6 @@
 # assemble [![NPM version](https://badge.fury.io/js/assemble.png)](http://badge.fury.io/js/assemble)  [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
 
-> Visit http://assemble.io. Assemble is a full-featured documentation generator, static site generator and component builder. Created from the ground up as a plugin for Grunt.js.
+> Static site generator for Grunt.js and Yeoman. Assemble makes it dead simple to build modular sites, blogs, gh-pages, components and documentation from reusable templates and data.
 
 ### [See the live docs →](http://assemble.io)
 
@@ -260,4 +260,4 @@ Released under the [MIT License](./LICENSE-MIT).
 
 ***
 
-_This file was generated on Saturday, October 5, 2013._
+_This file was generated on Monday, October 7, 2013._

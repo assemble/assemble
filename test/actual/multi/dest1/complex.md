@@ -2,6 +2,8 @@
 
 ## Content
 
+
+
 <span class="alert alert-info">This is an alert</span>
 
 
@@ -26,7 +28,7 @@
         dest: 'test/actual/multi/dest1/' } },
   ext: '.md',
   pageName: 'complex.md',
-  page: '<span class="alert alert-info">This is an alert</span>\n',
+  page: '\n\n<span class="alert alert-info">This is an alert</span>\n',
   src: 'test/fixtures/pages/complex.hbs',
   pagename: 'complex.md' }
 ```
