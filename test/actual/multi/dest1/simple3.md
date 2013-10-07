@@ -2,6 +2,8 @@
 
 ## Content
 
+
+
 <span class="alert alert-info">This is an alert</span>
 
 
@@ -20,7 +22,7 @@
   assets: '../../assets',
   ext: '.md',
   extname: '.md',
-  page: '<span class="alert alert-info">This is an alert</span>\n',
+  page: '\n\n<span class="alert alert-info">This is an alert</span>\n',
   data: { foo: 'bar' },
   filePair: 
    { src: [Getter],

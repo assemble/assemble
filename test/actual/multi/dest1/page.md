@@ -2,6 +2,7 @@
 
 ## Content
 
+
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
@@ -51,7 +52,7 @@
   ext: '.md',
   title: 'Partials Test',
   pageName: 'page.md',
-  page: '{{> nav }}',
+  page: '\n{{> nav }}',
   src: 'test/fixtures/pages/page.hbs',
   pagename: 'page.md' }
 ```
