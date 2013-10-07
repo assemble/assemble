@@ -2,6 +2,8 @@
 
 ## Content
 
+
+
 <h2>Title for "alert.hbs"</h2>
 <span class="alert alert-info">This is an alert</span>
 
@@ -29,7 +31,7 @@
   title: 'Title for "alert.hbs"',
   ext: '.md',
   pageName: 'alert.md',
-  page: '<h2>{{{title}}}</h2>\n<span class="alert alert-info">{{{one.two}}}</span>\n',
+  page: '\n\n<h2>{{{title}}}</h2>\n<span class="alert alert-info">{{{one.two}}}</span>\n',
   src: 'test/fixtures/pages/alert.hbs',
   pagename: 'alert.md' }
 ```

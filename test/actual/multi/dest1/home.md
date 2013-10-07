@@ -2,6 +2,8 @@
 
 ## Content
 
+
+
 Properties from "example.json" and "example.hbs" should be on the page object.
 
 <div class="page-header">
@@ -47,7 +49,7 @@ Properties from "example.json" and "example.hbs" should be on the page object.
   title: 'YFM title',
   ext: '.md',
   pageName: 'home.md',
-  page: 'Properties from "example.json" and "example.hbs" should be on the page object.\n\n<div class="page-header">\n  <h1>{{home.title}}</h1>\n  <p class="lead">{{home.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{page.title}}</h1>\n  <p class="lead">{{page.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n\n',
+  page: '\n\nProperties from "example.json" and "example.hbs" should be on the page object.\n\n<div class="page-header">\n  <h1>{{home.title}}</h1>\n  <p class="lead">{{home.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{page.title}}</h1>\n  <p class="lead">{{page.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n\n',
   src: 'test/fixtures/pages/home.hbs',
   pagename: 'home.md' }
 ```

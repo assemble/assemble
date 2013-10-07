@@ -2,6 +2,8 @@
 
 ## Content
 
+
+
 This example shows that the properties from "example.json" and "example.hbs" are on the page object.
 
 <div>bar</div>
@@ -33,7 +35,7 @@ This example shows that the properties from "example.json" and "example.hbs" are
         dest: 'test/actual/multi/dest1/' } },
   ext: '.md',
   pageName: 'example.md',
-  page: 'This example shows that the properties from "example.json" and "example.hbs" are on the page object.\n\n<div>{{page.foo}}</div>\n<div>{{page.content}}</div>\n\n\n<div>{{foo}}</div>\n<div>{{content}}</div>\n',
+  page: '\n\nThis example shows that the properties from "example.json" and "example.hbs" are on the page object.\n\n<div>{{page.foo}}</div>\n<div>{{page.content}}</div>\n\n\n<div>{{foo}}</div>\n<div>{{content}}</div>\n',
   src: 'test/fixtures/pages/example.hbs',
   pagename: 'example.md' }
 ```

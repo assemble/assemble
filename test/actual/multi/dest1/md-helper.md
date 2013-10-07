@@ -2,6 +2,8 @@
 
 ## Content
 
+
+
 <div class="page-header">
   <h1>md helper</h1>
   <p class="lead">Use \{{md}} helper to pull in markdown</p>
@@ -43,7 +45,7 @@
   title: 'md helper',
   ext: '.md',
   pageName: 'md-helper.md',
-  page: '<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n<p> {{{md \'./test/fixtures/pages/md.md\'}}} </p>\n\n\n\n',
+  page: '\n\n<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n<p> {{{md \'./test/fixtures/pages/md.md\'}}} </p>\n\n\n\n',
   src: 'test/fixtures/pages/md-helper.hbs',
   pagename: 'md-helper.md' }
 ```
