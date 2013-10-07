@@ -22,7 +22,7 @@ describe('Reading From Files', function() {
 
   var complexExpected = {
     originalContent: "---\nfoo: bar\nversion: 2\n---\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
-    content: "<span class=\"alert alert-info\">This is an alert</span>\n",
+    content: "\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
     context: {
       "foo": "bar",
       "version": 2
@@ -74,7 +74,7 @@ describe('Reading From Strings', function() {
 
   var complexExpected = {
     originalContent: "---\nfoo: bar\nversion: 2\n---\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
-    content: "<span class=\"alert alert-info\">This is an alert</span>\n",
+    content: "\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
     context: {
       "foo": "bar",
       "version": 2

@@ -4,8 +4,10 @@
 	</head>
 	<body>
     <p>layout one</p>
-		<p>layout two</p>
+		
+<p>layout two</p>
 <p>This is some random content before the body of the actual page.</p>
+
 
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
@@ -20,6 +22,7 @@
 
 <p>layout three</p>
 <p>This is some random content before the body of the actual page.</p>
+
 
 <h1>Hello: Three layouts deep</h1>
 
