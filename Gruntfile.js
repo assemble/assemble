@@ -19,8 +19,7 @@ module.exports = function(grunt) {
       indent_inner_html: true
     }).replace(/(\r\n|\n\r|\n|\r){2,}/g, '\n');
   };
-
-
+  
   // Report elapsed execution time of grunt tasks.
   require('time-grunt')(grunt);
 
@@ -65,6 +64,8 @@ module.exports = function(grunt) {
         layout: 'layout.hbs',
         flatten: true
       },
+      // Define layout extension, so that layouts in YFM can be defined
+      // without an extension.
       layout_ext: {
         options: {
           layout: 'none', // override default, layout is redefined in YFM
@@ -74,6 +75,18 @@ module.exports = function(grunt) {
           'test/actual/paths/': ['test/fixtures/pages/layoutext/layoutext.hbs']
         }
       },
+      // Register custom helpers
+      custom_helpers: {
+        options: {
+          helpers: ['test/helpers/*.js'],
+          name: '<%= pkg.name %>',
+          postprocess: prettify
+        },
+        files: {
+          'test/actual/': ['test/fixtures/helpers/{foo,bar,opt}.hbs']
+        }
+      },   
+      // Register plugins
       plugin_untitled: {
         options: {
           plugins: ['./test/plugins/*.js']
@@ -82,6 +95,7 @@ module.exports = function(grunt) {
           {expand: true, cwd: 'test/fixtures/plugins', src: ['*.hbs'], dest: 'test/actual/plugins/', ext: '.html'}
         ]
       },
+      // Path construction based on built-in variables
       paths: {
         options: {
           partials: 'test/fixtures/partials/*.hbs',
@@ -92,7 +106,7 @@ module.exports = function(grunt) {
           'test/actual/paths/': ['test/fixtures/pages/*.hbs']
         }
       },
-      // Post-process function
+      // Post-process content
       postprocess: {
         options: {
           postprocess: function(src) {
@@ -103,6 +117,7 @@ module.exports = function(grunt) {
           'test/actual/postprocess.html': ['test/fixtures/pages/postprocess.hbs']
         }
       },
+      // Post-process content
       postprocess2: {
         options: {
           postprocess: prettify
@@ -111,7 +126,7 @@ module.exports = function(grunt) {
           'test/actual/postprocess2.html': ['test/fixtures/pages/postprocess2.hbs']
         }
       },
-      // Build one page
+      // Build a single page
       single_page: {
         options: {
           partials: 'test/fixtures/partials/*.hbs'
@@ -131,6 +146,7 @@ module.exports = function(grunt) {
           'test/actual/yfm/': ['test/fixtures/pages/yfm/*.hbs']
         }
       },
+      // No YAML front matter
       noyfm: {
         options: {
           data: 'test/fixtures/data/*.{json,yml}'
@@ -181,16 +197,7 @@ module.exports = function(grunt) {
           'test/actual/assets-same-folder-with-slash.html': ['test/fixtures/pages/assets.hbs']
         }
       },
-      custom_helpers: {
-        options: {
-          helpers: ['test/helpers/*.js'],
-          name: '<%= pkg.name %>',
-          postprocess: prettify
-        },
-        files: {
-          'test/actual/': ['test/fixtures/pages/helpers/*.hbs']
-        }
-      },
+      // Collections
       collections_example: {
         options: {
           data: ['test/fixtures/data/*.json'],
@@ -208,6 +215,7 @@ module.exports = function(grunt) {
           'test/actual/multi/dest2/sub-dest/': ['test/fixtures/pages/*.hbs']
         }
       },
+      // Pages collections
       pages_array: {
         options: {
           layout: "post.hbs",
@@ -247,6 +255,7 @@ module.exports = function(grunt) {
           'test/actual/metadata-blog/': ['test/fixtures/pages/blog/index.hbs']
         }
       },
+      // Nested layouts
       nested_layouts: {
         options: {layout: 'one.hbs'},
         files: {
