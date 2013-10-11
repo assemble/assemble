@@ -49,7 +49,6 @@ describe('Converting Markdown files', function() {
 
     it("convert markdown file with code highlighting", function(done) {
       var data = markdown.read('./test/fixtures/pages/complex1.md', opts);
-      //console.log(data);
       //expect(complexExpected).to.deep.equal(data);
       done();
     });

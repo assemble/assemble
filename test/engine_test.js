@@ -79,7 +79,6 @@ describe('Loading default handlebars engine', function() {
       });
       runTest(engine, done);
     });
-    console.log(__dirname);
 
     it('loads a custom helper from a glob pattern', function(done) {
       var engine = assembleEngine.load('handlebars');

@@ -83,13 +83,18 @@
     "gruntplugin",
     "handlebars",
     "helpers",
+    "javascript static site generator",
     "jekyll alternative",
     "jekyll static",
     "jekyll",
     "node blog",
     "node jekyll",
+    "node static site generator",
+    "node.js static site generator",
     "partial",
     "partials",
+    "permalinks",
+    "rss",
     "scaffold",
     "scaffolds",
     "site blog generator",
@@ -109,6 +114,11 @@
     "templating",
     "theme",
     "themes",
-    "yaml front matter"
+    "yaml front matter",
+    "yeoman generator",
+    "yeoman site",
+    "yeoman static site generator",
+    "yeoman static site",
+    "yeoman"
   ]
 }

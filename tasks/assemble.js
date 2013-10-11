@@ -196,7 +196,7 @@ module.exports = function(grunt) {
 
           //Skip empty data files, as they'd cause an error with compiler
           if(filecontent === '') {
-            grunt.log.verbose.writeln('Reading ' + filepath + '...empty, ' + 'skipping'.yellow);
+            grunt.verbose.writeln('Reading ' + filepath + '...empty, ' + 'skipping'.yellow);
           } else {
 
             if(filename === 'data') {
@@ -392,8 +392,9 @@ module.exports = function(grunt) {
                 }, buildDone); // filePair.src.forEach
               },
 
+              // Build options.pages
               function(buildDone){
-                // if there is a pages property, build all those
+                // if there is a pages property, build the pages contained therein.
                 if(assemble.options.pages) {
                   _.forOwn(assemble.options.pages, function(fileInfo, filename) {
                     if(!filename || filename.length === 0) {
