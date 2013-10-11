@@ -46,26 +46,21 @@ Utils.extension = function(filename) {
 
 
 /**
- * Is the given path a directory or a file?
- * @param  {String} filepath
- * @return {String}
+ * Returns 'directory' or 'file' based on the given path.
+ * @param  {String} file path
  */
-Utils.detectDestType = function(filepath) {
-  // if(_str.endsWith(path.normalize(filepath), path.sep)) {
-  //   return 'directory';
-  // } else {
-  //   return 'file';
-  // }
-  if(grunt.file.isDir(filepath)) {
+ Utils.detectDestType = function(dest) {
+  if(grunt.util._.endsWith(dest, '/') || grunt.file.isDir(dest)) {
     return 'directory';
-  } else if (grunt.file.isFile(filepath)) {
-    if (grunt.file.exists(filepath)) {
+  } else if (grunt.file.isFile(dest)) {
+    if (grunt.file.exists(dest)) {
       return 'file';
     } else {
       throw new Error('Invalid file path.');
     }
   }
 };
+
 
 
 Utils.findBasePath = function(srcFiles, basePath) {
