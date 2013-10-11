@@ -25,12 +25,6 @@
     "grunt-readme": "~0.1.1",
     "grunt-sync-pkg": "~0.1.0",
     "js-prettify": "~1.4.0",
-    "permalinks": "~0.1.0",
-    "rss": "~0.1.0",
-    "extend-yfm": "~0.1.0",
-    "time-grunt": "~0.1.1",
-    "assemble-plugin-anchors": "0.0.2",
-    "assemble-related-pages": "0.0.2",
-    "assemble-plugin-rss": "0.1.0"
+    "time-grunt": "~0.1.1"
   }
 }
