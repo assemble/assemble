@@ -64,6 +64,7 @@ module.exports = function(grunt) {
 
       // find an engine to use
       assemble.options.engine = assemble.options.engine || getEngineOf(src);
+      grunt.verbose.ok(">> Current engine:".yellow, getEngineOf(src));      
       if(!assemble.options.engine) {
         grunt.warn('No compatible engine available');
         done(false);
@@ -231,7 +232,7 @@ module.exports = function(grunt) {
     var assemblePages = function(assemble, next) {
       grunt.verbose.writeln(('\n' + 'Building pages...').grey);
       var src = false;
-      var assetsPath = assemble.options.assets;
+      var assetsPath = assemble.options.originalAssets;
 
       async.waterfall([
         function(stepDone){
@@ -734,7 +735,6 @@ module.exports = function(grunt) {
   };
 
 
-
   /**
    * Inject content from a page into a layout at the `{{> body }}` insertion point
    * @param  {String} layout  The raw layout
@@ -742,13 +742,12 @@ module.exports = function(grunt) {
    * @return {String}         The raw, assembled, uncompiled and unprocessed page
    */
   var injectBody = function(layout, body) {
-    return layout.replace(assemble.engine.bodyRegex, function() { return body; });
+    return layout.replace(assemble.engine.bodyRegex, body);
   };
 
-
-  var getEngineOf = function(fileName) {
-    var ext = Utils.extension(fileName);
-    return  _( _(assemble.engine.extensions).keys() ).include(ext) ? assemble.engine.extensions[ext] : false;
+  var getEngineOf = function(file) {
+    var ext = Utils.extension(file);
+    return  _.contains(_.keys(assemble.engine.extensions), ext) ? assemble.engine.extensions[ext] : false;
   };
 
   // Deprecated. This will be removed. Processing options and plugins
