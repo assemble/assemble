@@ -260,4 +260,4 @@ Released under the [MIT License](./LICENSE-MIT).
 
 ***
 
-_This file was generated on Friday, October 11, 2013._
+_This file was generated on Sunday, October 13, 2013._
