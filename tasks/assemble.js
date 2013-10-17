@@ -64,7 +64,7 @@ module.exports = function(grunt) {
 
       // find an engine to use
       assemble.options.engine = assemble.options.engine || getEngineOf(src);
-      grunt.verbose.ok(">> Current engine:".yellow, getEngineOf(src));      
+      grunt.verbose.ok(">> Current engine:".yellow, getEngineOf(src));
       if(!assemble.options.engine) {
         grunt.warn('No compatible engine available');
         done(false);
@@ -498,7 +498,7 @@ module.exports = function(grunt) {
           grunt.warn(err);
           done(false);
         }
-        
+
         assemble.plugins.runner('after', pluginParams)(done);
       });
 
@@ -713,8 +713,6 @@ module.exports = function(grunt) {
 
       var layoutInfo = yfm.extract(layout, {fromFile: false});
       var layoutData = layoutInfo.context;
-
-      assemble.engine.registerPartial(layoutName, layoutInfo.content);
 
       var results = {
         layoutName: layoutName,
