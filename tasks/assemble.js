@@ -714,6 +714,8 @@ module.exports = function(grunt) {
       var layoutInfo = yfm.extract(layout, {fromFile: false});
       var layoutData = layoutInfo.context;
 
+      assemble.engine.registerPartial(layoutName, layoutInfo.content);
+
       var results = {
         layoutName: layoutName,
         layout: layoutInfo.content,
