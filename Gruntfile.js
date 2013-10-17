@@ -19,7 +19,7 @@ module.exports = function(grunt) {
       indent_inner_html: true
     }).replace(/(\r\n|\n\r|\n|\r){2,}/g, '\n');
   };
-  
+
   // Report elapsed execution time of grunt tasks.
   require('time-grunt')(grunt);
 
@@ -85,15 +85,30 @@ module.exports = function(grunt) {
         files: {
           'test/actual/': ['test/fixtures/helpers/{foo,bar,opt}.hbs']
         }
-      },   
-      // Register plugins
+      },
       plugin_untitled: {
         options: {
-          plugins: ['./test/plugins/*.js']
+          plugins: ['./test/plugins/untitled.js']
         },
-        files: [
-          {expand: true, cwd: 'test/fixtures/plugins', src: ['*.hbs'], dest: 'test/actual/plugins/', ext: '.html'}
-        ]
+        files: {
+          'test/actual/plugins/untitled.html': 'test/fixtures/plugins/untitled.hbs'
+        }
+      },
+      plugin_before: {
+        options: {
+          plugins: ['./test/plugins/plugin_before.js']
+        },
+        files: {
+          'test/actual/plugins/before.html': 'test/fixtures/plugins/before.hbs'
+        }
+      },
+      plugin_after: {
+        options: {
+          plugins: ['./test/plugins/plugin_after.js']
+        },
+        files: {
+          'test/actual/plugins/after.html': 'test/fixtures/plugins/after.hbs'
+        }
       },
       // Path construction based on built-in variables
       paths: {
