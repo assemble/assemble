@@ -474,6 +474,12 @@ module.exports = function(grunt) {
 
     grunt.verbose.writeflags(assemble.options, 'Assemble options');
 
+    // setup plugin params
+    var pluginParams = {
+      grunt: grunt,
+      assemble: assemble
+    };
+
     // assemble everything
     var assembler = assemble.init(this, grunt)
       .step(optionsConfiguration)
@@ -481,13 +487,19 @@ module.exports = function(grunt) {
       .step(assemblePartials)
       .step(assembleData)
       .step(assemblePages)
+      .step(function (assemble, next) {
+        assemble.plugins.runner('before', pluginParams)(function () {
+          next(assemble);
+        });
+      })
       .step(renderPages)
       .build(function(err, results) {
         if(err) {
           grunt.warn(err);
           done(false);
         }
-        done();
+        
+        assemble.plugins.runner('after', pluginParams)(done);
       });
 
 
@@ -606,6 +618,7 @@ module.exports = function(grunt) {
       page = injectBody(layout.layout, page);
 
       async.forEachSeries(assemble.options.plugins, function (plugin, next) {
+        if (plugin.options.stage != 'each') return next();
         plugin({
           grunt: grunt,
           assemble: assemble,
