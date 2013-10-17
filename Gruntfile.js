@@ -326,7 +326,7 @@ module.exports = function(grunt) {
   grunt.registerTask('debug', ['clean', 'assemble']);
 
   // Tests to be run.
-  grunt.registerTask('test', ['assemble:plugin_before', 'mochaTest']);
+  grunt.registerTask('test', ['assemble', 'mochaTest']);
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'clean', 'test', 'docs']);
