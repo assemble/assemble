@@ -19,7 +19,7 @@ module.exports = function(grunt) {
       indent_inner_html: true
     }).replace(/(\r\n|\n\r|\n|\r){2,}/g, '\n');
   };
-  
+
   // Report elapsed execution time of grunt tasks.
   require('time-grunt')(grunt);
 
@@ -85,10 +85,10 @@ module.exports = function(grunt) {
         files: {
           'test/actual/': ['test/fixtures/helpers/{foo,bar,opt}.hbs']
         }
-      },   
+      },
       plugin_untitled: {
         options: {
-          plugins: ['./test/plugins/*.js']
+          plugins: ['./test/plugins/untitled.js']
         },
         files: {
           'test/actual/plugins/untitled.html': 'test/fixtures/plugins/untitled.hbs'
