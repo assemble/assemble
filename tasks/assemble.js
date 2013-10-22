@@ -85,8 +85,11 @@ module.exports = function(grunt) {
       assemble.options.registerPartial = assemble.options.registerPartial || registerPartial;
 
       assemble.partials = file.expand(assemble.options.partials);
-      assemble.dataFiles = file.expand(assemble.options.data);
-      assemble.options.data = {};
+
+      if(_.isArray(assemble.options.data)) {
+        assemble.dataFiles = file.expand(assemble.options.data);
+        assemble.options.data = {};
+      }
 
       assemble.options.initializeEngine(assemble.engine, assemble.options);
       assemble.options.registerFunctions(assemble.engine);
