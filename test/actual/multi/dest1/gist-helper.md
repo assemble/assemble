@@ -11,7 +11,7 @@
 
 
 ## Debug Info
-``` json
+<pre><code class="json">
 {
   "_page": "all",
   "assets": "../../assets",
@@ -63,7 +63,7 @@
   "pagename": "gist-helper.md",
   "src": "test/fixtures/pages/gist-helper.hbs"
 }
-```
+</code></pre>
 
 
 ### "{{#each pages}}" Links

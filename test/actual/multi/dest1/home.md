@@ -30,7 +30,7 @@ Properties from "example.json" and "example.hbs" should be on the page object.
 
 
 ## Debug Info
-``` json
+<pre><code class="json">
 {
   "_page": "all",
   "assets": "../../assets",
@@ -88,7 +88,7 @@ Properties from "example.json" and "example.hbs" should be on the page object.
   "src": "test/fixtures/pages/home.hbs",
   "title": "YFM title"
 }
-```
+</code></pre>
 
 
 ### "{{#each pages}}" Links

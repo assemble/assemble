@@ -10,7 +10,7 @@
 
 
 ## Debug Info
-``` json
+<pre><code class="json">
 {
   "_page": "all",
   "assets": "../../assets",
@@ -63,7 +63,7 @@
   "prev": 7,
   "src": "test/fixtures/pages/debug-helpers.hbs"
 }
-```
+</code></pre>
 
 
 ### "{{#each pages}}" Links

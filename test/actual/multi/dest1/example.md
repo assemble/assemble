@@ -7,7 +7,7 @@
 This example shows that the properties from "example.json" and "example.hbs" are on the page object.
 
 <div>bar</div>
-<div>Congratulations! You have officially wasted time reading example content. But I&#x27;m sure it&#x27;s time well wasted... </div>
+<div></div>
 
 
 <div>&lt;!-- [object Object] --&gt;</div>
@@ -16,12 +16,11 @@ This example shows that the properties from "example.json" and "example.hbs" are
 
 
 ## Debug Info
-``` json
+<pre><code class="json">
 {
   "_page": "all",
   "assets": "../../assets",
   "basename": "example",
-  "content": "Congratulations! You have officially wasted time reading example content. But I'm sure it's time well wasted... ",
   "data": {
     "foo": "bar"
   },
@@ -67,13 +66,14 @@ This example shows that the properties from "example.json" and "example.hbs" are
   "foo": "bar",
   "index": 10,
   "next": 11,
-  "page": "\n\nThis example shows that the properties from \"example.json\" and \"example.hbs\" are on the page object.\n\n<div>{{page.foo}}</div>\n<div>{{page.content}}</div>\n\n\n<div>{{foo}}</div>\n<div>{{content}}</div>\n",
+  "page": "\n\nThis example shows that the properties from \"example.json\" and \"example.hbs\" are on the page object.\n\n<div>{{page.foo}}</div>\n<div>{{page.content}}</div>\n\n\n<div>{{foo}}</div>\n<div>{{text}}</div>\n",
   "pageName": "example.md",
   "pagename": "example.md",
   "prev": 9,
-  "src": "test/fixtures/pages/example.hbs"
+  "src": "test/fixtures/pages/example.hbs",
+  "text": "Congratulations! This is data from a JSON file."
 }
-```
+</code></pre>
 
 
 ### "{{#each pages}}" Links

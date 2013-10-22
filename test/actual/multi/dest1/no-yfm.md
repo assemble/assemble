@@ -13,7 +13,7 @@ There is no YAML front matter in this page.
 
 
 ## Debug Info
-``` json
+<pre><code class="json">
 {
   "_page": "all",
   "assets": "../../assets",
@@ -66,7 +66,7 @@ There is no YAML front matter in this page.
   "prev": 17,
   "src": "test/fixtures/pages/no-yfm.hbs"
 }
-```
+</code></pre>
 
 
 ### "{{#each pages}}" Links
