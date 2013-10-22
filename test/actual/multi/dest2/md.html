@@ -95,25 +95,37 @@
     <div class="container" style="display: none">
       <h2>Debug Info</h2>
       <pre class="json">
-{ _page: 'all',
-  dirname: 'test/actual/multi/dest2',
-  filename: 'md.html',
-  pageName: 'md.html',
-  pagename: 'md.html',
-  basename: 'md',
-  src: 'test/fixtures/pages/md.md',
-  dest: 'test/actual/multi/dest2/md.html',
-  assets: '../../assets',
-  ext: '.html',
-  extname: '.html',
-  page: '## Some Markdown\n\n - one\n - two\n - three\n\n[Click here](http://github.com)\n',
-  data: {},
-  filePair: 
-   { src: [Getter],
-     dest: 'test/actual/multi/dest2/',
-     orig: 
-      { src: [ 'test/fixtures/pages/*.md', [length]: 1 ],
-        dest: 'test/actual/multi/dest2/' } } }
+{
+  "_page": "all",
+  "assets": "../../assets",
+  "basename": "md",
+  "data": {},
+  "dest": "test/actual/multi/dest2/md.html",
+  "dirname": "test/actual/multi/dest2",
+  "ext": ".html",
+  "extname": ".html",
+  "filePair": {
+    "src": [
+      "test/fixtures/pages/complex1.md",
+      "test/fixtures/pages/md.md",
+      "test/fixtures/pages/simple1.md"
+    ],
+    "dest": "test/actual/multi/dest2/",
+    "orig": {
+      "src": [
+        "test/fixtures/pages/*.md"
+      ],
+      "dest": "test/actual/multi/dest2/"
+    }
+  },
+  "filename": "md.html",
+  "index": 0,
+  "next": 1,
+  "page": "## Some Markdown\n\n - one\n - two\n - three\n\n[Click here](http://github.com)\n",
+  "pageName": "md.html",
+  "pagename": "md.html",
+  "src": "test/fixtures/pages/md.md"
+}
 </pre>
     </div>
 

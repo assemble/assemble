@@ -308,27 +308,63 @@
 
 ## Debug Info
 ``` json
-{ filename: 'context.md',
-  extname: '.md',
-  dest: 'test/actual/multi/dest1/context.md',
-  basename: 'context',
-  _page: 'all',
-  lead: 'Your new project!',
-  dirname: 'test/actual/multi/dest1',
-  data: { title: 'Overview', lead: 'Your new project!' },
-  assets: '../../assets',
-  filePair: 
-   { src: [Getter],
-     dest: 'test/actual/multi/dest1/',
-     orig: 
-      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
-        dest: 'test/actual/multi/dest1/' } },
-  title: 'Overview',
-  ext: '.md',
-  pageName: 'context.md',
-  page: '\n\n<li><a href="#" id="title">{{title}}</a></li>\n<li><a href="#" id="this-title">{{this.title}}</a></li>\n<li><a href="#" id="page-title">{{page.title}}</a></li>\n<li><a href="#" id="data-title">{{data.title}}</a></li>\n\n<hr>\n\n<li><a href="#" id="basename">{{basename}}</a></li>\n<li><a href="#" id="this-basename">{{this.basename}}</a></li>\n<li><a href="#" id="page-basename">{{page.basename}}</a></li>\n<li><a href="#" id="data-basename">{{data.basename}}</a></li>\n\n<hr>\n\n<ul id="basename-collection">\n  {{#each pages}}\n    <li><a href="#" id="basename">{{basename}}</a></li>\n    <li><a href="#" id="parent-basename">{{../basename}}</a></li>\n    <li><a href="#" id="this-basename">{{this.basename}}</a></li>\n    <li><a href="#" id="page-basename">{{page.basename}}</a></li>\n    <li><a href="#" id="data-basename">{{data.basename}}</a></li>\n  {{/each}}\n</ul>\n\n<ul id="title-collection">\n  {{#each pages}}\n    <li><a href="#" id="title">{{title}}</a></li>\n    <li><a href="#" id="parent-title">{{../title}}</a></li>\n    <li><a href="#" id="this-title">{{this.title}}</a></li>\n    <li><a href="#" id="page-title">{{page.title}}</a></li>\n    <li><a href="#" id="data-title">{{data.title}}</a></li>\n  {{/each}}\n</ul>\n\n\n',
-  src: 'test/fixtures/pages/context.hbs',
-  pagename: 'context.md' }
+{
+  "_page": "all",
+  "assets": "../../assets",
+  "basename": "context",
+  "data": {
+    "title": "Overview",
+    "lead": "Your new project!"
+  },
+  "dest": "test/actual/multi/dest1/context.md",
+  "dirname": "test/actual/multi/dest1",
+  "ext": ".md",
+  "extname": ".md",
+  "filePair": {
+    "src": [
+      "test/fixtures/pages/alert.hbs",
+      "test/fixtures/pages/assets.hbs",
+      "test/fixtures/pages/collections-categories.hbs",
+      "test/fixtures/pages/collections-categories2.hbs",
+      "test/fixtures/pages/collections-tags-2.hbs",
+      "test/fixtures/pages/collections-tags.hbs",
+      "test/fixtures/pages/complex.hbs",
+      "test/fixtures/pages/context.hbs",
+      "test/fixtures/pages/debug-helpers.hbs",
+      "test/fixtures/pages/deep-nested-layouts.hbs",
+      "test/fixtures/pages/example.hbs",
+      "test/fixtures/pages/gist-helper.hbs",
+      "test/fixtures/pages/home.hbs",
+      "test/fixtures/pages/index.hbs",
+      "test/fixtures/pages/md-helper.hbs",
+      "test/fixtures/pages/nested-layouts.hbs",
+      "test/fixtures/pages/no-layout-none.hbs",
+      "test/fixtures/pages/no-layout.hbs",
+      "test/fixtures/pages/no-yfm.hbs",
+      "test/fixtures/pages/page.hbs",
+      "test/fixtures/pages/postprocess.hbs",
+      "test/fixtures/pages/postprocess2.hbs",
+      "test/fixtures/pages/simple3.hbs"
+    ],
+    "dest": "test/actual/multi/dest1/",
+    "orig": {
+      "src": [
+        "test/fixtures/pages/*.hbs"
+      ],
+      "dest": "test/actual/multi/dest1/"
+    }
+  },
+  "filename": "context.md",
+  "index": 7,
+  "lead": "Your new project!",
+  "next": 8,
+  "page": "\n\n<li><a href=\"#\" id=\"title\">{{title}}</a></li>\n<li><a href=\"#\" id=\"this-title\">{{this.title}}</a></li>\n<li><a href=\"#\" id=\"page-title\">{{page.title}}</a></li>\n<li><a href=\"#\" id=\"data-title\">{{data.title}}</a></li>\n\n<hr>\n\n<li><a href=\"#\" id=\"basename\">{{basename}}</a></li>\n<li><a href=\"#\" id=\"this-basename\">{{this.basename}}</a></li>\n<li><a href=\"#\" id=\"page-basename\">{{page.basename}}</a></li>\n<li><a href=\"#\" id=\"data-basename\">{{data.basename}}</a></li>\n\n<hr>\n\n<ul id=\"basename-collection\">\n  {{#each pages}}\n    <li><a href=\"#\" id=\"basename\">{{basename}}</a></li>\n    <li><a href=\"#\" id=\"parent-basename\">{{../basename}}</a></li>\n    <li><a href=\"#\" id=\"this-basename\">{{this.basename}}</a></li>\n    <li><a href=\"#\" id=\"page-basename\">{{page.basename}}</a></li>\n    <li><a href=\"#\" id=\"data-basename\">{{data.basename}}</a></li>\n  {{/each}}\n</ul>\n\n<ul id=\"title-collection\">\n  {{#each pages}}\n    <li><a href=\"#\" id=\"title\">{{title}}</a></li>\n    <li><a href=\"#\" id=\"parent-title\">{{../title}}</a></li>\n    <li><a href=\"#\" id=\"this-title\">{{this.title}}</a></li>\n    <li><a href=\"#\" id=\"page-title\">{{page.title}}</a></li>\n    <li><a href=\"#\" id=\"data-title\">{{data.title}}</a></li>\n  {{/each}}\n</ul>\n\n\n",
+  "pageName": "context.md",
+  "pagename": "context.md",
+  "prev": 6,
+  "src": "test/fixtures/pages/context.hbs",
+  "title": "Overview"
+}
 ```
 
 

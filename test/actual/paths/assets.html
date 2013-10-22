@@ -41,25 +41,58 @@
       <h3>Paths Examples</h3>
 
 <pre class="json">
-{ _page: 'all',
-  dirname: 'test/actual/paths',
-  filename: 'assets.html',
-  pageName: 'assets.html',
-  pagename: 'assets.html',
-  basename: 'assets',
-  src: 'test/fixtures/pages/assets.hbs',
-  dest: 'test/actual/paths/assets.html',
-  assets: '../assets',
-  ext: '.html',
-  extname: '.html',
-  page: '<p>Examples to test the "relative" and "assets" variables, and to show how they work</p>\n\n{{#assets_one}}\n<h1>"Public" Folder</h1>\n<p>Public (assets) folder is in the project root</p>\n<pre>\nassets_one: {\n  options: {assets: \'test/actual/public\'},\n  files: {\'test/actual/assets-public-folder.html\': [\'test/files/assets.hbs\']}\n},\n</pre>\n{{/assets_one}}\n\n\n{{#assets_two}}\n<h1>Same Folder</h1>\n<p>Assets folder is in the same dir as dest files.</p>\n<pre>\nassets_two: {\n  options: {assets: \'test/actual\'},\n  files: {\'test/actual/assets-same-folder.html\': [\'test/files/assets.hbs\']}\n},\n</pre>\n{{/assets_two}}\n\n\n{{#assets_three}}\n<h1>Project Root</h1>\n<p>Assets folder is in the project root, which is not the same dir as dest files.</p>\n<pre>\nassets_three: {\n  options: {assets: \'\'},\n  files: {\'test/actual/assets-root.html\': [\'test/files/assets.hbs\']}\n}\n</pre>\n{{/assets_three}}\n\n\n{{#assets_four}}\n<h1>Project Root With Slash</h1>\n<p>Assets folder is in the project rool, which is not the same dir as the dest files.</p>\n<pre>\nassets_four: {\n  options: {assets: \'./\'},\n  files: {\'test/actual/assets-root-with-slash.html\': [\'test/files/assets.hbs\']}\n}\n</pre>\n{{/assets_four}}\n\n\n{{#assets_five}}\n<h1>Same Folder With Slash</h1>\n<p>Assets folder is in the same dir as dest files</p>\n<pre>\nassets_five: {\n  options: {assets: \'test/actual\'},\n  files: {\'test/actual/assets-same-folder-with-slash.html\': [\'test/files/assets.hbs\']}\n}\n</pre>\n{{/assets_five}}\n\n\n<h1>Relative Helper</h1>\n<script src="{{relative page.dest \'css\'}}/one/two/three.js"></script>\n<script src="{{relative page.dest \'js\'}}/one/two/three.js"></script>\n<script src="{{relative page.dest \'js\'}}one/two/three.js"></script>\n<script src="./{{relative page.dest \'js\'}}one/two/three.js"></script>\n\n<h1>Assets Helper</h1>\n<script src="{{assets}}one/two/three.js"></script>\n<script src="{{assets}}/one/two/three.js"></script>\n\n',
-  data: {},
-  filePair: 
-   { src: [Getter],
-     dest: 'test/actual/paths/',
-     orig: 
-      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
-        dest: 'test/actual/paths/' } } }
+{
+  "_page": "all",
+  "assets": "../assets",
+  "basename": "assets",
+  "data": {},
+  "dest": "test/actual/paths/assets.html",
+  "dirname": "test/actual/paths",
+  "ext": ".html",
+  "extname": ".html",
+  "filePair": {
+    "src": [
+      "test/fixtures/pages/alert.hbs",
+      "test/fixtures/pages/assets.hbs",
+      "test/fixtures/pages/collections-categories.hbs",
+      "test/fixtures/pages/collections-categories2.hbs",
+      "test/fixtures/pages/collections-tags-2.hbs",
+      "test/fixtures/pages/collections-tags.hbs",
+      "test/fixtures/pages/complex.hbs",
+      "test/fixtures/pages/context.hbs",
+      "test/fixtures/pages/debug-helpers.hbs",
+      "test/fixtures/pages/deep-nested-layouts.hbs",
+      "test/fixtures/pages/example.hbs",
+      "test/fixtures/pages/gist-helper.hbs",
+      "test/fixtures/pages/home.hbs",
+      "test/fixtures/pages/index.hbs",
+      "test/fixtures/pages/md-helper.hbs",
+      "test/fixtures/pages/nested-layouts.hbs",
+      "test/fixtures/pages/no-layout-none.hbs",
+      "test/fixtures/pages/no-layout.hbs",
+      "test/fixtures/pages/no-yfm.hbs",
+      "test/fixtures/pages/page.hbs",
+      "test/fixtures/pages/postprocess.hbs",
+      "test/fixtures/pages/postprocess2.hbs",
+      "test/fixtures/pages/simple3.hbs"
+    ],
+    "dest": "test/actual/paths/",
+    "orig": {
+      "src": [
+        "test/fixtures/pages/*.hbs"
+      ],
+      "dest": "test/actual/paths/"
+    }
+  },
+  "filename": "assets.html",
+  "index": 11,
+  "next": 12,
+  "page": "<p>Examples to test the \"relative\" and \"assets\" variables, and to show how they work</p>\n\n{{#assets_one}}\n<h1>\"Public\" Folder</h1>\n<p>Public (assets) folder is in the project root</p>\n<pre>\nassets_one: {\n  options: {assets: 'test/actual/public'},\n  files: {'test/actual/assets-public-folder.html': ['test/files/assets.hbs']}\n},\n</pre>\n{{/assets_one}}\n\n\n{{#assets_two}}\n<h1>Same Folder</h1>\n<p>Assets folder is in the same dir as dest files.</p>\n<pre>\nassets_two: {\n  options: {assets: 'test/actual'},\n  files: {'test/actual/assets-same-folder.html': ['test/files/assets.hbs']}\n},\n</pre>\n{{/assets_two}}\n\n\n{{#assets_three}}\n<h1>Project Root</h1>\n<p>Assets folder is in the project root, which is not the same dir as dest files.</p>\n<pre>\nassets_three: {\n  options: {assets: ''},\n  files: {'test/actual/assets-root.html': ['test/files/assets.hbs']}\n}\n</pre>\n{{/assets_three}}\n\n\n{{#assets_four}}\n<h1>Project Root With Slash</h1>\n<p>Assets folder is in the project rool, which is not the same dir as the dest files.</p>\n<pre>\nassets_four: {\n  options: {assets: './'},\n  files: {'test/actual/assets-root-with-slash.html': ['test/files/assets.hbs']}\n}\n</pre>\n{{/assets_four}}\n\n\n{{#assets_five}}\n<h1>Same Folder With Slash</h1>\n<p>Assets folder is in the same dir as dest files</p>\n<pre>\nassets_five: {\n  options: {assets: 'test/actual'},\n  files: {'test/actual/assets-same-folder-with-slash.html': ['test/files/assets.hbs']}\n}\n</pre>\n{{/assets_five}}\n\n\n<h1>Relative Helper</h1>\n<script src=\"{{relative page.dest 'css'}}/one/two/three.js\"></script>\n<script src=\"{{relative page.dest 'js'}}/one/two/three.js\"></script>\n<script src=\"{{relative page.dest 'js'}}one/two/three.js\"></script>\n<script src=\"./{{relative page.dest 'js'}}one/two/three.js\"></script>\n\n<h1>Assets Helper</h1>\n<script src=\"{{assets}}one/two/three.js\"></script>\n<script src=\"{{assets}}/one/two/three.js\"></script>\n\n",
+  "pageName": "assets.html",
+  "pagename": "assets.html",
+  "prev": 10,
+  "src": "test/fixtures/pages/assets.hbs"
+}
 </pre>
 
       <ul>

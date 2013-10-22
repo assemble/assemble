@@ -24,29 +24,71 @@
 
 ## Debug Info
 ``` json
-{ filename: 'collections-tags-2.md',
-  extname: '.md',
-  dest: 'test/actual/multi/dest1/collections-tags-2.md',
-  basename: 'collections-tags-2',
-  tags: [ 'tags', 'test', 'something', [length]: 3 ],
-  _page: 'all',
-  dirname: 'test/actual/multi/dest1',
-  data: 
-   { title: 'Tags Test',
-     tags: [ 'tags', 'test', 'something', [length]: 3 ] },
-  assets: '../../assets',
-  filePair: 
-   { src: [Getter],
-     dest: 'test/actual/multi/dest1/',
-     orig: 
-      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
-        dest: 'test/actual/multi/dest1/' } },
-  title: 'Tags Test',
-  ext: '.md',
-  pageName: 'collections-tags-2.md',
-  page: '\n\n<ul>\n{{#tags}}\n\t<li>{{tag}}</li>\n{{/tags}}\n</ul>\n',
-  src: 'test/fixtures/pages/collections-tags-2.hbs',
-  pagename: 'collections-tags-2.md' }
+{
+  "_page": "all",
+  "assets": "../../assets",
+  "basename": "collections-tags-2",
+  "data": {
+    "title": "Tags Test",
+    "tags": [
+      "tags",
+      "test",
+      "something"
+    ]
+  },
+  "dest": "test/actual/multi/dest1/collections-tags-2.md",
+  "dirname": "test/actual/multi/dest1",
+  "ext": ".md",
+  "extname": ".md",
+  "filePair": {
+    "src": [
+      "test/fixtures/pages/alert.hbs",
+      "test/fixtures/pages/assets.hbs",
+      "test/fixtures/pages/collections-categories.hbs",
+      "test/fixtures/pages/collections-categories2.hbs",
+      "test/fixtures/pages/collections-tags-2.hbs",
+      "test/fixtures/pages/collections-tags.hbs",
+      "test/fixtures/pages/complex.hbs",
+      "test/fixtures/pages/context.hbs",
+      "test/fixtures/pages/debug-helpers.hbs",
+      "test/fixtures/pages/deep-nested-layouts.hbs",
+      "test/fixtures/pages/example.hbs",
+      "test/fixtures/pages/gist-helper.hbs",
+      "test/fixtures/pages/home.hbs",
+      "test/fixtures/pages/index.hbs",
+      "test/fixtures/pages/md-helper.hbs",
+      "test/fixtures/pages/nested-layouts.hbs",
+      "test/fixtures/pages/no-layout-none.hbs",
+      "test/fixtures/pages/no-layout.hbs",
+      "test/fixtures/pages/no-yfm.hbs",
+      "test/fixtures/pages/page.hbs",
+      "test/fixtures/pages/postprocess.hbs",
+      "test/fixtures/pages/postprocess2.hbs",
+      "test/fixtures/pages/simple3.hbs"
+    ],
+    "dest": "test/actual/multi/dest1/",
+    "orig": {
+      "src": [
+        "test/fixtures/pages/*.hbs"
+      ],
+      "dest": "test/actual/multi/dest1/"
+    }
+  },
+  "filename": "collections-tags-2.md",
+  "index": 4,
+  "next": 5,
+  "page": "\n\n<ul>\n{{#tags}}\n\t<li>{{tag}}</li>\n{{/tags}}\n</ul>\n",
+  "pageName": "collections-tags-2.md",
+  "pagename": "collections-tags-2.md",
+  "prev": 3,
+  "src": "test/fixtures/pages/collections-tags-2.hbs",
+  "tags": [
+    "tags",
+    "test",
+    "something"
+  ],
+  "title": "Tags Test"
+}
 ```
 
 

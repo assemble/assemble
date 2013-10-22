@@ -24,29 +24,71 @@
 
 ## Debug Info
 ``` json
-{ filename: 'collections-categories2.md',
-  extname: '.md',
-  dest: 'test/actual/multi/dest1/collections-categories2.md',
-  basename: 'collections-categories2',
-  categories: [ 'categories', 'test', 'something', [length]: 3 ],
-  _page: 'all',
-  dirname: 'test/actual/multi/dest1',
-  data: 
-   { title: 'Categories Test',
-     categories: [ 'categories', 'test', 'something', [length]: 3 ] },
-  assets: '../../assets',
-  filePair: 
-   { src: [Getter],
-     dest: 'test/actual/multi/dest1/',
-     orig: 
-      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
-        dest: 'test/actual/multi/dest1/' } },
-  title: 'Categories Test',
-  ext: '.md',
-  pageName: 'collections-categories2.md',
-  page: '\n\n<ul>\n{{#categories}}\n  <li>{{category}}</li>\n{{/categories}}\n</ul>\n',
-  src: 'test/fixtures/pages/collections-categories2.hbs',
-  pagename: 'collections-categories2.md' }
+{
+  "_page": "all",
+  "assets": "../../assets",
+  "basename": "collections-categories2",
+  "categories": [
+    "categories",
+    "test",
+    "something"
+  ],
+  "data": {
+    "title": "Categories Test",
+    "categories": [
+      "categories",
+      "test",
+      "something"
+    ]
+  },
+  "dest": "test/actual/multi/dest1/collections-categories2.md",
+  "dirname": "test/actual/multi/dest1",
+  "ext": ".md",
+  "extname": ".md",
+  "filePair": {
+    "src": [
+      "test/fixtures/pages/alert.hbs",
+      "test/fixtures/pages/assets.hbs",
+      "test/fixtures/pages/collections-categories.hbs",
+      "test/fixtures/pages/collections-categories2.hbs",
+      "test/fixtures/pages/collections-tags-2.hbs",
+      "test/fixtures/pages/collections-tags.hbs",
+      "test/fixtures/pages/complex.hbs",
+      "test/fixtures/pages/context.hbs",
+      "test/fixtures/pages/debug-helpers.hbs",
+      "test/fixtures/pages/deep-nested-layouts.hbs",
+      "test/fixtures/pages/example.hbs",
+      "test/fixtures/pages/gist-helper.hbs",
+      "test/fixtures/pages/home.hbs",
+      "test/fixtures/pages/index.hbs",
+      "test/fixtures/pages/md-helper.hbs",
+      "test/fixtures/pages/nested-layouts.hbs",
+      "test/fixtures/pages/no-layout-none.hbs",
+      "test/fixtures/pages/no-layout.hbs",
+      "test/fixtures/pages/no-yfm.hbs",
+      "test/fixtures/pages/page.hbs",
+      "test/fixtures/pages/postprocess.hbs",
+      "test/fixtures/pages/postprocess2.hbs",
+      "test/fixtures/pages/simple3.hbs"
+    ],
+    "dest": "test/actual/multi/dest1/",
+    "orig": {
+      "src": [
+        "test/fixtures/pages/*.hbs"
+      ],
+      "dest": "test/actual/multi/dest1/"
+    }
+  },
+  "filename": "collections-categories2.md",
+  "index": 3,
+  "next": 4,
+  "page": "\n\n<ul>\n{{#categories}}\n  <li>{{category}}</li>\n{{/categories}}\n</ul>\n",
+  "pageName": "collections-categories2.md",
+  "pagename": "collections-categories2.md",
+  "prev": 2,
+  "src": "test/fixtures/pages/collections-categories2.hbs",
+  "title": "Categories Test"
+}
 ```
 
 
