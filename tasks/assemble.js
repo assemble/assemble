@@ -137,14 +137,9 @@ module.exports = function(grunt) {
     var assemblePartials = function(assemble, next) {
       grunt.verbose.writeln('Assembling partials'.cyan);
 
-      var complete = 0;
-      var increment = 10;
-
       // load partials if specified
       var partials = assemble.partials;
       if(partials && partials.length > 0) {
-        complete = 0;
-        increment = Math.round(partials.length / 10);
         grunt.verbose.write(('\n' + 'Processing partials...\n').grey);
 
         partials.forEach(function(filepath) {
@@ -167,8 +162,6 @@ module.exports = function(grunt) {
 
           // register the partial
           assemble.options.registerPartial(assemble.engine, filename, partialInfo.content);
-
-          complete++;
         });
       }
 
@@ -188,8 +181,6 @@ module.exports = function(grunt) {
       // load data if specified
       var dataFiles = assemble.dataFiles;
       if(dataFiles && dataFiles.length > 0) {
-        complete = 0;
-        increment = Math.round(dataFiles.length / 10);
         grunt.verbose.writeln(('\n' + 'Processing data...').grey);
 
         dataFiles.forEach(function(filepath) {
@@ -217,7 +208,6 @@ module.exports = function(grunt) {
                 assemble.options.data[filename] = _.extend({}, (assemble.options.data[filename] || {}), d);
               }
             }
-            complete ++;
           }
         });
       }
