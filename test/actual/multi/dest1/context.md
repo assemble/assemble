@@ -307,7 +307,7 @@
 
 
 ## Debug Info
-``` json
+<pre><code class="json">
 {
   "_page": "all",
   "assets": "../../assets",
@@ -365,7 +365,7 @@
   "src": "test/fixtures/pages/context.hbs",
   "title": "Overview"
 }
-```
+</code></pre>
 
 
 ### "{{#each pages}}" Links

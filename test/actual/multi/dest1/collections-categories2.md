@@ -23,7 +23,7 @@
 
 
 ## Debug Info
-``` json
+<pre><code class="json">
 {
   "_page": "all",
   "assets": "../../assets",
@@ -89,7 +89,7 @@
   "src": "test/fixtures/pages/collections-categories2.hbs",
   "title": "Categories Test"
 }
-```
+</code></pre>
 
 
 ### "{{#each pages}}" Links

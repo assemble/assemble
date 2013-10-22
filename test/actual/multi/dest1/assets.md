@@ -33,7 +33,7 @@
 
 
 ## Debug Info
-``` json
+<pre><code class="json">
 {
   "_page": "all",
   "assets": "../../assets",
@@ -86,7 +86,7 @@
   "prev": 10,
   "src": "test/fixtures/pages/assets.hbs"
 }
-```
+</code></pre>
 
 
 ### "{{#each pages}}" Links
