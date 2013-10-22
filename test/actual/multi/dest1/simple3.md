@@ -10,26 +10,60 @@
 
 ## Debug Info
 ``` json
-{ foo: 'bar',
-  _page: 'all',
-  dirname: 'test/actual/multi/dest1',
-  filename: 'simple3.md',
-  pageName: 'simple3.md',
-  pagename: 'simple3.md',
-  basename: 'simple3',
-  src: 'test/fixtures/pages/simple3.hbs',
-  dest: 'test/actual/multi/dest1/simple3.md',
-  assets: '../../assets',
-  ext: '.md',
-  extname: '.md',
-  page: '\n\n<span class="alert alert-info">This is an alert</span>\n',
-  data: { foo: 'bar' },
-  filePair: 
-   { src: [Getter],
-     dest: 'test/actual/multi/dest1/',
-     orig: 
-      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
-        dest: 'test/actual/multi/dest1/' } } }
+{
+  "_page": "all",
+  "assets": "../../assets",
+  "basename": "simple3",
+  "data": {
+    "foo": "bar"
+  },
+  "dest": "test/actual/multi/dest1/simple3.md",
+  "dirname": "test/actual/multi/dest1",
+  "ext": ".md",
+  "extname": ".md",
+  "filePair": {
+    "src": [
+      "test/fixtures/pages/alert.hbs",
+      "test/fixtures/pages/assets.hbs",
+      "test/fixtures/pages/collections-categories.hbs",
+      "test/fixtures/pages/collections-categories2.hbs",
+      "test/fixtures/pages/collections-tags-2.hbs",
+      "test/fixtures/pages/collections-tags.hbs",
+      "test/fixtures/pages/complex.hbs",
+      "test/fixtures/pages/context.hbs",
+      "test/fixtures/pages/debug-helpers.hbs",
+      "test/fixtures/pages/deep-nested-layouts.hbs",
+      "test/fixtures/pages/example.hbs",
+      "test/fixtures/pages/gist-helper.hbs",
+      "test/fixtures/pages/home.hbs",
+      "test/fixtures/pages/index.hbs",
+      "test/fixtures/pages/md-helper.hbs",
+      "test/fixtures/pages/nested-layouts.hbs",
+      "test/fixtures/pages/no-layout-none.hbs",
+      "test/fixtures/pages/no-layout.hbs",
+      "test/fixtures/pages/no-yfm.hbs",
+      "test/fixtures/pages/page.hbs",
+      "test/fixtures/pages/postprocess.hbs",
+      "test/fixtures/pages/postprocess2.hbs",
+      "test/fixtures/pages/simple3.hbs"
+    ],
+    "dest": "test/actual/multi/dest1/",
+    "orig": {
+      "src": [
+        "test/fixtures/pages/*.hbs"
+      ],
+      "dest": "test/actual/multi/dest1/"
+    }
+  },
+  "filename": "simple3.md",
+  "foo": "bar",
+  "index": 22,
+  "page": "\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
+  "pageName": "simple3.md",
+  "pagename": "simple3.md",
+  "prev": 21,
+  "src": "test/fixtures/pages/simple3.hbs"
+}
 ```
 
 

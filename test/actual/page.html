@@ -45,39 +45,49 @@
     <div class="container" style="display: none">
       <h2>Debug Info</h2>
       <pre class="json">
-{ filename: 'page.html',
-  extname: '.html',
-  dest: 'test/actual/page.html',
-  basename: 'page',
-  _page: 'all',
-  dirname: 'test/actual',
-  data: 
-   { title: 'Partials Test',
-     links: 
-      [ './index',
-        'dest/context',
-        'dest/basic',
-        'dest/markdown',
-        [length]: 4 ] },
-  links: 
-   [ './index',
-     'dest/context',
-     'dest/basic',
-     'dest/markdown',
-     [length]: 4 ],
-  assets: 'assets',
-  filePair: 
-   { src: [Getter],
-     dest: 'test/actual/page.html',
-     orig: 
-      { src: [ 'test/fixtures/pages/page.hbs', [length]: 1 ],
-        dest: 'test/actual/page.html' } },
-  ext: '.html',
-  title: 'Partials Test',
-  pageName: 'page.html',
-  page: '\n{{> nav }}',
-  src: 'test/fixtures/pages/page.hbs',
-  pagename: 'page.html' }
+{
+  "_page": "all",
+  "assets": "assets",
+  "basename": "page",
+  "data": {
+    "title": "Partials Test",
+    "links": [
+      "./index",
+      "dest/context",
+      "dest/basic",
+      "dest/markdown"
+    ]
+  },
+  "dest": "test/actual/page.html",
+  "dirname": "test/actual",
+  "ext": ".html",
+  "extname": ".html",
+  "filePair": {
+    "src": [
+      "test/fixtures/pages/page.hbs"
+    ],
+    "dest": "test/actual/page.html",
+    "orig": {
+      "src": [
+        "test/fixtures/pages/page.hbs"
+      ],
+      "dest": "test/actual/page.html"
+    }
+  },
+  "filename": "page.html",
+  "index": 0,
+  "links": [
+    "./index",
+    "dest/context",
+    "dest/basic",
+    "dest/markdown"
+  ],
+  "page": "\n{{> nav }}",
+  "pageName": "page.html",
+  "pagename": "page.html",
+  "src": "test/fixtures/pages/page.hbs",
+  "title": "Partials Test"
+}
 </pre>
     </div>
 

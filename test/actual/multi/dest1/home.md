@@ -31,27 +31,63 @@ Properties from "example.json" and "example.hbs" should be on the page object.
 
 ## Debug Info
 ``` json
-{ filename: 'home.md',
-  extname: '.md',
-  dest: 'test/actual/multi/dest1/home.md',
-  basename: 'home',
-  description: 'YFM description',
-  _page: 'all',
-  dirname: 'test/actual/multi/dest1',
-  data: { title: 'YFM title', description: 'YFM description' },
-  assets: '../../assets',
-  filePair: 
-   { src: [Getter],
-     dest: 'test/actual/multi/dest1/',
-     orig: 
-      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
-        dest: 'test/actual/multi/dest1/' } },
-  title: 'YFM title',
-  ext: '.md',
-  pageName: 'home.md',
-  page: '\n\nProperties from "example.json" and "example.hbs" should be on the page object.\n\n<div class="page-header">\n  <h1>{{home.title}}</h1>\n  <p class="lead">{{home.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{page.title}}</h1>\n  <p class="lead">{{page.description}}</p>\n</div>\n\n<hr>\n\n<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n\n',
-  src: 'test/fixtures/pages/home.hbs',
-  pagename: 'home.md' }
+{
+  "_page": "all",
+  "assets": "../../assets",
+  "basename": "home",
+  "data": {
+    "title": "YFM title",
+    "description": "YFM description"
+  },
+  "description": "YFM description",
+  "dest": "test/actual/multi/dest1/home.md",
+  "dirname": "test/actual/multi/dest1",
+  "ext": ".md",
+  "extname": ".md",
+  "filePair": {
+    "src": [
+      "test/fixtures/pages/alert.hbs",
+      "test/fixtures/pages/assets.hbs",
+      "test/fixtures/pages/collections-categories.hbs",
+      "test/fixtures/pages/collections-categories2.hbs",
+      "test/fixtures/pages/collections-tags-2.hbs",
+      "test/fixtures/pages/collections-tags.hbs",
+      "test/fixtures/pages/complex.hbs",
+      "test/fixtures/pages/context.hbs",
+      "test/fixtures/pages/debug-helpers.hbs",
+      "test/fixtures/pages/deep-nested-layouts.hbs",
+      "test/fixtures/pages/example.hbs",
+      "test/fixtures/pages/gist-helper.hbs",
+      "test/fixtures/pages/home.hbs",
+      "test/fixtures/pages/index.hbs",
+      "test/fixtures/pages/md-helper.hbs",
+      "test/fixtures/pages/nested-layouts.hbs",
+      "test/fixtures/pages/no-layout-none.hbs",
+      "test/fixtures/pages/no-layout.hbs",
+      "test/fixtures/pages/no-yfm.hbs",
+      "test/fixtures/pages/page.hbs",
+      "test/fixtures/pages/postprocess.hbs",
+      "test/fixtures/pages/postprocess2.hbs",
+      "test/fixtures/pages/simple3.hbs"
+    ],
+    "dest": "test/actual/multi/dest1/",
+    "orig": {
+      "src": [
+        "test/fixtures/pages/*.hbs"
+      ],
+      "dest": "test/actual/multi/dest1/"
+    }
+  },
+  "filename": "home.md",
+  "index": 12,
+  "next": 13,
+  "page": "\n\nProperties from \"example.json\" and \"example.hbs\" should be on the page object.\n\n<div class=\"page-header\">\n  <h1>{{home.title}}</h1>\n  <p class=\"lead\">{{home.description}}</p>\n</div>\n\n<hr>\n\n<div class=\"page-header\">\n  <h1>{{page.title}}</h1>\n  <p class=\"lead\">{{page.description}}</p>\n</div>\n\n<hr>\n\n<div class=\"page-header\">\n  <h1>{{title}}</h1>\n  <p class=\"lead\">{{description}}</p>\n</div>\n\n\n",
+  "pageName": "home.md",
+  "pagename": "home.md",
+  "prev": 11,
+  "src": "test/fixtures/pages/home.hbs",
+  "title": "YFM title"
+}
 ```
 
 

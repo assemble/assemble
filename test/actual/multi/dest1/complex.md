@@ -10,27 +10,63 @@
 
 ## Debug Info
 ``` json
-{ filename: 'complex.md',
-  extname: '.md',
-  dest: 'test/actual/multi/dest1/complex.md',
-  basename: 'complex',
-  _page: 'all',
-  version: 2,
-  dirname: 'test/actual/multi/dest1',
-  data: { foo: 'bar', version: 2 },
-  foo: 'bar',
-  assets: '../../assets',
-  filePair: 
-   { src: [Getter],
-     dest: 'test/actual/multi/dest1/',
-     orig: 
-      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
-        dest: 'test/actual/multi/dest1/' } },
-  ext: '.md',
-  pageName: 'complex.md',
-  page: '\n\n<span class="alert alert-info">This is an alert</span>\n',
-  src: 'test/fixtures/pages/complex.hbs',
-  pagename: 'complex.md' }
+{
+  "_page": "all",
+  "assets": "../../assets",
+  "basename": "complex",
+  "data": {
+    "foo": "bar",
+    "version": 2
+  },
+  "dest": "test/actual/multi/dest1/complex.md",
+  "dirname": "test/actual/multi/dest1",
+  "ext": ".md",
+  "extname": ".md",
+  "filePair": {
+    "src": [
+      "test/fixtures/pages/alert.hbs",
+      "test/fixtures/pages/assets.hbs",
+      "test/fixtures/pages/collections-categories.hbs",
+      "test/fixtures/pages/collections-categories2.hbs",
+      "test/fixtures/pages/collections-tags-2.hbs",
+      "test/fixtures/pages/collections-tags.hbs",
+      "test/fixtures/pages/complex.hbs",
+      "test/fixtures/pages/context.hbs",
+      "test/fixtures/pages/debug-helpers.hbs",
+      "test/fixtures/pages/deep-nested-layouts.hbs",
+      "test/fixtures/pages/example.hbs",
+      "test/fixtures/pages/gist-helper.hbs",
+      "test/fixtures/pages/home.hbs",
+      "test/fixtures/pages/index.hbs",
+      "test/fixtures/pages/md-helper.hbs",
+      "test/fixtures/pages/nested-layouts.hbs",
+      "test/fixtures/pages/no-layout-none.hbs",
+      "test/fixtures/pages/no-layout.hbs",
+      "test/fixtures/pages/no-yfm.hbs",
+      "test/fixtures/pages/page.hbs",
+      "test/fixtures/pages/postprocess.hbs",
+      "test/fixtures/pages/postprocess2.hbs",
+      "test/fixtures/pages/simple3.hbs"
+    ],
+    "dest": "test/actual/multi/dest1/",
+    "orig": {
+      "src": [
+        "test/fixtures/pages/*.hbs"
+      ],
+      "dest": "test/actual/multi/dest1/"
+    }
+  },
+  "filename": "complex.md",
+  "foo": "bar",
+  "index": 6,
+  "next": 7,
+  "page": "\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
+  "pageName": "complex.md",
+  "pagename": "complex.md",
+  "prev": 5,
+  "src": "test/fixtures/pages/complex.hbs",
+  "version": 2
+}
 ```
 
 

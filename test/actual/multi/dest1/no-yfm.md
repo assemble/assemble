@@ -14,25 +14,58 @@ There is no YAML front matter in this page.
 
 ## Debug Info
 ``` json
-{ _page: 'all',
-  dirname: 'test/actual/multi/dest1',
-  filename: 'no-yfm.md',
-  pageName: 'no-yfm.md',
-  pagename: 'no-yfm.md',
-  basename: 'no-yfm',
-  src: 'test/fixtures/pages/no-yfm.hbs',
-  dest: 'test/actual/multi/dest1/no-yfm.md',
-  assets: '../../assets',
-  ext: '.md',
-  extname: '.md',
-  page: 'There is no YAML front matter in this page.\n\n\n<div>{{noyfm.one}}</div>\n<div>{{noyfm.two}}</div>\n\n\n',
-  data: {},
-  filePair: 
-   { src: [Getter],
-     dest: 'test/actual/multi/dest1/',
-     orig: 
-      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
-        dest: 'test/actual/multi/dest1/' } } }
+{
+  "_page": "all",
+  "assets": "../../assets",
+  "basename": "no-yfm",
+  "data": {},
+  "dest": "test/actual/multi/dest1/no-yfm.md",
+  "dirname": "test/actual/multi/dest1",
+  "ext": ".md",
+  "extname": ".md",
+  "filePair": {
+    "src": [
+      "test/fixtures/pages/alert.hbs",
+      "test/fixtures/pages/assets.hbs",
+      "test/fixtures/pages/collections-categories.hbs",
+      "test/fixtures/pages/collections-categories2.hbs",
+      "test/fixtures/pages/collections-tags-2.hbs",
+      "test/fixtures/pages/collections-tags.hbs",
+      "test/fixtures/pages/complex.hbs",
+      "test/fixtures/pages/context.hbs",
+      "test/fixtures/pages/debug-helpers.hbs",
+      "test/fixtures/pages/deep-nested-layouts.hbs",
+      "test/fixtures/pages/example.hbs",
+      "test/fixtures/pages/gist-helper.hbs",
+      "test/fixtures/pages/home.hbs",
+      "test/fixtures/pages/index.hbs",
+      "test/fixtures/pages/md-helper.hbs",
+      "test/fixtures/pages/nested-layouts.hbs",
+      "test/fixtures/pages/no-layout-none.hbs",
+      "test/fixtures/pages/no-layout.hbs",
+      "test/fixtures/pages/no-yfm.hbs",
+      "test/fixtures/pages/page.hbs",
+      "test/fixtures/pages/postprocess.hbs",
+      "test/fixtures/pages/postprocess2.hbs",
+      "test/fixtures/pages/simple3.hbs"
+    ],
+    "dest": "test/actual/multi/dest1/",
+    "orig": {
+      "src": [
+        "test/fixtures/pages/*.hbs"
+      ],
+      "dest": "test/actual/multi/dest1/"
+    }
+  },
+  "filename": "no-yfm.md",
+  "index": 18,
+  "next": 19,
+  "page": "There is no YAML front matter in this page.\n\n\n<div>{{noyfm.one}}</div>\n<div>{{noyfm.two}}</div>\n\n\n",
+  "pageName": "no-yfm.md",
+  "pagename": "no-yfm.md",
+  "prev": 17,
+  "src": "test/fixtures/pages/no-yfm.hbs"
+}
 ```
 
 

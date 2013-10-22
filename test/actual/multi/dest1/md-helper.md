@@ -25,29 +25,63 @@
 
 ## Debug Info
 ``` json
-{ filename: 'md-helper.md',
-  extname: '.md',
-  dest: 'test/actual/multi/dest1/md-helper.md',
-  basename: 'md-helper',
-  description: 'Use \\{{md}} helper to pull in markdown',
-  _page: 'all',
-  dirname: 'test/actual/multi/dest1',
-  data: 
-   { title: 'md helper',
-     description: 'Use \\{{md}} helper to pull in markdown' },
-  assets: '../../assets',
-  filePair: 
-   { src: [Getter],
-     dest: 'test/actual/multi/dest1/',
-     orig: 
-      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
-        dest: 'test/actual/multi/dest1/' } },
-  title: 'md helper',
-  ext: '.md',
-  pageName: 'md-helper.md',
-  page: '\n\n<div class="page-header">\n  <h1>{{title}}</h1>\n  <p class="lead">{{description}}</p>\n</div>\n\n<p> {{{md \'./test/fixtures/pages/md.md\'}}} </p>\n\n\n\n',
-  src: 'test/fixtures/pages/md-helper.hbs',
-  pagename: 'md-helper.md' }
+{
+  "_page": "all",
+  "assets": "../../assets",
+  "basename": "md-helper",
+  "data": {
+    "title": "md helper",
+    "description": "Use \\{{md}} helper to pull in markdown"
+  },
+  "description": "Use \\{{md}} helper to pull in markdown",
+  "dest": "test/actual/multi/dest1/md-helper.md",
+  "dirname": "test/actual/multi/dest1",
+  "ext": ".md",
+  "extname": ".md",
+  "filePair": {
+    "src": [
+      "test/fixtures/pages/alert.hbs",
+      "test/fixtures/pages/assets.hbs",
+      "test/fixtures/pages/collections-categories.hbs",
+      "test/fixtures/pages/collections-categories2.hbs",
+      "test/fixtures/pages/collections-tags-2.hbs",
+      "test/fixtures/pages/collections-tags.hbs",
+      "test/fixtures/pages/complex.hbs",
+      "test/fixtures/pages/context.hbs",
+      "test/fixtures/pages/debug-helpers.hbs",
+      "test/fixtures/pages/deep-nested-layouts.hbs",
+      "test/fixtures/pages/example.hbs",
+      "test/fixtures/pages/gist-helper.hbs",
+      "test/fixtures/pages/home.hbs",
+      "test/fixtures/pages/index.hbs",
+      "test/fixtures/pages/md-helper.hbs",
+      "test/fixtures/pages/nested-layouts.hbs",
+      "test/fixtures/pages/no-layout-none.hbs",
+      "test/fixtures/pages/no-layout.hbs",
+      "test/fixtures/pages/no-yfm.hbs",
+      "test/fixtures/pages/page.hbs",
+      "test/fixtures/pages/postprocess.hbs",
+      "test/fixtures/pages/postprocess2.hbs",
+      "test/fixtures/pages/simple3.hbs"
+    ],
+    "dest": "test/actual/multi/dest1/",
+    "orig": {
+      "src": [
+        "test/fixtures/pages/*.hbs"
+      ],
+      "dest": "test/actual/multi/dest1/"
+    }
+  },
+  "filename": "md-helper.md",
+  "index": 14,
+  "next": 15,
+  "page": "\n\n<div class=\"page-header\">\n  <h1>{{title}}</h1>\n  <p class=\"lead\">{{description}}</p>\n</div>\n\n<p> {{{md './test/fixtures/pages/md.md'}}} </p>\n\n\n\n",
+  "pageName": "md-helper.md",
+  "pagename": "md-helper.md",
+  "prev": 13,
+  "src": "test/fixtures/pages/md-helper.hbs",
+  "title": "md helper"
+}
 ```
 
 

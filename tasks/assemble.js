@@ -440,6 +440,24 @@ module.exports = function(grunt) {
     var renderPages = function(assemble, next) {
       grunt.verbose.writeln(('\n' + 'Assembling pages...').yellow);
 
+      // figure out next/prev pages
+      var prevPage = null;
+      for (var i = 0; i < assemble.options.pages.length; i++) {
+
+        assemble.options.pages[i].index = i;
+
+        if (prevPage !== null) {
+          assemble.options.pages[i].prev = prevPage;
+        }
+
+        if(i < assemble.options.pages.length - 1) {
+          assemble.options.pages[i].next = i+1;
+        }
+
+        prevPage = i;
+
+      }
+
       async.forEach(assemble.options.pages, function(page, done) {
         grunt.verbose.writeln(require('util').inspect(page));
 
@@ -584,6 +602,13 @@ module.exports = function(grunt) {
       // add the list of pages back to the context so it's available in the templates
       context.pages = pages;
       context.page = currentPage;
+      context.pagination = {
+        prev: context.pages[currentPage.prev || 0],
+        next: context.pages[currentPage.next || (context.pages.length - 1)],
+        totalPages: context.pages.length,
+        currentPage: currentPage.index + 1
+      };
+
 
       // apply any data for this page to the page object
       context.page = _.extend({}, (context[currentPage.basename] || {}), currentPage.data, context.page);

@@ -11,29 +11,67 @@
 
 ## Debug Info
 ``` json
-{ one: { two: 'This is an alert' },
-  filename: 'alert.md',
-  dest: 'test/actual/multi/dest1/alert.md',
-  extname: '.md',
-  basename: 'alert',
-  _page: 'all',
-  dirname: 'test/actual/multi/dest1',
-  data: 
-   { title: 'Title for "alert.hbs"',
-     one: { two: 'This is an alert' } },
-  assets: '../../assets',
-  filePair: 
-   { src: [Getter],
-     dest: 'test/actual/multi/dest1/',
-     orig: 
-      { src: [ 'test/fixtures/pages/*.hbs', [length]: 1 ],
-        dest: 'test/actual/multi/dest1/' } },
-  title: 'Title for "alert.hbs"',
-  ext: '.md',
-  pageName: 'alert.md',
-  page: '\n\n<h2>{{{title}}}</h2>\n<span class="alert alert-info">{{{one.two}}}</span>\n',
-  src: 'test/fixtures/pages/alert.hbs',
-  pagename: 'alert.md' }
+{
+  "_page": "all",
+  "assets": "../../assets",
+  "basename": "alert",
+  "data": {
+    "title": "Title for \"alert.hbs\"",
+    "one": {
+      "two": "This is an alert"
+    }
+  },
+  "dest": "test/actual/multi/dest1/alert.md",
+  "dirname": "test/actual/multi/dest1",
+  "ext": ".md",
+  "extname": ".md",
+  "filePair": {
+    "src": [
+      "test/fixtures/pages/alert.hbs",
+      "test/fixtures/pages/assets.hbs",
+      "test/fixtures/pages/collections-categories.hbs",
+      "test/fixtures/pages/collections-categories2.hbs",
+      "test/fixtures/pages/collections-tags-2.hbs",
+      "test/fixtures/pages/collections-tags.hbs",
+      "test/fixtures/pages/complex.hbs",
+      "test/fixtures/pages/context.hbs",
+      "test/fixtures/pages/debug-helpers.hbs",
+      "test/fixtures/pages/deep-nested-layouts.hbs",
+      "test/fixtures/pages/example.hbs",
+      "test/fixtures/pages/gist-helper.hbs",
+      "test/fixtures/pages/home.hbs",
+      "test/fixtures/pages/index.hbs",
+      "test/fixtures/pages/md-helper.hbs",
+      "test/fixtures/pages/nested-layouts.hbs",
+      "test/fixtures/pages/no-layout-none.hbs",
+      "test/fixtures/pages/no-layout.hbs",
+      "test/fixtures/pages/no-yfm.hbs",
+      "test/fixtures/pages/page.hbs",
+      "test/fixtures/pages/postprocess.hbs",
+      "test/fixtures/pages/postprocess2.hbs",
+      "test/fixtures/pages/simple3.hbs"
+    ],
+    "dest": "test/actual/multi/dest1/",
+    "orig": {
+      "src": [
+        "test/fixtures/pages/*.hbs"
+      ],
+      "dest": "test/actual/multi/dest1/"
+    }
+  },
+  "filename": "alert.md",
+  "index": 1,
+  "next": 2,
+  "one": {
+    "two": "This is an alert"
+  },
+  "page": "\n\n<h2>{{{title}}}</h2>\n<span class=\"alert alert-info\">{{{one.two}}}</span>\n",
+  "pageName": "alert.md",
+  "pagename": "alert.md",
+  "prev": 0,
+  "src": "test/fixtures/pages/alert.hbs",
+  "title": "Title for \"alert.hbs\""
+}
 ```
 
 
