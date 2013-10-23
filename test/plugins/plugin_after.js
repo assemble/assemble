@@ -18,7 +18,7 @@ var after = function(params, next) {
 
 // export options
 after.options = {
-  stage: 'after'
+  stage: 'render:post:pages'
 };
 
 module.exports = after;

@@ -18,7 +18,7 @@ var before = function(params, next) {
 
 // export options
 before.options = {
-  stage: 'before'
+  stage: 'render:pre:pages'
 };
 
 module.exports = before;
