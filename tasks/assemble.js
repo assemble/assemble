@@ -64,7 +64,7 @@ module.exports = function(grunt) {
 
       // find an engine to use
       assemble.options.engine = assemble.options.engine || getEngineOf(src);
-      grunt.verbose.ok(">> Current engine:".yellow, getEngineOf(src));      
+      grunt.verbose.ok(">> Current engine:".yellow, getEngineOf(src));
       if(!assemble.options.engine) {
         grunt.warn('No compatible engine available');
         done(false);
@@ -93,10 +93,6 @@ module.exports = function(grunt) {
 
       assemble.options.initializeEngine(assemble.engine, assemble.options);
       assemble.options.registerFunctions(assemble.engine);
-
-      // save original plugins option
-      assemble.options._plugins = assemble.options.plugins;
-      assemble.options.plugins = assemble.plugins.resolve(assemble.options.plugins, assemble.options);
 
       next(assemble);
     };
@@ -473,7 +469,9 @@ module.exports = function(grunt) {
 
           grunt.verbose.writeln('Assembled ' + (page.dest).cyan +' OK'.green);
           grunt.log.notverbose.ok();
-          done();
+
+          assemble.plugins.runner('render:post:page', {grunt:grunt, assemble:assemble, page:page, content:result})(done);
+
         }); // build
 
 
@@ -485,14 +483,39 @@ module.exports = function(grunt) {
 
     grunt.verbose.writeflags(assemble.options, 'Assemble options');
 
+    // setup plugin params
+    var pluginParams = {
+      grunt: grunt,
+      assemble: assemble
+    };
+
     // assemble everything
     var assembler = assemble.init(this, grunt)
+
+      .step(assemble.plugins.buildStep('optons:pre:configuration', pluginParams))
       .step(optionsConfiguration)
+      .step(assemble.plugins.buildStep('optons:post:configuration', pluginParams))
+
+      .step(assemble.plugins.buildStep('assemble:pre:layout', pluginParams))
       .step(assembleDefaultLayout)
+      .step(assemble.plugins.buildStep('assemble:post:layout', pluginParams))
+
+      .step(assemble.plugins.buildStep('assemble:pre:partials', pluginParams))
       .step(assemblePartials)
+      .step(assemble.plugins.buildStep('assemble:post:partials', pluginParams))
+
+      .step(assemble.plugins.buildStep('assemble:pre:data', pluginParams))
       .step(assembleData)
+      .step(assemble.plugins.buildStep('assemble:post:data', pluginParams))
+
+      .step(assemble.plugins.buildStep('assemble:pre:pages', pluginParams))
       .step(assemblePages)
+      .step(assemble.plugins.buildStep('assemble:post:pages', pluginParams))
+
+      .step(assemble.plugins.buildStep('render:pre:pages', pluginParams))
       .step(renderPages)
+      .step(assemble.plugins.buildStep('render:post:pages', pluginParams))
+
       .build(function(err, results) {
         if(err) {
           grunt.warn(err);
@@ -623,16 +646,7 @@ module.exports = function(grunt) {
       //assemble.options.registerPartial(assemble.engine, 'body', page);
       page = injectBody(layout.layout, page);
 
-      async.forEachSeries(assemble.options.plugins, function (plugin, next) {
-        plugin({
-          grunt: grunt,
-          assemble: assemble,
-          context: context
-        }, next);
-      }, function (err) {
-        if(err) {
-          callback(err);
-        }
+      assemble.plugins.runner('render:pre:page', {grunt:grunt, assemble:assemble, context:context})(function() {
         assemble.engine.render(page, context, function(err, content) {
           if(err) {
             callback(err);
@@ -641,7 +655,6 @@ module.exports = function(grunt) {
           callback(null, page);
         });
       });
-
 
     } catch(err) {
       callback(err);
