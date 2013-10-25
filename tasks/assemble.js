@@ -600,13 +600,6 @@ module.exports = function(grunt) {
       // add the list of pages back to the context so it's available in the templates
       context.pages = pages;
       context.page = currentPage;
-      // context.pagination = {
-      //   prev: context.pages[currentPage.prev || 0],
-      //   next: context.pages[currentPage.next || (context.pages.length - 1)],
-      //   totalPages: context.pages.length,
-      //   currentPage: currentPage.index + 1
-      // };
-
 
       // apply any data for this page to the page object
       context.page = _.extend({}, (context[currentPage.basename] || {}), currentPage.data, context.page);
