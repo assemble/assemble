@@ -75,7 +75,7 @@ module.exports = function(grunt) {
 
       assemble.engine.load(assemble.options.engine);
 
-      var initializeEngine = function(engine, options) { engine.init(options); };
+      var initializeEngine = function(engine, options) { engine.init(options, { grunt: grunt, assemble: assemble }); };
       assemble.options.initializeEngine = assemble.options.initializeEngine || initializeEngine;
 
       var registerFunctions = function(engine) { engine.registerFunctions(); };
