@@ -16,12 +16,7 @@ Use the `postprocess` option to prettify output HTML for all targets in the task
 ```js
 assemble: {
   options: {
-    postprocess: function(src) {
-      return require('js-prettify').html(src, {
-        indent_size: 2,
-        indent_inner_html: true
-      }).replace(/(\r\n|\n\r|\n|\r){2,}/g, '\n');
-    }
+    postprocess: frequire('pretty')
   },
   site: {
     files: {
@@ -41,65 +36,11 @@ assemble: {
     // task-level options
   },
   site: {
-    // target options
-    options: {
-      postprocess: function(src) {
-        return require('js-prettify').html(src, {
-          indent_size: 2,
-          indent_inner_html: true
-        }).replace(/(\r\n|\n\r|\n|\r){2,}/g, '\n');
-      }
-    },
+    options: {postprocess: require('pretty')},
     files: {
       'site/': ['templates/site/*.hbs']
-    }
-  }
-  docs: {
-    // these files won't be prettified
-    files: {
-      'docs/': ['templates/docs/*.hbs']
     }
   }
 }
 ```
 
-### More flexibility
-
-If you want to make the function more reusable, try putting the function outside of `grunt.initConfig`:
-
-```js
-module.exports = function(grunt) {
-
-  var prettify = function(src) {
-    return require('js-prettify').html(src, {
-      indent_size: 2,
-      indent_inner_html: true
-    }).replace(/(\r\n|\n\r|\n|\r){2,}/g, '\n');
-  };
-
-  // Project configuration.
-  grunt.initConfig({
-
-    assemble: {
-      site: {
-        options: {postprocess: prettify},
-        files: {
-          'site/': ['templates/site/*.hbs']
-        }
-      },
-      docs: {
-        files: {
-          'docs/': ['templates/docs/*.hbs']
-        }
-      },
-      blog: {
-        options: {postprocess: prettify},
-        files: {
-          'blog/': ['templates/blog/*.hbs']
-        }
-      }
-    }
-  });
-  ...
-};
-```

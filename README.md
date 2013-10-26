@@ -46,6 +46,7 @@ assemble: {
 [Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
 [package.json]: https://npmjs.org/doc/json.html
 
+
 ## Options
 See the documentation for [Options](http://assemble.io/docs/Options.html) for more information.
 
@@ -56,10 +57,10 @@ Default: `undefined`
 Used with the `{{assets}}` variable to resolve the relative path from the _dest file_ to the _assets_ folder.
 
 ##### [data](http://assemble.io/docs/options-data.html)
-Type: `String|Array`
+Type: `String|Array|Object`
 Default: `src/data`
 
-Specify the data to supply to your templates. Data may be formatted in `JSON`, `YAML` or [YAML front matter](http://assemble.io/docs/YAML-front-matter.html).
+Specify the data to supply to your templates. Data may be formatted in `JSON`, `YAML`, [YAML front matter](http://assemble.io/docs/YAML-front-matter.html), or passed directly as an object. Wildcard patterns may also be used.
 
 ##### [layoutdir](http://assemble.io/docs/options-layoutdir.html)
 Type: `String`
@@ -93,36 +94,49 @@ Default: `undefined`
 
 Specifies the Handlebars partials files, or paths to the directories of files to be used.
 
+##### [plugins](http://assemble.io/plugins/)
+Type: `String|Array`
+Default: `undefined`
+
+Name of the npm module to use and/or the path(s) to any custom plugins to use. Wildcard patterns may also be used.
+
 ##### [helpers](http://assemble.io/docs/options-helpers.html)
 Type: `String|Array`
 Default: [handlebars-helpers](http://github.com/assemble/handlebars-helpers)
 
-Path to the custom helper or helpers to use with the current template engine.
+Name of the npm module to use and/or the path(s) to any custom helpers to use with the current template engine. Wildcard patterns may also be used.
 
-Assemble includes [handlebars-helpers](http://assemble.io/docs/helpers/index.html) as a dependency, so any helpers from that library may be used in your templates.
+By default, Assemble includes [handlebars-helpers](http://assemble.io/docs/helpers/index.html) as a dependency, so any helpers from that library are already available to be used in your templates.
 
 ##### postprocess
 Type: `Function`
 Default: `undefined`
 
-Function to use for post-processing generated HTML. Example:
+Function to use for post-processing generated HTML. 
+
+**Examples**
+
+First, `npm install pretty`, then add the following config to "beautify" all of the generated HTML:
+
+```js
+options: {
+  postprocess: require('pretty')
+}
+```
+
+Or, `npm install frep` and add the following config to find and replace content:
 
 ```js
 options: {
   postprocess: function(src) {
     return require('frep').replaceStr(src, [
       {
-        // replace "then" with "now"
-        pattern: "then",
-        replacement: "now"
+        // Remove leading whitespace
+        pattern: /^\s*/,
+        replacement: ""
       },
       {
-        // replace "Ruby" with "JavaScript"
-        pattern: "Ruby",
-        replacement: "JavaScript"
-      },
-      {
-        // replace "Jekyll" with "Assemble"
+        // replace "Jekyll" with "Assemble" (jk ;-)
         pattern: "Jekyll",
         replacement: "Assemble"
       }
@@ -145,9 +159,16 @@ Specify the [Marked.js options](https://github.com/chjj/marked#options-1) for th
 
 ##### [engine](http://assemble.io/docs/options-engine.html)
 Type: `String`
-Default: `Handlebars` only use this option if you are **not** using Handlebars
+Default: `Handlebars` 
 
-Specify the engine to use for compiling templates **if you are not using Handlebars**. Currently, Handlebars is already set by default, but [assemble-swig](https://github.com/assemble/assemble-swig) is available for compiling [Swig Templates](https://github.com/paularmstrong).
+Specify the engine to use for compiling templates **if you are not using Handlebars**.
+
+**PLEASE NOTE** that _this option is only necessary if either_:
+
+a. You are **not** using Handlebars, or
+b. You need to "force" Handlebars to recognize a non-default extension. See [extensions.yml](./lib/extensions.yml).
+
+Also see [assemble-swig](https://github.com/assemble/assemble-swig) for compiling [Swig Templates](https://github.com/paularmstrong).
 
 ##### flatten
 Type: `Boolean`
@@ -157,6 +178,8 @@ Remove anything after (and including) the first `.` in the destination path, the
 
 
 Visit [Assemble's documentation](http://assemble.io) for more information about options.
+
+
 
 ## Usage Examples
 Simple example of using data files in both `.json` and `.yml` format to build Handlebars templates.
@@ -210,6 +233,7 @@ assemble: {
 
 Visit [Assemble's documentation](http://assemble.io) for many more examples and pointers on getting started.
 
+
 ## Contributing
 Please see the [Contributing to Assemble](http://assemble.io/contributing) guide for information on contributing to this project.
 
@@ -228,7 +252,14 @@ Please see the [Contributing to Assemble](http://assemble.io/contributing) guide
 
 ## Release History
 
- * 2013-10-03   v0.4.10   Adds plugin support to Assemble! using the `plugins` option.
+ * 2013-10-25   v0.4.17   Adds a params object to the call to `helper.register` allowing grunt and assemble to be passed in and used from inside helpers.
+ * 2013-10-24   v0.4.16   Adds support for using wildcards with plugins stages.
+ * 2013-10-24   v0.4.15   Implements multiple plugin stages.
+ * 2013-10-21   v0.4.14   Adds support for plugins running once, before and after (thanks @adjohnson916). Adds pagination! Thanks to @xzyfer, `options.data` can now also directly accept an object of data.
+ * 2013-10-12   v0.4.13   Adds `originalAssets` property to root context to store the pre-calculated assets path
+ * 2013-10-05   v0.4.12   Fixes plugins resolving for devDependencies.
+ * 2013-10-03   v0.4.11   Adds filePair to page object. thanks @adjohnson916!
+ * 2013-10-02   v0.4.10   Adds plugin support to Assemble using the `plugins` option. thanks @adjohnson916!
  * 2013-10-02   v0.4.9   Adds `layoutext` and `postprocess` options.
  * 2013-09-30   v0.4.8   Assemble now builds 30-50% faster due to some refactoring to async and how context is calculated.
  * 2013-09-20   v0.4.7   Adds grunt-readme to make it easier to keep the readme updated using templates. Keep options.partials intact so they can be used in helpers.
@@ -254,10 +285,11 @@ Please see the [Contributing to Assemble](http://assemble.io/contributing) guide
  * 2013-03-22   v0.3.21   Valid YAML now allowed in options.data object (along with JSON)
  * 2013-03-18   v0.3.14   new relative helper for resolving relative paths
 
+
 ## License
 Copyright (c) 2013 Sellside Inc.
 Released under the [MIT License](./LICENSE-MIT).
 
 ***
 
-_This file was generated on Tuesday, October 22, 2013._
+_This file was generated on Saturday, October 26, 2013._

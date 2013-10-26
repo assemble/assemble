@@ -1,7 +1,37 @@
-v0.4.10:
+v0.4.17:
+  date: "2013-10-25"
+  changes:
+    - Adds a params object to the call to `helper.register` allowing grunt and assemble to be passed in and used from inside helpers.
+v0.4.16:
+  date: "2013-10-24"
+  changes:
+    - Adds support for using wildcards with plugins stages.
+v0.4.15:
+  date: "2013-10-24"
+  changes:
+    - Implements multiple plugin stages.
+v0.4.14:
+  date: "2013-10-21"
+  changes:
+    - Adds support for plugins running once, before and after (thanks @adjohnson916).
+    - Adds pagination!
+    - Thanks to @xzyfer, `options.data` can now also directly accept an object of data.
+v0.4.13:
+  date: "2013-10-12"
+  changes:
+    - Adds `originalAssets` property to root context to store the pre-calculated assets path
+v0.4.12:
+  date: "2013-10-05"
+  changes:
+    - Fixes plugins resolving for devDependencies.
+v0.4.11:
   date: "2013-10-03"
   changes:
-    - Adds plugin support to Assemble! using the `plugins` option.
+    - Adds filePair to page object. thanks @adjohnson916!
+v0.4.10:
+  date: "2013-10-02"
+  changes:
+    - Adds plugin support to Assemble using the `plugins` option. thanks @adjohnson916!
 v0.4.9:
   date: "2013-10-02"
   changes:
