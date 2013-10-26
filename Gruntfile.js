@@ -13,12 +13,7 @@
 
 module.exports = function(grunt) {
 
-  var prettify = function(src) {
-    return require('js-prettify').html(src, {
-      indent_size: 2,
-      indent_inner_html: true
-    }).replace(/(\r\n|\n\r|\n|\r){2,}/g, '\n');
-  };
+  var prettify = require('pretty');
 
   // Report elapsed execution time of grunt tasks.
   require('time-grunt')(grunt);
@@ -291,13 +286,6 @@ module.exports = function(grunt) {
     mochaTestConfig: {
       options: {
         reporter: 'nyan'
-      }
-    },
-
-    readme: {
-      options: {
-        sep: '',
-        docs: ['docs/']
       }
     },
 

@@ -1,7 +1,7 @@
 {
   "name": "assemble",
   "description": "Static site generator for Grunt.js and Yeoman. Assemble makes it dead simple to build modular sites, blogs, gh-pages, components and documentation from reusable templates and data.",
-  "version": "0.4.16",
+  "version": "0.4.17",
   "homepage": "http://assemble.io",
   "author": {
     "name": "Assemble",
@@ -55,8 +55,7 @@
     "grunt-contrib-jshint": "~0.6.4",
     "grunt-mocha-test": "~0.6.3",
     "grunt-readme": "~0.1.1",
-    "grunt-sync-pkg": "~0.1.0",
-    "js-prettify": "~1.4.0",
+    "pretty": "~0.1.1",
     "time-grunt": "~0.1.1"
   },
   "keywords": [
