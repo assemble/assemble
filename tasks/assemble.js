@@ -352,7 +352,7 @@ module.exports = function(grunt) {
                 };
 
                 if(pageObj.data.published === false) {
-                  grunt.log.write('\n>> Skipping "' + path.basename(srcFile).grey + '" since ' + '"published: false"'.cyan + ' was set.');
+                  grunt.log.writeln('\n>> Skipping '.yellow + '"' + path.basename(srcFile).grey + '" since ' + '"published: false"'.cyan + ' was set.');
                   return;
                 }
 
@@ -474,9 +474,9 @@ module.exports = function(grunt) {
     // assemble everything
     var assembler = assemble.init(this, grunt)
 
-      .step(assemble.plugins.buildStep('optons:pre:configuration', pluginParams))
+      .step(assemble.plugins.buildStep('options:pre:configuration', pluginParams))
       .step(optionsConfiguration)
-      .step(assemble.plugins.buildStep('optons:post:configuration', pluginParams))
+      .step(assemble.plugins.buildStep('options:post:configuration', pluginParams))
 
       .step(assemble.plugins.buildStep('assemble:pre:layout', pluginParams))
       .step(assembleDefaultLayout)

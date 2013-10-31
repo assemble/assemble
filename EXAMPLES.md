@@ -16,7 +16,7 @@ Use the `postprocess` option to prettify output HTML for all targets in the task
 ```js
 assemble: {
   options: {
-    postprocess: frequire('pretty')
+    postprocess: require('pretty')
   },
   site: {
     files: {
