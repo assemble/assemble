@@ -30,15 +30,16 @@ module.exports = function(grunt) {
     meta: {
       license: '<%= _.pluck(pkg.licenses, "type").join(", ") %>',
       copyright: 'Copyright (c) <%= grunt.template.today("yyyy") %>',
-      banner:
-        '/* \n' +
-        ' * <%= pkg.name %> v<%= pkg.version %> \n' +
-        ' * http://assemble.io \n' +
-        ' * \n' +
-        ' * <%= meta.copyright %>, <%= pkg.author.name %> \n' +
-        ' * Licensed under the <%= meta.license %> License. \n' +
-        ' * \n' +
+      banner: [
+        '/* \n',
+        ' * <%= pkg.name %> v<%= pkg.version %> \n',
+        ' * http://assemble.io \n',
+        ' * \n',
+        ' * <%= meta.copyright %>, <%= pkg.author.name %> \n',
+        ' * Licensed under the <%= meta.license %> License. \n',
+        ' * \n',
         ' */ \n\n'
+      ].join('\n')
     },
 
 
@@ -296,7 +297,6 @@ module.exports = function(grunt) {
         }
       }
     },
-
     // Example config data for "pages_array" and "pages_object" targets
     component: {
       one: "alert"
@@ -304,7 +304,8 @@ module.exports = function(grunt) {
 
 
     /**
-     * Remove files from previous build before generating new ones.
+     * Before generating any new files,
+     * remove files from the previous build
      */
     clean: {
       tests: ['test/actual/**/*.{html,md}'],
