@@ -86,7 +86,11 @@ assets_four: {
     }
   },
   "filename": "assets-root-with-slash.html",
+  "first": true,
   "index": 0,
+  "last": true,
+  "middle": false,
+  "number": 1,
   "page": "<p>Examples to test the \"relative\" and \"assets\" variables, and to show how they work</p>\n\n{{#assets_one}}\n<h1>\"Public\" Folder</h1>\n<p>Public (assets) folder is in the project root</p>\n<pre>\nassets_one: {\n  options: {assets: 'test/actual/public'},\n  files: {'test/actual/assets-public-folder.html': ['test/files/assets.hbs']}\n},\n</pre>\n{{/assets_one}}\n\n\n{{#assets_two}}\n<h1>Same Folder</h1>\n<p>Assets folder is in the same dir as dest files.</p>\n<pre>\nassets_two: {\n  options: {assets: 'test/actual'},\n  files: {'test/actual/assets-same-folder.html': ['test/files/assets.hbs']}\n},\n</pre>\n{{/assets_two}}\n\n\n{{#assets_three}}\n<h1>Project Root</h1>\n<p>Assets folder is in the project root, which is not the same dir as dest files.</p>\n<pre>\nassets_three: {\n  options: {assets: ''},\n  files: {'test/actual/assets-root.html': ['test/files/assets.hbs']}\n}\n</pre>\n{{/assets_three}}\n\n\n{{#assets_four}}\n<h1>Project Root With Slash</h1>\n<p>Assets folder is in the project rool, which is not the same dir as the dest files.</p>\n<pre>\nassets_four: {\n  options: {assets: './'},\n  files: {'test/actual/assets-root-with-slash.html': ['test/files/assets.hbs']}\n}\n</pre>\n{{/assets_four}}\n\n\n{{#assets_five}}\n<h1>Same Folder With Slash</h1>\n<p>Assets folder is in the same dir as dest files</p>\n<pre>\nassets_five: {\n  options: {assets: 'test/actual'},\n  files: {'test/actual/assets-same-folder-with-slash.html': ['test/files/assets.hbs']}\n}\n</pre>\n{{/assets_five}}\n\n\n<h1>Relative Helper</h1>\n<script src=\"{{relative page.dest 'css'}}/one/two/three.js\"></script>\n<script src=\"{{relative page.dest 'js'}}/one/two/three.js\"></script>\n<script src=\"{{relative page.dest 'js'}}one/two/three.js\"></script>\n<script src=\"./{{relative page.dest 'js'}}one/two/three.js\"></script>\n\n<h1>Assets Helper</h1>\n<script src=\"{{assets}}one/two/three.js\"></script>\n<script src=\"{{assets}}/one/two/three.js\"></script>\n\n",
   "pageName": "assets-root-with-slash.html",
   "pagename": "assets-root-with-slash.html",

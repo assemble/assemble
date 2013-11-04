@@ -63,8 +63,12 @@
     }
   },
   "filename": "index.md",
+  "first": false,
   "index": 13,
+  "last": false,
+  "middle": true,
   "next": 14,
+  "number": 14,
   "page": "{{> _header }}\n<h1> test </h1>",
   "pageName": "index.md",
   "pagename": "index.md",

@@ -57,9 +57,13 @@
     }
   },
   "filename": "complex.md",
+  "first": false,
   "foo": "bar",
   "index": 6,
+  "last": false,
+  "middle": true,
   "next": 7,
+  "number": 7,
   "page": "\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
   "pageName": "complex.md",
   "pagename": "complex.md",

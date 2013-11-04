@@ -60,8 +60,12 @@
     }
   },
   "filename": "alert.md",
+  "first": false,
   "index": 1,
+  "last": false,
+  "middle": true,
   "next": 2,
+  "number": 2,
   "one": {
     "two": "This is an alert"
   },

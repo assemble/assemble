@@ -75,8 +75,12 @@
     }
   },
   "filename": "collections-tags-2.md",
+  "first": false,
   "index": 4,
+  "last": false,
+  "middle": true,
   "next": 5,
+  "number": 5,
   "page": "\n\n<ul>\n{{#tags}}\n\t<li>{{tag}}</li>\n{{/tags}}\n</ul>\n",
   "pageName": "collections-tags-2.md",
   "pagename": "collections-tags-2.md",

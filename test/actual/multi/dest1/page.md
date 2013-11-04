@@ -74,14 +74,18 @@
     }
   },
   "filename": "page.md",
+  "first": false,
   "index": 19,
+  "last": false,
   "links": [
     "./index",
     "dest/context",
     "dest/basic",
     "dest/markdown"
   ],
+  "middle": true,
   "next": 20,
+  "number": 20,
   "page": "\n{{> nav }}",
   "pageName": "page.md",
   "pagename": "page.md",

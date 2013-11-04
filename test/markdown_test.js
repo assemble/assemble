@@ -25,7 +25,7 @@ describe('Converting Markdown files', function() {
                 "[Click here](http://github.com)";
 
 
-  var simpleExpected = "<h2>Some Markdown</h2>\n" +
+  var simpleExpected = "<h2 id=\"some-markdown\">Some Markdown</h2>\n" +
                        "<ul>\n" +
                        "<li>one</li>\n" +
                        "<li>two</li>\n" +

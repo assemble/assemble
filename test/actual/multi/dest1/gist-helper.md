@@ -4,7 +4,7 @@
 
 
 
-<h1>{{gist}} helper</h1>
+<h1 id="-gist-helper">{{gist}} helper</h1>
 <script src="https://gist.github.com/5193239.js"></script>
 
 
@@ -56,8 +56,12 @@
     }
   },
   "filename": "gist-helper.md",
+  "first": true,
   "index": 0,
+  "last": false,
+  "middle": false,
   "next": 1,
+  "number": 1,
   "page": "\n\n{{#markdown}}\n\n# \\{{gist}} helper\n{{gist '5193239'}}\n\n{{/markdown}}",
   "pageName": "gist-helper.md",
   "pagename": "gist-helper.md",

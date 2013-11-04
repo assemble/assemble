@@ -9,7 +9,7 @@
   <p class="lead">Use \{{md}} helper to pull in markdown</p>
 </div>
 
-<p> <h2>Some Markdown</h2>
+<p> <h2 id="some-markdown">Some Markdown</h2>
 <ul>
 <li>one</li>
 <li>two</li>
@@ -73,8 +73,12 @@
     }
   },
   "filename": "md-helper.md",
+  "first": false,
   "index": 14,
+  "last": false,
+  "middle": true,
   "next": 15,
+  "number": 15,
   "page": "\n\n<div class=\"page-header\">\n  <h1>{{title}}</h1>\n  <p class=\"lead\">{{description}}</p>\n</div>\n\n<p> {{{md './test/fixtures/pages/md.md'}}} </p>\n\n\n\n",
   "pageName": "md-helper.md",
   "pagename": "md-helper.md",

@@ -56,8 +56,12 @@
     }
   },
   "filename": "simple3.md",
+  "first": false,
   "foo": "bar",
   "index": 22,
+  "last": true,
+  "middle": false,
+  "number": 23,
   "page": "\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
   "pageName": "simple3.md",
   "pagename": "simple3.md",

@@ -3,7 +3,7 @@
 ## Content
 
 
-<h3>{{debug}} helper</h3>
+<h3 id="-debug-helper">{{debug}} helper</h3>
 <p>Uncomment the <code>debug</code> helper below, run <code>grunt assemble</code>, and watch the output in the command line to see how it works.</p>
 
 
@@ -55,8 +55,12 @@
     }
   },
   "filename": "debug-helpers.md",
+  "first": false,
   "index": 8,
+  "last": false,
+  "middle": true,
   "next": 9,
+  "number": 9,
   "page": "\n{{#markdown}}\n\n### \\{{debug}} helper\nUncomment the `debug` helper below, run `grunt assemble`, and watch the output in the command line to see how it works.\n{{!debug text}}\n\n{{/markdown}}\n",
   "pageName": "debug-helpers.md",
   "pagename": "debug-helpers.md",

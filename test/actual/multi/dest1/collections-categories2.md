@@ -80,8 +80,12 @@
     }
   },
   "filename": "collections-categories2.md",
+  "first": false,
   "index": 3,
+  "last": false,
+  "middle": true,
   "next": 4,
+  "number": 4,
   "page": "\n\n<ul>\n{{#categories}}\n  <li>{{category}}</li>\n{{/categories}}\n</ul>\n",
   "pageName": "collections-categories2.md",
   "pagename": "collections-categories2.md",

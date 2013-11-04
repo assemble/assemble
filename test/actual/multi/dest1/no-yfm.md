@@ -58,8 +58,12 @@ There is no YAML front matter in this page.
     }
   },
   "filename": "no-yfm.md",
+  "first": false,
   "index": 18,
+  "last": false,
+  "middle": true,
   "next": 19,
+  "number": 19,
   "page": "There is no YAML front matter in this page.\n\n\n<div>{{noyfm.one}}</div>\n<div>{{noyfm.two}}</div>\n\n\n",
   "pageName": "no-yfm.md",
   "pagename": "no-yfm.md",
