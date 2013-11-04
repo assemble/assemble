@@ -41,8 +41,14 @@ module.exports = function(grunt) {
         ' */ \n\n'
     },
 
+
+    /**
+     * Lint all JavaScript
+     */
     jshint: {
-      options: {jshintrc: '.jshintrc'},
+      options: {
+        jshintrc: '.jshintrc'
+      },
       files: [
         'Gruntfile.js',
         'lib/**/*.js',
@@ -51,6 +57,23 @@ module.exports = function(grunt) {
       ]
     },
 
+
+    /**
+     * Run mocha tests.
+     */
+    mochaTest: {
+      tests: {
+        options: {
+          reporter: 'progress',
+        },
+        src: ['test/**/*_test.js']
+      }
+    },
+
+
+    /**
+     * Assemble examples/tests
+     */
     assemble: {
       options: {
         assets: 'test/actual/assets',
@@ -279,18 +302,10 @@ module.exports = function(grunt) {
       one: "alert"
     },
 
-    // Run mocha tests.
-    mochaTest: {
-      files: ['test/**/*.js']
-    },
-    mochaTestConfig: {
-      options: {
-        reporter: 'nyan'
-      }
-    },
 
-    // Before assembling new files, removed previously
-    // created files.
+    /**
+     * Remove files from previous build before generating new ones.
+     */
     clean: {
       tests: ['test/actual/**/*.{html,md}'],
       permalinks: ['test/actual/2013/**']
