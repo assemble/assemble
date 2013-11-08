@@ -85,8 +85,12 @@
     }
   },
   "filename": "assets.html",
+  "first": false,
   "index": 11,
+  "last": false,
+  "middle": true,
   "next": 12,
+  "number": 12,
   "page": "<p>Examples to test the \"relative\" and \"assets\" variables, and to show how they work</p>\n\n{{#assets_one}}\n<h1>\"Public\" Folder</h1>\n<p>Public (assets) folder is in the project root</p>\n<pre>\nassets_one: {\n  options: {assets: 'test/actual/public'},\n  files: {'test/actual/assets-public-folder.html': ['test/files/assets.hbs']}\n},\n</pre>\n{{/assets_one}}\n\n\n{{#assets_two}}\n<h1>Same Folder</h1>\n<p>Assets folder is in the same dir as dest files.</p>\n<pre>\nassets_two: {\n  options: {assets: 'test/actual'},\n  files: {'test/actual/assets-same-folder.html': ['test/files/assets.hbs']}\n},\n</pre>\n{{/assets_two}}\n\n\n{{#assets_three}}\n<h1>Project Root</h1>\n<p>Assets folder is in the project root, which is not the same dir as dest files.</p>\n<pre>\nassets_three: {\n  options: {assets: ''},\n  files: {'test/actual/assets-root.html': ['test/files/assets.hbs']}\n}\n</pre>\n{{/assets_three}}\n\n\n{{#assets_four}}\n<h1>Project Root With Slash</h1>\n<p>Assets folder is in the project rool, which is not the same dir as the dest files.</p>\n<pre>\nassets_four: {\n  options: {assets: './'},\n  files: {'test/actual/assets-root-with-slash.html': ['test/files/assets.hbs']}\n}\n</pre>\n{{/assets_four}}\n\n\n{{#assets_five}}\n<h1>Same Folder With Slash</h1>\n<p>Assets folder is in the same dir as dest files</p>\n<pre>\nassets_five: {\n  options: {assets: 'test/actual'},\n  files: {'test/actual/assets-same-folder-with-slash.html': ['test/files/assets.hbs']}\n}\n</pre>\n{{/assets_five}}\n\n\n<h1>Relative Helper</h1>\n<script src=\"{{relative page.dest 'css'}}/one/two/three.js\"></script>\n<script src=\"{{relative page.dest 'js'}}/one/two/three.js\"></script>\n<script src=\"{{relative page.dest 'js'}}one/two/three.js\"></script>\n<script src=\"./{{relative page.dest 'js'}}one/two/three.js\"></script>\n\n<h1>Assets Helper</h1>\n<script src=\"{{assets}}one/two/three.js\"></script>\n<script src=\"{{assets}}/one/two/three.js\"></script>\n\n",
   "pageName": "assets.html",
   "pagename": "assets.html",
@@ -101,35 +105,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/gist-helper.hbs
         this.dest:     test/actual/paths/gist-helper.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: gist-helper.html
         this.pagename: gist-helper.html
         this.basename: gist-helper
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/gist-helper.hbs
+        dest:          test/actual/paths/gist-helper.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      gist-helper.html
+        pagename:      gist-helper.html
+        basename:      gist-helper
         ext:           .html
         -->
       
@@ -137,35 +138,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/alert.hbs
         this.dest:     test/actual/paths/alert.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: alert.html
         this.pagename: alert.html
         this.basename: alert
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/alert.hbs
+        dest:          test/actual/paths/alert.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      alert.html
+        pagename:      alert.html
+        basename:      alert
         ext:           .html
         -->
       
@@ -173,35 +171,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/collections-categories.hbs
         this.dest:     test/actual/paths/collections-categories.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: collections-categories.html
         this.pagename: collections-categories.html
         this.basename: collections-categories
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/collections-categories.hbs
+        dest:          test/actual/paths/collections-categories.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      collections-categories.html
+        pagename:      collections-categories.html
+        basename:      collections-categories
         ext:           .html
         -->
       
@@ -209,35 +204,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/collections-categories2.hbs
         this.dest:     test/actual/paths/collections-categories2.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: collections-categories2.html
         this.pagename: collections-categories2.html
         this.basename: collections-categories2
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/collections-categories2.hbs
+        dest:          test/actual/paths/collections-categories2.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      collections-categories2.html
+        pagename:      collections-categories2.html
+        basename:      collections-categories2
         ext:           .html
         -->
       
@@ -245,35 +237,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/collections-tags-2.hbs
         this.dest:     test/actual/paths/collections-tags-2.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: collections-tags-2.html
         this.pagename: collections-tags-2.html
         this.basename: collections-tags-2
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/collections-tags-2.hbs
+        dest:          test/actual/paths/collections-tags-2.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      collections-tags-2.html
+        pagename:      collections-tags-2.html
+        basename:      collections-tags-2
         ext:           .html
         -->
       
@@ -281,35 +270,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/collections-tags.hbs
         this.dest:     test/actual/paths/collections-tags.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: collections-tags.html
         this.pagename: collections-tags.html
         this.basename: collections-tags
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/collections-tags.hbs
+        dest:          test/actual/paths/collections-tags.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      collections-tags.html
+        pagename:      collections-tags.html
+        basename:      collections-tags
         ext:           .html
         -->
       
@@ -317,35 +303,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/complex.hbs
         this.dest:     test/actual/paths/complex.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: complex.html
         this.pagename: complex.html
         this.basename: complex
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/complex.hbs
+        dest:          test/actual/paths/complex.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      complex.html
+        pagename:      complex.html
+        basename:      complex
         ext:           .html
         -->
       
@@ -353,35 +336,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/context.hbs
         this.dest:     test/actual/paths/context.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: context.html
         this.pagename: context.html
         this.basename: context
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/context.hbs
+        dest:          test/actual/paths/context.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      context.html
+        pagename:      context.html
+        basename:      context
         ext:           .html
         -->
       
@@ -389,35 +369,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/debug-helpers.hbs
         this.dest:     test/actual/paths/debug-helpers.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: debug-helpers.html
         this.pagename: debug-helpers.html
         this.basename: debug-helpers
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/debug-helpers.hbs
+        dest:          test/actual/paths/debug-helpers.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      debug-helpers.html
+        pagename:      debug-helpers.html
+        basename:      debug-helpers
         ext:           .html
         -->
       
@@ -425,35 +402,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/deep-nested-layouts.hbs
         this.dest:     test/actual/paths/deep-nested-layouts.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: deep-nested-layouts.html
         this.pagename: deep-nested-layouts.html
         this.basename: deep-nested-layouts
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/deep-nested-layouts.hbs
+        dest:          test/actual/paths/deep-nested-layouts.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      deep-nested-layouts.html
+        pagename:      deep-nested-layouts.html
+        basename:      deep-nested-layouts
         ext:           .html
         -->
       
@@ -461,35 +435,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/example.hbs
         this.dest:     test/actual/paths/example.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: example.html
         this.pagename: example.html
         this.basename: example
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/example.hbs
+        dest:          test/actual/paths/example.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      example.html
+        pagename:      example.html
+        basename:      example
         ext:           .html
         -->
       
@@ -497,35 +468,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/assets.hbs
         this.dest:     test/actual/paths/assets.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: assets.html
         this.pagename: assets.html
         this.basename: assets
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/assets.hbs
+        dest:          test/actual/paths/assets.html
         dirname:       test/actual/paths
         filename:      assets.html
         pagename:      assets.html
         basename:      assets
-        extname:       .html
         ext:           .html
         -->
       
@@ -533,35 +501,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/home.hbs
         this.dest:     test/actual/paths/home.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: home.html
         this.pagename: home.html
         this.basename: home
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/home.hbs
+        dest:          test/actual/paths/home.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      home.html
+        pagename:      home.html
+        basename:      home
         ext:           .html
         -->
       
@@ -569,35 +534,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/index.hbs
         this.dest:     test/actual/paths/index.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: index.html
         this.pagename: index.html
         this.basename: index
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/index.hbs
+        dest:          test/actual/paths/index.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      index.html
+        pagename:      index.html
+        basename:      index
         ext:           .html
         -->
       
@@ -605,35 +567,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/md-helper.hbs
         this.dest:     test/actual/paths/md-helper.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: md-helper.html
         this.pagename: md-helper.html
         this.basename: md-helper
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/md-helper.hbs
+        dest:          test/actual/paths/md-helper.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      md-helper.html
+        pagename:      md-helper.html
+        basename:      md-helper
         ext:           .html
         -->
       
@@ -641,35 +600,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/nested-layouts.hbs
         this.dest:     test/actual/paths/nested-layouts.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: nested-layouts.html
         this.pagename: nested-layouts.html
         this.basename: nested-layouts
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/nested-layouts.hbs
+        dest:          test/actual/paths/nested-layouts.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      nested-layouts.html
+        pagename:      nested-layouts.html
+        basename:      nested-layouts
         ext:           .html
         -->
       
@@ -677,35 +633,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/no-layout-none.hbs
         this.dest:     test/actual/paths/no-layout-none.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: no-layout-none.html
         this.pagename: no-layout-none.html
         this.basename: no-layout-none
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/no-layout-none.hbs
+        dest:          test/actual/paths/no-layout-none.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      no-layout-none.html
+        pagename:      no-layout-none.html
+        basename:      no-layout-none
         ext:           .html
         -->
       
@@ -713,35 +666,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/no-layout.hbs
         this.dest:     test/actual/paths/no-layout.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: no-layout.html
         this.pagename: no-layout.html
         this.basename: no-layout
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/no-layout.hbs
+        dest:          test/actual/paths/no-layout.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      no-layout.html
+        pagename:      no-layout.html
+        basename:      no-layout
         ext:           .html
         -->
       
@@ -749,35 +699,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/no-yfm.hbs
         this.dest:     test/actual/paths/no-yfm.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: no-yfm.html
         this.pagename: no-yfm.html
         this.basename: no-yfm
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/no-yfm.hbs
+        dest:          test/actual/paths/no-yfm.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      no-yfm.html
+        pagename:      no-yfm.html
+        basename:      no-yfm
         ext:           .html
         -->
       
@@ -785,35 +732,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/page.hbs
         this.dest:     test/actual/paths/page.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: page.html
         this.pagename: page.html
         this.basename: page
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/page.hbs
+        dest:          test/actual/paths/page.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      page.html
+        pagename:      page.html
+        basename:      page
         ext:           .html
         -->
       
@@ -821,35 +765,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/postprocess.hbs
         this.dest:     test/actual/paths/postprocess.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: postprocess.html
         this.pagename: postprocess.html
         this.basename: postprocess
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/postprocess.hbs
+        dest:          test/actual/paths/postprocess.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      postprocess.html
+        pagename:      postprocess.html
+        basename:      postprocess
         ext:           .html
         -->
       
@@ -857,35 +798,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/postprocess2.hbs
         this.dest:     test/actual/paths/postprocess2.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: postprocess2.html
         this.pagename: postprocess2.html
         this.basename: postprocess2
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/postprocess2.hbs
+        dest:          test/actual/paths/postprocess2.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      postprocess2.html
+        pagename:      postprocess2.html
+        basename:      postprocess2
         ext:           .html
         -->
       
@@ -893,35 +831,32 @@
         <!--
         "this"
         ===============================
+        this.src:      test/fixtures/pages/simple3.hbs
         this.dest:     test/actual/paths/simple3.html
-        this.absolute: 
         this.dirname:  test/actual/paths
         this.filename: simple3.html
         this.pagename: simple3.html
         this.basename: simple3
-        this.extname:  .html
         this.ext:      .html
 
         "page"
         ===============================
+        page.src:      test/fixtures/pages/assets.hbs
         page.dest:     test/actual/paths/assets.html
-        page.absolute: 
         page.dirname:  test/actual/paths
         page.filename: assets.html
         page.pagename: assets.html
         page.basename: assets
-        page.extname:  .html
         page.ext:      .html
 
         "root"
         ===============================
-        dest:          
-        absolute:      test/actual/paths/assets.html
+        dest:          test/fixtures/pages/simple3.hbs
+        dest:          test/actual/paths/simple3.html
         dirname:       test/actual/paths
-        filename:      assets.html
-        pagename:      assets.html
-        basename:      assets
-        extname:       .html
+        filename:      simple3.html
+        pagename:      simple3.html
+        basename:      simple3
         ext:           .html
         -->
       

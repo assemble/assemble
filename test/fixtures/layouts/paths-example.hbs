@@ -17,40 +17,37 @@
 
       <ul>
       {{#each pages}}
-        <li><a href="{{relative ../page.dest this.dest}}">{{this.basename}}</a></li>
+        <li><a href="{{relative ../page.dest this.dest}}">{{basename}}</a></li>
         <!--
         "this"
         ===============================
+        this.src:      {{this.src}}
         this.dest:     {{this.dest}}
-        this.absolute: {{this.absolute}}
         this.dirname:  {{this.dirname}}
         this.filename: {{this.filename}}
         this.pagename: {{this.pagename}}
         this.basename: {{this.basename}}
-        this.extname:  {{this.extname}}
         this.ext:      {{this.ext}}
 
         "page"
         ===============================
+        page.src:      {{../page.src}}
         page.dest:     {{../page.dest}}
-        page.absolute: {{../page.absolute}}
         page.dirname:  {{../page.dirname}}
         page.filename: {{../page.filename}}
         page.pagename: {{../page.pagename}}
         page.basename: {{../page.basename}}
-        page.extname:  {{../page.extname}}
         page.ext:      {{../page.ext}}
 
         "root"
         ===============================
-        dest:          {{../dest}}
-        absolute:      {{../absolute}}
-        dirname:       {{../dirname}}
-        filename:      {{../filename}}
-        pagename:      {{../pagename}}
-        basename:      {{../basename}}
-        extname:       {{../extname}}
-        ext:           {{../ext}}
+        dest:          {{src}}
+        dest:          {{dest}}
+        dirname:       {{dirname}}
+        filename:      {{filename}}
+        pagename:      {{pagename}}
+        basename:      {{basename}}
+        ext:           {{ext}}
         -->
       {{/each}}
       </ul>

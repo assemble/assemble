@@ -452,8 +452,13 @@ module.exports = function(grunt) {
           grunt.verbose.writeln('Assembled ' + (page.dest).cyan +' OK'.green);
           grunt.log.notverbose.ok();
 
-          assemble.plugins.runner('render:post:page', {grunt:grunt, assemble:assemble, page:page, content:result})(done);
-
+          // Run any plugins for the 'render:post:page' stage
+          assemble.plugins.runner('render:post:page', {
+            grunt: grunt,       // the `grunt` object
+            assemble: assemble, // the `assemble` object
+            page: page,         // the raw page
+            content: result     // the rendered page
+          })(done);
         }); // build
 
 
@@ -474,26 +479,32 @@ module.exports = function(grunt) {
     // assemble everything
     var assembler = assemble.init(this, grunt)
 
+      // Options configuration
       .step(assemble.plugins.buildStep('options:pre:configuration', pluginParams))
       .step(optionsConfiguration)
       .step(assemble.plugins.buildStep('options:post:configuration', pluginParams))
 
+      // Assemble layout
       .step(assemble.plugins.buildStep('assemble:pre:layout', pluginParams))
       .step(assembleDefaultLayout)
       .step(assemble.plugins.buildStep('assemble:post:layout', pluginParams))
 
+      // Assemble partials
       .step(assemble.plugins.buildStep('assemble:pre:partials', pluginParams))
       .step(assemblePartials)
       .step(assemble.plugins.buildStep('assemble:post:partials', pluginParams))
 
+      // Assemble data
       .step(assemble.plugins.buildStep('assemble:pre:data', pluginParams))
       .step(assembleData)
       .step(assemble.plugins.buildStep('assemble:post:data', pluginParams))
 
+      // Assemble pages
       .step(assemble.plugins.buildStep('assemble:pre:pages', pluginParams))
       .step(assemblePages)
       .step(assemble.plugins.buildStep('assemble:post:pages', pluginParams))
 
+      // Render pages
       .step(assemble.plugins.buildStep('render:pre:pages', pluginParams))
       .step(renderPages)
       .step(assemble.plugins.buildStep('render:post:pages', pluginParams))
@@ -617,13 +628,16 @@ module.exports = function(grunt) {
       context.basename = currentPage.basename;
       context.extname  = currentPage.ext;
 
-
-      //assemble.options.registerPartial(assemble.engine, 'body', page);
       page = injectBody(layout.layout, page);
 
-      assemble.plugins.runner('render:pre:page', {grunt:grunt, assemble:assemble, context:context})(function() {
-        assemble.engine.render(page, context, function(err, content) {
-          if(err) {
+      // Run any plugins for the 'render:pre:page' stage
+      assemble.plugins.runner('render:pre:page', {
+        grunt: grunt,
+        assemble: assemble,
+        context: context
+      })(function () {
+        assemble.engine.render(page, context, function (err, content) {
+          if (err) {
             callback(err);
           }
           page = content;

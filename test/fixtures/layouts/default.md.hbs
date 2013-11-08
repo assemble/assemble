@@ -10,49 +10,59 @@
 
 
 ### "\{{#each pages}}" Links
-{{#each pages}}[{{this.basename}}]({{relative ../page.dest this.dest}})
+{{#each pages}}[{{this.basename}}]({{relative ../page.dest dest}})
 {{/each}}
 
+
+### \{{#each pages}} "root" context
+{{#each pages}}
+#### {{filename}}
+src:      {{src}}
+dest:     {{dest}}
+assets:   {{assets}}
+dirname:  {{dirname}}
+filename: {{filename}}
+pagename: {{pagename}}
+basename: {{basename}}
+ext:      {{ext}}
+{{/each}}
 
 ### \{{#each pages}} "this" context
 {{#each pages}}
 #### {{this.filename}}
-this.assets:   {{this.assets}}
+this.src:      {{this.src}}
 this.dest:     {{this.dest}}
-this.absolute:
+this.assets:   {{this.assets}}
 this.dirname:  {{this.dirname}}
 this.filename: {{this.filename}}
 this.pagename: {{this.pagename}}
 this.basename: {{this.basename}}
-this.extname:  {{this.extname}}
 this.ext:      {{this.ext}}
-{{/each}}
-
-### \{{#each pages}}
-{{#each pages}}
-#### {{../filename}}
-page.assets:   {{../page.assets}}
-page.dest:     {{../page.dest}}
-page.absolute: {{../page.absolute}}
-page.dirname:  {{../page.dirname}}
-page.filename: {{../page.filename}}
-page.pagename: {{../page.pagename}}
-page.basename: {{../page.basename}}
-page.extname:  {{../page.extname}}
-page.ext:      {{../page.ext}}
 {{/each}}
 
 ### \{{#each pages}} "page" context
 {{#each pages}}
 #### {{../filename}}
-assets:        {{../assets}}
-dest:          {{../dest}}
-absolute:      {{../absolute}}
-dirname:       {{../dirname}}
-filename:      {{../filename}}
-pagename:      {{../pagename}}
-basename:      {{../basename}}
-extname:       {{../extname}}
-ext:           {{../ext}}
+page.src:      {{../page.src}}
+page.dest:     {{../page.dest}}
+page.assets:   {{../page.assets}}
+page.dirname:  {{../page.dirname}}
+page.filename: {{../page.filename}}
+page.pagename: {{../page.pagename}}
+page.basename: {{../page.basename}}
+page.ext:      {{../page.ext}}
+{{/each}}
+
+### \{{#each pages}} "root" context
+{{#each pages}}
+#### {{filename}}
+src:           {{src}}
+dest:          {{dest}}
+assets:        {{assets}}
+dirname:       {{dirname}}
+filename:      {{filename}}
+pagename:      {{pagename}}
+basename:      {{basename}}
+ext:           {{ext}}
 {{/each}}
 
