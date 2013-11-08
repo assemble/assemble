@@ -34,7 +34,7 @@ describe("plugins", function() {
     it('should load plugins as functions', function() {
       var plugin = function () {};
       var plugins = assemble.plugins.resolve([plugin]);
-      
+
       expect(plugins.length).to.equal(1);
       expect(plugins[0]).to.be.a('function');
     });
@@ -42,23 +42,23 @@ describe("plugins", function() {
   });
 
   describe("examples: ", function () {
-    
+
     describe("before :", function () {
 
       it('should run once and first', function() {
-        var contents = grunt.file.read('./test/actual/plugins/before.html');
+        var contents = grunt.file.read('./test/actual/plugin_before.html');
         expect(contents).to.equal('\n\nBEFORE TITLE 1');
       });
-      
+
     });
 
     describe("after :", function () {
 
       it('should run once and last', function() {
-        var contents = grunt.file.read('./test/actual/plugins/after.html');
+        var contents = grunt.file.read('./test/actual/plugin_after.html');
         expect(contents).to.equal('AFTER OVERWRITE 1');
       });
-      
+
     });
 
   });

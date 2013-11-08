@@ -91,7 +91,7 @@ module.exports = function(grunt) {
           layoutext: '.hbs'
         },
         files: {
-          'test/actual/paths/': ['test/fixtures/pages/layoutext/layoutext.hbs']
+          'test/actual/layout_ext/': ['test/fixtures/pages/layoutext/layoutext.hbs']
         }
       },
       // Register custom helpers
@@ -102,15 +102,15 @@ module.exports = function(grunt) {
           postprocess: prettify
         },
         files: {
-          'test/actual/': ['test/fixtures/helpers/{foo,bar,opt}.hbs']
+          'test/actual/custom_helpers/': ['test/fixtures/helpers/{foo,bar,opt}.hbs']
         }
       },
       plugin_untitled: {
         options: {
-          plugins: ['./test/plugins/untitled.js']
+          plugins: ['./test/plugins/untitled.js'],
         },
         files: {
-          'test/actual/plugins/untitled.html': 'test/fixtures/plugins/untitled.hbs'
+          'test/actual/plugin_untitled.html': 'test/fixtures/plugins/untitled.hbs'
         }
       },
       plugin_before: {
@@ -118,7 +118,7 @@ module.exports = function(grunt) {
           plugins: ['./test/plugins/plugin_before.js']
         },
         files: {
-          'test/actual/plugins/before.html': 'test/fixtures/plugins/before.hbs'
+          'test/actual/plugin_before.html': 'test/fixtures/plugins/before.hbs'
         }
       },
       plugin_after: {
@@ -126,7 +126,7 @@ module.exports = function(grunt) {
           plugins: ['./test/plugins/plugin_after.js']
         },
         files: {
-          'test/actual/plugins/after.html': 'test/fixtures/plugins/after.hbs'
+          'test/actual/plugin_after.html': 'test/fixtures/plugins/after.hbs'
         }
       },
       // Path construction based on built-in variables
@@ -166,7 +166,7 @@ module.exports = function(grunt) {
           partials: 'test/fixtures/partials/*.hbs'
         },
         files: {
-          'test/actual/page.html': ['test/fixtures/pages/page.hbs']
+          'test/actual/single_page.html': ['test/fixtures/pages/page.hbs']
         }
       },
       // YAML front matter
@@ -186,7 +186,7 @@ module.exports = function(grunt) {
           data: 'test/fixtures/data/*.{json,yml}'
         },
         files: {
-          'test/actual/yfm/': ['test/fixtures/pages/no-yfm.hbs']
+          'test/actual/noyfm/': ['test/fixtures/pages/no-yfm.hbs']
         }
       },
       markdown: {
@@ -196,7 +196,7 @@ module.exports = function(grunt) {
           ext: '.md'
         },
         files: {
-          'test/actual/multi/dest1/': ['test/fixtures/pages/*.hbs']
+          'test/actual/markdown/': ['test/fixtures/pages/*.hbs']
         }
       },
 
@@ -204,31 +204,31 @@ module.exports = function(grunt) {
       assets_one: {
         options: {assets: 'test/actual/public', assets_one: true},
         files: {
-          'test/actual/assets-public-folder.html': ['test/fixtures/pages/assets.hbs']
+          'test/actual/assets_one.html': ['test/fixtures/pages/assets.hbs']
         }
       },
       assets_two: {
         options: {assets: 'test/actual', assets_two: true},
         files: {
-          'test/actual/assets-same-folder.html': ['test/fixtures/pages/assets.hbs']
+          'test/actual/assets_two.html': ['test/fixtures/pages/assets.hbs']
         }
       },
       assets_three: {
         options: {assets: '', assets_three: true},
         files: {
-          'test/actual/assets-root.html': ['test/fixtures/pages/assets.hbs']
+          'test/actual/assets_three.html': ['test/fixtures/pages/assets.hbs']
         }
       },
       assets_four: {
         options: {assets: './', assets_four: true},
         files: {
-          'test/actual/assets-root-with-slash.html': ['test/fixtures/pages/assets.hbs']
+          'test/actual/assets_four.html': ['test/fixtures/pages/assets.hbs']
         }
       },
       assets_five: {
         options: {assets: 'test/actual/', assets_five: true},
         files: {
-          'test/actual/assets-same-folder-with-slash.html': ['test/fixtures/pages/assets.hbs']
+          'test/actual/assets_five.html': ['test/fixtures/pages/assets.hbs']
         }
       },
       // Collections
@@ -244,9 +244,9 @@ module.exports = function(grunt) {
           ]
         },
         files: {
-          'test/actual/multi/dest1/': ['test/fixtures/pages/*.hbs'],
-          'test/actual/multi/dest2/': ['test/fixtures/pages/*.md'],
-          'test/actual/multi/dest2/sub-dest/': ['test/fixtures/pages/*.hbs']
+          'test/actual/collections/dest1/': ['test/fixtures/pages/*.hbs'],
+          'test/actual/collections/dest2/': ['test/fixtures/pages/*.md'],
+          'test/actual/collections/dest2/sub-dest/': ['test/fixtures/pages/*.hbs']
         }
       },
       // Pages collections
@@ -260,7 +260,7 @@ module.exports = function(grunt) {
           pages: '<%= config.pages.one %>'
         },
         files: {
-          'test/actual/blog/': ['test/fixtures/pages/blog/index.hbs']
+          'test/actual/pages_array/': ['test/fixtures/pages/blog/index.hbs']
         }
       },
       pages_object: {
@@ -273,7 +273,7 @@ module.exports = function(grunt) {
           pages: '<%= config.pages.two %>'
         },
         files: {
-          'test/actual/object-blog/': ['test/fixtures/pages/blog/index.hbs']
+          'test/actual/pages_object/': ['test/fixtures/pages/blog/index.hbs']
         }
       },
       pages_metadata: {
@@ -286,17 +286,18 @@ module.exports = function(grunt) {
           pages: '<%= config.pages.three %>'
         },
         files: {
-          'test/actual/metadata-blog/': ['test/fixtures/pages/blog/index.hbs']
+          'test/actual/pages_metadata/': ['test/fixtures/pages/blog/index.hbs']
         }
       },
       // Nested layouts
       nested_layouts: {
         options: {layout: 'one.hbs'},
         files: {
-          'test/actual/nested-layouts/': ['test/fixtures/pages/*.hbs']
+          'test/actual/nested_layouts/': ['test/fixtures/pages/*.hbs']
         }
       }
     },
+
     // Example config data for "pages_array" and "pages_object" targets
     component: {
       one: "alert"
