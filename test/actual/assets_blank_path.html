@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>YAML Test | Site title not found</title>
+    <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../validation.css">
+  </head>
+  <body style="padding-top: 60px;">
+    <section id="validate"></section>
+
+    <div class="container">
+      <div class="categories">
+        <h2>Categories</h2>
+        <ul>
+        
+        </ul>
+      </div>
+      <p>Examples to test the "relative" and "assets" variables, and to show how they work</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>Same Folder With Slash</h1>
+<p>Assets folder is in the same dir as dest files</p>
+<pre>
+assets_blank_path: {
+  options: {assets: 'test/actual'},
+  files: {'test/actual/assets_blank_path.html': ['test/files/assets.hbs']}
+}
+</pre>
+
+    </div>
+
+    <div class="container" style="display: none">
+      <h2>Content</h2>
+      <ul>
+        <li><a href="assets_blank_path.html">assets</a></li>
+        
+      </ul>
+    </div>
+
+    <div class="container" style="display: none">
+      <h2>Debug Info</h2>
+      <pre><code class="json">
+{
+  "_page": "all",
+  "assets": "../..",
+  "basename": "assets",
+  "data": {},
+  "dest": "test/actual/assets_blank_path.html",
+  "dirname": "test/actual",
+  "ext": ".html",
+  "extname": ".html",
+  "filePair": {
+    "src": [
+      "test/fixtures/assets_path/assets.hbs"
+    ],
+    "dest": "test/actual/assets_blank_path.html",
+    "orig": {
+      "src": [
+        "test/fixtures/assets_path/assets.hbs"
+      ],
+      "dest": "test/actual/assets_blank_path.html"
+    }
+  },
+  "filename": "assets_blank_path.html",
+  "first": true,
+  "index": 0,
+  "last": true,
+  "middle": false,
+  "number": 1,
+  "page": "<p>Examples to test the \"relative\" and \"assets\" variables, and to show how they work</p>\n\n{{#assets_nested}}\n<h1>\"Public\" Folder</h1>\n<p>Public (assets) folder is in the project root</p>\n<pre>\noriginalAssets: {{originalAssets}}\nassets: {{assets}}\ndest: {{dest}}\nsrc: {{src}}\nassets_nested: {\n  options: {assets: 'test/actual/public'},\n  files: {'test/actual/assets_nested.html': ['test/files/assets.hbs']}\n},\n</pre>\n{{/assets_nested}}\n\n\n{{#assets_base}}\n<h1>Same Folder</h1>\n<p>Assets folder is in the same dir as dest files.</p>\n<pre>\nassets_base: {\n  options: {assets: 'test/actual'},\n  files: {'test/actual/assets_base.html': ['test/files/assets.hbs']}\n},\n</pre>\n{{/assets_base}}\n\n\n{{#assets_trailing_slash}}\n<h1>Project Root</h1>\n<p>Assets folder is in the project root, which is not the same dir as dest files.</p>\n<pre>\nassets_trailing_slash: {\n  options: {assets: ''},\n  files: {'test/actual/assets_trailing_slash.html': ['test/files/assets.hbs']}\n}\n</pre>\n{{/assets_trailing_slash}}\n\n\n{{#assets_dot_slash}}\n<h1>Project Root With Slash</h1>\n<p>Assets folder is in the project rool, which is not the same dir as the dest files.</p>\n<pre>\nassets_dot_slash: {\n  options: {assets: './'},\n  files: {'test/actual/assets_dot_slash.html': ['test/files/assets.hbs']}\n}\n</pre>\n{{/assets_dot_slash}}\n\n\n{{#assets_blank_path}}\n<h1>Same Folder With Slash</h1>\n<p>Assets folder is in the same dir as dest files</p>\n<pre>\nassets_blank_path: {\n  options: {assets: 'test/actual'},\n  files: {'test/actual/assets_blank_path.html': ['test/files/assets.hbs']}\n}\n</pre>\n{{/assets_blank_path}}",
+  "pageName": "assets_blank_path.html",
+  "pagename": "assets_blank_path.html",
+  "src": "test/fixtures/assets_path/assets.hbs"
+}
+</code></pre>
+    </div>
+
+  </body>
+</html>
