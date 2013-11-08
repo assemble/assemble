@@ -14,6 +14,20 @@
 {{/each}}
 
 
+### \{{#each pages}} "root" context
+{{#each pages}}
+#### {{filename}}
+assets:   {{assets}}
+dest:     {{dest}}
+absolute:
+dirname:  {{dirname}}
+filename: {{filename}}
+pagename: {{pagename}}
+basename: {{basename}}
+extname:  {{extname}}
+ext:      {{ext}}
+{{/each}}
+
 ### \{{#each pages}} "this" context
 {{#each pages}}
 #### {{this.filename}}
