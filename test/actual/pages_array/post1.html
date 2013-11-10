@@ -2,15 +2,80 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>A Blog</title>
-    <link href="http://libs.github.io/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <meta name="author" content="Jon Schlinkert">
+    <meta name="author" content="">
+    <title>Layout name: ''</title>
+    <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/validation.css">
   </head>
   <body>
-    
-      <script src="https://gist.github.com/5898072.js"></script>
-    
-    This "content" property is optional and would get passed into the `body` tag. But if you only need to pass the page"s metadata to the layout then the content property is unnecessary.
-    <script src="http://libs.github.io/bootstrap/css/bootstrap.min.js"></script>
+    <div class="container">
+      <section id="validate"></section>
+      <div class="row">
+        <!-- Column: sidebar -->
+        <div class="col-md-3">
+          <div class="bs-sidebar hidden-print" role="complementary">
+            <!-- pagination -->
+            <ul class="nav nav-pills nav-stacked">
+
+  
+
+  
+    <li class="prev">
+      <a href="index.html">First</a>
+    </li>
+    <li class="prev">
+      <a href="index.html">&larr; Previous</a>
+    </li>
+  
+
+  
+    <li>
+      <a href="index.html">1</a>
+    </li>
+  
+    <li class="active">
+      <a href="post1.html">2</a>
+    </li>
+  
+    <li>
+      <a href="post2.html">3</a>
+    </li>
+  
+    <li>
+      <a href="post3.html">4</a>
+    </li>
+  
+
+  
+    <li class="next">
+      <a href="post2.html">Next &rarr;</a>
+    </li>
+    <li class="next">
+      <a href="post3.html">Last</a>
+    </li>
+  
+
+  
+
+</ul>
+          </div>
+        </div>
+        <!-- Column: content -->
+        <div class="col-md-9" role="main">
+          <div class="docs-section">
+            <div class="docs-header" id="content">
+              <h3>Layout: No layout was used.</h3>
+              <h3>Template: post1</h3>
+            </div>
+            
+              <script src="https://gist.github.com/5898072.js"></script>
+            
+            This "content" property is optional and would get passed into the `body` tag. But if you only need to pass the page"s metadata to the layout then the content property is unnecessary.
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../../assets/validation.js"></script>
   </body>
 </html>
+
