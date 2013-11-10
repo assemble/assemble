@@ -1,40 +1,75 @@
 ---
 title: Context
 description: The variables on this page are in shown in different contexts.
+categories:
+- context
+- pages
+- fixtures
+items:
+- alpha
+- omega
 ---
+<style>
+.context-test > li {
+  position: relative;
+  line-height: 1.8;
+}
+.context-test > li > a:after {
+  position: absolute;
+  left: auto;
+  right: auto;
+  content: attr(data-context);
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+  padding: 2px 4px;
+  margin-left: 10px;
+  line-height: 1.5;
+  font-size: 90%;
+  color: #C7254E;
+  white-space: nowrap;
+  background-color: #F9F2F4;
+  border-radius: 4px;
+  clear: both;
+}
+</style>
 
-<li><a href="#" id="title">{{title}}</a></li>
-<li><a href="#" id="this-title">{{this.title}}</a></li>
-<li><a href="#" id="page-title">{{page.title}}</a></li>
-<li><a href="#" id="data-title">{{data.title}}</a></li>
+<p>If a list item is empty, or rather only has a label and no link, then the variable did not populate a value.</p>
+
+<ul class="context-test">
+  <li><a href="#" data-context="title">{{title}}</a></li>
+  <li><a href="#" data-context="this.title">{{this.title}}</a></li>
+  <li><a href="#" data-context="page.title">{{page.title}}</a></li>
+  <li><a href="#" data-context="data.title">{{data.title}}</a></li>
+</ul>
 
 <hr>
 
-<li><a href="#" id="basename">{{basename}}</a></li>
-<li><a href="#" id="this-basename">{{this.basename}}</a></li>
-<li><a href="#" id="page-basename">{{page.basename}}</a></li>
-<li><a href="#" id="data-basename">{{data.basename}}</a></li>
+<ul class="context-test">
+  <li><a href="#" data-context="basename">{{basename}}</a></li>
+  <li><a href="#" data-context="this.basename">{{this.basename}}</a></li>
+  <li><a href="#" data-context="page.basename">{{page.basename}}</a></li>
+  <li><a href="#" data-context="data.basename">{{data.basename}}</a></li>
+</ul>
 
 <hr>
 
-<ul id="basename-collection">
+<ul class="context-test">
 {{#each pages}}
-  <li><a href="#" id="basename">{{basename}}</a></li>
-  <li><a href="#" id="parent-basename">{{../basename}}</a></li>
-  <li><a href="#" id="this-basename">{{this.basename}}</a></li>
-  <li><a href="#" id="page-basename">{{page.basename}}</a></li>
-  <li><a href="#" id="data-basename">{{data.basename}}</a></li>
+  <li><a href="#" data-context="basename">{{basename}}</a></li>
+  <li><a href="#" data-context="../basename">{{../basename}}</a></li>
+  <li><a href="#" data-context="this.basename">{{this.basename}}</a></li>
+  <li><a href="#" data-context="page.basename">{{page.basename}}</a></li>
+  <li><a href="#" data-context="data.basename">{{data.basename}}</a></li>
 {{/each}}
 </ul>
 
 <hr>
 
-<ul id="title-collection">
+<ul class="context-test">
 {{#each pages}}
-  <li><a href="#" id="title">{{title}}</a></li>
-  <li><a href="#" id="parent-title">{{../title}}</a></li>
-  <li><a href="#" id="this-title">{{this.title}}</a></li>
-  <li><a href="#" id="page-title">{{page.title}}</a></li>
-  <li><a href="#" id="data-title">{{data.title}}</a></li>
+  <li><a href="#" data-context="title">{{title}}</a></li>
+  <li><a href="#" data-context="../title">{{../title}}</a></li>
+  <li><a href="#" data-context="this.title">{{this.title}}</a></li>
+  <li><a href="#" data-context="page.title">{{page.title}}</a></li>
+  <li><a href="#" data-context="data.title">{{data.title}}</a></li>
 {{/each}}
 </ul>

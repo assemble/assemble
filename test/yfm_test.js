@@ -21,35 +21,43 @@ describe('Reading From Files', function() {
   };
 
   var complexExpected = {
-    originalContent: "---\nfoo: bar\nversion: 2\n---\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
-    content: "\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
+    originalContent: "---\nfoo: bar\nversion: 2\ncategories:\n- pages\ntags:\n- tests\n- examples\n- complex\n---\n\n<div class=\"alert alert-info\">This is an alert</div>\n",
+    content: "\n\n<div class=\"alert alert-info\">This is an alert</div>\n",
     context: {
       "foo": "bar",
-      "version": 2
+      "version": 2,
+      "categories": [
+        "pages"
+      ],
+      "tags": [
+        "tests",
+        "examples",
+        "complex"
+      ]
     }
   };
 
 
   it("yaml file starts with --- no content", function(done) {
-    var data = yfm.extract('./test/fixtures/data/mocha/simple1.yml');
+    var data = yfm.extract('./test/fixtures/mocha/simple1.yml');
     expect(simpleExpected.context).to.deep.equal(data.context);
     done();
   });
 
   it("yaml file starts and ends with --- no content", function(done) {
-    var data = yfm.extract('./test/fixtures/data/mocha/simple2.yml');
+    var data = yfm.extract('./test/fixtures/mocha/simple2.yml');
     expect(simpleExpected.context).to.deep.equal(data.context);
     done();
   });
 
   it("yaml file starts and ends with --- has content", function(done) {
-    var data = yfm.extract('./test/fixtures/pages/simple3.hbs');
+    var data = yfm.extract('./test/fixtures/mocha/yfm.hbs');
     expect(simpleExpected.context).to.deep.equal(data.context);
     done();
   });
 
   it("hbs file with complex yaml data and content", function(done) {
-    var data = yfm.extract("./test/fixtures/pages/complex.hbs");
+    var data = yfm.extract("./test/fixtures/mocha/complex.hbs");
     expect(complexExpected).to.deep.equal(data);
     done();
   });
@@ -62,7 +70,7 @@ describe('Reading From Strings', function() {
 
   var simple1 = "---\nfoo: bar\n";
   var simple2 = "---\nfoo: bar\n---";
-  var simple3 = "---\nfoo: bar\n---\n\n<span class=\"alert alert-info\">This is an alert</span>\n";
+  var simple3 = "---\nfoo: bar\n---\n\n<div class=\"alert alert-info\">This is an alert</div>\n";
 
   var simpleExpected = {
     context: {
@@ -70,11 +78,11 @@ describe('Reading From Strings', function() {
     }
   };
 
-  var complex = "---\nfoo: bar\nversion: 2\n---\n\n<span class=\"alert alert-info\">This is an alert</span>\n";
+  var complex = "---\nfoo: bar\nversion: 2\n---\n\n<div class=\"alert alert-info\">This is an alert</div>\n";
 
   var complexExpected = {
-    originalContent: "---\nfoo: bar\nversion: 2\n---\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
-    content: "\n\n<span class=\"alert alert-info\">This is an alert</span>\n",
+    originalContent: "---\nfoo: bar\nversion: 2\n---\n\n<div class=\"alert alert-info\">This is an alert</div>\n",
+    content: "\n\n<div class=\"alert alert-info\">This is an alert</div>\n",
     context: {
       "foo": "bar",
       "version": 2
