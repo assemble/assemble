@@ -2,60 +2,319 @@
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Partials Test</title>
-    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <title>Layout filename: ''</title>
+    <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/validation.css">
   </head>
   <body style="padding-top: 60px;">
+    <div class="container">
 
-    <div class="container">
-      <div class="categories">
-        <h2>Categories</h2>
-        <ul>
-        
-          <li></li>
-        
-        </ul>
+      <!-- validate assets path -->
+      <section id="validate"></section>
+      <div class="docs-section">
+        <div class="docs-header" id="content">
+          <h1>This title is from YFM</h1>
+        </div>
       </div>
-      
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <ul class="nav">
-        <li><a href="./index.html">Index</a></li>
-        <li><a href="dest/context.html">Dest Context</a></li>
-        <li><a href="dest/basic.html">Dest Basic</a></li>
-        <li><a href="dest/markdown.html">Dest Markdown</a></li>
-        
-      </ul>
-      <ul class="nav pull-right"><li><a href="">Visit Assemble</a></li></ul>
-    </div>
+      <div class="row">
+        <!-- Column: sidebar -->
+        <div class="col-md-3">
+          <div class="bs-sidebar hidden-print" role="complementary">
+            <!-- pagination -->
+            <ul class="nav nav-pills nav-stacked">
+
+  
+    <li class="prev disabled">
+      <a unselectable="on" class="unselectable">First</a>
+    </li>
+    <li class="prev disabled">
+      <a unselectable="on" class="unselectable">&larr; Previous</a>
+    </li>
+  
+
+  
+
+  
+    <li class="active">
+      <a href="single_page.html">1</a>
+    </li>
+  
+
+  
+
+  
+    <li class="next disabled">
+      <a unselectable="on" class="unselectable">Next &rarr;</a>
+    </li>
+    <li class="next disabled">
+      <a unselectable="on" class="unselectable">Last</a>
+    </li>
+  
+
+</ul>
+          </div>
+        </div>
+        <!-- Column: content -->
+        <div class="col-md-9" role="main">
+          <div class="docs-section">
+            <div class="docs-header" id="content">
+              <h4><strong>Page layout:</strong> default.hbs</h4>
+              <h4><strong>Page src:</strong> test/fixtures/pages/example.hbs</h4>
+              <h4><strong>Page dest:</strong> test/actual/single_page.html</h4>
+              <h4><strong>Dest filename:</strong> single_page.html</h4>
+              <h4><strong>Dest basename:</strong> example</h4>
+              <h4><strong>Page title:</strong> This title is from YFM</h4>
+            </div>
+
+            <hr>
+
+            <!-- Categories Collection -->
+            
+              
+<!-- Categories -->
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h4>categories on this page: <span class="badge badge-info">2</span></h4>
+  </div>
+  <div class="panel-body">
+  
+    
+      <span class="label label-info">yaml</span>
+    
+      <span class="label label-info">yfm</span>
+    
+    
   </div>
 </div>
 
-    </div>
+<hr>
 
-    <div class="container" style="display: none">
-      <h2>Content</h2>
-      <ul>
-        <li><a href="single_page.html">page</a></li>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h4>All categories: <span class="badge badge-info">2</span></h4>
+  </div>
+  <div class="panel-body">
+  
+    
+      <span class="label label-info">yaml</span>
+    
+      <span class="label label-info">yfm</span>
+    
+    
+  </div>
+</div>
+
+<hr>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h4>Pages related to each category</h4>
+  </div>
+  <div class="panel-body">
+    
+      <div>Related pages for: <span class="label label-info">yaml</span></div>
+      <ul class="links">
+      
+        
+          <li class="active">
+            <a href="single_page.html">single_page.html</a>
+          </li>
+        
         
       </ul>
-    </div>
+    
+      <div>Related pages for: <span class="label label-info">yfm</span></div>
+      <ul class="links">
+      
+        
+          <li class="active">
+            <a href="single_page.html">single_page.html</a>
+          </li>
+        
+        
+      </ul>
+    
+  </div>
+</div>
 
-    <div class="container" style="display: none">
-      <h2>Debug Info</h2>
-      <pre><code class="json">
+            
+            <hr>
+            
+              
+<!-- Tags Collection -->
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h4>Tags on this page: <span class="badge badge-success">1</span></h4>
+  </div>
+  <div class="panel-body">
+  
+    
+      <span class="label label-success">example</span>
+    
+    
+  </div>
+</div>
+
+<hr>
+
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h4>All tags: <span class="badge badge-success">1</span></h4>
+  </div>
+  <div class="panel-body">
+  
+    
+      <span class="label label-success">example</span>
+    
+    
+  </div>
+</div>
+
+<hr>
+
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h4>Pages related to each tag</h4>
+  </div>
+  <div class="panel-body">
+  
+    <div>Related pages for: <span class="label label-success">example</span></div>
+    <ul class="links">
+    
+      
+        <li class="active">
+          <a href="single_page.html">single_page.html</a>
+        </li>
+      
+      
+    </ul>
+  
+  </div>
+</div>
+
+            
+            <hr>
+
+            
+
+This example shows that the properties from "example.json" and "example.hbs" are on the page object.
+
+<hr>
+
+<div>This title is from YFM</div>
+<div></div>
+
+<hr>
+
+<div>This title is from YFM</div>
+
+
+            <div class="docs-header" id="content">
+              <h1>Content</h1>
+            </div>
+            <ul>
+            
+              <li><a href="single_page.html">single_page.html</a></li>
+            
+            </ul>
+
+            <hr>
+            <div style="display: none">
+
+              <h1>Page</h1>
+              <!--
+              "this"
+              ===============================
+              this.src:      
+              this.dest:     
+              this.layout:   
+              this.dirname:  test/actual
+              this.filename: single_page.html
+              this.pagename: single_page.html
+              this.basename: example
+              this.ext:      .html
+
+              "page"
+              ===============================
+              page.src:        test/fixtures/pages/example.hbs
+              page.dest:       test/actual/single_page.html
+              page.layout:     
+              page.dirname:    test/actual
+              page.filename:   single_page.html
+              page.pagename:   single_page.html
+              page.basename:   example
+              page.ext:        .html
+
+              "root"
+              ===============================
+              src:           
+              dest:          
+              layout:        
+              dirname:       test/actual
+              filename:      single_page.html
+              pagename:      single_page.html
+              basename:      example
+              ext:           .html
+              -->
+              <h1>Each pages</h1>
+              <ul>
+                <li><a href="single_page.html">example</a></li>
+                  <!--
+                  "this"
+                  ===============================
+                  this.src:      test/fixtures/pages/example.hbs
+                  this.dest:     test/actual/single_page.html
+                  this.dirname:  test/actual
+                  this.filename: single_page.html
+                  this.pagename: single_page.html
+                  this.basename: example
+                  this.ext:      .html
+
+                  "page"
+                  ===============================
+                  page.src:      test/fixtures/pages/example.hbs
+                  page.dest:     test/actual/single_page.html
+                  page.dirname:  test/actual
+                  page.filename: single_page.html
+                  page.pagename: single_page.html
+                  page.basename: example
+                  page.ext:      .html
+
+                  "root"
+                  ===============================
+                  src:           test/fixtures/pages/example.hbs
+                  dest:          test/actual/single_page.html
+                  dirname:       test/actual
+                  filename:      single_page.html
+                  pagename:      single_page.html
+                  basename:      example
+                  ext:           .html
+                  -->
+                
+              </ul>
+
+              <h1>Debug Info</h1>
+              <pre><code class="json">
 {
   "_page": "all",
-  "assets": "assets",
-  "basename": "page",
+  "assets": "../assets",
+  "basename": "example",
+  "categories": [
+    "yaml",
+    "yfm"
+  ],
   "data": {
-    "title": "Partials Test",
-    "links": [
-      "./index",
-      "dest/context",
-      "dest/basic",
-      "dest/markdown"
+    "title": "This title is from YFM",
+    "categories": [
+      "yaml",
+      "yfm"
+    ],
+    "tags": [
+      "example"
+    ],
+    "items": [
+      "omega",
+      "gamma"
     ]
   },
   "dest": "test/actual/single_page.html",
@@ -64,12 +323,12 @@
   "extname": ".html",
   "filePair": {
     "src": [
-      "test/fixtures/pages/page.hbs"
+      "test/fixtures/pages/example.hbs"
     ],
     "dest": "test/actual/single_page.html",
     "orig": {
       "src": [
-        "test/fixtures/pages/page.hbs"
+        "test/fixtures/pages/example.hbs"
       ],
       "dest": "test/actual/single_page.html"
     }
@@ -77,23 +336,28 @@
   "filename": "single_page.html",
   "first": true,
   "index": 0,
-  "last": true,
-  "links": [
-    "./index",
-    "dest/context",
-    "dest/basic",
-    "dest/markdown"
+  "items": [
+    "omega",
+    "gamma"
   ],
+  "last": true,
   "middle": false,
   "number": 1,
-  "page": "\n{{> nav }}",
+  "page": "\n\nThis example shows that the properties from \"example.json\" and \"example.hbs\" are on the page object.\n\n<hr>\n\n<div>{{page.title}}</div>\n<div>{{page.text}}</div>\n\n<hr>\n\n<div>{{title}}</div>\n",
   "pageName": "single_page.html",
   "pagename": "single_page.html",
-  "src": "test/fixtures/pages/page.hbs",
-  "title": "Partials Test"
+  "src": "test/fixtures/pages/example.hbs",
+  "tags": [
+    "example"
+  ],
+  "title": "This title is from YFM"
 }
 </code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
+    <script src="../assets/validation.js"></script>
   </body>
 </html>

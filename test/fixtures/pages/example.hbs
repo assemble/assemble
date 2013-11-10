@@ -1,12 +1,22 @@
 ---
-foo: bar
+title: This title is from YFM
+categories:
+- yaml
+- yfm
+tags:
+- example
+items:
+- omega
+- gamma
 ---
 
 This example shows that the properties from "example.json" and "example.hbs" are on the page object.
 
-<div>{{page.foo}}</div>
-<div>{{page.content}}</div>
+<hr>
 
+<div>{{page.title}}</div>
+<div>{{page.text}}</div>
 
-<div>{{foo}}</div>
-<div>{{text}}</div>
+<hr>
+
+<div>{{title}}</div>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Layout filename: ''</title>
+    <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/validation.css">
+  </head>
+  <body style="padding-top: 60px;">
+    <div class="container">
+
+      <!-- validate assets path -->
+      <section id="validate"></section>
+      <div class="docs-section">
+        <div class="docs-header" id="content">
+          <h1></h1>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Column: sidebar -->
+        <div class="col-md-3">
+          <div class="bs-sidebar hidden-print" role="complementary">
+            <!-- pagination -->
+            <ul class="nav nav-pills nav-stacked">
+
+  
+    <li class="prev disabled">
+      <a unselectable="on" class="unselectable">First</a>
+    </li>
+    <li class="prev disabled">
+      <a unselectable="on" class="unselectable">&larr; Previous</a>
+    </li>
+  
+
+  
+
+  
+    <li class="active">
+      <a href="assets_dot_slash.html">1</a>
+    </li>
+  
+
+  
+
+  
+    <li class="next disabled">
+      <a unselectable="on" class="unselectable">Next &rarr;</a>
+    </li>
+    <li class="next disabled">
+      <a unselectable="on" class="unselectable">Last</a>
+    </li>
+  
+
+</ul>
+          </div>
+        </div>
+        <!-- Column: content -->
+        <div class="col-md-9" role="main">
+          <div class="docs-section">
+            <div class="docs-header" id="content">
+              <h4><strong>Page layout:</strong> default.hbs</h4>
+              <h4><strong>Page src:</strong> test/fixtures/assets_path/assets.hbs</h4>
+              <h4><strong>Page dest:</strong> test/actual/assets_dot_slash.html</h4>
+              <h4><strong>Dest filename:</strong> assets_dot_slash.html</h4>
+              <h4><strong>Dest basename:</strong> assets</h4>
+              <h4><strong>Page title:</strong> (no title defined)</h4>
+            </div>
+
+            <hr>
+
+            <!-- Categories Collection -->
+            
+            <hr>
+            
+            <hr>
+
+            <p>Examples to test the "relative" and "assets" variables, and to show how they work</p>
+
+
+
+
+
+
+
+
+
+
+
+<h1>Project Root With Slash</h1>
+<p>Assets folder is in the project rool, which is not the same dir as the dest files.</p>
+<pre>
+assets_dot_slash: {
+  options: {assets: './'},
+  files: {'test/actual/assets_dot_slash.html': ['test/files/assets.hbs']}
+}
+</pre>
+
+
+
+
+
+            <div class="docs-header" id="content">
+              <h1>Content</h1>
+            </div>
+            <ul>
+            
+              <li><a href="assets_dot_slash.html">assets_dot_slash.html</a></li>
+            
+            </ul>
+
+            <hr>
+            <div style="display: none">
+
+              <h1>Page</h1>
+              <!--
+              "this"
+              ===============================
+              this.src:      
+              this.dest:     
+              this.layout:   
+              this.dirname:  test/actual
+              this.filename: assets_dot_slash.html
+              this.pagename: assets_dot_slash.html
+              this.basename: assets
+              this.ext:      .html
+
+              "page"
+              ===============================
+              page.src:        test/fixtures/assets_path/assets.hbs
+              page.dest:       test/actual/assets_dot_slash.html
+              page.layout:     
+              page.dirname:    test/actual
+              page.filename:   assets_dot_slash.html
+              page.pagename:   assets_dot_slash.html
+              page.basename:   assets
+              page.ext:        .html
+
+              "root"
+              ===============================
+              src:           
+              dest:          
+              layout:        
+              dirname:       test/actual
+              filename:      assets_dot_slash.html
+              pagename:      assets_dot_slash.html
+              basename:      assets
+              ext:           .html
+              -->
+              <h1>Each pages</h1>
+              <ul>
+                <li><a href="assets_dot_slash.html">assets</a></li>
+                  <!--
+                  "this"
+                  ===============================
+                  this.src:      test/fixtures/assets_path/assets.hbs
+                  this.dest:     test/actual/assets_dot_slash.html
+                  this.dirname:  test/actual
+                  this.filename: assets_dot_slash.html
+                  this.pagename: assets_dot_slash.html
+                  this.basename: assets
+                  this.ext:      .html
+
+                  "page"
+                  ===============================
+                  page.src:      test/fixtures/assets_path/assets.hbs
+                  page.dest:     test/actual/assets_dot_slash.html
+                  page.dirname:  test/actual
+                  page.filename: assets_dot_slash.html
+                  page.pagename: assets_dot_slash.html
+                  page.basename: assets
+                  page.ext:      .html
+
+                  "root"
+                  ===============================
+                  src:           test/fixtures/assets_path/assets.hbs
+                  dest:          test/actual/assets_dot_slash.html
+                  dirname:       test/actual
+                  filename:      assets_dot_slash.html
+                  pagename:      assets_dot_slash.html
+                  basename:      assets
+                  ext:           .html
+                  -->
+                
+              </ul>
+
+              <h1>Debug Info</h1>
+              <pre><code class="json">
+{
+  "_page": "all",
+  "assets": "../assets",
+  "basename": "assets",
+  "data": {},
+  "dest": "test/actual/assets_dot_slash.html",
+  "dirname": "test/actual",
+  "ext": ".html",
+  "extname": ".html",
+  "filePair": {
+    "src": [
+      "test/fixtures/assets_path/assets.hbs"
+    ],
+    "dest": "test/actual/assets_dot_slash.html",
+    "orig": {
+      "src": [
+        "test/fixtures/assets_path/assets.hbs"
+      ],
+      "dest": "test/actual/assets_dot_slash.html"
+    }
+  },
+  "filename": "assets_dot_slash.html",
+  "first": true,
+  "index": 0,
+  "last": true,
+  "middle": false,
+  "number": 1,
+  "page": "<p>Examples to test the \"relative\" and \"assets\" variables, and to show how they work</p>\n\n{{#assets_nested}}\n<h1>\"Public\" Folder</h1>\n<p>Public (assets) folder is in the project root</p>\n<pre>\noriginalAssets: {{originalAssets}}\nassets: {{assets}}\ndest: {{dest}}\nsrc: {{src}}\nassets_nested: {\n  options: {assets: 'test/actual/public'},\n  files: {'test/actual/assets_nested.html': ['test/files/assets.hbs']}\n},\n</pre>\n{{/assets_nested}}\n\n\n{{#assets_base}}\n<h1>Same Folder</h1>\n<p>Assets folder is in the same dir as dest files.</p>\n<pre>\nassets_base: {\n  options: {assets: 'test/actual'},\n  files: {'test/actual/assets_base.html': ['test/files/assets.hbs']}\n},\n</pre>\n{{/assets_base}}\n\n\n{{#assets_trailing_slash}}\n<h1>Project Root</h1>\n<p>Assets folder is in the project root, which is not the same dir as dest files.</p>\n<pre>\nassets_trailing_slash: {\n  options: {assets: ''},\n  files: {'test/actual/assets_trailing_slash.html': ['test/files/assets.hbs']}\n}\n</pre>\n{{/assets_trailing_slash}}\n\n\n{{#assets_dot_slash}}\n<h1>Project Root With Slash</h1>\n<p>Assets folder is in the project rool, which is not the same dir as the dest files.</p>\n<pre>\nassets_dot_slash: {\n  options: {assets: './'},\n  files: {'test/actual/assets_dot_slash.html': ['test/files/assets.hbs']}\n}\n</pre>\n{{/assets_dot_slash}}\n\n\n{{#assets_blank_path}}\n<h1>Same Folder With Slash</h1>\n<p>Assets folder is in the same dir as dest files</p>\n<pre>\nassets_blank_path: {\n  options: {assets: 'test/actual'},\n  files: {'test/actual/assets_blank_path.html': ['test/files/assets.hbs']}\n}\n</pre>\n{{/assets_blank_path}}",
+  "pageName": "assets_dot_slash.html",
+  "pagename": "assets_dot_slash.html",
+  "src": "test/fixtures/assets_path/assets.hbs"
+}
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../assets/validation.js"></script>
+  </body>
+</html>

@@ -1,3 +1,4 @@
 {
-  "text": "Congratulations! This is data from a JSON file."
+  "title": "This is the title from example.json",
+  "text": "This is text from example.json."
 }

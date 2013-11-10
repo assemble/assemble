@@ -2,42 +2,175 @@
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>YAML Test</title>
-    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <title>Layout filename: ''</title>
+    <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/validation.css">
   </head>
   <body style="padding-top: 60px;">
-
     <div class="container">
-      <div class="categories">
-        <h2>Categories</h2>
-        <ul>
-        
-        </ul>
-      </div>
-      There is no YAML front matter in this page.
 
+      <!-- validate assets path -->
+      <section id="validate"></section>
+      <div class="docs-section">
+        <div class="docs-header" id="content">
+          <h1></h1>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Column: sidebar -->
+        <div class="col-md-3">
+          <div class="bs-sidebar hidden-print" role="complementary">
+            <!-- pagination -->
+            <ul class="nav nav-pills nav-stacked">
+
+  
+    <li class="prev disabled">
+      <a unselectable="on" class="unselectable">First</a>
+    </li>
+    <li class="prev disabled">
+      <a unselectable="on" class="unselectable">&larr; Previous</a>
+    </li>
+  
+
+  
+
+  
+    <li class="active">
+      <a href="no-yfm.html">1</a>
+    </li>
+  
+
+  
+
+  
+    <li class="next disabled">
+      <a unselectable="on" class="unselectable">Next &rarr;</a>
+    </li>
+    <li class="next disabled">
+      <a unselectable="on" class="unselectable">Last</a>
+    </li>
+  
+
+</ul>
+          </div>
+        </div>
+        <!-- Column: content -->
+        <div class="col-md-9" role="main">
+          <div class="docs-section">
+            <div class="docs-header" id="content">
+              <h4><strong>Page layout:</strong> default.hbs</h4>
+              <h4><strong>Page src:</strong> test/fixtures/pages/no-yfm.hbs</h4>
+              <h4><strong>Page dest:</strong> test/actual/noyfm/no-yfm.html</h4>
+              <h4><strong>Dest filename:</strong> no-yfm.html</h4>
+              <h4><strong>Dest basename:</strong> no-yfm</h4>
+              <h4><strong>Page title:</strong> (no title defined)</h4>
+            </div>
+
+            <hr>
+
+            <!-- Categories Collection -->
+            
+            <hr>
+            
+            <hr>
+
+            There is no YAML front matter in this page.
 
 <div>Variable number one</div>
 <div>Variable number two</div>
 
 
 
-    </div>
 
-    <div class="container" style="display: none">
-      <h2>Content</h2>
-      <ul>
-        <li><a href="no-yfm.html">no-yfm</a></li>
-        
-      </ul>
-    </div>
+            <div class="docs-header" id="content">
+              <h1>Content</h1>
+            </div>
+            <ul>
+            
+              <li><a href="no-yfm.html">no-yfm.html</a></li>
+            
+            </ul>
 
-    <div class="container" style="display: none">
-      <h2>Debug Info</h2>
-      <pre><code class="json">
+            <hr>
+            <div style="display: none">
+
+              <h1>Page</h1>
+              <!--
+              "this"
+              ===============================
+              this.src:      
+              this.dest:     
+              this.layout:   
+              this.dirname:  test/actual/noyfm
+              this.filename: no-yfm.html
+              this.pagename: no-yfm.html
+              this.basename: no-yfm
+              this.ext:      .html
+
+              "page"
+              ===============================
+              page.src:        test/fixtures/pages/no-yfm.hbs
+              page.dest:       test/actual/noyfm/no-yfm.html
+              page.layout:     
+              page.dirname:    test/actual/noyfm
+              page.filename:   no-yfm.html
+              page.pagename:   no-yfm.html
+              page.basename:   no-yfm
+              page.ext:        .html
+
+              "root"
+              ===============================
+              src:           
+              dest:          
+              layout:        
+              dirname:       test/actual/noyfm
+              filename:      no-yfm.html
+              pagename:      no-yfm.html
+              basename:      no-yfm
+              ext:           .html
+              -->
+              <h1>Each pages</h1>
+              <ul>
+                <li><a href="no-yfm.html">no-yfm</a></li>
+                  <!--
+                  "this"
+                  ===============================
+                  this.src:      test/fixtures/pages/no-yfm.hbs
+                  this.dest:     test/actual/noyfm/no-yfm.html
+                  this.dirname:  test/actual/noyfm
+                  this.filename: no-yfm.html
+                  this.pagename: no-yfm.html
+                  this.basename: no-yfm
+                  this.ext:      .html
+
+                  "page"
+                  ===============================
+                  page.src:      test/fixtures/pages/no-yfm.hbs
+                  page.dest:     test/actual/noyfm/no-yfm.html
+                  page.dirname:  test/actual/noyfm
+                  page.filename: no-yfm.html
+                  page.pagename: no-yfm.html
+                  page.basename: no-yfm
+                  page.ext:      .html
+
+                  "root"
+                  ===============================
+                  src:           test/fixtures/pages/no-yfm.hbs
+                  dest:          test/actual/noyfm/no-yfm.html
+                  dirname:       test/actual/noyfm
+                  filename:      no-yfm.html
+                  pagename:      no-yfm.html
+                  basename:      no-yfm
+                  ext:           .html
+                  -->
+                
+              </ul>
+
+              <h1>Debug Info</h1>
+              <pre><code class="json">
 {
   "_page": "all",
-  "assets": "../assets",
+  "assets": "../../assets",
   "basename": "no-yfm",
   "data": {},
   "dest": "test/actual/noyfm/no-yfm.html",
@@ -62,13 +195,17 @@
   "last": true,
   "middle": false,
   "number": 1,
-  "page": "There is no YAML front matter in this page.\n\n\n<div>{{noyfm.one}}</div>\n<div>{{noyfm.two}}</div>\n\n\n",
+  "page": "There is no YAML front matter in this page.\n\n<div>{{noyfm.one}}</div>\n<div>{{noyfm.two}}</div>\n\n\n",
   "pageName": "no-yfm.html",
   "pagename": "no-yfm.html",
   "src": "test/fixtures/pages/no-yfm.hbs"
 }
 </code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
+    <script src="../../assets/validation.js"></script>
   </body>
 </html>
