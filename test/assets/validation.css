@@ -9,6 +9,8 @@ body {
 }
 
 
+
+
 .justified {
   width: 100%;
 }
@@ -48,6 +50,17 @@ body {
 }
 .badge-danger {
   background-color: #d9534f;
+}
+
+
+.pager li.pager-middle {
+  display: none;
+}
+
+@media (min-width: 1040px) {
+  .pager li.pager-middle {
+    display: inline-block;
+  }
 }
 
 

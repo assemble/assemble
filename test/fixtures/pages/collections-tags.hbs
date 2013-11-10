@@ -7,9 +7,13 @@ tags:
 - two
 - three
 ---
-{{title}}
-<ul>
-{{#tags}}
-	<li>{{tag}}</li>
-{{/tags}}
-</ul>
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h4>Tags</h4>
+  </div>
+  <div class="panel-body">
+  {{#tags}}
+    <span class="label label-success">{{tag}}</span>
+  {{/tags}}
+  </div>
+</div>

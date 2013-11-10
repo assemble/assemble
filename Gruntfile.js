@@ -21,12 +21,15 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
 
-    // package.json
-    pkg: grunt.file.readJSON('package.json'),
+    // Metadata for tests
+    pkg : grunt.file.readJSON('package.json'),
     config: grunt.file.readJSON('test/fixtures/data/config.json'),
+    site: grunt.file.readYAML('test/fixtures/data/_site.yml'),
+
+    // Translations for `postprocess` tests.
     translation: require('./test/fixtures/data/translations'),
 
-    // Metadata
+    // Metadata for banners
     meta: {
       license: '<%= _.pluck(pkg.licenses, "type").join(", ") %>',
       copyright: 'Copyright (c) <%= grunt.template.today("yyyy") %>',
@@ -41,7 +44,6 @@ module.exports = function(grunt) {
         ' */ \n\n'
       ].join('\n')
     },
-
 
     /**
      * Lint all JavaScript
@@ -77,14 +79,19 @@ module.exports = function(grunt) {
      */
     assemble: {
       options: {
-        assets: 'test/actual/assets',
+        assets: 'test/assets',
         helpers: ['test/helpers/*.js'],
         layoutdir: 'test/fixtures/layouts',
-        layout: 'layout.hbs',
+        layout: 'default.hbs',
         flatten: true
       },
-      // Define layout extension, so that layouts in YFM can be defined
-      // without an extension.
+      // Should render pages with `layout: false` or `layout: none` defined
+      no_layout: {
+        files: {
+          'test/actual/no_layout/': ['test/fixtures/pages/nolayout/*.hbs']
+        }
+      },
+      // Should allow Layouts defined in YFM to be defined without an extension.
       layout_ext: {
         options: {
           layout: 'none', // override default, layout is redefined in YFM
@@ -94,7 +101,19 @@ module.exports = function(grunt) {
           'test/actual/layout_ext/': ['test/fixtures/pages/layoutext/layoutext.hbs']
         }
       },
-      // Register custom helpers
+      // Should flatten nested layouts
+      nested_layouts: {
+        options: {
+          postprocess: prettify,
+          partials: 'test/fixtures/partials/*.hbs',
+          data: 'test/fixtures/data/*.{json,yml}',
+          layout: 'one.hbs'
+        },
+        files: {
+          'test/actual/nested_layouts/': ['test/fixtures/pages/nested/*.hbs']
+        }
+      },
+      // Should register locally-defined custom helpers
       custom_helpers: {
         options: {
           helpers: ['test/helpers/*.js'],
@@ -105,6 +124,7 @@ module.exports = function(grunt) {
           'test/actual/custom_helpers/': ['test/fixtures/helpers/{foo,bar,opt}.hbs']
         }
       },
+      // Should register and use custom plugins, without a stage defined
       plugin_untitled: {
         options: {
           plugins: ['./test/plugins/untitled.js'],
@@ -113,6 +133,7 @@ module.exports = function(grunt) {
           'test/actual/plugin_untitled.html': 'test/fixtures/plugins/untitled.hbs'
         }
       },
+      // Should use custom plugins with 'render:pre:pages' stage defined
       plugin_before: {
         options: {
           plugins: ['./test/plugins/plugin_before.js']
@@ -121,6 +142,7 @@ module.exports = function(grunt) {
           'test/actual/plugin_before.html': 'test/fixtures/plugins/before.hbs'
         }
       },
+      // Should use custom plugins with 'render:post:pages' stage defined
       plugin_after: {
         options: {
           plugins: ['./test/plugins/plugin_after.js']
@@ -130,17 +152,18 @@ module.exports = function(grunt) {
         }
       },
       // Path construction based on built-in variables
+      // Should automatically calculate relative paths correctly
       paths: {
         options: {
           partials: 'test/fixtures/partials/*.hbs',
-          layout: 'paths-example.hbs',
-          data: ['test/fixtures/data/*.yml']
+          data: 'test/fixtures/data/*.{json,yml}',
+          postprocess: prettify
         },
         files: {
           'test/actual/paths/': ['test/fixtures/pages/*.hbs']
         }
       },
-      // Post-process content
+      // Should post-process content using a custom function
       postprocess: {
         options: {
           postprocess: function(src) {
@@ -148,31 +171,27 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          'test/actual/postprocess.html': ['test/fixtures/pages/postprocess.hbs']
+          'test/actual/postprocess.html': ['test/fixtures/pages/postprocess/postprocess.hbs']
         }
       },
-      // Post-process content
+      // Should post-process content using a custom function
       postprocess2: {
         options: {
           postprocess: prettify
         },
         files: {
-          'test/actual/postprocess2.html': ['test/fixtures/pages/postprocess2.hbs']
+          'test/actual/postprocess2.html': ['test/fixtures/pages/postprocess/postprocess2.hbs']
         }
       },
-      // Build a single page
+      // Should build a single page, with explicit dest page name defined
       single_page: {
-        options: {
-          partials: 'test/fixtures/partials/*.hbs'
-        },
         files: {
-          'test/actual/single_page.html': ['test/fixtures/pages/page.hbs']
+          'test/actual/single_page.html': ['test/fixtures/pages/example.hbs']
         }
       },
-      // YAML front matter
+      // Should process and add complex YAML front matter to context
       yfm: {
         options: {
-          layout: 'layout2.hbs',
           data: 'test/fixtures/data/*.{json,yml}',
           postprocess: prettify
         },
@@ -180,7 +199,7 @@ module.exports = function(grunt) {
           'test/actual/yfm/': ['test/fixtures/pages/yfm/*.hbs']
         }
       },
-      // No YAML front matter
+      // Should process pages no YAML front matter defined
       noyfm: {
         options: {
           data: 'test/fixtures/data/*.{json,yml}'
@@ -189,64 +208,93 @@ module.exports = function(grunt) {
           'test/actual/noyfm/': ['test/fixtures/pages/no-yfm.hbs']
         }
       },
-      markdown: {
+      // Should properly calculate relative paths from nested pages
+      // to `assets` directory
+      assets_base: {
+        options: {assets: 'test/assets', assets_base: true},
+        files: {
+          'test/actual/assets_base.html': ['test/fixtures/assets_path/assets.hbs']
+        }
+      },
+      // Should properly calculate relative paths from pages to `assets` directory
+      assets_nested: {
+        options: {assets: 'test/assets/nested', assets_nested: true},
+        files: {
+          'test/actual/assets_nested.html': ['test/fixtures/assets_path/assets.hbs']
+        }
+      },
+      // Should properly calculate path to `assets` directory when defined
+      // with a trailing slash
+      assets_trailing_slash: {
+        options: {assets: 'test/assets/', assets_trailing_slash: true},
+        files: {
+          'test/actual/assets_trailing_slash.html': ['test/fixtures/assets_path/assets.hbs']
+        }
+      },
+      // Should properly calculate path to `assets` directory when the path
+      // begins with `./`
+      assets_dot_slash: {
+        options: {assets: './test/assets', assets_dot_slash: true},
+        files: {
+          'test/actual/assets_dot_slash.html': ['test/fixtures/assets_path/assets.hbs']
+        }
+      },
+      // Should properly calculate path to `assets` directory when the
+      // assets path is blank
+      assets_blank_path: {
+        options: {assets: '', assets_blank_path: true},
+        files: {
+          'test/actual/assets_blank_path.html': ['test/fixtures/assets_path/assets.hbs']
+        }
+      },
+      // Should add collections to context, sorted in descending order.
+      collections_desc: {
         options: {
-          layout: 'default.md.hbs',
-          data: ['test/fixtures/data/*.json'],
-          ext: '.md'
-        },
-        files: {
-          'test/actual/markdown/': ['test/fixtures/pages/*.hbs']
-        }
-      },
-
-      // Assets paths
-      assets_one: {
-        options: {assets: 'test/actual/public', assets_one: true},
-        files: {
-          'test/actual/assets_one.html': ['test/fixtures/pages/assets.hbs']
-        }
-      },
-      assets_two: {
-        options: {assets: 'test/actual', assets_two: true},
-        files: {
-          'test/actual/assets_two.html': ['test/fixtures/pages/assets.hbs']
-        }
-      },
-      assets_three: {
-        options: {assets: '', assets_three: true},
-        files: {
-          'test/actual/assets_three.html': ['test/fixtures/pages/assets.hbs']
-        }
-      },
-      assets_four: {
-        options: {assets: './', assets_four: true},
-        files: {
-          'test/actual/assets_four.html': ['test/fixtures/pages/assets.hbs']
-        }
-      },
-      assets_five: {
-        options: {assets: 'test/actual/', assets_five: true},
-        files: {
-          'test/actual/assets_five.html': ['test/fixtures/pages/assets.hbs']
-        }
-      },
-      // Collections
-      collections_example: {
-        options: {
-          data: ['test/fixtures/data/*.json'],
+          postprocess: prettify,
           collections: [
-            {
-              name: 'tags',
-              inflection: 'tag',
-              sortorder: 'DESC'
-            }
+            {name: 'pages', inflection: 'page', sortorder: 'DESC'},
+            {name: 'tags', inflection: 'tag', sortorder: 'DESC'},
+            {name: 'categories', inflection: 'category', sortorder: 'DESC'}
           ]
         },
         files: {
-          'test/actual/collections/dest1/': ['test/fixtures/pages/*.hbs'],
-          'test/actual/collections/dest2/': ['test/fixtures/pages/*.md'],
-          'test/actual/collections/dest2/sub-dest/': ['test/fixtures/pages/*.hbs']
+          'test/actual/collections/desc/': ['test/fixtures/pages/*.hbs']
+        }
+      },
+      // Should add collections to context, sorted in ascending order.
+      collections_asc: {
+        options: {
+          postprocess: prettify,
+          collections: [
+            {name: 'pages', inflection: 'page', sortorder: 'ASC'},
+            {name: 'tags', inflection: 'tag', sortorder: 'ASC'},
+            {name: 'categories', inflection: 'category', sortorder: 'ASC'}
+          ]
+        },
+        files: {
+          'test/actual/collections/asc/': ['test/fixtures/pages/*.hbs']
+        }
+      },
+      // Should
+      collections_custom: {
+        options: {
+          postprocess: prettify,
+          collections: [
+            {name: 'items', inflection: 'item', sortorder: 'DESC'}
+          ]
+        },
+        files: {
+          'test/actual/collections/custom/': ['test/fixtures/pages/*.hbs']
+        }
+      },
+      // Should add complex collections and related pages to context
+      collections_complex: {
+        options: {
+          postprocess: prettify,
+          data: ['test/fixtures/data/collections/*.json']
+        },
+        files: {
+          'test/actual/collections/complex/': ['test/fixtures/pages/*.hbs']
         }
       },
       // Pages collections
@@ -288,13 +336,6 @@ module.exports = function(grunt) {
         files: {
           'test/actual/pages_metadata/': ['test/fixtures/pages/blog/index.hbs']
         }
-      },
-      // Nested layouts
-      nested_layouts: {
-        options: {layout: 'one.hbs'},
-        files: {
-          'test/actual/nested_layouts/': ['test/fixtures/pages/*.hbs']
-        }
       }
     },
 
@@ -309,8 +350,7 @@ module.exports = function(grunt) {
      * remove files from the previous build
      */
     clean: {
-      tests: ['test/actual/**/*.{html,md}'],
-      permalinks: ['test/actual/2013/**']
+      tests: ['test/actual/**/*']
     }
   });
 
@@ -326,9 +366,6 @@ module.exports = function(grunt) {
 
   // Build
   grunt.registerTask('docs', ['readme', 'sync']);
-
-  // Debugging
-  grunt.registerTask('debug', ['clean', 'assemble']);
 
   // Tests to be run.
   grunt.registerTask('test', ['assemble', 'mochaTest']);

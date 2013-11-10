@@ -7,9 +7,13 @@ categories:
 - two
 - three
 ---
-{{title}}
-<ul>
-{{#categories}}
-  <li>{{category}}</li>
-{{/categories}}
-</ul>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h4>Categories</h4>
+  </div>
+  <div class="panel-body">
+  {{#categories}}
+    <span class="label label-info">{{category}}</span>
+  {{/categories}}
+  </div>
+</div>

@@ -12,7 +12,7 @@ tags:
 <!-- Categories -->
 <div class="panel panel-info">
   <div class="panel-heading">
-    <h4>categories on this page: <span class="badge badge-info">{{page.categories.length}}</span></h4>
+    <h4>categories on this page: <span class="badge badge-info">{{default page.categories.length 0}}</span></h4>
   </div>
   <div class="panel-body">
   {{#if page.categories}}
@@ -29,7 +29,7 @@ tags:
 
 <div class="panel panel-info">
   <div class="panel-heading">
-    <h4>All categories: <span class="badge badge-info">{{categories.length}}</span></h4>
+    <h4>All categories: <span class="badge badge-info">{{default categories.length 0}}</span></h4>
   </div>
   <div class="panel-body">
   {{#if categories}}

@@ -13,15 +13,20 @@
       <section id="validate"></section>
       <div class="docs-section">
         <div class="docs-header" id="content">
-          <h1>{{title}}</h1>
+          <h4><strong class="text-muted">{{page.src}}</strong> &#x2192; <strong class="text-success">{{page.dest}}</strong></h4>
         </div>
+        <hr>
       </div>
+
+      {{pager pagination}}
+      <hr>
+
       <div class="row">
         <!-- Column: sidebar -->
         <div class="col-md-3">
           <div class="bs-sidebar hidden-print" role="complementary">
             <!-- pagination -->
-            {{pager pagination}}
+            {{nav pagination}}
           </div>
         </div>
         <!-- Column: content -->
@@ -37,15 +42,20 @@
             </div>
 
             <hr>
+            <div class="row">
+              <div class="col-md-6">
+                <!-- Categories Collection -->
+                {{#if categories}}
+                  {{> collections-categories }}
+                {{/if}}
+              </div>
+              <div class="col-md-6">
+                {{#if tags}}
+                  {{> collections-tags }}
+                {{/if}}
+              </div>
+            </div>
 
-            <!-- Categories Collection -->
-            {{#if categories}}
-              {{> collections-categories }}
-            {{/if}}
-            <hr>
-            {{#if tags}}
-              {{> collections-tags }}
-            {{/if}}
             <hr>
 
             {{> body }}
