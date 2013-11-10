@@ -149,9 +149,6 @@ module.exports = function(grunt) {
             partial = '{{!}}';
           }
 
-          // If options.removeHbsWhitespace is true
-          partial = removeHbsWhitespace(assemble,partial);
-
           // get the data
           var partialInfo = yfm.extract(partial, {fromFile: false});
           assemble.options.data[filename] = _.extend({}, partialInfo.context || {}, assemble.options.data[filename] || {});
@@ -280,41 +277,22 @@ module.exports = function(grunt) {
               /**
                * Calculate "assets" path
                */
+              grunt.verbose.writeln('assetsPath: ' + assetsPath);
+              grunt.verbose.writeln('DestFile: ' + destDirname);
 
               // `options.assets` generate the relative path to the dest "assets"
               // directory from the location of the newly generated dest file
-              grunt.verbose.writeln('assetsPath: ' + assetsPath);
-              grunt.verbose.writeln('DestFile: ' + destDirname);
-              assemble.options.assets = Utils.pathNormalize(
-                path.relative(path.resolve(destDirname), path.resolve(assetsPath))
-              );
-              // if the assets relative path is blank, then it's the same folder
-              // so update to be '' or './'
-              if (!assemble.options.assets || assemble.options.assets.length === 0) {
-                // if the original path had a trailing slash
-                if (Utils.hasTrailingSlash(assetsPath)) {
-                  // return './'
-                  assemble.options.assets = './';
-                } else {
-                  // otherwise return ''
-                  assemble.options.assets = '.';
-                }
-              }
-              // if the original path had a trailing slash and the calculated path does
-              // not, add a trailing slash
-              if (Utils.hasTrailingSlash(assetsPath) && !Utils.hasTrailingSlash(assemble.options.assets)) {
-                assemble.options.assets += '/';
-                // if the original path did not have a trailing slash and the calculated
-                // path does, remove the trailing slash
-              } else if (!Utils.hasTrailingSlash(assetsPath) && Utils.hasTrailingSlash(assemble.options.assets)) {
-                assemble.options.assets = assemble.options.assets.substring(0, assemble.options.assets.length - 2);
-              }
+              assemble.options.assets = Utils.calculatePath(destDirname, assetsPath, assemble.options.assets);
+
 
               grunt.verbose.writeln(('\t' + 'srcFile: '  + srcFile));
               grunt.verbose.writeln(('\t' + 'destFile: ' + destFile));
               grunt.verbose.writeln(('\t' + 'assets: '   + assemble.options.assets));
 
 
+              /**
+               * Page
+               */
               var page = useFileInfo ? (fileInfo.content || '') : grunt.file.read(srcFile);
               try {
                 grunt.verbose.writeln('Compiling page ' + filename.magenta);
@@ -325,9 +303,6 @@ module.exports = function(grunt) {
                 if(page === '') {
                   page = '{{!}}';
                 }
-
-                // If options.removeHbsWhitespace is true
-                page = removeHbsWhitespace(assemble, page);
 
                 var pageInfo = yfm.extract(page, {fromFile: false});
                 pageContext = useFileInfo ? (fileInfo.data || fileInfo.metadata || {}) : pageInfo.context;
@@ -714,10 +689,6 @@ module.exports = function(grunt) {
         layout = layout.replace(/\{{>\s*body\s*}}/, defaultLayout);
       }
 
-
-      // If options.removeHbsWhitespace is true
-      layout = removeHbsWhitespace(assemble, layout);
-
       var layoutInfo = yfm.extract(layout, {fromFile: false});
       var layoutData = layoutInfo.context;
 
@@ -768,19 +739,6 @@ module.exports = function(grunt) {
   var getEngineOf = function(file) {
     var ext = Utils.extension(file);
     return  _.contains(_.keys(assemble.engine.extensions), ext) ? assemble.engine.extensions[ext] : false;
-  };
-
-  // Deprecated. This will be removed. Processing options and plugins
-  // can do this now.
-  //
-  // Attempt to remove extra whitespace around Handlebars expressions
-  // in generated HTML, similar to what mustache.js does
-  var removeHbsWhitespace = function(assemble, filecontent) {
-    if(assemble.options.removeHbsWhitespace) {
-      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{\{[^}]+?\}\}\})(?=(\n|\r|\n\r))/gi,'$2');
-      filecontent = filecontent.replace(/(\n|\r|\n\r)[\t ]*(\{\{[^}]+?\}\})(?=(\n|\r|\n\r))/gi,'$2');
-    }
-    return filecontent;
   };
 
 };

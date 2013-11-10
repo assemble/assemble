@@ -1,5 +1,5 @@
 /*
- * Assemble Utils
+ * Assemble exports
  * https://github.com/assemble/
  *
  * Copyright (c) 2013 Upstage
@@ -16,13 +16,13 @@ var _str  = grunt.util._.str;
 var _     = require('lodash'); // newer methods
 
 // The module to be exported.
-var Utils = module.exports = {};
+var exports = module.exports = {};
 
 
 
 // Windows? (from grunt.file)
 var win32 = process.platform === 'win32';
-Utils.pathNormalize = function(urlString) {
+exports.pathNormalize = function(urlString) {
   if (win32) {
   return urlString.replace(/\\/g, '/');
   } else {
@@ -31,9 +31,9 @@ Utils.pathNormalize = function(urlString) {
 };
 
 
-Utils.filenameRegex = /[^\\\/:*?"<>|\r\n]+$/i;
+exports.filenameRegex = /[^\\\/:*?"<>|\r\n]+$/i;
 
-Utils.extension = function(filename) {
+exports.extension = function(filename) {
   grunt.verbose.writeln('extension');
   grunt.verbose.writeln(filename);
   if(grunt.util.kindOf(filename) === 'array' && filename.length > 0) {
@@ -43,13 +43,56 @@ Utils.extension = function(filename) {
 };
 
 
+/**
+ * Check if the give file path ends with a slash.
+ * @param  {String}  filePath
+ * @return {Boolean}
+ */
+exports.endsWithSlash = function(filePath) {
+  return _str.endsWith(path.normalize(filePath), path.sep);
+};
+var endsWithSlash = exports.endsWithSlash;
 
+/**
+ * Re-calculate the path from dest file to the given directory
+ * defined in the assemble options, such as `assets`.
+ * @param  {String} dest     Destination of the file.
+ * @param  {String} toPath   Calculated "new" path.
+ * @param  {String} origPath Stored original path to check against.
+ * @return {String}
+ */
+exports.calculatePath = function(destdir, toPath, origPath) {
+  var relativePath = path.relative(path.resolve(destdir), path.resolve(toPath));
+  toPath = exports.pathNormalize(relativePath);
+  // if the relative path is blank, then it's the same folder
+  // so update to be '' or './'
+  if(!toPath || toPath.length === 0) {
+    // if the original path had a trailing slash
+    if(endsWithSlash(origPath)) {
+      // return './'
+      toPath = './';
+    } else {
+      // otherwise return ''
+      toPath = '.';
+    }
+  }
+  // if the original path had a trailing slash and the calculated
+  // path does not, add a trailing slash
+  if(endsWithSlash(origPath) && !endsWithSlash(toPath)) {
+    toPath += '/';
+    // Otherwise, if the original path did not have a trailing slash
+    // and the calculated path does, remove the trailing slash
+  } else if (!endsWithSlash(origPath) && endsWithSlash(toPath)) {
+    toPath = toPath.substring(0, toPath.length - 2);
+  }
+  return toPath;
+};
 
 /**
  * Returns 'directory' or 'file' based on the given path.
  * @param  {String} file path
  */
- Utils.detectDestType = function(dest) {
+ exports.detectDestType = function(dest) {
   if(grunt.util._.endsWith(dest, '/') || grunt.file.isDir(dest)) {
     return 'directory';
   } else if (grunt.file.isFile(dest)) {
@@ -61,9 +104,7 @@ Utils.extension = function(filename) {
   }
 };
 
-
-
-Utils.findBasePath = function(srcFiles, basePath) {
+exports.findBasePath = function(srcFiles, basePath) {
   if (basePath === false) {return '';}
   if (grunt.util.kindOf(basePath) === 'string' && basePath.length >= 1) {
     return _(path.normalize(basePath)).trim(path.sep);
@@ -81,22 +122,13 @@ Utils.findBasePath = function(srcFiles, basePath) {
 };
 
 
-/**
- * Check if the give file path ends with a slash.
- * @param  {String}  filePath
- * @return {Boolean}
- */
-Utils.hasTrailingSlash = function(filePath) {
-  return _str.endsWith(path.normalize(filePath), path.sep);
-};
-
 
 /**
  * Read in the given data file based on the file extension.
  * @param  {String} ext The file extension to check.
  * @return {Object}     JSON data object.
  */
-Utils.dataFileReaderFactory = function(ext) {
+exports.dataFileReaderFactory = function(ext) {
   var reader = grunt.file.readJSON;
   switch(ext) {
     case '.json':
