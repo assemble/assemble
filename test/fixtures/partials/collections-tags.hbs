@@ -5,7 +5,7 @@ description: Different ways to use tags collections.
 <!-- Tags Collection -->
 <div class="panel panel-success">
   <div class="panel-heading">
-    <h4>Tags on this page: <span class="badge badge-success">{{page.tags.length}}</span></h4>
+    <h4>Tags on this page: <span class="badge badge-success">{{default page.tags.length 0}}</span></h4>
   </div>
   <div class="panel-body">
   {{#if page.tags}}
@@ -22,7 +22,7 @@ description: Different ways to use tags collections.
 
 <div class="panel panel-success">
   <div class="panel-heading">
-    <h4>All tags: <span class="badge badge-success">{{tags.length}}</span></h4>
+    <h4>All tags: <span class="badge badge-success">{{default tags.length 0}}</span></h4>
   </div>
   <div class="panel-body">
   {{#if tags}}
