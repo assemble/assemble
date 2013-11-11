@@ -7,8 +7,11 @@
  */
 
 var assembleEngine  = require('../lib/engine');
-var assembleHelpers = require('../lib/helpers');
 var expect          = require('chai').expect;
+
+var pluginParams = {
+  grunt: require('grunt')
+};
 
 
 
@@ -76,7 +79,7 @@ describe('Loading default handlebars engine', function() {
       engine.init({
         cwd: __dirname,
         helpers: './helpers/helpers.js'
-      });
+      }, pluginParams);
       runTest(engine, done);
     });
 
@@ -85,13 +88,13 @@ describe('Loading default handlebars engine', function() {
       engine.init({
         cwd: __dirname,
         helpers: './helpers/helpers/*.js'
-      });
+      }, pluginParams);
       runTest(engine, done);
     });
 
     it('loads a custom helper without needing to set the cwd', function(done) {
       var engine = assembleEngine.load('handlebars');
-      engine.init({helpers: './test/helpers/*.js'});
+      engine.init({helpers: './test/helpers/*.js'}, pluginParams);
       var expected = '<!-- bar -->';
       engine.compile("{{{foo 'bar'}}}", null, function(err, tmpl) {
         if(err) {
