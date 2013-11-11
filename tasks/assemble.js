@@ -416,11 +416,6 @@ module.exports = function(grunt) {
             done(false);
             return;
           }
-          grunt.verbose.writeln('..');
-
-          function postprocess(src, fn) {return fn(src);}
-          var processFn = function(src) {return src;};
-
           // Run any plugins for the 'render:post:page' stage
           var params = {
             grunt: grunt,       // the `grunt` object
@@ -428,19 +423,14 @@ module.exports = function(grunt) {
             page: page,         // the raw page
             content: result     // the rendered page
           };
-
           assemble.plugins.runner('render:post:page', params)(function() {
             // Write the file.
-            file.write(page.dest, postprocess(params.content, assemble.options.postprocess || processFn));
-
+            file.write(page.dest, params.content);
             grunt.verbose.writeln('Assembled ' + (page.dest).cyan +' OK'.green);
             grunt.log.notverbose.ok();
-
             done();
           });
-
         }); // build
-
 
       }, function(){
         grunt.log.ok(((assemble.options.pages).length).toString() + ' pages assembled.');
@@ -448,7 +438,6 @@ module.exports = function(grunt) {
       });
     };
 
-    grunt.verbose.writeflags(assemble.options, 'Assemble options');
 
     // setup plugin params
     var pluginParams = {
