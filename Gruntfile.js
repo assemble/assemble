@@ -351,6 +351,24 @@ module.exports = function(grunt) {
      */
     clean: {
       tests: ['test/actual/**/*']
+    },
+
+    // Automated releases. Bumps packages.json, creates new tag,
+    // and publishes new release to npm.
+    release: {
+      options: {
+        bump: true,
+        file: 'package.json',
+        add: false,
+        commit: true,
+        tag: true,
+        push: true,
+        pushTags: true,
+        npm: true,
+        tagName: '<%= version %>',
+        commitMessage: 'Bump version to <%= version %>',
+        tagMessage: 'Bump version to <%= version %>'
+      }
     }
   });
 
@@ -360,6 +378,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-readme');
   grunt.loadNpmTasks('grunt-sync-pkg');
+  grunt.loadNpmTasks('grunt-release');
 
   // Load this plugin.
   grunt.loadTasks('tasks');
