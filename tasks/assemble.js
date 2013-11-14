@@ -63,15 +63,8 @@ module.exports = function(grunt) {
       }
 
       // find an engine to use
-      assemble.options.engine = assemble.options.engine || getEngineOf(src);
-      grunt.verbose.ok(">> Current engine:".yellow, getEngineOf(src));
-      if(!assemble.options.engine) {
-        grunt.warn('No compatible engine available');
-        done(false);
-      }
-
-      assemble.fileExtRegex = new RegExp('\\.' + Utils.extension(src) + '$');
-
+      assemble.options.engine = assemble.options.engine || 'handlebars';
+      grunt.verbose.ok(">> Current engine:".yellow, assemble.options.engine);
 
       assemble.engine.load(assemble.options.engine);
 
@@ -139,7 +132,7 @@ module.exports = function(grunt) {
         grunt.verbose.write(('\n' + 'Processing partials...\n').grey);
 
         partials.forEach(function(filepath) {
-          var filename = _.first(filepath.match(Utils.filenameRegex)).replace(assemble.fileExtRegex, '');
+          var filename = path.basename(filepath, path.extname(filepath));
           grunt.verbose.ok(('Processing ' + filename.cyan + ' partial'));
 
           var partial = grunt.file.read(filepath);
@@ -677,7 +670,7 @@ module.exports = function(grunt) {
         }
 
         // load layout
-        layoutName = _.first(layout.match(Utils.filenameRegex)).replace(assemble.fileExtRegex,'');
+        layoutName = path.basename(layout, path.extname(layout));
 
         layout = grunt.file.read(layout);
         layout = layout.replace(/\{{>\s*body\s*}}/, defaultLayout);
@@ -728,11 +721,6 @@ module.exports = function(grunt) {
    */
   var injectBody = function(layout, body) {
     return layout.replace(assemble.engine.bodyRegex, body);
-  };
-
-  var getEngineOf = function(file) {
-    var ext = Utils.extension(file);
-    return  _.contains(_.keys(assemble.engine.extensions), ext) ? assemble.engine.extensions[ext] : false;
   };
 
 };
