@@ -589,7 +589,7 @@ module.exports = function(grunt) {
       context.basename = currentPage.basename;
       context.extname  = currentPage.ext;
 
-      currentPage.page = injectBody(layout.layout, currentPage.page);
+      context.page.page = injectBody(layout.layout, context.page.page);
 
       // Run any plugins for the 'render:pre:page' stage
       assemble.plugins.runner('render:pre:page', {
@@ -597,12 +597,11 @@ module.exports = function(grunt) {
         assemble: assemble,
         context: context
       })(function () {
-        assemble.engine.render(currentPage.page, context, function (err, content) {
+        assemble.engine.render(context.page.page, context, function (err, content) {
           if (err) {
             callback(err);
           }
-          currentPage.page = content;
-          callback(null, currentPage.page);
+          callback(null, content);
         });
       });
 

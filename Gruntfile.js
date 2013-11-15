@@ -151,6 +151,15 @@ module.exports = function(grunt) {
           'test/actual/plugin_after.html': 'test/fixtures/plugins/after.hbs'
         }
       },
+      // Should use custom plugins with 'render:pre:page' stage defined
+      plugin_pre_page: {
+        options: {
+          plugins: ['./test/plugins/plugin_pre_page.js']
+        },
+        files: {
+          'test/actual/plugin_pre_page.html': 'test/fixtures/plugins/after.hbs'
+        }
+      },
       // Should do nothing for a non-existant plugin
       plugin_none: {
         options: {
