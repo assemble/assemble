@@ -496,8 +496,7 @@ module.exports = function(grunt) {
 
     grunt.verbose.writeln('Currentpage: ' + currentPage);
 
-    var page         = currentPage.page,
-        pageContext  = currentPage.data,
+    var pageContext  = currentPage.data,
         layout       = _.cloneDeep(options.defaultLayout),
         data         = options.data,
         pages        = options.pages,
@@ -590,7 +589,7 @@ module.exports = function(grunt) {
       context.basename = currentPage.basename;
       context.extname  = currentPage.ext;
 
-      page = injectBody(layout.layout, page);
+      currentPage.page = injectBody(layout.layout, currentPage.page);
 
       // Run any plugins for the 'render:pre:page' stage
       assemble.plugins.runner('render:pre:page', {
@@ -598,12 +597,12 @@ module.exports = function(grunt) {
         assemble: assemble,
         context: context
       })(function () {
-        assemble.engine.render(page, context, function (err, content) {
+        assemble.engine.render(currentPage.page, context, function (err, content) {
           if (err) {
             callback(err);
           }
-          page = content;
-          callback(null, page);
+          currentPage.page = content;
+          callback(null, currentPage.page);
         });
       });
 
