@@ -151,6 +151,15 @@ module.exports = function(grunt) {
           'test/actual/plugin_after.html': 'test/fixtures/plugins/after.hbs'
         }
       },
+      // Should do nothing for a non-existant plugin
+      plugin_none: {
+        options: {
+          plugins: ['./test/plugins/not_real.js']
+        },
+        files: {
+          'test/actual/not_real.html': 'test/fixtures/plugins/after.hbs'
+        }
+      },
       // Path construction based on built-in variables
       // Should automatically calculate relative paths correctly
       paths: {
