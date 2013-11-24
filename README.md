@@ -9,7 +9,7 @@
 1. Most popular site generator for Grunt.js and Yeoman. Assemble is used to build hundreds of web projects, ranging in size from a single page to 14,000 pages (that we're aware of!). [Let us know if you use Assemble](https://github.com/assemble/assemble/issues/300). 
 1. Allows you to carve your HTML up into reusable fragments: partials, includes, sections, snippets... Whatever you prefer to call them, Assemble does that. 
 1. Optionally use `layouts` to wrap your pages with commonly used elements and content.
-1. "Pages" can either be defined as HTML/templates, JSON or YAML, or directly inside the Grunfile.
+1. "Pages" can either be defined as HTML/templates, JSON or YAML, or directly inside the Gruntfile.
 1. It's awesome. Lol just kidding. But seriously, Assemble... is... awesome! and it's fun to use.
 
 ...and of course, we use Assemble to build the project's own documentation [http://assemble.io](http://assemble.io):
@@ -94,7 +94,7 @@ If set, this defines the layout file to use for the [task or target][tasks-and-t
 Type: `String`
 Default: `undefined`
 
-Specify the extension to use for layouts, enabling layouts in YAML front matter to defined without an extension:
+Specify the extension to use for layouts, enabling layouts in YAML front matter to be defined without an extension:
 
 ```yaml
 ---
