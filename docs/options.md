@@ -28,7 +28,7 @@ If set, this defines the layout file to use for the [task or target][tasks-and-t
 Type: `String`
 Default: `undefined`
 
-Specify the extension to use for layouts, enabling layouts in YAML front matter to defined without an extension:
+Specify the extension to use for layouts, enabling layouts in YAML front matter to be defined without an extension:
 
 ```yaml
 ---
