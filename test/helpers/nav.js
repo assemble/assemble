@@ -11,7 +11,7 @@ var fs    = require('fs');
 
 // node_modules
 var grunt = require('grunt');
-var _     = grunt.util._;
+var _     = require('lodash');
 
 
 // Export helpers

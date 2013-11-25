@@ -9,8 +9,8 @@
 module.exports = function(grunt) {
 
   // Grunt utils
-  var async  = grunt.util.async;
-  var _str   = grunt.util._.str;
+  var async  = require('async');
+  var _str   = require('underscore.string');
   var file   = grunt.file;
 
   // Node.js
