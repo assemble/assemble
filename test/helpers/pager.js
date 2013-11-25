@@ -7,6 +7,7 @@
 // Node.js
 var path = require('path');
 var fs = require('fs');
+var _ = require('lodash');
 
 
 // Export helpers
@@ -14,7 +15,6 @@ module.exports.register = function (Handlebars, options, params) {
   'use strict';
 
   var opts = options || {};
-  var _ = params.grunt.util._;
 
   /**
    * {{pager}}

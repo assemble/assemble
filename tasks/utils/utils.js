@@ -12,7 +12,7 @@ var path = require('path');
 
 // node_modules
 var grunt = require('grunt');
-var _str  = grunt.util._.str;
+var _str  = require('underscore.string');
 var _     = require('lodash'); // newer methods
 
 // The module to be exported.
@@ -93,7 +93,7 @@ exports.calculatePath = function(destdir, toPath, origPath) {
  * @param  {String} file path
  */
  exports.detectDestType = function(dest) {
-  if(grunt.util._.endsWith(dest, '/') || grunt.file.isDir(dest)) {
+  if(_str.endsWith(dest, '/') || grunt.file.isDir(dest)) {
     return 'directory';
   } else if (grunt.file.isFile(dest)) {
     if (grunt.file.exists(dest)) {

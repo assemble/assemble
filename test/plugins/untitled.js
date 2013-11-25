@@ -7,9 +7,11 @@
  * @param  {Function} callback [description]
  * @return {[type]}            [description]
  */
+
+var _ = require('lodash');
+
 var untitled = function(params, callback) {
   var context = params.context;
-  var _ = params.grunt.util._;
   context.page.data = context.page.data || {};
   context.page.data.title = context.page.data.title || 'Untitled';
   _.extend(context.page, context.page.data);
