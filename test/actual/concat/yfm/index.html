@@ -1,0 +1,491 @@
+<html>
+	<head>
+	</head>
+	<body>
+
+		
+<h1>Associative arrays</h1>
+
+
+<div class="page-header">
+  <h1>Associative arrays</h1> 
+</div>
+
+<div class="examples">
+  <h4>Associative arrays</h4>
+  <dl class="dl-horizontal">
+    
+      <dt>Name:</dt> <dd>John Smith</dd>
+      <dt>Age:</dt>  <dd>33</dd>
+    
+    
+      <dt>Name:</dt> <dd>Grace Jones</dd>
+      <dt>Age:</dt>  <dd>21</dd>
+    
+  </dl>
+</div>
+<h1>Block Literals</h1>
+
+
+<div class="page-header">
+  <h4>Block Literals</h4>
+</div>
+
+<h4>Newlines preserved</h4>
+<div class="almost-haiku">
+
+old pond . . .
+a frog leaps in
+water’s sound
+
+</div>
+
+<h4>Newlines folded</h4>
+<div class="another">
+old pond . . . a frog leaps in water’s sound
+
+</div>
+<h1>Comments in YAML front matter</h1>
+
+
+<div class="page-header">
+  <h4>Comments in YAML front matter</h4> 
+</div>
+
+Nothing.
+<h1>data-files</h1>
+
+<p>Note that templates {{one}}, {{two}} and {{three}} get their data from "test/fixtures/data.yml".
+When a data file is created with the name "data", it gives you access to the root of the context.</p>
+
+<div class="page-header">
+  <h4>first</h4>
+  <h4>second</h4>
+  <h4>third</h4>
+</div>
+
+<div class="examples">
+  <h4>person.yml</h4>
+  <div>Jon Schlinkert</div>
+</div>
+
+<div class="examples">
+  <h4>contact.yml</h4>
+  <div>8005551212</div>
+</div>
+
+<div class="examples">
+  <h4>animal.json</h4>
+  <div>Aardvark</div>
+  <p>Kind of like an ant eater?</p>
+</div>
+
+<div class="examples">
+  <h4>example.json</h4>
+  <div></div>
+</div>
+
+<div class="examples">
+  <h4>example.yml</h4>
+  <div>Congratulations! This is data from example.yml.</div>
+</div>
+
+<h1>Data Types</h1>
+
+
+<div class="page-header">
+  <h4>Data Types</h4> 
+</div>
+
+<div class="examples">
+  <h4>Casting data types</h4>
+  <dl class="dl-horizontal">
+    
+      <dt>a.</dt> <dd>123</dd>
+      <dt>b.</dt> <dd>123</dd>
+      <dt>c.</dt> <dd>123</dd>
+      <dt>d.</dt> <dd></dd>
+      <dt>e.</dt> <dd>123</dd>
+      <dt>f.</dt> <dd>Yes</dd>
+      <dt>g.</dt> <dd>Yes</dd>
+      <dt>h.</dt> <dd>Yes we have No bananas</dd>
+    
+  </dl>
+</div>
+<h1>document</h1>
+
+
+<div class="page-header">
+  <h4></h4>
+</div>
+
+
+<!-- Customer Information
+============================================ -->
+<div class="customer-information">
+  <h4 style="background: #eee; display: block">Customer Information</h4>
+  <dl class="dl-horizontal">
+    <dt>Receipt:</dt>
+    <dd>Oz-Ware Purchase Invoice</dd>
+
+    <dt>Date:</dt>
+    <dd>2007-08-05</dd>
+
+    <dt>First Name:</dt>
+    <dd>Dorothy</dd>
+
+    <dt>Last Name:</dt>
+    <dd>Gale</dd>
+  </dl>
+</div>
+
+<hr>
+
+<!-- Order Information
+============================================ -->
+<div class="customer-information">
+  <h4 style="background: #eee; display: block">Order Information</h4>
+  <dl class="dl-horizontal">
+    <dt>Items:</dt>
+    
+    <dd>
+      <strong class="muted" style="border-bottom: 1px solid #ddd; display: block">Item #0</strong>
+      <dl class="dl-horizontal">
+        <dt>Part No: </dt>
+        <dd> A4786 </dd>
+        <dt>Description: </dt>
+        <dd> Water Bucket (Filled) </dd>
+        <dt>Price: </dt>
+        <dd> $1.47 </dd>
+        <dt>Qty: </dt>
+        <dd> 4 </dd>
+      </dl>
+    </dd>
+    
+    <dd>
+      <strong class="muted" style="border-bottom: 1px solid #ddd; display: block">Item #1</strong>
+      <dl class="dl-horizontal">
+        <dt>Part No: </dt>
+        <dd> E1628 </dd>
+        <dt>Description: </dt>
+        <dd> High Heeled &quot;Ruby&quot; Slippers </dd>
+        <dt>Price: </dt>
+        <dd> $100.27 </dd>
+        <dt>Qty: </dt>
+        <dd> 1 </dd>
+      </dl>
+    </dd>
+    
+  </dl>
+</div>
+<hr>
+
+<!-- Bill To
+============================================ -->
+<div class="bill-to">
+  <h4 style="background: #eee; display: block">Address Information</h4>
+  <strong>Bill To:</strong>
+  <dl class="dl-horizontal">
+    <dt>Billing Street: </dt>
+    <dd> 
+123 Tornado Alley
+Suite 16
+ </dd>
+    <dt>Billing City: </dt>
+    <dd> East Centerville </dd>
+    <dt>Billing State: </dt>
+    <dd> KS </dd>
+  </dl>
+  <strong>Ship To:</strong>
+  <dl class="dl-horizontal">
+    <dt>Shipping Street: </dt>
+    <dd> 
+123 Tornado Alley
+Suite 16
+ </dd>
+    <dt>Shipping City: </dt>
+    <dd> East Centerville </dd>
+    <dt>Shipping State: </dt>
+    <dd> KS </dd>
+    </dd>
+  </dl>
+</div>
+
+<!-- Special Instructions
+============================================ -->
+<div class="special-instructions" style="margin-bottom: 120px;">
+  <h4 style="background: #eee; display: block">Delivery Instructions</h4>
+  <p>Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.
+</p>
+</div>
+<h1>Almost a Haiku</h1>
+
+
+<div class="page-header">
+  <h1>Almost a Haiku</h1> 
+</div>
+
+<div class="attributes">
+  <h4>Attributes</h4>
+  <ul>
+  <li>attr1</li>
+  <li>attr2</li>
+  <li>attr3</li>
+  
+  </ul>
+</div>
+
+<hr>
+
+<div class="methods">
+  <h4>Methods</h4>
+  <ul>
+  <li>getter</li>
+  <li>setter</li>
+  
+  </ul>
+</div>
+
+<hr>
+
+<div class="examples">
+  <h3>Lists</h3>
+  <h4>Movies</h4>
+  <dl class="dl-horizontal">
+    
+      <dt>Movie:</dt> <dd>Casablanca</dd>
+    
+      <dt>Movie:</dt> <dd>North by Northwest</dd>
+    
+      <dt>Movie:</dt> <dd>The Man Who Wasn&#x27;t There</dd>
+    
+  </dl>
+
+  <h4>Groceries</h4>
+  <dl class="dl-horizontal">
+    
+      <dt>Item:</dt> <dd>milk</dd>
+    
+      <dt>Item:</dt> <dd>pumpkin pie</dd>
+    
+      <dt>Item:</dt> <dd>eggs</dd>
+    
+      <dt>Item:</dt> <dd>juice</dd>
+    
+  </dl>
+</div>
+
+<hr>
+
+<div class="examples">
+  <h3>Hierarchical combinations of elements</h3>
+  <h4>Lists of associative arrays</h4>
+  <dl class="dl-horizontal">
+    
+      <dt>Name:</dt> <dd>John Smith</dd>
+      <dt>Age:</dt>  <dd>33</dd>
+    
+      <dt>Name:</dt> <dd>Mary Smith</dd>
+      <dt>Age:</dt>  <dd>27</dd>
+    
+  </dl>
+
+  <h4>Associative arrays of lists</h4>
+  <dl class="dl-horizontal">
+    <div><strong>Men</strong></div>
+    <dt>Name:</dt> <dd>John Smith</dd><dt>Name:</dt> <dd>Bill Jones</dd>
+    <div><strong>Women</strong></div>
+    <dt>Name:</dt> <dd>Mary Smith</dd><dt>Name:</dt> <dd>Susan Williams</dd>
+  </dl>
+</div>
+<h1>Relational Trees - References</h1>
+
+
+<div class="page-header">
+  <h4>Relational Trees - References</h4> 
+</div>
+
+<div class="examples">
+  <h4>Associative arrays</h4>
+  <dl class="dl-horizontal">
+    
+      
+        <dt>instrument</dt> 
+        <dd>Lasik 2000</dd>
+      
+        <dt>pulseEnergy</dt> 
+        <dd>5.4</dd>
+      
+        <dt>pulseDuration</dt> 
+        <dd>12</dd>
+      
+        <dt>repetition</dt> 
+        <dd>1000</dd>
+      
+        <dt>spotSize</dt> 
+        <dd>1mm</dd>
+      
+      <hr>
+    
+      
+        <dt>instrument</dt> 
+        <dd>Lasik 2000</dd>
+      
+        <dt>pulseEnergy</dt> 
+        <dd>5</dd>
+      
+        <dt>pulseDuration</dt> 
+        <dd>10</dd>
+      
+        <dt>repetition</dt> 
+        <dd>500</dd>
+      
+        <dt>spotSize</dt> 
+        <dd>2mm</dd>
+      
+      <hr>
+    
+      
+        <dt>instrument</dt> 
+        <dd>Lasik 2000</dd>
+      
+        <dt>pulseEnergy</dt> 
+        <dd>5.4</dd>
+      
+        <dt>pulseDuration</dt> 
+        <dd>12</dd>
+      
+        <dt>repetition</dt> 
+        <dd>1000</dd>
+      
+        <dt>spotSize</dt> 
+        <dd>1mm</dd>
+      
+      <hr>
+    
+      
+        <dt>instrument</dt> 
+        <dd>Lasik 2000</dd>
+      
+        <dt>pulseEnergy</dt> 
+        <dd>5</dd>
+      
+        <dt>pulseDuration</dt> 
+        <dd>10</dd>
+      
+        <dt>repetition</dt> 
+        <dd>500</dd>
+      
+        <dt>spotSize</dt> 
+        <dd>2mm</dd>
+      
+      <hr>
+    
+      
+        <dt>instrument</dt> 
+        <dd>Lasik 2000</dd>
+      
+        <dt>pulseEnergy</dt> 
+        <dd>5.4</dd>
+      
+        <dt>pulseDuration</dt> 
+        <dd>12</dd>
+      
+        <dt>repetition</dt> 
+        <dd>1000</dd>
+      
+        <dt>spotSize</dt> 
+        <dd>1mm</dd>
+      
+      <hr>
+    
+      
+        <dt>instrument</dt> 
+        <dd>Lasik 2000</dd>
+      
+        <dt>pulseEnergy</dt> 
+        <dd>5</dd>
+      
+        <dt>pulseDuration</dt> 
+        <dd>10</dd>
+      
+        <dt>repetition</dt> 
+        <dd>500</dd>
+      
+        <dt>spotSize</dt> 
+        <dd>2mm</dd>
+      
+      <hr>
+    
+  </dl>
+</div>
+<h1>underscore</h1>
+
+
+<p>Note that templates {{one}}, {{two}} and {{three}} get their data from "test/fixtures/data.yml".
+When a data file is created with the name "data", it gives you access to the root of the context.</p>
+
+<div class="page-header">
+  <h4>first</h4>
+  <h4>second</h4>
+  <h4>third</h4>
+</div>
+
+<div class="examples">
+  <h4>person.yml</h4>
+  <div>Jon Schlinkert</div>
+</div>
+
+<div class="examples">
+  <h4>person.yml - YFM</h4>
+  <div>jon: Jon Schlinkert</div>
+  <div>page.jon: Jon Schlinkert</div>
+  <div>underscore.jon: </div>
+  <div>data.jon: </div>
+  <div>underscore.data.jon: </div>
+</div>
+
+<div class="examples">
+  <h4>contact.yml</h4>
+  <div>8005551212</div>
+</div>
+
+<div class="examples">
+  <h4>animal.json</h4>
+  <div>Aardvark</div>
+  <p>Kind of like an ant eater?</p>
+</div>
+
+<div class="examples">
+  <h4>example.json</h4>
+  <div></div>
+</div>
+
+<div class="examples">
+  <h4>example.yml</h4>
+  <div>Congratulations! This is data from example.yml.</div>
+</div>
+
+<h1>YAML Variables</h1>
+
+
+<div class="page-header">
+  <h4>YAML Variables</h4>
+</div>
+
+This is an example YAML variable. Variables need to be the first thing in the line. If it shows up in the result, it worked!
+
+<p>This would output the variable as literal text.</p>
+<pre><code class="language-yaml">three: But this doesn&#39;t work. *DOOWB</code></pre>
+<p>And this would throw an error:</p>
+<pre><code class="language-yaml">three: *DOOWB But this doesn&#39;t work.</code></pre>
+<p>YAML supports <strong>variables</strong>, or <strong>repeated nodes</strong>. The simplest explanation is that you define something as a variable by preceding it with &quot;&amp;NAME value&quot; and you can refer to it with &quot;*NAME&quot; e.g.:</p>
+<pre><code class="language-yaml"># YAML
+some_thing: &amp;NAME foobar
+other_thing: *NAME</code></pre>
+<p>Parses to:</p>
+<pre><code class="language-json">{"<span class="attribute">other_thing</span>": <span class="value"><span class="string">"foobar"</span></span>, "<span class="attribute">some_thing</span>": <span class="value"><span class="string">"foobar"</span></span>}</code></pre>
+
+
+	</body>
+</html>

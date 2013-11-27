@@ -83,7 +83,12 @@ module.exports = function(grunt) {
         helpers: ['test/helpers/*.js'],
         layoutdir: 'test/fixtures/layouts',
         layout: 'default.hbs',
-        flatten: true
+        flatten: true,
+        concat: {
+          template: '<html>\n\t<head>\n\t</head>\n\t<body>\n\n\t\t{{content}}\n\n\t</body>\n</html>',
+          separator: '\n<h1>{{page.title}}</h1>\n\n',
+          dest: './test/actual/concat/<%= grunt.task.current.target %>/index.html'
+        }
       },
       // Should render pages with `layout: false` or `layout: none` defined
       no_layout: {
@@ -127,7 +132,7 @@ module.exports = function(grunt) {
       // Should register and use custom plugins, without a stage defined
       plugin_untitled: {
         options: {
-          plugins: ['./test/plugins/untitled.js'],
+          plugins: ['./test/plugins/untitled.js']
         },
         files: {
           'test/actual/plugin_untitled.html': 'test/fixtures/plugins/untitled.hbs'
