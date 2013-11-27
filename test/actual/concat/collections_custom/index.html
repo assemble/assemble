@@ -1,0 +1,497 @@
+<html>
+	<head>
+	</head>
+	<body>
+
+		
+<h1>debug-helpers</h1>
+
+
+<h3 id="-debug-helper">{{debug}} helper</h3>
+<p>Uncomment the <code>debug</code> helper below, run <code>grunt assemble</code>, and watch the output in the command line to see how it works.</p>
+
+
+<h1>Title for &quot;alert.hbs&quot;</h1>
+
+
+
+<h2>Title for "alert.hbs"</h2>
+<div class="alert alert-info">This is an alert</div>
+
+<h1>Tags Test</h1>
+
+
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h4>Tags</h4>
+  </div>
+  <div class="panel-body">
+  
+    <span class="label label-success">alert</span>
+  
+    <span class="label label-success">bootstrap</span>
+  
+    <span class="label label-success">collections</span>
+  
+    <span class="label label-success">complex</span>
+  
+    <span class="label label-success">example</span>
+  
+    <span class="label label-success">examples</span>
+  
+    <span class="label label-success">markdown</span>
+  
+    <span class="label label-success">md</span>
+  
+    <span class="label label-success">one</span>
+  
+    <span class="label label-success">tags</span>
+  
+    <span class="label label-success">test</span>
+  
+    <span class="label label-success">tests</span>
+  
+    <span class="label label-success">three</span>
+  
+    <span class="label label-success">two</span>
+  
+  </div>
+</div>
+<h1>Collections</h1>
+
+
+Collections
+<ul class="tags">
+
+  <li>alert</li>
+
+  <li>bootstrap</li>
+
+  <li>collections</li>
+
+  <li>complex</li>
+
+  <li>example</li>
+
+  <li>examples</li>
+
+  <li>markdown</li>
+
+  <li>md</li>
+
+  <li>one</li>
+
+  <li>tags</li>
+
+  <li>test</li>
+
+  <li>tests</li>
+
+  <li>three</li>
+
+  <li>two</li>
+
+</ul>
+
+<ul class="categories">
+
+  <li></li>
+
+  <li></li>
+
+  <li></li>
+
+  <li></li>
+
+  <li></li>
+
+  <li></li>
+
+  <li></li>
+
+  <li></li>
+
+  <li></li>
+
+  <li></li>
+
+  <li></li>
+
+  <li></li>
+
+  <li></li>
+
+</ul>
+
+<ul class="pages">
+
+	<li>debug-helpers</li>
+
+	<li>alert</li>
+
+	<li>collections-tags</li>
+
+	<li>collections</li>
+
+	<li>complex</li>
+
+	<li>context</li>
+
+	<li>collections-categories</li>
+
+	<li>example</li>
+
+	<li>gist-helper</li>
+
+	<li>md-helper</li>
+
+	<li>no-yfm</li>
+
+	<li>yfm-context</li>
+
+	<li>yfm</li>
+
+</ul>
+
+<h1>complex</h1>
+
+
+
+<div class="alert alert-info">This is an alert</div>
+
+<h1>Context</h1>
+
+
+<style>
+.context-test > li {
+  position: relative;
+  line-height: 1.8;
+}
+.context-test > li > a:after {
+  position: absolute;
+  left: auto;
+  right: auto;
+  content: attr(data-context);
+  font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+  padding: 2px 4px;
+  margin-left: 10px;
+  line-height: 1.5;
+  font-size: 90%;
+  color: #C7254E;
+  white-space: nowrap;
+  background-color: #F9F2F4;
+  border-radius: 4px;
+  clear: both;
+}
+</style>
+
+<p>If a list item is empty, or rather only has a label and no link, then the variable did not populate a value.</p>
+
+<ul class="context-test">
+  <li><a href="#" data-context="title">Context</a></li>
+  <li><a href="#" data-context="this.title">Context</a></li>
+  <li><a href="#" data-context="page.title">Context</a></li>
+  <li><a href="#" data-context="data.title"></a></li>
+</ul>
+
+<hr>
+
+<ul class="context-test">
+  <li><a href="#" data-context="basename">context</a></li>
+  <li><a href="#" data-context="this.basename">context</a></li>
+  <li><a href="#" data-context="page.basename">context</a></li>
+  <li><a href="#" data-context="data.basename"></a></li>
+</ul>
+
+<hr>
+
+<ul class="context-test">
+
+  <li><a href="#" data-context="basename">debug-helpers</a></li>
+  <li><a href="#" data-context="../basename">context</a></li>
+  <li><a href="#" data-context="this.basename">debug-helpers</a></li>
+  <li><a href="#" data-context="page.basename"></a></li>
+  <li><a href="#" data-context="data.basename"></a></li>
+
+  <li><a href="#" data-context="basename">alert</a></li>
+  <li><a href="#" data-context="../basename">context</a></li>
+  <li><a href="#" data-context="this.basename">alert</a></li>
+  <li><a href="#" data-context="page.basename"></a></li>
+  <li><a href="#" data-context="data.basename"></a></li>
+
+  <li><a href="#" data-context="basename">collections-tags</a></li>
+  <li><a href="#" data-context="../basename">context</a></li>
+  <li><a href="#" data-context="this.basename">collections-tags</a></li>
+  <li><a href="#" data-context="page.basename"></a></li>
+  <li><a href="#" data-context="data.basename"></a></li>
+
+  <li><a href="#" data-context="basename">collections</a></li>
+  <li><a href="#" data-context="../basename">context</a></li>
+  <li><a href="#" data-context="this.basename">collections</a></li>
+  <li><a href="#" data-context="page.basename"></a></li>
+  <li><a href="#" data-context="data.basename"></a></li>
+
+  <li><a href="#" data-context="basename">complex</a></li>
+  <li><a href="#" data-context="../basename">context</a></li>
+  <li><a href="#" data-context="this.basename">complex</a></li>
+  <li><a href="#" data-context="page.basename"></a></li>
+  <li><a href="#" data-context="data.basename"></a></li>
+
+  <li><a href="#" data-context="basename">context</a></li>
+  <li><a href="#" data-context="../basename">context</a></li>
+  <li><a href="#" data-context="this.basename">context</a></li>
+  <li><a href="#" data-context="page.basename"></a></li>
+  <li><a href="#" data-context="data.basename"></a></li>
+
+  <li><a href="#" data-context="basename">collections-categories</a></li>
+  <li><a href="#" data-context="../basename">context</a></li>
+  <li><a href="#" data-context="this.basename">collections-categories</a></li>
+  <li><a href="#" data-context="page.basename"></a></li>
+  <li><a href="#" data-context="data.basename"></a></li>
+
+  <li><a href="#" data-context="basename">example</a></li>
+  <li><a href="#" data-context="../basename">context</a></li>
+  <li><a href="#" data-context="this.basename">example</a></li>
+  <li><a href="#" data-context="page.basename"></a></li>
+  <li><a href="#" data-context="data.basename"></a></li>
+
+  <li><a href="#" data-context="basename">gist-helper</a></li>
+  <li><a href="#" data-context="../basename">context</a></li>
+  <li><a href="#" data-context="this.basename">gist-helper</a></li>
+  <li><a href="#" data-context="page.basename"></a></li>
+  <li><a href="#" data-context="data.basename"></a></li>
+
+  <li><a href="#" data-context="basename">md-helper</a></li>
+  <li><a href="#" data-context="../basename">context</a></li>
+  <li><a href="#" data-context="this.basename">md-helper</a></li>
+  <li><a href="#" data-context="page.basename"></a></li>
+  <li><a href="#" data-context="data.basename"></a></li>
+
+  <li><a href="#" data-context="basename">no-yfm</a></li>
+  <li><a href="#" data-context="../basename">context</a></li>
+  <li><a href="#" data-context="this.basename">no-yfm</a></li>
+  <li><a href="#" data-context="page.basename"></a></li>
+  <li><a href="#" data-context="data.basename"></a></li>
+
+  <li><a href="#" data-context="basename">yfm-context</a></li>
+  <li><a href="#" data-context="../basename">context</a></li>
+  <li><a href="#" data-context="this.basename">yfm-context</a></li>
+  <li><a href="#" data-context="page.basename"></a></li>
+  <li><a href="#" data-context="data.basename"></a></li>
+
+  <li><a href="#" data-context="basename">yfm</a></li>
+  <li><a href="#" data-context="../basename">context</a></li>
+  <li><a href="#" data-context="this.basename">yfm</a></li>
+  <li><a href="#" data-context="page.basename"></a></li>
+  <li><a href="#" data-context="data.basename"></a></li>
+
+</ul>
+
+<hr>
+
+<ul class="context-test">
+
+  <li><a href="#" data-context="title"></a></li>
+  <li><a href="#" data-context="../title">Context</a></li>
+  <li><a href="#" data-context="this.title"></a></li>
+  <li><a href="#" data-context="page.title"></a></li>
+  <li><a href="#" data-context="data.title"></a></li>
+
+  <li><a href="#" data-context="title"></a></li>
+  <li><a href="#" data-context="../title">Context</a></li>
+  <li><a href="#" data-context="this.title"></a></li>
+  <li><a href="#" data-context="page.title"></a></li>
+  <li><a href="#" data-context="data.title">Title for &quot;alert.hbs&quot;</a></li>
+
+  <li><a href="#" data-context="title"></a></li>
+  <li><a href="#" data-context="../title">Context</a></li>
+  <li><a href="#" data-context="this.title"></a></li>
+  <li><a href="#" data-context="page.title"></a></li>
+  <li><a href="#" data-context="data.title">Tags Test</a></li>
+
+  <li><a href="#" data-context="title"></a></li>
+  <li><a href="#" data-context="../title">Context</a></li>
+  <li><a href="#" data-context="this.title"></a></li>
+  <li><a href="#" data-context="page.title"></a></li>
+  <li><a href="#" data-context="data.title">Collections</a></li>
+
+  <li><a href="#" data-context="title"></a></li>
+  <li><a href="#" data-context="../title">Context</a></li>
+  <li><a href="#" data-context="this.title"></a></li>
+  <li><a href="#" data-context="page.title"></a></li>
+  <li><a href="#" data-context="data.title"></a></li>
+
+  <li><a href="#" data-context="title"></a></li>
+  <li><a href="#" data-context="../title">Context</a></li>
+  <li><a href="#" data-context="this.title"></a></li>
+  <li><a href="#" data-context="page.title"></a></li>
+  <li><a href="#" data-context="data.title">Context</a></li>
+
+  <li><a href="#" data-context="title"></a></li>
+  <li><a href="#" data-context="../title">Context</a></li>
+  <li><a href="#" data-context="this.title"></a></li>
+  <li><a href="#" data-context="page.title"></a></li>
+  <li><a href="#" data-context="data.title">Collections Categories</a></li>
+
+  <li><a href="#" data-context="title"></a></li>
+  <li><a href="#" data-context="../title">Context</a></li>
+  <li><a href="#" data-context="this.title"></a></li>
+  <li><a href="#" data-context="page.title"></a></li>
+  <li><a href="#" data-context="data.title">This title is from YFM</a></li>
+
+  <li><a href="#" data-context="title"></a></li>
+  <li><a href="#" data-context="../title">Context</a></li>
+  <li><a href="#" data-context="this.title"></a></li>
+  <li><a href="#" data-context="page.title"></a></li>
+  <li><a href="#" data-context="data.title"></a></li>
+
+  <li><a href="#" data-context="title"></a></li>
+  <li><a href="#" data-context="../title">Context</a></li>
+  <li><a href="#" data-context="this.title"></a></li>
+  <li><a href="#" data-context="page.title"></a></li>
+  <li><a href="#" data-context="data.title">md helper</a></li>
+
+  <li><a href="#" data-context="title"></a></li>
+  <li><a href="#" data-context="../title">Context</a></li>
+  <li><a href="#" data-context="this.title"></a></li>
+  <li><a href="#" data-context="page.title"></a></li>
+  <li><a href="#" data-context="data.title"></a></li>
+
+  <li><a href="#" data-context="title"></a></li>
+  <li><a href="#" data-context="../title">Context</a></li>
+  <li><a href="#" data-context="this.title"></a></li>
+  <li><a href="#" data-context="page.title"></a></li>
+  <li><a href="#" data-context="data.title">This title is from the YFM of the current page</a></li>
+
+  <li><a href="#" data-context="title"></a></li>
+  <li><a href="#" data-context="../title">Context</a></li>
+  <li><a href="#" data-context="this.title"></a></li>
+  <li><a href="#" data-context="page.title"></a></li>
+  <li><a href="#" data-context="data.title"></a></li>
+
+</ul>
+
+<h1>Collections Categories</h1>
+
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h4>Categories</h4>
+  </div>
+  <div class="panel-body">
+  
+    <span class="label label-info">categories</span>
+  
+    <span class="label label-info">collections</span>
+  
+    <span class="label label-info">components</span>
+  
+    <span class="label label-info">context</span>
+  
+    <span class="label label-info">fixtures</span>
+  
+    <span class="label label-info">helper</span>
+  
+    <span class="label label-info">markdown</span>
+  
+    <span class="label label-info">one</span>
+  
+    <span class="label label-info">pages</span>
+  
+    <span class="label label-info">three</span>
+  
+    <span class="label label-info">two</span>
+  
+    <span class="label label-info">yaml</span>
+  
+    <span class="label label-info">yfm</span>
+  
+  </div>
+</div>
+<h1>This title is from YFM</h1>
+
+
+
+This example shows that the properties from "example.json" and "example.hbs" are on the page object.
+
+<hr>
+
+<div>This title is from YFM</div>
+<div></div>
+
+<hr>
+
+<div>This title is from YFM</div>
+
+<h1>gist-helper</h1>
+
+
+
+<h1 id="-gist-helper">{{gist}} helper</h1>
+<script src="https://gist.github.com/5193239.js"></script>
+
+
+<h1>md helper</h1>
+
+
+
+<div class="page-header">
+  <h1>md helper</h1>
+  <p class="lead">Use the {{md}} helper to include external markdown files.</p>
+</div>
+
+<p> <h2 id="some-markdown">Some Markdown</h2>
+<ul>
+<li>one</li>
+<li>two</li>
+<li>three</li>
+</ul>
+<p><a href="http://github.com">Click here</a></p>
+ </p>
+
+
+
+
+<h1>no-yfm</h1>
+
+There is no YAML front matter in this page.
+
+<div></div>
+<div></div>
+
+
+
+<h1>This title is from the YFM of the current page</h1>
+
+
+
+<div class="page-header">
+  <h1>Title from home.json didn't render.</h1>
+  <p class="lead">Description from home.json didn't render.</p>
+</div>
+
+<hr>
+
+<div class="page-header">
+  <h1>This title is from the YFM of the current page</h1>
+  <p class="lead">This description is from the YFM of the current page</p>
+</div>
+
+<hr>
+
+<div class="page-header">
+  <h1>This title is from the YFM of the current page</h1>
+  <p class="lead">This description is from the YFM of the current page</p>
+</div>
+
+
+
+<h1>yfm</h1>
+
+
+
+<div class="alert alert-info">This is an alert</div>
+
+
+	</body>
+</html>
