@@ -403,7 +403,7 @@ module.exports = function(grunt) {
         bump: true,
         file: 'package.json',
         add: false,
-        commit: true,
+        commit: false,
         tag: true,
         push: true,
         pushTags: true,
