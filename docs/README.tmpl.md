@@ -16,39 +16,33 @@
 
 ![image](https://f.cloud.github.com/assets/383994/1463257/f031bcfe-4525-11e3-9a03-89a17eee7518.png)
 
+## The "assemble" task
 
-## Getting Started
+### Getting Started
 {%= _.doc("getting-started.md") %}
 
-## Options
+### Options
 {%= _.doc("options.md") %}
 
-## Usage Examples
+### Usage Examples
 {%= _.doc("examples.md") %}
 
 ## Contributing
-Please see the [Contributing to Assemble](http://assemble.io/contributing) guide for information on contributing to this project.
+{%= _.contrib("contributing.md") %}
+
+## Assemble plugins
+{%= _.include("related-repos-list.md") %}
 
 ## Authors
-
-**Jon Schlinkert**
-
-+ [twitter.com/jonschlinkert](http://twitter.com/jonschlinkert)
-+ [github.com/jonschlinkert](http://github.com/jonschlinkert)
-
-**Brian Woodward**
-
-+ [twitter.com/doowb](http://twitter.com/doowb)
-+ [github.com/doowb](http://github.com/doowb)
-
+{%= _.contrib("authors.md") %}
 
 ## Release History
-{%= _.include("docs-changelog.md") %}
+{%= _.include("release-history.md") %}
 
 ## License
-Copyright (c) {%= grunt.template.today('yyyy') %} Sellside Inc.
-Released under the [MIT License](./LICENSE-MIT).
+{%= copyright %}
+{%= license %}
 
 ***
 
-_This file was generated on {%= grunt.template.date("fullDate") %}._
+{%= _.include("footer.md") %}
