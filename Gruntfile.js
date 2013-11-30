@@ -13,8 +13,6 @@
 
 module.exports = function(grunt) {
 
-  var prettify = require('pretty');
-
   // Report elapsed execution time of grunt tasks.
   require('time-grunt')(grunt);
 
@@ -67,7 +65,7 @@ module.exports = function(grunt) {
     mochaTest: {
       tests: {
         options: {
-          reporter: 'progress',
+          reporter: 'progress'
         },
         src: ['test/**/*_test.js']
       }
@@ -104,7 +102,6 @@ module.exports = function(grunt) {
       // Should flatten nested layouts
       nested_layouts: {
         options: {
-          postprocess: prettify,
           partials: 'test/fixtures/partials/*.hbs',
           data: 'test/fixtures/data/*.{json,yml}',
           layout: 'one.hbs'
@@ -117,8 +114,7 @@ module.exports = function(grunt) {
       custom_helpers: {
         options: {
           helpers: ['test/helpers/*.js'],
-          name: '<%= pkg.name %>',
-          postprocess: prettify
+          name: '<%= pkg.name %>'
         },
         files: {
           'test/actual/custom_helpers/': ['test/fixtures/helpers/{foo,bar,opt}.hbs']
@@ -127,7 +123,7 @@ module.exports = function(grunt) {
       // Should register and use custom plugins, without a stage defined
       plugin_untitled: {
         options: {
-          plugins: ['./test/plugins/untitled.js'],
+          plugins: ['./test/plugins/untitled.js']
         },
         files: {
           'test/actual/plugin_untitled.html': 'test/fixtures/plugins/untitled.hbs'
@@ -174,8 +170,7 @@ module.exports = function(grunt) {
       paths: {
         options: {
           partials: 'test/fixtures/partials/*.hbs',
-          data: 'test/fixtures/data/*.{json,yml}',
-          postprocess: prettify
+          data: 'test/fixtures/data/*.{json,yml}'
         },
         files: {
           'test/actual/paths/': ['test/fixtures/pages/*.hbs']
@@ -195,7 +190,6 @@ module.exports = function(grunt) {
       // Should post-process content using a custom function
       postprocess2: {
         options: {
-          postprocess: prettify
         },
         files: {
           'test/actual/postprocess2.html': ['test/fixtures/pages/postprocess/postprocess2.hbs']
@@ -210,8 +204,7 @@ module.exports = function(grunt) {
       // Should process and add complex YAML front matter to context
       yfm: {
         options: {
-          data: 'test/fixtures/data/*.{json,yml}',
-          postprocess: prettify
+          data: 'test/fixtures/data/*.{json,yml}'
         },
         files: {
           'test/actual/yfm/': ['test/fixtures/pages/yfm/*.hbs']
@@ -268,7 +261,6 @@ module.exports = function(grunt) {
       // Should add collections to context, sorted in descending order.
       collections_desc: {
         options: {
-          postprocess: prettify,
           collections: [
             {name: 'pages', inflection: 'page', sortorder: 'DESC'},
             {name: 'tags', inflection: 'tag', sortorder: 'DESC'},
@@ -282,7 +274,6 @@ module.exports = function(grunt) {
       // Should add collections to context, sorted in ascending order.
       collections_asc: {
         options: {
-          postprocess: prettify,
           collections: [
             {name: 'pages', inflection: 'page', sortorder: 'ASC'},
             {name: 'tags', inflection: 'tag', sortorder: 'ASC'},
@@ -296,7 +287,6 @@ module.exports = function(grunt) {
       // Should
       collections_custom: {
         options: {
-          postprocess: prettify,
           collections: [
             {name: 'items', inflection: 'item', sortorder: 'DESC'}
           ]
@@ -308,7 +298,6 @@ module.exports = function(grunt) {
       // Should add complex collections and related pages to context
       collections_complex: {
         options: {
-          postprocess: prettify,
           data: ['test/fixtures/data/collections/*.json']
         },
         files: {
@@ -364,6 +353,42 @@ module.exports = function(grunt) {
 
 
     /**
+     * Beautify generated HTML to make diffs easier
+     */
+    prettify: {
+      tests: {
+        files: [
+          {expand: true, cwd: 'test/actual', src: ['**/*.html'], dest: 'test/actual/', ext: '.html'}
+        ]
+      }
+    },
+
+    /**
+     * Pull down a list of repos from Github, for the docs
+     */
+    repos: {
+      plugins: {
+        options: {
+          username: 'assemble',
+          include: ['contrib'], exclude: ['grunt', 'example', 'rss']
+        },
+        files: {
+          'docs/plugins.json': ['repos?page=1&per_page=100']
+        }
+      }
+    },
+
+    /**
+     * Build the README using metadata from the repos task.
+     */
+    readme: {
+      options: {
+        metadata: ['docs/plugins.json']
+      }
+    },
+
+
+    /**
      * Before generating any new files,
      * remove files from the previous build
      */
@@ -378,7 +403,7 @@ module.exports = function(grunt) {
         bump: true,
         file: 'package.json',
         add: false,
-        commit: true,
+        commit: false,
         tag: true,
         push: true,
         pushTags: true,
@@ -394,19 +419,24 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-prettify');
   grunt.loadNpmTasks('grunt-readme');
-  grunt.loadNpmTasks('grunt-sync-pkg');
   grunt.loadNpmTasks('grunt-release');
+  grunt.loadNpmTasks('grunt-repos');
+  grunt.loadNpmTasks('grunt-sync-pkg');
 
   // Load this plugin.
   grunt.loadTasks('tasks');
 
   // Build
-  grunt.registerTask('docs', ['readme', 'sync']);
+  grunt.registerTask('docs', ['repos', 'readme', 'sync']);
 
   // Tests to be run.
   grunt.registerTask('test', ['assemble', 'mochaTest']);
 
+  // Run default task, then release
+  grunt.registerTask('bump', ['default', 'release']);
+
   // Default task.
-  grunt.registerTask('default', ['jshint', 'clean', 'test', 'docs']);
+  grunt.registerTask('default', ['jshint', 'clean', 'test', 'prettify', 'docs']);
 };
