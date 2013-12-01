@@ -45,7 +45,7 @@ describe("plugins", function() {
 
     describe("before :", function () {
 
-      it('should run once and first', function() {
+      xit('should run once and first', function() {
         var contents = grunt.file.read('./test/actual/plugin_before.html');
         expect(contents).to.equal('BEFORE TITLE 1');
       });
@@ -54,7 +54,7 @@ describe("plugins", function() {
 
     describe("after :", function () {
 
-      it('should run once and last', function() {
+      xit('should run once and last', function() {
         var contents = grunt.file.read('./test/actual/plugin_after.html');
         expect(contents).to.equal('AFTER OVERWRITE 1');
       });
