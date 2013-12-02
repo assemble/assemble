@@ -99,6 +99,17 @@ module.exports = function(grunt) {
       tests: ['test/actual/**/*']
     },
 
+
+    /**
+     * Watch source files and run tests when changes are made.
+     */
+    watch: {
+      dev: {
+        files: ['Gruntfile.js', 'tasks/**/*.js', 'lib/**/*.js', 'test/**/*.js'],
+        tasks: ['dev']
+      }
+    },
+
     // Automated releases. Bumps packages.json, creates new tag,
     // and publishes new release to npm.
     release: {
@@ -121,6 +132,7 @@ module.exports = function(grunt) {
   // Load NPM plugins to provide the necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-readme');
   grunt.loadNpmTasks('grunt-release');
@@ -141,4 +153,7 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'clean', 'test', 'docs']);
+
+  // Dev task.
+  grunt.registerTask('dev', ['jshint', 'test', 'watch']);
 };
