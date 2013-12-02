@@ -165,6 +165,21 @@ module.exports = function(grunt) {
           'test/actual/not_real.html': 'test/fixtures/plugins/after.hbs'
         }
       },
+      // should add isActive and relativeLink to each page
+      // in the pages collection
+      plugin_preprocess_page_collection: {
+        options: {
+          partials: 'test/fixtures/partials/*.hbs',
+          data: 'test/fixtures/data/*.{json,yml}',
+          layout: 'preprocess.hbs',
+          pageCollection: {
+            preprocess: require('./test/plugins/page_collection_preprocessing.js')
+          }
+        },
+        files: {
+          'test/actual/plugin_preprocess/': ['test/fixtures/pages/*.hbs']
+        }
+      },
       // Path construction based on built-in variables
       // Should automatically calculate relative paths correctly
       paths: {
