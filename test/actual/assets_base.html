@@ -12,7 +12,8 @@
       <section id="validate"></section>
       <div class="docs-section">
         <div class="docs-header" id="content">
-          <h4><strong class="text-muted">test/fixtures/assets_path/assets.hbs</strong> &#x2192; <strong class="text-success">test/actual/assets_base.html</strong></h4>
+          <h4><strong class="text-muted">test/fixtures/assets_path/assets.hbs</strong> &#x2192; <strong class="text-success">test/actual/assets_base.html</strong>
+          </h4>
         </div>
         <hr>
       </div>
@@ -100,7 +101,8 @@ assets_base: {
               <h1>Content</h1>
             </div>
             <ul>
-              <li><a href="assets_base.html">assets_base.html</a>
+              <li>
+                <a href="assets_base.html">assets_base.html</a>
               </li>
             </ul>
             <hr>
@@ -140,7 +142,8 @@ assets_base: {
               -->
               <h1>Each pages</h1>
               <ul>
-                <li><a href="assets_base.html">assets</a>
+                <li>
+                  <a href="assets_base.html">assets</a>
                 </li>
                 <!--
                   "this"
@@ -214,7 +217,8 @@ assets_base: {
               "docs-header\" id=\ "content\">\n
                 <h1>Content</h1>\n</div>\n
               <ul>\n {{#each pages}}\n
-                <li><a href=\ "{{relative ../page.dest dest}}\">{{filename}}</a>
+                <li>
+                  <a href=\ "{{relative ../page.dest dest}}\">{{filename}}</a>
                 </li>\n {{/each}}\n</ul>\n\n
               <hr>\n
               <div style=\ "display: none\">\n\n
@@ -222,7 +226,8 @@ assets_base: {
                 <!--\n              \"this\"\n              ===============================\n              this.src:      {{this.src}}\n              this.dest:     {{this.dest}}\n              this.layout:   {{this.layout}}\n              this.dirname:  {{this.dirname}}\n              this.filename: {{this.filename}}\n              this.pagename: {{this.pagename}}\n              this.basename: {{this.basename}}\n              this.ext:      {{this.ext}}\n\n              \"page\"\n              ===============================\n              page.src:        {{page.src}}\n              page.dest:       {{page.dest}}\n              page.layout:     {{page.layout}}\n              page.dirname:    {{page.dirname}}\n              page.filename:   {{page.filename}}\n              page.pagename:   {{page.pagename}}\n              page.basename:   {{page.basename}}\n              page.ext:        {{page.ext}}\n\n              \"root\"\n              ===============================\n              src:           {{src}}\n              dest:          {{dest}}\n              layout:        {{layout}}\n              dirname:       {{dirname}}\n              filename:      {{filename}}\n              pagename:      {{pagename}}\n              basename:      {{basename}}\n              ext:           {{ext}}\n              -->\n
                 <h1>Each pages</h1>\n
                 <ul>\n {{#each pages}}
-                  <li><a href=\ "{{relative ../page.dest dest}}\">{{basename}}</a>
+                  <li>
+                    <a href=\ "{{relative ../page.dest dest}}\">{{basename}}</a>
                   </li>\n
                   <!--\n                  \"this\"\n                  ===============================\n                  this.src:      {{this.src}}\n                  this.dest:     {{this.dest}}\n                  this.dirname:  {{this.dirname}}\n                  this.filename: {{this.filename}}\n                  this.pagename: {{this.pagename}}\n                  this.basename: {{this.basename}}\n                  this.ext:      {{this.ext}}\n\n                  \"page\"\n                  ===============================\n                  page.src:      {{../page.src}}\n                  page.dest:     {{../page.dest}}\n                  page.dirname:  {{../page.dirname}}\n                  page.filename: {{../page.filename}}\n                  page.pagename: {{../page.pagename}}\n                  page.basename: {{../page.basename}}\n                  page.ext:      {{../page.ext}}\n\n                  \"root\"\n                  ===============================\n                  src:           {{src}}\n                  dest:          {{dest}}\n                  dirname:       {{dirname}}\n                  filename:      {{filename}}\n                  pagename:      {{pagename}}\n                  basename:      {{basename}}\n                  ext:           {{ext}}\n                  -->\n {{/each}}\n</ul>\n\n
                 <h1>Debug Info</h1>\n {{{inspect page 'json'}}}\n</div>\n</div>\n</div>\n</div>\n</div>\n

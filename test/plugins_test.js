@@ -47,7 +47,7 @@ describe("plugins", function() {
 
       it('should run once and first', function() {
         var contents = grunt.file.read('./test/actual/plugin_before.html');
-        expect(contents).to.equal('BEFORE TITLE 1');
+        expect(contents.trim()).to.equal('BEFORE TITLE 1');
       });
 
     });
