@@ -31,7 +31,6 @@ describe('page', function() {
         foo: 'bar'
       };
       var actual = new assemble.models.Page(options);
-      console.log(inspect(actual));
       expect(actual).to.have.property('foo');
     });
 

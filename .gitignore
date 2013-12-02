@@ -21,3 +21,5 @@ TODO.md
 
 *.sublime-project
 *.sublime-workspace
+
+.assemble
