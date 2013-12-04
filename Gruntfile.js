@@ -32,14 +32,14 @@ module.exports = function(grunt) {
       license: '<%= _.pluck(pkg.licenses, "type").join(", ") %>',
       copyright: 'Copyright (c) <%= grunt.template.today("yyyy") %>',
       banner: [
-        '/* \n',
-        ' * <%= pkg.name %> v<%= pkg.version %> \n',
-        ' * http://assemble.io \n',
-        ' * \n',
-        ' * <%= meta.copyright %>, <%= pkg.author.name %> \n',
-        ' * Licensed under the <%= meta.license %> License. \n',
-        ' * \n',
-        ' */ \n\n'
+        '/*',
+        ' * <%= pkg.name %> v<%= pkg.version %>',
+        ' * http://assemble.io',
+        ' *',
+        ' * <%= meta.copyright %>, <%= pkg.author.name %>',
+        ' * Licensed under the <%= meta.license %> License.',
+        ' *',
+        ' */\n'
       ].join('\n')
     },
 
@@ -165,7 +165,7 @@ module.exports = function(grunt) {
           'test/actual/not_real.html': 'test/fixtures/plugins/after.hbs'
         }
       },
-      // should add isActive and relativeLink to each page
+      // should add isCurrentPage and relativeLink to each page
       // in the pages collection
       plugin_preprocess_page_collection: {
         options: {
@@ -372,6 +372,7 @@ module.exports = function(grunt) {
      */
     prettify: {
       tests: {
+        options: {ocd: true},
         files: [
           {expand: true, cwd: 'test/actual', src: ['**/*.html'], dest: 'test/actual/', ext: '.html'}
         ]
