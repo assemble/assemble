@@ -299,7 +299,6 @@ module.exports = function(grunt) {
 
                 var pageInfo = yfm.extract(page, {fromFile: false});
                 pageContext = useFileInfo ? (fileInfo.data || fileInfo.metadata || {}) : pageInfo.context;
-                pageContext = grunt.config.process(pageContext);
 
                 // Page object
                 var pageObj = {
