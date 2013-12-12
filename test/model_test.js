@@ -8,8 +8,9 @@
  * Licensed under the MIT License (MIT).
  */
 
-var expect = require('chai').expect;
 var inspect = require('util').inspect;
+var expect = require('chai').expect;
+var assert = require('chai').assert;
 
 var assemble = require('../lib/assemble');
 
@@ -78,6 +79,29 @@ describe('model', function() {
       actual.baz = something;
       expect(something).to.equal(actual.baz);
       expect(something).to.equal(actual.foo);
+    });
+
+    it('should have read only getter properties', function() {
+      var something = 'else';
+      var prototype = {
+        foo: 'bar'
+      };
+      var properties = {
+        baz: {
+          get: function() { return this.foo; }
+        }
+      };
+      var Actual = assemble.utils.model.inherit(Object, prototype, properties);
+      var actual = new Actual();
+      expect(actual).to.be.an.instanceof(Object);
+      expect(actual).to.have.property('foo');
+      expect(actual).to.have.property('baz');
+      expect(prototype.foo).to.equal(actual.foo);
+      expect(prototype.foo).to.equal(actual.baz);
+
+      actual.baz = something;
+      expect(prototype.foo).to.equal(actual.baz);
+      expect(prototype.foo).to.equal(actual.foo);
     });
   
   });
