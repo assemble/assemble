@@ -42,7 +42,8 @@
     "underscore.string": "~2.3.3",
     "async": "~0.2.9",
     "grunt": "0.4.2",
-    "nedb": "~0.9.1"
+    "nedb": "~0.9.1",
+    "traverse": "~0.6.6"
   },
   "devDependencies": {
     "chai": "~1.8.1",

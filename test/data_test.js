@@ -13,57 +13,83 @@ var inspect = require('util').inspect;
 var assemble = require('../lib/assemble');
 
 describe('data', function() {
-  var data = null;
 
-  before(function(done) {
-    assemble.utils.data.destroyDatastore('test', function() {
-      data = assemble.utils.data.loadDatastore('test');
-      done();
+  describe('db', function() {
+    var data = null;
+
+    before(function(done) {
+      assemble.utils.data.destroyDatastore('test', function() {
+        data = assemble.utils.data.loadDatastore('test');
+        done();
+      });
     });
+
+    after(function(done) {
+      assemble.utils.data.destroyDatastore('test', done);
+    });
+    
+    it('should insert', function(done) {
+      data.insert({foo: 'bar'}, function(err, obj) {
+        if(err) {
+          console.log('Error:');
+          console.log(inspect(err, null, 10));
+        }
+        done();
+      });
+    });
+
+    it('should find', function(done) {
+      data.find({foo: 'bar'}, function(err, results) {
+        if(err) {
+          console.log('Error');
+          console.log(inspect(err, null, 10));
+        }
+        done();
+      });
+    });
+
+    it('should findOne', function(done) {
+      data.findOne({foo: 'bar'}, function(err, results) {
+        if(err) {
+          console.log('Error');
+          console.log(inspect(err, null, 10));
+        }
+        done();
+      });
+    });
+
+    it('should update', function(done) {
+      data.update({foo: 'bar'}, {foo: 'baz'}, {}, function(err, results) {
+        if(err) {
+          console.log('Error');
+          console.log(inspect(err, null, 10));
+        }
+        done();
+      });
+    });
+
   });
 
-  after(function(done) {
-    assemble.utils.data.destroyDatastore('test', done);
-  });
+  describe('process', function() {
   
-  it('should insert', function(done) {
-    data.insert({foo: 'bar'}, function(err, obj) {
-      if(err) {
-        console.log('Error:');
-        console.log(inspect(err, null, 10));
-      }
-      done();
-    });
-  });
+    it('should expand lodash templates', function() {
+      var obj = {
+        a: 1,
+        b: 2,
+        c: {
+          d: [3, 4, 5, '<%= a %>'],
+          e: [
+            { foo: '<%= c.d %>' },
+            {f: 6},
+            {g: 7}
+          ]
+        }
+      };
 
-  it('should find', function(done) {
-    data.find({foo: 'bar'}, function(err, results) {
-      if(err) {
-        console.log('Error');
-        console.log(inspect(err, null, 10));
-      }
-      done();
-    });
-  });
+      var actual = assemble.utils.data.process(obj);
+      console.log(inspect(actual, null, 10));
 
-  it('should findOne', function(done) {
-    data.findOne({foo: 'bar'}, function(err, results) {
-      if(err) {
-        console.log('Error');
-        console.log(inspect(err, null, 10));
-      }
-      done();
     });
+  
   });
-
-  it('should update', function(done) {
-    data.update({foo: 'bar'}, {foo: 'baz'}, {}, function(err, results) {
-      if(err) {
-        console.log('Error');
-        console.log(inspect(err, null, 10));
-      }
-      done();
-    });
-  });
-
 });
