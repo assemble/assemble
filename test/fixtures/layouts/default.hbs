@@ -65,7 +65,7 @@
             </div>
             <ul>
             {{#each pages}}
-              <li><a href="{{relative ../page.dest dest}}">{{filename}}</a></li>
+              <li><a href="{{relativeLink}}">{{filename}}</a></li>
             {{/each}}
             </ul>
 
@@ -109,7 +109,7 @@
               -->
               <h1>Each pages</h1>
               <ul>
-                {{#each pages}}<li><a href="{{relative ../page.dest dest}}">{{basename}}</a></li>
+                {{#each pages}}<li><a href="{{relativeLink}}">{{filename}}</a></li>
                   <!--
                   "this"
                   ===============================

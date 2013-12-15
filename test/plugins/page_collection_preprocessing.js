@@ -5,10 +5,10 @@
 var path = require('path');
 
 module.exports = [
-  
-  // add an isActive flag to the page if the dest matches
-  function isActive(page, context) {
-    page.isActive = (page.dest === context.page.dest ? true : false);
+
+  // add an isCurrentPage flag to the page if the dest matches
+  function isCurrentPage(page, context) {
+    page.isCurrentPage = (page.dest === context.page.dest ? true : false);
   },
 
   // add a relative link from the "current page" to the

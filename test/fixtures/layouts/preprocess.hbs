@@ -75,7 +75,7 @@
               <h1>Page</h1>
               <h1>Each pages</h1>
               <ul>
-                {{#each pages}}<li><a href="{{relativeLink}}" class="{{#isActive}}active{{/isActive}}">{{basename}}</a></li>
+                {{#each pages}}<li><a href="{{relativeLink}}" class="{{#isCurrentPage}}active{{/isCurrentPage}}">{{basename}}</a></li>
                   <!--
                   "this"
                   ===============================
@@ -86,7 +86,7 @@
                   this.pagename:      {{this.pagename}}
                   this.basename:      {{this.basename}}
                   this.ext:           {{this.ext}}
-                  this.isActive:      {{this.isActive}}
+                  this.isCurrentPage:      {{this.isCurrentPage}}
                   this.relativeLink:  {{this.relativeLink}}
 
                   "page"
@@ -98,7 +98,7 @@
                   page.pagename:      {{../page.pagename}}
                   page.basename:      {{../page.basename}}
                   page.ext:           {{../page.ext}}
-                  page.isActive:      {{../page.isActive}}
+                  page.isCurrentPage:      {{../page.isCurrentPage}}
                   page.relativeLink:  {{../page.relativeLink}}
 
                   "root"
@@ -110,7 +110,7 @@
                   pagename:           {{pagename}}
                   basename:           {{basename}}
                   ext:                {{ext}}
-                  isActive:           {{isActive}}
+                  isCurrentPage:           {{isCurrentPage}}
                   relativeLink:       {{relativeLink}}
                   -->
                 {{/each}}

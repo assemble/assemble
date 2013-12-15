@@ -1,3 +1,6 @@
+---
+title: Markdown
+---
 ## Some Markdown
 
  - one
