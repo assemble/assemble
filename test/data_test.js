@@ -77,13 +77,14 @@ describe('data', function() {
         a: 1,
         b: 2,
         c: {
-          d: [3, 4, 5, '<%= a %>'],
+          d: [3, 4, 5, 'bar => <%= a %>'],
           e: [
             { foo: '<%= c.d %>' },
             {f: 6},
             {g: 7}
           ]
-        }
+        },
+        fn: '<% _.extend({z: 0}, {z: 42}, a, 1, "a", \'a\') %>'
       };
 
       var actual = assemble.utils.data.process(obj);
