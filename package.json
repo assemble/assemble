@@ -43,7 +43,9 @@
     "async": "~0.2.9",
     "grunt": "0.4.2",
     "nedb": "~0.9.1",
-    "traverse": "~0.6.6"
+    "traverse": "~0.6.6",
+    "handlebars": "~1.1.2",
+    "handlebars-helpers": "~0.4.3"
   },
   "devDependencies": {
     "chai": "~1.8.1",
@@ -52,7 +54,6 @@
     "grunt-contrib-jshint": "~0.7.1",
     "grunt-mocha-test": "~0.7.0",
     "grunt-readme": "~0.4.0",
-    "grunt-release": "0.6.0",
     "grunt-repos": "~0.1.2",
     "grunt-sync-pkg": "~0.1.1",
     "time-grunt": "~0.1.2",

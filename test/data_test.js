@@ -89,7 +89,6 @@ describe('data', function() {
 
       var actual = assemble.utils.data.process(obj);
       //console.log(inspect(actual, null, 10));
-
     });
   
   });
@@ -105,7 +104,7 @@ describe('data', function() {
     var twoDataFile = './test/fixtures/data/two.yml';
   
     it('should read files', function() {
-      var data = assemble.utils.data.readOptions(['./test/fixtures/data/**/*.*']);
+      var data = assemble.utils.data.readOptions([oneDataFile]);
     });
   
   });

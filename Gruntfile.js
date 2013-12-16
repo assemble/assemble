@@ -108,25 +108,8 @@ module.exports = function(grunt) {
         files: ['Gruntfile.js', 'tasks/**/*.js', 'lib/**/*.js', 'test/**/*.js'],
         tasks: ['dev']
       }
-    },
-
-    // Automated releases. Bumps packages.json, creates new tag,
-    // and publishes new release to npm.
-    release: {
-      options: {
-        bump: true,
-        file: 'package.json',
-        add: false,
-        commit: false,
-        tag: true,
-        push: true,
-        pushTags: true,
-        npm: true,
-        tagName: '<%= version %>',
-        commitMessage: 'Bump version to <%= version %>',
-        tagMessage: 'Bump version to <%= version %>'
-      }
     }
+
   });
 
   // Load NPM plugins to provide the necessary tasks.
@@ -135,7 +118,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-readme');
-  grunt.loadNpmTasks('grunt-release');
   grunt.loadNpmTasks('grunt-repos');
   grunt.loadNpmTasks('grunt-sync-pkg');
 
@@ -147,9 +129,6 @@ module.exports = function(grunt) {
 
   // Tests to be run.
   grunt.registerTask('test', ['mochaTest']);
-
-  // Run default task, then release
-  grunt.registerTask('bump', ['default', 'release']);
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'clean', 'test', 'docs']);
