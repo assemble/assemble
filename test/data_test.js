@@ -88,7 +88,7 @@ describe('data', function() {
       };
 
       var actual = assemble.utils.data.process(obj);
-      console.log(inspect(actual, null, 10));
+      //console.log(inspect(actual, null, 10));
 
     });
   
