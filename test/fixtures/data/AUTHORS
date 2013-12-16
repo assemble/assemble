@@ -1,0 +1,3 @@
+{%= author.name %} ({%= author.url %})
+
+[{%= authors[0].name %}]({%= authors[0].url %})

@@ -93,4 +93,20 @@ describe('data', function() {
     });
   
   });
+
+  describe('readOptions', function() {
+
+    var assembleDataFile = './test/fixtures/data/assemble.json';
+    var emptyDataFile = './test/fixtures/data/empty.yml';
+    var helpersDataFile = './test/fixtures/data/helpers.json';
+    var metadataDataFile = './test/fixtures/data/metadata.json';
+    var oneDataFile = './test/fixtures/data/one.json';
+    var threeDataFile = './test/fixtures/data/three.json';
+    var twoDataFile = './test/fixtures/data/two.yml';
+  
+    it('should read files', function() {
+      var data = assemble.utils.data.readOptions(['./test/fixtures/data/**/*.*']);
+    });
+  
+  });
 });
