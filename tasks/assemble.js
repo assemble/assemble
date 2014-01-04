@@ -8,9 +8,9 @@
 
 var assemble = require('../lib/assemble');
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-  grunt.registerMultiTask('assemble', 'Compile template files with specified engines', function() {
+  grunt.registerMultiTask('assemble', 'Compile template files with specified engines', function () {
     var done = this.async();
     var self = this;
 
