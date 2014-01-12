@@ -11,7 +11,7 @@
  * Licensed under the MIT License (MIT).
  */
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
   // Report elapsed execution time of grunt tasks.
   require('time-grunt')(grunt);
@@ -20,7 +20,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     // Metadata for tests
-    pkg : grunt.file.readJSON('package.json'),
+    pkg: grunt.file.readJSON('package.json'),
 
     // Metadata for banners
     meta: {
@@ -53,7 +53,6 @@ module.exports = function(grunt) {
       ]
     },
 
-
     /**
      * Run mocha tests.
      */
@@ -66,7 +65,6 @@ module.exports = function(grunt) {
       }
     },
 
-
     /**
      * Pull down a list of repos from Github, for the docs
      */
@@ -74,7 +72,8 @@ module.exports = function(grunt) {
       plugins: {
         options: {
           username: 'assemble',
-          include: ['contrib'], exclude: ['grunt', 'example', 'rss']
+          include: ['contrib'],
+          exclude: ['grunt', 'example', 'rss']
         },
         files: {
           'docs/plugins.json': ['repos?page=1&per_page=100']
@@ -96,53 +95,61 @@ module.exports = function(grunt) {
         taskOpts: 'something'
       },
       compact: {
-        options: { targetOpts: 'compact' },
+        options: {
+          targetOpts: 'compact'
+        },
         src: ['test/fixtures/templates/one.hbs', 'test/fixtures/templates/t*.hbs'],
         dest: 'test/actual/'
       },
       filesObj: {
-        options: { targetOpts: 'filesObj' },
-        files: { 
+        options: {
+          targetOpts: 'filesObj'
+        },
+        files: {
           'test/actual/one.html': 'test/fixtures/templates/one.hbs',
           'test/actual/t.html': ['test/fixtures/templates/t*.hbs']
         }
       },
       filesArr: {
-        options: { targetOpts: 'filesArr' },
+        options: {
+          targetOpts: 'filesArr'
+        },
         files: [
           {
             dest: 'test/actual/',
-            src: '**/*.hbs',
-            cwd: 'test/fixtures/templates'
+            src: 'test/fixtures/templates/**/*.hbs'
+            //cwd: 'test/fixtures/templates'
           }
         ]
       },
       baz: {
-        options: { targetOpts: 'baz' },
+        options: {
+          targetOpts: 'baz'
+        },
         files: [
           {
             expand: true,
             dest: 'test/actual/',
-            src: 'one.hbs',
-            cwd: 'test/fixtures/templates'
+            src: 'test/fixtures/templates/one.hbs'
+            //cwd: 'test/fixtures/templates'
           },
           {
             expand: true,
             dest: 'test/actual/',
-            src: 'two.hbs',
-            cwd: 'test/fixtures/templates'
+            src: 'test/fixtures/templates/two.hbs'
+            //cwd: 'test/fixtures/templates'
           },
           {
             expand: true,
             dest: 'test/actual/',
-            src: 'three.hbs',
-            cwd: 'test/fixtures/templates'
+            src: 'test/fixtures/templates/three.hbs'
+            //cwd: 'test/fixtures/templates'
           },
           {
             expand: true,
             dest: '/test/actual/',
-            src: '**/*.hbs',
-            cwd: 'test/fixtures/templates'
+            src: 'test/fixtures/templates/**/*.hbs'
+            //cwd: 'test/fixtures/templates'
           }
         ]
       }
@@ -155,7 +162,6 @@ module.exports = function(grunt) {
     clean: {
       tests: ['test/actual/**/*']
     },
-
 
     /**
      * Watch source files and run tests when changes are made.

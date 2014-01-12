@@ -14,14 +14,21 @@ module.exports = function (grunt) {
     var done = this.async();
     var self = this;
 
-    // create an assembly line instance
-    var assembleOptions = {
-      source: 'grunt',
-      data: assemble.utils.grunt.mapData(self, assemble.defaults, grunt),
-      files: assemble.utils.grunt.mapFiles(self, grunt)
-    };
-    var line = assemble(self.target, assembleOptions);
-    line.build(done);
+    assemble.utils.grunt.mapFiles(self, grunt, function (err, files) {
+
+      console.log('files', files);
+
+      // create an assembly line instance
+      var assembleOptions = {
+        source: 'grunt',
+        data: assemble.utils.grunt.mapData(self, assemble.defaults, grunt),
+        files: files
+      };
+      var line = assemble(self.target, assembleOptions);
+      line.build(done);
+
+    });
+
   });
 
 };
