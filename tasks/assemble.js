@@ -14,9 +14,7 @@ module.exports = function (grunt) {
     var done = this.async();
     var self = this;
 
-    assemble.utils.grunt.mapFiles(self, grunt, function (err, files) {
-
-      console.log('files', files);
+    assemble.utils.grunt.mapFiles(self, function (err, files) {
 
       // create an assembly line instance
       var assembleOptions = {
