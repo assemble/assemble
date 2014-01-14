@@ -549,17 +549,18 @@ module.exports = function(grunt) {
           context.layoutName = pageLayout.layoutName;
           data = _.extend({}, data, pageLayout.data);
 
-          // extend again
-          options.data = undefined;
-          options.pages = undefined;
-          options.layout = undefined;
-          options.collections = undefined;
-          context = _.extend({}, context, assemble.util.filterProperties(options), data, pageContext);
-          options.data = data;
-          options.pages = pages;
-          options.collections = collections;
         }
       }
+
+      // extend again
+      options.data = undefined;
+      options.pages = undefined;
+      options.layout = undefined;
+      options.collections = undefined;
+      context = _.extend({}, context, assemble.util.filterProperties(options), layout.data, data, pageContext);
+      options.data = data;
+      options.pages = pages;
+      options.collections = collections;
 
 
       // add omitted collections back to pageContext
