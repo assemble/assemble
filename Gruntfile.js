@@ -118,10 +118,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-repos');
   grunt.loadNpmTasks('grunt-sync-pkg');
 
-  // Load this plugin.
-  grunt.loadTasks('tasks');
-
-  // Build
+    // Build
   grunt.registerTask('docs', ['repos', 'readme', 'sync']);
 
   // Tests to be run.
