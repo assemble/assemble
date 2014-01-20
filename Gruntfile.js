@@ -48,7 +48,6 @@ module.exports = function (grunt) {
       files: [
         'Gruntfile.js',
         'lib/**/*.js',
-        'tasks/**/*.js',
         'test/**/*.js'
       ]
     },
@@ -90,71 +89,6 @@ module.exports = function (grunt) {
       }
     },
 
-    assemble: {
-      options: {
-        taskOpts: 'something'
-      },
-      compact: {
-        options: {
-          targetOpts: 'compact'
-        },
-        src: ['test/fixtures/templates/one.hbs', 'test/fixtures/templates/t*.hbs'],
-        dest: 'test/actual/'
-      },
-      filesObj: {
-        options: {
-          targetOpts: 'filesObj'
-        },
-        files: {
-          'test/actual/one.html': 'test/fixtures/templates/one.hbs',
-          'test/actual/t.html': ['test/fixtures/templates/t*.hbs']
-        }
-      },
-      filesArr: {
-        options: {
-          targetOpts: 'filesArr'
-        },
-        files: [
-          {
-            dest: 'test/actual/',
-            src: 'test/fixtures/templates/**/*.hbs'
-            //cwd: 'test/fixtures/templates'
-          }
-        ]
-      },
-      baz: {
-        options: {
-          targetOpts: 'baz'
-        },
-        files: [
-          {
-            expand: true,
-            dest: 'test/actual/',
-            src: 'test/fixtures/templates/one.hbs'
-            //cwd: 'test/fixtures/templates'
-          },
-          {
-            expand: true,
-            dest: 'test/actual/',
-            src: 'test/fixtures/templates/two.hbs'
-            //cwd: 'test/fixtures/templates'
-          },
-          {
-            expand: true,
-            dest: 'test/actual/',
-            src: 'test/fixtures/templates/three.hbs'
-            //cwd: 'test/fixtures/templates'
-          },
-          {
-            expand: true,
-            dest: '/test/actual/',
-            src: 'test/fixtures/templates/**/*.hbs'
-            //cwd: 'test/fixtures/templates'
-          }
-        ]
-      }
-    },
-
     /**
      * Before generating any new files,
      * remove files from the previous build
@@ -168,7 +102,7 @@ module.exports = function (grunt) {
      */
     watch: {
       dev: {
-        files: ['Gruntfile.js', 'tasks/**/*.js', 'lib/**/*.js', 'test/**/*.js'],
+        files: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js'],
         tasks: ['dev']
       }
     }
@@ -191,7 +125,7 @@ module.exports = function (grunt) {
   grunt.registerTask('docs', ['repos', 'readme', 'sync']);
 
   // Tests to be run.
-  grunt.registerTask('test', ['assemble', 'mochaTest']);
+  grunt.registerTask('test', ['mochaTest']);
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'clean', 'test', 'docs']);
