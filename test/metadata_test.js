@@ -9,9 +9,6 @@
  */
 
 var expect = require('chai').expect;
-
-var inspect = require('util').inspect;
-
 var assemble = require('../lib/assemble');
 
 describe('metadata', function() {

@@ -8,10 +8,7 @@
  * Licensed under the MIT License (MIT).
  */
 
-var inspect = require('util').inspect;
 var expect = require('chai').expect;
-var assert = require('chai').assert;
-
 var assemble = require('../lib/assemble');
 
 describe('model', function() {

@@ -9,8 +9,6 @@
  */
 
 var expect = require('chai').expect;
-var inspect = require('util').inspect;
-
 var assemble = require('../lib/assemble');
 
 describe('assemble', function() {
@@ -23,12 +21,12 @@ describe('assemble', function() {
     });
 
     it('should create an instance of Line and store it in the instanceCache', function() {
-      var actual = assemble();
+      assemble();
       expect(assemble.instanceCache).to.have.property('default');
     });
 
     it('should create a named instance of Line and store it in the instanceCache', function() {
-        var actual = assemble('test');
+        assemble('test');
         expect(assemble.instanceCache).to.have.property('test');
     });
 
