@@ -26,7 +26,7 @@ describe('metadata', function() {
 
   it('should retreive a file', function(done) {
     metadata.getFile('test', function(err, actual) {
-      expect(actual.hash).to.equal(contents);
+      expect(actual.file).to.equal(contents);
       done();
     });
   });
