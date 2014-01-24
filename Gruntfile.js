@@ -1,13 +1,11 @@
 /*
- * Assemble
- * Created and maintained by Jon Schlinkert and Brian Woodward
- * http://assemble.io
+ * Assemble <http://assemble.io>
  *
  * Assemble is a full-featured documentation generator,
  * static site generator and component builder. Created
  * from the ground up as a plugin for Grunt.js.
  *
- * Copyright (c) 2013 Upstage
+ * Copyright (c) 2014 Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
  */
 
