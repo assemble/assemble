@@ -1,15 +1,19 @@
 /**
- * Assemble
- *
  * Assemble <http://assemble.io>
- * Created and maintained by Jon Schlinkert and Brian Woodward
  *
- * Copyright (c) 2013 Upstage.
+ * Copyright (c) 2014 Jon Schlinkert, Brian Woodward, contributors
  * Licensed under the MIT License (MIT).
  */
 
+'use strict';
+
+// Node.js
 var inspect = require('util').inspect;
 
+// node_modules
+var file = require('fs-utils');
+
+// Local libs
 var assemble = require('../lib/assemble');
 
 describe('data', function() {
@@ -27,7 +31,7 @@ describe('data', function() {
     after(function(done) {
       assemble.utils.data.destroyDatastore('test', done);
     });
-    
+
     it('should insert', function(done) {
       data.insert({foo: 'bar'}, function(err, obj) {
         if(err) {
@@ -71,7 +75,7 @@ describe('data', function() {
   });
 
   describe('process', function() {
-  
+
     it('should expand lodash templates', function() {
       var obj = {
         a: 1,
@@ -90,7 +94,7 @@ describe('data', function() {
       var actual = assemble.utils.data.process(obj);
       //console.log(inspect(actual, null, 10));
     });
-  
+
   });
 
   describe('readOptions', function() {
@@ -102,10 +106,10 @@ describe('data', function() {
     var oneDataFile = './test/fixtures/data/one.json';
     var threeDataFile = './test/fixtures/data/three.json';
     var twoDataFile = './test/fixtures/data/two.yml';
-  
+
     it('should read files', function() {
-      var data = assemble.utils.data.readOptions([oneDataFile]);
+      var data = file.expandDataFiles([oneDataFile]);
     });
-  
+
   });
 });
