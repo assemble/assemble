@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "async": "~0.2.9",
-    "dovetail": "~0.0.3",
+    "dovetail": "~0.1.0",
     "ewait": "~0.2.0",
     "fs-utils": "~0.1.10",
     "grunt": "0.4.2",
