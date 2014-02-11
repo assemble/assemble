@@ -26,19 +26,19 @@ describe('assemble', function() {
     });
 
     it('should create a named instance of Line and store it in the instanceCache', function() {
-        assemble('test');
+        assemble({name:'test'});
         expect(assemble.instanceCache).to.have.property('test');
     });
 
     it('should create an instance of Line and be able to retrieve the same instance from instanceCache', function() {
-      var expected = assemble('test2');
-      var actual = assemble('test2');
+      var expected = assemble({name:'test2'});
+      var actual = assemble({name:'test2'});
       expect(expected).to.eql(actual);
     });
 
     it('should create two instances of Line that are different', function() {
-      var expected = assemble('test3');
-      var actual = assemble('test4');
+      var expected = assemble({name:'test3'});
+      var actual = assemble({name:'test4'});
       expect(expected).to.not.eql(actual);
     });
 
