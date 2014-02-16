@@ -17,7 +17,7 @@ describe('source', function() {
 
   it('should render from a string', function(done) {
     var source = "Render string.";
-    assemble(source, {name: 'source-test-1'}).build(function (err, results) {
+    assemble(source).build(function (err, results) {
       if (err) {
         console.log('Error:', err);
       }
@@ -31,7 +31,6 @@ describe('source', function() {
     var source = "Render string {{foo}}.";
     var expected = "Render string with context.";
     assemble(source, {
-      name: 'source-test-2',
       metadata: {
         foo: 'with context'
       }
