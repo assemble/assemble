@@ -133,7 +133,7 @@ Also see [assemble-swig](https://github.com/assemble/assemble-swig) for compilin
 Type: `Boolean`
 Default: `false`
 
-Remove anything after (and including) the first `.` in the destination path, then append this value. In other words, when files are generated from different source folders this "flattens" them into the same destination directory. See [building the files object dynamically][files-object] for more information on `files` formats.
+Remove anything after (and including) the first `.` in the destination path, then append this value. In other words, when files are generated from different source folders this "flattens" them into the same destination directory. See [building the files object dynamically](http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically) for more information on `files` formats.
 
 
 Visit [Assemble's documentation](http://assemble.io) for more information about options.
