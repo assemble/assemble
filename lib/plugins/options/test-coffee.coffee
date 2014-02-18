@@ -12,7 +12,7 @@ module.exports = (assemble) ->
     events: [
       # assemble.config.plugins.stages.optionsBeforeConfiguration
       # assemble.config.plugins.stages.optionsAfterConfiguration
-      'assemble:*:build'
+      #'assemble:*:build'
     ]
 
   assemble.registerPlugin 'coffee-script-demo', 'This is a plugin written in coffee script', options, (params, next) ->
