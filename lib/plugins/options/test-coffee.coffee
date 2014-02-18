@@ -7,7 +7,6 @@
 
 'use strict'
 
-
 module.exports = (assemble) ->
   options = 
     events: [
@@ -17,5 +16,5 @@ module.exports = (assemble) ->
     ]
 
   assemble.registerPlugin 'coffee-script-demo', 'This is a plugin written in coffee script', options, (params, next) ->
-    console.log 'Options Plugin', params.stage
-    next
+    console.log 'Options Plugin', params.event
+    next()
