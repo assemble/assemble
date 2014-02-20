@@ -45,23 +45,6 @@ module.exports = function(grunt) {
         done(false);
       }
 
-      var src = false;
-      assemble.files.forEach(function(fp) {
-        if(!src) {
-          src = fp.src;
-        }
-      });
-
-      if(!src || src.length === 0) {
-        // check if there's a pages
-        if(!assemble.options.pages) {
-          grunt.warn('No source files found.');
-          done(false);
-        } else {
-          src = _.keys(assemble.options.pages);
-        }
-      }
-
       // find an engine to use
       assemble.options.engine = assemble.options.engine || 'handlebars';
       grunt.verbose.ok(">> Current engine:".yellow, assemble.options.engine);
