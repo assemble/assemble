@@ -100,7 +100,7 @@ describe('model', function() {
       expect(prototype.foo).to.equal(actual.baz);
       expect(prototype.foo).to.equal(actual.foo);
     });
-  
+
   });
 
 });

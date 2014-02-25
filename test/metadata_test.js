@@ -19,7 +19,7 @@ describe('metadata', function() {
   before(function() {
     metadata = new assemble.models.Metadata();
   });
-  
+
   it('should store a file', function(done) {
     metadata.setFile('test', contents, done);
   });

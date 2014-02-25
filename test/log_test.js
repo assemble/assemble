@@ -14,9 +14,9 @@ var streams = require('memory-streams');
 var _ = require('lodash');
 
 var runLogs = function(options) {
-	var writer = new streams.WritableStream();
-	options = _.extend({ stream: writer, theme: 'minimalistic' }, options);
-	var log = new logger(options);
+  var writer = new streams.WritableStream();
+  options = _.extend({ stream: writer, theme: 'minimalistic' }, options);
+  var log = new logger(options);
   log.debug('debug');
   log.info('info');
   log.warning('warning');

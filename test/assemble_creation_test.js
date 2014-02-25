@@ -14,7 +14,7 @@ var assemble = require('../lib/assemble');
 describe('assemble', function() {
 
   describe('Line instances', function() {
-  
+
     it('should create an instance of Line', function() {
       var actual = assemble();
       expect(actual).to.be.an.instanceof(assemble.Line);
