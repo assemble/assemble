@@ -22,12 +22,14 @@ describe('assemble', function() {
 
     it('should create an instance of Line and store it in the instanceCache', function() {
       assemble();
-      expect(assemble.instanceCache).to.have.property('default');
+      var actual = assemble.instanceCache.get('default');
+      expect(actual).to.not.equal(undefined);
     });
 
     it('should create a named instance of Line and store it in the instanceCache', function() {
         assemble({name:'test'});
-        expect(assemble.instanceCache).to.have.property('test');
+        var actual = assemble.instanceCache.get('test');
+        expect(actual).to.not.equal(undefined);
     });
 
     it('should create an instance of Line and be able to retrieve the same instance from instanceCache', function() {
@@ -40,6 +42,11 @@ describe('assemble', function() {
       var expected = assemble({name:'test3'});
       var actual = assemble({name:'test4'});
       expect(expected).to.not.eql(actual);
+    });
+
+    it('should not have an instance of a fake name', function () {
+      var actual = assemble.instanceCache.get('not-a-real-assemble-instance');
+      expect(actual).to.eql(undefined);
     });
 
   });
