@@ -97,7 +97,7 @@ describe('data', function() {
             {g: 7}
           ]
         },
-        fn: '<% _.extend({z: 0}, {z: 42}, {z: c.d}, 1, "a", \'a\') %>'
+        fn: '<%= _.extend({z: 0}, {z: 42}, {z: c.d}, 1, "a", \'a\') %>'
       };
 
       var expected = {
