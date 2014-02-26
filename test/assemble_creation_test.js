@@ -13,32 +13,32 @@ var assemble = require('../lib/assemble');
 
 describe('assemble', function() {
 
-  describe('Line instances', function() {
+  describe('App instances', function() {
 
-    it('should create an instance of Line', function() {
+    it('should create an instance of App', function() {
       var actual = assemble();
-      expect(actual).to.be.an.instanceof(assemble.Line);
+      expect(actual).to.be.an.instanceof(assemble.App);
     });
 
-    it('should create an instance of Line and store it in the instanceCache', function() {
+    it('should create an instance of App and store it in the instanceCache', function() {
       assemble();
       var actual = assemble.instanceCache.get('default');
       expect(actual).to.not.equal(undefined);
     });
 
-    it('should create a named instance of Line and store it in the instanceCache', function() {
+    it('should create a named instance of App and store it in the instanceCache', function() {
         assemble({name:'test'});
         var actual = assemble.instanceCache.get('test');
         expect(actual).to.not.equal(undefined);
     });
 
-    it('should create an instance of Line and be able to retrieve the same instance from instanceCache', function() {
+    it('should create an instance of App and be able to retrieve the same instance from instanceCache', function() {
       var expected = assemble({name:'test2'});
       var actual = assemble({name:'test2'});
       expect(expected).to.eql(actual);
     });
 
-    it('should create two instances of Line that are different', function() {
+    it('should create two instances of App that are different', function() {
       var expected = assemble({name:'test3'});
       var actual = assemble({name:'test4'});
       expect(expected).to.not.eql(actual);
