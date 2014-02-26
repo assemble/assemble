@@ -46,7 +46,7 @@ describe('assemble', function() {
 
     it('should not have an instance of a fake name', function () {
       var actual = assemble.instanceCache.get('not-a-real-assemble-instance');
-      expect(actual).to.eql(undefined);
+      expect(actual).to.eql(null);
     });
 
   });
