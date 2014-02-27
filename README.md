@@ -4,7 +4,6 @@
 
 ### [Visit the website →](http://assemble.io)
 
-
 ## Why use Assemble?
 
 1. Most popular site generator for Grunt.js and Yeoman. Assemble is used to build hundreds of web projects, ranging in size from a single page to 14,000 pages (that we're aware of!). [Let us know if you use Assemble](https://github.com/assemble/assemble/issues/300).
@@ -15,7 +14,7 @@
 
 ...and of course, we use Assemble to build the project's own documentation [http://assemble.io](http://assemble.io):
 
-**For more:** Hear Jon Schlinkert and Brian Woodward discuss Assemble on Episode 98 of the [Javascript Jabber Podcast](http://javascriptjabber.com/098-jsj-assemble-io-with-brian-woodward-and-jon-schlinkert/).
+**For more:** hear Jon Schlinkert and Brian Woodward discuss Assemble on **Episode 98 of the [Javascript Jabber Podcast](http://javascriptjabber.com/098-jsj-assemble-io-with-brian-woodward-and-jon-schlinkert/)**.
 
 
 ![image](https://f.cloud.github.com/assets/383994/1463257/f031bcfe-4525-11e3-9a03-89a17eee7518.png)
