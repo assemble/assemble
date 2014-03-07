@@ -50,7 +50,8 @@
     "jshashtable": "~0.1.0",
     "expand": "0.0.1",
     "globule": "~0.2.0",
-    "dovetail": "~0.2.0"
+    "dovetail": "~0.2.0",
+    "boson": "~0.1.2"
   },
   "devDependencies": {
     "chai": "~1.8.1",
