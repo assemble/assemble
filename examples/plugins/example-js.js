@@ -11,7 +11,15 @@ module.exports = function(assemble) {
 
   // events commented out for demo purposes
   var events = assemble.config.plugins.events;
-  var options = {
+
+  var plugin = function (params, next) {
+    console.log('JavaScript Example Plugin', params.event);
+    next();
+  };
+
+  plugin.options = {
+    name: 'javascript-example',
+    description: 'This is a plugin written in JavaScript.',
     events: [
       // // add events from the events "enum"
       // events.assembleBeforeConfiguration,
@@ -21,9 +29,8 @@ module.exports = function(assemble) {
     ]
   };
 
-  assemble.registerPlugin('javascript-example', 'This is a plugin written in JavaScript.', options, function (params, next) {
-    console.log('JavaScript Example Plugin', params.event);
-    next();
-  });
+  return {
+    'javascript-example': plugin
+  }
 };
 // jshint ignore:end

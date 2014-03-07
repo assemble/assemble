@@ -10,7 +10,14 @@
 module.exports = (assemble) ->
   # events commented out for demo purposes
   events = assemble.config.plugins.events
-  options =
+
+  plugin = (params, next) ->
+    console.log 'CoffeeScript Example Plugin: ', params.event
+    next()
+
+  plugin.options =
+    name: 'coffeescript-example'
+    description: 'This is a plugin written in CoffeeScript.'
     events: [
       # add events from the events "enum"
       # events.assembleBeforeConfiguration
@@ -19,6 +26,5 @@ module.exports = (assemble) ->
       # 'assemble:*:build'
     ]
 
-  assemble.registerPlugin 'coffeescript-example', 'This is a plugin written in CoffeeScript', options, (params, next) ->
-    console.log 'CoffeeScript Example Plugin: ', params.event
-    next()
+  return
+    'coffeescript-example': plugin
