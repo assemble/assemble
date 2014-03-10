@@ -159,23 +159,31 @@ module.exports = function(grunt) {
           var filecontent = grunt.file.read(filepath);
 
           //Skip empty data files, as they'd cause an error with compiler
-          if(filecontent === '') {
+          if (filecontent === '') {
             grunt.verbose.writeln('Reading ' + filepath + '...empty, ' + 'skipping'.yellow);
           } else {
 
-            if(filename === 'data') {
+            if (filename === 'data') {
               // if this is the base data file, load it into the options.data object directly
               assemble.options.data = _.extend({}, (assemble.options.data || {}), fileReader(filepath));
             } else {
               // otherwise it's an element in options.data
               var d = fileReader(filepath);
-              if(d[filename]) {
-                // json object contains root object name so extend it in options.json
-                assemble.options.data[filename] = _.extend({}, (assemble.options.data[filename] || {}), d[filename]);
+              var obj = null;
+              if (d[filename]) {
+                obj = d[filename];
               } else {
-                // add the entire object
-                assemble.options.data[filename] = _.extend({}, (assemble.options.data[filename] || {}), d);
+                obj = d;
               }
+
+              if (_.isArray(obj)) {
+                // if the object is an Array, union the results
+                assemble.options.data[filename] = _.union((assemble.options.data[filename] || []) , obj);
+              } else {
+                // extend the object
+                assemble.options.data[filename] = _.extend({}, (assemble.options.data[filename] || {}), obj);
+              }
+
             }
           }
         });
