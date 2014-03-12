@@ -17,6 +17,7 @@ var runLogs = function(options) {
   var writer = new streams.WritableStream();
   options = _.extend({ stream: writer, theme: 'minimalistic' }, options);
   var log = new logger(options);
+  log.verbose('verbose');
   log.debug('debug');
   log.info('info');
   log.warning('warning');
@@ -30,14 +31,14 @@ var runLogs = function(options) {
 describe('log', function() {
 
   it('should log out error and critical messages', function() {
-    var expected = 'info: error\ncritical: critical\n';
+    var expected = 'error: error\ncritical: critical\n';
     var actual = runLogs();
     expect(actual).to.eql(expected);
   });
 
   it('should log out every message', function() {
-    var expected = 'debug: debug\ninfo: info\ninfo: warning\ninfo: error\ncritical: critical\ndebug: { \u001b[1mfoo\u001b[22m: \u001b[32m\'bar\'\u001b[36m }\u001b[39m\n';
-    var actual = runLogs({level: logger.levels.debug});
+    var expected = 'verbose: verbose\ndebug: debug\ninfo: info\nwarning: warning\nerror: error\ncritical: critical\ndebug: { \u001b[1mfoo\u001b[22m: \u001b[32m\'bar\'\u001b[36m }\u001b[39m\n';
+    var actual = runLogs({level: logger.levels.verbose});
     expect(actual).to.eql(expected);
   });
 

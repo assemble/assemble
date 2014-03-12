@@ -85,7 +85,6 @@
       "open_issues": 0,
       "watchers": 3,
       "default_branch": "master",
-      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -179,7 +178,6 @@
       "open_issues": 1,
       "watchers": 3,
       "default_branch": "master",
-      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -273,7 +271,6 @@
       "open_issues": 0,
       "watchers": 2,
       "default_branch": "master",
-      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -367,7 +364,6 @@
       "open_issues": 0,
       "watchers": 3,
       "default_branch": "master",
-      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -447,7 +443,7 @@
       "clone_url": "https://github.com/assemble/assemble-contrib-i18n.git",
       "svn_url": "https://github.com/assemble/assemble-contrib-i18n",
       "homepage": null,
-      "size": 344,
+      "size": 399,
       "stargazers_count": 6,
       "watchers_count": 6,
       "language": "JavaScript",
@@ -461,7 +457,6 @@
       "open_issues": 4,
       "watchers": 6,
       "default_branch": "master",
-      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -555,7 +550,6 @@
       "open_issues": 1,
       "watchers": 4,
       "default_branch": "master",
-      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -649,7 +643,6 @@
       "open_issues": 0,
       "watchers": 1,
       "default_branch": "master",
-      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -743,7 +736,6 @@
       "open_issues": 0,
       "watchers": 2,
       "default_branch": "master",
-      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -823,7 +815,7 @@
       "clone_url": "https://github.com/assemble/assemble-contrib-permalinks.git",
       "svn_url": "https://github.com/assemble/assemble-contrib-permalinks",
       "homepage": "",
-      "size": 938,
+      "size": 1096,
       "stargazers_count": 22,
       "watchers_count": 22,
       "language": "JavaScript",
@@ -837,7 +829,6 @@
       "open_issues": 6,
       "watchers": 22,
       "default_branch": "master",
-      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -931,7 +922,6 @@
       "open_issues": 3,
       "watchers": 10,
       "default_branch": "master",
-      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -1025,7 +1015,6 @@
       "open_issues": 1,
       "watchers": 4,
       "default_branch": "master",
-      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -1098,16 +1087,16 @@
       "labels_url": "https://api.github.com/repos/assemble/assemble-contrib-wordcount/labels{/name}",
       "releases_url": "https://api.github.com/repos/assemble/assemble-contrib-wordcount/releases{/id}",
       "created_at": "2013-11-18T04:20:49Z",
-      "updated_at": "2013-12-30T00:44:01Z",
-      "pushed_at": "2013-12-13T07:00:58Z",
+      "updated_at": "2014-03-11T13:09:08Z",
+      "pushed_at": "2014-03-11T13:09:08Z",
       "git_url": "git://github.com/assemble/assemble-contrib-wordcount.git",
       "ssh_url": "git@github.com:assemble/assemble-contrib-wordcount.git",
       "clone_url": "https://github.com/assemble/assemble-contrib-wordcount.git",
       "svn_url": "https://github.com/assemble/assemble-contrib-wordcount",
       "homepage": null,
-      "size": 136,
-      "stargazers_count": 2,
-      "watchers_count": 2,
+      "size": 156,
+      "stargazers_count": 3,
+      "watchers_count": 3,
       "language": "JavaScript",
       "has_issues": true,
       "has_downloads": true,
@@ -1117,9 +1106,8 @@
       "open_issues_count": 1,
       "forks": 0,
       "open_issues": 1,
-      "watchers": 2,
+      "watchers": 3,
       "default_branch": "master",
-      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
