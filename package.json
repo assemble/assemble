@@ -42,7 +42,6 @@
     "fs-utils": "~0.3.0",
     "gray-matter": "~0.2.6",
     "handlebars": "~1.3.0",
-    "handlebars-helpers": "~0.4.3",
     "lodash": "~2.4.0",
     "nedb": "~0.9.1",
     "coffee-script": "~1.7.1",
@@ -52,7 +51,8 @@
     "dovetail": "~0.2.0",
     "boson": "~0.1.2",
     "relative": "~0.1.2",
-    "logme": "git://github.com/doowb/logme#verbose"
+    "logme": "git://github.com/doowb/logme#verbose",
+    "handlebars-helpers": "~0.5.4"
   },
   "devDependencies": {
     "chai": "~1.8.1",
