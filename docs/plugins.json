@@ -85,6 +85,7 @@
       "open_issues": 0,
       "watchers": 3,
       "default_branch": "master",
+      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -178,6 +179,7 @@
       "open_issues": 1,
       "watchers": 3,
       "default_branch": "master",
+      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -271,6 +273,7 @@
       "open_issues": 0,
       "watchers": 2,
       "default_branch": "master",
+      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -364,6 +367,7 @@
       "open_issues": 0,
       "watchers": 3,
       "default_branch": "master",
+      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -457,6 +461,7 @@
       "open_issues": 4,
       "watchers": 6,
       "default_branch": "master",
+      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -550,6 +555,7 @@
       "open_issues": 1,
       "watchers": 4,
       "default_branch": "master",
+      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -643,6 +649,7 @@
       "open_issues": 0,
       "watchers": 1,
       "default_branch": "master",
+      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -736,6 +743,7 @@
       "open_issues": 0,
       "watchers": 2,
       "default_branch": "master",
+      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -829,6 +837,7 @@
       "open_issues": 6,
       "watchers": 23,
       "default_branch": "master",
+      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -922,6 +931,7 @@
       "open_issues": 3,
       "watchers": 10,
       "default_branch": "master",
+      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -1015,6 +1025,7 @@
       "open_issues": 1,
       "watchers": 5,
       "default_branch": "master",
+      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
@@ -1108,6 +1119,7 @@
       "open_issues": 1,
       "watchers": 4,
       "default_branch": "master",
+      "master_branch": "master",
       "permissions": {
         "admin": false,
         "push": false,
