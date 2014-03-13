@@ -16,7 +16,7 @@ var assemble = require('../lib/assemble');
 describe('source', function() {
 
   it('should render from a string', function(done) {
-    var source = "Render string.";
+    var source = 'Render string.';
     assemble(source).build(function (err, results) {
       if (err) {
         console.log('Error:', err);
@@ -28,11 +28,50 @@ describe('source', function() {
   });
 
   it('should render from a string using context', function(done) {
-    var source = "Render string {{foo}}.";
-    var expected = "Render string with context.";
+    var source = 'Render string {{foo}}.';
+    var expected = 'Render string with context.';
     assemble(source, {
       metadata: {
         foo: 'with context'
+      }
+    }).build(function (err, results) {
+      if (err) {
+        console.log('Error:', err);
+      }
+      expect(_.keys(results.components).length).to.eql(1);
+      expect(results.components[_.keys(results.components)[0]].content).to.eql(expected);
+      done();
+    });
+  });
+
+  it('should render a string using a simple layout', function(done) {
+    var source = 'Render string.';
+    assemble(source, {
+      metadata: {
+        layouts: ['*.hbs'],
+        layoutdir: 'test/fixtures/templates',
+        layoutext: '.hbs',
+        layout: 'body',
+      }
+    }).build(function (err, results) {
+      if (err) {
+        console.log('Error:', err);
+      }
+      expect(_.keys(results.components).length).to.eql(1);
+      expect(results.components[_.keys(results.components)[0]].content).to.eql(source);
+      done();
+    });
+  });
+
+  it('should render a string twice given a layout with two insertion points', function(done) {
+    var source = 'Render string.';
+    var expected = source + source;
+    assemble(source, {
+      metadata: {
+        layouts: ['*.hbs'],
+        layoutdir: 'test/fixtures/templates',
+        layoutext: '.hbs',
+        layout: 'bodybody',
       }
     }).build(function (err, results) {
       if (err) {
