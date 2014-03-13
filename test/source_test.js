@@ -48,8 +48,7 @@ describe('source', function() {
     var source = 'Render string.';
     assemble(source, {
       metadata: {
-        layouts: ['*.hbs'],
-        layoutdir: 'test/fixtures/templates',
+        layoutdir: 'test/fixtures/templates/layouts',
         layoutext: '.hbs',
         layout: 'body',
       }
@@ -68,8 +67,7 @@ describe('source', function() {
     var expected = source + source;
     assemble(source, {
       metadata: {
-        layouts: ['*.hbs'],
-        layoutdir: 'test/fixtures/templates',
+        layoutdir: 'test/fixtures/templates/layouts',
         layoutext: '.hbs',
         layout: 'bodybody',
       }
