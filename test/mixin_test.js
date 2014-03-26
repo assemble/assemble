@@ -11,7 +11,7 @@
 var expect = require('chai').expect;
 var _ = require('lodash');
 
-var assemble = require('../lib/assemble');
+var assemble = require('../');
 
 var mixins = [
   {

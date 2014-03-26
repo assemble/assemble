@@ -9,7 +9,7 @@
  */
 
 var expect = require('chai').expect;
-var assemble = require('../lib/assemble');
+var assemble = require('../');
 
 describe('metadata', function() {
 
