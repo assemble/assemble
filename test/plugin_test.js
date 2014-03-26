@@ -12,7 +12,7 @@ var expect = require('chai').expect;
 var path = require('path');
 var _ = require('lodash');
 
-var assemble = require('../lib/assemble');
+var assemble = require('../');
 
 describe('plugin', function() {
 

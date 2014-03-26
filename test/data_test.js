@@ -15,7 +15,7 @@ var file = require('fs-utils');
 var expect = require('chai').expect;
 
 // Local libs
-var assemble = require('../lib/assemble');
+var assemble = require('../');
 
 describe('data', function() {
 

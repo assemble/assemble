@@ -18,7 +18,7 @@ var _ = require('lodash');
 var file = require('fs-utils');
 
 // local modules
-var assemble = require('../lib/assemble');
+var assemble = require('../');
 
 
 describe('assemble', function() {

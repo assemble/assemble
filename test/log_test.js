@@ -9,7 +9,7 @@
  */
 
 var expect = require('chai').expect;
-var logger = require('../lib/assemble').utils.log;
+var logger = require('../').utils.log;
 var streams = require('memory-streams');
 var _ = require('lodash');
 

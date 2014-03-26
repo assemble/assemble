@@ -1,13 +1,13 @@
-# assemble [![NPM version](https://badge.fury.io/js/assemble.png)](http://badge.fury.io/js/assemble)  [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
+# assemble [![NPM version](https://badge.fury.io/js/assemble.png)](http://badge.fury.io/js/assemble)   [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble) 
 
 > Static site generator for Grunt.js and Yeoman. Assemble makes it dead simple to build modular sites, blogs, gh-pages, components and documentation from reusable templates and data.
 
 ### [Visit the website →](http://assemble.io)
 
-## Why use Assemble? 
+## Why use Assemble?
 
-1. Most popular site generator for Grunt.js and Yeoman. Assemble is used to build hundreds of web projects, ranging in size from a single page to 14,000 pages (that we're aware of!). [Let us know if you use Assemble](https://github.com/assemble/assemble/issues/300). 
-1. Allows you to carve your HTML up into reusable fragments: partials, includes, sections, snippets... Whatever you prefer to call them, Assemble does that. 
+1. Most popular site generator for Grunt.js and Yeoman. Assemble is used to build hundreds of web projects, ranging in size from a single page to 14,000 pages (that we're aware of!). [Let us know if you use Assemble](https://github.com/assemble/assemble/issues/300).
+1. Allows you to carve your HTML up into reusable fragments: partials, includes, sections, snippets... Whatever you prefer to call them, Assemble does that.
 1. Optionally use `layouts` to wrap your pages with commonly used elements and content.
 1. "Pages" can either be defined as HTML/templates, JSON or YAML, or directly inside the Gruntfile.
 1. It's awesome. Lol just kidding. But seriously, Assemble... is... awesome! and it's fun to use.
@@ -61,7 +61,6 @@ assemble: {
 [grunt]: http://gruntjs.com/
 [Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
 [package.json]: https://npmjs.org/doc/json.html
-
 
 
 ### Options
@@ -206,7 +205,6 @@ Remove anything after (and including) the first `.` in the destination path, the
 Visit [Assemble's documentation](http://assemble.io) for more information about options.
 
 
-
 ### Usage Examples
 Simple example of using data files in both `.json` and `.yml` format to build Handlebars templates.
 
@@ -259,14 +257,13 @@ assemble: {
 
 Visit [Assemble's documentation](http://assemble.io) for many more examples and pointers on getting started.
 
-
 ## Contributing
 Find a bug? Have a feature request? Please [create an Issue](git://github.com/assemble/assemble/issues).
 
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][], and build the documentation with [grunt-readme](https://github.com/assemble/grunt-readme).
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality,
+and run `docs` in the command line to build the docs with [Verb](https://github.com/assemble/verb).
 
 Pull requests are also encouraged, and if you find this project useful please consider "starring" it to show your support! Thanks!
-
 
 ## Assemble plugins
 Here are some related projects you might be interested in from the [Assemble](http://assemble.io) core team.
@@ -289,7 +286,6 @@ Here are some related projects you might be interested in from the [Assemble](ht
 Visit [assemble.io/plugins](http:/assemble.io/plugins/) for more information about [Assemble](http:/assemble.io/) plugins.
 
 
-
 ## Authors
 
 **Jon Schlinkert**
@@ -302,53 +298,10 @@ Visit [assemble.io/plugins](http:/assemble.io/plugins/) for more information abo
 + [github/doowb](https://github.com/doowb)
 + [twitter/doowb](http://twitter.com/jonschlinkert)
 
-
-## Release History
-
- * 2013-12-01   v0.5.0-alpha   Starting major refactoring.
- * 2013-10-25   v0.4.17   Adds a params object to the call to `helper.register` allowing grunt and assemble to be passed in and used from inside helpers.
- * 2013-10-24   v0.4.16   Adds support for using wildcards with plugins stages.
- * 2013-10-24   v0.4.15   Implements multiple plugin stages.
- * 2013-10-21   v0.4.14   Adds support for plugins running once, before and after (thanks @adjohnson916). Adds pagination! Thanks to @xzyfer, `options.data` can now also directly accept an object of data.
- * 2013-10-12   v0.4.13   Adds `originalAssets` property to root context to store the pre-calculated assets path
- * 2013-10-05   v0.4.12   Fixes plugins resolving for devDependencies.
- * 2013-10-03   v0.4.11   Adds filePair to page object. thanks @adjohnson916!
- * 2013-10-02   v0.4.10   Adds plugin support to Assemble using the `plugins` option. thanks @adjohnson916!
- * 2013-10-02   v0.4.9   Adds `layoutext` and `postprocess` options.
- * 2013-09-30   v0.4.8   Assemble now builds 30-50% faster due to some refactoring to async and how context is calculated.
- * 2013-09-20   v0.4.7   Adds grunt-readme to make it easier to keep the readme updated using templates. Keep options.partials intact so they can be used in helpers.
- * 2013-09-15   v0.4.6   Updating how the assets path is calculated. Adding resolve-dep and ability to load helpers from node modules using minimatch patterns
- * 2013-09-03   v0.4.5   Bug fix: allow page content containing $. Add alias metadata for data on pages configuration object.
- * 2013-08-01   v0.4.4   Adds "nested layouts" Adds option for pages in JSON/YAML collections to be defined as either objects or keys in an array.
- * 2013-08-01   v0.4.3   Adds "options.pages" for passing in an array of pages in JSON or YAML format.
- * 2013-06-20   v0.4.0   Adds "layoutdir" option for defining the directory to be used for layouts. If layoutdir is defined, then layouts may be defined using only the name of the layout.
- * 2013-06-10   v0.3.81   Adds additional ways to load custom helpers. Now it's possible to use a glob pattern that points to a list of scripts with helpers to load. Adds examples and tests on how to use the new custom helper loading methods.
- * 2013-06-01   v0.3.80   Fixing bug with null value in engine
- * 2013-05-07   v0.3.77   Updated README with info about assemble methods
- * 2013-04-28   v0.3.74   Updating the assemble library to use the assemble-utils repo and unnecessary code.
- * 2013-04-21   v0.3.73   Fixing how the relative path helper worked and showing an example in the footer of the layout. This example is hidden, but can be seen by doing view source.
- * 2013-04-20   v0.3.72   Fixing the layout override issue happening in the page yaml headers. Something was missed during refactoring.
- * 2013-04-19   v0.3.9   Adds tags and categories to the root context and ensure that the current page context values don't override the root context values.
- * 2013-04-18   v0.3.8   Updating to use actual assets property from current page.
- * 2013-04-17   v0.3.7   Cleaning up some unused folders and tests
- * 2013-04-16   v0.3.6   Fixed missing assets property.
- * 2013-04-16   v0.3.5   Adds a sections array to the template engine so it can be used in helpers.
- * 2013-04-11   v0.3.4   More tests for helpers and global variables, organized tests. A number of bug fixes.
- * 2013-04-06   v0.3.3   helper-lib properly externalized and wired up. Global variables for filename, ext and pages
- * 2013-03-22   v0.3.22   Merged global and target level options so data and partial files can be joined
- * 2013-03-22   v0.3.21   Valid YAML now allowed in options.data object (along with JSON)
- * 2013-03-18   v0.3.14   new relative helper for resolving relative paths
-
-
 ## License
-Copyright (c) 2014 Assemble, contributors.
+Copyright (c) 2014 Assemble, contributors.  
 Released under the MIT license
 
 ***
 
-_This file was generated by [grunt-readme](https://github.com/assemble/grunt-readme) on Wednesday, March 26, 2014._
-
-[grunt]: http://gruntjs.com/
-[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
-[package.json]: https://npmjs.org/doc/json.html
-
+_This file was generated by [grunt-verb](https://github.com/assemble/grunt-verb) on March 26, 2014._
