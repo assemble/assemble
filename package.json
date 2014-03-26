@@ -30,7 +30,7 @@
       "url": "https://github.com/assemble/assemble/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "./lib/assemble",
+  "main": "index.js",
   "engines": {
     "node": ">= 0.8.0"
   },
@@ -38,34 +38,31 @@
     "test": "grunt mochaTest"
   },
   "dependencies": {
-    "async": "~0.2.9",
-    "fs-utils": "~0.3.0",
-    "gray-matter": "~0.2.6",
-    "handlebars": "~1.3.0",
-    "lodash": "~2.4.0",
-    "nedb": "~0.9.1",
-    "coffee-script": "~1.7.1",
-    "jshashtable": "~0.1.0",
-    "expand": "0.0.1",
-    "globule": "~0.2.0",
-    "dovetail": "~0.2.0",
+    "async": "~0.2.10",
     "boson": "~0.1.2",
-    "relative": "~0.1.2",
+    "dovetail": "~0.2.2",
+    "expand": "0.0.1",
+    "fs-utils": "~0.3.9",
+    "gray-matter": "~0.3.4",
+    "handlebars": "~2.0.0-alpha.2",
+    "handlebars-helpers": "~0.5.5",
+    "jshashtable": "~0.1.0",
+    "lodash": "~2.4.1",
     "logme": "git://github.com/doowb/logme#verbose",
-    "handlebars-helpers": "~0.5.4"
+    "nedb": "~0.10.4",
+    "relative": "~0.1.2"
   },
   "devDependencies": {
-    "chai": "~1.8.1",
+    "chai": "~1.9.1",
     "grunt": "0.4.2",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-jshint": "~0.7.1",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-mocha-test": "~0.7.0",
-    "grunt-readme": "~0.4.0",
     "grunt-repos": "~0.1.2",
-    "grunt-sync-pkg": "~0.1.1",
     "memory-streams": "0.0.3",
-    "time-grunt": "~0.1.2"
+    "time-grunt": "~0.1.2",
+    "grunt-verb": "0.0.5"
   },
   "keywords": [
     "blog generator",

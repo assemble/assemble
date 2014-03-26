@@ -1,10 +1,6 @@
 /*
  * Assemble <http://assemble.io>
  *
- * Assemble is a full-featured documentation generator,
- * static site generator and component builder. Created
- * from the ground up as a plugin for Grunt.js.
- *
  * Copyright (c) 2014 Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
  */
@@ -25,13 +21,12 @@ module.exports = function (grunt) {
       license: '<%= _.pluck(pkg.licenses, "type").join(", ") %>',
       copyright: 'Copyright (c) <%= grunt.template.today("yyyy") %>',
       banner: [
-        '/* \n',
-        ' * <%= pkg.name %> v<%= pkg.version %> \n',
-        ' * http://assemble.io \n',
-        ' * \n',
-        ' * <%= meta.copyright %>, <%= pkg.author.name %> \n',
-        ' * Licensed under the <%= meta.license %> License. \n',
-        ' * \n',
+        '/*!',
+        ' * <%= pkg.name %> v<%= pkg.version %>',
+        ' * http://assemble.io',
+        ' *',
+        ' * <%= meta.copyright %>, <%= pkg.author.name %>',
+        ' * Licensed under the <%= meta.license %> License.',
         ' */ \n\n'
       ].join('\n')
     },
@@ -79,15 +74,6 @@ module.exports = function (grunt) {
     },
 
     /**
-     * Build the README using metadata from the repos task.
-     */
-    readme: {
-      options: {
-        metadata: ['docs/plugins.json']
-      }
-    },
-
-    /**
      * Before generating any new files,
      * remove files from the previous build
      */
@@ -112,19 +98,15 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
-  grunt.loadNpmTasks('grunt-readme');
+  grunt.loadNpmTasks('grunt-verb');
   grunt.loadNpmTasks('grunt-repos');
-  grunt.loadNpmTasks('grunt-sync-pkg');
 
-    // Build
-  grunt.registerTask('docs', ['repos', 'readme', 'sync']);
+  // Build docs and readme
+  grunt.registerTask('docs', ['repos', 'verb']);
 
-  // Tests to be run.
-  grunt.registerTask('test', ['mochaTest']);
+  // The default task to run with the `grunt` command
+  grunt.registerTask('default', ['jshint', 'clean', 'mochaTest', 'verb']);
 
-  // Default task.
-  grunt.registerTask('default', ['jshint', 'clean', 'test', 'docs']);
-
-  // Dev task.
-  grunt.registerTask('dev', ['jshint', 'test', 'watch']);
+  // Development
+  grunt.registerTask('dev', ['jshint', 'mochaTest', 'watch']);
 };
