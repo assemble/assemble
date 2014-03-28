@@ -49,7 +49,6 @@
     "jshashtable": "~0.1.0",
     "lodash": "~2.4.1",
     "logme": "git://github.com/doowb/logme#verbose",
-    "nedb": "~0.10.4",
     "relative": "~0.1.2"
   },
   "devDependencies": {
