@@ -45,7 +45,6 @@
     "fs-utils": "~0.3.9",
     "gray-matter": "~0.3.4",
     "handlebars": "~2.0.0-alpha.2",
-    "handlebars-helpers": "~0.5.5",
     "jshashtable": "~0.1.0",
     "lodash": "~2.4.1",
     "logme": "git://github.com/doowb/logme#verbose",
@@ -61,7 +60,8 @@
     "grunt-repos": "~0.1.2",
     "memory-streams": "0.0.3",
     "time-grunt": "~0.1.2",
-    "grunt-verb": "0.0.5"
+    "grunt-verb": "0.0.5",
+    "handlebars-helpers": "git://github.com/assemble/handlebars-helpers#v0.6.0"
   },
   "keywords": [
     "blog generator",
