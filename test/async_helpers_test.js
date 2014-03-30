@@ -16,11 +16,12 @@ var assemble = require('../');
 
 describe('async helpers', function() {
 
-  it('should render from a string with an async helper', function(done) {
+  it('should render from a string with an async helper', function (done) {
 
     var source = 'Render string {{asyncFoo foo}}.';
     var expected = 'Render string with context.';
     assemble(source, {
+      name: 'async-test-1',
       metadata: {
         foo: 'with context',
         helpers: ['test/fixtures/helpers/**/*.js']
@@ -39,12 +40,35 @@ describe('async helpers', function() {
     var source = 'Timeout: {{timeout 1.5}}';
     var expected = 'Timeout: Finished in 1.5 seconds.';
     assemble(source, {
+      name: 'async-test-2',
       metadata: {
         helpers: ['test/fixtures/helpers/**/*.js']
       }
     }).build(function (err, results) {
       if (err) {
         console.log('Error', err);
+      }
+      expect(results.components[_.keys(results.components)[0]].content).to.eql(expected);
+      done();
+    });
+  });
+
+  it('should render from a template file with an async helper', function (done) {
+    var source = 'test/fixtures/templates/async/index.hbs';
+    var expected = 'Render async string.\n';
+    var options = {
+      name: 'async-test-3',
+      metadata: {
+        helpers: ['test/fixtures/helpers/**/*.js'],
+        components: []
+      }
+    };
+
+    options.metadata.components.push(assemble.models.Component.readFile(source));
+
+    assemble(options).build(function (err, results) {
+      if (err) {
+        console.log('Error:', err);
       }
       expect(results.components[_.keys(results.components)[0]].content).to.eql(expected);
       done();

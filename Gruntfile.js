@@ -87,7 +87,7 @@ module.exports = function (grunt) {
     watch: {
       dev: {
         files: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js'],
-        tasks: ['dev']
+        tasks: ['default']
       }
     }
 
@@ -105,7 +105,7 @@ module.exports = function (grunt) {
   grunt.registerTask('docs', ['repos', 'verb']);
 
   // The default task to run with the `grunt` command
-  grunt.registerTask('default', ['jshint', 'clean', 'mochaTest', 'verb']);
+  grunt.registerTask('default', ['jshint', 'clean', 'mochaTest']);
 
   // Development
   grunt.registerTask('dev', ['jshint', 'mochaTest', 'watch']);
