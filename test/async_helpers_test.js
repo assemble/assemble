@@ -35,4 +35,20 @@ describe('async helpers', function() {
     });
   });
 
+  it('should render from a string with a long running async helper', function (done) {
+    var source = 'Timeout: {{timeout 1.5}}';
+    var expected = 'Timeout: Finished in 1.5 seconds.';
+    assemble(source, {
+      metadata: {
+        helpers: ['test/fixtures/helpers/**/*.js']
+      }
+    }).build(function (err, results) {
+      if (err) {
+        console.log('Error', err);
+      }
+      expect(results.components[_.keys(results.components)[0]].content).to.eql(expected);
+      done();
+    });
+  });
+
 });
