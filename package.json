@@ -48,7 +48,8 @@
     "jshashtable": "~0.1.0",
     "lodash": "~2.4.1",
     "logme": "git://github.com/doowb/logme#verbose",
-    "relative": "~0.1.2"
+    "relative": "~0.1.2",
+    "underscore.string": "~2.3.3"
   },
   "devDependencies": {
     "chai": "~1.9.1",
