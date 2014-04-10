@@ -37,6 +37,12 @@
   "scripts": {
     "test": "grunt mochaTest"
   },
+  "config": {
+    "precommit":{
+      "lint": "grunt jshint",
+      "test": "grunt mochaTest"
+    }
+  },
   "dependencies": {
     "async": "~0.2.10",
     "boson": "~0.1.2",
@@ -45,6 +51,7 @@
     "fs-utils": "~0.3.9",
     "gray-matter": "~0.3.4",
     "handlebars": "~2.0.0-alpha.2",
+    "handlebars-helpers": "git://github.com/assemble/handlebars-helpers#v0.6.0",
     "jshashtable": "~0.1.0",
     "lodash": "~2.4.1",
     "logme": "git://github.com/doowb/logme#verbose",
@@ -59,10 +66,9 @@
     "grunt-contrib-watch": "~0.5.3",
     "grunt-mocha-test": "~0.7.0",
     "grunt-repos": "~0.1.2",
-    "memory-streams": "0.0.3",
-    "time-grunt": "~0.1.2",
     "grunt-verb": "0.0.5",
-    "handlebars-helpers": "git://github.com/assemble/handlebars-helpers#v0.6.0"
+    "memory-streams": "0.0.3",
+    "time-grunt": "~0.1.2"
   },
   "keywords": [
     "blog generator",
