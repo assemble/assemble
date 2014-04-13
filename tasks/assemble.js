@@ -328,6 +328,18 @@ module.exports = function(grunt) {
               }
               return true;
             };
+            
+            if(assemble.options.urlroot){
+              var from = assemble.options.urlroot;
+              var to = destFile;
+
+              var fromDirname = path.dirname(path.normalize(from));
+              var toDirname = path.normalize(path.dirname(to));
+              var toBasename = path.basename(to);
+              var relativePath = path.relative(fromDirname, toDirname);
+              pageObj.url = path.join(relativePath, toBasename).replace(/\\/g, "/");
+              pageObj.url_stripped = pageObj.url.replace(/index.html$/i,'');
+            }
 
             async.parallel([
               function(buildDone){
