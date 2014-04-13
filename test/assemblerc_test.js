@@ -15,6 +15,7 @@ var path = require('path');
 // node_modules
 var expect = require('chai').expect;
 var _ = require('lodash');
+var relative = require('relative');
 var file = require('fs-utils');
 
 // local modules
@@ -34,8 +35,9 @@ describe('assemble', function() {
     ];
 
     var configFiles = _.flatten(_.map(filenames, function (filename) {
-      var results = _.map(['~/', './', __dirname], function (base) {
-        var results = base === '~/' ? path.join(base, filename) : path.resolve(path.join(base, filename));
+      var results = _.map(['./tmp/foo', './tmp/bar'], function (base) {
+        var results = path.resolve(path.join(base, filename));
+        results = relative(results);
         return results;
       });
       return results;

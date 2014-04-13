@@ -13,80 +13,26 @@ module.exports = function (grunt) {
   // Project configuration.
   grunt.initConfig({
 
-    // Metadata for tests
-    pkg: grunt.file.readJSON('package.json'),
-
-    // Metadata for banners
-    meta: {
-      license: '<%= _.pluck(pkg.licenses, "type").join(", ") %>',
-      copyright: 'Copyright (c) <%= grunt.template.today("yyyy") %>',
-      banner: [
-        '/*!',
-        ' * <%= pkg.name %> v<%= pkg.version %>',
-        ' * http://assemble.io',
-        ' *',
-        ' * <%= meta.copyright %>, <%= pkg.author.name %>',
-        ' * Licensed under the <%= meta.license %> License.',
-        ' */ \n\n'
-      ].join('\n')
-    },
-
-    /**
-     * Lint all JavaScript
-     */
+    // Lint all JavaScript
     jshint: {
-      options: {
-        jshintrc: '.jshintrc'
-      },
-      files: [
-        'Gruntfile.js',
-        'lib/**/*.js',
-        'test/**/*.js'
-      ]
+      options: {jshintrc: '.jshintrc'},
+      files: ['Gruntfile.js', 'lib/**/*.js', 'test/*.js']
     },
 
-    /**
-     * Run mocha tests.
-     */
+    // Run mocha tests
     mochaTest: {
-      tests: {
-        options: {
-          reporter: 'spec'
-        },
-        src: ['test/**/*_test.js']
-      }
+      tests: {src: ['test/*.js']}
     },
 
-    /**
-     * Pull down a list of repos from Github, for the docs
-     */
-    repos: {
-      plugins: {
-        options: {
-          username: 'assemble',
-          include: ['contrib'],
-          exclude: ['grunt', 'example', 'rss']
-        },
-        files: {
-          'docs/plugins.json': ['repos?page=1&per_page=100']
-        }
-      }
-    },
-
-    /**
-     * Before generating any new files,
-     * remove files from the previous build
-     */
+    // Before generating any new files, remove files from the previous build
     clean: {
-      tests: ['test/actual/**/*']
+      tests: ['test/actual/**']
     },
 
-    /**
-     * Watch source files and run tests when changes are made.
-     */
+    // Watch source files and run tests when changes are made.
     watch: {
       dev: {
-        files: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js'],
+        files: ['Gruntfile.js', 'lib/**/*.js', 'test/*.js'],
         tasks: ['default']
       }
     }
@@ -99,10 +45,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-verb');
-  grunt.loadNpmTasks('grunt-repos');
 
   // Build docs and readme
-  grunt.registerTask('docs', ['repos', 'verb']);
+  grunt.registerTask('docs', ['verb']);
 
   // The default task to run with the `grunt` command
   grunt.registerTask('default', ['jshint', 'clean', 'mochaTest']);
