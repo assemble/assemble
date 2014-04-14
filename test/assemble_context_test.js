@@ -83,7 +83,6 @@ describe('assemble', function() {
 
       var app = assemble(assembleOpts);
       app.config.context(app, params);
-      console.log('params', params);
 
       expect(params.context).to.have.property('title');
       expect(params.context.site).to.have.property('title');
