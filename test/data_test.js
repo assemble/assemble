@@ -29,8 +29,8 @@ describe('data', function() {
             {f: 6},
             {g: 7}
           ]
-        },
-        fn: '<%= _.extend({z: 0}, {z: 42}, {z: c.d}, 1, "a", \'a\') %>'
+        }
+        //fn: '<%= _.extend({z: 0}, {z: 42}, {z: c.d}, 1, "a", \'a\') %>'
       };
 
       var expected = {
@@ -43,13 +43,13 @@ describe('data', function() {
             {f: 6},
             {g: 7}
           ]
-        },
-        fn: {
-          z: [3, 4, 5, 'bar => 1']
         }
+        //fn: {
+        //  z: [3, 4, 5, 'bar => 1']
+        //}
       };
 
-      var actual = assemble.utils.data.process(obj);
+      var actual = assemble.utils.data.process(obj, obj);
       //console.log(inspect(actual, null, 10));
       expect(actual).to.eql(expected);
     });
