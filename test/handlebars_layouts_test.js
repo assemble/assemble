@@ -555,7 +555,78 @@ describe('handlebars layouts', function() {
 
   describe('layouts with yfm templates', function () {
 
-    it('should load a layout from a component yfm template', function (done) {
+    it('should load a default layout from templates', function (done) {
+      var expected = [
+        'Default Layout: [head]',
+        '{{body}}',
+        'Default Layout: [footer]',
+        ''
+      ].join('\n');
+
+      var assembleOpts = {
+        name: name(),
+        metadata: {
+          site: {
+            adminLayout: 'test/fixtures/templates/layouts/default.hbs'
+          },
+          layout: '<%= site.adminLayout %>'
+        }
+      };
+
+      var app = assemble(assembleOpts);
+      layouts.loadDefaultLayout(app, function (err) {
+        if (err) {
+          console.log('Error', err);
+          return done(err);
+        }
+        expect(app.defaultLayout).to.be.instanceof(assemble.models.Component);
+        expect(app.defaultLayout).to.have.property('content');
+        expect(app.defaultLayout.content).to.be.eql(expected);
+
+        done();
+      });
+    });
+
+    it('should load a nested default layout from layout yfm templates', function (done) {
+
+      var expected = [
+        'Default Layout: [head]',
+        '',
+        'YFM: [head]',
+        '{{body}}',
+        'YFM: [footer]',
+        '',
+        'Default Layout: [footer]',
+        ''
+      ].join('\n');
+
+      var assembleOpts = {
+        name: name(),
+        metadata: {
+          layoutdir: 'test/fixtures/templates/layouts/',
+          layoutext: '.hbs',
+          layout: 'yfm',
+          site: {
+            adminLayout: 'default'
+          }
+        }
+      };
+
+      var app = assemble(assembleOpts);
+      layouts.loadDefaultLayout(app, function (err) {
+        if (err) {
+          console.log('Error', err);
+          return done(err);
+        }
+        expect(app.defaultLayout).to.be.instanceof(assemble.models.Component);
+        expect(app.defaultLayout).to.have.property('content');
+        expect(app.defaultLayout.content).to.be.eql(expected);
+
+        done();
+      });
+    });
+
+    it('should load a layout from a component yfm templates', function (done) {
       var expected = [
         'Default Layout: [head]',
         '{{foo}}',
