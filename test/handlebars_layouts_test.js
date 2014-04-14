@@ -551,6 +551,59 @@ describe('handlebars layouts', function() {
       });
     });
 
+  });
+
+  describe('layouts with yfm templates', function () {
+
+    it('should load a layout from a component yfm template', function (done) {
+      var expected = [
+        'Default Layout: [head]',
+        '{{foo}}',
+        'Default Layout: [footer]',
+        ''
+      ].join('\n');
+
+      var assembleOpts = {
+        name: name(),
+        metadata: {
+          layoutdir: 'test/fixtures/templates/layouts/',
+          layoutext: '.hbs',
+          site: {
+            adminLayout: 'default'
+          }
+        }
+      };
+
+      var componentOpts = {
+        src: 'layout-test-component',
+        name: 'layout-test-component',
+        content: '{{foo}}',
+        metadata: {
+          layout: '<%= site.adminLayout %>',
+          foo: 'bar'
+        }
+      };
+      var component = new assemble.models.Component(componentOpts);
+
+      var app = assemble(assembleOpts);
+      layouts.loadDefaultLayout(app, function (err) {
+        if (err) {
+          console.log('Error', err);
+          return done(err);
+        }
+        layouts.loadComponentLayout(app, component, function (err) {
+          if (err) {
+            console.log('Error', err);
+            return done(err);
+          }
+          expect(component.content).to.be.eql(expected);
+          done();
+        });
+      });
+    });
+
+
 
   });
+
 });
