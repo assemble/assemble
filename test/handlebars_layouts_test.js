@@ -367,6 +367,43 @@ describe('handlebars layouts', function() {
 
     });
 
+    it('should load a default layout when yfm layout is set to none', function (done) {
+
+      var assembleOpts = {
+        name: name(),
+        metadata: {
+          layout: 'none'
+        }
+      };
+
+      var componentOpts = {
+        src: 'layout-test-component',
+        name: 'layout-test-component',
+        content: '{{foo}}',
+        metadata: {
+          foo: 'bar'
+        }
+      };
+      var component = new assemble.models.Component(componentOpts);
+
+      var app = assemble(assembleOpts);
+      layouts.loadDefaultLayout(app, function (err) {
+        if (err) {
+          console.log('Error', err);
+          return done(err);
+        }
+        layouts.loadComponentLayout(app, component, function (err) {
+          if (err) {
+            console.log('Error', err);
+            return done(err);
+          }
+          expect(component.content).to.be.eql('{{foo}}');
+          done();
+        });
+      });
+
+    });
+
     it('should load a default layout given a src path', function (done) {
       var expected = [
         'Default Layout: [head]',
