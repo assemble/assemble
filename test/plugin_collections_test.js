@@ -19,35 +19,28 @@ describe('plugins collections', function() {
     return 'plugins-collections-test-' + (testid++);
   };
 
-  it('should create a collection object', function() {
-    var actual = new assemble.models.Collection({
-      name: name()
+  it('should create a collections object on assemble', function (done) {
+    var assembleOpts = {
+      name: name(),
+      metadata: {
+        collections: [
+          {
+            name: 'tag',
+            plural: 'tags'
+          }
+        ]
+      }
+    };
+    assemble(assembleOpts).build(function(err, results) {
+      if (err) {
+        console.log('Error', err);
+        return done(err);
+      }
+      expect(results).to.have.property('collections');
+      expect(results.collections).to.have.property('tags');
+      done();
     });
-    expect(actual).to.be.an.instanceof(assemble.models.Collection);
-  });
 
-  it('should create collection objects from assemble.options.collections', function () {
-  });
-
-  it('should add pages to collections objects', function (){
-  });
-
-  it('should sort pages in a collection by page name/src', function () {
-  });
-
-  it('should sort pages in a collection by a property in the page yfm', function () {
-  });
-
-  it('should sort pages in a collection by a custom sort function', function () {
-  });
-
-  it('should retrieve pages from a collection by collection key', function () {
-  });
-
-  it('should retrieve pages from a collection filtered by a page yfm property', function () {
-  });
-
-  it('should retrieve pages from a collection filtered by a custom function', function () {
   });
 
 });
