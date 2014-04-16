@@ -43,7 +43,20 @@ describe('plugins collections', function() {
 
   });
 
-  it('should create a collection index page for a collection', function (done) {
+  it('should create a collection pages for a collection', function (done) {
+
+    var tags = [
+      'first',
+      'second',
+      'third',
+      'fourth',
+      'fifth',
+      'sixth',
+      'seventh',
+      'eight',
+      'ninth',
+      'tenth'
+    ];
 
     // each page will have 10 tags
     var componentOpts = {
@@ -51,18 +64,7 @@ describe('plugins collections', function() {
       name: 'test-component',
       metadata: {
         title: 'This is a test component',
-        tags: [
-          'first',
-          'second',
-          'third',
-          'fourth',
-          'fifth',
-          'sixth',
-          'seventh',
-          'eight',
-          'ninth',
-          'tenth'
-        ]
+        tags: tags
       },
       raw: '{{title}}',
       content: '{{title}}'
@@ -101,6 +103,18 @@ describe('plugins collections', function() {
               permalinks: {
                 structure: 'tags/:num/index.html'
               }
+            },
+            // Index of pages related to each tag
+            related_pages: {
+              template: 'test/fixtures/templates/collections/tags/related-pages.hbs',
+              pagination: {
+                limit: 6,
+                sortby: '',
+                sortOrder: 'ASC'
+              },
+              permalinks: {
+                structure: 'tags/:tag/:num/index.html'
+              }
             }
           }
         ]
@@ -112,15 +126,18 @@ describe('plugins collections', function() {
         return done(err);
       }
       //console.log('components', results.components);
-      expect(results.components).to.have.property('collections-tags-1');
-      expect(results.components).to.have.property('collections-tags-2');
-      expect(results.components).to.have.property('collections-tags-3');
-      expect(results.components).to.have.property('collections-tags-4');
+      for (var i = 1; i <= 4; i++) {
+        expect(results.components).to.have.property('collections-tags-' + i);
+        expect(results.components['collections-tags-' + i].metadata.tags.length).to.eql((i===4 ? 1 : 3));
+      }
 
-      expect(results.components['collections-tags-1'].metadata.tags.length).to.eql(3);
-      expect(results.components['collections-tags-2'].metadata.tags.length).to.eql(3);
-      expect(results.components['collections-tags-3'].metadata.tags.length).to.eql(3);
-      expect(results.components['collections-tags-4'].metadata.tags.length).to.eql(1);
+      // pages for each tag
+      tags.forEach(function (tag) {
+        for (var i = 1; i <= 4; i++) {
+          expect(results.components).to.have.property('collections-tags-' + tag + '-' + i);
+          expect(results.components['collections-tags-' + tag + '-' + i].metadata['related-pages'].length).to.eql((i===4 ? 2 : 6));
+        }
+      });
 
       done();
     });
