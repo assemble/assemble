@@ -45,6 +45,7 @@ describe('plugins collections', function() {
 
   it('should create a collection index page for a collection', function (done) {
 
+    // each page will have 10 tags
     var componentOpts = {
       src: 'test-component',
       name: 'test-component',
@@ -67,6 +68,7 @@ describe('plugins collections', function() {
       content: '{{title}}'
     };
 
+    // create a bunch of pages to test
     var components = [];
     for (var i = 1; i <= 20; i++) {
       var component = new assemble.models.Component(componentOpts);
@@ -80,11 +82,14 @@ describe('plugins collections', function() {
       name: name(),
       metadata: {
         components: components,
+
+        // setup a tags collection
         collections: [
           {
             name: 'tag',
             plural: 'tags',
             // Index of all tags
+            // only show 3 tags on each page
             index: {
               template: 'test/fixtures/templates/collections/tags/index.hbs',
               pagination: {
