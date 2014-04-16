@@ -1,0 +1,12 @@
+---
+title: Tags Collection
+---
+
+<h1>Index Page {{pagination.number}}</h1>
+
+<h2>Tags</h2>
+<ul>
+{{#each page.tags}}
+  <li>{{this.collectionItem}}</li>
+{{/each}}
+</ul>
