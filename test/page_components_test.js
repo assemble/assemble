@@ -73,6 +73,7 @@ describe('page components', function() {
       if (err) {
         console.log('Error:', err);
       }
+      //console.log(results.componentTree);
       var component = results.components.page1;
       expect(expected).to.eql(component.content);
       done();
