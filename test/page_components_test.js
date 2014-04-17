@@ -38,6 +38,10 @@ describe('page components', function() {
             {
               name: 'component-bar',
               content: '<div>Bar Component {{bar}}</div>'
+            },
+            {
+              name: 'component-block',
+              content: '<div>Block Component {{baz}}: {{yield}}</div>'
             }
           ]
         },
@@ -45,7 +49,10 @@ describe('page components', function() {
           '<h1>{{title}}</h1>',
           '{{componentFoo foo="foo property 1"}}',
           '{{componentBar bar="bar property 1"}}',
-          '{{componentFoo foo="foo property 2"}}'
+          '{{componentFoo foo="foo property 2"}}',
+          '{{#componentBlock baz="bang property"}}',
+          '[From inner content: {{title}} - {{baz}}]',
+          '{{/componentBlock}}'
         ].join('\n')
       }
     ];
@@ -54,7 +61,10 @@ describe('page components', function() {
       '<h1>Page 1 Title</h1>',
       '<div>Foo Component foo property 1</div>',
       '<div>Bar Component bar property 1</div>',
-      '<div>Foo Component foo property 2</div>'
+      '<div>Foo Component foo property 2</div>',
+      '<div>Block Component bang property: ',
+      '[From inner content: Page 1 Title - ]',
+      '</div>'
     ].join('\n');
 
     for (var i = 0; i < pages.length; i++) {
