@@ -9,6 +9,8 @@
  * Licensed under the MIT License (MIT).
  */
 
+var file = require('fs-utils');
+
 var expect = require('chai').expect;
 var assemble = require('../');
 
@@ -94,6 +96,7 @@ describe('plugins collections', function() {
             // only show 3 tags on each page
             index: {
               template: 'test/fixtures/templates/collections/tags/index.hbs',
+              dest: './dest/',
               pagination: {
                 prop: ':num',
                 limit: 3,
@@ -107,6 +110,7 @@ describe('plugins collections', function() {
             // Index of pages related to each tag
             related_pages: {
               template: 'test/fixtures/templates/collections/tags/related-pages.hbs',
+              dest: './dest/',
               pagination: {
                 limit: 6,
                 sortby: '',
@@ -123,22 +127,31 @@ describe('plugins collections', function() {
     assemble(assembleOpts).build(function(err, results) {
       if (err) {
         console.log('Error', err);
+        file.writeFileSync('build-error.txt', err);
         return done(err);
       }
-      //console.log('components', results.components);
-      for (var i = 1; i <= 4; i++) {
-        expect(results.components).to.have.property('collections-tags-' + i);
-        expect(results.components['collections-tags-' + i].metadata.tags.length).to.eql((i===4 ? 1 : 3));
-      }
 
-      // pages for each tag
-      tags.forEach(function (tag) {
+      try {
+        //console.log('components', results.components);
         for (var i = 1; i <= 4; i++) {
-          expect(results.components).to.have.property('collections-tags-' + tag + '-' + i);
-          expect(results.components['collections-tags-' + tag + '-' + i].metadata['related-pages'].length).to.eql((i===4 ? 2 : 6));
+          expect(results.components).to.have.property('collections-tags-' + i);
+          expect(results.components['collections-tags-' + i].metadata.tags.length).to.eql((i===4 ? 1 : 3));
+          expect(results.components['collections-tags-' + i].dest).to.eql('dest/tags/' + i + '/index.html');
         }
-      });
 
+        // pages for each tag
+        tags.forEach(function (tag) {
+          for (var i = 1; i <= 4; i++) {
+            expect(results.components).to.have.property('collections-tags-' + tag + '-' + i);
+            expect(results.components['collections-tags-' + tag + '-' + i].metadata['related-pages'].length).to.eql((i===4 ? 2 : 6));
+            expect(results.components['collections-tags-' + tag + '-' + i].dest).to.eql('dest/tags/' + tag + '/' + i + '/index.html');
+          }
+        });
+      } catch (ex) {
+        console.log('Error during tests.', ex.toString());
+        file.writeFileSync('test-error.txt', ex);
+        return done(ex);
+      }
       done();
     });
   });
