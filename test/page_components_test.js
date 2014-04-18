@@ -20,6 +20,14 @@ describe('page components', function() {
     var options = {
       name: 'ember-style-components-test-1',
       metadata: {
+        test: {
+          'btn-attrs': {
+            class: 'btn'
+          },
+          'alert-attrs': {
+            class: "alert alert-warning fade in"
+          }
+        },
         partials: ['test/fixtures/templates/includes/*.hbs'],
         components: []
       }
@@ -33,9 +41,15 @@ describe('page components', function() {
         },
         content: [
           '<h1>{{title}}</h1>',
-          '<h2>Button</h2>',
+          '<h2>Partials</h2>',
+          '<h3>Button</h3>',
+          '{{> btn test.btn-attrs}}',
+          '<h3>Alert</h3>',
+          '{{> alert test.alert-attrs}}',
+          '<h2>Components</h2>',
+          '<h3>Button</h3>',
           '{{btn class="btn"}}',
-          '<h2>Alert</h2>',
+          '<h3>Alert</h3>',
           '{{alert class="alert alert-warning fade in"}}'
         ].join('\n')
       }
@@ -43,12 +57,30 @@ describe('page components', function() {
 
     var expected = [
       '<h1>Page 1 Title</h1>',
-      '<h2>Button</h2>',
+      '<h2>Partials</h2>',
+      '<h3>Button</h3>',
       '',
       '',
       '<button class="btn"></button>',
       '',
-      '<h2>Alert</h2>',
+      '<h3>Alert</h3>',
+      '',
+      '',
+      '<div class="alert alert-warning fade in">',
+      '  ',
+      '',
+      '<button aria-hidden="true" data-dismiss="alert" class="close" type="button">&times;</button>',
+      '',
+      '  <strong>Holy guacamole!</strong> Best check yo self, you\'re not looking too good.',
+      '</div>',
+      '',
+      '<h2>Components</h2>',
+      '<h3>Button</h3>',
+      '',
+      '',
+      '<button class="btn"></button>',
+      '',
+      '<h3>Alert</h3>',
       '',
       '',
       '<div class="alert alert-warning fade in">',

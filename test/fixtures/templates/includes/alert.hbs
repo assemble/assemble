@@ -7,7 +7,7 @@ name: alert
   <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
 </div>
 }}
-<div{{bind-attr attrs=hash}}>
+<div{{bind-attr attrs=(koalas hash this)}}>
   {{#btn type="button" class="close" data-dismiss="alert" aria-hidden="true"}}&times;{{/btn}}
   <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
 </div>
