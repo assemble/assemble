@@ -16,7 +16,75 @@ var assemble = require('../');
 
 describe('page components', function() {
 
-  it('should inject components as helpers into pages', function(done) {
+  it('should register partials as ember style components', function (done) {
+    var options = {
+      name: 'ember-style-components-test-1',
+      metadata: {
+        partials: ['test/fixtures/templates/includes/*.hbs'],
+        components: []
+      }
+    };
+
+    var pages = [
+      {
+        name: 'page1',
+        metadata: {
+          title: 'Page 1 Title'
+        },
+        content: [
+          '<h1>{{title}}</h1>',
+          '<h2>Button</h2>',
+          '{{btn class="btn"}}',
+          '<h2>Alert</h2>',
+          '{{alert class="alert alert-warning fade in"}}'
+        ].join('\n')
+      }
+    ];
+
+    var expected = [
+      '<h1>Page 1 Title</h1>',
+      '<h2>Button</h2>',
+      '',
+      '',
+      '<button class="btn"></button>',
+      '',
+      '<h2>Alert</h2>',
+      '',
+      '',
+      '<div class="alert alert-warning fade in">',
+      '  ',
+      '',
+      '<button aria-hidden="true" data-dismiss="alert" class="close" type="button">&times;</button>',
+      '',
+      '  <strong>Holy guacamole!</strong> Best check yo self, you\'re not looking too good.',
+      '</div>',
+      ''
+    ].join('\n');
+
+    for (var i = 0; i < pages.length; i++) {
+      var page = pages[i];
+      var component = new assemble.models.Component({
+        src: page.name,
+        name: page.name,
+        raw: page.content
+      });
+      component.metadata = _.merge(component.metadata, page.metadata);
+
+      options.metadata.components.push(component);
+    }
+
+    assemble(options).build(function (err, results) {
+      if (err) {
+        console.log('Error:', err);
+      }
+      //console.log('results', results.components.page1);
+      var component = results.components.page1;
+      expect(expected).to.eql(component.content);
+      done();
+    });
+  });
+
+  it('should inject components as helpers into pages', function (done) {
     var options = {
       name: 'page-components-test-1',
       metadata: {
