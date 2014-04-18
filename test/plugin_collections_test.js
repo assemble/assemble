@@ -9,6 +9,8 @@
  * Licensed under the MIT License (MIT).
  */
 
+var file = require('fs-utils');
+
 var expect = require('chai').expect;
 var assemble = require('../');
 
@@ -19,35 +21,139 @@ describe('plugins collections', function() {
     return 'plugins-collections-test-' + (testid++);
   };
 
-  it('should create a collection object', function() {
-    var actual = new assemble.models.Collection({
-      name: name()
+  it('should create a collections object on assemble', function (done) {
+    var assembleOpts = {
+      name: name(),
+      metadata: {
+        collections: [
+          {
+            name: 'tag',
+            plural: 'tags'
+          }
+        ]
+      }
+    };
+    assemble(assembleOpts).build(function(err, results) {
+      if (err) {
+        console.log('Error', err);
+        return done(err);
+      }
+      expect(results).to.have.property('collections');
+      expect(results.collections).to.have.property('tags');
+      done();
     });
-    expect(actual).to.be.an.instanceof(assemble.models.Collection);
+
   });
 
-  it('should create collection objects from assemble.options.collections', function () {
-  });
+  it('should create a collection pages for a collection', function (done) {
 
-  it('should add pages to collections objects', function (){
-  });
+    var tags = [
+      'first',
+      'second',
+      'third',
+      'fourth',
+      'fifth',
+      'sixth',
+      'seventh',
+      'eight',
+      'ninth',
+      'tenth'
+    ];
 
-  it('should sort pages in a collection by page name/src', function () {
-  });
+    // each page will have 10 tags
+    var componentOpts = {
+      src: 'test-component',
+      name: 'test-component',
+      metadata: {
+        title: 'This is a test component',
+        tags: tags
+      },
+      raw: '{{title}}',
+      content: '{{title}}'
+    };
 
-  it('should sort pages in a collection by a property in the page yfm', function () {
-  });
+    // create a bunch of pages to test
+    var components = [];
+    for (var i = 1; i <= 20; i++) {
+      var component = new assemble.models.Component(componentOpts);
+      component.src += ' ' + i;
+      component.name += ' ' + i;
+      component.metadata.title += ' ' + i;
+      components.push(component);
+    }
 
-  it('should sort pages in a collection by a custom sort function', function () {
-  });
+    var assembleOpts = {
+      name: name(),
+      metadata: {
+        components: components,
 
-  it('should retrieve pages from a collection by collection key', function () {
-  });
+        // setup a tags collection
+        collections: [
+          {
+            name: 'tag',
+            plural: 'tags',
+            // Index of all tags
+            // only show 3 tags on each page
+            index: {
+              template: 'test/fixtures/templates/collections/tags/index.hbs',
+              dest: './dest/',
+              pagination: {
+                prop: ':num',
+                limit: 3,
+                sortby: '',
+                sortOrder: 'ASC'
+              },
+              permalinks: {
+                structure: 'tags/:num/index.html'
+              }
+            },
+            // Index of pages related to each tag
+            related_pages: {
+              template: 'test/fixtures/templates/collections/tags/related-pages.hbs',
+              dest: './dest/',
+              pagination: {
+                limit: 6,
+                sortby: '',
+                sortOrder: 'ASC'
+              },
+              permalinks: {
+                structure: 'tags/:tag/:num/index.html'
+              }
+            }
+          }
+        ]
+      }
+    };
+    assemble(assembleOpts).build(function(err, results) {
+      if (err) {
+        console.log('Error', err);
+        file.writeFileSync('build-error.txt', err);
+        return done(err);
+      }
 
-  it('should retrieve pages from a collection filtered by a page yfm property', function () {
-  });
+      try {
+        //console.log('components', results.components);
+        for (var i = 1; i <= 4; i++) {
+          expect(results.components).to.have.property('collections-tags-' + i);
+          expect(results.components['collections-tags-' + i].metadata.tags.length).to.eql((i===4 ? 1 : 3));
+          expect(results.components['collections-tags-' + i].dest).to.eql('dest/tags/' + i + '/index.html');
+        }
 
-  it('should retrieve pages from a collection filtered by a custom function', function () {
+        // pages for each tag
+        tags.forEach(function (tag) {
+          for (var i = 1; i <= 4; i++) {
+            expect(results.components).to.have.property('collections-tags-' + tag + '-' + i);
+            expect(results.components['collections-tags-' + tag + '-' + i].metadata['related-pages'].length).to.eql((i===4 ? 2 : 6));
+            expect(results.components['collections-tags-' + tag + '-' + i].dest).to.eql('dest/tags/' + tag + '/' + i + '/index.html');
+          }
+        });
+      } catch (ex) {
+        console.log('Error during tests.', ex.toString());
+        file.writeFileSync('test-error.txt', ex);
+        return done(ex);
+      }
+      done();
+    });
   });
 
 });
