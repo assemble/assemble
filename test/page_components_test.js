@@ -20,6 +20,7 @@ describe('page components', function() {
     var options = {
       name: 'ember-style-components-test-1',
       metadata: {
+        registerPartialsAsComponents: true,
         test: {
           'btn-attrs': {
             class: 'btn'
