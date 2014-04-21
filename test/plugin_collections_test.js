@@ -79,6 +79,7 @@ describe('plugins collections', function() {
       component.src += ' ' + i;
       component.name += ' ' + i;
       component.metadata.title += ' ' + i;
+      component.metadata.slug = '' + i;
       components.push(component);
     }
 
@@ -113,7 +114,7 @@ describe('plugins collections', function() {
               dest: './dest/',
               pagination: {
                 limit: 6,
-                sortby: '',
+                sortby: 'slug',
                 sortOrder: 'ASC'
               },
               permalinks: {
@@ -125,7 +126,6 @@ describe('plugins collections', function() {
       }
     };
     assemble(assembleOpts).build(function(err, results) {
-      console.log('finished');
       if (err) {
         console.log('Error', err);
         file.writeFileSync('build-error.txt', err);
