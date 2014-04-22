@@ -59,14 +59,13 @@ describe('async helpers', function() {
     var options = {
       name: 'async-test-3',
       metadata: {
-        helpers: ['test/fixtures/helpers/**/*.js'],
-        pages: []
+        helpers: ['test/fixtures/helpers/**/*.js']
       }
     };
 
-    options.metadata.pages.push(assemble.models.Component.readFile(source));
+    //options.metadata.pages.push(assemble.models.Component.readFile(source));
 
-    assemble(options).build(function (err, results) {
+    assemble(source, options).build(function (err, results) {
       if (err) {
         console.log('Error:', err);
       }
