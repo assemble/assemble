@@ -20,7 +20,6 @@ describe('page components', function() {
     var options = {
       name: 'ember-style-components-test-1',
       metadata: {
-        registerPartialsAsComponents: true,
         test: {
           'btn-attrs': {
             class: 'btn'
@@ -30,7 +29,8 @@ describe('page components', function() {
           }
         },
         partials: ['test/fixtures/templates/includes/*.hbs'],
-        components: []
+        components: ['test/fixtures/templates/includes/*.hbs'],
+        pages: []
       }
     };
 
@@ -96,23 +96,23 @@ describe('page components', function() {
 
     for (var i = 0; i < pages.length; i++) {
       var page = pages[i];
-      var component = new assemble.models.Component({
+      var pageComponent = new assemble.models.Component({
         src: page.name,
         name: page.name,
         raw: page.content
       });
-      component.metadata = _.merge(component.metadata, page.metadata);
+      pageComponent.metadata = _.merge(pageComponent.metadata, page.metadata);
 
-      options.metadata.components.push(component);
+      options.metadata.pages.push(pageComponent);
     }
 
     assemble(options).build(function (err, results) {
       if (err) {
         console.log('Error:', err);
       }
-      //console.log('results', results.components.page1);
-      var component = results.components.page1;
-      expect(expected).to.eql(component.content);
+      //console.log('results', results.pages.page1);
+      var page = results.pages.page1;
+      expect(page.content).to.eql(expected);
       done();
     });
   });
@@ -122,7 +122,7 @@ describe('page components', function() {
       name: 'page-components-test-1',
       metadata: {
         // log: { level: 'verbose', theme: 'socket.io' },
-        components: []
+        pages: []
       }
     };
 
@@ -170,14 +170,14 @@ describe('page components', function() {
 
     for (var i = 0; i < pages.length; i++) {
       var page = pages[i];
-      var component = new assemble.models.Component({
+      var pageComponent = new assemble.models.Component({
         src: page.name,
         name: page.name,
         raw: page.content
       });
-      component.metadata = _.merge(component.metadata, page.metadata);
+      pageComponent.metadata = _.merge(pageComponent.metadata, page.metadata);
 
-      options.metadata.components.push(component);
+      options.metadata.pages.push(pageComponent);
     }
 
     assemble(options).build(function (err, results) {
@@ -185,8 +185,8 @@ describe('page components', function() {
         console.log('Error:', err);
       }
       //console.log(results.componentTree);
-      var component = results.components.page1;
-      expect(expected).to.eql(component.content);
+      var page = results.pages.page1;
+      expect(expected).to.eql(page.content);
       done();
     });
   });

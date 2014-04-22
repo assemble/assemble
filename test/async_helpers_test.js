@@ -30,8 +30,8 @@ describe('async helpers', function() {
       if (err) {
         console.log('Error:', err);
       }
-      expect(_.keys(results.components).length).to.eql(1);
-      expect(results.components[_.keys(results.components)[0]].content).to.eql(expected);
+      expect(_.keys(results.pages).length).to.eql(1);
+      expect(results.pages[_.keys(results.pages)[0]].content).to.eql(expected);
       done();
     });
   });
@@ -48,7 +48,7 @@ describe('async helpers', function() {
       if (err) {
         console.log('Error', err);
       }
-      expect(results.components[_.keys(results.components)[0]].content).to.eql(expected);
+      expect(results.pages[_.keys(results.pages)[0]].content).to.eql(expected);
       done();
     });
   });
@@ -60,17 +60,17 @@ describe('async helpers', function() {
       name: 'async-test-3',
       metadata: {
         helpers: ['test/fixtures/helpers/**/*.js'],
-        components: []
+        pages: []
       }
     };
 
-    options.metadata.components.push(assemble.models.Component.readFile(source));
+    options.metadata.pages.push(assemble.models.Component.readFile(source));
 
     assemble(options).build(function (err, results) {
       if (err) {
         console.log('Error:', err);
       }
-      expect(results.components[_.keys(results.components)[0]].content).to.eql(expected);
+      expect(results.pages[_.keys(results.pages)[0]].content).to.eql(expected);
       done();
     });
   });
