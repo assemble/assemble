@@ -70,11 +70,8 @@ describe('handlebars layouts', function() {
       ].join('\n');
 
       var assembleOpts = {
-        name: name(),
-        metadata: {
-          layoutdir: 'test/fixtures/templates/layouts/',
-          layoutext: '.hbs'
-        }
+        layoutdir: 'test/fixtures/templates/layouts/',
+        layoutext: '.hbs'
       };
 
       var app = assemble(assembleOpts);
@@ -104,11 +101,8 @@ describe('handlebars layouts', function() {
       ].join('\n');
 
       var assembleOpts = {
-        name: name(),
-        metadata: {
-          layoutdir: 'test/fixtures/templates/layouts/',
-          layoutext: '.hbs'
-        }
+        layoutdir: 'test/fixtures/templates/layouts/',
+        layoutext: '.hbs'
       };
 
       var app = assemble(assembleOpts);
@@ -142,11 +136,8 @@ describe('handlebars layouts', function() {
       ].join('\n');
 
       var assembleOpts = {
-        name: name(),
-        metadata: {
-          layoutdir: 'test/fixtures/templates/layouts/',
-          layoutext: '.hbs'
-        }
+        layoutdir: 'test/fixtures/templates/layouts/',
+        layoutext: '.hbs'
       };
 
       var app = assemble(assembleOpts);
@@ -171,10 +162,7 @@ describe('handlebars layouts', function() {
     it('should load a default layout when none is found', function (done) {
 
       var assembleOpts = {
-        name: name(),
-        metadata: {
-          layout: ''
-        }
+        layout: ''
       };
 
       var app = assemble(assembleOpts);
@@ -200,10 +188,7 @@ describe('handlebars layouts', function() {
       ].join('\n');
 
       var assembleOpts = {
-        name: name(),
-        metadata: {
-          layout: 'test/fixtures/templates/layouts/default.hbs'
-        }
+        layout: 'test/fixtures/templates/layouts/default.hbs'
       };
 
       var app = assemble(assembleOpts);
@@ -229,12 +214,9 @@ describe('handlebars layouts', function() {
       ].join('\n');
 
       var assembleOpts = {
-        name: name(),
-        metadata: {
-          layout: 'default',
-          layoutdir: 'test/fixtures/templates/layouts/',
-          layoutext: '.hbs'
-        }
+        layout: 'default',
+        layoutdir: 'test/fixtures/templates/layouts/',
+        layoutext: '.hbs'
       };
 
       var app = assemble(assembleOpts);
@@ -264,12 +246,9 @@ describe('handlebars layouts', function() {
       ].join('\n');
 
       var assembleOpts = {
-        name: name(),
-        metadata: {
-          layout: 'nested-1',
-          layoutdir: 'test/fixtures/templates/layouts/',
-          layoutext: '.hbs'
-        }
+        layout: 'nested-1',
+        layoutdir: 'test/fixtures/templates/layouts/',
+        layoutext: '.hbs'
       };
 
       var app = assemble(assembleOpts);
@@ -303,12 +282,9 @@ describe('handlebars layouts', function() {
       ].join('\n');
 
       var assembleOpts = {
-        name: name(),
-        metadata: {
-          layout: 'nested-2',
-          layoutdir: 'test/fixtures/templates/layouts/',
-          layoutext: '.hbs'
-        }
+        layout: 'nested-2',
+        layoutdir: 'test/fixtures/templates/layouts/',
+        layoutext: '.hbs'
       };
 
       var app = assemble(assembleOpts);
@@ -333,10 +309,7 @@ describe('handlebars layouts', function() {
     it('should load a default layout when none is found', function (done) {
 
       var assembleOpts = {
-        name: name(),
-        metadata: {
-          layout: ''
-        }
+        layout: ''
       };
 
       var componentOpts = {
@@ -370,10 +343,7 @@ describe('handlebars layouts', function() {
     it('should load a default layout when yfm layout is set to none', function (done) {
 
       var assembleOpts = {
-        name: name(),
-        metadata: {
-          layout: 'none'
-        }
+        layout: 'none'
       };
 
       var componentOpts = {
@@ -453,11 +423,8 @@ describe('handlebars layouts', function() {
       ].join('\n');
 
       var assembleOpts = {
-        name: name(),
-        metadata: {
-          layoutdir: 'test/fixtures/templates/layouts/',
-          layoutext: '.hbs'
-        }
+        layoutdir: 'test/fixtures/templates/layouts/',
+        layoutext: '.hbs'
       };
 
       var componentOpts = {
@@ -501,11 +468,8 @@ describe('handlebars layouts', function() {
       ].join('\n');
 
       var assembleOpts = {
-        name: name(),
-        metadata: {
-          layoutdir: 'test/fixtures/templates/layouts/',
-          layoutext: '.hbs'
-        }
+        layoutdir: 'test/fixtures/templates/layouts/',
+        layoutext: '.hbs'
       };
 
       var componentOpts = {
@@ -553,11 +517,8 @@ describe('handlebars layouts', function() {
       ].join('\n');
 
       var assembleOpts = {
-        name: name(),
-        metadata: {
-          layoutdir: 'test/fixtures/templates/layouts/',
-          layoutext: '.hbs'
-        }
+        layoutdir: 'test/fixtures/templates/layouts/',
+        layoutext: '.hbs'
       };
 
       var componentOpts = {
@@ -601,13 +562,10 @@ describe('handlebars layouts', function() {
       ].join('\n');
 
       var assembleOpts = {
-        name: name(),
-        metadata: {
-          site: {
-            adminLayout: 'test/fixtures/templates/layouts/default.hbs'
-          },
-          layout: '<%= site.adminLayout %>'
-        }
+        site: {
+          adminLayout: 'test/fixtures/templates/layouts/default.hbs'
+        },
+        layout: '<%= site.adminLayout %>'
       };
 
       var app = assemble(assembleOpts);
@@ -638,14 +596,11 @@ describe('handlebars layouts', function() {
       ].join('\n');
 
       var assembleOpts = {
-        name: name(),
-        metadata: {
-          layoutdir: 'test/fixtures/templates/layouts/',
-          layoutext: '.hbs',
-          layout: 'yfm',
-          site: {
-            adminLayout: 'default'
-          }
+        layoutdir: 'test/fixtures/templates/layouts/',
+        layoutext: '.hbs',
+        layout: 'yfm',
+        site: {
+          adminLayout: 'default'
         }
       };
 
@@ -672,13 +627,10 @@ describe('handlebars layouts', function() {
       ].join('\n');
 
       var assembleOpts = {
-        name: name(),
-        metadata: {
-          layoutdir: 'test/fixtures/templates/layouts/',
-          layoutext: '.hbs',
-          site: {
-            adminLayout: 'default'
-          }
+        layoutdir: 'test/fixtures/templates/layouts/',
+        layoutext: '.hbs',
+        site: {
+          adminLayout: 'default'
         }
       };
 

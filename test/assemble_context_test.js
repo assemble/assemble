@@ -16,20 +16,18 @@ describe('assemble', function() {
 
   describe('context', function() {
 
-    var testid = 1;
-
     it('should contain a config module', function () {
-      var actual = assemble({name: 'assemble-context-test-'+(testid++)});
+      var actual = assemble();
       expect(actual).to.have.property('config');
     });
 
     it('should create a context function on assemble', function() {
-      var actual = assemble({name: 'assemble-context-test-'+(testid++)});
+      var actual = assemble();
       expect(actual).to.have.property('context');
     });
 
     it('should return a context object', function () {
-      var actual = assemble({name: 'assemble-context-test-'+(testid++)}).context();
+      var actual = assemble().context();
       expect(actual).to.not.eql(null);
     });
 
@@ -48,7 +46,7 @@ describe('assemble', function() {
       var params = {};
       params.page = page;
 
-      var app = assemble({name: 'assemble-context-test-'+(testid++)});
+      var app = assemble();
       app.config.context(app, params);
 
       expect(params.context).to.have.property('title');
@@ -70,11 +68,8 @@ describe('assemble', function() {
       var page = new assemble.models.Component(pageOpts);
 
       var assembleOpts = {
-        name: 'assemble-context-test-'+(testid++),
-        metadata: {
-          site: {
-            title: 'Site Title'
-          }
+        site: {
+          title: 'Site Title'
         }
       };
 

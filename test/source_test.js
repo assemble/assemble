@@ -31,9 +31,7 @@ describe('source', function() {
     var source = 'Render string {{foo}}.';
     var expected = 'Render string with context.';
     assemble(source, {
-      metadata: {
-        foo: 'with context'
-      }
+      foo: 'with context'
     }).build(function (err, results) {
       if (err) {
         console.log('Error:', err);
@@ -47,11 +45,9 @@ describe('source', function() {
   it('should render a string using a simple layout', function(done) {
     var source = 'Render string.';
     assemble(source, {
-      metadata: {
-        layoutdir: 'test/fixtures/templates/layouts',
-        layoutext: '.hbs',
-        layout: 'body',
-      }
+      layoutdir: 'test/fixtures/templates/layouts',
+      layoutext: '.hbs',
+      layout: 'body'
     }).build(function (err, results) {
       if (err) {
         console.log('Error:', err);
@@ -66,11 +62,9 @@ describe('source', function() {
     var source = 'Render string.';
     var expected = source + source;
     assemble(source, {
-      metadata: {
-        layoutdir: 'test/fixtures/templates/layouts',
-        layoutext: '.hbs',
-        layout: 'bodybody',
-      }
+      layoutdir: 'test/fixtures/templates/layouts',
+      layoutext: '.hbs',
+      layout: 'bodybody'
     }).build(function (err, results) {
       if (err) {
         console.log('Error:', err);

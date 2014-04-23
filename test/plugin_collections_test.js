@@ -16,22 +16,14 @@ var assemble = require('../');
 
 describe('plugins collections', function() {
 
-  var testid = 1;
-  var name = function () {
-    return 'plugins-collections-test-' + (testid++);
-  };
-
   it('should create a collections object on assemble', function (done) {
     var assembleOpts = {
-      name: name(),
-      metadata: {
-        collections: [
-          {
-            name: 'tag',
-            plural: 'tags'
-          }
-        ]
-      }
+      collections: [
+        {
+          name: 'tag',
+          plural: 'tags'
+        }
+      ]
     };
     assemble(assembleOpts).build(function(err, results) {
       if (err) {
@@ -84,46 +76,43 @@ describe('plugins collections', function() {
     }
 
     var assembleOpts = {
-      name: name(),
-      metadata: {
-        pages: pages,
+      pages: pages,
 
-        // setup a tags collection
-        collections: [
-          {
-            name: 'tag',
-            plural: 'tags',
-            // Index of all tags
-            // only show 3 tags on each page
-            index: {
-              template: 'test/fixtures/templates/collections/tags/index.hbs',
-              dest: './dest/',
-              pagination: {
-                prop: ':num',
-                limit: 3,
-                sortby: '',
-                sortOrder: 'ASC'
-              },
-              permalinks: {
-                structure: 'tags/:num/index.html'
-              }
+      // setup a tags collection
+      collections: [
+        {
+          name: 'tag',
+          plural: 'tags',
+          // Index of all tags
+          // only show 3 tags on each page
+          index: {
+            template: 'test/fixtures/templates/collections/tags/index.hbs',
+            dest: './dest/',
+            pagination: {
+              prop: ':num',
+              limit: 3,
+              sortby: '',
+              sortOrder: 'ASC'
             },
-            // Index of pages related to each tag
-            related_pages: {
-              template: 'test/fixtures/templates/collections/tags/related-pages.hbs',
-              dest: './dest/',
-              pagination: {
-                limit: 6,
-                sortby: 'slug',
-                sortOrder: 'ASC'
-              },
-              permalinks: {
-                structure: 'tags/:tag/:num/index.html'
-              }
+            permalinks: {
+              structure: 'tags/:num/index.html'
+            }
+          },
+          // Index of pages related to each tag
+          related_pages: {
+            template: 'test/fixtures/templates/collections/tags/related-pages.hbs',
+            dest: './dest/',
+            pagination: {
+              limit: 6,
+              sortby: 'slug',
+              sortOrder: 'ASC'
+            },
+            permalinks: {
+              structure: 'tags/:tag/:num/index.html'
             }
           }
-        ]
-      }
+        }
+      ]
     };
     assemble(assembleOpts).build(function(err, results) {
       if (err) {

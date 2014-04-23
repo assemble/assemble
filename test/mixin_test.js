@@ -25,11 +25,8 @@ describe('mixins', function () {
 
   it('should load mixins into lodash', function (done) {
     var options = {
-      name: 'minxins-test-1',
-      source: 'Some Template',
-      metadata: {
-        mixins: mixins
-      }
+      src: 'Some Template',
+      mixins: mixins
     };
 
     assemble(options).build(function (err) {
@@ -52,12 +49,9 @@ describe('mixins', function () {
 
   it('should load mixins into a fn namespace on lodash', function (done) {
     var options = {
-      name: 'mixins-test-2',
-      source: 'Some Template',
-      metadata: {
-        mixins: mixins,
-        noconflict: true
-      }
+      src: 'Some Template',
+      mixins: mixins,
+      noconflict: true
     };
 
     assemble(options).build(function (err) {
@@ -84,12 +78,9 @@ describe('mixins', function () {
 
   it('should load mixins into a custom namespace on lodash', function (done) {
     var options = {
-      name: 'mixins-test-3',
-      source: 'Some Template',
-      metadata: {
-        mixins: mixins,
-        noconflict: 'custom'
-      }
+      src: 'Some Template',
+      mixins: mixins,
+      noconflict: 'custom'
     };
 
     assemble(options).build(function (err) {

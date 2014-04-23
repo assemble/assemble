@@ -19,20 +19,18 @@ describe('page components', function() {
 
   it('should register partials as ember style components', function (done) {
     var options = {
-      name: 'ember-style-components-test-1',
-      metadata: {
-        test: {
-          'btn-attrs': {
-            class: 'btn'
-          },
-          'alert-attrs': {
-            class: "alert alert-warning fade in"
-          }
+      test: {
+        'btn-attrs': {
+          class: 'btn'
         },
-        partials: ['test/fixtures/templates/includes/*.hbs'],
-        components: ['test/fixtures/templates/includes/*.hbs'],
-        pages: []
-      }
+        'alert-attrs': {
+          class: "alert alert-warning fade in"
+        }
+      },
+      helpers: ['test/fixtures/helpers/*.js'],
+      partials: ['test/fixtures/templates/includes/*.hbs'],
+      components: ['test/fixtures/templates/includes/*.hbs'],
+      pages: []
     };
 
     var pages = [
@@ -104,7 +102,7 @@ describe('page components', function() {
       });
       pageComponent.metadata = _.merge(pageComponent.metadata, page.metadata);
 
-      options.metadata.pages.push(pageComponent);
+      options.pages.push(pageComponent);
     }
 
 
@@ -125,11 +123,8 @@ describe('page components', function() {
 
   it('should inject components as helpers into pages', function (done) {
     var options = {
-      name: 'page-components-test-1',
-      metadata: {
-        // log: { level: 'verbose', theme: 'socket.io' },
-        pages: []
-      }
+      // log: { level: 'verbose', theme: 'socket.io' },
+      pages: []
     };
 
     var pages = [
@@ -183,7 +178,7 @@ describe('page components', function() {
       });
       pageComponent.metadata = _.merge(pageComponent.metadata, page.metadata);
 
-      options.metadata.pages.push(pageComponent);
+      options.pages.push(pageComponent);
     }
 
     assemble(options).build(function (err, results) {
