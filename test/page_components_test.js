@@ -1,5 +1,5 @@
 
-  /**
+/**
  * Assemble
  *
  * Assemble <http://assemble.io>
@@ -20,8 +20,17 @@ describe('page components', function() {
     var options = {
       name: 'ember-style-components-test-1',
       metadata: {
+        test: {
+          'btn-attrs': {
+            class: 'btn'
+          },
+          'alert-attrs': {
+            class: "alert alert-warning fade in"
+          }
+        },
         partials: ['test/fixtures/templates/includes/*.hbs'],
-        components: []
+        components: ['test/fixtures/templates/includes/*.hbs'],
+        pages: []
       }
     };
 
@@ -33,9 +42,15 @@ describe('page components', function() {
         },
         content: [
           '<h1>{{title}}</h1>',
-          '<h2>Button</h2>',
+          '<h2>Partials</h2>',
+          '<h3>Button</h3>',
+          '{{> btn test.btn-attrs}}',
+          '<h3>Alert</h3>',
+          '{{> alert test.alert-attrs}}',
+          '<h2>Components</h2>',
+          '<h3>Button</h3>',
           '{{btn class="btn"}}',
-          '<h2>Alert</h2>',
+          '<h3>Alert</h3>',
           '{{alert class="alert alert-warning fade in"}}'
         ].join('\n')
       }
@@ -43,12 +58,30 @@ describe('page components', function() {
 
     var expected = [
       '<h1>Page 1 Title</h1>',
-      '<h2>Button</h2>',
+      '<h2>Partials</h2>',
+      '<h3>Button</h3>',
       '',
       '',
       '<button class="btn"></button>',
       '',
-      '<h2>Alert</h2>',
+      '<h3>Alert</h3>',
+      '',
+      '',
+      '<div class="alert alert-warning fade in">',
+      '  ',
+      '',
+      '<button aria-hidden="true" data-dismiss="alert" class="close" type="button">&times;</button>',
+      '',
+      '  <strong>Holy guacamole!</strong> Best check yo self, you\'re not looking too good.',
+      '</div>',
+      '',
+      '<h2>Components</h2>',
+      '<h3>Button</h3>',
+      '',
+      '',
+      '<button class="btn"></button>',
+      '',
+      '<h3>Alert</h3>',
       '',
       '',
       '<div class="alert alert-warning fade in">',
@@ -63,23 +96,23 @@ describe('page components', function() {
 
     for (var i = 0; i < pages.length; i++) {
       var page = pages[i];
-      var component = new assemble.models.Component({
+      var pageComponent = new assemble.models.Component({
         src: page.name,
         name: page.name,
         raw: page.content
       });
-      component.metadata = _.merge(component.metadata, page.metadata);
+      pageComponent.metadata = _.merge(pageComponent.metadata, page.metadata);
 
-      options.metadata.components.push(component);
+      options.metadata.pages.push(pageComponent);
     }
 
     assemble(options).build(function (err, results) {
       if (err) {
         console.log('Error:', err);
       }
-      //console.log('results', results.components.page1);
-      var component = results.components.page1;
-      expect(expected).to.eql(component.content);
+      //console.log('results', results.pages.page1);
+      var page = results.pages.page1;
+      expect(page.content).to.eql(expected);
       done();
     });
   });
@@ -89,7 +122,7 @@ describe('page components', function() {
       name: 'page-components-test-1',
       metadata: {
         // log: { level: 'verbose', theme: 'socket.io' },
-        components: []
+        pages: []
       }
     };
 
@@ -137,14 +170,14 @@ describe('page components', function() {
 
     for (var i = 0; i < pages.length; i++) {
       var page = pages[i];
-      var component = new assemble.models.Component({
+      var pageComponent = new assemble.models.Component({
         src: page.name,
         name: page.name,
         raw: page.content
       });
-      component.metadata = _.merge(component.metadata, page.metadata);
+      pageComponent.metadata = _.merge(pageComponent.metadata, page.metadata);
 
-      options.metadata.components.push(component);
+      options.metadata.pages.push(pageComponent);
     }
 
     assemble(options).build(function (err, results) {
@@ -152,8 +185,8 @@ describe('page components', function() {
         console.log('Error:', err);
       }
       //console.log(results.componentTree);
-      var component = results.components.page1;
-      expect(expected).to.eql(component.content);
+      var page = results.pages.page1;
+      expect(expected).to.eql(page.content);
       done();
     });
   });

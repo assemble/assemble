@@ -21,8 +21,8 @@ describe('source', function() {
       if (err) {
         console.log('Error:', err);
       }
-      expect(_.keys(results.components).length).to.eql(1);
-      expect(results.components[_.keys(results.components)[0]].content).to.eql(source);
+      expect(_.keys(results.pages).length).to.eql(1);
+      expect(results.pages[_.keys(results.pages)[0]].content).to.eql(source);
       done();
     });
   });
@@ -38,8 +38,8 @@ describe('source', function() {
       if (err) {
         console.log('Error:', err);
       }
-      expect(_.keys(results.components).length).to.eql(1);
-      expect(results.components[_.keys(results.components)[0]].content).to.eql(expected);
+      expect(_.keys(results.pages).length).to.eql(1);
+      expect(results.pages[_.keys(results.pages)[0]].content).to.eql(expected);
       done();
     });
   });
@@ -56,8 +56,8 @@ describe('source', function() {
       if (err) {
         console.log('Error:', err);
       }
-      expect(_.keys(results.components).length).to.eql(1);
-      expect(results.components[_.keys(results.components)[0]].content).to.eql(source);
+      expect(_.keys(results.pages).length).to.eql(1);
+      expect(results.pages[_.keys(results.pages)[0]].content).to.eql(source);
       done();
     });
   });
@@ -75,8 +75,8 @@ describe('source', function() {
       if (err) {
         console.log('Error:', err);
       }
-      expect(_.keys(results.components).length).to.eql(1);
-      expect(results.components[_.keys(results.components)[0]].content).to.eql(expected);
+      expect(_.keys(results.pages).length).to.eql(1);
+      expect(results.pages[_.keys(results.pages)[0]].content).to.eql(expected);
       done();
     });
   });

@@ -1,4 +1,6 @@
 
+var _ = require('lodash');
+
 module.exports = function (config) {
   var Handlebars = config.Handlebars;
   var helpers = {};
@@ -6,12 +8,7 @@ module.exports = function (config) {
     options = options || {};
     options.hash = options.hash || {};
 
-    var attrs = {};
-    if (options.hash.attrs) {
-      attrs = options.hash.attrs;
-    } else {
-      attrs = options.hash;
-    }
+    var attrs = options.hash.attrs || _.omit(options.hash || {}, ['attrs']) || {};
 
     var results = '';
     for (var key in attrs) {

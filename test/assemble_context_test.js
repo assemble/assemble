@@ -33,41 +33,41 @@ describe('assemble', function() {
       expect(actual).to.not.eql(null);
     });
 
-    it('should return a context object based on component metadata', function () {
-      var componentOpts = {
-        src: 'test-component',
-        name: 'test-component',
+    it('should return a context object based on page metadata', function () {
+      var pageOpts = {
+        src: 'test-page',
+        name: 'test-page',
         metadata: {
-          title: 'This is a test component'
+          title: 'This is a test page'
         },
         raw: '{{title}}',
         content: '{{title}}'
       };
-      var component = new assemble.models.Component(componentOpts);
+      var page = new assemble.models.Component(pageOpts);
 
       var params = {};
-      params.component = component;
+      params.page = page;
 
       var app = assemble({name: 'assemble-context-test-'+(testid++)});
       app.config.context(app, params);
 
       expect(params.context).to.have.property('title');
-      expect(params.context.title).to.eql('This is a test component');
+      expect(params.context.title).to.eql('This is a test page');
 
     });
 
 
     it('should return a context object with expanded properties', function () {
-      var componentOpts = {
-        src: 'test-component',
-        name: 'test-component',
+      var pageOpts = {
+        src: 'test-page',
+        name: 'test-page',
         metadata: {
-          title: '<%= site.title %>: Component Title',
+          title: '<%= site.title %>: Page Title',
         },
         raw: '{{title}}',
         content: '{{title}}'
       };
-      var component = new assemble.models.Component(componentOpts);
+      var page = new assemble.models.Component(pageOpts);
 
       var assembleOpts = {
         name: 'assemble-context-test-'+(testid++),
@@ -79,7 +79,7 @@ describe('assemble', function() {
       };
 
       var params = {};
-      params.component = component;
+      params.page = page;
 
       var app = assemble(assembleOpts);
       app.config.context(app, params);
@@ -88,9 +88,8 @@ describe('assemble', function() {
       expect(params.context.site).to.have.property('title');
       expect(params.context).to.have.property('title');
       expect(params.context).to.have.property('page');
-      expect(params.context).to.have.property('component');
 
-      expect(params.context.title).to.eql('Site Title: Component Title');
+      expect(params.context.title).to.eql('Site Title: Page Title');
 
     });
 
