@@ -12,6 +12,7 @@
 var expect = require('chai').expect;
 var _ = require('lodash');
 
+var utils = require('./lib/utils');
 var assemble = require('../');
 
 describe('page components', function() {
@@ -106,13 +107,18 @@ describe('page components', function() {
       options.metadata.pages.push(pageComponent);
     }
 
+
     assemble(options).build(function (err, results) {
       if (err) {
-        console.log('Error:', err);
+        utils.normalizeStack(function () {
+          done(err);
+        });
       }
       //console.log('results', results.pages.page1);
       var page = results.pages.page1;
-      expect(page.content).to.eql(expected);
+      utils.normalizeStack(function() {
+        expect(page.content).to.eql(expected);
+      });
       done();
     });
   });

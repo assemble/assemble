@@ -73,7 +73,8 @@
     "grunt-verb": "~0.1.1",
     "memory-streams": "0.0.3",
     "time-grunt": "~0.3.1",
-    "koalas": "0.0.6"
+    "koalas": "0.0.6",
+    "haraldutil": "^0.1.18"
   },
   "keywords": [
     "HTML",
