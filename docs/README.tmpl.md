@@ -48,4 +48,3 @@
 
 ***
 
-{%= _.include("footer.md") %}

@@ -105,32 +105,37 @@ options: {
 ```
 
 ## [ext](http://assemble.io/docs/options-ext.html)
+
 Type: `String`
+
 Default: `.html`
 
 Specify the file extension for destination files. Example:
 
 ## [marked](http://assemble.io/docs/options-marked.html)
+
 Type: `Object`
+
 Default: [Marked.js defaults](https://github.com/chjj/marked#options-1)
 
 Specify the [Marked.js options](https://github.com/chjj/marked#options-1) for the `{{#markdown}}{{/markdown}}` and `{{md ""}}` helpers to use when converting content.
 
 ## [engine](http://assemble.io/docs/options-engine.html)
+
+_**PLEASE NOTE:** this option is only necessary **if you are not using Handlebars**_!
+
 Type: `String`
 Default: `Handlebars` 
 
 Specify the engine to use for compiling templates **if you are not using Handlebars**.
 
-**PLEASE NOTE** that _this option is only necessary if_:
-
-a. You **are not using Handlebars**, or
-b. You need to "force" Handlebars to recognize a non-default extension. See [extensions.yml](./lib/extensions.yml).
 
 Also see [assemble-swig](https://github.com/assemble/assemble-swig) for compiling [Swig Templates](https://github.com/paularmstrong).
 
 ## flatten
+
 Type: `Boolean`
+
 Default: `false`
 
 Remove anything after (and including) the first `.` in the destination path, then append this value. In other words, when files are generated from different source folders this "flattens" them into the same destination directory. See [building the files object dynamically](http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically) for more information on `files` formats.
