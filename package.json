@@ -45,7 +45,6 @@
   },
   "dependencies": {
     "async": "~0.7.0",
-    "boson": "~0.1.2",
     "calculate-assets": "~0.1.0",
     "dovetail": "~0.2.2",
     "expander": "^0.3.3",

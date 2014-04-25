@@ -116,8 +116,8 @@ describe('page components', function() {
       var page = results.pages.page1;
       utils.normalizeStack(function() {
         expect(page.content).to.eql(expected);
+        done();
       });
-      done();
     });
   });
 
