@@ -10,6 +10,7 @@
  */
 
 var file = require('fs-utils');
+var _ = require('lodash');
 
 var expect = require('chai').expect;
 var assemble = require('../');
@@ -35,6 +36,90 @@ describe('plugins collections', function() {
       done();
     });
 
+  });
+
+  it('should create collections and add them to the page context', function (done) {
+    var tags = {
+      'first': 1,
+      'second': 2,
+      'third': 3,
+      'fourth': 4,
+      'fifth': 5,
+      'sixth': 6,
+      'seventh': 7,
+      'eight': 8,
+      'ninth': 9,
+      'tenth': 10
+    };
+
+    var sortFn = function (a, b) {
+      var aIdx = tags[a.collectionItem];
+      var bIdx = tags[b.collectionItem];
+      if (aIdx > bIdx) {
+        return 1;
+      } else if (aIdx < bIdx) {
+        return -1;
+      }
+      return 0;
+    };
+
+    var pageContent = [
+      '{{title}}',
+      '<h1>Tags</h1>',
+      '<ul>{{#each collections.tags}}',
+      '  <li>Tag: {{tag}}',
+      '    <ul>Pages:{{#each pages}}',
+      '      <li>{{name}}</li>{{/each}}',
+      '    </ul>',
+      '  </li>',
+      '{{/each}}</ul>'
+    ].join('\n');
+
+    // each page will have 10 tags
+    var pageOpts = {
+      src: 'test-page',
+      name: 'test-page',
+      metadata: {
+        title: 'This is a test page',
+        tags: _.keys(tags)
+      },
+      raw: pageContent,
+      content: pageContent
+    };
+
+    // create a bunch of pages to test
+    var pages = [];
+    for (var i = 1; i <= 3; i++) {
+      var page = new assemble.models.Component(pageOpts);
+      page.src += ' ' + i;
+      page.name += ' ' + i;
+      page.metadata.title += ' ' + i;
+      page.metadata.slug = '' + i;
+      pages.push(page);
+    }
+
+    var assembleOpts = {
+      pages: pages,
+      collections: [
+        {
+          name: 'tag',
+          plural: 'tags',
+          'related_pages': {
+            pagination: {
+              sort: sortFn
+            }
+          }
+        }
+      ]
+    };
+
+    assemble(assembleOpts).build(function (err) {
+      if (err) {
+        console.log('Error', err);
+        return done(err);
+      }
+      done();
+    });
   });
 
   it('should create a collection pages for a collection', function (done) {
