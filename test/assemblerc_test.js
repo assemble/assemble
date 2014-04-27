@@ -79,7 +79,7 @@ describe('assemble', function() {
 
     it('should create an instance of App with no runtime configuration', function() {
       var actual = assemble();
-      expect(actual).to.be.an.instanceof(assemble.App);
+      expect(actual).to.be.an.instanceof(assemble);
     });
 
     _.each(configFiles, function (filename) {

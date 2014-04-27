@@ -17,7 +17,7 @@ describe('assemble', function() {
 
     it('should create an instance of App', function() {
       var actual = assemble();
-      expect(actual).to.be.an.instanceof(assemble.App);
+      expect(actual).to.be.an.instanceof(assemble);
     });
 
     it('should create two instances of App that are different', function() {
