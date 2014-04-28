@@ -28,14 +28,12 @@ describe('plugins collections', function() {
     };
     assemble(assembleOpts).build(function(err, results) {
       if (err) {
-        console.log('Error', err);
         return done(err);
       }
       expect(results).to.have.property('collections');
       expect(results.collections).to.have.property('tags');
       done();
     });
-
   });
 
   it('should create collections and add them to the page context', function (done) {
@@ -79,11 +77,11 @@ describe('plugins collections', function() {
     var pageOpts = {
       src: 'test-page',
       name: 'test-page',
-      metadata: {
+      data: {
         title: 'This is a test page',
         tags: _.keys(tags)
       },
-      raw: pageContent,
+      orig: pageContent,
       content: pageContent
     };
 
@@ -93,8 +91,8 @@ describe('plugins collections', function() {
       var page = new assemble.models.Component(pageOpts);
       page.src += ' ' + i;
       page.name += ' ' + i;
-      page.metadata.title += ' ' + i;
-      page.metadata.slug = '' + i;
+      page.data.title += ' ' + i;
+      page.data.slug = '' + i;
       pages.push(page);
     }
 
@@ -141,11 +139,11 @@ describe('plugins collections', function() {
     var pageOpts = {
       src: 'test-page',
       name: 'test-page',
-      metadata: {
+      data: {
         title: 'This is a test page',
         tags: tags
       },
-      raw: '{{title}}',
+      orig: '{{title}}',
       content: '{{title}}'
     };
 
@@ -155,8 +153,8 @@ describe('plugins collections', function() {
       var page = new assemble.models.Component(pageOpts);
       page.src += ' ' + i;
       page.name += ' ' + i;
-      page.metadata.title += ' ' + i;
-      page.metadata.slug = '' + i;
+      page.data.title += ' ' + i;
+      page.data.slug = '' + i;
       pages.push(page);
     }
 
@@ -210,7 +208,7 @@ describe('plugins collections', function() {
         //console.log('pages', results.pages);
         for (var i = 1; i <= 4; i++) {
           expect(results.pages).to.have.property('collections-tags-' + i);
-          expect(results.pages['collections-tags-' + i].metadata.tags.length).to.eql((i===4 ? 1 : 3));
+          expect(results.pages['collections-tags-' + i].data.tags.length).to.eql((i===4 ? 1 : 3));
           expect(results.pages['collections-tags-' + i].dest).to.eql('dest/tags/' + i + '/index.html');
         }
 
@@ -218,7 +216,7 @@ describe('plugins collections', function() {
         tags.forEach(function (tag) {
           for (var i = 1; i <= 4; i++) {
             expect(results.pages).to.have.property('collections-tags-' + tag + '-' + i);
-            expect(results.pages['collections-tags-' + tag + '-' + i].metadata['related-pages'].length).to.eql((i===4 ? 2 : 6));
+            expect(results.pages['collections-tags-' + tag + '-' + i].data['related-pages'].length).to.eql((i===4 ? 2 : 6));
             expect(results.pages['collections-tags-' + tag + '-' + i].dest).to.eql('dest/tags/' + tag + '/' + i + '/index.html');
           }
         });

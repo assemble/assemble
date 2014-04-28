@@ -316,7 +316,7 @@ describe('handlebars layouts', function() {
         src: 'layout-test-component',
         name: 'layout-test-component',
         content: '{{foo}}',
-        metadata: {
+        data: {
           foo: 'bar'
         }
       };
@@ -350,7 +350,7 @@ describe('handlebars layouts', function() {
         src: 'layout-test-component',
         name: 'layout-test-component',
         content: '{{foo}}',
-        metadata: {
+        data: {
           foo: 'bar'
         }
       };
@@ -390,7 +390,7 @@ describe('handlebars layouts', function() {
         src: 'layout-test-component',
         name: 'layout-test-component',
         content: '{{foo}}',
-        metadata: {
+        data: {
           layout: 'test/fixtures/templates/layouts/default.hbs',
           foo: 'bar'
         }
@@ -431,7 +431,7 @@ describe('handlebars layouts', function() {
         src: 'layout-test-component',
         name: 'layout-test-component',
         content: '{{foo}}',
-        metadata: {
+        data: {
           layout: 'default',
           foo: 'bar'
         }
@@ -476,7 +476,7 @@ describe('handlebars layouts', function() {
         src: 'layout-test-component',
         name: 'layout-test-component',
         content: '{{foo}}',
-        metadata: {
+        data: {
           layout: 'nested-1',
           foo: 'bar'
         }
@@ -525,7 +525,7 @@ describe('handlebars layouts', function() {
         src: 'layout-test-component',
         name: 'layout-test-component',
         content: '{{foo}}',
-        metadata: {
+        data: {
           layout: 'nested-2',
           foo: 'bar'
         }
@@ -638,7 +638,7 @@ describe('handlebars layouts', function() {
         src: 'layout-test-component',
         name: 'layout-test-component',
         content: '{{foo}}',
-        metadata: {
+        data: {
           layout: '<%= site.adminLayout %>',
           foo: 'bar'
         }

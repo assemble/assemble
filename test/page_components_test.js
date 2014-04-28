@@ -12,7 +12,6 @@
 var expect = require('chai').expect;
 var _ = require('lodash');
 
-var utils = require('./lib/utils');
 var assemble = require('../');
 
 describe('page components', function() {
@@ -36,7 +35,7 @@ describe('page components', function() {
     var pages = [
       {
         name: 'page1',
-        metadata: {
+        data: {
           title: 'Page 1 Title'
         },
         content: [
@@ -98,9 +97,9 @@ describe('page components', function() {
       var pageComponent = new assemble.models.Component({
         src: page.name,
         name: page.name,
-        raw: page.content
+        orig: page.content
       });
-      pageComponent.metadata = _.merge(pageComponent.metadata, page.metadata);
+      pageComponent.data = _.merge(pageComponent.data, page.data);
 
       options.pages.push(pageComponent);
     }
@@ -108,16 +107,12 @@ describe('page components', function() {
 
     assemble(options).build(function (err, results) {
       if (err) {
-        utils.normalizeStack(function () {
-          done(err);
-        });
+        done(err);
       }
       //console.log('results', results.pages.page1);
       var page = results.pages.page1;
-      utils.normalizeStack(function() {
-        expect(page.content).to.eql(expected);
-        done();
-      });
+      expect(page.content).to.eql(expected);
+      done();
     });
   });
 
@@ -130,7 +125,7 @@ describe('page components', function() {
     var pages = [
       {
         name: 'page1',
-        metadata: {
+        data: {
           title: 'Page 1 Title',
           components: [
             {
@@ -174,9 +169,9 @@ describe('page components', function() {
       var pageComponent = new assemble.models.Component({
         src: page.name,
         name: page.name,
-        raw: page.content
+        orig: page.content
       });
-      pageComponent.metadata = _.merge(pageComponent.metadata, page.metadata);
+      pageComponent.data = _.merge(pageComponent.data, page.data);
 
       options.pages.push(pageComponent);
     }

@@ -31,14 +31,14 @@ describe('assemble', function() {
       expect(actual).to.not.eql(null);
     });
 
-    it('should return a context object based on page metadata', function () {
+    it('should return a context object based on page data', function () {
       var pageOpts = {
         src: 'test-page',
         name: 'test-page',
-        metadata: {
+        data: {
           title: 'This is a test page'
         },
-        raw: '{{title}}',
+        orig: '{{title}}',
         content: '{{title}}'
       };
       var page = new assemble.models.Component(pageOpts);
@@ -59,10 +59,10 @@ describe('assemble', function() {
       var pageOpts = {
         src: 'test-page',
         name: 'test-page',
-        metadata: {
+        data: {
           title: '<%= site.title %>: Page Title',
         },
-        raw: '{{title}}',
+        orig: '{{title}}',
         content: '{{title}}'
       };
       var page = new assemble.models.Component(pageOpts);

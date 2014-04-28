@@ -54,8 +54,6 @@ describe('async helpers', function() {
       helpers: ['test/fixtures/helpers/**/*.js']
     };
 
-    //options.metadata.pages.push(assemble.models.Component.readFile(src));
-
     assemble(src, options).build(function (err, results) {
       if (err) {
         console.log('Error:', err);
