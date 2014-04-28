@@ -10,7 +10,6 @@
  */
 
 var expect = require('chai').expect;
-var _ = require('lodash');
 
 var assemble = require('../');
 
@@ -27,8 +26,7 @@ describe('async helpers', function() {
       if (err) {
         console.log('Error:', err);
       }
-      expect(_.keys(results.pages).length).to.eql(1);
-      expect(results.pages[_.keys(results.pages)[0]].content).to.eql(expected);
+      expect(results.source.content).to.eql(expected);
       done();
     });
   });
@@ -42,7 +40,7 @@ describe('async helpers', function() {
       if (err) {
         console.log('Error', err);
       }
-      expect(results.pages[_.keys(results.pages)[0]].content).to.eql(expected);
+      expect(results.source.content).to.eql(expected);
       done();
     });
   });
@@ -58,7 +56,7 @@ describe('async helpers', function() {
       if (err) {
         console.log('Error:', err);
       }
-      expect(results.pages[_.keys(results.pages)[0]].content).to.eql(expected);
+      expect(results.source.content).to.eql(expected);
       done();
     });
   });
