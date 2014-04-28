@@ -87,7 +87,7 @@ describe('assemble', function() {
       it('should use ' + filename, function () {
         file.writeFileSync(filename, JSON.stringify({ test: { rcfile: filename }}));
         var actual = assemble({ assemblerc: filename });
-        expect(actual.options.test.rcfile).to.eql(filename);
+        expect(actual.config.test.rcfile).to.eql(filename);
       });
 
     });
