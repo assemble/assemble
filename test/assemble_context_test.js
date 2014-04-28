@@ -16,9 +16,9 @@ describe('assemble', function() {
 
   describe('context', function() {
 
-    it('should contain a config module', function () {
+    it('should contain a utils module', function () {
       var actual = assemble();
-      expect(actual).to.have.property('config');
+      expect(actual).to.have.property('utils');
     });
 
     it('should create a context function on assemble', function() {
@@ -47,7 +47,7 @@ describe('assemble', function() {
       params.page = page;
 
       var app = assemble();
-      app.config.context(app, params);
+      app.utils.context(app, params);
 
       expect(params.context).to.have.property('title');
       expect(params.context.title).to.eql('This is a test page');
@@ -77,7 +77,7 @@ describe('assemble', function() {
       params.page = page;
 
       var app = assemble(assembleOpts);
-      app.config.context(app, params);
+      app.utils.context(app, params);
 
       expect(params.context).to.have.property('title');
       expect(params.context.site).to.have.property('title');

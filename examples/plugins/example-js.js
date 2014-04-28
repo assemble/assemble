@@ -10,7 +10,7 @@
 module.exports = function(assemble) {
 
   // events commented out for demo purposes
-  var events = assemble.config.plugins.events;
+  var events = assemble.utils.plugins.events;
 
   var plugin = function (params, next) {
     console.log('JavaScript Example Plugin', params.event);
