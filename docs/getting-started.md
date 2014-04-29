@@ -1,8 +1,8 @@
-Assemble requires Grunt `~0.4.1`
+{%= name %} requires Grunt `~0.4.1`
 
 _If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._
 
-From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install Assemble with the following command:
+From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install {%= name %} with the following command:
 
 ```bash
 npm install {%= name %} --save-dev

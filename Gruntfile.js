@@ -21,6 +21,7 @@ module.exports = function (grunt) {
 
     // Run mocha tests
     mochaTest: {
+      options: {reporter: 'spec'},
       tests: {src: ['test/*.js']}
     },
 
@@ -36,7 +37,6 @@ module.exports = function (grunt) {
         tasks: ['default']
       }
     }
-
   });
 
   // Load NPM plugins to provide the necessary tasks.
@@ -50,7 +50,7 @@ module.exports = function (grunt) {
   grunt.registerTask('docs', ['verb']);
 
   // The default task to run with the `grunt` command
-  grunt.registerTask('default', ['jshint', 'clean', 'mochaTest']);
+  grunt.registerTask('default', ['jshint', 'clean', 'mochaTest', 'docs']);
 
   // Development
   grunt.registerTask('dev', ['jshint', 'mochaTest', 'watch']);
