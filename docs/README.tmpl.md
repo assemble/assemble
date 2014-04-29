@@ -4,10 +4,12 @@
 
 ### [Visit the website →](http://assemble.io)
 
+grunt-assemble provides a declarative wrapper around [Assemble](https://github.com/assemble/assemble).
+
 ## Why use Assemble?
 
-1. Most popular site generator for Grunt.js and Yeoman. Assemble is used to build hundreds of web projects, ranging in size from a single page to 14,000 pages (that we're aware of!). [Let us know if you use Assemble](https://github.com/assemble/assemble/issues/300).
-1. Allows you to carve your HTML up into reusable fragments: partials, includes, sections, snippets... Whatever you prefer to call them, Assemble does that.
+1. Most popular site generator for Grunt.js and Yeoman. Assemble is used on hundreds of web projects ranging in size from a single page to 14,000 pages (that we're aware of!). [Let us know if you use Assemble!](https://github.com/assemble/assemble/issues/300).
+1. Allows you to carve your HTML up into modular, reusable fragments: partials, includes, sections, snippets... Whatever you prefer to call them, Assemble does that.
 1. Optionally use `layouts` to wrap your pages with commonly used elements and content.
 1. "Pages" can either be defined as HTML/templates, JSON or YAML, or directly inside the Gruntfile.
 1. It's awesome. Lol just kidding. But seriously, Assemble... is... awesome! and it's fun to use.
