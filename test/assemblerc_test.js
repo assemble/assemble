@@ -79,15 +79,15 @@ describe('assemble', function() {
 
     it('should create an instance of App with no runtime configuration', function() {
       var actual = assemble();
-      expect(actual).to.be.an.instanceof(assemble.App);
+      expect(actual).to.be.an.instanceof(assemble);
     });
 
     _.each(configFiles, function (filename) {
 
       it('should use ' + filename, function () {
         file.writeFileSync(filename, JSON.stringify({ test: { rcfile: filename }}));
-        var actual = assemble({name: 'rc-test-' + filename, metadata: { assemblerc: filename }});
-        expect(actual.options.test.rcfile).to.eql(filename);
+        var actual = assemble({ assemblerc: filename });
+        expect(actual.config.test.rcfile).to.eql(filename);
       });
 
     });

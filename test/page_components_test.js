@@ -18,26 +18,24 @@ describe('page components', function() {
 
   it('should register partials as ember style components', function (done) {
     var options = {
-      name: 'ember-style-components-test-1',
-      metadata: {
-        test: {
-          'btn-attrs': {
-            class: 'btn'
-          },
-          'alert-attrs': {
-            class: "alert alert-warning fade in"
-          }
+      test: {
+        'btn-attrs': {
+          class: 'btn'
         },
-        partials: ['test/fixtures/templates/includes/*.hbs'],
-        components: ['test/fixtures/templates/includes/*.hbs'],
-        pages: []
-      }
+        'alert-attrs': {
+          class: "alert alert-warning fade in"
+        }
+      },
+      helpers: ['test/fixtures/helpers/*.js'],
+      partials: ['test/fixtures/templates/includes/*.hbs'],
+      components: ['test/fixtures/templates/includes/*.hbs'],
+      pages: []
     };
 
     var pages = [
       {
         name: 'page1',
-        metadata: {
+        data: {
           title: 'Page 1 Title'
         },
         content: [
@@ -99,16 +97,17 @@ describe('page components', function() {
       var pageComponent = new assemble.models.Component({
         src: page.name,
         name: page.name,
-        raw: page.content
+        orig: page.content
       });
-      pageComponent.metadata = _.merge(pageComponent.metadata, page.metadata);
+      pageComponent.data = _.merge(pageComponent.data, page.data);
 
-      options.metadata.pages.push(pageComponent);
+      options.pages.push(pageComponent);
     }
+
 
     assemble(options).build(function (err, results) {
       if (err) {
-        console.log('Error:', err);
+        done(err);
       }
       //console.log('results', results.pages.page1);
       var page = results.pages.page1;
@@ -119,17 +118,14 @@ describe('page components', function() {
 
   it('should inject components as helpers into pages', function (done) {
     var options = {
-      name: 'page-components-test-1',
-      metadata: {
-        // log: { level: 'verbose', theme: 'socket.io' },
-        pages: []
-      }
+      // log: { level: 'verbose', theme: 'socket.io' },
+      pages: []
     };
 
     var pages = [
       {
         name: 'page1',
-        metadata: {
+        data: {
           title: 'Page 1 Title',
           components: [
             {
@@ -173,11 +169,11 @@ describe('page components', function() {
       var pageComponent = new assemble.models.Component({
         src: page.name,
         name: page.name,
-        raw: page.content
+        orig: page.content
       });
-      pageComponent.metadata = _.merge(pageComponent.metadata, page.metadata);
+      pageComponent.data = _.merge(pageComponent.data, page.data);
 
-      options.metadata.pages.push(pageComponent);
+      options.pages.push(pageComponent);
     }
 
     assemble(options).build(function (err, results) {

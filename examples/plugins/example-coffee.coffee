@@ -9,7 +9,7 @@ Licensed under the MIT License (MIT).
 
 module.exports = (assemble) ->
   # events commented out for demo purposes
-  events = assemble.config.plugins.events
+  events = assemble.utils.plugins.events
 
   plugin = (params, next) ->
     console.log 'CoffeeScript Example Plugin: ', params.event

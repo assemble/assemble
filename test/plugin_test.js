@@ -20,7 +20,7 @@ describe('plugin', function() {
     var options = {
       name: 'plugin-test-1',
       source: 'Some Template',
-      metadata: {
+      data: {
         plugins: [path.join(__dirname, '../examples/plugins/example-js.js')]
       }
     };

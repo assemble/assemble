@@ -16,31 +16,29 @@ describe('assemble', function() {
 
   describe('context', function() {
 
-    var testid = 1;
-
-    it('should contain a config module', function () {
-      var actual = assemble({name: 'assemble-context-test-'+(testid++)});
-      expect(actual).to.have.property('config');
+    it('should contain a utils module', function () {
+      var actual = assemble();
+      expect(actual).to.have.property('utils');
     });
 
     it('should create a context function on assemble', function() {
-      var actual = assemble({name: 'assemble-context-test-'+(testid++)});
+      var actual = assemble();
       expect(actual).to.have.property('context');
     });
 
     it('should return a context object', function () {
-      var actual = assemble({name: 'assemble-context-test-'+(testid++)}).context();
+      var actual = assemble().context();
       expect(actual).to.not.eql(null);
     });
 
-    it('should return a context object based on page metadata', function () {
+    it('should return a context object based on page data', function () {
       var pageOpts = {
         src: 'test-page',
         name: 'test-page',
-        metadata: {
+        data: {
           title: 'This is a test page'
         },
-        raw: '{{title}}',
+        orig: '{{title}}',
         content: '{{title}}'
       };
       var page = new assemble.models.Component(pageOpts);
@@ -48,8 +46,8 @@ describe('assemble', function() {
       var params = {};
       params.page = page;
 
-      var app = assemble({name: 'assemble-context-test-'+(testid++)});
-      app.config.context(app, params);
+      var app = assemble();
+      app.utils.context(app, params);
 
       expect(params.context).to.have.property('title');
       expect(params.context.title).to.eql('This is a test page');
@@ -61,20 +59,17 @@ describe('assemble', function() {
       var pageOpts = {
         src: 'test-page',
         name: 'test-page',
-        metadata: {
+        data: {
           title: '<%= site.title %>: Page Title',
         },
-        raw: '{{title}}',
+        orig: '{{title}}',
         content: '{{title}}'
       };
       var page = new assemble.models.Component(pageOpts);
 
       var assembleOpts = {
-        name: 'assemble-context-test-'+(testid++),
-        metadata: {
-          site: {
-            title: 'Site Title'
-          }
+        site: {
+          title: 'Site Title'
         }
       };
 
@@ -82,7 +77,7 @@ describe('assemble', function() {
       params.page = page;
 
       var app = assemble(assembleOpts);
-      app.config.context(app, params);
+      app.utils.context(app, params);
 
       expect(params.context).to.have.property('title');
       expect(params.context.site).to.have.property('title');
