@@ -47,6 +47,7 @@
     "assemble-collections": "^0.1.0",
     "async": "~0.7.0",
     "calculate-assets": "~0.1.0",
+    "dovetail": "^0.3.0",
     "expander": "^0.3.3",
     "fs-utils": "~0.4.0",
     "gray-matter": "~0.3.4",
@@ -72,8 +73,7 @@
     "haraldutil": "^0.1.18",
     "koalas": "0.0.6",
     "memory-streams": "0.0.3",
-    "time-grunt": "~0.3.1",
-    "dovetail": "^0.3.0"
+    "time-grunt": "~0.3.1"
   },
   "keywords": [
     "HTML",
