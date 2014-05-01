@@ -164,7 +164,7 @@ describe('handlebars layouts', function() {
     // - [ ] when a layout is defined but cannot be found, should load the default layout
     // - [ ] when the layout src path is defined as an empty string, should load the default layout
 
-    xit('should load a default layout when none is found', function (done) {
+    it('should load a default layout when none is found', function (done) {
       var app = assemble({layout: ''});
       layouts.loadDefaultLayout(app, function (err) {
         if (err) {
