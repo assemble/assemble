@@ -9,15 +9,15 @@ Licensed under the MIT License (MIT).
 
 module.exports = (assemble) ->
   # events commented out for demo purposes
-  events = assemble.utils.plugins.events
+  events = assemble.utils.middleware.events
 
-  plugin = (params, next) ->
-    console.log 'CoffeeScript Example Plugin: ', params.event
+  middleware = (params, next) ->
+    console.log 'CoffeeScript Example Middleware: ', params.event
     next()
 
-  plugin.options =
+  middleware.options =
     name: 'coffeescript-example'
-    description: 'This is a plugin written in CoffeeScript.'
+    description: 'This is a middleware written in CoffeeScript.'
     events: [
       # add events from the events "enum"
       # events.assembleBeforeConfiguration
@@ -27,4 +27,4 @@ module.exports = (assemble) ->
     ]
 
   return
-    'coffeescript-example': plugin
+    'coffeescript-example': middleware

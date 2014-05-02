@@ -11,7 +11,7 @@ var _ = require('lodash');
 var expect = require('chai').expect;
 var assemble = require('../');
 
-describe('plugins collections', function() {
+describe('middleware collections', function() {
 
   it('should create a collections object on assemble', function (done) {
     var assembleOpts = {

@@ -25,7 +25,7 @@ In your project's Gruntfile, add a section named `assemble` to the data object p
 assemble: {
   options: {
     assets: 'assets',
-    plugins: ['permalinks'],
+    middleware: ['permalinks'],
     partials: ['includes/**/*.hbs'],
     layout: ['layouts/default.hbs'],
     data: ['data/*.{json,yml}']

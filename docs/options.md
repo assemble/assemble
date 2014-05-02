@@ -50,14 +50,14 @@ Default: `undefined`
 
 Specifies the Handlebars partials files, or paths to the directories of files to be used.
 
-## [plugins](http://assemble.io/plugins/)
+## [middleware](http://assemble.io/middleware/)
 Type: `String|Array`
 
 Default: `undefined`
 
-Name of the npm module to use and/or the path(s) to any custom plugins to use. Wildcard patterns may also be used.
+Name of the npm module to use and/or the path(s) to any custom middleware to use. Wildcard patterns may also be used.
 
-See the [docs for plugins](http://assemble.io/plugins/).
+See the [docs for middleware](http://assemble.io/middleware/).
 
 ## [helpers](http://assemble.io/docs/options-helpers.html)
 Type: `String|Array`

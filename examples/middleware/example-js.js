@@ -10,16 +10,16 @@
 module.exports = function(assemble) {
 
   // events commented out for demo purposes
-  var events = assemble.utils.plugins.events;
+  var events = assemble.utils.middleware.events;
 
-  var plugin = function (params, next) {
-    console.log('JavaScript Example Plugin', params.event);
+  var middleware = function (params, next) {
+    console.log('JavaScript Example Middleware', params.event);
     next();
   };
 
-  plugin.options = {
+  middleware.options = {
     name: 'javascript-example',
-    description: 'This is a plugin written in JavaScript.',
+    description: 'This is a middleware written in JavaScript.',
     events: [
       // // add events from the events "enum"
       // events.assembleBeforeConfiguration,
@@ -30,7 +30,7 @@ module.exports = function(assemble) {
   };
 
   return {
-    'javascript-example': plugin
+    'javascript-example': middleware
   }
 };
 // jshint ignore:end

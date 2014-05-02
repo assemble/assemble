@@ -11,21 +11,21 @@ var _ = require('lodash');
 
 var assemble = require('../');
 
-describe('plugin', function() {
+describe('middleware', function() {
 
-  it('should load plugins', function(done) {
+  it('should load middleware', function(done) {
     var options = {
-      name: 'plugin-test-1',
+      name: 'middleware-test-1',
       source: 'Some Template',
       data: {
-        plugins: [path.join(__dirname, '../examples/plugins/example-js.js')]
+        middleware: [path.join(__dirname, '../examples/middleware/example-js.js')]
       }
     };
     assemble(options).build(function (err, results) {
       if (err) {
         console.log('Error:', err);
       }
-      expect(_.keys(results.plugins).length).to.not.eql(0);
+      expect(_.keys(results.middleware).length).to.not.eql(0);
       done();
     });
   });

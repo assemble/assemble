@@ -32,7 +32,7 @@ grunt-assemble provides a declarative wrapper around [Assemble](https://github.c
 ## Contributing
 {%= contrib("contributing") %}
 
-## Assemble plugins
+## Assemble middleware
 {%= contrib("related-repos-list") %}
 
 ## Authors
