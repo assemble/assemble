@@ -204,7 +204,8 @@ describe('middleware collections', function() {
         for (var i = 1; i <= 4; i++) {
           expect(results.pages).to.have.property('collections-tags-' + i);
           expect(results.pages['collections-tags-' + i].data.tags.length).to.eql((i===4 ? 1 : 3));
-          expect(results.pages['collections-tags-' + i].dest).to.eql('dest/tags/' + (i===1?'':i) + '/index.html');
+          console.log(results.pages['collections-tags-' + i].dest);
+          expect(results.pages['collections-tags-' + i].dest).to.eql('dest/tags/' + (i===1?'':i+'/') + 'index.html');
         }
 
         // pages for each tag
@@ -212,7 +213,7 @@ describe('middleware collections', function() {
           for (var i = 1; i <= 4; i++) {
             expect(results.pages).to.have.property('collections-tags-' + tag + '-' + i);
             expect(results.pages['collections-tags-' + tag + '-' + i].data['related-pages'].length).to.eql((i===4 ? 2 : 6));
-            expect(results.pages['collections-tags-' + tag + '-' + i].dest).to.eql('dest/tags/' + tag + '/' + (i===1?'':i) + '/index.html');
+            expect(results.pages['collections-tags-' + tag + '-' + i].dest).to.eql('dest/tags/' + tag + '/' + (i===1?'':i+'/') + 'index.html');
           }
         });
       } catch (ex) {
