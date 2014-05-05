@@ -4,7 +4,7 @@
   "version": "0.5.0-alpha",
   "homepage": "http://assemble.io",
   "author": {
-    "name": "Assemble",
+    "name": "Jon Schlinkert, Brian Woodward",
     "url": "https://github.com/assemble/assemble"
   },
   "contributors": [
@@ -73,6 +73,7 @@
     "jshint-stylish": "^0.2.0",
     "koalas": "0.0.6",
     "memory-streams": "0.0.3",
+    "mocha": "^1.18.2",
     "time-grunt": "^0.3.1"
   },
   "keywords": [
