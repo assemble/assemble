@@ -70,6 +70,9 @@ describe('assemble', function() {
     });
 
     after(function () {
+      if(file.exists('tmp')) {
+        file.delete('tmp');
+      }
       restoreFiles();
     });
 
@@ -87,7 +90,5 @@ describe('assemble', function() {
       });
 
     });
-
   });
-
 });

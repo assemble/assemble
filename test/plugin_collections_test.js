@@ -217,7 +217,7 @@ describe('middleware collections', function() {
         });
       } catch (ex) {
         //console.log('Error during tests.', ex.toString());
-        file.writeFileSync('test-error.txt', ex);
+        // file.writeFileSync('test-error.txt', ex);
         //return done(ex);
         return done();
       }

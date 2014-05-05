@@ -1,36 +1,22 @@
 /**
- * Assemble <http://assemble.io>
- *
- * Copyright (c) 2014 Jon Schlinkert, Brian Woodward, contributors
- * Licensed under the MIT License (MIT).
+ * Assemble middleware example
  */
-// jshint ignore:start
-'use strict';
 
 module.exports = function(assemble) {
-
-  // events commented out for demo purposes
-  var events = assemble.utils.middleware.events;
+  'use strict';
 
   var middleware = function (params, next) {
     console.log('JavaScript Example Middleware', params.event);
+
+    // do stuff
+
     next();
   };
 
-  middleware.options = {
-    name: 'javascript-example',
-    description: 'This is a middleware written in JavaScript.',
-    events: [
-      // // add events from the events "enum"
-      // events.assembleBeforeConfiguration,
-      // events.assembleAfterConfiguration,
-      // // or add them directly with a string and/or wildcards
-      // 'assemble:*:build'
-    ]
-  };
 
+  // Can be a single `event`, or an `events` array
+  middleware.event = 'page:after:render';
   return {
-    'javascript-example': middleware
-  }
+    'assemble-middleware-example': middleware
+  };
 };
-// jshint ignore:end
