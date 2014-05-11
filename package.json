@@ -64,17 +64,12 @@
     "gulp": "^3.6.2",
     "gulp-clean": "^0.2.4",
     "gulp-jshint": "^1.5.5",
-    "gulp-jsonlint": "0.0.3",
     "gulp-mocha": "^0.4.1",
-    "gulp-rimraf": "^0.1.0",
-    "gulp-util": "^2.2.14",
     "gulp-verb": "^0.1.1",
     "haraldutil": "^0.1.18",
-    "jshint-stylish": "^0.2.0",
     "koalas": "0.0.6",
     "memory-streams": "0.0.3",
-    "mocha": "^1.18.2",
-    "time-grunt": "^0.3.1"
+    "mocha": "^1.18.2"
   },
   "keywords": [
     "HTML",
