@@ -60,7 +60,8 @@
     "grunt-sync-pkg": "~0.1.1",
     "handlebars-helper-eachitems": "~0.1.2",
     "pretty": "~0.1.1",
-    "time-grunt": "~0.1.2"
+    "time-grunt": "~0.1.2",
+    "grunt-cli": "~0.1.13"
   },
   "keywords": [
     "blog generator",
