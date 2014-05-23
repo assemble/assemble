@@ -63,8 +63,14 @@ module.exports = function(grunt) {
       assemble.partials = file.expand(assemble.options.partials);
 
       if(_.isArray(assemble.options.data)) {
-        assemble.dataFiles = file.expand(assemble.options.data);
-        assemble.options.data = {};
+        if(assemble.options.data.length > 0) {
+          if(_.isObject(assemble.options.data[0])) {
+            assemble.options.data = assemble.options.data[0];
+          } else {
+            assemble.dataFiles = file.expand(assemble.options.data);
+            assemble.options.data = {};
+          }
+        }
       }
 
       assemble.options.initializeEngine(assemble.engine, assemble.options);
