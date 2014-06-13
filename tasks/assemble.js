@@ -1,46 +1,36 @@
-/*
- * Assemble
- * https://github.com/assemble/
+/**
+ * Assemble <http://assemble.io>
  *
- * Copyright (c) 2013 Upstage
- * Licensed under the MIT license.
+ * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
+ * Licensed under the MIT License (MIT).
  */
 
+
 module.exports = function(grunt) {
+  'use strict';
 
-  // Grunt utils
-  var async  = require('async');
-  var _str   = require('underscore.string');
-  var file   = grunt.file;
-
-  // Node.js
   var path = require('path');
-  var fs   = require('fs');
-  var util = require('util');
+  var fs = require('fs');
+  var async = require('async');
+  var file = grunt.file;
+  var matter = require('gray-matter');
+  var _ = require('lodash');
 
-  // node_modules
-  var inflection = require('inflection');
-  var yfm        = require('assemble-yaml');
-  var _          = require('lodash');
-
-  // Assemble utils
   var collection = require('../lib/collection');
-  var assemble   = require('../lib/assemble');
-  var Utils      = require('./utils/utils');
-
+  var assemble = require('../lib/assemble');
+  var utils = require('./utils/utils');
 
 
   grunt.registerMultiTask('assemble', 'Compile template files with specified engines', function() {
-
     var done = this.async();
-    var self = this;
+
 
     // functions for use in build steps
     var optionsConfiguration = function(assemble, next) {
 
       grunt.verbose.writeln('Validating options');
 
-      if(_str.endsWith(assemble.options.ext, '.')) {
+      if(utils.endsWithDot(assemble.options.ext)) {
         grunt.warn('Invalid ext "' + assemble.options.ext + '". ext cannot end with a period.');
         done(false);
       }
@@ -106,6 +96,7 @@ module.exports = function(grunt) {
      * @param  {Function} next     [description]
      * @return {[type]}            [description]
      */
+
     var assemblePartials = function(assemble, next) {
       grunt.verbose.writeln('Assembling partials'.cyan);
 
@@ -120,17 +111,18 @@ module.exports = function(grunt) {
 
           var partial = grunt.file.read(filepath);
 
-          //If the partial is empty, lets still allow it to be used.
+          // If the partial is empty, pass a placeholder string to get around
+          // handlebars limitations
           if(partial === '') {
             partial = '{{!}}';
           }
 
           // get the data
-          var partialInfo = yfm.extract(partial, {fromFile: false});
-          assemble.options.data[filename] = _.extend({}, partialInfo.context || {}, assemble.options.data[filename] || {});
+          var parsedPartial = matter(partial);
+          assemble.options.data[filename] = _.extend({}, parsedPartial.data || {}, assemble.options.data[filename] || {});
 
           // register the partial
-          assemble.options.registerPartial(assemble.engine, filename, partialInfo.content);
+          assemble.options.registerPartial(assemble.engine, filename, parsedPartial.content);
         });
       }
 
@@ -155,7 +147,7 @@ module.exports = function(grunt) {
         dataFiles.forEach(function(filepath) {
           var ext = path.extname(filepath);
           var filename = path.basename(filepath, ext);
-          var fileReader = Utils.dataFileReaderFactory(ext);
+          var fileReader = utils.dataFileReaderFactory(ext);
           var filecontent = grunt.file.read(filepath);
 
           //Skip empty data files, as they'd cause an error with compiler
@@ -228,7 +220,7 @@ module.exports = function(grunt) {
             }
 
             src = src || filePair.src;
-            //var basePath = Utils.findBasePath(src, true);
+            //var basePath = utils.findBasePath(src, true);
 
             // some of the code for calculating destination paths files was
             // inspired by https://github.com/gruntjs/grunt-contrib-copy
@@ -239,11 +231,11 @@ module.exports = function(grunt) {
 
               var useFileInfo = (typeof fileInfo !== 'undefined');
 
-              srcFile  = Utils.pathNormalize(path.normalize(srcFile));
+              srcFile  = utils.pathNormalize(path.normalize(srcFile));
               var filename = path.basename(srcFile, path.extname(srcFile));
 
 
-              if(Utils.detectDestType(filePair.dest) === 'directory') {
+              if(utils.detectDestType(filePair.dest) === 'directory') {
                 destFile = (isExpandedPair) ? filePair.dest : path.join(
                   filePair.dest, (assemble.options.flatten ? path.basename(srcFile) : srcFile)
                 );
@@ -253,7 +245,7 @@ module.exports = function(grunt) {
 
               var destDirname = path.dirname(destFile);
               var destBasename = path.basename(destFile, path.extname(destFile));
-              destFile = Utils.pathNormalize(path.join(destDirname, destBasename)) + assemble.options.ext;
+              destFile = utils.pathNormalize(path.join(destDirname, destBasename)) + assemble.options.ext;
 
               grunt.verbose.writeln('Reading ' + filename.magenta);
 
@@ -266,7 +258,7 @@ module.exports = function(grunt) {
 
               // `options.assets` generate the relative path to the dest "assets"
               // directory from the location of the newly generated dest file
-              assemble.options.assets = Utils.calculatePath(destDirname, assetsPath, assemble.options.assets);
+              assemble.options.assets = utils.calculatePath(destDirname, assetsPath, assemble.options.assets);
 
 
               grunt.verbose.writeln(('\t' + 'srcFile: '  + srcFile));
@@ -288,8 +280,8 @@ module.exports = function(grunt) {
                   page = '{{!}}';
                 }
 
-                var pageInfo = yfm.extract(page, {fromFile: false});
-                pageContext = useFileInfo ? (fileInfo.data || fileInfo.metadata || {}) : pageInfo.context;
+                var parsedPage = matter(page);
+                pageContext = useFileInfo ? (fileInfo.data || fileInfo.metadata || {}) : parsedPage.data;
 
                 // Page object
                 var pageObj = {
@@ -305,7 +297,7 @@ module.exports = function(grunt) {
                   assets  : assemble.options.assets,
                   ext     : assemble.options.ext,
                   extname : assemble.options.ext,
-                  page    : pageInfo.content,
+                  page    : parsedPage.content,
                   data    : pageContext,
                   filePair: filePair
                 };
@@ -430,7 +422,7 @@ module.exports = function(grunt) {
     };
 
     // assemble everything
-    var assembler = assemble.init(this, grunt)
+    assemble.init(this, grunt)
 
       // Options configuration
       .step(assemble.plugins.buildStep('options:pre:configuration', pluginParams))
@@ -462,14 +454,13 @@ module.exports = function(grunt) {
       .step(renderPages)
       .step(assemble.plugins.buildStep('render:post:pages', pluginParams))
 
-      .build(function(err, results) {
+      .build(function(err) {
         if(err) {
           grunt.warn(err);
           done(false);
         }
         done();
       });
-
 
   });
 
@@ -481,8 +472,6 @@ module.exports = function(grunt) {
   // ==========================================================================
 
   var build = function(currentPage, assemble, callback) {
-    var src      = currentPage.srcFile;
-    var filename = currentPage.filename;
     var options  = assemble.options;
 
     grunt.verbose.writeln('Currentpage: ' + currentPage);
@@ -492,13 +481,10 @@ module.exports = function(grunt) {
         data         = options.data,
         pages        = options.pages,
         collections  = options.collections,
-        engine       = options.engine,
-        EngineLoader = options.EngineLoader,
         context      = {};
 
     grunt.verbose.writeln('Variables loaded');
 
-    //options.data = null;
 
     try {
 
@@ -666,12 +652,12 @@ module.exports = function(grunt) {
         layout = layout.replace(/\{{>\s*body\s*}}/, defaultLayout);
       }
 
-      var layoutInfo = yfm.extract(layout, {fromFile: false});
-      var layoutData = layoutInfo.context;
+      var parsedLayout = matter(layout);
+      var layoutData = parsedLayout.data;
 
       var results = {
         layoutName: layoutName,
-        layout: layoutInfo.content,
+        layout: parsedLayout.content,
         data: layoutData
       };
 
@@ -684,6 +670,7 @@ module.exports = function(grunt) {
 
     load(src);
 
+    var layoutInfo;
     var finalResults = {
       layoutName: '',
       layout: defaultLayout, // '{{>body}}',
