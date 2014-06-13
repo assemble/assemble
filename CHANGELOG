@@ -1,3 +1,9 @@
+v0.4.38:
+  date: "2014-06-13"
+  changes:
+    - Use gray-matter instead of assemble-yaml.
+    - Updates dependencies. Minor refactoring and new utils to get rid of a couple of dependencies.
+    - Update the loaders for plugins and helpers to use resolve-dep. Should be more reliable now.
 v0.4.17:
   date: "2013-10-25"
   changes:

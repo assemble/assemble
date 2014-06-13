@@ -239,22 +239,19 @@ Visit [assemble.io/assemble-middleware](http:/assemble.io/assemble-middleware/) 
  
 **Jon Schlinkert**
  
-+ [github/](https://github.com/)
-+ [twitter/](http://twitter.com/) 
++ [github/jonschlinkert](https://github.com/jonschlinkert)
++ [twitter/jonschlinkert](http://twitter.com/jonschlinkert) 
  
 **Brian Woodward**
  
-+ [github/](https://github.com/)
-+ [twitter/](http://twitter.com/) 
- 
-**[object Object]**
- 
-+ [github/](https://github.com/)
-+ [twitter/](http://twitter.com/) 
++ [github/doowb](https://github.com/doowb)
++ [twitter/doowb](http://twitter.com/doowb) 
 
 
 ## Release History
 **DATE**       **VERSION**   **CHANGES**                                                                
+* 2014-06-13   v0.4.38       Use gray-matter instead of assemble-yaml.,Updates dependencies. Minor      
+                             refactoring to get rid of a couple of dependencies.                        
 * 2013-10-25   v0.4.17       Adds a params object to the call to `helper.register` allowing grunt and   
                              assemble to be passed in and used from inside helpers.                     
 * 2013-10-24   v0.4.16       Adds support for using wildcards with plugins stages.                      
@@ -312,7 +309,7 @@ Visit [assemble.io/assemble-middleware](http:/assemble.io/assemble-middleware/) 
 * 2013-03-18   v0.3.14       new relative helper for resolving relative paths                           
 
 ## License
-Copyright (c) 2014 Assemble, contributors.  
+Copyright (c) 2014 Jon Schlinkert, Brian Woodward, contributors.  
 Released under the MIT license
 
 ***

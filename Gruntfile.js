@@ -1,13 +1,7 @@
-/*
- * Assemble
- * Created and maintained by Jon Schlinkert and Brian Woodward
- * http://assemble.io
+/**
+ * Assemble <http://assemble.io>
  *
- * Assemble is a full-featured documentation generator,
- * static site generator and component builder. Created
- * from the ground up as a plugin for Grunt.js.
- *
- * Copyright (c) 2013 Upstage
+ * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
  */
 
@@ -150,7 +144,7 @@ module.exports = function(grunt) {
       // in the pages collection
       plugin_preprocess_page_collection: {
         options: {
-          partials: 'test/fixtures/partials/*.hbs',
+          partials: ['test/fixtures/partials/*.hbs'],
           data: 'test/fixtures/data/*.{json,yml}',
           layout: 'preprocess.hbs',
           pageCollection: {
@@ -328,19 +322,6 @@ module.exports = function(grunt) {
       one: "alert"
     },
 
-
-    /**
-     * Beautify generated HTML to make diffs easier
-     */
-    prettify: {
-      tests: {
-        options: {ocd: true},
-        files: [
-          {expand: true, cwd: 'test/actual', src: ['**/*.html'], dest: 'test/actual/', ext: '.html'}
-        ]
-      }
-    },
-
     /**
      * Before generating any new files,
      * remove files from the previous build
@@ -354,7 +335,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
-  grunt.loadNpmTasks('grunt-prettify');
   grunt.loadNpmTasks('grunt-sync-pkg');
   grunt.loadNpmTasks('grunt-verb');
 
@@ -368,5 +348,5 @@ module.exports = function(grunt) {
   grunt.registerTask('test', ['assemble', 'mochaTest']);
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'clean', 'test', 'prettify', 'docs']);
+  grunt.registerTask('default', ['jshint', 'clean', 'test', 'docs']);
 };

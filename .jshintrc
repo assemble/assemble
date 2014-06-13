@@ -17,6 +17,8 @@
     "before": true,
     "after": true,
     "describe": true,
-    "it": true
+    "xdescribe": true,
+    "it": true,
+    "xit": true
   }
 }
