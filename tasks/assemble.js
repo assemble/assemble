@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 
   var collection = require('../lib/collection');
   var assemble = require('../lib/assemble');
-  var utils = require('./utils/utils');
+  var utils = require('../lib/utils');
 
 
   grunt.registerMultiTask('assemble', 'Compile template files with specified engines', function() {
