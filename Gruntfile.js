@@ -24,25 +24,6 @@ module.exports = function(grunt) {
     config: grunt.file.readJSON('test/fixtures/data/config.json'),
     site: grunt.file.readYAML('test/fixtures/data/_site.yml'),
 
-    // Translations for `postprocess` tests.
-    translation: require('./test/fixtures/data/translations'),
-
-    // Metadata for banners
-    meta: {
-      license: '<%= _.pluck(pkg.licenses, "type").join(", ") %>',
-      copyright: 'Copyright (c) <%= grunt.template.today("yyyy") %>',
-      banner: [
-        '/*',
-        ' * <%= pkg.name %> v<%= pkg.version %>',
-        ' * http://assemble.io',
-        ' *',
-        ' * <%= meta.copyright %>, <%= pkg.author.name %>',
-        ' * Licensed under the <%= meta.license %> License.',
-        ' *',
-        ' */\n'
-      ].join('\n')
-    },
-
     /**
      * Lint all JavaScript
      */
@@ -189,25 +170,6 @@ module.exports = function(grunt) {
         },
         files: {
           'test/actual/paths/': ['test/fixtures/pages/*.hbs']
-        }
-      },
-      // Should post-process content using a custom function
-      postprocess: {
-        options: {
-          postprocess: function(src) {
-            return require('frep').strWithArr(src, grunt.config.process('<%= translation.patterns %>'));
-          }
-        },
-        files: {
-          'test/actual/postprocess.html': ['test/fixtures/pages/postprocess/postprocess.hbs']
-        }
-      },
-      // Should post-process content using a custom function
-      postprocess2: {
-        options: {
-        },
-        files: {
-          'test/actual/postprocess2.html': ['test/fixtures/pages/postprocess/postprocess2.hbs']
         }
       },
       // Should build a single page, with explicit dest page name defined
@@ -380,54 +342,11 @@ module.exports = function(grunt) {
     },
 
     /**
-     * Pull down a list of repos from Github, for the docs
-     */
-    repos: {
-      plugins: {
-        options: {
-          username: 'assemble',
-          include: ['contrib'], exclude: ['grunt', 'example', 'rss']
-        },
-        files: {
-          'docs/plugins.json': ['repos?page=1&per_page=100']
-        }
-      }
-    },
-
-    /**
-     * Build the README using metadata from the repos task.
-     */
-    readme: {
-      options: {
-        metadata: ['docs/plugins.json']
-      }
-    },
-
-
-    /**
      * Before generating any new files,
      * remove files from the previous build
      */
     clean: {
       tests: ['test/actual/**/*']
-    },
-
-    // Automated releases. Bumps packages.json, creates new tag,
-    // and publishes new release to npm.
-    release: {
-      options: {
-        bump: true,
-        file: 'package.json',
-        add: false,
-        commit: false,
-        tag: true,
-        push: true,
-        pushTags: true,
-        npm: true,
-        tagName: '<%= version %>',
-        commitMessage: 'Bump version to <%= version %>',
-        tagMessage: 'Bump version to <%= version %>'
-      }
     }
   });
 
@@ -436,22 +355,17 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-prettify');
-  grunt.loadNpmTasks('grunt-readme');
-  grunt.loadNpmTasks('grunt-release');
-  grunt.loadNpmTasks('grunt-repos');
   grunt.loadNpmTasks('grunt-sync-pkg');
+  grunt.loadNpmTasks('grunt-verb');
 
   // Load this plugin.
   grunt.loadTasks('tasks');
 
   // Build
-  grunt.registerTask('docs', ['repos', 'readme', 'sync']);
+  grunt.registerTask('docs', ['verb', 'sync']);
 
   // Tests to be run.
   grunt.registerTask('test', ['assemble', 'mochaTest']);
-
-  // Run default task, then release
-  grunt.registerTask('bump', ['default', 'release']);
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'clean', 'test', 'prettify', 'docs']);
