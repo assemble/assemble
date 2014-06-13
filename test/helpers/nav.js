@@ -1,21 +1,15 @@
 /**
- * Handlebars Helpers: {{nav}}
- * Copyright (c) 2013 Jon Schlinkert
+ * Assemble <http://assemble.io>
+ *
+ * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
  */
 
-
-// Node.js
-var path  = require('path');
-var fs    = require('fs');
-
-// node_modules
-var grunt = require('grunt');
 var _     = require('lodash');
 
 
 // Export helpers
-module.exports.register = function (Handlebars, options, params) {
+module.exports.register = function (Handlebars, options) {
   'use strict';
 
   var opts = options || {};

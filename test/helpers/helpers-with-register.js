@@ -1,12 +1,13 @@
 /**
  * Assemble <http://assemble.io>
- * Created and maintained by Jon Schlinkert and Brian Woodward
  *
- * Copyright (c) 2013 Upstage.
+ * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
  */
 
+
 module.exports.register = function(Handlebars, options) {
+  'use strict';
 
   Handlebars.registerHelper('foo', function(msg) {
     return '<!-- ' + msg + ' -->';

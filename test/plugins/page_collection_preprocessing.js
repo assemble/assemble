@@ -2,7 +2,7 @@
 // list of functions to do pre processing on the pages
 // in the pages collection
 
-var path = require('path');
+var relative = require('relative');
 
 module.exports = [
 
@@ -11,11 +11,10 @@ module.exports = [
     page.isCurrentPage = (page.dest === context.page.dest ? true : false);
   },
 
+
   // add a relative link from the "current page" to the
   // page in the collection
   function relativeLink(page, context) {
-    var relativePath = path.relative(path.dirname(context.page.dest), path.dirname(page.dest));
-    relativePath = path.join(relativePath, path.basename(page.dest));
-    page.relativeLink = relativePath.replace(/\\/g, '/');
+    page.relativeLink = relative(context.page.dest, page.dest);
   }
 ];

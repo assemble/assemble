@@ -1,5 +1,14 @@
 /**
- * Get extension
+ * Assemble <http://assemble.io>
+ *
+ * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
+ * Licensed under the MIT License (MIT).
+ */
+'use strict';
+
+
+/**
+ * ## Get extension
  *
  * Assemble <http://assemble.io>
  * Copyright (c) 2013 Upstage.

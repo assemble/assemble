@@ -1,4 +1,13 @@
 /**
+ * Assemble <http://assemble.io>
+ *
+ * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
+ * Licensed under the MIT License (MIT).
+ */
+'use strict';
+
+
+/**
  * switchOutput
  */
 module.exports = function(ext, md, html) {

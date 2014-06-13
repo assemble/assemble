@@ -1,13 +1,11 @@
-/*global require:true */
 /**
  * Assemble <http://assemble.io>
- * Created and maintained by Jon Schlinkert and Brian Woodward
  *
- * Copyright (c) 2013 Upstage.
+ * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
  */
 
-var yfm    = require('assemble-yaml');
+var matter = require('gray-matter');
 var expect = require('chai').expect;
 
 
@@ -15,15 +13,15 @@ var expect = require('chai').expect;
 describe('Reading From Files', function() {
 
   var simpleExpected = {
-    context: {
+    data: {
       "foo": "bar"
     }
   };
 
   var complexExpected = {
-    originalContent: "---\nfoo: bar\nversion: 2\ncategories:\n- pages\ntags:\n- tests\n- examples\n- complex\n---\n\n<div class=\"alert alert-info\">This is an alert</div>\n",
+    original: "---\nfoo: bar\nversion: 2\ncategories:\n- pages\ntags:\n- tests\n- examples\n- complex\n---\n\n<div class=\"alert alert-info\">This is an alert</div>\n",
     content: "\n\n<div class=\"alert alert-info\">This is an alert</div>\n",
-    context: {
+    data: {
       "foo": "bar",
       "version": 2,
       "categories": [
@@ -37,43 +35,27 @@ describe('Reading From Files', function() {
     }
   };
 
-
-  it("yaml file starts with --- no content", function(done) {
-    var data = yfm.extract('./test/fixtures/mocha/simple1.yml');
-    expect(simpleExpected.context).to.deep.equal(data.context);
-    done();
-  });
-
-  it("yaml file starts and ends with --- no content", function(done) {
-    var data = yfm.extract('./test/fixtures/mocha/simple2.yml');
-    expect(simpleExpected.context).to.deep.equal(data.context);
-    done();
-  });
-
   it("yaml file starts and ends with --- has content", function(done) {
-    var data = yfm.extract('./test/fixtures/mocha/yfm.hbs');
-    expect(simpleExpected.context).to.deep.equal(data.context);
+    var page = matter.read('./test/fixtures/mocha/yfm.hbs');
+    expect(simpleExpected.data).to.deep.equal(page.data);
     done();
   });
 
   it("hbs file with complex yaml data and content", function(done) {
-    var data = yfm.extract("./test/fixtures/mocha/complex.hbs");
-    expect(complexExpected).to.deep.equal(data);
+    var page = matter.read("./test/fixtures/mocha/complex.hbs");
+    expect(complexExpected).to.deep.equal(page);
     done();
   });
 
 });
 
 describe('Reading From Strings', function() {
-
-  var opts = { fromFile: false };
-
   var simple1 = "---\nfoo: bar\n";
   var simple2 = "---\nfoo: bar\n---";
   var simple3 = "---\nfoo: bar\n---\n\n<div class=\"alert alert-info\">This is an alert</div>\n";
 
   var simpleExpected = {
-    context: {
+    data: {
       foo: 'bar'
     }
   };
@@ -81,35 +63,35 @@ describe('Reading From Strings', function() {
   var complex = "---\nfoo: bar\nversion: 2\n---\n\n<div class=\"alert alert-info\">This is an alert</div>\n";
 
   var complexExpected = {
-    originalContent: "---\nfoo: bar\nversion: 2\n---\n\n<div class=\"alert alert-info\">This is an alert</div>\n",
+    original: "---\nfoo: bar\nversion: 2\n---\n\n<div class=\"alert alert-info\">This is an alert</div>\n",
     content: "\n\n<div class=\"alert alert-info\">This is an alert</div>\n",
-    context: {
+    data: {
       "foo": "bar",
       "version": 2
     }
   };
 
   it("yaml string starts with --- no content", function(done) {
-    var data = yfm.extract(simple1, opts);
-    expect(simpleExpected.context).to.deep.equal(data.context);
+    var page = matter(simple1);
+    expect({}).to.deep.equal(page.data);
     done();
   });
 
   it("yaml string starts and ends with --- no content", function(done) {
-    var data = yfm.extract(simple2, opts);
-    expect(simpleExpected.context).to.deep.equal(data.context);
+    var page = matter(simple2);
+    expect(simpleExpected.data).to.deep.equal(page.data);
     done();
   });
 
   it("yaml string starts and ends with --- has content", function(done) {
-    var data = yfm.extract(simple3, opts);
-    expect(simpleExpected.context).to.deep.equal(data.context);
+    var page = matter(simple3);
+    expect(simpleExpected.data).to.deep.equal(page.data);
     done();
   });
 
   it("hbs string with complex yaml data and content", function(done) {
-    var data = yfm.extract(complex, opts);
-    expect(complexExpected).to.deep.equal(data);
+    var page = matter(complex);
+    expect(complexExpected).to.deep.equal(page);
     done();
   });
 
