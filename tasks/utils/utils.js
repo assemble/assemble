@@ -1,28 +1,41 @@
-/*
- * Assemble exports
- * https://github.com/assemble/
+/**
+ * Assemble <http://assemble.io>
  *
- * Copyright (c) 2013 Upstage
- * Licensed under the MIT license.
+ * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
+ * Licensed under the MIT License (MIT).
  */
+'use strict';
 
-
-// Node.js
 var path = require('path');
-
-// node_modules
 var grunt = require('grunt');
-var _str  = require('underscore.string');
-var _     = require('lodash'); // newer methods
+var _     = require('lodash');
 
-// The module to be exported.
-var exports = module.exports = {};
 
+var utils = module.exports = {};
+
+
+var toString = function (val) {
+  if (val == null) {
+    return '';
+  } else {
+    return val.toString();
+  }
+};
+utils.toString = Object.prototype.toString;
+
+utils.lowerCase = function (str) {
+  str = toString(str);
+  return str.toLowerCase();
+};
+
+utils.isUndefined = function (value) {
+  return value === 'undefined' || utils.toString.call(value) === '[object Function]' || (value.hash != null);
+};
 
 
 // Windows? (from grunt.file)
 var win32 = process.platform === 'win32';
-exports.pathNormalize = function(urlString) {
+utils.pathNormalize = function(urlString) {
   if (win32) {
   return urlString.replace(/\\/g, '/');
   } else {
@@ -31,9 +44,9 @@ exports.pathNormalize = function(urlString) {
 };
 
 
-exports.filenameRegex = /[^\\\/:*?"<>|\r\n]+$/i;
+utils.filenameRegex = /[^\\\/:*?"<>|\r\n]+$/i;
 
-exports.extension = function(filename) {
+utils.extension = function(filename) {
   grunt.verbose.writeln('extension');
   grunt.verbose.writeln(filename);
   if(grunt.util.kindOf(filename) === 'array' && filename.length > 0) {
@@ -45,13 +58,36 @@ exports.extension = function(filename) {
 
 /**
  * Check if the give file path ends with a slash.
- * @param  {String}  filePath
+ * @param  {String}  filepath
  * @return {Boolean}
  */
-exports.endsWithSlash = function(filePath) {
-  return _str.endsWith(path.normalize(filePath), path.sep);
+utils.endsWithSlash = function(filepath) {
+  return /[\\\/]$/.test(filepath);
 };
-var endsWithSlash = exports.endsWithSlash;
+var endsWithSlash = utils.endsWithSlash;
+
+
+/**
+ * Check if the give file path ends with a dot.
+ * @param  {String}  filepath
+ * @return {Boolean}
+ */
+
+utils.endsWithDot = function(str) {
+  return str[str.length -1] === '.';
+};
+
+
+/**
+ * Check if the give file path ends with a dot.
+ * @param  {String}  filepath
+ * @return {Boolean}
+ */
+
+utils.endsWith = function(str, end) {
+  return str[str.length -1] === end;
+};
+
 
 /**
  * Re-calculate the path from dest file to the given directory
@@ -61,9 +97,10 @@ var endsWithSlash = exports.endsWithSlash;
  * @param  {String} origPath Stored original path to check against.
  * @return {String}
  */
-exports.calculatePath = function(destdir, toPath, origPath) {
+
+utils.calculatePath = function(destdir, toPath, origPath) {
   var relativePath = path.relative(path.resolve(destdir), path.resolve(toPath));
-  toPath = exports.pathNormalize(relativePath);
+  toPath = utils.pathNormalize(relativePath);
   // if the relative path is blank, then it's the same folder
   // so update to be '' or './'
   if(!toPath || toPath.length === 0) {
@@ -92,8 +129,9 @@ exports.calculatePath = function(destdir, toPath, origPath) {
  * Returns 'directory' or 'file' based on the given path.
  * @param  {String} file path
  */
- exports.detectDestType = function(dest) {
-  if(_str.endsWith(dest, '/') || grunt.file.isDir(dest)) {
+
+ utils.detectDestType = function(dest) {
+  if(utils.endsWith(dest, '/') || grunt.file.isDir(dest)) {
     return 'directory';
   } else if (grunt.file.isFile(dest)) {
     if (grunt.file.exists(dest)) {
@@ -104,7 +142,7 @@ exports.calculatePath = function(destdir, toPath, origPath) {
   }
 };
 
-exports.findBasePath = function(srcFiles, basePath) {
+utils.findBasePath = function(srcFiles, basePath) {
   if (basePath === false) {return '';}
   if (grunt.util.kindOf(basePath) === 'string' && basePath.length >= 1) {
     return _(path.normalize(basePath)).trim(path.sep);
@@ -128,7 +166,7 @@ exports.findBasePath = function(srcFiles, basePath) {
  * @param  {String} ext The file extension to check.
  * @return {Object}     JSON data object.
  */
-exports.dataFileReaderFactory = function(ext) {
+utils.dataFileReaderFactory = function(ext) {
   var reader = grunt.file.readJSON;
   switch(ext) {
     case '.json':
