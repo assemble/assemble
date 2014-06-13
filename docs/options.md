@@ -62,83 +62,30 @@ By default, Assemble includes [handlebars-helpers](http://assemble.io/docs/helpe
 
 See the [docs for helpers](http://assemble.io/helpers/).
 
-
-## postprocess
-Type: `Function`
-Default: `undefined`
-
-Function to use for post-processing generated HTML. 
-
-### Examples
-
-**"Prettify" HTML**
-
-`npm install pretty`, then add the following config to apply formatting to any generated HTML:
-
-```js
-options: {
-  postprocess: require('pretty')
-}
-```
-
-**String transformations**
-
-`npm install frep` and add the following config to find and replace content:
-
-```js
-options: {
-  postprocess: function(src) {
-    return require('frep').replaceStr(src, [
-      {
-        // Remove leading whitespace
-        pattern: /^\s*/,
-        replacement: ""
-      },
-      {
-        // replace "Jekyll" with "Assemble" (jk ;-)
-        pattern: "Jekyll",
-        replacement: "Assemble"
-      }
-    ]);
-  }
-}
-```
-
 ## [ext](http://assemble.io/docs/options-ext.html)
-
 Type: `String`
-
 Default: `.html`
 
 Specify the file extension for destination files. Example:
 
 ## [marked](http://assemble.io/docs/options-marked.html)
-
 Type: `Object`
-
 Default: [Marked.js defaults](https://github.com/chjj/marked#options-1)
 
 Specify the [Marked.js options](https://github.com/chjj/marked#options-1) for the `{{#markdown}}{{/markdown}}` and `{{md ""}}` helpers to use when converting content.
 
 ## [engine](http://assemble.io/docs/options-engine.html)
-
-_**PLEASE NOTE:** this option is only necessary **if you are not using Handlebars**_!
-
 Type: `String`
-Default: `Handlebars` 
+Default: `Handlebars`
 
 Specify the engine to use for compiling templates **if you are not using Handlebars**.
-
 
 Also see [assemble-swig](https://github.com/assemble/assemble-swig) for compiling [Swig Templates](https://github.com/paularmstrong).
 
 ## flatten
-
 Type: `Boolean`
-
 Default: `false`
 
 Remove anything after (and including) the first `.` in the destination path, then append this value. In other words, when files are generated from different source folders this "flattens" them into the same destination directory. See [building the files object dynamically](http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically) for more information on `files` formats.
-
 
 Visit [Assemble's documentation](http://assemble.io) for more information about options.

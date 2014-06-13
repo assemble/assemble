@@ -1,4 +1,4 @@
-# assemble [![NPM version](https://badge.fury.io/js/assemble.png)](http://badge.fury.io/js/assemble)  [![Build Status](https://travis-ci.org/assemble/assemble.svg?branch=master)](https://travis-ci.org/assemble/assemble)
+# assemble [![NPM version](https://badge.fury.io/js/assemble.png)](http://badge.fury.io/js/assemble)  [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble) 
 
 > Static site generator for Grunt.js, Yeoman and Node.js. Used by Zurb Foundation, Zurb Ink, H5BP/Effeckt, Less.js / lesscss.org, Topcoat, Web Experience Toolkit, and hundreds of other projects to build sites, themes, components, documentation, blogs and gh-pages.
 
@@ -54,7 +54,7 @@ assemble: {
     layout: ['layouts/default.hbs'],
     data: ['data/*.{json,yml}']
   },
-  pages: {
+  site: {
     src: ['docs/*.hbs'],
     dest: './'
   }
@@ -62,9 +62,8 @@ assemble: {
 ```
 
 [grunt]: http://gruntjs.com/
-[Getting Started]: http://gruntjs.com/getting-started
+[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
 [package.json]: https://npmjs.org/doc/json.html
-
 
 
 ### Options
@@ -132,87 +131,33 @@ By default, Assemble includes [handlebars-helpers](http://assemble.io/docs/helpe
 
 See the [docs for helpers](http://assemble.io/helpers/).
 
-
-### postprocess
-Type: `Function`
-Default: `undefined`
-
-Function to use for post-processing generated HTML. 
-
-#### Examples
-
-**"Prettify" HTML**
-
-`npm install pretty`, then add the following config to apply formatting to any generated HTML:
-
-```js
-options: {
-  postprocess: require('pretty')
-}
-```
-
-**String transformations**
-
-`npm install frep` and add the following config to find and replace content:
-
-```js
-options: {
-  postprocess: function(src) {
-    return require('frep').replaceStr(src, [
-      {
-        // Remove leading whitespace
-        pattern: /^\s*/,
-        replacement: ""
-      },
-      {
-        // replace "Jekyll" with "Assemble" (jk ;-)
-        pattern: "Jekyll",
-        replacement: "Assemble"
-      }
-    ]);
-  }
-}
-```
-
 ### [ext](http://assemble.io/docs/options-ext.html)
-
 Type: `String`
-
 Default: `.html`
 
 Specify the file extension for destination files. Example:
 
 ### [marked](http://assemble.io/docs/options-marked.html)
-
 Type: `Object`
-
 Default: [Marked.js defaults](https://github.com/chjj/marked#options-1)
 
 Specify the [Marked.js options](https://github.com/chjj/marked#options-1) for the `{{#markdown}}{{/markdown}}` and `{{md ""}}` helpers to use when converting content.
 
 ### [engine](http://assemble.io/docs/options-engine.html)
-
-_**PLEASE NOTE:** this option is only necessary **if you are not using Handlebars**_!
-
 Type: `String`
-Default: `Handlebars` 
+Default: `Handlebars`
 
 Specify the engine to use for compiling templates **if you are not using Handlebars**.
-
 
 Also see [assemble-swig](https://github.com/assemble/assemble-swig) for compiling [Swig Templates](https://github.com/paularmstrong).
 
 ### flatten
-
 Type: `Boolean`
-
 Default: `false`
 
 Remove anything after (and including) the first `.` in the destination path, then append this value. In other words, when files are generated from different source folders this "flattens" them into the same destination directory. See [building the files object dynamically](http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically) for more information on `files` formats.
 
-
 Visit [Assemble's documentation](http://assemble.io) for more information about options.
-
 
 
 ### Usage Examples
@@ -267,87 +212,109 @@ assemble: {
 
 Visit [Assemble's documentation](http://assemble.io) for many more examples and pointers on getting started.
 
-
 ## Contributing
-Find a bug? Have a feature request? Please [create an Issue](git://github.com/assemble/assemble/issues).
-
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][], and build the documentation with [grunt-readme](https://github.com/assemble/grunt-readme).
-
-Pull requests are also encouraged, and if you find this project useful please consider "starring" it to show your support! Thanks!
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality, and please re-build the documentation with [grunt-verb](https://github.com/assemble/grunt-verb) before submitting a pull request.
 
 
 ## Assemble plugins
 Here are some related projects you might be interested in from the [Assemble](http://assemble.io) core team.
 
-+ [assemble-contrib-anchors](https://github.com/assemble/assemble-contrib-anchors): Assemble plugin for creating anchor tags from generated html. 
-+ [assemble-contrib-contextual](https://github.com/assemble/assemble-contrib-contextual): Generates a JSON file containing the context of each page. Basic plugin to help see what's happening in the build. 
-+ [assemble-contrib-decompress](https://github.com/assemble/assemble-contrib-decompress): Assemble plugin for extracting zip, tar and tar.gz archives.  
-+ [assemble-contrib-download](https://github.com/assemble/assemble-contrib-download): Assemble plugin for downloading files from GitHub. 
-+ [assemble-contrib-i18n](https://github.com/assemble/assemble-contrib-i18n): Plugin for adding i18n support to Assemble projects. 
-+ [assemble-contrib-lunr](https://github.com/assemble/assemble-contrib-lunr): Assemble plugin for creating a search engine within your static site using lunr.js. 
-+ [assemble-contrib-markdown](https://github.com/assemble/assemble-contrib-markdown): HEADS UP! This isn't ready for prime time! Convert markdown files to HTML using marked.js. This plugin is an alternative to Assemble's markdown Handlebars helpers. Both are useful in different scenarios. 
-+ [assemble-contrib-pagination](https://github.com/assemble/assemble-contrib-pagination): WIP this plugin isn't ready for use! 
-+ [assemble-contrib-permalinks](https://github.com/assemble/assemble-contrib-permalinks): Permalinks plugin for Assemble, the static site generator for Grunt.js and Yeoman. This plugin enables powerful and configurable URI replacement patterns, presets, uses Moment.js for parsing dates, and much more. 
-+ [assemble-contrib-sitemap](https://github.com/assemble/assemble-contrib-sitemap): Sitemap generator plugin for Assemble 
-+ [assemble-contrib-toc](https://github.com/assemble/assemble-contrib-toc): Create a table of contents in the generated HTML, using Cheerio.js 
-+ [assemble-contrib-wordcount](https://github.com/assemble/assemble-contrib-wordcount): Assemble plugin for displaying a word-count on blog posts or pages. 
++ [assemble-middleware-anchors](https://github.com/assemble/assemble-middleware-anchors): Assemble middleware for creating anchor tags from generated html. 
++ [assemble-middleware-contextual](https://github.com/assemble/assemble-middleware-contextual): Assemble middleware for generating a JSON file containing the context of each page. Basic middleware to help see what's happening in the build. 
++ [assemble-middleware-decompress](https://github.com/assemble/assemble-middleware-decompress): Assemble plugin for extracting zip, tar and tar.gz archives.  
++ [assemble-middleware-download](https://github.com/assemble/assemble-middleware-download): Assemble middleware for downloading files from GitHub. 
++ [assemble-middleware-drafts](https://github.com/assemble/assemble-middleware-drafts): Assemble middleware (v0.5.0) for preventing drafts from being rendered. 
++ [assemble-middleware-i18n](https://github.com/assemble/assemble-middleware-i18n): Assemble middleware for adding i18n support to projects. 
++ [assemble-middleware-lunr](https://github.com/assemble/assemble-middleware-lunr): Assemble middleware for creating a search engine within your static site using lunr.js. 
++ [assemble-middleware-permalinks](https://github.com/assemble/assemble-middleware-permalinks): Permalinks middleware for Assemble, the static site generator for Grunt.js and Yeoman. This plugin enables powerful and configurable URI replacement patterns, presets, uses Moment.js for parsing dates, and much more. 
++ [assemble-middleware-rss](https://github.com/assemble/assemble-middleware-rss): Assemble middleware for creating RSS feeds with Assemble. (NOT published yet!) 
++ [assemble-middleware-sitemap](https://github.com/assemble/assemble-middleware-sitemap): Assemble middleware for generating sitemaps. 
++ [assemble-middleware-toc](https://github.com/assemble/assemble-middleware-toc): Assemble middleware for creating a table of contents in the generated HTML, using Cheerio.js 
++ [assemble-middleware-wordcount](https://github.com/assemble/assemble-middleware-wordcount): Assemble middleware for displaying a word-count, and estimated reading time on blog posts or pages.  
 
-Visit [assemble.io/plugins](http:/assemble.io/plugins/) for more information about [Assemble](http:/assemble.io/) plugins.
-
+Visit [assemble.io/assemble-middleware](http:/assemble.io/assemble-middleware/) for more information about [Assemble](http:/assemble.io/) middleware.
 
 
 ## Authors
-
+ 
 **Jon Schlinkert**
-
-+ [github/jonschlinkert](https://github.com/jonschlinkert)
-+ [twitter/jonschlinkert](http://twitter.com/jonschlinkert)
-
+ 
++ [github/](https://github.com/)
++ [twitter/](http://twitter.com/) 
+ 
 **Brian Woodward**
-
-+ [github/doowb](https://github.com/doowb)
-+ [twitter/doowb](http://twitter.com/doowb)
+ 
++ [github/](https://github.com/)
++ [twitter/](http://twitter.com/) 
+ 
+**[object Object]**
+ 
++ [github/](https://github.com/)
++ [twitter/](http://twitter.com/) 
 
 
 ## Release History
-
- * 2013-10-25   v0.4.17   Adds a params object to the call to `helper.register` allowing grunt and assemble to be passed in and used from inside helpers.
- * 2013-10-24   v0.4.16   Adds support for using wildcards with plugins stages.
- * 2013-10-24   v0.4.15   Implements multiple plugin stages.
- * 2013-10-21   v0.4.14   Adds support for plugins running once, before and after (thanks @adjohnson916). Adds pagination! Thanks to @xzyfer, `options.data` can now also directly accept an object of data.
- * 2013-10-12   v0.4.13   Adds `originalAssets` property to root context to store the pre-calculated assets path
- * 2013-10-05   v0.4.12   Fixes plugins resolving for devDependencies.
- * 2013-10-03   v0.4.11   Adds filePair to page object. thanks @adjohnson916!
- * 2013-10-02   v0.4.10   Adds plugin support to Assemble using the `plugins` option. thanks @adjohnson916!
- * 2013-10-02   v0.4.9   Adds `layoutext` and `postprocess` options.
- * 2013-09-30   v0.4.8   Assemble now builds 30-50% faster due to some refactoring to async and how context is calculated.
- * 2013-09-20   v0.4.7   Adds grunt-readme to make it easier to keep the readme updated using templates. Keep options.partials intact so they can be used in helpers.
- * 2013-09-15   v0.4.6   Updating how the assets path is calculated. Adding resolve-dep and ability to load helpers from node modules using minimatch patterns
- * 2013-09-03   v0.4.5   Bug fix: allow page content containing $. Add alias metadata for data on pages configuration object.
- * 2013-08-01   v0.4.4   Adds "nested layouts" Adds option for pages in JSON/YAML collections to be defined as either objects or keys in an array.
- * 2013-08-01   v0.4.3   Adds "options.pages" for passing in an array of pages in JSON or YAML format.
- * 2013-06-20   v0.4.0   Adds "layoutdir" option for defining the directory to be used for layouts. If layoutdir is defined, then layouts may be defined using only the name of the layout.
- * 2013-06-10   v0.3.81   Adds additional ways to load custom helpers. Now it's possible to use a glob pattern that points to a list of scripts with helpers to load. Adds examples and tests on how to use the new custom helper loading methods.
- * 2013-06-01   v0.3.80   Fixing bug with null value in engine
- * 2013-05-07   v0.3.77   Updated README with info about assemble methods
- * 2013-04-28   v0.3.74   Updating the assemble library to use the assemble-utils repo and unnecessary code.
- * 2013-04-21   v0.3.73   Fixing how the relative path helper worked and showing an example in the footer of the layout. This example is hidden, but can be seen by doing view source.
- * 2013-04-20   v0.3.72   Fixing the layout override issue happening in the page yaml headers. Something was missed during refactoring.
- * 2013-04-19   v0.3.9   Adds tags and categories to the root context and ensure that the current page context values don't override the root context values.
- * 2013-04-18   v0.3.8   Updating to use actual assets property from current page.
- * 2013-04-17   v0.3.7   Cleaning up some unused folders and tests
- * 2013-04-16   v0.3.6   Fixed missing assets property.
- * 2013-04-16   v0.3.5   Adds a sections array to the template engine so it can be used in helpers.
- * 2013-04-11   v0.3.4   More tests for helpers and global variables, organized tests. A number of bug fixes.
- * 2013-04-06   v0.3.3   helper-lib properly externalized and wired up. Global variables for filename, ext and pages
- * 2013-03-22   v0.3.22   Merged global and target level options so data and partial files can be joined
- * 2013-03-22   v0.3.21   Valid YAML now allowed in options.data object (along with JSON)
- * 2013-03-18   v0.3.14   new relative helper for resolving relative paths
-
+**DATE**       **VERSION**   **CHANGES**                                                                
+* 2013-10-25   v0.4.17       Adds a params object to the call to `helper.register` allowing grunt and   
+                             assemble to be passed in and used from inside helpers.                     
+* 2013-10-24   v0.4.16       Adds support for using wildcards with plugins stages.                      
+* 2013-10-24   v0.4.15       Implements multiple plugin stages.                                         
+* 2013-10-21   v0.4.14       Adds support for plugins running once, before and after (thanks            
+                             @adjohnson916).,Adds pagination!,Thanks to @xzyfer, `options.data` can now 
+                             also directly accept an object of data.                                    
+* 2013-10-12   v0.4.13       Adds `originalAssets` property to root context to store the pre-calculated 
+                             assets path                                                                
+* 2013-10-05   v0.4.12       Fixes plugins resolving for devDependencies.                               
+* 2013-10-03   v0.4.11       Adds filePair to page object. thanks @adjohnson916!                        
+* 2013-10-02   v0.4.10       Adds plugin support to Assemble using the `plugins` option. thanks         
+                             @adjohnson916!                                                             
+* 2013-10-02   v0.4.9        Adds `layoutext` and `postprocess` options.                                
+* 2013-09-30   v0.4.8        Assemble now builds 30-50% faster due to some refactoring to async and how 
+                             context is calculated.                                                     
+* 2013-09-20   v0.4.7        Adds grunt-readme to make it easier to keep the readme updated using       
+                             templates.,Keep options.partials intact so they can be used in helpers.    
+* 2013-09-15   v0.4.6        Updating how the assets path is calculated.,Adding resolve-dep and ability 
+                             to load helpers from node modules using minimatch patterns                 
+* 2013-09-03   v0.4.5        Bug fix: allow page content containing $.,Add alias metadata for data on   
+                             pages configuration object.                                                
+* 2013-08-01   v0.4.4        Adds "nested layouts",Adds option for pages in JSON/YAML collections to be 
+                             defined as either objects or keys in an array.                             
+* 2013-08-01   v0.4.3        Adds "options.pages" for passing in an array of pages in JSON or YAML      
+                             format.                                                                    
+* 2013-06-20   v0.4.0        Adds "layoutdir" option for defining the directory to be used for layouts. 
+                             If layoutdir is defined, then layouts may be defined using only the name of
+                             the layout.                                                                
+* 2013-06-10   v0.3.81       Adds additional ways to load custom helpers. Now it's possible to use a    
+                             glob pattern that points to a list of scripts with helpers to load.,Adds   
+                             examples and tests on how to use the new custom helper loading methods.    
+* 2013-06-01   v0.3.80       Fixing bug with null value in engine                                       
+* 2013-05-07   v0.3.77       Updated README with info about assemble methods                            
+* 2013-04-28   v0.3.74       Updating the assemble library to use the assemble-utils repo and           
+                             unnecessary code.                                                          
+* 2013-04-21   v0.3.73       Fixing how the relative path helper worked and showing an example in the   
+                             footer of the layout. This example is hidden, but can be seen by doing view
+                             source.                                                                    
+* 2013-04-20   v0.3.72       Fixing the layout override issue happening in the page yaml headers.       
+                             Something was missed during refactoring.                                   
+* 2013-04-19   v0.3.9        Adds tags and categories to the root context and ensure that the current   
+                             page context values don't override the root context values.                
+* 2013-04-18   v0.3.8        Updating to use actual assets property from current page.                  
+* 2013-04-17   v0.3.7        Cleaning up some unused folders and tests                                  
+* 2013-04-16   v0.3.6        Fixed missing assets property.                                             
+* 2013-04-16   v0.3.5        Adds a sections array to the template engine so it can be used in helpers. 
+* 2013-04-11   v0.3.4        More tests for helpers and global variables, organized tests. A number of  
+                             bug fixes.                                                                 
+* 2013-04-06   v0.3.3        helper-lib properly externalized and wired up. Global variables for        
+                             filename, ext and pages                                                    
+* 2013-03-22   v0.3.22       Merged global and target level options so data and partial files can be    
+                             joined                                                                     
+* 2013-03-22   v0.3.21       Valid YAML now allowed in options.data object (along with JSON)            
+* 2013-03-18   v0.3.14       new relative helper for resolving relative paths                           
 
 ## License
-Copyright (c) 2014 Assemble, contributors.
+Copyright (c) 2014 Assemble, contributors.  
 Released under the MIT license
 
 ***
 
+_This file was generated by [grunt-verb](https://github.com/assemble/grunt-verb) on June 13, 2014._

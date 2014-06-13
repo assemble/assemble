@@ -30,7 +30,7 @@ assemble: {
     layout: ['layouts/default.hbs'],
     data: ['data/*.{json,yml}']
   },
-  pages: {
+  site: {
     src: ['docs/*.hbs'],
     dest: './'
   }
@@ -38,5 +38,5 @@ assemble: {
 ```
 
 [grunt]: http://gruntjs.com/
-[Getting Started]: http://gruntjs.com/getting-started
+[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
 [package.json]: https://npmjs.org/doc/json.html
