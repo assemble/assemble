@@ -7,17 +7,13 @@ lib-cov
 *.pid
 *.gz
 *.rar
+*.sublime-*
 npm-debug.log
-node_modules
-pids
-logs
 
-
-release
+# Always-ignor dirs
+/node_modules/
 /tmp/
 /temp/
+/vendor/
 
 TODO.md
-
-*.sublime-project
-*.sublime-workspace

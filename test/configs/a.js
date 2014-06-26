@@ -1,7 +1,8 @@
-var assemble = require('../assemble');
-var parser = require('../assemble/vendor/assemble-parser')(assemble);
-var handlebars = require('../assemble/vendor/verb-handlebars')(assemble);
+var assemble = require('../..');
+var handlebars = require('assemble-handlebars')(assemble);
+var parser = require('assemble-parser')(assemble);
 var opts = require('load-options');
+
 
 assemble.config({
   options: opts({templates: 'src/templates'}),
@@ -26,4 +27,4 @@ assemble.task('site', function () {
     .pipe(assemble.dest('dist/'));
 });
 
-assemble.start('site');
+assemble.task('site');

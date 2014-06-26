@@ -4,6 +4,7 @@
  * Copyright (c) 2014 Assemble, contributors.
  * Licensed under the MIT License
  */
+
 'use strict';
 
 var expect = require('chai').expect;

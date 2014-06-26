@@ -37,7 +37,16 @@
   "scripts": {
     "test": "mocha -R spec"
   },
-  "dependencies": {},
+  "dependencies": {
+    "expander": "^0.3.3",
+    "fs-utils": "^0.4.3",
+    "getobject": "^0.1.0",
+    "gray-matter": "^0.4.2",
+    "lodash": "^2.4.1",
+    "orchestrator": "^0.3.3",
+    "plasma": "^0.4.0",
+    "vinyl-fs": "^0.3.3"
+  },
   "devDependencies": {
     "chai": "^1.9.1",
     "gulp": "^3.8.2",
