@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<div class="content">
+  {{body}}
+</div>
+<div class="sidebar sidebar-left">
+  <ul class="menu">
+    {{#each archives}}
+      <li class="menu-item{{#is selected-item}} active{{/is}}">{{item}}</li>
+    {{/each}}
+  </ul>
+</div>

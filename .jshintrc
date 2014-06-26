@@ -1,24 +1,23 @@
 {
-  "esnext": true,
   "boss": true,
+  "camelcase": true,
   "curly": true,
   "eqeqeq": true,
   "eqnull": true,
+  "esnext": true,
+  "freeze": true,
+  "funcscope": true,
   "immed": true,
+  "indent": 2,
   "latedef": true,
+  "maxdepth": 3,
+  "mocha": true,
   "newcap": true,
   "noarg": true,
   "node": true,
+  "quotmark": "single",
+  "strict": true,
   "sub": true,
   "undef": true,
-  "unused": true,
-  "globals": {
-    "define": true,
-    "before": true,
-    "after": true,
-    "describe": true,
-    "xdescribe": true,
-    "it": true,
-    "xit": true
-  }
+  "unused": true
 }

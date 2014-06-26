@@ -1,7 +1,0 @@
-{
-  "name": "assemble",
-  "version": "0.4.39",
-  "main": [
-    "./lib/assemble"
-  ]
-}
