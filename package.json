@@ -53,6 +53,7 @@
     "gulp-jshint": "^1.6.3",
     "gulp-mocha": "^0.4.1",
     "jshint-stylish": "^0.2.0",
+    "load-options": "^0.2.1",
     "mocha": "^1.20.1",
     "verb": "^0.2.13"
   },

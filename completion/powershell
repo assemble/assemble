@@ -2,6 +2,9 @@
 #
 # Tab completion for the `Assemble`
 #
+# Borrowed from grunt-cli
+# http://gruntjs.com/
+#
 # Usage:
 #
 # To enable powershell <tab> completion for Assemble, add the below to your $PROFILE
@@ -15,22 +18,22 @@ $Assemble_completion_Process = {
 
 
 	# Load up an assembly to read the Assemblefile's sha1
-	if(-not $global:VerbSHA1Managed) {
+	if(-not $global:AssembleSHA1Managed) {
 		[Reflection.Assembly]::LoadWithPartialName("System.Security") | out-null
-		$global:VerbSHA1Managed = new-Object System.Security.Cryptography.SHA1Managed
+		$global:AssembleSHA1Managed = new-Object System.Security.Cryptography.SHA1Managed
 	}
 
 	# setup a global (in-memory) cache
-	if(-not $global:VerbfileShaCache) {
-		$global:VerbfileShaCache = @{};
+	if(-not $global:AssemblefileShaCache) {
+		$global:AssemblefileShaCache = @{};
 	}
 
-	$cache = $global:VerbfileShaCache;
+	$cache = $global:AssemblefileShaCache;
 
 	# Get the Assemblefile's sha1
 	$sha1AssembleFile = (resolve-path Assemblefile.js -ErrorAction Ignore | %{
 		$file = [System.IO.File]::Open($_.Path, "open", "read")
-		[string]::join('', ($global:VerbSHA1Managed.ComputeHash($file) | %{ $_.ToString("x2") }))
+		[string]::join('', ($global:AssembleSHA1Managed.ComputeHash($file) | %{ $_.ToString("x2") }))
 		$file.Dispose()
 	})
 

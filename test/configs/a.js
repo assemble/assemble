@@ -1,15 +1,21 @@
 var assemble = require('../..');
 var handlebars = require('assemble-handlebars')(assemble);
 var parser = require('assemble-parser')(assemble);
-var opts = require('load-options');
-
+var options = require('load-options')('.assemblerc.yml', {cwd: __dirname});
 
 assemble.config({
-  options: opts({templates: 'src/templates'}),
+  options: options,
+  // options: opts({templates: 'test/fixtures'}),
   site: {
     title: 'This is a title'
   }
 });
+
+
+assemble.plugin(require('assemble-core'));
+assemble.data('package.json');
+
+console.log(assemble);
 
 //console.log('partials', assemble.partials());
 //console.log();
@@ -18,13 +24,13 @@ assemble.config({
 //console.log('options', assemble.context);
 //console.log();
 
-
 assemble.task('site', function () {
   console.log('running site');
-  assemble.src('src/templates/pages/*.hbs')
+  assemble.src('test/fixtures/pages/*.hbs')
     .pipe(parser())
     .pipe(handlebars())
-    .pipe(assemble.dest('dist/'));
+    .pipe(assemble.dest('test/actual/'));
 });
 
 assemble.task('site');
+
