@@ -45,7 +45,8 @@
     "lodash": "^2.4.1",
     "orchestrator": "^0.3.3",
     "plasma": "^0.4.0",
-    "vinyl-fs": "^0.3.3"
+    "vinyl-fs": "^0.3.3",
+    "gulp-util": "^2.2.19"
   },
   "devDependencies": {
     "chai": "^1.9.1",
@@ -55,7 +56,11 @@
     "jshint-stylish": "^0.2.0",
     "load-options": "^0.2.1",
     "mocha": "^1.20.1",
-    "verb": "^0.2.13"
+    "verb": "^0.2.13",
+    "rimraf": "^2.2.8",
+    "graceful-fs": "^3.0.2",
+    "q": "^1.0.1",
+    "mkdirp": "^0.5.0"
   },
   "keywords": [
     "HTML",
