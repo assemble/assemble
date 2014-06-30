@@ -1,6 +1,6 @@
 'use strict';
 
-var verb = require('../');
+var assemble = require('../');
 var should = require('should');
 var join = require('path').join;
 var rimraf = require('rimraf');
@@ -10,21 +10,21 @@ require('mocha');
 
 var outpath = join(__dirname, "./out-fixtures");
 
-describe('verb output stream', function() {
+describe('assemble output stream', function() {
   describe('dest()', function() {
     beforeEach(rimraf.bind(null, outpath));
     afterEach(rimraf.bind(null, outpath));
 
     it('should return a stream', function(done) {
-      var stream = verb.dest(join(__dirname, "./fixtures/"));
+      var stream = assemble.dest(join(__dirname, "./fixtures/"));
       should.exist(stream);
       should.exist(stream.on);
       done();
     });
 
     it('should return a output stream that writes files', function(done) {
-      var instream = verb.src(join(__dirname, "./fixtures/**/*.txt"));
-      var outstream = verb.dest(outpath);
+      var instream = assemble.src(join(__dirname, "./fixtures/**/*.txt"));
+      var outstream = assemble.dest(outpath);
       instream.pipe(outstream);
 
       outstream.on('error', done);
@@ -47,8 +47,8 @@ describe('verb output stream', function() {
     });
 
     it('should return a output stream that does not write non-read files', function(done) {
-      var instream = verb.src(join(__dirname, "./fixtures/**/*.txt"), {read:false});
-      var outstream = verb.dest(outpath);
+      var instream = assemble.src(join(__dirname, "./fixtures/**/*.txt"), {read:false});
+      var outstream = assemble.dest(outpath);
       instream.pipe(outstream);
 
       outstream.on('error', done);
@@ -69,8 +69,8 @@ describe('verb output stream', function() {
     });
 
     it('should return a output stream that writes streaming files', function(done) {
-      var instream = verb.src(join(__dirname, "./fixtures/**/*.txt"), {buffer:false});
-      var outstream = instream.pipe(verb.dest(outpath));
+      var instream = assemble.src(join(__dirname, "./fixtures/**/*.txt"), {buffer:false});
+      var outstream = instream.pipe(assemble.dest(outpath));
 
       outstream.on('error', done);
       outstream.on('data', function(file) {
@@ -107,8 +107,8 @@ describe('verb output stream', function() {
     });
 
     function testWriteDir(srcOptions, done) {
-      var instream = verb.src(join(__dirname, "./fixtures/stuff"), srcOptions);
-      var outstream = instream.pipe(verb.dest(outpath));
+      var instream = assemble.src(join(__dirname, "./fixtures/stuff"), srcOptions);
+      var outstream = instream.pipe(assemble.dest(outpath));
 
       outstream.on('error', done);
       outstream.on('data', function(file) {
