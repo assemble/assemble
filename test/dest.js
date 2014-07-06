@@ -13,7 +13,7 @@ var outpath = join(__dirname, './out-fixtures');
 describe('assemble output stream', function() {
   describe('dest()', function() {
     beforeEach(function () {
-      assemble.enable('minimal');
+      assemble.enable('minimal config');
       rimraf.bind(null, outpath)
     });
     afterEach(function () {
@@ -21,7 +21,7 @@ describe('assemble output stream', function() {
     });
 
     after(function () {
-      assemble.disable('minimal');
+      assemble.disable('minimal config');
     });
 
     it('should return a stream', function(done) {

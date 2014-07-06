@@ -8,10 +8,10 @@ require('mocha');
 
 describe('assemble input stream', function() {
   beforeEach(function () {
-    assemble.enable('minimal');
+    assemble.enable('minimal config');
   });
   afterEach(function () {
-    assemble.disable('minimal');
+    assemble.disable('minimal config');
   });
 
   describe('src()', function() {
