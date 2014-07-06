@@ -1,3 +1,5 @@
+'use strict';
+
 var path = require('path');
 var assemble = require('assembletemp');
 var marked = require('marked');
@@ -23,7 +25,7 @@ var fn = function(filepath) {
 };
 
 var shout = function (msg) {
-  console.log(msg)
+  console.log(msg);
   return console.log(msg.toUpperCase());
 };
 

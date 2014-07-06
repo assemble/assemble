@@ -14,6 +14,6 @@ describe('when foo is passed:', function () {
   it('should convert foo to bar.', function () {
     var actual = 'bar';
     var expected = 'bar';
-    // expect(assemble(actual)).to.eql(expected);
+    expect(assemble(actual)).to.eql(expected);
   });
 });
