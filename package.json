@@ -30,28 +30,41 @@
       "url": "https://github.com/assemble/assemble/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "./lib/assemble",
+  "main": "./lib/index.js",
   "engines": {
     "node": ">= 0.10.0"
+  },
+  "bin": {
+    "assemble": "./bin/assemble.js"
   },
   "scripts": {
     "test": "mocha -R spec"
   },
   "dependencies": {
+    "archy": "0.0.2",
+    "chalk": "^0.5.0",
+    "debug": "^1.0.2",
     "expander": "^0.3.3",
     "fs-utils": "^0.4.3",
     "getobject": "^0.1.0",
     "gray-matter": "^0.4.2",
+    "gulp-util": "^2.2.19",
+    "interpret": "^0.3.5",
+    "is-absolute": "^0.1.0",
+    "liftoff": "^0.12.0",
     "lodash": "^2.4.1",
+    "minimist": "^0.2.0",
     "orchestrator": "^0.3.3",
     "plasma": "^0.4.0",
-    "vinyl-fs": "^0.3.3",
-    "gulp-util": "^2.2.19"
+    "pretty-hrtime": "^0.2.1",
+    "semver": "^2.3.1",
+    "tildify": "^0.2.0",
+    "vinyl-fs": "^0.3.3"
   },
   "devDependencies": {
     "chai": "^1.9.1",
     "graceful-fs": "^3.0.2",
-    "gulp": "^3.8.2",
+    "gulp": "^3.8.5",
     "gulp-jshint": "^1.6.3",
     "gulp-mocha": "^0.4.1",
     "jshint-stylish": "^0.2.0",
