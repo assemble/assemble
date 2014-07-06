@@ -12,8 +12,17 @@ var outpath = join(__dirname, './out-fixtures');
 
 describe('assemble output stream', function() {
   describe('dest()', function() {
-    beforeEach(rimraf.bind(null, outpath));
-    afterEach(rimraf.bind(null, outpath));
+    beforeEach(function () {
+      assemble.enable('minimal');
+      rimraf.bind(null, outpath)
+    });
+    afterEach(function () {
+      rimraf.bind(null, outpath)
+    });
+
+    after(function () {
+      assemble.disable('minimal');
+    });
 
     it('should return a stream', function(done) {
       var stream = assemble.dest(join(__dirname, './fixtures/'));
@@ -59,6 +68,7 @@ describe('assemble output stream', function() {
         should.not.exist(file.contents);
         join(file.path,'').should.equal(join(outpath, './copy/example.txt'));
       });
+
       outstream.on('end', function() {
         fs.readFile(join(outpath, 'copy', 'example.txt'), function(err, contents) {
           should.exist(err);

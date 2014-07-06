@@ -7,6 +7,13 @@ var join = require('path').join;
 require('mocha');
 
 describe('assemble input stream', function() {
+  beforeEach(function () {
+    assemble.enable('minimal');
+  });
+  afterEach(function () {
+    assemble.disable('minimal');
+  });
+
   describe('src()', function() {
     it('should return a stream', function(done) {
       var stream = assemble.src(join(__dirname, './fixtures/*.coffee'));
