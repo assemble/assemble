@@ -250,6 +250,7 @@ Visit [assemble.io/assemble-middleware](http:/assemble.io/assemble-middleware/) 
 
 ## Release History
 **DATE**       **VERSION**   **CHANGES**                                                                
+* 2014-07-07   v0.4.41       Updating resolve-dep dependency.                                           
 * 2014-06-13   v0.4.38       Use gray-matter instead of assemble-yaml.,Updates dependencies. Minor      
                              refactoring and new utils to get rid of a couple of dependencies.,Update   
                              the loaders for plugins and helpers to use resolve-dep. Should be more     
