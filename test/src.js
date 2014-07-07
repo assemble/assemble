@@ -1,28 +1,35 @@
 'use strict';
 
-var verb = require('../');
+var assemble = require('../');
 var should = require('should');
 var join = require('path').join;
 
 require('mocha');
 
-describe('verb input stream', function() {
+describe('assemble input stream', function() {
+  beforeEach(function () {
+    assemble.enable('minimal config');
+  });
+  afterEach(function () {
+    assemble.disable('minimal config');
+  });
+
   describe('src()', function() {
     it('should return a stream', function(done) {
-      var stream = verb.src(join(__dirname, "./fixtures/*.coffee"));
+      var stream = assemble.src(join(__dirname, './fixtures/*.coffee'));
       should.exist(stream);
       should.exist(stream.on);
       done();
     });
     it('should return a input stream from a flat glob', function(done) {
-      var stream = verb.src(join(__dirname, "./fixtures/*.coffee"));
+      var stream = assemble.src(join(__dirname, './fixtures/*.coffee'));
       stream.on('error', done);
       stream.on('data', function(file) {
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
-        join(file.path,'').should.equal(join(__dirname, "./fixtures/test.coffee"));
-        String(file.contents).should.equal("this is a test");
+        join(file.path,'').should.equal(join(__dirname, './fixtures/test.coffee'));
+        String(file.contents).should.equal('this is a test');
       });
       stream.on('end', function() {
         done();
@@ -31,10 +38,10 @@ describe('verb input stream', function() {
 
     it('should return a input stream for multiple globs', function(done) {
       var globArray = [
-        join(__dirname, "./fixtures/stuff/run.dmc"),
-        join(__dirname, "./fixtures/stuff/test.dmc")
+        join(__dirname, './fixtures/stuff/run.dmc'),
+        join(__dirname, './fixtures/stuff/test.dmc')
       ];
-      var stream = verb.src(globArray);
+      var stream = assemble.src(globArray);
 
       var files = [];
       stream.on('error', done);
@@ -52,12 +59,12 @@ describe('verb input stream', function() {
     });
 
     it('should return a input stream for multiple globs, with negation', function(done) {
-      var expectedPath = join(__dirname, "./fixtures/stuff/run.dmc");
+      var expectedPath = join(__dirname, './fixtures/stuff/run.dmc');
       var globArray = [
-        join(__dirname, "./fixtures/stuff/*.dmc"),
-        '!' + join(__dirname, "./fixtures/stuff/test.dmc"),
+        join(__dirname, './fixtures/stuff/*.dmc'),
+        '!' + join(__dirname, './fixtures/stuff/test.dmc'),
       ];
-      var stream = verb.src(globArray);
+      var stream = assemble.src(globArray);
 
       var files = [];
       stream.on('error', done);
@@ -74,52 +81,52 @@ describe('verb input stream', function() {
     });
 
     it('should return a input stream with no contents when read is false', function(done) {
-      var stream = verb.src(join(__dirname, "./fixtures/*.coffee"), {read: false});
+      var stream = assemble.src(join(__dirname, './fixtures/*.coffee'), {read: false});
       stream.on('error', done);
       stream.on('data', function(file) {
         should.exist(file);
         should.exist(file.path);
         should.not.exist(file.contents);
-        join(file.path,'').should.equal(join(__dirname, "./fixtures/test.coffee"));
+        join(file.path,'').should.equal(join(__dirname, './fixtures/test.coffee'));
       });
       stream.on('end', function() {
         done();
       });
     });
     it('should return a input stream with contents as stream when buffer is false', function(done) {
-      var stream = verb.src(join(__dirname, "./fixtures/*.coffee"), {buffer: false});
+      var stream = assemble.src(join(__dirname, './fixtures/*.coffee'), {buffer: false});
       stream.on('error', done);
       stream.on('data', function(file) {
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
-        var buf = "";
+        var buf = '';
         file.contents.on('data', function(d) {
           buf += d;
         });
         file.contents.on('end', function() {
-          buf.should.equal("this is a test");
+          buf.should.equal('this is a test');
           done();
         });
-        join(file.path,'').should.equal(join(__dirname, "./fixtures/test.coffee"));
+        join(file.path,'').should.equal(join(__dirname, './fixtures/test.coffee'));
       });
     });
     it('should return a input stream from a deep glob', function(done) {
-      var stream = verb.src(join(__dirname, "./fixtures/**/*.jade"));
+      var stream = assemble.src(join(__dirname, './fixtures/**/*.jade'));
       stream.on('error', done);
       stream.on('data', function(file) {
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
-        join(file.path,'').should.equal(join(__dirname, "./fixtures/test/run.jade"));
-        String(file.contents).should.equal("test template");
+        join(file.path,'').should.equal(join(__dirname, './fixtures/test/run.jade'));
+        String(file.contents).should.equal('test template');
       });
       stream.on('end', function() {
         done();
       });
     });
     it('should return a input stream from a deeper glob', function(done) {
-      var stream = verb.src(join(__dirname, "./fixtures/**/*.dmc"));
+      var stream = assemble.src(join(__dirname, './fixtures/**/*.dmc'));
       var a = 0;
       stream.on('error', done);
       stream.on('data', function() {
@@ -133,15 +140,15 @@ describe('verb input stream', function() {
 
     it('should return a file stream from a flat path', function(done) {
       var a = 0;
-      var stream = verb.src(join(__dirname, "./fixtures/test.coffee"));
+      var stream = assemble.src(join(__dirname, './fixtures/test.coffee'));
       stream.on('error', done);
       stream.on('data', function(file) {
         ++a;
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
-        join(file.path,'').should.equal(join(__dirname, "./fixtures/test.coffee"));
-        String(file.contents).should.equal("this is a test");
+        join(file.path,'').should.equal(join(__dirname, './fixtures/test.coffee'));
+        String(file.contents).should.equal('this is a test');
       });
       stream.on('end', function() {
         a.should.equal(1);

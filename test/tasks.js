@@ -1,19 +1,19 @@
 'use strict';
 
-var verb = require('../');
+var assemble = require('../');
 var Q = require('q');
 var should = require('should');
 require('mocha');
 
-describe('verb tasks', function() {
+describe('assemble tasks', function() {
   describe('task()', function() {
     it('should define a task', function(done) {
       var fn;
       fn = function() {};
-      verb.task('test', fn);
-      should.exist(verb.tasks.test);
-      verb.tasks.test.fn.should.equal(fn);
-      verb.reset();
+      assemble.task('test', fn);
+      should.exist(assemble.tasks.test);
+      assemble.tasks.test.fn.should.equal(fn);
+      assemble.reset();
       done();
     });
   });
@@ -23,37 +23,37 @@ describe('verb tasks', function() {
       var a, fn, fn2;
       a = 0;
       fn = function() {
-        this.should.equal(verb);
+        this.should.equal(assemble);
         ++a;
       };
       fn2 = function() {
-        this.should.equal(verb);
+        this.should.equal(assemble);
         ++a;
       };
-      verb.task('test', fn);
-      verb.task('test2', fn2);
-      verb.run('test', 'test2');
+      assemble.task('test', fn);
+      assemble.task('test2', fn2);
+      assemble.run('test', 'test2');
       a.should.equal(2);
-      verb.reset();
+      assemble.reset();
       done();
     });
     it('should run all tasks when call run() multiple times', function(done) {
       var a, fn, fn2;
       a = 0;
       fn = function() {
-        this.should.equal(verb);
+        this.should.equal(assemble);
         ++a;
       };
       fn2 = function() {
-        this.should.equal(verb);
+        this.should.equal(assemble);
         ++a;
       };
-      verb.task('test', fn);
-      verb.task('test2', fn2);
-      verb.run('test');
-      verb.run('test2');
+      assemble.task('test', fn);
+      assemble.task('test2', fn2);
+      assemble.run('test');
+      assemble.run('test2');
       a.should.equal(2);
-      verb.reset();
+      assemble.reset();
       done();
     });
     it('should run all async promise tasks', function(done) {
@@ -75,16 +75,16 @@ describe('verb tasks', function() {
         },1);
         return deferred.promise;
       };
-      verb.task('test', fn);
-      verb.task('test2', fn2);
-      verb.run('test');
-      verb.run('test2', function() {
-        verb.isRunning.should.equal(false);
+      assemble.task('test', fn);
+      assemble.task('test2', fn2);
+      assemble.run('test');
+      assemble.run('test2', function() {
+        assemble.isRunning.should.equal(false);
         a.should.equal(2);
-        verb.reset();
+        assemble.reset();
         done();
       });
-      verb.isRunning.should.equal(true);
+      assemble.isRunning.should.equal(true);
     });
     it('should run all async callback tasks', function(done) {
       var a, fn, fn2;
@@ -101,57 +101,57 @@ describe('verb tasks', function() {
           cb(null);
         },1);
       };
-      verb.task('test', fn);
-      verb.task('test2', fn2);
-      verb.run('test');
-      verb.run('test2', function() {
-        verb.isRunning.should.equal(false);
+      assemble.task('test', fn);
+      assemble.task('test2', fn2);
+      assemble.run('test');
+      assemble.run('test2', function() {
+        assemble.isRunning.should.equal(false);
         a.should.equal(2);
-        verb.reset();
+        assemble.reset();
         done();
       });
-      verb.isRunning.should.equal(true);
+      assemble.isRunning.should.equal(true);
     });
     it('should emit task_not_found and throw an error when task is not defined', function(done) {
-      verb.on('task_not_found', function(err) {
+      assemble.on('task_not_found', function(err) {
         should.exist(err);
         should.exist(err.task);
         err.task.should.equal('test');
-        verb.reset();
+        assemble.reset();
         done();
       });
       try {
-        verb.run('test');
+        assemble.run('test');
       } catch (err) {
         should.exist(err);
       }
     });
-    it('should run task scoped to verb', function(done) {
+    it('should run task scoped to assemble', function(done) {
       var a, fn;
       a = 0;
       fn = function() {
-        this.should.equal(verb);
+        this.should.equal(assemble);
         ++a;
       };
-      verb.task('test', fn);
-      verb.run('test');
+      assemble.task('test', fn);
+      assemble.run('test');
       a.should.equal(1);
-      verb.isRunning.should.equal(false);
-      verb.reset();
+      assemble.isRunning.should.equal(false);
+      assemble.reset();
       done();
     });
-    it('should run default task scoped to verb', function(done) {
+    it('should run default task scoped to assemble', function(done) {
       var a, fn;
       a = 0;
       fn = function() {
-        this.should.equal(verb);
+        this.should.equal(assemble);
         ++a;
       };
-      verb.task('default', fn);
-      verb.run();
+      assemble.task('default', fn);
+      assemble.run();
       a.should.equal(1);
-      verb.isRunning.should.equal(false);
-      verb.reset();
+      assemble.isRunning.should.equal(false);
+      assemble.reset();
       done();
     });
   });

@@ -1,6 +1,6 @@
 'use strict';
 
-var verb = require('../');
+var assemble = require('../');
 var fs = require('graceful-fs');
 var rimraf = require('rimraf');
 var mkdirp = require('mkdirp');
@@ -9,10 +9,10 @@ var path = require('path');
 var should = require('should');
 require('mocha');
 
-var outpath = path.join(__dirname, "./out-fixtures");
+var outpath = path.join(__dirname, './out-fixtures');
 
-describe('verb', function() {
-  describe('watch()', function() {
+describe('assemble', function () {
+  describe('watch()', function () {
     beforeEach(rimraf.bind(null, outpath));
     beforeEach(mkdirp.bind(null, outpath));
     afterEach(rimraf.bind(null, outpath));
@@ -20,21 +20,23 @@ describe('verb', function() {
     var tempFileContent = 'A test generated this file and it is safe to delete';
 
     var writeTimeout = 125; // Wait for it to get to the filesystem
-    var writeFileWait = function(name, content, cb) {
-      if (!cb) cb = function() {};
-      setTimeout(function() {
+    var writeFileWait = function (name, content, cb) {
+      if (!cb) {
+        cb = function () {};
+      }
+      setTimeout(function () {
         fs.writeFile(name, content, cb);
       }, writeTimeout);
     };
 
-    it('should call the function when file changes: no options', function(done) {
+    it('should call the function when file changes: no options', function (done) {
 
       // arrange
       var tempFile = path.join(outpath, 'watch-func.txt');
-      fs.writeFile(tempFile, tempFileContent, function() {
+      fs.writeFile(tempFile, tempFileContent, function () {
 
         // assert: it works if it calls done
-        var watcher = verb.watch(tempFile, function(evt) {
+        var watcher = assemble.watch(tempFile, function (evt) {
           should.exist(evt);
           should.exist(evt.path);
           should.exist(evt.type);
@@ -43,59 +45,64 @@ describe('verb', function() {
           watcher.end();
           done();
         });
-
-        // act: change file
-        writeFileWait(tempFile, tempFileContent+' changed');
-      });
-    });
-
-    it('should call the function when file changes: w/ options', function(done) {
-      // arrange
-      var tempFile = path.join(outpath, 'watch-func-options.txt');
-      fs.writeFile(tempFile, tempFileContent, function() {
-
-        // assert: it works if it calls done
-        var watcher = verb.watch(tempFile, {debounceDelay:5}, function(evt) {
-          should.exist(evt);
-          should.exist(evt.path);
-          should.exist(evt.type);
-          evt.type.should.equal('changed');
-          evt.path.should.equal(path.resolve(tempFile));
-          watcher.end();
-          done();
-        });
-
-        // act: change file
-        writeFileWait(tempFile, tempFileContent+' changed');
-      });
-    });
-
-    it('should not drop options when no callback specified', function(done) {
-      // arrange
-      var tempFile = path.join(outpath, 'watch-func-nodrop-options.txt');
-      // by passing a cwd option, ensure options are not lost to gaze
-      var relFile = '../watch-func-nodrop-options.txt';
-      var cwd = outpath + '/subdir';
-      fs.writeFile(tempFile, tempFileContent, function() {
-
-        // assert: it works if it calls done
-        var watcher = verb.watch(relFile, {debounceDelay: 5, cwd: cwd})
-            .on('change', function(evt) {
-              should.exist(evt);
-              should.exist(evt.path);
-              should.exist(evt.type);
-              evt.type.should.equal('changed');
-              evt.path.should.equal(path.resolve(tempFile));
-              watcher.end();
-              done();
-            });
 
         // act: change file
         writeFileWait(tempFile, tempFileContent + ' changed');
       });
     });
 
-    it('should run many tasks: w/ options', function(done) {
+    it('should call the function when file changes: w/ options', function (done) {
+      // arrange
+      var tempFile = path.join(outpath, 'watch-func-options.txt');
+      fs.writeFile(tempFile, tempFileContent, function () {
+
+        // assert: it works if it calls done
+        var watcher = assemble.watch(tempFile, {
+          debounceDelay: 5
+        }, function (evt) {
+          should.exist(evt);
+          should.exist(evt.path);
+          should.exist(evt.type);
+          evt.type.should.equal('changed');
+          evt.path.should.equal(path.resolve(tempFile));
+          watcher.end();
+          done();
+        });
+
+        // act: change file
+        writeFileWait(tempFile, tempFileContent + ' changed');
+      });
+    });
+
+    it('should not drop options when no callback specified', function (done) {
+      // arrange
+      var tempFile = path.join(outpath, 'watch-func-nodrop-options.txt');
+      // by passing a cwd option, ensure options are not lost to gaze
+      var relFile = '../watch-func-nodrop-options.txt';
+      var cwd = outpath + '/subdir';
+      fs.writeFile(tempFile, tempFileContent, function () {
+
+        // assert: it works if it calls done
+        var watcher = assemble.watch(relFile, {
+            debounceDelay: 5,
+            cwd: cwd
+          })
+          .on('change', function (evt) {
+            should.exist(evt);
+            should.exist(evt.path);
+            should.exist(evt.type);
+            evt.type.should.equal('changed');
+            evt.path.should.equal(path.resolve(tempFile));
+            watcher.end();
+            done();
+          });
+
+        // act: change file
+        writeFileWait(tempFile, tempFileContent + ' changed');
+      });
+    });
+
+    it('should run many tasks: w/ options', function (done) {
       // arrange
       var tempFile = path.join(outpath, 'watch-task-options.txt');
       var task1 = 'task1';
@@ -104,36 +111,38 @@ describe('verb', function() {
       var a = 0;
       var timeout = writeTimeout * 2.5;
 
-      fs.writeFile(tempFile, tempFileContent, function() {
+      fs.writeFile(tempFile, tempFileContent, function () {
 
-        verb.task(task1, function() {
+        assemble.task(task1, function () {
           a++;
         });
-        verb.task(task2, function() {
+        assemble.task(task2, function () {
           a += 10;
         });
-        verb.task(task3, function() {
-          throw new Error("task3 called!");
+        assemble.task(task3, function () {
+          throw new Error('task3 called!');
         });
 
         // assert
-        setTimeout(function() {
+        setTimeout(function () {
           a.should.equal(11); // task1 and task2
 
-          verb.reset();
+          assemble.reset();
           watcher.end();
           done();
         }, timeout);
 
         // it works if it calls the task
-        var watcher = verb.watch(tempFile, {debounceDelay:timeout/2}, [task1,task2]);
+        var watcher = assemble.watch(tempFile, {
+          debounceDelay: timeout / 2
+        }, [task1, task2]);
 
         // act: change file
-        writeFileWait(tempFile, tempFileContent+' changed');
+        writeFileWait(tempFile, tempFileContent + ' changed');
       });
     });
 
-    it('should run many tasks: no options', function(done) {
+    it('should run many tasks: no options', function (done) {
       // arrange
       var tempFile = path.join(outpath, 'watch-many-tasks-no-options.txt');
       var task1 = 'task1';
@@ -142,32 +151,32 @@ describe('verb', function() {
       var a = 0;
       var timeout = writeTimeout * 2.5;
 
-      fs.writeFile(tempFile, tempFileContent, function() {
+      fs.writeFile(tempFile, tempFileContent, function () {
 
-        verb.task(task1, function() {
+        assemble.task(task1, function () {
           a++;
         });
-        verb.task(task2, function() {
+        assemble.task(task2, function () {
           a += 10;
         });
-        verb.task(task3, function() {
-          throw new Error("task3 called!");
+        assemble.task(task3, function () {
+          throw new Error('task3 called!');
         });
 
         // assert
-        setTimeout(function() {
+        setTimeout(function () {
           a.should.equal(11); // task1 and task2
 
-          verb.reset();
+          assemble.reset();
           watcher.end();
           done();
         }, timeout);
 
         // it works if it calls the task
-        var watcher = verb.watch(tempFile, [task1,task2]);
+        var watcher = assemble.watch(tempFile, [task1, task2]);
 
         // act: change file
-        writeFileWait(tempFile, tempFileContent+' changed');
+        writeFileWait(tempFile, tempFileContent + ' changed');
       });
     });
 

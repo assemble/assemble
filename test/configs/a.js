@@ -1,3 +1,5 @@
+'use strict';
+
 var assemble = require('../..');
 var handlebars = require('assemble-handlebars')(assemble);
 var parser = require('assemble-parser')(assemble);

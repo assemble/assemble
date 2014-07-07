@@ -1,6 +1,8 @@
+'use strict';
+
 var path = require('path');
 var assemble = require('assembletemp');
-var marked = require('marked');
+var remarked = require('remarked');
 var concat = require('assemble-concat');
 var template = require('assemble-template')(assemble);
 
@@ -15,7 +17,7 @@ var include = function (filepath) {
 
 var md = function(filepath) {
   var str = include(filepath).replace(/markdown/, 'HTML');
-  return marked(str);
+  return remarked(str);
 };
 
 var fn = function(filepath) {
@@ -23,7 +25,7 @@ var fn = function(filepath) {
 };
 
 var shout = function (msg) {
-  console.log(msg)
+  console.log(msg);
   return console.log(msg.toUpperCase());
 };
 

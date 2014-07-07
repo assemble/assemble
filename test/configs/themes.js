@@ -1,8 +1,10 @@
-var gulp = require('gulp');
+'use strict';
+
+var assemble = require('assemble');
 var themes = require('assemble-themes');
 
-gulp.task('scripts', function () {
-  gulp.src('foo/**/index.less')
+assemble.task('scripts', function () {
+  assemble.src('foo/**/index.less')
     .pipe(themes()) // adds theme variables to the context for rte
-    .pipe(gulp.dest(':dest/:css/:theme.css'))
+    .pipe(assemble.dest(':dest/:css/:theme.css'));
 });
