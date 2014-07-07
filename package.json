@@ -61,7 +61,8 @@
     "semver": "^2.3.1",
     "tildify": "^0.2.0",
     "vinyl-fs": "^0.3.3",
-    "through2": "^0.5.1"
+    "through2": "^0.5.1",
+    "lazypipe": "^0.2.1"
   },
   "devDependencies": {
     "chai": "^1.9.1",
