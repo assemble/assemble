@@ -12,12 +12,12 @@ var outpath = join(__dirname, './out-fixtures');
 
 describe('assemble output stream', function() {
   describe('dest()', function() {
-    beforeEach(function () {
+    beforeEach(function (done) {
       assemble.enable('minimal config');
-      rimraf.bind(null, outpath)
+      rimraf(outpath, done);
     });
-    afterEach(function () {
-      rimraf.bind(null, outpath)
+    afterEach(function (done) {
+      rimraf(outpath, done);
     });
 
     after(function () {
