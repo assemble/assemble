@@ -63,6 +63,7 @@
     "plasma": "^0.4.0",
     "pretty-hrtime": "^0.2.1",
     "remarked": "^0.1.4",
+    "rte": "^0.2.2",
     "semver": "^2.3.1",
     "template": "^0.2.1",
     "through2": "^0.5.1",
