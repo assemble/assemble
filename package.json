@@ -52,6 +52,7 @@
     "flatten-array": "0.0.4",
     "fs-utils": "^0.4.3",
     "getobject": "^0.1.0",
+    "globby": "^0.1.1",
     "gray-matter": "^0.4.2",
     "gulp-util": "^2.2.19",
     "handlebars": "^2.0.0-alpha.4",
