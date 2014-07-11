@@ -65,6 +65,7 @@
     "load-options": "^0.3.0",
     "lodash": "^2.4.1",
     "minimist": "^0.2.0",
+    "normalize-path": "^0.1.1",
     "orchestrator": "^0.3.3",
     "parse-filepath": "^0.3.0",
     "plasma": "^0.4.0",
