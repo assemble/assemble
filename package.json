@@ -44,6 +44,7 @@
     "archy": "0.0.2",
     "array-flatten": "0.0.2",
     "arrayify-compact": "^0.1.0",
+    "assemble-collections": "^0.1.6",
     "chalk": "^0.5.0",
     "debug": "^1.0.2",
     "escape-delims": "^0.1.1",
