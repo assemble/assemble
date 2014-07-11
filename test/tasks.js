@@ -1,6 +1,6 @@
 'use strict';
 
-var assemble = require('../');
+var assemble = require('..');
 var Q = require('q');
 var should = require('should');
 require('mocha');

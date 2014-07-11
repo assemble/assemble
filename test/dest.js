@@ -1,19 +1,20 @@
 'use strict';
 
-var assemble = require('../');
+
+var assemble = require('..');
 var should = require('should');
 var join = require('path').join;
 var rimraf = require('rimraf');
 var fs = require('graceful-fs');
-
 require('mocha');
 
+assemble.enable('minimal config');
 var outpath = join(__dirname, './out-fixtures');
+
 
 describe('assemble output stream', function() {
   describe('dest()', function() {
     beforeEach(function (done) {
-      assemble.enable('minimal');
       rimraf(outpath, done);
     });
     afterEach(function (done) {
@@ -27,7 +28,7 @@ describe('assemble output stream', function() {
       done();
     });
 
-    it('should return a output stream that writes files', function(done) {
+    it('should return an output stream that writes files', function(done) {
       var instream = assemble.src(join(__dirname, './fixtures/**/*.txt'));
       var outstream = assemble.dest(outpath);
       instream.pipe(outstream);
@@ -51,7 +52,7 @@ describe('assemble output stream', function() {
       });
     });
 
-    it('should return a output stream that does not write non-read files', function(done) {
+    it('should return an output stream that does not write non-read files', function(done) {
       var instream = assemble.src(join(__dirname, './fixtures/**/*.txt'), {read:false});
       var outstream = assemble.dest(outpath);
       instream.pipe(outstream);
@@ -74,7 +75,7 @@ describe('assemble output stream', function() {
       });
     });
 
-    it('should return a output stream that writes streaming files', function(done) {
+    it('should return an output stream that writes streaming files', function(done) {
       var instream = assemble.src(join(__dirname, './fixtures/**/*.txt'), {buffer:false});
       var outstream = instream.pipe(assemble.dest(outpath));
 
@@ -96,19 +97,19 @@ describe('assemble output stream', function() {
       });
     });
 
-    it('should return a output stream that writes streaming files into new directories', function(done) {
+    it('should return an output stream that writes streaming files to new directories', function(done) {
       testWriteDir({}, done);
     });
 
-    it('should return a output stream that writes streaming files into new directories (buffer: false)', function(done) {
+    it('should return an output stream that writes streaming files to new directories (buffer: false)', function(done) {
       testWriteDir({buffer: false}, done);
     });
 
-    it('should return a output stream that writes streaming files into new directories (read: false)', function(done) {
+    it('should return an output stream that writes streaming files to new directories (read: false)', function(done) {
       testWriteDir({read: false}, done);
     });
 
-    it('should return a output stream that writes streaming files into new directories (read: false, buffer: false)', function(done) {
+    it('should return an output stream that writes streaming files to new directories (read: false, buffer: false)', function(done) {
       testWriteDir({buffer: false, read: false}, done);
     });
 

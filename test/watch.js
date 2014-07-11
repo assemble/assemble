@@ -1,6 +1,6 @@
 'use strict';
 
-var assemble = require('../');
+var assemble = require('..');
 var fs = require('graceful-fs');
 var rimraf = require('rimraf');
 var mkdirp = require('mkdirp');
