@@ -34,7 +34,7 @@ describe('assemble output stream', function() {
 
       outstream.on('error', done);
       outstream.on('data', function(file) {
-        // data should be re-emitted right
+        // data should be re-emitted correctly
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
@@ -58,7 +58,7 @@ describe('assemble output stream', function() {
 
       outstream.on('error', done);
       outstream.on('data', function(file) {
-        // data should be re-emitted right
+        // data should be re-emitted correctly
         should.exist(file);
         should.exist(file.path);
         should.not.exist(file.contents);
@@ -80,7 +80,7 @@ describe('assemble output stream', function() {
 
       outstream.on('error', done);
       outstream.on('data', function(file) {
-        // data should be re-emitted right
+        // data should be re-emitted correctly
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
@@ -118,14 +118,13 @@ describe('assemble output stream', function() {
 
       outstream.on('error', done);
       outstream.on('data', function(file) {
-        // data should be re-emitted right
+        // data should be re-emitted correctly
         should.exist(file);
         should.exist(file.path);
         join(file.path,'').should.equal(join(outpath, './stuff'));
       });
       outstream.on('end', function() {
         fs.exists(join(outpath, 'stuff'), function(exists) {
-          /* stinks that ok is an expression instead of a function call */
           /* jshint expr: true */
           should(exists).be.ok;
           /* jshint expr: false */

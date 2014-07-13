@@ -12,9 +12,9 @@ var should = require('should');
 var assemble = require('..');
 
 describe('assemble config', function () {
-  beforeEach(function() {
-    assemble.clearCache();
-  });
+  // beforeEach(function() {
+  //   assemble.clearCache();
+  // });
 
   describe('.process()', function () {
     it("should resolve template strings in config values", function () {
@@ -35,6 +35,20 @@ describe('assemble config', function () {
         d: '${e.f.g}',
         e: {f:{g:'h'}}});
       config.cache.a.should.equal('h');
+    });
+
+    describe('when functions are defined on the config', function() {
+      assemble.data({upper: function(foo) {
+        return (foo + '-boom-pow!').toUpperCase();
+      }});
+
+      it("should used them on config templates", function() {
+        assemble.data({fez: 'bang', aaa: 'bbb'});
+        assemble.data({whistle: '<%= upper(fez) %>'});
+
+        // console.log(assemble.get('data'))
+        // assemble.get('data.whistle').should.equal('BANG-BOOM-POW!');
+      });
     });
   });
 });
