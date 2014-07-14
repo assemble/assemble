@@ -8,6 +8,10 @@ require('mocha');
 
 describe('assemble input stream', function() {
 
+  before(function () {
+    assemble.init();
+  });
+
   describe('src()', function() {
 
     describe('minimal config - enabled', function () {
