@@ -1,3 +1,5 @@
+If `expand` is defined as true, the value will be set using [expander].
+
 **Example**
 
 ```js
@@ -7,4 +9,8 @@ assemble.set('a', {b: 'c'});
 assemble.set('a', {b: 'c'}, true);
 ```
 
-Visit [expander's docs](https://github.com/tkellen/expander) for more info.
+Visit the [expander] docs for more info.
+
+
+[expander]: https://github.com/tkellen/expander
+[getobject]: https://github.com/cowboy/node-getobject
