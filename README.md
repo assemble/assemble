@@ -1,4 +1,4 @@
-# assemble [![NPM version](https://badge.fury.io/js/assemble.png)](http://badge.fury.io/js/assemble)  [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble)
+# assemble [![NPM version](https://badge.fury.io/js/assemble.png)](http://badge.fury.io/js/assemble)  [![Build Status](https://travis-ci.org/assemble/assemble.png)](https://travis-ci.org/assemble/assemble) 
 
 > Static site generator for Grunt.js, Yeoman and Node.js. Used by Zurb Foundation, Zurb Ink, H5BP/Effeckt, Less.js / lesscss.org, Topcoat, Web Experience Toolkit, and hundreds of other projects to build sites, themes, components, documentation, blogs and gh-pages.
 
@@ -12,6 +12,14 @@ npm i assemble --save-dev
 ```
 
 ## API
+Module dependencies.
+  
+
+
+Local modules.
+  
+
+
 ## Assemble
 
 The Assemble constructor is Assemble's parent storage class.
@@ -23,11 +31,15 @@ Optionally initialize a new `Assemble` with the given `context`.
 var config = new Assemble({foo: 'bar'});
 ```
 
-* `context` {Object}
+* `context` {Object}   
+
+
+Extend `Assemble`
+  
 
 
 Expose middleware.
-
+  
 
 
 ### .task
@@ -42,8 +54,17 @@ assemble.task('docs', function() {
 });
 ```
 
-* `name` {String}
-* `fn` {Function}
+* `name` {String} 
+* `fn` {Function}   
+
+
+### .use
+
+TODO
+
+* stage {[type]} 
+* plugins {[type]}  
+* `return` {[type]} 
 
 
 ### .src
@@ -59,7 +80,7 @@ assemble.task('docs', function() {
 });
 ```
 
-* `filepath` {String}
+* `filepath` {String}   
 
 
 ### .dest
@@ -75,22 +96,19 @@ assemble.task('docs', function() {
 });
 ```
 
-* `filepath` {String}
+* `filepath` {String}   
 
 
-### .use
+### .collection
 
-If the option is true, use the given middleware, otherwise use noop.
+This is Assemble's internal collection method, but it's exposed as a public method
+so it can be replaced with a custom `collection` method.
 
-**Example**
-```js
- return fs.src(pattern, options)
-   .pipe(this.use(options.parse, this.parse)(options))
-   .pipe(this.use(options.render, this.parse)(options));
-```
+The collection method returns a plugin used to create index
+and related-pages for collections.
 
-* `option` {Mixed}: a value that can be truthy if the middleware should be used.
-* `middleware` {Function}: The middleware to return when `option` is truthy
+* `options` {Object}: Options used to setup collection definitions.  
+* `return` {Stream} plugin used in the pipeline. 
 
 
 ### .partial
@@ -110,9 +128,9 @@ assemble.partial('footer', str);
 var footer = assemble.partial('footer');
 ```
 
-* `key` {String}
-* `str` {String}
-* `return` {Object} parsed partial
+* `key` {String} 
+* `str` {String}  
+* `return` {Object} parsed partial 
 
 
 ### .partials
@@ -121,21 +139,13 @@ Returns an object with all the parsed partials by their name.
 Internally uses the resolved partial filepaths from `options.partials`
 to read in and store any partials not already stored.
 
-**Example**
+**Example:**
 
 ```js
-// get all the partials and pass them to Handlebars for use
-var Handlebars = require('handlebars');
-var _ = require('lodash');
-
-var partials = assemble.partials();
-_(partials).forEach(function (partial, name) {
-  Handlebars.registerPartial(name, partial.content);
-});
-
+assemble.partials('templates/partials/*.hbs');
 ```
-
-* `return` {Object} all the parsed partials
+ 
+* `return` {Object} 
 
 
 ### .layout
@@ -155,9 +165,9 @@ assemble.layout('default', str);
 var default = assemble.layout('default');
 ```
 
-* `key` {String}
-* `str` {String}
-* `return` {Object} parsed layout
+* `key` {String} 
+* `str` {String}  
+* `return` {Object} parsed layout 
 
 
 ### .layouts
@@ -177,191 +187,10 @@ var layouts = assemble.layouts();
 _(layouts).forEach(function (layout, name) {
   assembleLayouts.set(name, layout);
 });
-
 ```
 
-* `return` {Object} all the parsed layouts
-
-
-### .set
-
-Assign `value` to `key`.
-
-**Example**
-
-```js
-assemble.set('a', {b: 'c'});
-
-// expand template strings with expander
-assemble.set('a', {b: 'c'}, true);
-```
-
-Visit [expander's docs](https://github.com/tkellen/expander) for more info.
-
-* `key` {String}
-* `value` {*}
-* `expand` {Boolean}
-* `return` {Assemble} for chaining
-
-
-### .get
-
-Return the stored value of `key`.
-
-```js
-assemble.set('foo', 'bar')
-assemble.get('foo')
-// => "bar"
-```
-
-* `key` {*}
-* `create` {Boolean}
-* `return` {*}
-
-
-### .constant
-
-Set a constant on the config.
-
-**Example**
-
-```js
-assemble.constant('site.title', 'Foo');
-```
-
-* `key` {String}
-* `value` {*}
-
-
-### .enabled (key)
-
-Check if `key` is enabled (truthy). (express inspired)
-
-```js
-assemble.enabled('foo')
-// => false
-
-assemble.enable('foo')
-assemble.enabled('foo')
-// => true
-```
-
-* `key` {String}
-* `return` {Boolean}
-
-
-### .disabled (key)
-
-Check if `key` is disabled. (express inspired)
-
-```js
-assemble.disabled('foo')
-// => true
-
-assemble.enable('foo')
-assemble.disabled('foo')
-// => false
-```
-
-* `key` {String}
-* `return` {Boolean}
-
-
-### .enable (key)
-
-Enable `key`.  (express inspired)
-
-**Example**
-
-```js
-assemble.enable('foo');
-```
-
-* `key` {String}
-* `return` {Assemble} for chaining
-
-
-### .disable (key)
-
-Disable `key`. (express inspired)
-
-**Example**
-
-```js
-assemble.disable('foo');
-```
-
-* `key` {String}
-* `return` {Assemble} for chaining
-
-
-### .merge
-
-Extend the config with the given object. This method is chainable.
-
-**Example**
-
-```js
-assemble
-  .merge({foo: 'bar'}, {baz: 'quux'});
-  .merge({fez: 'bang'});
-```
-
-* `return` {Assemble} for chaining
-
-
-### .config
-
-Extend the config with the given object. This method is chainable.
-
-**Example**
-
-```js
-assemble
-  .extend({foo: 'bar'}, {baz: 'quux'});
-  .extend({fez: 'bang'});
-```
-
-* `arguments` {Object}
-* `return` {Assemble} for chaining
-
-
-### .options
-
-Extend the options.
-
-**Example**
-
-```js
-assemble
-  .options({layouts: 'src/layouts'})
-  .options({partials: 'src/partials/*.hbs'});
-```
-
-* `options` {Object}
-* `return` {Assemble} for chaining
-
-
-### .plasma
-
-Extend the context with the given object using [plasma](https://github.com/jonschlinkert/plasma).
-
-**Example**
-
-```js
-assemble
-  .plasma({foo: 'bar'}, {baz: 'quux'});
-  .plasma({fez: 'bang'});
-```
-
-* `return` {Assemble} for chaining
-
-
-### .data
-
-Proxy for `config.plasma()`.
-
-* `return` {Assemble} for chaining
+ 
+* `return` {Object} all the parsed layouts 
 
 
 ### .engine
@@ -412,46 +241,59 @@ assemble.engine('textile', require('textile-engine'));
 In this case, it is expected that the module export a `render` function which
 will be passed content data (after removing any front matter).
 
-* `ext` {String}
-* `fn` {Function}
-* `options` {Object}
-* `return` {Assemble} for chaining
+* `ext` {String} 
+* `fn` {Function} 
+* `options` {Object}  
+* `return` {Assemble} for chaining 
 
 
-### .engine
+### .render
 
-* `data` {Object}
-* `options` {Object}
+This is Assemble's internal render method, but it's exposed as a public method
+so it can be replaced with a custom `render` method.
+
+* `data` {Object}: Data to pass to registered template engines. 
+* `options` {Object}: Options to pass to registered template engines.  
+* `return` {String} 
 
 
-### .parser
+### .renderFile
 
-* `str` {String}: Un-parsed file content.
-* `options` {Object}: Options to pass to the parser.
+This is Assemble's internal render method, but it's exposed as a public method
+so it can be replaced with a custom `render` method.
+
+* `data` {Object}: Data to pass to registered template engines. 
+* `options` {Object}: Options to pass to registered template engines.  
+* `return` {String} 
 
 
 ### .parse
 
-Register `fn` used to parse front matter.
+Register a parser `fn` to be used on each `.src` file. This is used to parse
+front matter, but can be used for any kind of parsing.
 
 By default, Assemble will parse front matter using [gray-matter][gray-matter].
-It is probably not necessary to register additional parsing functions, since
-gray-matter can support almost any format, but this is cusomizable if
-necessary or if a non-supported format is required.
+For front-matter in particular it is probably not necessary to register additional
+parsing functions, since gray-matter can support almost any format, but this is
+cusomizable if necessary or if a non-supported format is required.
 
 **Example:**
 
 ```js
-assemble.parse(function(data) {
-  return JSON.parse(data);
+assemble.parser('uppercase', function (assemble) {
+  return function (file, options, encoding) {
+    file.contents = new Buffer(file.contents.toString().toUpperCase());
+    return file;
+  };
 });
 ```
 
 [gray-matter]: https://github.com/assemble/gray-matter
 
-* `name` {String}
-* `fn` {Function}
-* `return` {Assemble} for chaining
+* `name` {String}: Optional name of the parser, for debugging. 
+* `options` {Object}: Options to pass to parser. 
+* `fn` {Function}: The parsing function.  
+* `return` {Assemble} for chaining 
 
 
 ### .highlight
@@ -472,54 +314,7 @@ assemble.highlight(function(code, lang) {
 });
 ```
 
-* `fn` {Function}
-
-
-### .process
-
-Recursively expand template strings into their resolved values.
-
-**Example**
-
-```js
-assemble.process({a: '<%= b %>', b: 'c'});
-//=> {a: 'c', b: 'c'}
-```
-
-* `key` {String}
-* `value` {Any}
-
-
-### .remove(key)
-
-Remove an element by `key`.
-
-**Example**
-
-```js
-assemble.remove('foo');
-```
-
-* `key` {*}
-
-
-### .omit
-
-Omit properties from the config.
-
-**Example**
-
-```js
-assemble
-  .omit('foo');
-  .omit('foo', 'bar');
-  .omit(['foo']);
-  .omit(['foo', 'bar']);
-```
-
-**Params:**
-
-* `return` {Assemble} for chaining
+* `fn` {Function}   
 
 
 ### .watch
@@ -534,31 +329,31 @@ assemble.task('watch', function() {
 
 **Params:**
 
-* `glob` {String|Array}: Filepaths or glob patterns.
-* `options` {String}
-* `fn` {Function}: Task(s) to watch.
-* `return` {String}
+* `glob` {String|Array}: Filepaths or glob patterns. 
+* `options` {String} 
+* `fn` {Function}: Task(s) to watch.  
+* `return` {String} 
 
 
 Expose `Assemble`
 
 ## Authors
-
+ 
 **Jon Schlinkert**
-
+ 
 + [github/jonschlinkert](https://github.com/jonschlinkert)
-+ [twitter/jonschlinkert](http://twitter.com/jonschlinkert)
-
++ [twitter/jonschlinkert](http://twitter.com/jonschlinkert) 
+ 
 **Brian Woodward**
-
+ 
 + [github/doowb](https://github.com/doowb)
-+ [twitter/doowb](http://twitter.com/doowb)
++ [twitter/doowb](http://twitter.com/doowb) 
 
 
 ## License
-Copyright (c) 2014 Jon Schlinkert, Brian Woodward, contributors.
+Copyright (c) 2014 Jon Schlinkert, Brian Woodward, contributors.  
 Released under the MIT license
 
 ***
 
-_This file was generated by [verb-cli](https://github.com/assemble/verb-cli) on July 07, 2014._
+_This file was generated by [verb-cli](https://github.com/assemble/verb-cli) on July 15, 2014._

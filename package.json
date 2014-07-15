@@ -93,7 +93,8 @@
     "q": "^1.0.1",
     "rimraf": "^2.2.8",
     "should": "^4.0.4",
-    "verb": "^0.2.13"
+    "verb": "^0.2.13",
+    "verb-tag-jscomments": "^0.1.4"
   },
   "keywords": [
     "HTML",

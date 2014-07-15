@@ -1,12 +1,24 @@
 If `expand` is defined as true, the value will be set using [expander].
 
-**Example**
+**Examples:**
 
 ```js
+// as a key-value pair
 assemble.set('a', {b: 'c'});
 
-// expand template strings with expander
-assemble.set('a', {b: 'c'}, true);
+// or as an object
+assemble.set({a: {b: 'c'}});
+
+// chaining is possible
+assemble
+  .set({a: {b: 'c'}})
+  .set('d', 'e');
+```
+
+Expand template strings with expander:
+
+```js
+assemble.set('a', {b: '${c}', c: 'd'}, true);
 ```
 
 Visit the [expander] docs for more info.

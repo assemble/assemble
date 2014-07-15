@@ -25,6 +25,7 @@ Assemble gives you a number of ways to specify data
 
 
 
+
 #### data.json or data.yml
 
 Unlike other data files, data from `data.json` or `data.yml` is merged directly onto the root `data` object.
