@@ -80,20 +80,13 @@ describe('assemble config', function () {
       assemble.get('c').should.equal('b');
     });
 
-    xit('should not expand values that are set after the template is defined.', function () {
-      assemble
-        .set('j', {k: '${l}'}, true)
-        .set('l', 'm');
-      assert(assemble.get('j.k') === undefined);
-    });
-
-    it('should return the assemble when undefined', function () {
+    it('should return undefined when not set', function () {
       assemble.set('a', undefined).should.equal(assemble);
     });
   });
 
   describe('.get()', function () {
-    it('should return undefined when unset', function () {
+    it('should return undefined when no set', function () {
       assert(assemble.get('a') === undefined);
     });
 
@@ -105,20 +98,20 @@ describe('assemble config', function () {
 
 
   describe('.exists()', function () {
-    it('should return `false` when unset', function () {
-      assert(assemble.exists('alsjls') === false);
+    it('should return `false` when not set', function () {
+      assemble.exists('alsjls').should.be.false;
     });
 
     it('should return `true` when set.', function () {
       assemble.set('baba', 'zz');
-      assemble.exists('baba').should.be.true;
+      assemble.exists('baba').should.be.ok;
     });
   });
 
   describe('.enable()', function () {
     it('should set the value to true', function () {
       assemble.enable('foo').should.equal(assemble);
-      assemble.get('foo').should.be.true;
+      assemble.get('foo').should.be.ok;
     });
   });
 
@@ -136,13 +129,13 @@ describe('assemble config', function () {
 
     it('should return true when set', function () {
       assemble.set('a', 'b');
-      assemble.enabled('a').should.be.true;
+      assemble.enabled('a').should.be.ok;
     });
   });
 
   describe('.disabled()', function () {
     it('should default to true', function () {
-      assemble.disabled('xyz').should.be.true;
+      assemble.disabled('xyz').should.be.ok;
     });
 
     it('should return false when set', function () {
