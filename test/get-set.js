@@ -73,6 +73,14 @@ describe('assemble config', function () {
       assemble.get('j.k').should.eql('m');
     });
 
+    xit('should expand template strings in the config regardless of the order defined.', function () {
+      assemble
+        .set('j', {k: '${l}'}, true)
+        .set('l', 'm');
+      assemble.cache.j.k.should.eql('m');
+      assemble.get('j.k').should.eql('m');
+    });
+
     it("should expand template strings when an object is set.", function () {
     	assemble.set({a: 'b'});
       assemble.set({c: '<%= a %>'});

@@ -35,7 +35,6 @@ describe('assemble options', function () {
       });
     });
 
-
     describe('.extend()', function () {
       it("should extend the options", function () {
         assemble.option.set({d: 'e', f: 'g'});

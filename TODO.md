@@ -14,7 +14,22 @@
 ## PR
 
 - [ ] docs
-- [ ] blog post explaining why "like gulp"
+- [ ] blog post
+			* uses vinyl
+			* uses orchestrator
+			* express-like
+			* 10 pages in ??? seconds (complexity?)
+			* 100 pages in ??? seconds (complexity?)
+			* 1k pages in ??? seconds (complexity?)
+			* 10k pages in 40 seconds
+			* 100k pages in 40 seconds
+
+
+## Docs
+
+- [x] plugin guide (use gulp's docs)
+- [x] engine guide (use consolidate)
+- [x] template guide (use whichever one you want)
 
 
 ## Code
@@ -26,15 +41,14 @@
 
 - [x] options/config
 - [ ] permalinks
-- [ ] rte
-
+- [x] rte
 
 - [x] data files
 - [x] context
 - [ ] assets
 - [x] front-matter parsing: gray-matter
 
-- [ ] engines/consolidate
+- [x] engines/consolidate
 - [ ] helpers
 
 Views
@@ -44,10 +58,8 @@ Views
 - [ ] posts
 - [ ] partials
 
-- [ ] index
-- [ ] pagination
-
-
+- [x] index
+- [x] pagination
 
 
 ## Handlebars
