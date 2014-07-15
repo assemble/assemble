@@ -6,7 +6,7 @@
  */
 
 var matter = require('gray-matter');
-var expect = require('chai').expect;
+var should = require('should');
 
 
 describe('assemble front-matter', function() {
@@ -25,12 +25,12 @@ describe('assemble front-matter', function() {
 
     it("yaml file starts and ends with --- has content", function() {
       var page = matter.read('./test/fixtures/yfm/yfm.hbs');
-      expect(simpleExpected.data).to.deep.equal(page.data);
+      simpleExpected.data.should.eql(page.data);
     });
 
     it("hbs file with complex yaml data and content", function() {
       var page = matter.read("./test/fixtures/yfm/complex.hbs");
-      expect(complexExpected).to.deep.equal(page);
+      complexExpected.should.eql(page);
     });
 
   });
@@ -57,22 +57,22 @@ describe('assemble front-matter', function() {
 
     it("yaml string starts with --- no content", function() {
       var page = matter(simple1);
-      expect({}).to.deep.equal(page.data);
+      ({}).should.eql(page.data);
     });
 
     it("yaml string starts and ends with --- no content", function() {
       var page = matter(simple2);
-      expect(simpleExpected.data).to.deep.equal(page.data);
+      simpleExpected.data.should.eql(page.data);
     });
 
     it("yaml string starts and ends with --- has content", function() {
       var page = matter(simple3);
-      expect(simpleExpected.data).to.deep.equal(page.data);
+      simpleExpected.data.should.eql(page.data);
     });
 
     it("hbs string with complex yaml data and content", function() {
       var page = matter(complex);
-      expect(complexExpected).to.deep.equal(page);
+      complexExpected.should.eql(page);
     });
 
   });
