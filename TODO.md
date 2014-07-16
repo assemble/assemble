@@ -56,7 +56,7 @@ Views
 - [x] layouts
 - [ ] pages
 - [ ] posts
-- [ ] partials
+- [x] partials
 
 - [x] index
 - [x] pagination
@@ -64,7 +64,5 @@ Views
 
 ## Handlebars
 
-- [ ] register layouts as partials
-- [ ] register/compile partials
-- [ ] register/compile pages
+- [x] partials
 - [ ] helpers
