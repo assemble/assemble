@@ -130,6 +130,14 @@ describe('assemble output stream', function() {
 
     describe('minimal config - disabled', function () {
 
+      beforeEach(function () {
+        assemble.set('ext', '.txt');
+      });
+
+      afterEach(function () {
+        assemble.set('ext', '.html');
+      });
+
       it('should return a stream', function (done) {
         var stream = assemble.dest(join(__dirname, './fixtures/'));
         should.exist(stream);
