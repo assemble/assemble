@@ -23,7 +23,11 @@
 			* 1k pages in ??? seconds (complexity?)
 			* 10k pages in 40 seconds
 			* 100k pages in 40 seconds
+- [ ] * speed
 
+> Since we're hitting a limited number of small files repeatedly, we want the advantages of caching the data for these files. In these cases, we read all of the files with `fs.readFile` during the `init` phase, parse the files into `file` objects that are stored in a hash, allowing them to be accessed directly from memory on each request. It will always be fastest to avoid the file system entirely during this request cycle.
+
+> We use streams in cases where files are read, parsed and rendered in one step.
 
 ## Docs
 
