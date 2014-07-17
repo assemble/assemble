@@ -49,6 +49,7 @@
     "chalk": "^0.5.0",
     "escape-delims": "^0.1.1",
     "event-stream": "^3.1.5",
+    "eventemitter2": "^0.4.14",
     "expander": "^0.3.3",
     "fs-utils": "^0.4.3",
     "getobject": "^0.1.0",

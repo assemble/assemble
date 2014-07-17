@@ -47,11 +47,11 @@ describe('assemble data', function() {
 
   describe('.namespace()', function() {
     it("should namespace the data using the basename of the file.", function() {
-      assemble.namespace('test/fixtures/data/alert.json');
+      assemble.namespace(':basename', 'test/fixtures/data/alert.json');
       assemble.get('data').should.have.property('alert');
     });
     it("should namespace the data using the basename of the file.", function() {
-      assemble.namespace('test/fixtures/data/data.json');
+      assemble.namespace(':basename', 'test/fixtures/data/data.json');
       assemble.get('data').should.have.property('root');
       assemble.get('data').should.not.have.property('data');
     });
