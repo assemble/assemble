@@ -41,6 +41,20 @@
 - [ ] update/publish plugins
 
 
+## Methods
+
+The following methods still need to be finished
+
+- [ ] `.config`
+- [ ] `.options`
+- [ ] `.page`
+- [ ] `.pages`
+- [ ] `.partial`
+- [ ] `.partials`
+- [ ] `.layout`
+- [ ] `.layouts`
+
+
 ### Features
 
 - [x] options/config

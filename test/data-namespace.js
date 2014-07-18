@@ -11,10 +11,11 @@ var should = require('should');
 var assemble = require('..');
 
 
-describe('assemble partials', function () {
-  describe('.partials()', function () {
-    xit("should cache partials.", function () {
-      //
+describe('assemble data', function () {
+  describe('data.namespace()', function () {
+    xit("should namespace the given data.", function () {
+      // assemble.namespace(':basename', 'foo.json');
+      // assemble.namespace('site', {title: 'Blog'});
     });
   });
 });

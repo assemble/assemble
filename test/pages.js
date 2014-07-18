@@ -11,9 +11,9 @@ var should = require('should');
 var assemble = require('..');
 
 
-describe('assemble partials', function () {
-  describe('.partials()', function () {
-    xit("should cache partials.", function () {
+describe('assemble pages', function () {
+  describe('.pages()', function () {
+    xit("should generate pages from JSON.", function () {
       //
     });
   });
