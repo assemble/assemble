@@ -7,7 +7,7 @@
 
 'use strict';
 
-var expect = require('expect');
+var expect = require('chai').expect;
 var helper = require('../lib/utils/helper');
 
 var one = require('./fixtures/helpers/one')();
@@ -21,8 +21,8 @@ describe('assemble helpers', function () {
         var options = {
           helpers: 'test/fixtures/helpers/one.js'
         };
-        var actual = helper(options);
-        // console.log('actual');
+        expect(helper(options)).to.be.an('object');
+        expect(helper(options)).to.have.property('one');
     });
 
     it('should load helpers from a function', function () {
@@ -33,8 +33,8 @@ describe('assemble helpers', function () {
             };
           }
         };
-        var actual = helper(options);
-        // console.log('actual');
+        expect(helper(options)).to.be.an('object');
+        expect(helper(options)).to.have.property('foo');
     });
 
     it('should load helpers from an object', function () {
@@ -43,8 +43,8 @@ describe('assemble helpers', function () {
             foo: function () { return 'hi'; }
           }
         };
-        var actual = helper(options);
-        // console.log('actual');
+        expect(helper(options)).to.be.an('object');
+        expect(helper(options)).to.have.property('foo');
     });
 
     it('should load helpers from an array', function () {
@@ -60,8 +60,11 @@ describe('assemble helpers', function () {
             ]
           ]
         };
-        var actual = helper(options);
-        // console.log('actual');
+        expect(helper(options)).to.be.an('object');
+        expect(helper(options)).to.have.property('two');
+        expect(helper(options)).to.have.property('foo');
+        expect(helper(options)).to.have.property('three');
+        expect(helper(options)).to.have.property('bar');
     });
 
   });
