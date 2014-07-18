@@ -7,10 +7,9 @@
 
 'use strict';
 
-var assert = require('assert');
 var should = require('should');
 var assemble = require('..');
-var LayoutEngine = require('../lib/view/layout-engine');
+var Layout = require('../lib/view/layout');
 
 
 describe('assemble engines', function () {
@@ -32,7 +31,7 @@ describe('assemble engines', function () {
       var handlebars = require('../lib/engine/handlebars');
       assemble.engine('hbs', handlebars);
 
-      var layoutEngine = new LayoutEngine(assemble);
+      var layoutEngine = new Layout(assemble);
       should.exist(layoutEngine._layouts['.hbs']);
       should.exist(layoutEngine._layouts['.hbs']._bodyRe);
     });
