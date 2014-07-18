@@ -72,6 +72,7 @@
     "plasma": "^0.4.0",
     "pretty-hrtime": "^0.2.1",
     "remarked": "^0.1.4",
+    "resolve-dep": "^0.4.1",
     "rte": "^0.3.2",
     "semver": "^2.3.1",
     "template": "^0.2.1",
@@ -82,6 +83,7 @@
   },
   "devDependencies": {
     "chai": "^1.9.1",
+    "expect": "^0.1.1",
     "graceful-fs": "^3.0.2",
     "gulp": "^3.8.5",
     "gulp-jshint": "^1.6.3",
