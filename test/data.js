@@ -34,7 +34,6 @@ describe('assemble data', function() {
     });
   });
 
-
   describe('.root()', function() {
     it("should merge the value of a nested `data` property onto the root of the given object.", function() {
       var root = assemble.root({data: {x: 'x'}, y: 'y', z: 'z'});
