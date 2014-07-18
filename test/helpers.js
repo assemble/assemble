@@ -7,8 +7,9 @@
 
 'use strict';
 
-var expect = require('chai').expect;
-var helper = require('../lib/utils/helper');
+var should = require('should');
+
+var helper = require('../lib/engine/helpers');
 var one = require('./fixtures/helpers/one')();
 var two = require('./fixtures/helpers/two');
 var three = require('./fixtures/helpers/three');
@@ -16,13 +17,12 @@ var three = require('./fixtures/helpers/three');
 
 describe('assemble helpers', function () {
   describe('helper()', function () {
-
     it('should load helpers from a string', function () {
       var options = {
         helpers: 'test/fixtures/helpers/one.js'
       };
-      expect(helper(options)).to.be.an('object');
-      expect(helper(options)).to.have.property('one');
+			(typeof helper(options) === 'object').should.be.true;
+      helper(options).should.have.property('one');
     });
 
     it('should load helpers from a function', function () {
@@ -33,8 +33,8 @@ describe('assemble helpers', function () {
           };
         }
       };
-      expect(helper(options)).to.be.an('object');
-      expect(helper(options)).to.have.property('foo');
+			(typeof helper(options) === 'object').should.be.true;
+      helper(options).should.have.property('foo');
     });
 
     it('should load helpers from an object', function () {
@@ -43,8 +43,8 @@ describe('assemble helpers', function () {
           foo: function () { return 'hi'; }
         }
       };
-      expect(helper(options)).to.be.an('object');
-      expect(helper(options)).to.have.property('foo');
+			(typeof helper(options) === 'object').should.be.true;
+      helper(options).should.have.property('foo');
     });
 
     it('should load helpers from an array', function () {
@@ -60,11 +60,11 @@ describe('assemble helpers', function () {
           ]
         ]
       };
-      expect(helper(options)).to.be.an('object');
-      expect(helper(options)).to.have.property('two');
-      expect(helper(options)).to.have.property('foo');
-      expect(helper(options)).to.have.property('three');
-      expect(helper(options)).to.have.property('bar');
+			(typeof helper(options) === 'object').should.be.true;
+      helper(options).should.have.property('two');
+      helper(options).should.have.property('foo');
+      helper(options).should.have.property('three');
+      helper(options).should.have.property('bar');
     });
 
   });
