@@ -13,7 +13,7 @@ var assemble = require('..');
 
 describe('assemble partials', function () {
   describe('.partials()', function () {
-    xit("should cache partials.", function () {
+    xit('should cache partials.', function () {
       //
     });
   });

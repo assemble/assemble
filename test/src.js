@@ -7,15 +7,12 @@ var join = require('path').join;
 require('mocha');
 
 describe('assemble input stream', function() {
-
   before(function () {
     assemble.init();
   });
 
   describe('src()', function() {
-
     describe('minimal config - enabled', function () {
-
       beforeEach(function () {
         assemble.enable('minimal config');
       });
@@ -250,7 +247,7 @@ describe('assemble input stream', function() {
         stream.on('error', function () {
           done();
         });
-        stream.on('data', function (file) {
+        stream.on('data', function () {
           done(new Error('should have thrown an error'));
         });
       });

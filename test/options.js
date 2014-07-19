@@ -1,4 +1,4 @@
-/**
+/**!
  * Assemble <http://assemble.io>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
@@ -15,12 +15,12 @@ var assemble = require('..');
 describe('assemble options', function () {
   describe('.option()', function () {
     describe('.set()', function () {
-      it("should set options on `assemble.options`", function () {
+      it('should set options on `assemble.options`', function () {
         assemble.option.set('a', 'b');
         assemble.options.a.should.equal('b');
       });
 
-      it("should set options objects on `assemble.options`", function () {
+      it('should set options objects on `assemble.options`', function () {
         assemble.option.set({d: 'e', f: 'g'});
         assemble.options.d.should.equal('e');
         assemble.options.f.should.equal('g');
@@ -28,7 +28,7 @@ describe('assemble options', function () {
     });
 
     describe('.get()', function () {
-      it("should get options", function () {
+      it('should get options', function () {
         assemble.option.set({d: 'e', f: 'g'});
         assemble.option.get('d').should.equal('e');
         assemble.option.get('f').should.equal('g');
@@ -36,7 +36,7 @@ describe('assemble options', function () {
     });
 
     describe('.extend()', function () {
-      it("should extend the options", function () {
+      it('should extend the options', function () {
         assemble.option.set({d: 'e', f: 'g'});
         assemble.option.get('d').should.equal('e');
         assemble.option.get('f').should.equal('g');

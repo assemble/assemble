@@ -22,28 +22,28 @@ describe('assemble config', function () {
       assemble.get('a').should.equal('b');
     });
 
-    it("should set properties on the `cache` object.", function () {
+    it('should set properties on the `cache` object.', function () {
       assemble.set('a', 'b');
       assemble.cache.a.should.equal('b');
     });
 
-    it("should allow an object to be set directly.", function () {
+    it('should allow an object to be set directly.', function () {
       assemble.set({x: 'y'});
       assemble.cache.x.should.equal('y');
       assemble.get('x').should.equal('y');
     });
 
-    it("should set nested properties on the `cache` object.", function () {
+    it('should set nested properties on the `cache` object.', function () {
       assemble.set('c', {d: 'e'});
       assemble.get('c').d.should.equal('e');
     });
 
-    it("should use dot notation to `set` values.", function () {
+    it('should use dot notation to `set` values.', function () {
       assemble.set('h.i', 'j');
       assemble.get('h').should.eql({i: 'j'});
     });
 
-    it("should use dot notation to `get` values.", function () {
+    it('should use dot notation to `get` values.', function () {
       assemble.set('h', {i: 'j'});
       assemble.get('h.i').should.equal('j');
     });
@@ -81,7 +81,7 @@ describe('assemble config', function () {
       assemble.get('j.k').should.eql('m');
     });
 
-    it("should expand template strings when an object is set.", function () {
+    it('should expand template strings when an object is set.', function () {
     	assemble.set({a: 'b'});
       assemble.set({c: '<%= a %>'});
       assemble.cache.c.should.equal('b');

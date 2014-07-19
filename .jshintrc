@@ -23,5 +23,14 @@
   "strict": true,
   "sub": true,
   "undef": true,
-  "unused": true
+  "unused": true,
+  "globals": {
+    "define": true,
+    "before": true,
+    "after": true,
+    "describe": true,
+    "xdescribe": true,
+    "it": true,
+    "xit": true
+  }
 }

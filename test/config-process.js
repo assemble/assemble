@@ -18,17 +18,17 @@ describe('assemble config', function () {
   });
 
   describe('.process()', function () {
-    it("should resolve template strings in config values", function () {
+    it('should resolve template strings in config values', function () {
       var config = assemble.process({a: '<%= b %>', b: 'c'});
       config.cache.a.should.equal('c')
     });
 
-    it("should resolve es6 template strings in config values", function () {
+    it('should resolve es6 template strings in config values', function () {
       var config = assemble.process({a: '${b}', b: 'c'});
       config.cache.a.should.equal('c')
     });
 
-    it("should recursively resolve template strings.", function () {
+    it('should recursively resolve template strings.', function () {
       var config = assemble.process({
         a: '${b}',
         b: '${c}',
@@ -39,7 +39,7 @@ describe('assemble config', function () {
     });
 
     describe('when functions are defined on the config', function() {
-      it("should used them on config templates", function() {
+      it('should used them on config templates', function() {
 	      assemble.data({upper: function(str) {
 	        return str.toUpperCase();
 	      }});

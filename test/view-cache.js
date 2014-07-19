@@ -7,16 +7,14 @@
 
 'use strict';
 
-var assert = require('assert');
 var should = require('should');
 var assemble = require('..');
 
 
 describe('assemble view-cache', function () {
-  xdescribe('.lookup()', function () {
-
-    it('should return filepath when absolute', function () {
+  describe('new ViewCache()', function () {
+    xit('should instantiate a new ViewCache', function () {
+      // TODO
     });
-
   });
 });
