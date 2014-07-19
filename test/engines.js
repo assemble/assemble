@@ -32,8 +32,8 @@ describe('assemble engines', function () {
       assemble.engine('hbs', handlebars);
 
       var layout = new Layout(assemble);
-      should.exist(layout._layouts['.hbs']);
-      should.exist(layout._layouts['.hbs']._bodyRe);
+      should.exist(layout.layoutEngine['.hbs']);
+      should.exist(layout.layoutEngine['.hbs']._bodyRe);
     });
 
   });

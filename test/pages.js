@@ -97,7 +97,6 @@ describe('assemble pages', function () {
         newPage.path.should.equal(path.join(__dirname, 'fixtures/pages', 'home.hbs'));
         done();
       });
-
       stream.write(page);
     });
 
