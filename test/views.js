@@ -11,9 +11,9 @@ var should = require('should');
 var assemble = require('..');
 
 
-describe('assemble view-cache', function () {
-  describe('new ViewCache()', function () {
-    xit('should instantiate a new ViewCache', function () {
+describe('assemble views', function () {
+  describe('new Views()', function () {
+    xit('should create a new instance of Views', function () {
       // TODO
     });
   });
