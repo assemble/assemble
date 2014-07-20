@@ -32,9 +32,9 @@ function newFile(filename, contents) {
 describe('assemble pages', function () {
   var options = {
     pages: [
-      { filepath: 'one.hbs', data: { title: 'first'}, contents: '---\nmessage: from front matter\n---\n this is {{title}} {{message}}' },
-      { filepath: 'two.hbs', data: { title: 'second'}, contents: '---\nmessage: from front matter\n---\n this is {{title}} {{message}}' },
-      { filepath: 'three.hbs', data: { title: 'third'}, contents: '---\nmessage: from front matter\n---\n this is {{title}} {{message}}' }
+      { filepath: 'one.hbs', data: { title: 'first'}, content: '---\nmessage: from front matter\n---\n this is {{title}} {{message}}' },
+      { filepath: 'two.hbs', data: { title: 'second'}, content: '---\nmessage: from front matter\n---\n this is {{title}} {{message}}' },
+      { filepath: 'three.hbs', data: { title: 'third'}, content: '---\nmessage: from front matter\n---\n this is {{title}} {{message}}' }
     ]
   };
 
@@ -53,8 +53,8 @@ describe('assemble pages', function () {
     });
   });*/
   describe('pages()', function () {
-    it('should pass file when it isNull()', function (done) {
-      var stream = pages();
+    it('should create new files from array', function (done) {
+      var stream = pages(options.pages, options);
       var emptyFile = {
         isNull: function () {
           return true;
@@ -67,8 +67,8 @@ describe('assemble pages', function () {
       stream.write(emptyFile);
     });
 
-    it('should emit error when file isStream()', function (done) {
-      var stream = pages();
+    it('should create new files from object', function (done) {
+      var stream = pages(options.pages, options);
       var streamFile = {
         isNull: function () {
           return false;
@@ -81,23 +81,15 @@ describe('assemble pages', function () {
         err.message.should.equal('Streaming not supported');
         done();
       });
+      stream.on('data', function () {
+        done();
+      })
       stream.write(streamFile);
     });
 
 
-    it('should process a file.', function (done) {
-      var page = newFile('pages/home.hbs');
-      var stream = pages();
-
-      stream.on('data', function (newPage) {
-        should.exist(newPage);
-        should.exist(newPage.path);
-        should.exist(newPage.relative);
-        should.exist(newPage.contents);
-        newPage.path.should.equal(path.join(__dirname, 'fixtures/pages', 'home.hbs'));
-        done();
-      });
-      stream.write(page);
+    it('should create new files from string', function () {
+      var stream = pages(options.pages, options);
     });
 
   });
