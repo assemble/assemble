@@ -12,10 +12,6 @@ var outpath = join(__dirname, './out-fixtures');
 
 describe('assemble output stream', function() {
 
-  before (function () {
-    assemble.init();
-  });
-
   describe('dest()', function() {
 
     beforeEach(function (done) {
@@ -28,6 +24,7 @@ describe('assemble output stream', function() {
     describe('minimal config - enabled', function () {
 
       beforeEach(function () {
+        assemble.init();
         assemble.enable('minimal config');
       });
       afterEach(function () {
@@ -131,6 +128,7 @@ describe('assemble output stream', function() {
     describe('minimal config - disabled', function () {
 
       beforeEach(function () {
+        assemble.init();
         assemble.set('ext', '.txt');
       });
 
