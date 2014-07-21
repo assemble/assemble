@@ -7,13 +7,11 @@ var join = require('path').join;
 require('mocha');
 
 describe('assemble input stream', function() {
-  before(function () {
-    assemble.init();
-  });
 
   describe('src()', function() {
     describe('minimal config - enabled', function () {
       beforeEach(function () {
+        assemble.init();
         assemble.enable('minimal config');
       });
       afterEach(function () {
@@ -163,6 +161,10 @@ describe('assemble input stream', function() {
     });
 
     describe('minimal config - disabled', function () {
+
+      beforeEach(function () {
+        assemble.init();
+      });
 
       it('should return a stream', function (done) {
         var stream = assemble.src(join(__dirname, './fixtures/*.coffee'));
