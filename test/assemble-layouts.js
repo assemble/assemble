@@ -30,8 +30,6 @@ describe('assemble layouts', function () {
         layouts: [layoutPath]
       });
       assemble.layouts.should.have.property(filename);
-
-      console.log('assemble', assemble);
     });
 
     it('should return layouts as instances of a Vinyl File', function () {
@@ -42,6 +40,5 @@ describe('assemble layouts', function () {
       });
       assemble.layouts[filename].should.be.instanceOf(File);
     });
-
   });
 });
