@@ -36,6 +36,5 @@ describe('assemble layouts', function () {
       assemble.option.set('layouts', [layoutPath]);
       assemble.layouts[filename].should.be.instanceOf(File);
     });
-
   });
 });
