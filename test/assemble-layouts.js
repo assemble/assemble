@@ -26,20 +26,14 @@ describe('assemble layouts', function () {
     it('should return cached layouts based on a glob pattern.', function () {
       var layoutPath = 'test/fixtures/layouts/post.hbs';
       var filename = path.join(process.cwd(), layoutPath);
-      assemble.option.set({
-        layouts: [layoutPath]
-      });
+      assemble.option.set('layouts', [layoutPath]);
       assemble.layouts.should.have.property(filename);
-
-      console.log('assemble', assemble);
     });
 
     it('should return layouts as instances of a Vinyl File', function () {
       var layoutPath = 'test/fixtures/layouts/post.hbs';
       var filename = path.join(process.cwd(), layoutPath);
-      assemble.option.set({
-        layouts: [layoutPath]
-      });
+      assemble.option.set('layouts', [layoutPath]);
       assemble.layouts[filename].should.be.instanceOf(File);
     });
 
