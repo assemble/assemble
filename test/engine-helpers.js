@@ -62,7 +62,7 @@ describe('assemble helpers', function () {
       helper(options).should.have.property('foo');
     });
 
-    it('should load helpers from an array', function () {
+    it('should load different types of helpers from an array', function () {
       var options = {
         helpers: [
           'test/fixtures/helpers/two.js',

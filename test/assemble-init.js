@@ -19,10 +19,13 @@ describe('assemble init', function () {
       assemble.middleware.should.be.empty;
       assemble.plugins.should.be.empty;
       assemble.locals.should.be.empty;
-      // assemble.engines.should.be.empty; // engines get prepopulated in defaultConfig
       assemble.files.length.should.equal(0);
       assemble.files.cache.should.be.empty;
     });
-  });
 
+    it('should prepopulate default engines.', function () {
+      assemble.init();
+      Object.keys(assemble.engines).length.should.equal(2);
+    });
+  });
 });

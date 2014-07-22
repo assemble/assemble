@@ -18,7 +18,6 @@ describe('assemble helpers', function () {
   });
 
   describe('.helpers()', function () {
-
     it('should return an empty list of helpers.', function () {
       assemble.helpers().should.be.empty;
     });
@@ -32,5 +31,4 @@ describe('assemble helpers', function () {
     });
 
   });
-
 });
