@@ -14,6 +14,7 @@ var assemble = require('..');
 
 describe('assemble config', function () {
   beforeEach(function() {
+    assemble.init();
     assemble.omit('abcdefghijklmnopqrstuvwxyz'.split(''));
   });
 
