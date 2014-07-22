@@ -17,10 +17,10 @@ describe('assemble buffer', function () {
       assemble.init();
   });
 
-  describe('._buffer()', function () {
+  describe('.buffer()', function () {
 
     it('should return a stream', function (done) {
-      var stream = assemble._buffer();
+      var stream = assemble.buffer();
       should.exist(stream);
       should.exist(stream.on);
       done();
