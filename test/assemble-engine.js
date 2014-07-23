@@ -33,8 +33,7 @@ describe('assemble engines', function () {
 
       var layout = new Layout(assemble);
       should.exist(layout.layoutEngine['.hbs']);
-      should.exist(layout.layoutEngine['.hbs']._bodyRe);
+      should.exist(layout.layoutEngine['.hbs'].regex);
     });
-
   });
 });
