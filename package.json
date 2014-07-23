@@ -42,7 +42,6 @@
   },
   "dependencies": {
     "archy": "0.0.2",
-    "array-flatten": "0.0.2",
     "arrayify-compact": "^0.1.0",
     "assemble-collections": "^0.1.7",
     "assemble-layouts": "^0.1.6",
@@ -70,7 +69,6 @@
     "lookup-path": "^0.1.2",
     "minimist": "^0.2.0",
     "namespace-data": "^0.1.0",
-    "normalize-path": "^0.1.1",
     "orchestrator": "^0.3.3",
     "parse-filepath": "^0.3.0",
     "parseurl": "^1.1.3",
@@ -88,8 +86,6 @@
     "xtend": "^3.0.0"
   },
   "devDependencies": {
-    "chai": "^1.9.1",
-    "expect": "^0.1.1",
     "graceful-fs": "^3.0.2",
     "gulp": "^3.8.5",
     "gulp-jshint": "^1.6.3",
