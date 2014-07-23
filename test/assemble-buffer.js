@@ -12,13 +12,11 @@ var should = require('should');
 var assemble = require('..');
 
 describe('assemble buffer', function () {
-
   beforeEach(function () {
-      assemble.init();
+    assemble.init();
   });
 
   describe('.buffer()', function () {
-
     it('should return a stream', function (done) {
       var stream = assemble.buffer();
       should.exist(stream);
@@ -28,7 +26,5 @@ describe('assemble buffer', function () {
 
     xit('should buffer files', function () {
     });
-
   });
-
 });

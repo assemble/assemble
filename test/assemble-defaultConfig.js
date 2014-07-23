@@ -31,13 +31,12 @@ describe('assemble defaultConfig', function () {
       assemble.get('data').should.be.empty;
       assemble.get('front matter').should.be.empty;
 
-      assemble.get('parsers.hbs').should.exist;
-      assemble.get('parsers.md').should.exist;
+      // assemble.get('parsers.hbs').should.exist;
+      // assemble.get('parsers.md').should.exist;
       assemble.engines['.html'].should.exist;
       assemble.engines['.md'].should.exist;
       assemble.highlighter.should.exist;
 
     });
   });
-
 });
