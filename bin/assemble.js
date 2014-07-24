@@ -23,6 +23,14 @@ var cli = new Liftoff({
   extensions: interpret.jsVariants
 });
 
+// exit with 0 or 1
+var failed = false;
+process.once('exit', function(code) {
+  if (code === 0 && failed) {
+    process.exit(1);
+  }
+});
+
 // parse those args m8
 var cliPackage = require('../package');
 var versionFlag = argv.v || argv.version;
@@ -35,11 +43,12 @@ var toRun = tasks.length ? tasks : ['default'];
 var simpleTasksFlag = argv['tasks-simple'];
 var shouldLog = !argv.silent && !simpleTasksFlag;
 
+if (!shouldLog) {
+  gutil.log = function(){};
+}
+
 // wire up a few err listeners to liftoff
 cli.on('require', function (name) {
-  if (!shouldLog) {
-    return;
-  }
   gutil.log('Requiring external module', chalk.magenta(name));
 });
 
@@ -89,20 +98,15 @@ function handleArguments(env) {
   // we let them chdir as needed
   if (process.cwd() !== env.cwd) {
     process.chdir(env.cwd);
-    if (shouldLog) {
-      gutil.log(
-        'Working directory changed to',
-        chalk.magenta(tildify(env.cwd))
-      );
-    }
+    gutil.log(
+      'Working directory changed to',
+      chalk.magenta(tildify(env.cwd))
+    );
   }
 
   // this is what actually loads up the assemblefile
   require(env.configPath);
-
-  if (shouldLog) {
-    gutil.log('Using assemblefile', chalk.magenta(tildify(env.configPath)));
-  }
+  gutil.log('Using assemblefile', chalk.magenta(tildify(env.configPath)));
 
   var assembleInst = require(env.modulePath);
   logEvents(assembleInst);
@@ -142,17 +146,28 @@ function formatError(e) {
   if (!e.err) {
     return e.message;
   }
-  if (e.err.message) {
-    return e.err.message;
+
+  // PluginError
+  if (typeof e.err.showStack === 'boolean') {
+    return e.err.toString();
   }
-  return JSON.stringify(e.err);
+
+  // normal error
+  if (e.err.stack) {
+    return e.err.stack;
+  }
+
+  // unknown (string, number, etc.)
+  return new Error(String(e.err)).stack;
 }
 
 // wire up logging events
 function logEvents(assembleInst) {
 
   // total hack due to fucked up error management in orchestrator
-  assembleInst.on('err', function () {});
+  assembleInst.on('err', function () {
+    failed = true;
+  });
 
   assembleInst.on('task_start', function (e) {
     // TODO: batch these
@@ -173,10 +188,10 @@ function logEvents(assembleInst) {
     var time = prettyTime(e.hrDuration);
     gutil.log(
       '\'' + chalk.cyan(e.task) + '\'',
-      'errored after',
-      chalk.magenta(time),
-      chalk.red(msg)
+      chalk.red('errored after'),
+      chalk.magenta(time)
     );
+    gutil.log(msg);
   });
 
   assembleInst.on('task_not_found', function (err) {

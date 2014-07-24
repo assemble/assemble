@@ -9,17 +9,17 @@
 
 # Usage:
 #
-# To enable zsh <tab> completion for Assemble, add the following line (minus the
+# To enable zsh <tab> completion for assemble, add the following line (minus the
 # leading #, which is the zsh comment character) to your ~/.zshrc file:
 #
-# eval "$(Assemble --completion=zsh)"
+# eval "$(assemble --completion=zsh)"
 
 # Enable zsh autocompletion.
-function _Assemble_completion() {
+function _assemble_completion() {
   # Grab tasks
-  compls=$(Assemble --tasks-simple)
+  compls=$(assemble --tasks-simple)
   completions=(${=compls})
   compadd -- $completions
 }
 
-compdef _Assemble_completion Assemble
+compdef _assemble_completion assemble
