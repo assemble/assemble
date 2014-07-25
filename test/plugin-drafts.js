@@ -5,7 +5,7 @@ var fs = require('graceful-fs');
 var should = require('should');
 var rimraf = require('rimraf');
 var assemble = require('..');
-require('mocha');
+
 
 var drafts = require('../lib/plugins/drafts')(assemble);
 var actual = __dirname + '/drafts-actual';
@@ -24,8 +24,8 @@ describe('assemble drafts plugin', function() {
       rimraf(actual, done);
     });
 
-    describe('drafts', function () {
-      it('should have an empty `files` cache', function (done) {
+    describe('when `draft: true` is defined in front matter:', function () {
+      it('should not generate pages.', function (done) {
         var instream = assemble.src(path.join(__dirname, 'fixtures/drafts/*.hbs'));
         var outstream = assemble.dest(actual);
         instream.pipe(outstream);
