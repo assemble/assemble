@@ -25,7 +25,7 @@ describe('assemble init', function () {
 
     it('should prepopulate default engines.', function () {
       assemble.init();
-      Object.keys(assemble.engines).length.should.equal(2);
+      Object.keys(assemble.engines).length.should.equal(3);
     });
   });
 });
