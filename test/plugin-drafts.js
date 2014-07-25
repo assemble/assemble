@@ -20,9 +20,9 @@ describe('assemble drafts plugin', function() {
     beforeEach(function (done) {
       rimraf(actual, done);
     });
-    // afterEach(function (done) {
-    //   rimraf(actual, done);
-    // });
+    afterEach(function (done) {
+      rimraf(actual, done);
+    });
 
     describe('drafts', function () {
       it('should have an empty `files` cache', function (done) {
@@ -46,6 +46,5 @@ describe('assemble drafts plugin', function() {
         });
       });
     });
-
   });
 });
