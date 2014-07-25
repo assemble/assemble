@@ -12,7 +12,7 @@ var path = require('path');
 var File = require('gulp-util').File;
 var assemble = require('..');
 
-describe('assemble helpers', function () {
+xdescribe('assemble helpers', function () {
   beforeEach(function () {
     assemble.init();
   });
