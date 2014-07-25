@@ -14,7 +14,7 @@ var assemble = require('..');
 
 describe('assemble helpers', function () {
   beforeEach(function () {
-      assemble.init();
+    assemble.init();
   });
 
   describe('.helpers()', function () {
@@ -23,12 +23,10 @@ describe('assemble helpers', function () {
     });
 
     it('should return helpers based on a glob pattern.', function () {
-      var helpersPath = 'test/fixtures/helpers/one.js';
-      var filename = path.join(process.cwd(), helpersPath);
-      var helpers = assemble.helpers([helpersPath]);
-      helpers.should.have.property('one');
-      helpers['one'].should.be.function;
+      var fixture = __dirname + '/fixtures/helpers/wrapped.js';
+      var helpers = assemble.helpers(fixture);
+      helpers.should.have.property('wrapped');
+      helpers['wrapped'].should.be.function;
     });
-
   });
 });

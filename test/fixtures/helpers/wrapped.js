@@ -2,7 +2,7 @@
 
 module.exports = function () {
   return {
-    'one': function () {
+    'wrapped': function () {
       return 'hi';
     }
   };

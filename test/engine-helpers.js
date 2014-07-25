@@ -8,102 +8,178 @@
 'use strict';
 
 var should = require('should');
-var helper = require('../lib/engine/helpers');
+var helpers = require('../lib/engine/helpers');
+
 
 describe('assemble helpers', function () {
-  describe('helper()', function () {
+
+  describe('helper.fromStr()', function () {
     it('should load helpers from a string', function () {
-      var options = {
-        helpers: 'test/fixtures/helpers/one.js'
-      };
-      (typeof helper(options) === 'object').should.be.true;
-      helper(options).should.have.property('one');
+      var str = __dirname + '/fixtures/helpers/wrapped.js'
+      var actual = helpers.fromStr(str);
+      (typeof actual === 'object').should.be.true;
+      actual.should.have.property('wrapped');
     });
+  });
 
+  describe('helper.fromFn()', function () {
     it('should load helpers from a function', function () {
-      var options = {
-        helpers: function () {
-          return {
-            foo: function () {
-              return 'foo';
-            },
-            bar: function () {
-              return 'bar';
-            }
-          };
-        }
+      var fn = function () {
+        return {
+          foo: function () {
+            return 'foo';
+          },
+          bar: function () {
+            return 'bar';
+          }
+        };
       };
-      (typeof helper(options) === 'object').should.be.true;
-      helper(options).should.have.property('foo');
-      helper(options).should.have.property('bar');
+      var actual = helpers.fromFn(fn);
+      (typeof actual === 'object').should.be.true;
+      actual.should.have.property('foo');
+      actual.should.have.property('bar');
     });
+  });
 
+  describe('helper.fromObj()', function () {
     it('should load helpers from an object', function () {
-      var options = {
-        helpers: require('./fixtures/helpers/one')()
-      };
-      (typeof helper(options) === 'object').should.be.true;
-      helper(options).should.have.property('one');
+      var obj = require('./fixtures/helpers/wrapped')()
+      var actual = helpers.fromObj(obj);
+      (typeof actual === 'object').should.be.true;
+      actual.should.have.property('wrapped');
     });
+  });
 
-    it('should load helpers from a function', function () {
-      var options = {
-        helpers: require('./fixtures/helpers/two')
-      };
-      (typeof helper(options) === 'object').should.be.true;
-      helper(options).should.have.property('two');
-    });
-
-    it('should load helpers from an object', function () {
-      var options = {
-        helpers: {
+  describe('helper.fromArr()', function () {
+    it('should load different types of helpers from an array', function () {
+      var arr = [
+        'test/fixtures/helpers/two.js',
+        {
           foo: function () {
             return 'hi';
           }
-        }
-      };
-      (typeof helper(options) === 'object').should.be.true;
-      helper(options).should.have.property('foo');
-    });
-
-    it('should load different types of helpers from an array', function () {
-      var options = {
-        helpers: [
-          'test/fixtures/helpers/two.js',
-          {
+        },
+        function () {
+          return {
             foo: function () {
+              return 'hi';
+            }
+          }
+        },
+        [
+          'test/fixtures/helpers/three.js',
+          {
+            bar: function () {
               return 'hi';
             }
           },
           function () {
             return {
-              foo: function () {
+              bar: function () {
                 return 'hi';
               }
             }
           },
-          [
-            'test/fixtures/helpers/three.js',
-            {
+        ]
+      ];
+
+      var actual = helpers.fromArr(arr);
+      (typeof actual === 'object').should.be.true;
+      actual.should.have.property('two');
+      actual.should.have.property('foo');
+      actual.should.have.property('three');
+      actual.should.have.property('bar');
+    });
+  });
+
+  describe('helper()', function () {
+    it('should load helpers from a string', function () {
+      var str = __dirname + '/fixtures/helpers/wrapped.js'
+      var actual = helpers(str);
+      (typeof actual === 'object').should.be.true;
+      actual.should.have.property('wrapped');
+    });
+
+    it('should load helpers from a function', function () {
+      var fn = function () {
+        return {
+          foo: function () {
+            return 'foo';
+          },
+          bar: function () {
+            return 'bar';
+          }
+        };
+      };
+      var actual = helpers(fn);
+      (typeof actual === 'object').should.be.true;
+      actual.should.have.property('foo');
+      actual.should.have.property('bar');
+    });
+
+    it('should load helpers from an object', function () {
+      var obj = require('./fixtures/helpers/wrapped')()
+      var actual = helpers(obj);
+      (typeof actual === 'object').should.be.true;
+      actual.should.have.property('wrapped');
+    });
+
+    it('should load helpers from a function', function () {
+      var fn = require('./fixtures/helpers/two');
+      var actual = helpers(fn);
+      (typeof actual === 'object').should.be.true;
+      actual.should.have.property('two');
+    });
+
+    it('should load helpers from an object', function () {
+      var obj = {
+        foo: function () {
+          return 'hi';
+        }
+      };
+      var actual = helpers(obj);
+      (typeof actual === 'object').should.be.true;
+      actual.should.have.property('foo');
+    });
+
+    it('should load different types of helpers from an array', function () {
+      var arr = [
+        'test/fixtures/helpers/two.js',
+        {
+          foo: function () {
+            return 'hi';
+          }
+        },
+        function () {
+          return {
+            foo: function () {
+              return 'hi';
+            }
+          }
+        },
+        [
+          'test/fixtures/helpers/three.js',
+          {
+            bar: function () {
+              return 'hi';
+            }
+          },
+          function () {
+            return {
               bar: function () {
                 return 'hi';
               }
-            },
-            function () {
-              return {
-                bar: function () {
-                  return 'hi';
-                }
-              }
-            },
-          ]
+            }
+          },
         ]
-      };
-      (typeof helper(options) === 'object').should.be.true;
-      helper(options).should.have.property('two');
-      helper(options).should.have.property('foo');
-      helper(options).should.have.property('three');
-      helper(options).should.have.property('bar');
+      ];
+
+      var actual = helpers(arr);
+      (typeof actual === 'object').should.be.true;
+      actual.should.have.property('two');
+      actual.should.have.property('foo');
+      actual.should.have.property('three');
+      actual.should.have.property('bar');
     });
   });
 });

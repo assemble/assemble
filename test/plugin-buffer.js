@@ -11,13 +11,11 @@ var outpath = join(__dirname, './out-fixtures');
 
 
 describe('assemble buffer', function() {
-
   before (function () {
     assemble.init();
   });
 
   describe('buffer()', function() {
-
     beforeEach(function (done) {
       rimraf(outpath, done);
     });
@@ -26,14 +24,13 @@ describe('assemble buffer', function() {
     });
 
     describe('buffer files - disabled', function () {
-
       beforeEach(function () {
-        assemble.disable('buffer files');
+        assemble.disable('buffer plugin');
         assemble.set('ext', '.txt');
       });
 
       afterEach(function () {
-        assemble.enable('buffer files');
+        assemble.enable('buffer plugin');
         assemble.set('ext', '.html');
       });
 
@@ -56,11 +53,10 @@ describe('assemble buffer', function() {
           done();
         });
       });
-
     });
 
-    describe('buffer files - enabled', function () {
 
+    describe('buffer files - enabled', function () {
       beforeEach(function () {
         assemble.set('ext', '.txt');
       });
@@ -88,7 +84,6 @@ describe('assemble buffer', function() {
           done();
         });
       });
-
     });
 
   });
