@@ -87,6 +87,7 @@
   },
   "devDependencies": {
     "graceful-fs": "^3.0.2",
+    "grade": "^0.1.0",
     "gulp": "^3.8.5",
     "gulp-jshint": "^1.6.3",
     "gulp-mocha": "^0.4.1",
