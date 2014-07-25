@@ -25,13 +25,17 @@ describe('assemble helpers', function () {
         helpers: function () {
           return {
             foo: function () {
-              return 'hi';
+              return 'foo';
+            },
+            bar: function () {
+              return 'bar';
             }
           };
         }
       };
       (typeof helper(options) === 'object').should.be.true;
       helper(options).should.have.property('foo');
+      helper(options).should.have.property('bar');
     });
 
     it('should load helpers from an object', function () {
