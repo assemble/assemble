@@ -10,7 +10,7 @@
 var assert = require('assert');
 var should = require('should');
 var assemble = require('..');
-var View = require('../lib/view');
+var View = require('../lib/view/view');
 
 describe('assemble defaultConfig', function () {
   describe('.defaultConfig()', function () {

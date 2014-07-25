@@ -19,7 +19,8 @@ var addSpace = function(str) {
   }).join('');
 };
 
-var dest = __dirname + '/fixtures/parsers';
+var fixtures = __dirname + '/fixtures/parsers';
+var dest = __dirname + '/actual';
 
 describe('assemble parse', function () {
   beforeEach(function (done) {
@@ -33,17 +34,27 @@ describe('assemble parse', function () {
     it('should parse a file with the given parser.', function (done) {
       assemble.init();
 
-      assemble.parser('a', function (file, options, encoding) {
-        file.contents = new Buffer(file.contents.toString().toUpperCase());
+      assemble.parser('a', function (file) {
+        var str = file.contents.toString().toUpperCase();
+        file.contents = new Buffer(str);
         return file;
       });
 
-      assemble.parser('x', function (file, options, encoding) {
-        file.contents = new Buffer(addSpace(file.contents.toString()));
+      // x #1
+      assemble.parser('x', function (file) {
+        var str = addSpace(file.contents.toString());
+        file.contents = new Buffer(str);
         return file;
       });
 
-      var stream = assemble.src(dest + '/*.*');
+      // x #2
+      assemble.parser('x', function (file) {
+        var str = file.contents.toString().toUpperCase();
+        file.contents = new Buffer(str);
+        return file;
+      });
+
+      var stream = assemble.src(fixtures + '/*.*');
       var outstream = assemble.dest(__dirname + '/actual');
 
       stream.pipe(outstream);
@@ -64,7 +75,7 @@ describe('assemble parse', function () {
         fs.readFile(__dirname + '/actual/x.x', function (err, contents) {
           should.not.exist(err);
           should.exist(contents);
-          String(contents).should.equal('x y z ');
+          String(contents).should.equal('X Y Z ');
         });
         done();
       });
