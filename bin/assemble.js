@@ -98,10 +98,7 @@ function handleArguments(env) {
   // we let them chdir as needed
   if (process.cwd() !== env.cwd) {
     process.chdir(env.cwd);
-    gutil.log(
-      'Working directory changed to',
-      chalk.magenta(tildify(env.cwd))
-    );
+    gutil.log('Working directory changed to', chalk.magenta(tildify(env.cwd)));
   }
 
   // this is what actually loads up the assemblefile
