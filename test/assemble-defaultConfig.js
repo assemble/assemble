@@ -22,20 +22,30 @@ describe('assemble defaultConfig', function () {
       assemble.get('encoding').should.equal('utf8');
       assemble.get('cwd').should.equal(process.cwd());
       assemble.get('ext').should.equal('.html');
-      assemble.get('view').should.equal(View);
-      assemble.get('view engine').should.equal('noop');
-      assemble.get('views').should.equal('templates');
-      assemble.get('delims').should.eql(['{{', '}}']);
       assemble.get('data').should.be.empty;
-      assemble.get('front matter').should.be.empty;
 
+      // Default `src` plugins
       assemble.enabled('init plugin').should.be.true;
-      assemble.enabled('routes plugin').should.be.true;
+      assemble.enabled('routes-src plugin').should.be.true;
       assemble.enabled('buffer plugin').should.be.true;
-      assemble.enabled('extend plugin').should.be.true;
+      assemble.enabled('extend-src plugin').should.be.true;
       assemble.enabled('parser plugin').should.be.true;
       assemble.enabled('drafts plugin').should.be.true;
       assemble.enabled('paginate plugin').should.be.true;
+
+      // Default `dest` plugins
+      assemble.enabled('extend-dest plugin').should.be.true;
+      assemble.enabled('collections plugin').should.be.true;
+      assemble.disabled('dest plugin').should.be.true;
+      assemble.disabled('assets plugin').should.be.true;
+      assemble.disabled('routes-dest plugin').should.be.true;
+      assemble.enabled('render plugin').should.be.true;
+
+      // View defaults
+      assemble.get('view', View);
+      assemble.get('view engine', 'noop');
+      assemble.get('views', 'templates');
+      assemble.get('delims', ['{{', '}}']);
 
       // assemble.get('parsers.hbs').should.exist;
       // assemble.get('parsers.md').should.exist;
