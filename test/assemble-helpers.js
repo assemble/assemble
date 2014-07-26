@@ -12,14 +12,14 @@ var path = require('path');
 var File = require('gulp-util').File;
 var assemble = require('..');
 
-xdescribe('assemble helpers', function () {
+describe('assemble helpers', function () {
   beforeEach(function () {
     assemble.init();
   });
 
   describe('.helpers()', function () {
     it('should return an empty list of helpers.', function () {
-      assemble.helpers().should.be.empty;
+      assemble.helpers.should.be.empty;
     });
 
     it('should return helpers based on a glob pattern.', function () {

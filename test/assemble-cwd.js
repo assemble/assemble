@@ -8,8 +8,8 @@
 'use strict';
 
 var path = require('path');
-var assert = require('assert');
 var should = require('should');
+var isAbsolute = require('is-absolute');
 var assemble = require('..');
 
 describe('assemble cwd', function () {
@@ -20,8 +20,9 @@ describe('assemble cwd', function () {
 
   describe('.cwd()', function () {
     it('should return the cwd', function () {
-      assemble.cwd().should.equal(process.cwd());
+      assemble.cwd().toLowerCase().should.equal(process.cwd().toLowerCase());
     });
+
     it('should return the cwd with appended arguments', function () {
       var expected = path.join(process.cwd(), 'path/to/something');
       assemble.cwd('path', 'to', 'something').should.equal(expected);
@@ -29,6 +30,7 @@ describe('assemble cwd', function () {
     it('should return the modified cwd with appended arguments', function () {
       var expected = path.join(process.cwd(), 'test/fixtures/templates/pages');
       assemble.set('cwd', process.cwd() + '/test/fixtures');
+      isAbsolute(assemble.get('cwd')).should.be.true;
       assemble.cwd('templates', 'pages').should.equal(expected);
     });
   });
