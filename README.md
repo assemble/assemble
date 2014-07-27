@@ -227,7 +227,7 @@ Here are some related projects you might be interested in from the [Assemble](ht
 + [assemble-middleware-i18n](https://github.com/assemble/assemble-middleware-i18n): Assemble middleware for adding i18n support to projects. 
 + [assemble-middleware-lunr](https://github.com/assemble/assemble-middleware-lunr): Assemble middleware for creating a search engine within your static site using lunr.js. 
 + [assemble-middleware-permalinks](https://github.com/assemble/assemble-middleware-permalinks): Permalinks middleware for Assemble, the static site generator for Grunt.js and Yeoman. This plugin enables powerful and configurable URI replacement patterns, presets, uses Moment.js for parsing dates, and much more. 
-+ [assemble-middleware-rss](https://github.com/assemble/assemble-middleware-rss): Assemble middleware for creating RSS feeds with Assemble. (NOT published yet!) 
++ [assemble-middleware-rss](https://github.com/assemble/assemble-middleware-rss): Assemble middleware for creating a RSS feed.
 + [assemble-middleware-sitemap](https://github.com/assemble/assemble-middleware-sitemap): Assemble middleware for generating sitemaps. 
 + [assemble-middleware-toc](https://github.com/assemble/assemble-middleware-toc): Assemble middleware for creating a table of contents in the generated HTML, using Cheerio.js 
 + [assemble-middleware-wordcount](https://github.com/assemble/assemble-middleware-wordcount): Assemble middleware for displaying a word-count, and estimated reading time on blog posts or pages.  
