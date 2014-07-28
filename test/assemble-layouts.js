@@ -9,7 +9,7 @@
 
 var should = require('should');
 var path = require('path');
-var File = require('gulp-util').File;
+var File = require('vinyl');
 var assemble = require('..');
 
 describe('assemble layouts', function () {
