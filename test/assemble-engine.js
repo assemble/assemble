@@ -30,10 +30,8 @@ describe('assemble engines', function () {
     it('should set a layout engine when setting an engine', function () {
       var handlebars = require('../lib/engine/handlebars');
       assemble.engine('hbs', handlebars);
-
-      var layout = new Layout(assemble);
-      should.exist(layout.layoutEngine['.hbs']);
-      should.exist(layout.layoutEngine['.hbs'].regex);
+      should.exist(assemble._layouts['.hbs']);
+      should.exist(assemble._layouts['.hbs'].regex);
     });
   });
 });
