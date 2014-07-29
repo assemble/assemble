@@ -228,7 +228,7 @@ describe('assemble output stream', function() {
     });
 
     function testWriteDir(srcOptions, done) {
-      var instream = assemble.src(join(__dirname, './fixtures/stuff'), srcOptions);
+      var instream = assemble.src(join(__dirname, './fixtures/generic'), srcOptions);
       var outstream = instream.pipe(assemble.dest(outpath));
 
       outstream.on('error', done);
@@ -236,10 +236,10 @@ describe('assemble output stream', function() {
         // data should be re-emitted correctly
         should.exist(file);
         should.exist(file.path);
-        join(file.path,'').should.equal(join(outpath, './stuff'));
+        join(file.path,'').should.equal(join(outpath, './generic'));
       });
       outstream.on('end', function() {
-        fs.exists(join(outpath, 'stuff'), function(exists) {
+        fs.exists(join(outpath, 'generic'), function(exists) {
           /* jshint expr: true */
           should(exists).be.ok;
           /* jshint expr: false */

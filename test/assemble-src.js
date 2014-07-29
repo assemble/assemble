@@ -41,8 +41,8 @@ describe('assemble input stream', function() {
 
       it('should return a input stream for multiple globs', function (done) {
         var globArray = [
-          join(__dirname, './fixtures/stuff/run.dmc'),
-          join(__dirname, './fixtures/stuff/test.dmc')
+          join(__dirname, './fixtures/generic/run.dmc'),
+          join(__dirname, './fixtures/generic/test.dmc')
         ];
         var stream = assemble.src(globArray);
 
@@ -62,10 +62,10 @@ describe('assemble input stream', function() {
       });
 
       it('should return a input stream for multiple globs, with negation', function (done) {
-        var expectedPath = join(__dirname, './fixtures/stuff/run.dmc');
+        var expectedPath = join(__dirname, './fixtures/generic/run.dmc');
         var globArray = [
-          join(__dirname, './fixtures/stuff/*.dmc'),
-          '!' + join(__dirname, './fixtures/stuff/test.dmc'),
+          join(__dirname, './fixtures/generic/*.dmc'),
+          '!' + join(__dirname, './fixtures/generic/test.dmc'),
         ];
         var stream = assemble.src(globArray);
 
@@ -189,8 +189,8 @@ describe('assemble input stream', function() {
 
       it('should return a input stream for multiple globs', function (done) {
         var globArray = [
-          join(__dirname, './fixtures/stuff/run.dmc'),
-          join(__dirname, './fixtures/stuff/test.dmc')
+          join(__dirname, './fixtures/generic/run.dmc'),
+          join(__dirname, './fixtures/generic/test.dmc')
         ];
         var stream = assemble.src(globArray);
 
@@ -210,10 +210,10 @@ describe('assemble input stream', function() {
       });
 
       it('should return a input stream for multiple globs, with negation', function (done) {
-        var expectedPath = join(__dirname, './fixtures/stuff/run.dmc');
+        var expectedPath = join(__dirname, './fixtures/generic/run.dmc');
         var globArray = [
-          join(__dirname, './fixtures/stuff/*.dmc'),
-          '!' + join(__dirname, './fixtures/stuff/test.dmc'),
+          join(__dirname, './fixtures/generic/*.dmc'),
+          '!' + join(__dirname, './fixtures/generic/test.dmc'),
         ];
         var stream = assemble.src(globArray);
 
