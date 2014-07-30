@@ -26,7 +26,7 @@ describe('assemble defaultConfig', function () {
 
       // Default `src` plugins
       assemble.enabled('init plugin').should.be.true;
-      assemble.enabled('routes-src plugin').should.be.true;
+      assemble.enabled('src-routes plugin').should.be.true;
       assemble.enabled('buffer plugin').should.be.true;
       assemble.enabled('extend-src plugin').should.be.true;
       assemble.enabled('parser plugin').should.be.true;
@@ -38,7 +38,7 @@ describe('assemble defaultConfig', function () {
       assemble.enabled('collections plugin').should.be.true;
       assemble.disabled('dest plugin').should.be.true;
       assemble.disabled('assets plugin').should.be.true;
-      assemble.disabled('routes-dest plugin').should.be.true;
+      assemble.disabled('dest-routes plugin').should.be.true;
       assemble.enabled('render plugin').should.be.true;
 
       // View defaults

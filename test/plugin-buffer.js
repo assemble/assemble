@@ -35,7 +35,7 @@ describe('assemble buffer', function() {
       });
 
       it('should have an empty `files` cache', function (done) {
-        var instream = assemble.src(join(__dirname, './fixtures/**/*.txt'));
+        var instream = assemble.src(join(__dirname, 'fixtures/copy/*.txt'));
         var outstream = assemble.dest(outpath);
         instream.pipe(outstream);
 
@@ -45,7 +45,7 @@ describe('assemble buffer', function() {
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          join(file.path, '').should.equal(join(outpath, './copy/example.txt'));
+          join(file.path, '').should.equal(join(outpath, 'example.txt'));
           String(file.contents).should.equal('this is a test');
         });
         outstream.on('end', function () {
@@ -66,7 +66,7 @@ describe('assemble buffer', function() {
       });
 
       it('should have a `files` cache', function (done) {
-        var instream = assemble.src(join(__dirname, './fixtures/**/*.txt'));
+        var instream = assemble.src(join(__dirname, 'fixtures/copy/*.txt'));
         var outstream = assemble.dest(outpath);
         instream.pipe(outstream);
 
@@ -76,7 +76,7 @@ describe('assemble buffer', function() {
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          join(file.path, '').should.equal(join(outpath, './copy/example.txt'));
+          join(file.path, '').should.equal(join(outpath, 'example.txt'));
           String(file.contents).should.equal('this is a test');
         });
         outstream.on('end', function () {
