@@ -98,6 +98,8 @@ describe('assemble partials', function () {
     });
 
     it('should cache an object of partials defined as a string of glob patterns.', function () {
+
+      var partialPath = path.join.bind(path, __dirname, 'fixtures/templates/partials/');
       // assemble.option.set({
       //   nameFn: function (argument) {
       //     // body...
@@ -110,9 +112,9 @@ describe('assemble partials', function () {
       });
 
       var partials = assemble.cache.partials;
-      partials.should.have.property('a');
-      partials.should.have.property('b');
-      partials.should.have.property('c');
+      partials.should.have.property(partialPath('a.hbs'));
+      partials.should.have.property(partialPath('b.hbs'));
+      partials.should.have.property(partialPath('c.hbs'));
     });
 
     xit('should cache an object of partials defined as an array of glob patterns.', function () {
