@@ -13,10 +13,10 @@ var helpers = require('../lib/engine/helpers');
 
 describe('assemble helpers', function () {
 
-  describe('helper.fromStr()', function () {
+  describe('helper.fromPath()', function () {
     it('should load helpers from a string', function () {
       var str = __dirname + '/fixtures/helpers/wrapped.js'
-      var actual = helpers.fromStr(str);
+      var actual = helpers.fromPath(str);
       (typeof actual === 'object').should.be.true;
       actual.should.have.property('wrapped');
     });
