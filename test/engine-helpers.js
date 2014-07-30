@@ -8,14 +8,14 @@
 'use strict';
 
 var should = require('should');
-var helpers = require('../lib/engine/helpers');
+var helpers = require('../lib/loaders/helpers');
 
 
 describe('assemble helpers', function () {
 
   describe('helper.fromPath()', function () {
-    it('should load helpers from a string', function () {
-      var str = __dirname + '/fixtures/helpers/wrapped.js'
+    it('should load helpers from a file path', function () {
+      var str = __dirname + '/fixtures/helpers/wrapped.js';
       var actual = helpers.fromPath(str);
       (typeof actual === 'object').should.be.true;
       actual.should.have.property('wrapped');
@@ -43,7 +43,7 @@ describe('assemble helpers', function () {
 
   describe('helper.fromObj()', function () {
     it('should load helpers from an object', function () {
-      var obj = require('./fixtures/helpers/wrapped')()
+      var obj = require('./fixtures/helpers/wrapped')();
       var actual = helpers.fromObj(obj);
       (typeof actual === 'object').should.be.true;
       actual.should.have.property('wrapped');
@@ -64,7 +64,7 @@ describe('assemble helpers', function () {
             foo: function () {
               return 'hi';
             }
-          }
+          };
         },
         [
           'test/fixtures/helpers/three.js',
@@ -78,8 +78,8 @@ describe('assemble helpers', function () {
               bar: function () {
                 return 'hi';
               }
-            }
-          },
+            };
+          }
         ]
       ];
 
@@ -94,7 +94,7 @@ describe('assemble helpers', function () {
 
   describe('helper()', function () {
     it('should load helpers from a string', function () {
-      var str = __dirname + '/fixtures/helpers/wrapped.js'
+      var str = __dirname + '/fixtures/helpers/wrapped.js';
       var actual = helpers(str);
       (typeof actual === 'object').should.be.true;
       actual.should.have.property('wrapped');
@@ -118,7 +118,7 @@ describe('assemble helpers', function () {
     });
 
     it('should load helpers from an object', function () {
-      var obj = require('./fixtures/helpers/wrapped')()
+      var obj = require('./fixtures/helpers/wrapped')();
       var actual = helpers(obj);
       (typeof actual === 'object').should.be.true;
       actual.should.have.property('wrapped');
@@ -155,7 +155,7 @@ describe('assemble helpers', function () {
             foo: function () {
               return 'hi';
             }
-          }
+          };
         },
         [
           'test/fixtures/helpers/three.js',
@@ -169,8 +169,8 @@ describe('assemble helpers', function () {
               bar: function () {
                 return 'hi';
               }
-            }
-          },
+            };
+          }
         ]
       ];
 
