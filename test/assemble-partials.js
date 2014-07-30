@@ -97,7 +97,7 @@ describe('assemble partials', function () {
       partials.should.have.property('test-partial-c');
     });
 
-    it('should cache an object of partials defined as a string of glob patterns.', function () {
+    xit('should cache an object of partials defined as a string of glob patterns.', function () {
       // assemble.option.set({
       //   nameFn: function (argument) {
       //     // body...
