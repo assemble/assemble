@@ -14,7 +14,6 @@ var File = require('vinyl');
 var rimraf = require('rimraf');
 var assemble = require('..');
 
-
 var actual = __dirname + '/partials-actual';
 
 
@@ -23,14 +22,13 @@ describe('assemble partials', function () {
     assemble.init();
     rimraf(actual, done);
   });
-
-  // afterEach(function (done) {
-  //   rimraf(actual, done);
-  // });
+  afterEach(function (done) {
+    rimraf(actual, done);
+  });
 
   describe('.partial()', function () {
-    it('should return an empty list of partials.', function () {
-      assemble.partials.should.be.empty;
+    it('should be a method on assemble.', function () {
+      assemble.partial.should.be.a.function;
     });
 
     it('should cache a partial defined as an object.', function () {
@@ -46,8 +44,12 @@ describe('assemble partials', function () {
   });
 
   describe('.partials()', function () {
-    it('should return an empty list of partials.', function () {
-      assemble.partials.should.be.empty;
+    it('should be a method on assemble.', function () {
+      assemble.partials.should.be.a.function;
+    });
+
+    it('should return an empty array..', function () {
+      assemble.partials().should.be.empty;
     });
 
     it('should cache an array of partials defined as objects.', function () {

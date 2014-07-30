@@ -9,7 +9,6 @@
 
 var should = require('should');
 var assemble = require('..');
-var Layout = require('../lib/view/layout');
 
 
 describe('assemble engines', function () {
