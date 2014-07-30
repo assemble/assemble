@@ -9,6 +9,7 @@ lib-cov
 *.rar
 *.sublime-*
 npm-debug.log
+.DS*
 
 # Always-ignor dirs
 /node_modules/
