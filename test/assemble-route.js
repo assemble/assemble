@@ -28,13 +28,12 @@ describe('assemble route', function() {
         next();
       });
 
-      var instream = assemble.src(join(__dirname, './fixtures/routes/*.txt'));
+      var instream = assemble.src(join(__dirname, 'fixtures/routes/*.txt'));
       var outstream = assemble.dest(outpath);
       instream.pipe(outstream);
 
       outstream.on('error', done);
       outstream.on('data', function (file) {
-        // data should be re-emitted correctly
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
@@ -47,7 +46,6 @@ describe('assemble route', function() {
       });
     });
 
-
     it('should set multiple routes on different files', function (done) {
 
       assemble.route(/\.txt/, function (file, next) {
@@ -56,17 +54,17 @@ describe('assemble route', function() {
       });
 
       assemble.route(/\.hbs/, function (file, next) {
-        file.path = join(path.dirname(file.path), path.basename(file.path, path.extname(file.path)) + '.html');
+        file.ext = '.html';
         next();
       });
 
-      var instream = assemble.src(join(__dirname, './fixtures/routes/*.*'));
+      var instream = assemble.src(join(__dirname, 'fixtures/routes/*.*'));
       var outstream = assemble.dest(outpath);
       instream.pipe(outstream);
 
       outstream.on('error', done);
       outstream.on('data', function (file) {
-        // data should be re-emitted correctly
+        console.log(JSON.stringify(file, null, 2))
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
@@ -80,7 +78,6 @@ describe('assemble route', function() {
     });
 
     it('should set multiple routes on same file', function (done) {
-
       assemble.route(/\.txt/, function (file, next) {
         file.contents = new Buffer(file.contents.toString().toUpperCase());
         next();
@@ -91,13 +88,12 @@ describe('assemble route', function() {
         next();
       });
 
-      var instream = assemble.src(join(__dirname, './fixtures/routes/*.txt'));
+      var instream = assemble.src(join(__dirname, 'fixtures/routes/*.txt'));
       var outstream = assemble.dest(outpath);
       instream.pipe(outstream);
 
       outstream.on('error', done);
       outstream.on('data', function (file) {
-        // data should be re-emitted correctly
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
@@ -121,13 +117,12 @@ describe('assemble route', function() {
         next();
       });
 
-      var instream = assemble.src(join(__dirname, './fixtures/routes/*.*'));
+      var instream = assemble.src(join(__dirname, 'fixtures/routes/*.*'));
       var outstream = assemble.dest(outpath);
       instream.pipe(outstream);
 
       outstream.on('error', done);
       outstream.on('data', function (file) {
-        // data should be re-emitted correctly
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
@@ -148,7 +143,7 @@ describe('assemble route', function() {
         next();
       });
 
-      var instream = assemble.src(join(__dirname, './fixtures/routes/*.txt'));
+      var instream = assemble.src(join(__dirname, 'fixtures/routes/*.txt'));
       var outstream = assemble.dest(outpath);
 
       instream
@@ -157,7 +152,6 @@ describe('assemble route', function() {
 
       outstream.on('error', done);
       outstream.on('data', function (file) {
-        // data should be re-emitted correctly
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);

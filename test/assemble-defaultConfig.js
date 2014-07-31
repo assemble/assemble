@@ -47,8 +47,9 @@ describe('assemble defaultConfig', function () {
       assemble.get('views', 'templates');
       assemble.get('delims', ['{{', '}}']);
 
-      // assemble.get('parsers.hbs').should.exist;
-      // assemble.get('parsers.md').should.exist;
+      assemble.get('parsers.hbs').should.exist;
+      assemble.get('parsers.md').should.exist;
+
       assemble.engines['.*'].should.exist;
       assemble.engines['.md'].should.exist;
       assemble.highlighter.should.exist;
