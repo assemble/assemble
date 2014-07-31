@@ -71,7 +71,6 @@ describe('assemble route', function() {
 
       outstream.on('error', done);
       outstream.on('data', function (file) {
-        // console.log(JSON.stringify(file, null, 2))
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
@@ -160,8 +159,6 @@ describe('assemble route', function() {
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
-        // join(file.path, '').should.equal(join(outpath, 'example.txt'));
-        // String(file.contents).should.equal('THIS IS A TEST');
       });
 
       outstream.on('end', function () {
