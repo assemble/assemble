@@ -2,16 +2,22 @@
 
 > Static site generator for Grunt.js, Yeoman and Node.js. Used by Zurb Foundation, Zurb Ink, H5BP/Effeckt, Less.js / lesscss.org, Topcoat, Web Experience Toolkit, and hundreds of other projects to build sites, themes, components, documentation, blogs and gh-pages.
 
+
+### HEADS UP! This document is incomplete!
+
+### Also, please do not create issues against the v0.6.0 branch unless you have a pull request or would like to discuss an issue that might lead to you doing a pull request. Thanks!
+
+
 ### [Visit the website →](http://assemble.io)
 
-## v0.5.0 Release notes
+## v0.6.0 Release notes
 
-For v0.5.0, Assemble was completely re-written from the ground up to be a 100% standalone library. Before we dive into the awesome new features that Assemble is introducing in this version, there are a couple of things you need to know:
+For v0.6.0, Assemble was completely re-written from the ground up to be a 100% standalone library. Before we dive into the awesome new features that Assemble is introducing in this version, there are a couple of things you need to know:
 
 **Grunt users**
 
 * Rest assured that you will be able to continue using Assemble as a Grunt plugin. However, **going forward you will need to do `npm install grunt-assemble`** instead.
-* If you decide to continue using older (pre-v0.5.0) versions of Assemble you will still need to do `npm install assemble`. Visit [grunt-assemble](https://github.com/assemble/grunt-assemble) for more info.
+* If you decide to continue using older (pre-v0.6.0) versions of Assemble you will still need to do `npm install assemble`. Visit [grunt-assemble](https://github.com/assemble/grunt-assemble) for more info.
 
 **Gulp users**
 
@@ -20,9 +26,11 @@ For v0.5.0, Assemble was completely re-written from the ground up to be a 100% s
 
 ### Influences
 
-We'd like to say "thanks!" to the great libraries that influenced this version of Assemble! We'd also point out some of the special things these libraries bring to Assemble in v0.5.0.
+_(WIP!)_
 
-  - **[Vinyl]** - We all know the [Gulp] team over at [Fractal] does amazing work with streams. We decided to follow their lead and use [vinyl] and [vinyl-fs] in Assemble v0.5.0.
+We'd like to say "thanks!" to the great libraries that influenced this version of Assemble! We'd also point out some of the special things these libraries bring to Assemble in v0.6.0.
+
+  - **[Vinyl]** - We all know the [Gulp] team over at [Fractal] does amazing work with streams. We decided to follow their lead and use [vinyl] and [vinyl-fs] in Assemble v0.6.0.
   - **[Gulp]** - We also looted some test fixtures, the CLI, and the new Assemble configuration signature from Gulp itself. Also thanks to @tkellen for his great work on [Liftoff]
   - **[Express]** - Engines, routes, and views, general code style.
   - **[Kerouac]** - Parsers, routes
@@ -35,7 +43,7 @@ New Features
   - **Streams** (gulp-style)
   - **Plugins** (gulp-style): Not only does Assemble have support for gulp-style streaming plugins, but any gulp plugin can be used with Assemble.
   - **Parsers** (kerouac-style):
-  - **Engines** express-style engine support! Engines support has changed so dramatically in this version that we're considering this a new feature. Assemble v0.5.0 allows any engine from **[Consolidate]** or **[Transformers]** to be registered with `assemble.engine()`, just like [express](http://expressjs.com/4x/api.html#app.engine). To add a custom engine, follow the instructions on the [consolidate](https://github.com/visionmedia/consolidate.js) docs or the [transformers](https://github.com/ForbesLindesay/transformers) docs, depending on the type of engine.
+  - **Engines** express-style engine support! Engines support has changed so dramatically in this version that we're considering this a new feature. Assemble v0.6.0 allows any engine from **[Consolidate]** or **[Transformers]** to be registered with `assemble.engine()`, just like [express](http://expressjs.com/4x/api.html#app.engine). To add a custom engine, follow the instructions on the [consolidate](https://github.com/visionmedia/consolidate.js) docs or the [transformers](https://github.com/ForbesLindesay/transformers) docs, depending on the type of engine.
   - **Routes** (express/kerouac-style)
   - **Middleware** (express/kerouac-style)
   - **.assemblerc.yml**
@@ -72,14 +80,6 @@ Module dependencies.
   
 
 
-Local modules.
-  
-
-
-Private variables
-  
-
-
 ## Assemble
 
 The Assemble constructor is Assemble's parent storage class.
@@ -94,7 +94,7 @@ var config = new Assemble({foo: 'bar'});
 * `context` {Object}   
 
 
-Expose middleware.
+Extend `Assemble`
   
 
 
@@ -102,22 +102,8 @@ Expose middleware.
 
 Set the current working directory for all paths.
 
-* `options` {String}  
+* `paths` {String}  
 * `return` {String} 
-
-
-### .options
-
-Pass options to assemble.
-
-**Examples:**
-
-```js
-assemble.options({layoutdir: 'templates/layouts'});
-```
-
-* `name` {String} 
-* `fn` {Function}   
 
 
 ### .plugin
@@ -213,22 +199,81 @@ Expose the `pages` plugin on Assemble.
 * `return` {Object} 
 
 
+### .partial
+
+Add a partial to `cache.partials`. Partials can be defined either
+as objects, or as glob patterns or file paths to the files to read
+in and parse.
+
+Partial objects are expected to have the following properties:
+
+  - `name` {String} The name of the partial
+  - `data` {Object} Context for the partial
+  - `content` {String} The actual content of the partial.
+  - `layout` {String} (Optional) You may optionally define a layout to use. This can also be defined on `data.layout`.
+
+**Example:**
+
+```js
+assemble.partial({
+  name: 'a',
+  layout: 'b',
+  data: {title: 'Partial A'},
+  content: 'Some content. '
+});
+```
+
+* `patterns` {String}: File paths or glob patterns to partials. 
+* `options` {String}  
+* `return` {Object} 
+
+
 ### .partials
 
-Specify file paths or glob patterns for partials to use
-with the current view engine.
+Load partials onto the cache as normalized partials-objects.
+Specify file paths or glob patterns for partials to use with
+the current view engine.
 
-Partials are read from the file system, parsed into an
+If a string or array of file paths or glob patterns is passed,
+partials will be read from the file system, parsed into an
 object, and stored on the `cache` using the full filepath
 of each partial as its unique identifier.
 
 **Example:**
 
 ```js
-var partials = assemble.partials;
+assemble.partials('templates/partials/*.hbs');
 ```
 
-* `patterns` {String}: File paths or glob patterns to partials. 
+* `patterns` {String|Array|Object}: Object, array of objects, file paths or glob patterns. 
+* `options` {String}: Options to pass to the `partialsCache.add()` method.  
+* `return` {Object} 
+
+
+### .layout
+
+Add a layout to `cache.layouts`. Partials can be defined either
+as objects, or as glob patterns or file paths to the files to read
+in and parse.
+
+Partial objects are expected to have the following properties:
+
+  - `name` {String} The name of the layout
+  - `data` {Object} Context for the layout
+  - `content` {String} The actual content of the layout.
+  - `layout` {String} (Optional) You may optionally define a layout to use. This can also be defined on `data.layout`.
+
+**Example:**
+
+```js
+assemble.layout({
+  name: 'foo',
+  data: {title: 'Partial Foo'},
+  content: 'Some content. '
+});
+```
+
+* `patterns` {String}: File paths or glob patterns to layouts. 
 * `options` {String}  
 * `return` {Object} 
 
@@ -256,6 +301,15 @@ _(layouts).forEach(function (layout, name) {
 * `patterns` {Array}: Glob patterns for looking up layouts 
 * `options` {Object}: Options containing layout options  
 * `return` {Object} all the parsed layouts,{Array}  Combined patterns with given layout options 
+
+
+### .helpers
+
+Returns an object with all loaded helpers;
+
+TODO
+ 
+* `return` {Object} all the resolved and loaded helpers 
 
 
 ### .helpers
@@ -316,7 +370,7 @@ In this case, it is expected that the module export a `render` function which
 will be passed content data (after removing any front matter).
 
 * `ext` {String} 
-* `fn` {Function} 
+* `fn` {Function|Object}: or `options` 
 * `options` {Object}  
 * `return` {Assemble} for chaining 
 
@@ -331,7 +385,7 @@ so it can be replaced with a custom `render` method.
 * `return` {String} 
 
 
-### .parse
+### .parser
 
 Register a parser `fn` to be used on each `.src` file. This is used to parse
 front matter, but can be used for any kind of parsing.
@@ -344,7 +398,7 @@ cusomizable if necessary or if a non-supported format is required.
 **Example:**
 
 ```js
-assemble.parser('uppercase', function (assemble) {
+assemble.parser('txt', function (assemble) {
   return function (file, options, encoding) {
     file.contents = new Buffer(file.contents.toString().toUpperCase());
     return file;
@@ -358,6 +412,26 @@ assemble.parser('uppercase', function (assemble) {
 * `options` {Object}: Options to pass to parser. 
 * `fn` {Function}: The parsing function.  
 * `return` {Assemble} for chaining 
+
+
+### .router
+
+**Example:**
+
+```js
+var myRoutes = assemble.router();
+myRoutes.route(':basename.hbs', function (file, params, next) {
+  // do something with the file
+  next();
+});
+
+assemble.src('')
+  .pipe(myRoutes())
+  .pipe(assemble.dset())
+```
+
+* `options` {Object}  
+* `return` {Function} 
 
 
 ### .buffer
@@ -408,6 +482,10 @@ assemble.task('watch', function() {
 * `return` {String} 
 
 
+Expose middleware.
+  
+
+
 Expose `Assemble`
 
 ## Authors
@@ -429,4 +507,4 @@ Released under the MIT license
 
 ***
 
-_This file was generated by [verb-cli](https://github.com/assemble/verb-cli) on July 23, 2014._
+_This file was generated by [verb-cli](https://github.com/assemble/verb-cli) on August 01, 2014._
