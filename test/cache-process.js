@@ -21,12 +21,12 @@ describe('assemble config', function () {
   describe('.process()', function () {
     it('should resolve template strings in config values', function () {
       var config = assemble.process({a: '<%= b %>', b: 'c'});
-      config.cache.a.should.equal('c')
+      config.a.should.equal('c')
     });
 
     it('should resolve es6 template strings in config values', function () {
       var config = assemble.process({a: '${b}', b: 'c'});
-      config.cache.a.should.equal('c')
+      config.a.should.equal('c')
     });
 
     it('should recursively resolve template strings.', function () {
@@ -36,17 +36,26 @@ describe('assemble config', function () {
         c: '${d}',
         d: '${e.f.g}',
         e: {f:{g:'h'}}});
-      config.cache.a.should.equal('h');
+      config.a.should.equal('h');
     });
 
     describe('when functions are defined on the config', function() {
       it('should used them on config templates', function() {
-	      assemble.data({upper: function(str) {
-	        return str.toUpperCase();
-	      }});
+        assemble.data({
+          upper: function (str) {
+            return str.toUpperCase();
+          }
+        });
+
         assemble.data({fez: 'bang', pop: 'boom-pow!'});
         assemble.data({whistle: '<%= upper(fez) %>-<%= upper(pop) %>'});
-        assemble.get('whistle').should.equal('BANG-BOOM-POW!');
+        assemble.get('data.whistle').should.equal('<%= upper(fez) %>-<%= upper(pop) %>');
+
+        var a = assemble.process(assemble.get('data.whistle'), assemble.get('data'));
+        a.should.equal('BANG-BOOM-POW!');
+
+        var b = assemble.process(assemble.get('data'), assemble.get('data'));
+        b.whistle.should.equal('BANG-BOOM-POW!');
       });
     });
   });

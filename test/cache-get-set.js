@@ -60,32 +60,11 @@ describe('assemble config', function () {
     });
 
     it('should expand template strings in the config.', function () {
-      assemble.set('j', {k: '${l}', l: 'm'}, true);
-      assemble.cache.j.k.should.eql('m');
-      assemble.get('j.k').should.eql('m');
-    });
-
-    it('should expand template strings in the config.', function () {
       assemble
         .set('l', 'm')
         .set('j', {k: '${l}'}, true);
       assemble.cache.j.k.should.eql('m');
       assemble.get('j.k').should.eql('m');
-    });
-
-    xit('should expand template strings in the config regardless of the order defined.', function () {
-      assemble
-        .set('j', {k: '${l}'}, true)
-        .set('l', 'm');
-      assemble.cache.j.k.should.eql('m');
-      assemble.get('j.k').should.eql('m');
-    });
-
-    it('should expand template strings when an object is set.', function () {
-    	assemble.set({a: 'b'});
-      assemble.set({c: '<%= a %>'});
-      assemble.cache.c.should.equal('b');
-      assemble.get('c').should.equal('b');
     });
 
     it('should return undefined when not set', function () {

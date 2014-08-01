@@ -3,12 +3,6 @@
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
-var del = require('del');
-
-
-gulp.task('clean', function(cb) {
-  del(['node_modules2'], cb);
-});
 
 gulp.task('mocha', ['jshint'], function () {
   gulp.src('test/*.js')
