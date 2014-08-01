@@ -1,13 +1,13 @@
 {
   "name": "assemble",
   "description": "Static site generator for Grunt.js, Yeoman and Node.js. Used by Zurb Foundation, Zurb Ink, H5BP/Effeckt, Less.js / lesscss.org, Topcoat, Web Experience Toolkit, and hundreds of other projects to build sites, themes, components, documentation, blogs and gh-pages.",
-  "version": "0.4.41",
+  "version": "0.6.0",
   "homepage": "http://assemble.io",
   "author": {
     "name": "Assemble",
     "url": "https://github.com/assemble/assemble"
   },
-  "contributors": [
+  "maintainers": [
     {
       "name": "Brian Woodward",
       "url": "https://github.com/doowb"
@@ -30,33 +30,76 @@
       "url": "https://github.com/assemble/assemble/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "./lib/assemble",
+  "main": "./lib/index.js",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 0.10.0"
+  },
+  "bin": {
+    "assemble": "./bin/assemble.js"
   },
   "scripts": {
-    "test": "grunt mochaTest"
+    "test": "mocha -R spec"
   },
   "dependencies": {
-    "assemble-handlebars": "^0.2.3",
-    "async": "^0.9.0",
+    "archy": "0.0.2",
+    "arrayify-compact": "^0.1.0",
+    "assemble-collections": "^0.1.7",
+    "calculate-assets": "^0.1.2",
+    "chalk": "^0.5.0",
+    "debug": "^1.0.4",
+    "delimiter-map": "^0.1.0",
+    "escape-delims": "^0.1.1",
+    "event-stream": "^3.1.5",
+    "eventemitter2": "^0.4.14",
+    "expander": "^0.3.3",
+    "fs-utils": "^0.4.3",
+    "getobject": "^0.1.0",
+    "globby": "^0.1.1",
     "gray-matter": "^0.4.2",
-    "inflection": "^1.3.6",
+    "gulp-util": "^2.2.19",
+    "handlebars": "^2.0.0-alpha.4",
+    "highlight.js": "^8.1.0",
+    "interpret": "^0.3.5",
+    "is-absolute": "^0.1.0",
+    "lang-map": "^0.1.1",
+    "layouts": "^0.1.0",
+    "liftoff": "^0.12.0",
+    "load-options": "^0.4.0",
     "lodash": "^2.4.1",
-    "resolve-dep": "^0.4.1"
+    "lookup-path": "^0.2.0",
+    "minimist": "^0.2.0",
+    "namespace-data": "^0.1.0",
+    "orchestrator": "^0.3.3",
+    "parse-filepath": "^0.3.0",
+    "plasma": "^0.4.0",
+    "pretty-hrtime": "^0.2.1",
+    "remarked": "^0.1.4",
+    "rename-path": "^0.2.0",
+    "resolve-dep": "^0.5.0",
+    "rte": "^0.3.2",
+    "semver": "^2.3.1",
+    "template": "^0.2.1",
+    "through2": "^0.5.1",
+    "tildify": "^0.2.0",
+    "vinyl": "^0.3.0",
+    "vinyl-fs": "^0.3.4",
+    "xtend": "^3.0.0"
   },
   "devDependencies": {
-    "chai": "^1.9.1",
-    "grunt": "^0.4.5",
-    "grunt-cli": "^0.1.13",
-    "grunt-contrib-clean": "^0.5.0",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-mocha-test": "^0.11.0",
-    "grunt-sync-pkg": "^0.1.2",
-    "grunt-verb": "^0.2.4",
-    "handlebars-helper-eachitems": "^0.1.2",
-    "relative": "^0.1.4",
-    "time-grunt": "^0.3.2"
+    "del": "^0.1.1",
+    "graceful-fs": "^3.0.2",
+    "grade": "^0.1.0",
+    "gulp": "^3.8.5",
+    "gulp-jshint": "^1.6.3",
+    "gulp-mocha": "^0.4.1",
+    "jshint-stylish": "^0.4.0",
+    "mkdirp": "^0.5.0",
+    "mocha": "^1.20.1",
+    "q": "^1.0.1",
+    "rimraf": "^2.2.8",
+    "should": "^4.0.4",
+    "verb": "^0.2.13",
+    "verb-tag-jscomments": "^0.1.4"
   },
   "keywords": [
     "HTML",
@@ -75,7 +118,6 @@
     "grunt",
     "gruntplugin",
     "handlebars",
-    "handlebars-helper-eachitems",
     "helpers",
     "javascript",
     "jekyll",

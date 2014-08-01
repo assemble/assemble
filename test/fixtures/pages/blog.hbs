@@ -1,0 +1,11 @@
+---
+layout: post
+show-full: false
+title: Blog Page
+---
+{{> info }}
+<div class="posts">
+  {{#each posts}}
+    {{> post this}}
+  {{/each}}
+</div>

@@ -4,236 +4,411 @@
 
 ### [Visit the website →](http://assemble.io)
 
-## Why use Assemble?
+## v0.5.0 Release notes
 
-1. Most popular site generator for Grunt.js and Yeoman. Assemble is used to build hundreds of web projects, ranging in size from a single page to 14,000 pages (that we're aware of!). [Let us know if you use Assemble](https://github.com/assemble/assemble/issues/300).
-1. Allows you to carve your HTML up into reusable fragments: partials, includes, sections, snippets... Whatever you prefer to call them, Assemble does that.
-1. Optionally use `layouts` to wrap your pages with commonly used elements and content.
-1. "Pages" can either be defined as HTML/templates, JSON or YAML, or directly inside the Gruntfile.
-1. It's awesome. Lol just kidding. But seriously, Assemble... is... awesome! and it's fun to use.
+For v0.5.0, Assemble was completely re-written from the ground up to be a 100% standalone library. Before we dive into the awesome new features that Assemble is introducing in this version, there are a couple of things you need to know:
 
-...and of course, we use Assemble to build the project's own documentation [http://assemble.io](http://assemble.io):
+**Grunt users**
 
-**For more:** hear Jon Schlinkert and Brian Woodward discuss Assemble on **Episode 98 of the [Javascript Jabber Podcast](http://javascriptjabber.com/098-jsj-assemble-io-with-brian-woodward-and-jon-schlinkert/)**.
+* Rest assured that you will be able to continue using Assemble as a Grunt plugin. However, **going forward you will need to do `npm install grunt-assemble`** instead.
+* If you decide to continue using older (pre-v0.5.0) versions of Assemble you will still need to do `npm install assemble`. Visit [grunt-assemble](https://github.com/assemble/grunt-assemble) for more info.
+
+**Gulp users**
+
+* [gulp-assemble](https://github.com/assemble/gulp-assemble) is finally ready to go!
 
 
-![image](https://f.cloud.github.com/assets/383994/1463257/f031bcfe-4525-11e3-9a03-89a17eee7518.png)
+### Influences
 
-## The "assemble" task
+We'd like to say "thanks!" to the great libraries that influenced this version of Assemble! We'd also point out some of the special things these libraries bring to Assemble in v0.5.0.
 
-### Getting Started
-Assemble requires Grunt `~0.4.1`
+  - **[Vinyl]** - We all know the [Gulp] team over at [Fractal] does amazing work with streams. We decided to follow their lead and use [vinyl] and [vinyl-fs] in Assemble v0.5.0.
+  - **[Gulp]** - We also looted some test fixtures, the CLI, and the new Assemble configuration signature from Gulp itself. Also thanks to @tkellen for his great work on [Liftoff]
+  - **[Express]** - Engines, routes, and views, general code style.
+  - **[Kerouac]** - Parsers, routes
+  - **Assemble** - Last but not least, Assemble itself! At heart, Assemble is still very much Assemble in this version. We've introduced a powerful API, new features, and a dramatically different configuration signature, but _no features from previous versions were harmed during the making of this version_, and the goals and vision of the project remain the same.
 
-_If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._
+New Features
 
-From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install Assemble with the following command:
+  - **API**
+  - **CLI** Assemble uses the same config-style and CLI patterns as gulp. To run Assemble the command line, do `assemble`
+  - **Streams** (gulp-style)
+  - **Plugins** (gulp-style): Not only does Assemble have support for gulp-style streaming plugins, but any gulp plugin can be used with Assemble.
+  - **Parsers** (kerouac-style):
+  - **Engines** express-style engine support! Engines support has changed so dramatically in this version that we're considering this a new feature. Assemble v0.5.0 allows any engine from **[Consolidate]** or **[Transformers]** to be registered with `assemble.engine()`, just like [express](http://expressjs.com/4x/api.html#app.engine). To add a custom engine, follow the instructions on the [consolidate](https://github.com/visionmedia/consolidate.js) docs or the [transformers](https://github.com/ForbesLindesay/transformers) docs, depending on the type of engine.
+  - **Routes** (express/kerouac-style)
+  - **Middleware** (express/kerouac-style)
+  - **.assemblerc.yml**
+
+Improved Features
+
+  - **Middleware**
+  - **Front matter**: support for [gray-matter] was added.
+
+
+New `options` settings:
+
+* `layouts`: Define a glob of layouts. Allows more flexibility than `layoutdir`.
+* `
+
+Improved Features
+
+
+[gulp]: https://github.com/wearefractal/gulp
+[fractal]: https://github.com/wearefractal
+[vinyl]: https://github.com/wearefractal/vinyl
+[vinyl-fs]: https://github.com/wearefractal/vinyl-fs
+
+
+## Install
+Install with [npm](npmjs.org):
 
 ```bash
-npm install assemble --save-dev
+npm i assemble --save-dev
 ```
 
-Once that's done, add this line to your project's Gruntfile:
+## API
+Module dependencies.
+  
+
+
+Local modules.
+  
+
+
+Private variables
+  
+
+
+## Assemble
+
+The Assemble constructor is Assemble's parent storage class.
+Optionally initialize a new `Assemble` with the given `context`.
+
+**Example:**
 
 ```js
-grunt.loadNpmTasks('assemble');
+var config = new Assemble({foo: 'bar'});
 ```
 
-### The "assemble" task
-_Run the "assemble" task with the `grunt assemble` command._
+* `context` {Object}   
 
-Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
 
-In your project's Gruntfile, add a section named `assemble` to the data object passed into `grunt.initConfig()`.
+Expose middleware.
+  
+
+
+### .cwd
+
+Set the current working directory for all paths.
+
+* `options` {String}  
+* `return` {String} 
+
+
+### .options
+
+Pass options to assemble.
+
+**Examples:**
 
 ```js
-assemble: {
-  options: {
-    assets: 'assets',
-    plugins: ['permalinks'],
-    partials: ['includes/**/*.hbs'],
-    layout: ['layouts/default.hbs'],
-    data: ['data/*.{json,yml}']
-  },
-  site: {
-    src: ['docs/*.hbs'],
-    dest: './'
-  }
-},
+assemble.options({layoutdir: 'templates/layouts'});
 ```
 
-[grunt]: http://gruntjs.com/
-[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
-[package.json]: https://npmjs.org/doc/json.html
+* `name` {String} 
+* `fn` {Function}   
 
 
-### Options
-See the documentation for [Options](http://assemble.io/docs/Options.html) for more information.
+### .plugin
 
-### [assets](http://assemble.io/docs/options-assets.html)
-Type: `String`
-Default: `undefined`
+Run assemble middleware
 
-Used with the `{{assets}}` variable to resolve the relative path from the _dest file_ to the _assets_ folder.
-
-### [data](http://assemble.io/docs/options-data.html)
-Type: `String|Array|Object`
-Default: `src/data`
-
-Specify the data to supply to your templates. Data may be formatted in `JSON`, `YAML`, [YAML front matter](http://assemble.io/docs/YAML-front-matter.html), or passed directly as an object. Wildcard patterns may also be used.
-
-### [layoutdir](http://assemble.io/docs/options-layoutdir.html)
-Type: `String`
-Default: `undefined`
-
-The directory to use as the "cwd" for [layouts](http://assemble.io/docs/options-layout.html). When this option is defined, layouts may be defined using only the name of the layout.
-
-### [layout](http://assemble.io/docs/options-layout.html)
-Type: `String`
-Default: `undefined`
-
-If set, this defines the layout file to use for the [task or target][tasks-and-targets]. However, when specifying a layout, unlike Jekyll, _Assemble requires a file extension_ since you are not limited to using a single file type.
-
-### layoutext
-Type: `String`
-Default: `undefined`
-
-Specify the extension to use for layouts, enabling layouts in YAML front matter to be defined without an extension:
-
-```yaml
----
-layout: default
----
-```
-
-[tasks-and-targets]: http://gruntjs.com/configuring-tasks#task-configuration-and-targets
-
-### [partials](http://assemble.io/docs/options-partials.html)
-Type:  `String|Array`
-Default: `undefined`
-
-Specifies the Handlebars partials files, or paths to the directories of files to be used.
-
-### [plugins](http://assemble.io/plugins/)
-Type: `String|Array`
-Default: `undefined`
-
-Name of the npm module to use and/or the path(s) to any custom plugins to use. Wildcard patterns may also be used.
-
-See the [docs for plugins](http://assemble.io/plugins/).
-
-### [helpers](http://assemble.io/docs/options-helpers.html)
-Type: `String|Array`
-Default: [handlebars-helpers](http://github.com/assemble/handlebars-helpers)
-
-Name of the npm module to use and/or the path(s) to any custom helpers to use with the current template engine. Wildcard patterns may also be used.
-
-By default, Assemble includes [handlebars-helpers](http://assemble.io/docs/helpers/index.html) as a dependency, so any helpers from that library are already available to be used in your templates.
-
-See the [docs for helpers](http://assemble.io/helpers/).
-
-### [ext](http://assemble.io/docs/options-ext.html)
-Type: `String`
-Default: `.html`
-
-Specify the file extension for destination files. Example:
-
-### [marked](http://assemble.io/docs/options-marked.html)
-Type: `Object`
-Default: [Marked.js defaults](https://github.com/chjj/marked#options-1)
-
-Specify the [Marked.js options](https://github.com/chjj/marked#options-1) for the `{{#markdown}}{{/markdown}}` and `{{md ""}}` helpers to use when converting content.
-
-### [engine](http://assemble.io/docs/options-engine.html)
-Type: `String`
-Default: `Handlebars`
-
-Specify the engine to use for compiling templates **if you are not using Handlebars**.
-
-Also see [assemble-swig](https://github.com/assemble/assemble-swig) for compiling [Swig Templates](https://github.com/paularmstrong).
-
-### flatten
-Type: `Boolean`
-Default: `false`
-
-Remove anything after (and including) the first `.` in the destination path, then append this value. In other words, when files are generated from different source folders this "flattens" them into the same destination directory. See [building the files object dynamically](http://gruntjs.com/configuring-tasks#building-the-files-object-dynamically) for more information on `files` formats.
-
-Visit [Assemble's documentation](http://assemble.io) for more information about options.
+* stage {String} 
+* plugins {Array}  
+* `return` {String} 
 
 
-### Usage Examples
-Simple example of using data files in both `.json` and `.yml` format to build Handlebars templates.
+### .task
 
-```javascript
-assemble: {
-  options: {
-    data: 'src/data/**/*.{json,yml}'
-  },
-  docs: {
-    files: {
-      'dist/': ['src/templates/**/*.hbs']
-    }
-  }
-}
-```
+Define an assemble task.
 
-#### Using multiple targets
+**Example**
 
 ```js
-assemble: {
-  options: {
-    assets: 'assets',
-    layoutdir: 'docs/layouts'
-    partials: ['docs/includes/**/*.hbs'],
-    data: ['docs/data/**/*.{json,yml}']
-  },
-  site: {
-    options: {
-      layout: 'default.hbs'
-    },
-    src: ['templates/site/*.hbs'],
-    dest: './'
-  },
-  blog: {
-    options: {
-      layout: 'blog-layout.hbs'
-    },
-    src: ['templates/blog/*.hbs'],
-    dest: 'articles/'
-  },
-  docs: {
-    options: {
-      layout: 'docs-layout.hbs'
-    },
-    src: ['templates/docs/*.hbs'],
-    dest: 'docs/'
-  }
-},
+assemble.task('site', function() {
+  // do stuff
+});
 ```
 
-Visit [Assemble's documentation](http://assemble.io) for many more examples and pointers on getting started.
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality, and please re-build the documentation with [grunt-verb](https://github.com/assemble/grunt-verb) before submitting a pull request.
+* `name` {String} 
+* `fn` {Function}   
 
 
-## Assemble plugins
-Here are some related projects you might be interested in from the [Assemble](http://assemble.io) core team.
+### .src
 
-+ [assemble-middleware-anchors](https://github.com/assemble/assemble-middleware-anchors): Assemble middleware for creating anchor tags from generated html. 
-+ [assemble-middleware-contextual](https://github.com/assemble/assemble-middleware-contextual): Assemble middleware for generating a JSON file containing the context of each page. Basic middleware to help see what's happening in the build. 
-+ [assemble-middleware-decompress](https://github.com/assemble/assemble-middleware-decompress): Assemble plugin for extracting zip, tar and tar.gz archives.  
-+ [assemble-middleware-download](https://github.com/assemble/assemble-middleware-download): Assemble middleware for downloading files from GitHub. 
-+ [assemble-middleware-drafts](https://github.com/assemble/assemble-middleware-drafts): Assemble middleware (v0.5.0) for preventing drafts from being rendered. 
-+ [assemble-middleware-i18n](https://github.com/assemble/assemble-middleware-i18n): Assemble middleware for adding i18n support to projects. 
-+ [assemble-middleware-lunr](https://github.com/assemble/assemble-middleware-lunr): Assemble middleware for creating a search engine within your static site using lunr.js. 
-+ [assemble-middleware-permalinks](https://github.com/assemble/assemble-middleware-permalinks): Permalinks middleware for Assemble, the static site generator for Grunt.js and Yeoman. This plugin enables powerful and configurable URI replacement patterns, presets, uses Moment.js for parsing dates, and much more. 
-+ [assemble-middleware-rss](https://github.com/assemble/assemble-middleware-rss): Assemble middleware for creating a RSS feed.
-+ [assemble-middleware-sitemap](https://github.com/assemble/assemble-middleware-sitemap): Assemble middleware for generating sitemaps. 
-+ [assemble-middleware-toc](https://github.com/assemble/assemble-middleware-toc): Assemble middleware for creating a table of contents in the generated HTML, using Cheerio.js 
-+ [assemble-middleware-wordcount](https://github.com/assemble/assemble-middleware-wordcount): Assemble middleware for displaying a word-count, and estimated reading time on blog posts or pages.  
+Glob patterns or filepaths to source files.
 
-Visit [assemble.io/assemble-middleware](http:/assemble.io/assemble-middleware/) for more information about [Assemble](http:/assemble.io/) middleware.
+**Example**
 
+```js
+assemble.task('site', function() {
+  assemble.src('src/*.tmpl.md')
+    // do stuff
+});
+```
+
+* `filepath` {String}   
+
+
+### .dest
+
+Define the destination filepath for a task.
+
+**Example**
+
+```js
+assemble.task('site', function() {
+  assemble.src('src/*.tmpl.md')
+    .pipe(dest('_gh_pages'));
+});
+```
+
+* `filepath` {String}   
+
+
+### .collection
+
+The collection method returns a plugin used to create `index` pages and
+related-pages for any collections that have been defined.
+
+**Example:**
+
+```js
+assemble.collection(TODO: @doowb);
+```
+
+This is `assemble`'s internal collection method, also exposed as
+a public method allowing this method to be replaced with a
+custom `collection` method if necessary.
+
+* `options` {Object}: Options used to setup collection definitions.  
+* `return` {Stream}  Plugin used in the pipeline. 
+
+
+### .page
+
+Cache a page with the given options.
+
+* `options` {Object}  
+* `return` {Object} 
+
+
+### .pages
+
+Expose the `pages` plugin on Assemble.
+
+* `config` {Object} 
+* `options` {Object}  
+* `return` {Object} 
+
+
+### .partials
+
+Specify file paths or glob patterns for partials to use
+with the current view engine.
+
+Partials are read from the file system, parsed into an
+object, and stored on the `cache` using the full filepath
+of each partial as its unique identifier.
+
+**Example:**
+
+```js
+var partials = assemble.partials;
+```
+
+* `patterns` {String}: File paths or glob patterns to partials. 
+* `options` {String}  
+* `return` {Object} 
+
+
+### .layouts
+
+Returns an object with all the parsed layouts by name. Internally uses
+the resolved layout filepaths from `options.layouts` to read in and cache
+any layouts not already cached.
+
+
+**Example**
+
+```js
+// get all the layouts and pass them to assemble-layouts for use
+var assembleLayouts = new require('assemble-layouts').Layouts();
+var _ = require('lodash');
+
+var layouts = assemble.layouts();
+_(layouts).forEach(function (layout, name) {
+  assembleLayouts.set(name, layout);
+});
+```
+
+* `patterns` {Array}: Glob patterns for looking up layouts 
+* `options` {Object}: Options containing layout options  
+* `return` {Object} all the parsed layouts,{Array}  Combined patterns with given layout options 
+
+
+### .helpers
+
+Returns an object with all loaded helpers;
+
+TODO
+ 
+* `return` {Object} all the resolved and loaded helpers 
+
+
+### .engine
+
+Register the given view engine callback `fn` as `ext`.
+
+Template engines in Assemble are used to render:
+
+  - views:   Such as pages and partials. Views are used when generating
+             web pages. The path of the layout file will be passed to the
+             engine's `renderFile()` function.
+
+  - layouts: Views used when generating web pages.  The path of the layout
+             file will be passed to the engine's `renderFile()` function.
+
+  - content: Text written in lightweight markup, which optionally has front
+             matter.  Front matter will be removed from the content prior to
+             rendering. `data` from front matter is merged into the context
+             and passed to the engine's `render()` function.
+
+By default Assemble will `require()` the engine based on the file extension.
+For example if you try to render a "foo.hbs" file Assemble will invoke the
+following internally:
+
+```js
+var engine = require('engines');
+assemble.engine('hbs', engine.handlebars);
+```
+
+The module is expected to export a `.renderFile` function or, for compatibility
+with Express, an `__express` function.
+
+For engines that do not provide `.renderFile` out of the box, or if you wish
+to "map" a different extension to the template engine you may use this
+method. For example mapping the EJS template engine to ".html" files:
+
+```js
+assemble.engine('html', require('ejs').renderFile);
+```
+
+Additionally, template engines are used to render lightweight markup found in
+content files.  For example using Textile:
+
+```js
+assemble.engine('textile', require('textile-engine'));
+```
+
+In this case, it is expected that the module export a `render` function which
+will be passed content data (after removing any front matter).
+
+* `ext` {String} 
+* `fn` {Function} 
+* `options` {Object}  
+* `return` {Assemble} for chaining 
+
+
+### .render
+
+This is Assemble's internal render method, but it's exposed as a public method
+so it can be replaced with a custom `render` method.
+
+* `data` {Object}: Data to pass to registered view engines. 
+* `options` {Object}: Options to pass to registered view engines.  
+* `return` {String} 
+
+
+### .parse
+
+Register a parser `fn` to be used on each `.src` file. This is used to parse
+front matter, but can be used for any kind of parsing.
+
+By default, Assemble will parse front matter using [gray-matter][gray-matter].
+For front-matter in particular it is probably not necessary to register additional
+parsing functions, since gray-matter can support almost any format, but this is
+cusomizable if necessary or if a non-supported format is required.
+
+**Example:**
+
+```js
+assemble.parser('uppercase', function (assemble) {
+  return function (file, options, encoding) {
+    file.contents = new Buffer(file.contents.toString().toUpperCase());
+    return file;
+  };
+});
+```
+
+[gray-matter]: https://github.com/assemble/gray-matter
+
+* `name` {String}: Optional name of the parser, for debugging. 
+* `options` {Object}: Options to pass to parser. 
+* `fn` {Function}: The parsing function.  
+* `return` {Assemble} for chaining 
+
+
+### .buffer
+
+This is Assemble's internal buffer method, but it's exposed as a public method
+so it can be replaced with a custom `buffer` method.
+
+* `options` {Object}: Options to pass to the buffer plugin.  
+* `return` {String} 
+
+
+### .highlight
+
+Register a function for syntax highlighting.
+
+By default, Assemble uses highlight.js for syntax highlighting.  It's not
+necessary to register another function unless you want to override the default.
+
+**Examples:**
+
+```js
+assemble.highlight(function(code, lang) {
+  if (lang) {
+    return hljs.highlight(lang, code).value;
+  }
+  return hljs.highlightAuto(code).value;
+});
+```
+
+* `fn` {Function}   
+
+
+### .watch
+
+Rerun the specified task when a file changes.
+
+```js
+assemble.task('watch', function() {
+  assemble.watch('docs/*.md', ['docs']);
+});
+```
+
+**Params:**
+
+* `glob` {String|Array}: Filepaths or glob patterns. 
+* `options` {String} 
+* `fn` {Function}: Task(s) to watch.  
+* `return` {String} 
+
+
+Expose `Assemble`
 
 ## Authors
  
@@ -248,73 +423,10 @@ Visit [assemble.io/assemble-middleware](http:/assemble.io/assemble-middleware/) 
 + [twitter/doowb](http://twitter.com/doowb) 
 
 
-## Release History
-**DATE**       **VERSION**   **CHANGES**                                                                
-* 2014-07-07   v0.4.41       Updating resolve-dep dependency.                                           
-* 2014-06-13   v0.4.38       Use gray-matter instead of assemble-yaml.,Updates dependencies. Minor      
-                             refactoring and new utils to get rid of a couple of dependencies.,Update   
-                             the loaders for plugins and helpers to use resolve-dep. Should be more     
-                             reliable now.                                                              
-* 2013-10-25   v0.4.17       Adds a params object to the call to `helper.register` allowing grunt and   
-                             assemble to be passed in and used from inside helpers.                     
-* 2013-10-24   v0.4.16       Adds support for using wildcards with plugins stages.                      
-* 2013-10-24   v0.4.15       Implements multiple plugin stages.                                         
-* 2013-10-21   v0.4.14       Adds support for plugins running once, before and after (thanks            
-                             @adjohnson916).,Adds pagination!,Thanks to @xzyfer, `options.data` can now 
-                             also directly accept an object of data.                                    
-* 2013-10-12   v0.4.13       Adds `originalAssets` property to root context to store the pre-calculated 
-                             assets path                                                                
-* 2013-10-05   v0.4.12       Fixes plugins resolving for devDependencies.                               
-* 2013-10-03   v0.4.11       Adds filePair to page object. thanks @adjohnson916!                        
-* 2013-10-02   v0.4.10       Adds plugin support to Assemble using the `plugins` option. thanks         
-                             @adjohnson916!                                                             
-* 2013-10-02   v0.4.9        Adds `layoutext` and `postprocess` options.                                
-* 2013-09-30   v0.4.8        Assemble now builds 30-50% faster due to some refactoring to async and how 
-                             context is calculated.                                                     
-* 2013-09-20   v0.4.7        Adds grunt-readme to make it easier to keep the readme updated using       
-                             templates.,Keep options.partials intact so they can be used in helpers.    
-* 2013-09-15   v0.4.6        Updating how the assets path is calculated.,Adding resolve-dep and ability 
-                             to load helpers from node modules using minimatch patterns                 
-* 2013-09-03   v0.4.5        Bug fix: allow page content containing $.,Add alias metadata for data on   
-                             pages configuration object.                                                
-* 2013-08-01   v0.4.4        Adds "nested layouts",Adds option for pages in JSON/YAML collections to be 
-                             defined as either objects or keys in an array.                             
-* 2013-08-01   v0.4.3        Adds "options.pages" for passing in an array of pages in JSON or YAML      
-                             format.                                                                    
-* 2013-06-20   v0.4.0        Adds "layoutdir" option for defining the directory to be used for layouts. 
-                             If layoutdir is defined, then layouts may be defined using only the name of
-                             the layout.                                                                
-* 2013-06-10   v0.3.81       Adds additional ways to load custom helpers. Now it's possible to use a    
-                             glob pattern that points to a list of scripts with helpers to load.,Adds   
-                             examples and tests on how to use the new custom helper loading methods.    
-* 2013-06-01   v0.3.80       Fixing bug with null value in engine                                       
-* 2013-05-07   v0.3.77       Updated README with info about assemble methods                            
-* 2013-04-28   v0.3.74       Updating the assemble library to use the assemble-utils repo and           
-                             unnecessary code.                                                          
-* 2013-04-21   v0.3.73       Fixing how the relative path helper worked and showing an example in the   
-                             footer of the layout. This example is hidden, but can be seen by doing view
-                             source.                                                                    
-* 2013-04-20   v0.3.72       Fixing the layout override issue happening in the page yaml headers.       
-                             Something was missed during refactoring.                                   
-* 2013-04-19   v0.3.9        Adds tags and categories to the root context and ensure that the current   
-                             page context values don't override the root context values.                
-* 2013-04-18   v0.3.8        Updating to use actual assets property from current page.                  
-* 2013-04-17   v0.3.7        Cleaning up some unused folders and tests                                  
-* 2013-04-16   v0.3.6        Fixed missing assets property.                                             
-* 2013-04-16   v0.3.5        Adds a sections array to the template engine so it can be used in helpers. 
-* 2013-04-11   v0.3.4        More tests for helpers and global variables, organized tests. A number of  
-                             bug fixes.                                                                 
-* 2013-04-06   v0.3.3        helper-lib properly externalized and wired up. Global variables for        
-                             filename, ext and pages                                                    
-* 2013-03-22   v0.3.22       Merged global and target level options so data and partial files can be    
-                             joined                                                                     
-* 2013-03-22   v0.3.21       Valid YAML now allowed in options.data object (along with JSON)            
-* 2013-03-18   v0.3.14       new relative helper for resolving relative paths                           
-
 ## License
-Copyright (c) 2014 Jon Schlinkert, Brian Woodward, contributors.  
+Copyright (c) 2014 Assemble, contributors.  
 Released under the MIT license
 
 ***
 
-_This file was generated by [grunt-verb](https://github.com/assemble/grunt-verb) on July 07, 2014._
+_This file was generated by [verb-cli](https://github.com/assemble/verb-cli) on July 23, 2014._

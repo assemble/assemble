@@ -1,0 +1,25 @@
+#!/bin/zsh
+
+# Borrowed from grunt-cli
+# http://gruntjs.com/
+#
+# Copyright (c) 2012 Tyler Kellen, contributors
+# Licensed under the MIT license.
+# https://github.com/gruntjs/grunt/blob/master/LICENSE-MIT
+
+# Usage:
+#
+# To enable zsh <tab> completion for assemble, add the following line (minus the
+# leading #, which is the zsh comment character) to your ~/.zshrc file:
+#
+# eval "$(assemble --completion=zsh)"
+
+# Enable zsh autocompletion.
+function _assemble_completion() {
+  # Grab tasks
+  compls=$(assemble --tasks-simple)
+  completions=(${=compls})
+  compadd -- $completions
+}
+
+compdef _assemble_completion assemble
