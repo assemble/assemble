@@ -23,7 +23,9 @@ describe('assemble route', function() {
     });
 
     it('should set route for all text files', function (done) {
+      var called = 0;
       assemble.route(/\.txt/, function (file, next) {
+        called++;
         file.contents = new Buffer(file.contents.toString().toUpperCase());
         next();
       });
@@ -42,18 +44,23 @@ describe('assemble route', function() {
       });
 
       outstream.on('end', function () {
+        called.should.equal(1);
         done();
       });
     });
 
     it('should set multiple routes on different files', function (done) {
 
+      var called = {};
+      var checked = 0;
       assemble.route(/\.txt/, function (file, next) {
+        called['.txt'] = file.path;
         file.contents = new Buffer(file.contents.toString().toUpperCase());
         next();
       });
 
       assemble.route(/\.hbs/, function (file, next) {
+        called['.hbs'] = file.path;
         file.ext = '.html';
         next();
       });
@@ -64,26 +71,47 @@ describe('assemble route', function() {
 
       outstream.on('error', done);
       outstream.on('data', function (file) {
-        console.log(JSON.stringify(file, null, 2))
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
-        // join(file.path, '').should.equal(join(outpath, 'example.html'));
-        // String(file.contents).should.equal('THIS IS A TEST');
+
+        var file1 = join(outpath, 'example.html');
+        var file2 = join(outpath, 'example.txt');
+
+        if (file.path === file1) {
+          checked++;
+          join(file.path, '').should.equal(file1);
+          String(file.contents).should.equal('this is a test');          
+        }
+
+        if (file.path === file2) {
+          checked++;
+          join(file.path, '').should.equal(file2);
+          String(file.contents).should.equal('THIS IS A TEST');          
+        }
+        
       });
 
       outstream.on('end', function () {
+        called.should.eql({
+          '.txt': join(__dirname, 'fixtures/routes/example.txt'),
+          '.hbs': join(__dirname, 'fixtures/routes/example.hbs')
+        });
+        checked.should.equal(2);
         done();
       });
     });
 
     it('should set multiple routes on same file', function (done) {
+      var called = 0;
       assemble.route(/\.txt/, function (file, next) {
+        called++;
         file.contents = new Buffer(file.contents.toString().toUpperCase());
         next();
       });
 
       assemble.route(/example/, function (file, next) {
+        called++;
         file.ext = '.html';
         next();
       });
@@ -102,16 +130,21 @@ describe('assemble route', function() {
       });
 
       outstream.on('end', function () {
+        called.should.equal(2);
         done();
       });
     });
 
     it('should handle errors', function (done) {
 
+      var called = 0;
+
       assemble.route(/\.hbs/, function (file, next) {
+        called++;
         throw new Error('This is an error');
         next();
       }, function (err, file, next) {
+        called++;
         should.exist(err);
         err.message.should.equal('This is an error');
         next();
@@ -126,19 +159,20 @@ describe('assemble route', function() {
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
-        // join(file.path, '').should.equal(join(outpath, 'example.txt'));
-        // String(file.contents).should.equal('THIS IS A TEST');
       });
 
       outstream.on('end', function () {
+        called.should.equal(2);
         done();
       });
     });
 
 
     it('should set routes with custom router', function (done) {
+      var called = 0;
       var foo = assemble.router();
       foo.route(/\.txt/, function (file, next) {
+        called++;
         file.contents = new Buffer('foo: ' + file.contents.toString().toUpperCase());
         next();
       });
@@ -160,6 +194,7 @@ describe('assemble route', function() {
       });
 
       outstream.on('end', function () {
+        called.should.equal(1);
         done();
       });
     });
