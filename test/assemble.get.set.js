@@ -11,7 +11,7 @@ var assert = require('assert');
 var should = require('should');
 var assemble = require('..');
 
-describe('assemble config', function () {
+describe('assemble cache', function () {
   afterEach(function() {
     assemble.clear();
   });
