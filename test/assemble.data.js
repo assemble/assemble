@@ -44,9 +44,9 @@ describe('assemble data', function() {
     });
   });
 
-  describe('.root()', function() {
+  describe('.flattenData()', function() {
     it('should merge the value of a nested `data` property onto the root of the given object.', function() {
-      var root = assemble.root({data: {x: 'x'}, y: 'y', z: 'z'});
+      var root = assemble.flattenData({data: {x: 'x'}, y: 'y', z: 'z'});
       root.should.have.property('x');
       root.should.have.property('y');
       root.should.have.property('z');
