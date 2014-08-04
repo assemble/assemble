@@ -79,8 +79,7 @@
     "through2": "^0.5.1",
     "tildify": "^0.2.0",
     "vinyl": "^0.3.0",
-    "vinyl-fs": "^0.3.4",
-    "xtend": "^3.0.0"
+    "vinyl-fs": "^0.3.4"
   },
   "devDependencies": {
     "graceful-fs": "^3.0.2",
