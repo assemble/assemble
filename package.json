@@ -52,9 +52,7 @@
     "escape-delims": "^0.1.1",
     "event-stream": "^3.1.5",
     "eventemitter2": "^0.4.14",
-    "expander": "^0.3.3",
     "fs-utils": "^0.4.3",
-    "getobject": "^0.1.0",
     "globby": "^0.1.1",
     "gray-matter": "^0.4.2",
     "gulp-util": "^2.2.19",
@@ -69,10 +67,8 @@
     "lodash": "^2.4.1",
     "lookup-path": "^0.2.0",
     "minimist": "^0.2.0",
-    "namespace-data": "^0.1.0",
     "orchestrator": "^0.3.3",
     "parse-filepath": "^0.3.0",
-    "plasma": "^0.4.0",
     "pretty-hrtime": "^0.2.1",
     "remarked": "^0.1.4",
     "rename-path": "^0.2.0",
@@ -87,7 +83,6 @@
     "xtend": "^3.0.0"
   },
   "devDependencies": {
-    "del": "^0.1.1",
     "graceful-fs": "^3.0.2",
     "grade": "^0.1.0",
     "gulp": "^3.8.5",
