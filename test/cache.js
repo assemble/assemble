@@ -8,7 +8,7 @@
 'use strict';
 
 var should = require('should');
-var Cache = require('../lib/cache');
+var Cache = require('config-cache');
 
 describe('Cache', function () {
   var config = new Cache();

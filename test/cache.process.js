@@ -9,7 +9,7 @@
 
 var assert = require('assert');
 var should = require('should');
-var Config = require('../lib/cache');
+var Config = require('config-cache');
 var config = new Config();
 
 

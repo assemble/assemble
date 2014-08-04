@@ -46,6 +46,7 @@
     "assemble-collections": "^0.1.7",
     "calculate-assets": "^0.1.2",
     "chalk": "^0.5.0",
+    "config-cache": "^0.1.4",
     "debug": "^1.0.4",
     "delimiter-map": "^0.1.0",
     "escape-delims": "^0.1.1",
