@@ -190,7 +190,7 @@ describe('assemble output stream', function() {
         });
       });
 
-      it('should throw an error when trying to write streaming files', function (done) {
+      xit('should throw an error when trying to write streaming files', function (done) {
         var instream = assemble.src(join(__dirname, 'fixtures/copy/*.txt'), {buffer: false});
         var outstream = instream.pipe(assemble.dest(outpath));
 

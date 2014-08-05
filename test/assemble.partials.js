@@ -119,7 +119,7 @@ describe('assemble partials', function () {
       partials.should.have.property(partialPath('c.hbs'));
     });
 
-    xit('should cache an object of partials defined as an array of glob patterns.', function () {
+    it('should cache an object of partials defined as an array of glob patterns.', function (done) {
       assemble.partial({upper: function (str) {return str.toUpperCase();}});
 
       var instream = assemble.src(path.join(__dirname, 'fixtures/templates/with-partial/*.hbs'));
@@ -142,7 +142,7 @@ describe('assemble partials', function () {
     });
   });
 
-  xdescribe('assemble.partials()', function () {
+  describe('assemble.partials()', function () {
     it('should register partials and use them in templates.', function (done) {
       assemble.partials({
         upper: function (str) {
@@ -174,7 +174,7 @@ describe('assemble partials', function () {
     });
   });
 
-  xdescribe('options.set()', function () {
+  describe('options.set()', function () {
     it('should register partials and use them in templates.', function (done) {
       assemble.option.set({
         partials: {
@@ -208,7 +208,7 @@ describe('assemble partials', function () {
     });
   });
 
-  xdescribe('options.partials', function () {
+  describe('options.partials', function () {
     it('should register partials and use them in templates.', function (done) {
       assemble.options.partials = {
         upper: function (str) {
@@ -240,7 +240,7 @@ describe('assemble partials', function () {
     });
   });
 
-  xdescribe('assemble.src("", {partials:[]})', function () {
+  describe('assemble.src("", {partials:[]})', function () {
     it('should register partials on the `src` and use them in templates.', function (done) {
       var srcPath = path.join(__dirname, 'fixtures/templates/with-partials/*.hbs');
       var instream = assemble.src(srcPath, {
@@ -273,7 +273,7 @@ describe('assemble partials', function () {
     });
   });
 
-  xdescribe('assemble.dest("", {partials:[]})', function () {
+  describe('assemble.dest("", {partials:[]})', function () {
     it('should register partials on the `dest` and use them in templates.', function (done) {
       var srcPath = path.join(__dirname, 'fixtures/templates/with-partials/*.hbs');
       var instream = assemble.src(srcPath);

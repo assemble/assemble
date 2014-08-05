@@ -64,7 +64,7 @@ describe('Loader', function () {
         var loaders = loader.normalize(config);
         debug('loaders', loaders);
         loaders.length.should.equal(1);
-        loaders[0].path.toLowerCase().should.equal(path.join(process.cwd(), 'foo.hbs').toLowerCase());
+        loaders[0].path.toLowerCase().should.equal(path.join(/*process.cwd(),*/ 'foo.hbs').toLowerCase());
         loaders[0].contents.toString().should.equal('\nHi {{name}} from {{title}}\n');
         loaders[0].data.should.eql({title: 'Foo', name: 'Brian'});
       });
@@ -89,11 +89,11 @@ describe('Loader', function () {
         var loaders = loader.normalize(config);
         debug('loaders', loaders);
         loaders.length.should.equal(2);
-        loaders[0].path.toLowerCase().should.equal(path.join(process.cwd(), 'foo.hbs').toLowerCase());
+        loaders[0].path.toLowerCase().should.equal(path.join(/*process.cwd(),*/ 'foo.hbs').toLowerCase());
         loaders[0].contents.toString().should.equal('\nHi {{name}} from {{title}}\n');
         loaders[0].data.should.eql({title: 'Foo', name: 'Brian'});
 
-        loaders[1].path.toLowerCase().should.equal(path.join(process.cwd(), 'bar.hbs').toLowerCase());
+        loaders[1].path.toLowerCase().should.equal(path.join(/*process.cwd(),*/ 'bar.hbs').toLowerCase());
         loaders[1].contents.toString().should.equal('\nHi {{name}} from {{title}}\n');
         loaders[1].data.should.eql({title: 'Bar', name: 'Jon'});
 
@@ -120,11 +120,11 @@ describe('Loader', function () {
         var loaders = loader.normalize(config);
         debug('loaders', loaders);
         loaders.length.should.equal(2);
-        loaders[0].path.toLowerCase().should.equal(path.join(process.cwd(), 'foo.hbs').toLowerCase());
+        loaders[0].path.toLowerCase().should.equal(path.join(/*process.cwd(),*/ 'foo.hbs').toLowerCase());
         loaders[0].contents.toString().should.equal('\nHi {{name}} from {{title}}\n');
         loaders[0].data.should.eql({title: 'Foo', name: 'Brian'});
 
-        loaders[1].path.toLowerCase().should.equal(path.join(process.cwd(), 'bar.hbs').toLowerCase());
+        loaders[1].path.toLowerCase().should.equal(path.join(/*process.cwd(),*/ 'bar.hbs').toLowerCase());
         loaders[1].contents.toString().should.equal('\nHi {{name}} from {{title}}\n');
         loaders[1].data.should.eql({title: 'Bar', name: 'Jon'});
 
@@ -156,11 +156,11 @@ describe('Loader', function () {
         var loaders = loader.normalize(config);
         debug('loaders', loaders);
         loaders.length.should.equal(2);
-        loaders[0].path.toLowerCase().should.equal(path.join(process.cwd(), 'foo.hbs').toLowerCase());
+        loaders[0].path.toLowerCase().should.equal(path.join(/*process.cwd(),*/ 'foo.hbs').toLowerCase());
         loaders[0].contents.toString().should.equal('\nHi {{name}} from {{title}}\n');
         loaders[0].data.should.eql({title: 'Foo', name: 'Brian'});
 
-        loaders[1].path.toLowerCase().should.equal(path.join(process.cwd(), 'bar.hbs').toLowerCase());
+        loaders[1].path.toLowerCase().should.equal(path.join(/*process.cwd(),*/ 'bar.hbs').toLowerCase());
         loaders[1].contents.toString().should.equal('\nHi {{name}} from {{title}}\n');
         loaders[1].data.should.eql({title: 'Bar', name: 'Jon'});
 
