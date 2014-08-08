@@ -61,7 +61,7 @@
     "interpret": "^0.3.5",
     "is-absolute": "^0.1.0",
     "lang-map": "^0.1.1",
-    "layouts": "^0.1.0",
+    "layouts": "^0.2.0",
     "liftoff": "^0.12.0",
     "load-options": "^0.4.0",
     "lodash": "^2.4.1",
