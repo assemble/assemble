@@ -30,7 +30,6 @@ describe('assemble engines', function () {
       var handlebars = require('../lib/engine/handlebars');
       assemble.engine('hbs', handlebars);
       should.exist(assemble.layoutEngines['.hbs']);
-      should.exist(assemble.layoutEngines['.hbs'].regex);
     });
   });
 });
