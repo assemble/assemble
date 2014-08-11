@@ -22,7 +22,7 @@ describe('assemble defaultConfig', function () {
       assemble.get('encoding').should.equal('utf8');
       assemble.get('cwd').should.equal(process.cwd());
       assemble.get('ext').should.equal('.html');
-      assemble.get('data').should.be.empty;
+      // assemble.get('data').should.be.empty;
 
       // Default `src` plugins
       assemble.enabled('init plugin').should.be.true;
@@ -37,7 +37,7 @@ describe('assemble defaultConfig', function () {
       assemble.enabled('extend-dest plugin').should.be.true;
       assemble.enabled('collections plugin').should.be.true;
       assemble.disabled('dest plugin').should.be.true;
-      assemble.disabled('assets plugin').should.be.true;
+      assemble.enabled('assets plugin').should.be.true;
       assemble.disabled('dest-routes plugin').should.be.true;
       assemble.enabled('render plugin').should.be.true;
 
