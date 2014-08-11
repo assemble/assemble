@@ -32,7 +32,8 @@ describe('Loader', function () {
 
   describe('assemble.loader()', function () {
     it('should create a new instance of Loader', function () {
-      var loader = assemble.page();
+      // var loader = assemble.page();
+      var loader = new Loader();
       debug('loader', loader);
       should.exist(loader);
       loader.should.be.instanceOf(Loader);
