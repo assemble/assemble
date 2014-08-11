@@ -119,7 +119,7 @@ describe('assemble layouts', function () {
       layouts.should.have.property(layoutPath('c.hbs'));
     });
 
-    xit('should cache an object of layouts defined as an array of glob patterns.', function () {
+    it('should cache an object of layouts defined as an array of glob patterns.', function (done) {
       assemble.layout({upper: function (str) {return str.toUpperCase();}});
 
       var instream = assemble.src(path.join(__dirname, 'fixtures/templates/with-layout/*.hbs'));
@@ -142,7 +142,7 @@ describe('assemble layouts', function () {
     });
   });
 
-  xdescribe('assemble.layouts()', function () {
+  describe('assemble.layouts()', function () {
     it('should register layouts and use them in templates.', function (done) {
       assemble.layouts({
         upper: function (str) {
@@ -174,7 +174,7 @@ describe('assemble layouts', function () {
     });
   });
 
-  xdescribe('options.set()', function () {
+  describe('options.set()', function () {
     it('should register layouts and use them in templates.', function (done) {
       assemble.option.set({
         layouts: {
@@ -208,7 +208,7 @@ describe('assemble layouts', function () {
     });
   });
 
-  xdescribe('options.layouts', function () {
+  describe('options.layouts', function () {
     it('should register layouts and use them in templates.', function (done) {
       assemble.options.layouts = {
         upper: function (str) {
@@ -240,7 +240,7 @@ describe('assemble layouts', function () {
     });
   });
 
-  xdescribe('assemble.src("", {layouts:[]})', function () {
+  describe('assemble.src("", {layouts:[]})', function () {
     it('should register layouts on the `src` and use them in templates.', function (done) {
       var srcPath = path.join(__dirname, 'fixtures/templates/with-layouts/*.hbs');
       var instream = assemble.src(srcPath, {
@@ -273,7 +273,7 @@ describe('assemble layouts', function () {
     });
   });
 
-  xdescribe('assemble.dest("", {layouts:[]})', function () {
+  describe('assemble.dest("", {layouts:[]})', function () {
     it('should register layouts on the `dest` and use them in templates.', function (done) {
       var srcPath = path.join(__dirname, 'fixtures/templates/with-layouts/*.hbs');
       var instream = assemble.src(srcPath);
