@@ -26,11 +26,10 @@ describe('assemble engines', function () {
       should.exist(assemble.engines['.hbs'].render);
     });
 
-    it('should set a layout engine when setting an engine', function () {
+    it('should set a lazy layout engine when setting an engine', function () {
       var handlebars = require('../lib/engine/handlebars');
       assemble.engine('hbs', handlebars);
       should.exist(assemble.layoutEngines['.hbs']);
-      should.exist(assemble.layoutEngines['.hbs'].regex);
     });
   });
 });
