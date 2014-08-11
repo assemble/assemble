@@ -11,7 +11,7 @@ var assert = require('assert');
 var should = require('should');
 var assemble = require('..');
 
-describe('assemble pages', function () {
+xdescribe('assemble pages', function () {
 
   beforeEach(function () {
       assemble.init();

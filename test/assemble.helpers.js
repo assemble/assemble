@@ -30,20 +30,22 @@ describe('assemble helpers', function () {
 
   describe('.helpers()', function () {
     it('should return an empty list of helpers.', function () {
-      assemble.helpers.should.be.empty;
+      assemble.cache.helpers.should.be.empty;
     });
 
     it('should return helpers based on a glob pattern.', function () {
       var fixture = __dirname + '/fixtures/helpers/wrapped.js';
-      var helpers = assemble.helpers(fixture);
-      helpers.should.have.property('wrapped');
-      helpers['wrapped'].should.be.a.function;
+      var h = assemble.helpers(fixture);
+      console.log(h);
+
+      assemble.cache.helpers.should.have.property('wrapped');
+      assemble.cache.helpers['wrapped'].should.be.a.function;
     });
   });
 
-  describe('assemble.helper():', function () {
+  describe('assemble.registerHelpers():', function () {
     it('should register helpers and use them in templates.', function (done) {
-      assemble.helper({upper: function (str) {return str.toUpperCase();}});
+      assemble.registerHelpers({upper: function (str) {return str.toUpperCase();}});
 
       var instream = assemble.src(path.join(__dirname, 'fixtures/templates/with-helper/*.hbs'));
       var outstream = assemble.dest(actual);
@@ -67,7 +69,7 @@ describe('assemble helpers', function () {
 
   describe('assemble.helpers()', function () {
     it('should register helpers and use them in templates.', function (done) {
-      assemble.helpers({
+      assemble.registerHelpers({
         upper: function (str) {
           return str.toUpperCase();
         },
