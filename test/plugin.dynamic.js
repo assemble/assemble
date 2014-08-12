@@ -59,6 +59,7 @@ describe('assemble dynamic plugin', function() {
           should.exist(file.contents);
           should.exist(file.assets);
           file.assets.should.equal('assets');
+          /assets/.test(String(file.contents)).should.be.true;
         });
 
         outstream.on('end', function () {
