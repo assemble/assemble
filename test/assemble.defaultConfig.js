@@ -37,7 +37,7 @@ describe('assemble defaultConfig', function () {
       // Default `dest` plugins
       assemble.enabled('extend-dest plugin').should.be.true;
       assemble.enabled('collections plugin').should.be.true;
-      assemble.disabled('dest plugin').should.be.true;
+      assemble.enabled('dest plugin').should.be.true;
       assemble.disabled('dest-routes plugin').should.be.true;
       assemble.enabled('render plugin').should.be.true;
 

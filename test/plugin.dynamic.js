@@ -1,6 +1,7 @@
 'use strict';
 
 var path = require('path');
+var tap = require('gulp-tap');
 var fs = require('graceful-fs');
 var should = require('should');
 var rimraf = require('rimraf');
@@ -23,7 +24,29 @@ describe('assemble dynamic plugin', function() {
     });
 
     describe('when `assets` is defined on options:', function () {
-      it('should set the correct `assets` property on the file.', function (done) {
+      it('should calculate the correct `assets` property on the file.', function (done) {
+        assemble.set('assets', actual + '/assets');
+        var instream = assemble.src(path.join(__dirname, 'fixtures/dynamic/*.hbs'));
+        var outstream = assemble.dest(actual);
+
+        instream
+          .pipe(tap(function (file) {
+            should.exist(file);
+            should.exist(file.path);
+            should.exist(file.contents);
+            should.exist(file.assets);
+            file.assets.should.equal('../../dynamic-actual/assets');
+          }))
+          .pipe(outstream);
+
+        outstream.on('error', done);
+        outstream.on('end', function () {
+          done();
+        });
+
+      });
+
+      it('should calculate the correct `assets` property on the file when the dest changes.', function (done) {
         assemble.set('assets', actual + '/assets');
         var instream = assemble.src(path.join(__dirname, 'fixtures/dynamic/*.hbs'));
         var outstream = assemble.dest(actual);
@@ -35,12 +58,7 @@ describe('assemble dynamic plugin', function() {
           should.exist(file.path);
           should.exist(file.contents);
           should.exist(file.assets);
-          console.log('file.assets', file.assets);
-          console.log('file.dest', file.dest);
-          /[ab]\.html$/.test(String(file.path)).should.be.false;
-          /[cd]\.html$/.test(String(file.path)).should.be.true;
-          /[CD]/.test(String(file.contents)).should.be.true;
-          assemble.files.length.should.equal(4);
+          file.assets.should.equal('assets');
         });
 
         outstream.on('end', function () {
