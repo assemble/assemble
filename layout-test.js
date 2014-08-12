@@ -1,2 +1,0 @@
-var isFalsey = require('falsey');
-

@@ -4,16 +4,14 @@ var path = require('path');
 var fs = require('graceful-fs');
 var should = require('should');
 var rimraf = require('rimraf');
-var assemble = require('..');
+var Assemble = require('..');
 
-
-var drafts = require('../lib/plugins/drafts')(assemble);
+var assemble = null;
 var actual = __dirname + '/drafts-actual';
-
 
 describe('assemble drafts plugin', function() {
   before (function () {
-    assemble.init();
+    assemble = Assemble.create();
   });
 
   describe('drafts()', function() {
