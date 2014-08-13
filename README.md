@@ -57,15 +57,7 @@ Improved Features
 New `options` settings:
 
 * `layouts`: Define a glob of layouts. Allows more flexibility than `layoutdir`.
-* `
 
-Improved Features
-
-
-[gulp]: https://github.com/wearefractal/gulp
-[fractal]: https://github.com/wearefractal
-[vinyl]: https://github.com/wearefractal/vinyl
-[vinyl-fs]: https://github.com/wearefractal/vinyl-fs
 
 
 ## Install
@@ -76,48 +68,46 @@ npm i assemble --save-dev
 ```
 
 ## API
-Module dependencies.
-  
+### [Assemble](lib/assemble.js#L82)
 
+Create an `assemble` task.
 
-## Assemble
+* `context` **{Object}**  
 
-The Assemble constructor is Assemble's parent storage class.
+```js
+var assemble = require('assemble');
+
+assemble.task('site', function() {
+  assemble.src('templates/*.hbs')
+    .pipe(assemble.dest('_gh_pages'));
+});
+```
+
 Optionally initialize a new `Assemble` with the given `context`.
-
-**Example:**
 
 ```js
 var config = new Assemble({foo: 'bar'});
 ```
 
-* `context` {Object}   
+
+### [cwd](lib/assemble.js#L421)
+
+Set the current working directory for all paths. Default is `process.cwd()`, this does not need to be changed unless you require something different.
+
+* `args` **{String|Array}**: File path or paths.  
+* returns: {String}  
+
+```js
+assemble.cwd('bench');
+```
 
 
-Extend `Assemble`
-  
-
-
-### .cwd
-
-Set the current working directory for all paths.
-
-* `paths` {String}  
-* `return` {String} 
-
-
-### .plugin
-
-Run assemble middleware
-
-* stage {String} 
-* plugins {Array}  
-* `return` {String} 
-
-
-### .task
+### [task](lib/assemble.js#L476)
 
 Define an assemble task.
+
+* `name` **{String}**  
+* `fn` **{Function}**  
 
 **Example**
 
@@ -127,46 +117,54 @@ assemble.task('site', function() {
 });
 ```
 
-* `name` {String} 
-* `fn` {Function}   
 
-
-### .src
+### [src](lib/assemble.js#L527)
 
 Glob patterns or filepaths to source files.
 
-**Example**
+* `filepath` **{String}**  
 
 ```js
-assemble.task('site', function() {
-  assemble.src('src/*.tmpl.md')
-    // do stuff
-});
+assemble.src([patterns], [options])
 ```
-
-* `filepath` {String}   
-
-
-### .dest
-
-Define the destination filepath for a task.
 
 **Example**
 
 ```js
 assemble.task('site', function() {
-  assemble.src('src/*.tmpl.md')
-    .pipe(dest('_gh_pages'));
+  assemble.src('src/*.hbs', {layout: 'default'})
+    assemble.dest('dist')
 });
 ```
 
-* `filepath` {String}   
+
+### [dest](lib/assemble.js#L562)
+
+Specify a destination for processed files.
+
+* `patterns` **{String|Array|Function}**: Glob patterns, file paths, or renaming function.  
+* `opts` **{Object}**: Options to be passed to `dest` plugins.  
+
+```js
+assemble.dest([patterns], [opts])
+```
+
+**Example**
+
+```js
+assemble.task('sitemap', function() {
+  assemble.src('src/*.txt')
+    assemble.dest('dist', {ext: '.xml'})
+});
+```
 
 
-### .collection
+### [collection](lib/assemble.js#L604)
 
-The collection method returns a plugin used to create `index` pages and
-related-pages for any collections that have been defined.
+The collection method returns a plugin used to create `index` pages and related-pages for any collections that have been defined.
+
+* `options` **{Object}**: Options used to setup collection definitions.  
+* returns **{Stream}**: Plugin used in the pipeline.  
 
 **Example:**
 
@@ -178,32 +176,34 @@ This is `assemble`'s internal collection method, also exposed as
 a public method allowing this method to be replaced with a
 custom `collection` method if necessary.
 
-* `options` {Object}: Options used to setup collection definitions.  
-* `return` {Stream}  Plugin used in the pipeline. 
+
+### [pages](lib/assemble.js#L695)
+
+Load pages onto the cache as normalized pages-objects. Specify file paths or glob patterns for pages to use with the current view engine.
+
+* `patterns` **{String|Array|Object}**: Object, array of objects, file paths or glob patterns.  
+* `options` **{String}**: Options to pass to the `pagesCache.load()` method.  
+* returns **{Object}** `Assemble`: to enable chaining.  
+
+If a string or array of file paths or glob patterns is passed,
+pages will be read from the file system, parsed into an
+object, and stored on the `cache` using the full filepath
+of each page as its unique identifier.
+
+**Example:**
+
+```js
+assemble.pages('templates/pages/*.hbs');
+```
 
 
-### .page
+### [partial](lib/assemble.js#L749)
 
-Cache a page with the given options.
+Add a partial to `cache.partials`. Partials can be defined either as objects, or as glob patterns or file paths to the files to read in and parse.
 
-* `options` {Object}  
-* `return` {Object} 
-
-
-### .pages
-
-Expose the `pages` plugin on Assemble.
-
-* `config` {Object} 
-* `options` {Object}  
-* `return` {Object} 
-
-
-### .partial
-
-Add a partial to `cache.partials`. Partials can be defined either
-as objects, or as glob patterns or file paths to the files to read
-in and parse.
+* `patterns` **{String}**: File paths or glob patterns to partials.  
+* `options` **{String}**  
+* returns: {Object}  
 
 Partial objects are expected to have the following properties:
 
@@ -223,16 +223,14 @@ assemble.partial({
 });
 ```
 
-* `patterns` {String}: File paths or glob patterns to partials. 
-* `options` {String}  
-* `return` {Object} 
 
+### [partials](lib/assemble.js#L777)
 
-### .partials
+Load partials onto the cache as normalized partials-objects. Specify file paths or glob patterns for partials to use with the current view engine.
 
-Load partials onto the cache as normalized partials-objects.
-Specify file paths or glob patterns for partials to use with
-the current view engine.
+* `patterns` **{String|Array|Object}**: Object, array of objects, file paths or glob patterns.  
+* `options` **{String}**: Options to pass to the `partialsCache.load()` method.  
+* returns **{Object}** `Assemble`: to enable chaining.  
 
 If a string or array of file paths or glob patterns is passed,
 partials will be read from the file system, parsed into an
@@ -245,16 +243,14 @@ of each partial as its unique identifier.
 assemble.partials('templates/partials/*.hbs');
 ```
 
-* `patterns` {String|Array|Object}: Object, array of objects, file paths or glob patterns. 
-* `options` {String}: Options to pass to the `partialsCache.add()` method.  
-* `return` {Object} 
 
+### [layout](lib/assemble.js#L852)
 
-### .layout
+Add a layout to `cache.layouts`. Partials can be defined either as objects, or as glob patterns or file paths to the files to read in and parse.
 
-Add a layout to `cache.layouts`. Partials can be defined either
-as objects, or as glob patterns or file paths to the files to read
-in and parse.
+* `patterns` **{String}**: File paths or glob patterns to layouts.  
+* `options` **{String}**  
+* returns: {Object}  
 
 Partial objects are expected to have the following properties:
 
@@ -273,122 +269,176 @@ assemble.layout({
 });
 ```
 
-* `patterns` {String}: File paths or glob patterns to layouts. 
-* `options` {String}  
-* `return` {Object} 
 
+### [layouts](lib/assemble.js#L874)
 
-### .layouts
+Returns an object with all the parsed layouts by name. Internally uses the resolved layout filepaths from `options.layouts` to read in and cache any layouts not already cached.
 
-Returns an object with all the parsed layouts by name. Internally uses
-the resolved layout filepaths from `options.layouts` to read in and cache
-any layouts not already cached.
-
+* `patterns` **{Array}**: Glob patterns for looking up layouts  
+* `options` **{Object}**: Options containing layout options  
+* returns **{Object}** `Assemble`: to enable chaining.  
 
 **Example**
 
 ```js
-// get all the layouts and pass them to assemble-layouts for use
-var assembleLayouts = new require('assemble-layouts').Layouts();
-var _ = require('lodash');
+// TODO
+```
 
-var layouts = assemble.layouts();
-_(layouts).forEach(function (layout, name) {
-  assembleLayouts.set(name, layout);
+
+Use layout options to combine the patterns to make glob patterns for looking
+up layouts.
+
+
+### [helper](lib/assemble.js#L910)
+
+Returns an object with all loaded helpers;
+
+* returns **{Object}**: all the resolved and loaded helpers  
+
+
+```js
+var assemble = require('assemble');
+var helpers = require('your-custom-helpers');
+
+assemble
+  .registerHelper('foo', require('helper-foo'))
+  .registerHelper('a', helpers.a)
+  .registerHelper('b', helpers.b)
+  .registerHelper('c', helpers.c)
+
+  // or define one inline
+  .registerHelper('log', function (value) {
+    return console.log(value);
+  });
+```
+
+
+
+### [helpers](lib/assemble.js#L925)
+
+Returns an object with all loaded helpers;
+
+* returns **{Object}**: all the resolved and loaded helpers  
+
+
+```js
+var assemble = require('assemble');
+var helpers = require('your-custom-helpers');
+
+assemble
+  .registerHelper('foo', require('helper-foo'))
+  .registerHelper('a', helpers.a)
+  .registerHelper('b', helpers.b)
+  .registerHelper('c', helpers.c)
+
+  // or define one inline
+  .registerHelper('log', function (value) {
+    return console.log(value);
+  });
+```
+
+
+
+### [registerHelper](lib/assemble.js#L959)
+
+Register a helper for the current template engine.
+
+* `key` **{String}**  
+* `value` **{Object}**  
+* returns **{Object}** `Assemble`: to enable chaining.  
+
+**Example:**
+
+```js
+assemble.registerHelper('include', function(filepath) {
+  return fs.readFileSync(filepath, 'utf8');
 });
 ```
 
-* `patterns` {Array}: Glob patterns for looking up layouts 
-* `options` {Object}: Options containing layout options  
-* `return` {Object} all the parsed layouts,{Array}  Combined patterns with given layout options 
+**Usage:**
+
+```js
+assemble.render('<%= include("foo.md") %>');
+```
 
 
-### .helpers
+### [registerHelpers](lib/assemble.js#L985)
 
-Returns an object with all loaded helpers;
+Add an array or glob of template helpers.
 
-TODO
- 
-* `return` {Object} all the resolved and loaded helpers 
+* `key` **{String}**  
+* `value` **{Object}**  
+* returns **{Assemble}**: to enable chaining.  
+
+**Example:**
+
+```js
+assemble.registerHelpers('a.js');
+// or
+assemble.registerHelpers(['a.js', 'b.js']);
+// or
+assemble.registerHelpers('*.js');
+```
 
 
-### .helpers
-
-Returns an object with all loaded helpers;
-
-TODO
- 
-* `return` {Object} all the resolved and loaded helpers 
-
-
-### .engine
+### [engine](lib/assemble.js#L1008)
 
 Register the given view engine callback `fn` as `ext`.
 
+* `ext` **{String}**  
+* `fn` **{Function|Object}**: or `options`  
+* `options` **{Object}**  
+* returns **{Object}** `Assemble`: to enable chaining.  
+
 Template engines in Assemble are used to render:
 
-  - views:   Such as pages and partials. Views are used when generating
-             web pages. The path of the layout file will be passed to the
-             engine's `renderFile()` function.
+  - `views`:   Such as pages and partials. Views are used when generating web pages. The path of the layout file will be passed to the engine's `renderFile()` function.
+  - `layouts`: Views used when generating web pages.  The path of the layout file will be passed to the engine's `renderFile()` function.
+  - `content`: Text written in lightweight markup, which optionally has front matter.  Front matter will be removed from the content prior to rendering. `data` from front matter is merged into the context and passed to the engine's `render()` function.
 
-  - layouts: Views used when generating web pages.  The path of the layout
-             file will be passed to the engine's `renderFile()` function.
-
-  - content: Text written in lightweight markup, which optionally has front
-             matter.  Front matter will be removed from the content prior to
-             rendering. `data` from front matter is merged into the context
-             and passed to the engine's `render()` function.
-
-By default Assemble will `require()` the engine based on the file extension.
-For example if you try to render a "foo.hbs" file Assemble will invoke the
-following internally:
+By default Assemble will `require()` the engine based on the file extension. For example if you try to render a "foo.hbs" file Assemble will invoke the following internally:
 
 ```js
 var engine = require('engines');
 assemble.engine('hbs', engine.handlebars);
 ```
 
-The module is expected to export a `.renderFile` function or, for compatibility
-with Express, an `__express` function.
+The module is expected to export a `.renderFile` function or, for compatibility with Express, an `__express` function.
 
-For engines that do not provide `.renderFile` out of the box, or if you wish
-to "map" a different extension to the template engine you may use this
-method. For example mapping the EJS template engine to ".html" files:
+For engines that do not provide `.renderFile` out of the box, or if you wish to "map" a different extension to the template engine you may use this method. For example mapping the EJS template engine to ".html" files:
 
 ```js
 assemble.engine('html', require('ejs').renderFile);
 ```
 
-Additionally, template engines are used to render lightweight markup found in
-content files.  For example using Textile:
+Additionally, template engines are used to render lightweight markup found in content files.  For example using Textile:
 
 ```js
 assemble.engine('textile', require('textile-engine'));
 ```
 
-In this case, it is expected that the module export a `render` function which
-will be passed content data (after removing any front matter).
-
-* `ext` {String} 
-* `fn` {Function|Object}: or `options` 
-* `options` {Object}  
-* `return` {Assemble} for chaining 
+In this case, it is expected that the module export a `render` function which will be passed content data (after removing any front matter).
 
 
-### .render
 
-This is Assemble's internal render method, but it's exposed as a public method
+### [render](lib/assemble.js#L1056)
+
+
+
+* `data` **{Object}**: Data to pass to registered view engines.  
+* `options` **{Object}**: Options to pass to registered view engines.  
+* returns: {String}  This is Assemble's internal render method, but it's exposed as a public method
 so it can be replaced with a custom `render` method.
 
-* `data` {Object}: Data to pass to registered view engines. 
-* `options` {Object}: Options to pass to registered view engines.  
-* `return` {String} 
 
+### [parser](lib/assemble.js#L1117)
 
-### .parser
+Register a parser `fn` to be used on each `.src` file. This is used to parse front matter, but can be used for any kind of parsing.
 
-Register a parser `fn` to be used on each `.src` file. This is used to parse
-front matter, but can be used for any kind of parsing.
+* `file` **{String}**: The file object  
+* `options` **{Object}**: Options to pass to parser.  
+* `fn` **{Function}**: The parsing function.  
+* returns **{Object}** `Assemble`: to enable chaining.  
 
 By default, Assemble will parse front matter using [gray-matter][gray-matter].
 For front-matter in particular it is probably not necessary to register additional
@@ -398,54 +448,30 @@ cusomizable if necessary or if a non-supported format is required.
 **Example:**
 
 ```js
-assemble.parser('txt', function (assemble) {
-  return function (file, options, encoding) {
-    file.contents = new Buffer(file.contents.toString().toUpperCase());
-    return file;
-  };
+assemble.parser('textile', function (file, enc, options) {
+  var str = textile(String(file.contents));
+  file.contents = new Buffer(str);
 });
 ```
 
 [gray-matter]: https://github.com/assemble/gray-matter
 
-* `name` {String}: Optional name of the parser, for debugging. 
-* `options` {Object}: Options to pass to parser. 
-* `fn` {Function}: The parsing function.  
-* `return` {Assemble} for chaining 
+
+### [buffer](lib/assemble.js#L1217)
 
 
-### .router
 
-**Example:**
-
-```js
-var myRoutes = assemble.router();
-myRoutes.route(':basename.hbs', function (file, params, next) {
-  // do something with the file
-  next();
-});
-
-assemble.src('')
-  .pipe(myRoutes())
-  .pipe(assemble.dset())
-```
-
-* `options` {Object}  
-* `return` {Function} 
-
-
-### .buffer
-
-This is Assemble's internal buffer method, but it's exposed as a public method
+* `options` **{Object}**: Options to pass to the buffer plugin.  
+* returns: {String}  This is Assemble's internal buffer method, but it's exposed as a public method
 so it can be replaced with a custom `buffer` method.
 
-* `options` {Object}: Options to pass to the buffer plugin.  
-* `return` {String} 
 
-
-### .highlight
+### [highlight](lib/assemble.js#L1245)
 
 Register a function for syntax highlighting.
+
+* `fn` **{Function}**  
+* returns **{Object}** `Assemble`: to enable chaining.  
 
 By default, Assemble uses highlight.js for syntax highlighting.  It's not
 necessary to register another function unless you want to override the default.
@@ -460,33 +486,6 @@ assemble.highlight(function(code, lang) {
   return hljs.highlightAuto(code).value;
 });
 ```
-
-* `fn` {Function}   
-
-
-### .watch
-
-Rerun the specified task when a file changes.
-
-```js
-assemble.task('watch', function() {
-  assemble.watch('docs/*.md', ['docs']);
-});
-```
-
-**Params:**
-
-* `glob` {String|Array}: Filepaths or glob patterns. 
-* `options` {String} 
-* `fn` {Function}: Task(s) to watch.  
-* `return` {String} 
-
-
-Expose middleware.
-  
-
-
-Expose `Assemble`
 
 ## Authors
  
@@ -507,4 +506,10 @@ Released under the MIT license
 
 ***
 
-_This file was generated by [verb-cli](https://github.com/assemble/verb-cli) on August 01, 2014._
+_This file was generated by [verb-cli](https://github.com/assemble/verb-cli) on August 13, 2014._
+
+
+[gulp]: https://github.com/wearefractal/gulp
+[fractal]: https://github.com/wearefractal
+[vinyl]: https://github.com/wearefractal/vinyl
+[vinyl-fs]: https://github.com/wearefractal/vinyl-fs
