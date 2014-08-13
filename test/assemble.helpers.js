@@ -40,11 +40,41 @@ describe('assemble helpers', function () {
       assemble.cache.helpers.should.have.property('wrapped');
       assemble.cache.helpers['wrapped'].should.be.a.function;
     });
+
+    it('should register helpers and use them in templates.', function (done) {
+      assemble.helpers({
+        upper: function (str) {
+          return str.toUpperCase();
+        }
+      });
+
+      var instream = assemble.src(path.join(__dirname, 'fixtures/templates/with-helper/*.hbs'));
+      var outstream = assemble.dest(actual);
+      instream.pipe(outstream);
+
+      outstream.on('error', done);
+      outstream.on('data', function (file) {
+        should.exist(file);
+        should.exist(file.path);
+        should.exist(file.contents);
+        /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
+        /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
+        assemble.files.length.should.equal(4);
+      });
+
+      outstream.on('end', function () {
+        done();
+      });
+    });
   });
 
   describe('assemble.registerHelpers():', function () {
     it('should register helpers and use them in templates.', function (done) {
-      assemble.registerHelpers({upper: function (str) {return str.toUpperCase();}});
+      assemble.registerHelpers({
+        upper: function (str) {
+          return str.toUpperCase();
+        }
+      });
 
       var instream = assemble.src(path.join(__dirname, 'fixtures/templates/with-helper/*.hbs'));
       var outstream = assemble.dest(actual);

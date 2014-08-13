@@ -7,51 +7,59 @@
 
 'use strict';
 
+var assert = require('assert');
 var should = require('should');
-var helpers = require('../lib/loaders/helpers');
+var loader = require('helper-loader');
 
+describe('helper loader', function () {
+  it('should load helpers from a file path', function () {
+    var helpers = loader();
 
-describe('assemble helpers', function () {
+    var str = __dirname + '/fixtures/helpers/wrapped.js';
+    var actual = helpers.load(__dirname + '/fixtures/helpers/wrapped.js');
 
-  describe('helper.fromPath()', function () {
-    it('should load helpers from a file path', function () {
-      var str = __dirname + '/fixtures/helpers/wrapped.js';
-      var actual = helpers.fromPath(str);
-      (typeof actual === 'object').should.be.true;
-      actual.should.have.property('wrapped');
-    });
+    actual.cache.should.have.property('wrapped');
+    assert.equal(typeof actual.cache.wrapped, 'function');
   });
 
-  describe('helper.fromFn()', function () {
-    it('should load helpers from a function', function () {
-      var fn = function () {
-        return {
-          foo: function () {
-            return 'foo';
-          },
-          bar: function () {
-            return 'bar';
-          }
-        };
+  it('should load helpers from a function', function () {
+    var helpers = loader();
+
+    var fn = function () {
+      return {
+        foo: function () {
+          return 'foo';
+        },
+        bar: function () {
+          return 'bar';
+        }
       };
-      var actual = helpers.fromFn(fn);
-      (typeof actual === 'object').should.be.true;
-      actual.should.have.property('foo');
-      actual.should.have.property('bar');
-    });
+    };
+
+    var actual = helpers.load(fn);
+
+    actual.cache.should.have.property('foo');
+    actual.cache.should.have.property('bar');
+    // assert.equal(typeof actual.cache.wrapped, 'object');
   });
 
-  describe('helper.fromObj()', function () {
+  describe('helper.object()', function () {
     it('should load helpers from an object', function () {
-      var obj = require('./fixtures/helpers/wrapped')();
-      var actual = helpers.fromObj(obj);
-      (typeof actual === 'object').should.be.true;
-      actual.should.have.property('wrapped');
+      var helpers = loader();
+
+      var obj = require('./fixtures/helpers/wrapped');
+      var actual = helpers.load(obj);
+
+      actual.cache.should.have.property('wrapped');
+      var wrapped = helpers.get('wrapped');
+      assert.equal(typeof wrapped, 'function');
     });
   });
 
-  describe('helper.fromArr()', function () {
+  describe('helper.array()', function () {
     it('should load different types of helpers from an array', function () {
+      var helpers = loader();
+
       var arr = [
         'test/fixtures/helpers/two.js',
         {
@@ -83,24 +91,34 @@ describe('assemble helpers', function () {
         ]
       ];
 
-      var actual = helpers.fromArr(arr);
-      (typeof actual === 'object').should.be.true;
-      actual.should.have.property('two');
-      actual.should.have.property('foo');
-      actual.should.have.property('three');
-      actual.should.have.property('bar');
+      var actual = helpers.array(arr);
+
+      actual.cache.should.have.property('two');
+      actual.cache.should.have.property('foo');
+      actual.cache.should.have.property('three');
+      actual.cache.should.have.property('bar');
+
+      assert.equal(typeof actual.cache.two, 'function');
+      assert.equal(typeof actual.cache.three, 'function');
+      assert.equal(typeof actual.cache.foo, 'function');
+      assert.equal(typeof actual.cache.bar, 'function');
     });
   });
 
-  describe('helper()', function () {
+  describe('.load()', function () {
     it('should load helpers from a string', function () {
+      var helpers = loader();
+
       var str = __dirname + '/fixtures/helpers/wrapped.js';
-      var actual = helpers(str);
-      (typeof actual === 'object').should.be.true;
-      actual.should.have.property('wrapped');
+      var actual = helpers.load(str);
+
+      actual.cache.should.have.property('wrapped');
+      assert.equal(typeof actual.cache.wrapped, 'function');
     });
 
     it('should load helpers from a function', function () {
+      var helpers = loader();
+
       var fn = function () {
         return {
           foo: function () {
@@ -111,38 +129,50 @@ describe('assemble helpers', function () {
           }
         };
       };
-      var actual = helpers(fn);
-      (typeof actual === 'object').should.be.true;
-      actual.should.have.property('foo');
-      actual.should.have.property('bar');
+      var actual = helpers.load(fn);
+
+      actual.cache.should.have.property('foo');
+      actual.cache.should.have.property('bar');
+      assert.equal(typeof actual.cache.foo, 'function');
+      assert.equal(typeof actual.cache.bar, 'function');
     });
 
     it('should load helpers from an object', function () {
+      var helpers = loader();
+
       var obj = require('./fixtures/helpers/wrapped')();
-      var actual = helpers(obj);
-      (typeof actual === 'object').should.be.true;
-      actual.should.have.property('wrapped');
+      var actual = helpers.load(obj);
+
+      actual.cache.should.have.property('wrapped');
+      assert.equal(typeof actual.cache.wrapped, 'function');
     });
 
     it('should load helpers from a function', function () {
+      var helpers = loader();
+
       var fn = require('./fixtures/helpers/two');
-      var actual = helpers(fn);
-      (typeof actual === 'object').should.be.true;
-      actual.should.have.property('two');
+      var actual = helpers.load(fn);
+      actual.cache.should.have.property('two');
+      assert.equal(typeof actual.cache.two, 'function');
     });
 
     it('should load helpers from an object', function () {
+      var helpers = loader();
+
       var obj = {
         foo: function () {
           return 'hi';
         }
       };
-      var actual = helpers(obj);
-      (typeof actual === 'object').should.be.true;
-      actual.should.have.property('foo');
+      var actual = helpers.load(obj);
+
+      actual.cache.should.have.property('foo');
+      assert.equal(typeof actual.cache.foo, 'function');
     });
 
     it('should load different types of helpers from an array', function () {
+      var helpers = loader();
+
       var arr = [
         'test/fixtures/helpers/two.js',
         {
@@ -174,12 +204,17 @@ describe('assemble helpers', function () {
         ]
       ];
 
-      var actual = helpers(arr);
-      (typeof actual === 'object').should.be.true;
-      actual.should.have.property('two');
-      actual.should.have.property('foo');
-      actual.should.have.property('three');
-      actual.should.have.property('bar');
+      var actual = helpers.load(arr);
+
+      actual.cache.should.have.property('two');
+      actual.cache.should.have.property('foo');
+      actual.cache.should.have.property('three');
+      actual.cache.should.have.property('bar');
+
+      assert.equal(typeof actual.cache.foo, 'function');
+      assert.equal(typeof actual.cache.bar, 'function');
+      assert.equal(typeof actual.cache.two, 'function');
+      assert.equal(typeof actual.cache.three, 'function');
     });
   });
 });
