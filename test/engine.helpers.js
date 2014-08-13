@@ -91,8 +91,7 @@ describe('helper loader', function () {
         ]
       ];
 
-      var actual = helpers.array(arr);
-
+      var actual = helpers._array(arr);
       actual.cache.should.have.property('two');
       actual.cache.should.have.property('foo');
       actual.cache.should.have.property('three');
