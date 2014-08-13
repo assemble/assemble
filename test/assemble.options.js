@@ -16,12 +16,12 @@ describe('assemble options', function () {
   describe('.option()', function () {
     describe('.set()', function () {
       it('should set options on `assemble.options`', function () {
-        assemble.option.set('a', 'b');
+        assemble.option('a', 'b');
         assemble.options.a.should.equal('b');
       });
 
       it('should set options objects on `assemble.options`', function () {
-        assemble.option.set({d: 'e', f: 'g'});
+        assemble.option({d: 'e', f: 'g'});
         assemble.options.d.should.equal('e');
         assemble.options.f.should.equal('g');
       });
@@ -29,17 +29,17 @@ describe('assemble options', function () {
 
     describe('.get()', function () {
       it('should get options', function () {
-        assemble.option.set({d: 'e', f: 'g'});
-        assemble.option.get('d').should.equal('e');
-        assemble.option.get('f').should.equal('g');
+        assemble.option({d: 'e', f: 'g'});
+        assemble.option('d').should.equal('e');
+        assemble.option('f').should.equal('g');
       });
     });
 
     describe('.extend()', function () {
       it('should extend the options', function () {
-        assemble.option.set({d: 'e', f: 'g'});
-        assemble.option.get('d').should.equal('e');
-        assemble.option.get('f').should.equal('g');
+        assemble.option({d: 'e', f: 'g'});
+        assemble.option('d').should.equal('e');
+        assemble.option('f').should.equal('g');
       });
     });
   });

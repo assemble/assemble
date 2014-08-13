@@ -35,8 +35,7 @@ describe('assemble helpers', function () {
 
     it('should return helpers based on a glob pattern.', function () {
       var fixture = __dirname + '/fixtures/helpers/wrapped.js';
-      var h = assemble.helpers(fixture);
-      console.log(h);
+      assemble.helpers(fixture);
 
       assemble.cache.helpers.should.have.property('wrapped');
       assemble.cache.helpers['wrapped'].should.be.a.function;
@@ -101,7 +100,7 @@ describe('assemble helpers', function () {
 
   describe('options.set()', function () {
     it('should register helpers and use them in templates.', function (done) {
-      assemble.option.set({
+      assemble.option({
         helpers: {
           upper: function (str) {
             return str.toUpperCase();

@@ -43,6 +43,13 @@ describe('assemble partials', function () {
     });
   });
 
+  xdescribe('options partials', function () {
+    it('should be a method on assemble.', function () {
+      // assemble.option('partials', ['test/fixtures/templates/partials/*.hbs']);
+      assemble.partial.should.be.a.function;
+    });
+  });
+
   describe('.partials()', function () {
     it('should be a method on assemble.', function () {
       assemble.partials.should.be.a.function;
@@ -101,44 +108,15 @@ describe('assemble partials', function () {
 
     it('should cache an object of partials defined as a string of glob patterns.', function () {
 
-      var partialPath = path.join.bind(path, __dirname, 'fixtures/templates/partials/');
-      // assemble.option.set({
-      //   nameFn: function (argument) {
-      //     // body...
-      //   }
-      // });
-      assemble.partials('test/fixtures/templates/partials/*.hbs', {
-        // nameFn: function (argument) {
-        //   // body...
-        // }
-      });
-
+      assemble.partials('test/fixtures/templates/partials/*.hbs');
       var partials = assemble.cache.partials;
-      partials.should.have.property(partialPath('a.hbs'));
-      partials.should.have.property(partialPath('b.hbs'));
-      partials.should.have.property(partialPath('c.hbs'));
+      partials.should.have.property('a');
+      partials.should.have.property('b');
+      partials.should.have.property('c');
     });
 
-    it('should cache an object of partials defined as an array of glob patterns.', function (done) {
-      assemble.partial({upper: function (str) {return str.toUpperCase();}});
-
-      var instream = assemble.src(path.join(__dirname, 'fixtures/templates/with-partial/*.hbs'));
-      var outstream = assemble.dest(actual);
-      instream.pipe(outstream);
-
-      outstream.on('error', done);
-      outstream.on('data', function (file) {
-        should.exist(file);
-        should.exist(file.path);
-        should.exist(file.contents);
-        /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
-        /partial:\s+[ABCD]/.test(String(file.contents)).should.be.true;
-        assemble.files.length.should.equal(4);
-      });
-
-      outstream.on('end', function () {
-        done();
-      });
+    xit('should use a renaming function on the partial names.', function () {
+      // todo
     });
   });
 });
