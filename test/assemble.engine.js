@@ -29,7 +29,7 @@ describe('assemble engines', function () {
     it('should set a lazy layout engine when setting an engine', function () {
       var handlebars = require('../lib/engine/handlebars');
       assemble.engine('hbs', handlebars);
-      should.exist(assemble.layoutEngines['.hbs']);
+      should.exist(assemble.layoutSettings['.hbs']);
     });
   });
 });
