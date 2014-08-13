@@ -16,8 +16,13 @@ describe('assemble init', function () {
   describe('.init()', function () {
     it('should re-initialize all values', function () {
       assemble.init();
-      assemble.files.length.should.equal(0);
-      assemble.files.cache.should.be.empty;
+
+      assemble.cache.pages.should.be.empty;
+      assemble.cache.partials.should.be.empty;
+      assemble.cache.layouts.should.be.empty;
+      assemble.cache.helpers.should.be.empty;
+      assemble.cache.locals.should.be.empty;
+      assemble.cache.imports.should.be.empty;
     });
 
     it('should prepopulate default engines.', function () {

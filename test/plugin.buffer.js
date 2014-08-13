@@ -48,6 +48,7 @@ describe('assemble buffer', function() {
           join(file.path, '').should.equal(join(outpath, 'example.txt'));
           String(file.contents).should.equal('this is a test');
         });
+
         outstream.on('end', function () {
           assemble.files.length.should.equal(0);
           done();

@@ -119,7 +119,6 @@
 //     //   /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
 //     //   /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
 //     //   /foo[abcd]/.test(String(file.contents)).should.be.true;
-//     //   assemble.files.length.should.equal(4);
 //     // });
 
 //     // outstream.on('end', function () {
