@@ -22,7 +22,6 @@ describe('assemble init', function () {
       assemble.template('monkey', {plural: 'monkies'});
       should.exist(assemble.monkey);
       should.exist(assemble.monkies);
-      should.exist(assemble.cache.monkey);
       should.exist(assemble.cache.monkies);
     });
 
@@ -30,7 +29,6 @@ describe('assemble init', function () {
       assemble.template('lion', {plural: 'lions', isLayout: true});
       should.exist(assemble.lion);
       should.exist(assemble.lions);
-      should.exist(assemble.cache.lion);
       should.exist(assemble.cache.lions);
     });
   });
