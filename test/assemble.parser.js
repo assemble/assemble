@@ -9,9 +9,14 @@
 
 var assert = require('assert');
 var should = require('should');
-var assemble = require('..');
+var Assemble = require('..');
 
 describe('assemble parser', function () {
+  var assemble = null;
+  beforeEach(function() {
+    assemble = Assemble.create();
+  });
+  
   describe('.parser()', function () {
     it('should add a parser to the stack for a given extension.', function () {
       assemble.init();

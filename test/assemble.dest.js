@@ -1,6 +1,6 @@
 'use strict';
 
-var assemble = require('..');
+var Assemble = require('..');
 var should = require('should');
 var join = require('path').join;
 var rimraf = require('rimraf');
@@ -14,6 +14,7 @@ describe('assemble output stream', function() {
 
   describe('dest()', function() {
 
+    var assemble = null;
     beforeEach(function (done) {
       rimraf(outpath, done);
     });
@@ -24,7 +25,7 @@ describe('assemble output stream', function() {
     describe('minimal config - enabled', function () {
 
       beforeEach(function () {
-        assemble.init();
+        assemble = Assemble.create();
         assemble.enable('minimal config');
       });
       afterEach(function () {
@@ -128,7 +129,7 @@ describe('assemble output stream', function() {
     describe('minimal config - disabled', function () {
 
       beforeEach(function () {
-        assemble.init();
+        assemble = Assemble.create();
         assemble.set('ext', '.txt');
       });
 

@@ -9,10 +9,15 @@
 
 var assert = require('assert');
 var should = require('should');
-var assemble = require('..');
+var Assemble = require('..');
 var View = require('../lib/view/view');
 
 describe('assemble defaultConfig', function () {
+  var assemble = null;
+  beforeEach(function () {
+    assemble = Assemble.create();
+  });
+  
   describe('.defaultConfig()', function () {
     it('should set default values', function () {
       assemble.init();

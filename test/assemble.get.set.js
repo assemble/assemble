@@ -9,11 +9,12 @@
 
 var assert = require('assert');
 var should = require('should');
-var assemble = require('..');
+var Assemble = require('..');
 
 describe('assemble cache', function () {
-  afterEach(function() {
-    assemble.clear();
+  var assemble = null;
+  beforeEach(function() {
+    assemble = Assemble.create();
   });
 
   describe('.set()', function () {

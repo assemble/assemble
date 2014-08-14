@@ -9,10 +9,15 @@
 
 var assert = require('assert');
 var should = require('should');
-var assemble = require('..');
+var Assemble = require('..');
 
 
 describe('assemble options', function () {
+  var assemble = null;
+  beforeEach(function() {
+    assemble = Assemble.create();
+  });
+  
   describe('.option()', function () {
     describe('.set()', function () {
       it('should set options on `assemble.options`', function () {

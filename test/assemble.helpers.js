@@ -12,15 +12,14 @@ var path = require('path');
 var should = require('should');
 var File = require('vinyl');
 var rimraf = require('rimraf');
-var assemble = require('..');
-
+var Assemble = require('..');
 
 var actual = __dirname + '/helpers-actual';
 
-
 describe('assemble helpers', function () {
+  var assemble = null;
   beforeEach(function (done) {
-    assemble.init();
+    assemble = Assemble.create();
     rimraf(actual, done);
   });
 
