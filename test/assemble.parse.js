@@ -11,7 +11,7 @@ var fs = require('fs');
 var path = require('path');
 var rimraf = require('rimraf');
 var should = require('should');
-var assemble = require('..');
+var Assemble = require('..');
 
 var addSpace = function(str) {
   return str.split('').map(function(letter) {
@@ -23,7 +23,9 @@ var fixtures = __dirname + '/fixtures/parsers';
 var dest = __dirname + '/actual';
 
 describe('assemble parse', function () {
+  var assemble = null;
   beforeEach(function (done) {
+    assemble = Assemble.create();
     rimraf(dest, done);
   });
   afterEach(function (done) {

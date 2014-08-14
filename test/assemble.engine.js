@@ -8,14 +8,15 @@
 'use strict';
 
 var should = require('should');
-var assemble = require('..');
+var Assemble = require('..');
 
 
 describe('assemble engines', function () {
   describe('.engine()', function () {
 
+    var assemble = null;
     beforeEach(function () {
-      assemble.init();
+      assemble = Assemble.create();
     });
 
     it('should set an engine with the given extension', function () {

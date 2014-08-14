@@ -4,8 +4,6 @@ var Assemble = require('..');
 var should = require('should');
 var join = require('path').join;
 
-require('mocha');
-
 describe('assemble input stream', function() {
   var assemble = null;
 
@@ -14,9 +12,6 @@ describe('assemble input stream', function() {
       beforeEach(function () {
         assemble = Assemble.create();
         assemble.enable('minimal config');
-      });
-      afterEach(function () {
-        assemble.disable('minimal config');
       });
 
       it('should return a stream', function (done) {

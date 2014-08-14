@@ -9,10 +9,15 @@
 
 var assert = require('assert');
 var should = require('should');
-var assemble = require('..');
+var Assemble = require('..');
 
 describe('assemble init', function () {
 
+  var assemble = null;
+  beforeEach(function() {
+    assemble = Assemble.create();
+  });
+  
   describe('.init()', function () {
     it('should re-initialize all values', function () {
       assemble.init();

@@ -8,9 +8,14 @@
 'use strict';
 
 var should = require('should');
-var assemble = require('..');
+var Assemble = require('..');
 
 describe('assemble data', function() {
+  var assemble = null;
+  beforeEach(function () {
+    assemble = Assemble.create();
+  });
+  
   describe('.data()', function() {
     it('should set properties on the `data` object.', function() {
       assemble.set('data.foo', 'bar');

@@ -9,17 +9,18 @@
 
 var assert = require('assert');
 var should = require('should');
-var assemble = require('..');
+var Assemble = require('..');
 
-xdescribe('assemble pages', function () {
+describe('assemble pages', function () {
 
+  var assemble = null;
   beforeEach(function () {
-      assemble.init();
+    assemble = Assemble.create();
   });
 
   describe('.pages()', function () {
 
-    it('should return a stream', function (done) {
+    xit('should return a stream', function (done) {
       var stream = assemble.pages();
       should.exist(stream);
       should.exist(stream.on);

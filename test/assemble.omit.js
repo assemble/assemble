@@ -9,10 +9,15 @@
 
 var assert = require('assert');
 var should = require('should');
-var assemble = require('..');
+var Assemble = require('..');
 
 
 describe('assemble omit', function () {
+  var assemble = null;
+  beforeEach(function () {
+    assemble = Assemble.create();
+  });
+  
   describe('.omit()', function () {
 
     it('should omit a value from the cache', function () {

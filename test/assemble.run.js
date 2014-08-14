@@ -8,10 +8,15 @@
 'use strict';
 
 var should = require('should');
-var assemble = require('..');
+var Assemble = require('..');
 
 
 describe('assemble run', function () {
+  var assemble = null;
+  beforeEach(function() {
+    assemble = Assemble.create();
+  });
+  
   describe('assemble.run()', function () {
     xit('should run a task', function () {
       // TODO

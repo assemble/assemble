@@ -10,12 +10,13 @@
 var path = require('path');
 var should = require('should');
 var isAbsolute = require('is-absolute');
-var assemble = require('..');
+var Assemble = require('..');
 
 describe('assemble cwd', function () {
 
+  var assemble = null;
   beforeEach(function () {
-      assemble.init();
+      assemble = Assemble.create();
   });
 
   describe('.cwd()', function () {
