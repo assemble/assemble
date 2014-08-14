@@ -115,6 +115,28 @@ describe('assemble partials', function () {
       partials.should.have.property('c');
     });
 
+    it('should add the partial data to the context manager', function () {
+      assemble.partials({
+        'test-partial-a': {
+          data: {title: 'test-partial-a'},
+          content: 'Test partial A content'
+        },
+        'test-partial-b': {
+          data: {title: 'test-partial-b'},
+          content: 'Test partial B content'
+        },
+        'test-partial-c': {
+          data: {title: 'test-partial-c'},
+          content: 'Test partial C content'
+        }
+      });
+
+      var context = assemble.context.ctx.partials;
+      context.should.have.property('test-partial-a');
+      context.should.have.property('test-partial-b');
+      context.should.have.property('test-partial-c');
+    });
+
     xit('should use a renaming function on the partial names.', function () {
       // todo
     });
