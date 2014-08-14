@@ -1,27 +1,27 @@
 'use strict';
 
-var Assemble = require('..');
+var assemble = require('..');
 var should = require('should');
 var join = require('path').join;
 
 describe('assemble input stream', function() {
-  var assemble = null;
+  var site = null;
 
   describe('src()', function() {
     describe('minimal config - enabled', function () {
       beforeEach(function () {
-        assemble = Assemble.create();
-        assemble.enable('minimal config');
+        site = assemble.create();
+        site.enable('minimal config');
       });
 
       it('should return a stream', function (done) {
-        var stream = assemble.src(join(__dirname, './fixtures/*.coffee'));
+        var stream = site.src(join(__dirname, './fixtures/*.coffee'));
         should.exist(stream);
         should.exist(stream.on);
         done();
       });
       it('should return a input stream from a flat glob', function (done) {
-        var stream = assemble.src(join(__dirname, './fixtures/*.coffee'));
+        var stream = site.src(join(__dirname, './fixtures/*.coffee'));
         stream.on('error', done);
         stream.on('data', function (file) {
           should.exist(file);
@@ -40,7 +40,7 @@ describe('assemble input stream', function() {
           join(__dirname, './fixtures/generic/run.dmc'),
           join(__dirname, './fixtures/generic/test.dmc')
         ];
-        var stream = assemble.src(globArray);
+        var stream = site.src(globArray);
 
         var files = [];
         stream.on('error', done);
@@ -63,7 +63,7 @@ describe('assemble input stream', function() {
           join(__dirname, './fixtures/generic/*.dmc'),
           '!' + join(__dirname, './fixtures/generic/test.dmc'),
         ];
-        var stream = assemble.src(globArray);
+        var stream = site.src(globArray);
 
         var files = [];
         stream.on('error', done);
@@ -80,7 +80,7 @@ describe('assemble input stream', function() {
       });
 
       it('should return a input stream with no contents when read is false', function (done) {
-        var stream = assemble.src(join(__dirname, './fixtures/*.coffee'), {read: false});
+        var stream = site.src(join(__dirname, './fixtures/*.coffee'), {read: false});
         stream.on('error', done);
         stream.on('data', function (file) {
           should.exist(file);
@@ -93,7 +93,7 @@ describe('assemble input stream', function() {
         });
       });
       it('should return a input stream with contents as stream when buffer is false', function (done) {
-        var stream = assemble.src(join(__dirname, './fixtures/*.coffee'), {buffer: false});
+        var stream = site.src(join(__dirname, './fixtures/*.coffee'), {buffer: false});
         stream.on('error', done);
         stream.on('data', function (file) {
           should.exist(file);
@@ -111,7 +111,7 @@ describe('assemble input stream', function() {
         });
       });
       it('should return a input stream from a deep glob', function (done) {
-        var stream = assemble.src(join(__dirname, './fixtures/**/*.jade'));
+        var stream = site.src(join(__dirname, './fixtures/**/*.jade'));
         stream.on('error', done);
         stream.on('data', function (file) {
           should.exist(file);
@@ -125,7 +125,7 @@ describe('assemble input stream', function() {
         });
       });
       it('should return a input stream from a deeper glob', function (done) {
-        var stream = assemble.src(join(__dirname, './fixtures/**/*.dmc'));
+        var stream = site.src(join(__dirname, './fixtures/**/*.dmc'));
         var a = 0;
         stream.on('error', done);
         stream.on('data', function () {
@@ -139,7 +139,7 @@ describe('assemble input stream', function() {
 
       it('should return a file stream from a flat path', function (done) {
         var a = 0;
-        var stream = assemble.src(join(__dirname, './fixtures/test.coffee'));
+        var stream = site.src(join(__dirname, './fixtures/test.coffee'));
         stream.on('error', done);
         stream.on('data', function (file) {
           ++a;
@@ -159,17 +159,17 @@ describe('assemble input stream', function() {
     describe('minimal config - disabled', function () {
 
       beforeEach(function () {
-        assemble.init();
+        site.init();
       });
 
       it('should return a stream', function (done) {
-        var stream = assemble.src(join(__dirname, './fixtures/*.coffee'));
+        var stream = site.src(join(__dirname, './fixtures/*.coffee'));
         should.exist(stream);
         should.exist(stream.on);
         done();
       });
       it('should return a input stream from a flat glob', function (done) {
-        var stream = assemble.src(join(__dirname, './fixtures/*.coffee'));
+        var stream = site.src(join(__dirname, './fixtures/*.coffee'));
         stream.on('error', done);
         stream.on('data', function (file) {
           should.exist(file);
@@ -188,7 +188,7 @@ describe('assemble input stream', function() {
           join(__dirname, './fixtures/generic/run.dmc'),
           join(__dirname, './fixtures/generic/test.dmc')
         ];
-        var stream = assemble.src(globArray);
+        var stream = site.src(globArray);
 
         var files = [];
         stream.on('error', done);
@@ -211,7 +211,7 @@ describe('assemble input stream', function() {
           join(__dirname, './fixtures/generic/*.dmc'),
           '!' + join(__dirname, './fixtures/generic/test.dmc'),
         ];
-        var stream = assemble.src(globArray);
+        var stream = site.src(globArray);
 
         var files = [];
         stream.on('error', done);
@@ -228,7 +228,7 @@ describe('assemble input stream', function() {
       });
 
       it('should return a input stream with no contents when read is false', function (done) {
-        var stream = assemble.src(join(__dirname, './fixtures/*.coffee'), {read: false});
+        var stream = site.src(join(__dirname, './fixtures/*.coffee'), {read: false});
         stream.on('error', done);
         stream.on('data', function (file) {
           should.exist(file);
@@ -241,7 +241,7 @@ describe('assemble input stream', function() {
         });
       });
       xit('should return a throw an error when buffer is false', function (done) {
-        var stream = assemble.src(join(__dirname, './fixtures/*.coffee'), {buffer: false});
+        var stream = site.src(join(__dirname, './fixtures/*.coffee'), {buffer: false});
         stream.on('error', function () {
           done();
         });
@@ -250,7 +250,7 @@ describe('assemble input stream', function() {
         });
       });
       it('should return a input stream from a deep glob', function (done) {
-        var stream = assemble.src(join(__dirname, './fixtures/**/*.jade'));
+        var stream = site.src(join(__dirname, './fixtures/**/*.jade'));
         stream.on('error', done);
         stream.on('data', function (file) {
           should.exist(file);
@@ -264,7 +264,7 @@ describe('assemble input stream', function() {
         });
       });
       it('should return a input stream from a deeper glob', function (done) {
-        var stream = assemble.src(join(__dirname, './fixtures/**/*.dmc'));
+        var stream = site.src(join(__dirname, './fixtures/**/*.dmc'));
         var a = 0;
         stream.on('error', done);
         stream.on('data', function () {
@@ -278,7 +278,7 @@ describe('assemble input stream', function() {
 
       it('should return a file stream from a flat path', function (done) {
         var a = 0;
-        var stream = assemble.src(join(__dirname, './fixtures/test.coffee'));
+        var stream = site.src(join(__dirname, './fixtures/test.coffee'));
         stream.on('error', done);
         stream.on('data', function (file) {
           ++a;

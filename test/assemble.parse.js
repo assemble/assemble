@@ -1,5 +1,5 @@
 /**
- * Assemble <http://assemble.io>
+ * Assemble <http://site.io>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -11,7 +11,7 @@ var fs = require('fs');
 var path = require('path');
 var rimraf = require('rimraf');
 var should = require('should');
-var Assemble = require('..');
+var assemble = require('..');
 
 var addSpace = function(str) {
   return str.split('').map(function(letter) {
@@ -23,9 +23,9 @@ var fixtures = __dirname + '/fixtures/parsers';
 var dest = __dirname + '/actual';
 
 describe('assemble parse', function () {
-  var assemble = null;
+  var site = null;
   beforeEach(function (done) {
-    assemble = Assemble.create();
+    site = assemble.create();
     rimraf(dest, done);
   });
   afterEach(function (done) {
@@ -34,30 +34,30 @@ describe('assemble parse', function () {
 
   describe('.parse()', function () {
     it('should parse a file with the given parser.', function (done) {
-      assemble.init();
+      site.init();
 
-      assemble.parser('a', function (file) {
+      site.parser('a', function (file) {
         var str = file.contents.toString().toUpperCase();
         file.contents = new Buffer(str);
         return file;
       });
 
       // x #1
-      assemble.parser('x', function (file) {
+      site.parser('x', function (file) {
         var str = addSpace(file.contents.toString());
         file.contents = new Buffer(str);
         return file;
       });
 
       // x #2
-      assemble.parser('x', function (file) {
+      site.parser('x', function (file) {
         var str = file.contents.toString().toUpperCase();
         file.contents = new Buffer(str);
         return file;
       });
 
-      var stream = assemble.src(fixtures + '/*.*');
-      var outstream = assemble.dest(__dirname + '/actual');
+      var stream = site.src(fixtures + '/*.*');
+      var outstream = site.dest(__dirname + '/actual');
 
       stream.pipe(outstream);
       outstream.on('error', done);

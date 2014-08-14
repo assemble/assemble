@@ -1,5 +1,5 @@
 /**!
- * Assemble <http://assemble.io>
+ * Assemble <http://site.io>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -9,42 +9,42 @@
 
 var assert = require('assert');
 var should = require('should');
-var Assemble = require('..');
+var assemble = require('..');
 
 
 describe('assemble options', function () {
-  var assemble = null;
+  var site = null;
   beforeEach(function() {
-    assemble = Assemble.create();
+    site = assemble.create();
   });
   
   describe('.option()', function () {
     describe('.set()', function () {
-      it('should set options on `assemble.options`', function () {
-        assemble.option('a', 'b');
-        assemble.options.a.should.equal('b');
+      it('should set options on `site.options`', function () {
+        site.option('a', 'b');
+        site.options.a.should.equal('b');
       });
 
-      it('should set options objects on `assemble.options`', function () {
-        assemble.option({d: 'e', f: 'g'});
-        assemble.options.d.should.equal('e');
-        assemble.options.f.should.equal('g');
+      it('should set options objects on `site.options`', function () {
+        site.option({d: 'e', f: 'g'});
+        site.options.d.should.equal('e');
+        site.options.f.should.equal('g');
       });
     });
 
     describe('.get()', function () {
       it('should get options', function () {
-        assemble.option({d: 'e', f: 'g'});
-        assemble.option('d').should.equal('e');
-        assemble.option('f').should.equal('g');
+        site.option({d: 'e', f: 'g'});
+        site.option('d').should.equal('e');
+        site.option('f').should.equal('g');
       });
     });
 
     describe('.extend()', function () {
       it('should extend the options', function () {
-        assemble.option({d: 'e', f: 'g'});
-        assemble.option('d').should.equal('e');
-        assemble.option('f').should.equal('g');
+        site.option({d: 'e', f: 'g'});
+        site.option('d').should.equal('e');
+        site.option('f').should.equal('g');
       });
     });
   });

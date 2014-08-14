@@ -1,5 +1,5 @@
 // /**
-//  * Assemble <http://assemble.io>
+//  * Assemble <http://site.io>
 //  *
 //  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
 //  * Licensed under the MIT License (MIT).
@@ -19,7 +19,7 @@
 
 // describe('assemble partials-layouts', function () {
 //   beforeEach(function (done) {
-//     assemble.init();
+//     site.init();
 //     rimraf(actual, done);
 //   });
 //   afterEach(function (done) {
@@ -28,7 +28,7 @@
 
 
 //   it('should use layouts defined in partials', function (done) {
-//     assemble.layouts([
+//     site.layouts([
 //       {
 //         name: 'default',
 //         data: {title: 'Default Layout'},
@@ -56,12 +56,12 @@
 //       }
 //     ]);
 
-//     var layouts = assemble.cache.layouts;
+//     var layouts = site.cache.layouts;
 //     layouts.should.have.property('LAAA');
 //     layouts.should.have.property('LBBB');
 //     layouts.should.have.property('LCCC');
 
-//     assemble.partials([
+//     site.partials([
 //       {
 //         name: 'P111',
 //         data: {title: 'P111', layout: 'slide'},
@@ -79,12 +79,12 @@
 //       }
 //     ]);
 
-//     var partials = assemble.cache.partials;
+//     var partials = site.cache.partials;
 //     partials.should.have.property('P111');
 //     partials.should.have.property('P222');
 //     partials.should.have.property('P333');
 
-//     assemble.pages([
+//     site.pages([
 //       {
 //         name: 'PAGE111',
 //         data: {title: 'PAGE111', layout: 'LAAA'},
@@ -102,13 +102,13 @@
 //       }
 //     ]);
 
-//     var pages = assemble.cache.pages;
+//     var pages = site.cache.pages;
 //     pages.should.have.property('PAGE111');
 //     pages.should.have.property('PAGE222');
 //     pages.should.have.property('PAGE333');
 
-//     // var instream = assemble.src(path.join(__dirname, 'fixtures/templates/with-helpers/*.hbs'));
-//     // var outstream = assemble.dest(actual);
+//     // var instream = site.src(path.join(__dirname, 'fixtures/templates/with-helpers/*.hbs'));
+//     // var outstream = site.dest(actual);
 //     // instream.pipe(outstream);
 
 //     // outstream.on('error', done);

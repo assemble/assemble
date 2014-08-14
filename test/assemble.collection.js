@@ -1,5 +1,5 @@
 /**
- * Assemble <http://assemble.io>
+ * Assemble <http://site.io>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -9,19 +9,19 @@
 
 var assert = require('assert');
 var should = require('should');
-var Assemble = require('..');
+var assemble = require('..');
 
 describe('assemble collection', function () {
 
-  var assemble = null;
+  var site = null;
   beforeEach(function () {
-      assemble = Assemble.create();
+      site = assemble.create();
   });
 
   describe('.collection()', function () {
 
     it('should return a stream', function (done) {
-      var stream = assemble.collection();
+      var stream = site.collection();
       should.exist(stream);
       should.exist(stream.on);
       done();

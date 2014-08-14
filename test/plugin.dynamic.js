@@ -5,14 +5,14 @@ var tap = require('gulp-tap');
 var fs = require('graceful-fs');
 var should = require('should');
 var rimraf = require('rimraf');
-var Assemble = require('..');
+var assemble = require('..');
 
-var assemble = null;
+var site = null;
 var actual = __dirname + '/dynamic-actual';
 
 describe('assemble dynamic plugin', function() {
   before (function () {
-    assemble = Assemble.create();
+    site = assemble.create();
   });
 
   describe('dynamic()', function() {
@@ -25,9 +25,9 @@ describe('assemble dynamic plugin', function() {
 
     describe('when `assets` is defined on options:', function () {
       it('should calculate the correct `assets` property on the file.', function (done) {
-        assemble.set('assets', actual + '/assets');
-        var instream = assemble.src(path.join(__dirname, 'fixtures/dynamic/*.hbs'));
-        var outstream = assemble.dest(actual);
+        site.set('assets', actual + '/assets');
+        var instream = site.src(path.join(__dirname, 'fixtures/dynamic/*.hbs'));
+        var outstream = site.dest(actual);
 
         instream
           .pipe(tap(function (file) {
@@ -47,9 +47,9 @@ describe('assemble dynamic plugin', function() {
       });
 
       it('should calculate the correct `assets` property on the file when the dest changes.', function (done) {
-        assemble.set('assets', actual + '/assets');
-        var instream = assemble.src(path.join(__dirname, 'fixtures/dynamic/*.hbs'));
-        var outstream = assemble.dest(actual);
+        site.set('assets', actual + '/assets');
+        var instream = site.src(path.join(__dirname, 'fixtures/dynamic/*.hbs'));
+        var outstream = site.dest(actual);
         instream.pipe(outstream);
 
         outstream.on('error', done);

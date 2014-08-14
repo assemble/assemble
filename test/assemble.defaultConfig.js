@@ -1,5 +1,5 @@
 /**
- * Assemble <http://assemble.io>
+ * Assemble <http://site.io>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -9,55 +9,55 @@
 
 var assert = require('assert');
 var should = require('should');
-var Assemble = require('..');
+var assemble = require('..');
 var View = require('../lib/view/view');
 
 describe('assemble defaultConfig', function () {
-  var assemble = null;
+  var site = null;
   beforeEach(function () {
-    assemble = Assemble.create();
+    site = assemble.create();
   });
   
   describe('.defaultConfig()', function () {
     it('should set default values', function () {
-      assemble.init();
+      site.init();
 
-      assemble.get('minimal config').should.be.false;
-      assemble.get('env').should.equal('development');
-      assemble.get('encoding').should.equal('utf8');
-      assemble.get('cwd').should.equal(process.cwd());
-      assemble.get('ext').should.equal('.html');
-      // assemble.get('data').should.be.empty;
+      site.get('minimal config').should.be.false;
+      site.get('env').should.equal('development');
+      site.get('encoding').should.equal('utf8');
+      site.get('cwd').should.equal(process.cwd());
+      site.get('ext').should.equal('.html');
+      // site.get('data').should.be.empty;
 
       // Default `src` plugins
-      assemble.enabled('init plugin').should.be.true;
-      assemble.enabled('src-routes plugin').should.be.true;
-      assemble.enabled('buffer plugin').should.be.true;
-      assemble.enabled('extend-src plugin').should.be.true;
-      assemble.enabled('parser plugin').should.be.true;
-      assemble.enabled('drafts plugin').should.be.true;
-      assemble.enabled('dynamic plugin').should.be.true;
-      assemble.enabled('paginate plugin').should.be.true;
+      site.enabled('init plugin').should.be.true;
+      site.enabled('src-routes plugin').should.be.true;
+      site.enabled('buffer plugin').should.be.true;
+      site.enabled('extend-src plugin').should.be.true;
+      site.enabled('parser plugin').should.be.true;
+      site.enabled('drafts plugin').should.be.true;
+      site.enabled('dynamic plugin').should.be.true;
+      site.enabled('paginate plugin').should.be.true;
 
       // Default `dest` plugins
-      assemble.enabled('extend-dest plugin').should.be.true;
-      assemble.enabled('collections plugin').should.be.true;
-      assemble.enabled('dest plugin').should.be.true;
-      assemble.disabled('dest-routes plugin').should.be.true;
-      assemble.enabled('render plugin').should.be.true;
+      site.enabled('extend-dest plugin').should.be.true;
+      site.enabled('collections plugin').should.be.true;
+      site.enabled('dest plugin').should.be.true;
+      site.disabled('dest-routes plugin').should.be.true;
+      site.enabled('render plugin').should.be.true;
 
       // View defaults
-      assemble.get('view', View);
-      assemble.get('view engine', 'noop');
-      assemble.get('views', 'templates');
-      assemble.get('delims', ['{{', '}}']);
+      site.get('view', View);
+      site.get('view engine', 'noop');
+      site.get('views', 'templates');
+      site.get('delims', ['{{', '}}']);
 
-      assemble.get('parsers.hbs').should.exist;
-      assemble.get('parsers.md').should.exist;
+      site.get('parsers.hbs').should.exist;
+      site.get('parsers.md').should.exist;
 
-      assemble.engines['.*'].should.exist;
-      assemble.engines['.md'].should.exist;
-      assemble.highlighter.should.exist;
+      site.engines['.*'].should.exist;
+      site.engines['.md'].should.exist;
+      site.highlighter.should.exist;
     });
   });
 });

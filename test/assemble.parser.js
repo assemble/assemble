@@ -1,5 +1,5 @@
 /**
- * Assemble <http://assemble.io>
+ * Assemble <http://site.io>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -9,35 +9,35 @@
 
 var assert = require('assert');
 var should = require('should');
-var Assemble = require('..');
+var assemble = require('..');
 
 describe('assemble parser', function () {
-  var assemble = null;
+  var site = null;
   beforeEach(function() {
-    assemble = Assemble.create();
+    site = assemble.create();
   });
   
   describe('.parser()', function () {
     it('should add a parser to the stack for a given extension.', function () {
-      assemble.init();
+      site.init();
 
       // reset the parser stack
-      assemble.cache.parsers = {};
+      site.cache.parsers = {};
 
-      assemble.parser('txt', function() {});
-      assemble.get('parsers.txt').length.should.equal(1);
+      site.parser('txt', function() {});
+      site.get('parsers.txt').length.should.equal(1);
 
-      assemble.parser('txt', function() {});
-      assemble.get('parsers.txt').length.should.equal(2);
+      site.parser('txt', function() {});
+      site.get('parsers.txt').length.should.equal(2);
 
-      assemble.parser('txt', function() {});
-      assemble.get('parsers.txt').length.should.equal(3);
+      site.parser('txt', function() {});
+      site.get('parsers.txt').length.should.equal(3);
 
       // Add two more parsers
-      assemble.parser('hbs', function() {});
-      assemble.parser('css', function() {});
+      site.parser('hbs', function() {});
+      site.parser('css', function() {});
 
-      Object.keys(assemble.get('parsers')).length.should.equal(3);
+      Object.keys(site.get('parsers')).length.should.equal(3);
     });
   });
 });

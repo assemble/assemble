@@ -1,5 +1,5 @@
 /**
- * Assemble <http://assemble.io>
+ * Assemble <http://site.io>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -9,28 +9,28 @@
 
 var assert = require('assert');
 var should = require('should');
-var Assemble = require('..');
+var assemble = require('..');
 
 
 describe('config process', function () {
-  var assemble = null;
+  var site = null;
   beforeEach(function() {
-    assemble = Assemble.create();
+    site = assemble.create();
   });
 
   describe('.process()', function () {
     it('should resolve template strings in config values', function () {
-      var store = assemble.process({a: '<%= b %>', b: 'c'});
+      var store = site.process({a: '<%= b %>', b: 'c'});
       store.a.should.equal('c')
     });
 
     it('should resolve es6 template strings in config values', function () {
-      var store = assemble.process({a: '${b}', b: 'c'});
+      var store = site.process({a: '${b}', b: 'c'});
       store.a.should.equal('c')
     });
 
     it('should recursively resolve template strings.', function () {
-      var store = assemble.process({
+      var store = site.process({
         a: '${b}',
         b: '${c}',
         c: '${d}',
@@ -41,20 +41,20 @@ describe('config process', function () {
 
     describe('when functions are defined on the config', function() {
       it('should used them on config templates', function() {
-        assemble.data({
+        site.data({
           upper: function (str) {
             return str.toUpperCase();
           }
         });
 
-        assemble.data({fez: 'bang', pop: 'boom-pow!'});
-        assemble.data({whistle: '<%= upper(fez) %>-<%= upper(pop) %>'});
-        assemble.get('data.whistle').should.equal('<%= upper(fez) %>-<%= upper(pop) %>');
+        site.data({fez: 'bang', pop: 'boom-pow!'});
+        site.data({whistle: '<%= upper(fez) %>-<%= upper(pop) %>'});
+        site.get('data.whistle').should.equal('<%= upper(fez) %>-<%= upper(pop) %>');
 
-        var a = assemble.process(assemble.get('data.whistle'), assemble.get('data'));
+        var a = site.process(site.get('data.whistle'), site.get('data'));
         a.should.equal('BANG-BOOM-POW!');
 
-        var b = assemble.process(assemble.get('data'), assemble.get('data'));
+        var b = site.process(site.get('data'), site.get('data'));
         b.whistle.should.equal('BANG-BOOM-POW!');
       });
     });

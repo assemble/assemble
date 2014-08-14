@@ -30,37 +30,37 @@ var shout = function (msg) {
 };
 
 
-assemble.use(fn('test/fixtures/aaa.json'));
-assemble.use('assemble-use');
+site.use(fn('test/fixtures/aaa.json'));
+site.use('assemble-use');
 
 
 // Any of these work
-assemble.data('package.json');
-assemble.data({upper: function(foo) {
+site.data('package.json');
+site.data({upper: function(foo) {
   return foo + 1;
 }});
 
 
-assemble.data({fez: 'bang', aaa: 'bbb'});
-assemble.data({beep: '<%= upper(fez) %>'});
+site.data({fez: 'bang', aaa: 'bbb'});
+site.data({beep: '<%= upper(fez) %>'});
 
 
-assemble.task('template', function () {
-  assemble.data({});
-  assemble.src('test/fixtures/*.md')
+site.task('template', function () {
+  site.data({});
+  site.src('test/fixtures/*.md')
     .pipe(template({name: 'Jon'}))
-    .pipe(assemble.dest('test/actual'));
+    .pipe(site.dest('test/actual'));
 });
 
 
-assemble.task('js', function () {
-  assemble.data({});
-  assemble.src('*.js')
+site.task('js', function () {
+  site.data({});
+  site.src('*.js')
     .pipe(concat('all.js'))
-    .pipe(assemble.dest('test/actual'));
-  assemble.src('test/fixtures/*.html')
+    .pipe(site.dest('test/actual'));
+  site.src('test/fixtures/*.html')
     .pipe(concat('all.html'))
-    .pipe(assemble.dest('test/actual'));
+    .pipe(site.dest('test/actual'));
 });
 
-assemble.task('default', ['template', 'js']);
+site.task('default', ['template', 'js']);

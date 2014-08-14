@@ -1,5 +1,5 @@
 /**
- * Assemble <http://assemble.io>
+ * Assemble <http://site.io>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -12,14 +12,14 @@ var should = require('should');
 var rimraf = require('rimraf');
 var tap = require('gulp-tap');
 
-var Assemble = require('..');
+var assemble = require('..');
 var actual = __dirname + '/render-actual';
 
 describe('assemble render', function () {
-  describe('assemble.render()', function () {
-    var assemble = null;
+  describe('site.render()', function () {
+    var site = null;
     beforeEach(function (done) {
-      assemble = Assemble.create();
+      site = assemble.create();
       rimraf(actual, done);
     });
 
@@ -28,19 +28,19 @@ describe('assemble render', function () {
     });
 
     it('should render a file', function (done) {
-      assemble.option({
+      site.option({
         layout: 'default'
       });
-      assemble.partials('test/fixtures/includes/*.hbs');
-      assemble.layouts('test/fixtures/layouts/*.hbs');
+      site.partials('test/fixtures/includes/*.hbs');
+      site.layouts('test/fixtures/layouts/*.hbs');
 
-      assemble.src('test/fixtures/pages/*.hbs')
+      site.src('test/fixtures/pages/*.hbs')
         // .pipe(tap(function (file) {
         //   console.log('tap-file', file.contents.toString());
         //   console.log('tap-hasLayout', file.hasLayout);
         //   console.log();
         // }))
-        .pipe(assemble.dest(actual))
+        .pipe(site.dest(actual))
         // .on('data', function (file) {
         //   console.log('file', file.contents.toString());
         //   console.log('hasLayout', file.hasLayout);

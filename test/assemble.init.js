@@ -1,5 +1,5 @@
 /**
- * Assemble <http://assemble.io>
+ * Assemble <http://site.io>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -9,30 +9,30 @@
 
 var assert = require('assert');
 var should = require('should');
-var Assemble = require('..');
+var assemble = require('..');
 
 describe('assemble init', function () {
 
-  var assemble = null;
+  var site = null;
   beforeEach(function() {
-    assemble = Assemble.create();
+    site = assemble.create();
   });
   
   describe('.init()', function () {
     it('should re-initialize all values', function () {
-      assemble.init();
+      site.init();
 
-      assemble.cache.pages.should.be.empty;
-      assemble.cache.partials.should.be.empty;
-      assemble.cache.layouts.should.be.empty;
-      assemble.cache.helpers.should.be.empty;
-      assemble.cache.locals.should.be.empty;
-      assemble.cache.imports.should.be.empty;
+      site.cache.pages.should.be.empty;
+      site.cache.partials.should.be.empty;
+      site.cache.layouts.should.be.empty;
+      site.cache.helpers.should.be.empty;
+      site.cache.locals.should.be.empty;
+      site.cache.imports.should.be.empty;
     });
 
     it('should prepopulate default engines.', function () {
-      assemble.init();
-      Object.keys(assemble.engines).length.should.equal(3);
+      site.init();
+      Object.keys(site.engines).length.should.equal(3);
     });
   });
 });

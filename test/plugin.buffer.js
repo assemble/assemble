@@ -11,8 +11,9 @@ var outpath = join(__dirname, './out-fixtures');
 
 
 describe('assemble buffer', function() {
+  var site = null;
   before (function () {
-    assemble.init();
+    site = assemble.create();
   });
 
   describe('buffer()', function() {
@@ -25,18 +26,18 @@ describe('assemble buffer', function() {
 
     describe('buffer files - disabled', function () {
       beforeEach(function () {
-        assemble.disable('buffer plugin');
-        assemble.set('ext', '.txt');
+        site.disable('buffer plugin');
+        site.set('ext', '.txt');
       });
 
       afterEach(function () {
-        assemble.enable('buffer plugin');
-        assemble.set('ext', '.html');
+        site.enable('buffer plugin');
+        site.set('ext', '.html');
       });
 
       it('should have an empty `files` cache', function (done) {
-        var instream = assemble.src(join(__dirname, 'fixtures/copy/*.txt'));
-        var outstream = assemble.dest(outpath);
+        var instream = site.src(join(__dirname, 'fixtures/copy/*.txt'));
+        var outstream = site.dest(outpath);
         instream.pipe(outstream);
 
         outstream.on('error', done);
@@ -50,7 +51,7 @@ describe('assemble buffer', function() {
         });
 
         outstream.on('end', function () {
-          assemble.files.length.should.equal(0);
+          site.files.length.should.equal(0);
           done();
         });
       });
@@ -59,16 +60,16 @@ describe('assemble buffer', function() {
 
     describe('buffer files - enabled', function () {
       beforeEach(function () {
-        assemble.set('ext', '.txt');
+        site.set('ext', '.txt');
       });
 
       afterEach(function () {
-        assemble.set('ext', '.html');
+        site.set('ext', '.html');
       });
 
       it('should have a `files` cache', function (done) {
-        var instream = assemble.src(join(__dirname, 'fixtures/copy/*.txt'));
-        var outstream = assemble.dest(outpath);
+        var instream = site.src(join(__dirname, 'fixtures/copy/*.txt'));
+        var outstream = site.dest(outpath);
         instream.pipe(outstream);
 
         outstream.on('error', done);
@@ -81,7 +82,7 @@ describe('assemble buffer', function() {
           String(file.contents).should.equal('this is a test');
         });
         outstream.on('end', function () {
-          assemble.files.length.should.equal(1);
+          site.files.length.should.equal(1);
           done();
         });
       });

@@ -1,5 +1,5 @@
 /**
- * Assemble <http://assemble.io>
+ * Assemble <http://site.io>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -12,15 +12,15 @@ var path = require('path');
 var should = require('should');
 var File = require('vinyl');
 var rimraf = require('rimraf');
-var Assemble = require('..');
+var assemble = require('..');
 
 var actual = __dirname + '/layouts-actual';
 
 
 describe('assemble layouts', function () {
-  var assemble = null;
+  var site = null;
   beforeEach(function (done) {
-    assemble = Assemble.create();
+    site = assemble.create();
     rimraf(actual, done);
   });
   afterEach(function (done) {
@@ -28,33 +28,33 @@ describe('assemble layouts', function () {
   });
 
   describe('.layout()', function () {
-    it('should be a method on assemble.', function () {
-      assemble.layout.should.be.a.function;
+    it('should be a method on site.', function () {
+      site.layout.should.be.a.function;
     });
 
     it('should cache a layout defined as an object.', function () {
-      assemble.layout({
+      site.layout({
         name: 'test-layout-a',
         data: {title: 'test-layout-a'},
         content: 'Test layout A content'
       });
 
-      var layouts = assemble.cache.layouts;
+      var layouts = site.cache.layouts;
       layouts.should.have.property('test-layout-a');
     });
   });
 
   describe('.layouts()', function () {
-    it('should be a method on assemble.', function () {
-      assemble.layouts.should.be.a.function;
+    it('should be a method on site.', function () {
+      site.layouts.should.be.a.function;
     });
 
     it('should return an empty array..', function () {
-      assemble.layouts().should.be.empty;
+      site.layouts().should.be.empty;
     });
 
     it('should cache an array of layouts defined as objects.', function () {
-      assemble.layouts([
+      site.layouts([
         {
           name: 'test-layout-a',
           data: {title: 'test-layout-a'},
@@ -72,14 +72,14 @@ describe('assemble layouts', function () {
         }
       ]);
 
-      var layouts = assemble.cache.layouts;
+      var layouts = site.cache.layouts;
       layouts.should.have.property('test-layout-a');
       layouts.should.have.property('test-layout-b');
       layouts.should.have.property('test-layout-c');
     });
 
     it('should cache an object of layouts defined as objects.', function () {
-      assemble.layouts({
+      site.layouts({
         'test-layout-a': {
           data: {title: 'test-layout-a'},
           content: 'Test layout A content'
@@ -94,16 +94,16 @@ describe('assemble layouts', function () {
         }
       });
 
-      var layouts = assemble.cache.layouts;
+      var layouts = site.cache.layouts;
       layouts.should.have.property('test-layout-a');
       layouts.should.have.property('test-layout-b');
       layouts.should.have.property('test-layout-c');
     });
 
     it('should cache an object of layouts defined as a string of glob patterns.', function () {
-      assemble.layouts('test/fixtures/templates/layouts/*.hbs');
+      site.layouts('test/fixtures/templates/layouts/*.hbs');
 
-      var layouts = assemble.cache.layouts;
+      var layouts = site.cache.layouts;
       layouts.should.have.property('a');
       layouts.should.have.property('b');
       layouts.should.have.property('c');

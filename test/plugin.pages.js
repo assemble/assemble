@@ -1,5 +1,5 @@
 /**
- * Assemble <http://assemble.io>
+ * Assemble <http://site.io>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -38,16 +38,13 @@ describe('assemble pages', function () {
     ]
   };
 
-  afterEach(function() {
-    assemble.clear();
-  });
-
+  var site = null;
   beforeEach(function() {
-    assemble.clear();
+    site = assemble.create();
   });
 
   /*describe('.pages()', function () {
-    assemble.option.set(options);
+    site.option.set(options);
     xit("should generate pages from JSON.", function () {
       //
     });

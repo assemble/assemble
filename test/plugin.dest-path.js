@@ -5,14 +5,14 @@ var tap = require('gulp-tap');
 var fs = require('graceful-fs');
 var should = require('should');
 var rimraf = require('rimraf');
-var Assemble = require('..');
+var assemble = require('..');
 
-var assemble = null;
+var site = null;
 var actual = __dirname + '/dest-path-actual';
 
 describe('assemble dest-path plugin', function() {
   before (function () {
-    assemble = Assemble.create();
+    site = assemble.create();
   });
 
   describe('destPath()', function() {
@@ -25,9 +25,9 @@ describe('assemble dest-path plugin', function() {
 
     describe('when files are run through the pipe', function () {
       it('should keep dest the same before the dest path plugin is run.', function (done) {
-        assemble.set('assets', actual + '/assets');
-        var instream = assemble.src(path.join(__dirname, 'fixtures/dest-path/*.hbs'));
-        var outstream = assemble.dest(actual);
+        site.set('assets', actual + '/assets');
+        var instream = site.src(path.join(__dirname, 'fixtures/dest-path/*.hbs'));
+        var outstream = site.dest(actual);
 
         instream
           .pipe(tap(function (file) {
@@ -47,9 +47,9 @@ describe('assemble dest-path plugin', function() {
       });
 
       it('should calculate the correct `assets` property on the file when the dest changes.', function (done) {
-        assemble.set('assets', actual + '/assets');
-        var instream = assemble.src(path.join(__dirname, 'fixtures/dest-path/*.hbs'));
-        var outstream = assemble.dest(actual);
+        site.set('assets', actual + '/assets');
+        var instream = site.src(path.join(__dirname, 'fixtures/dest-path/*.hbs'));
+        var outstream = site.dest(actual);
         instream.pipe(outstream);
 
         outstream.on('error', done);

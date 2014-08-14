@@ -1,5 +1,5 @@
 /**
- * Assemble <http://assemble.io>
+ * Assemble <http://site.io>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -8,16 +8,16 @@
 'use strict';
 
 var should = require('should');
-var Assemble = require('..');
+var assemble = require('..');
 
 
 describe('assemble run', function () {
-  var assemble = null;
+  var site = null;
   beforeEach(function() {
-    assemble = Assemble.create();
+    site = assemble.create();
   });
   
-  describe('assemble.run()', function () {
+  describe('site.run()', function () {
     xit('should run a task', function () {
       // TODO
     });
