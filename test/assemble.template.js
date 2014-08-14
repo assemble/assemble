@@ -32,7 +32,7 @@ describe('assemble init', function () {
       should.exist(assemble.cache.lions);
     });
 
-    it('should add load new templates add store them on the cache for the custom template type', function () {
+    it('should load new templates add store them on the cache for the custom template type.', function () {
       assemble.template('doowb', {plural: 'doowbs'});
       assemble.doowb({
         name: 'brian',
@@ -49,7 +49,7 @@ describe('assemble init', function () {
       should.exist(assemble.cache.doowbs.brian.data.last);
     });
 
-    it('should add load new templates add store them on the cache for the custom template type as layouts', function () {
+    it('should load new templates add store them on the cache for the custom template type as layouts.', function () {
       assemble.template('jon', {plural: 'jons', isLayout: true});
       assemble.jon({
         name: 'jon',
@@ -67,5 +67,30 @@ describe('assemble init', function () {
       should.exist(assemble.cache.jons.jon.data.last);
       should.exist(assemble.layoutSettings['.hbs'].cache.jon);
     });
+
+    it('should store template context in the context manager for the correct type.', function () {
+      assemble.template('foo', {plural: 'foos', isLayout: true});
+      assemble.foo({
+        name: 'bar',
+        data: {
+          beep: 'boop',
+          ext: '.hbs'
+        },
+        content: '---\nbang: baz\n---\nSome things {{beep}} {{bang}}.'
+      });
+
+      should.exist(assemble.context.ctx.foos);
+      var context = assemble.context.get('foos');
+      context.should.have.property('bar');
+      context.bar.should.have.property('beep');
+      context.bar.should.have.property('bang');
+      context.bar.beep.should.equal('boop');
+      context.bar.bang.should.equal('baz');
+    });
+
   });
 });
+
+
+
+

@@ -131,7 +131,7 @@ describe('assemble partials', function () {
         }
       });
 
-      var context = assemble.context.ctx.partials;
+      var context = assemble.context.get('partials');
       context.should.have.property('test-partial-a');
       context.should.have.property('test-partial-b');
       context.should.have.property('test-partial-c');
