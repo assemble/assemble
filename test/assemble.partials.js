@@ -1,5 +1,5 @@
 /**
- * Assemble <http://assemble.io>
+ * Assemble <http://site.io>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -12,15 +12,15 @@ var path = require('path');
 var should = require('should');
 var File = require('vinyl');
 var rimraf = require('rimraf');
-var Assemble = require('..');
+var assemble = require('..');
 
 var actual = __dirname + '/partials-actual';
 
 
 describe('assemble partials', function () {
-  var assemble = null;
+  var site = null;
   beforeEach(function (done) {
-    assemble = Assemble.create();
+    site = assemble.create();
     rimraf(actual, done);
   });
   afterEach(function (done) {
@@ -28,40 +28,40 @@ describe('assemble partials', function () {
   });
 
   describe('.partial()', function () {
-    it('should be a method on assemble.', function () {
-      assemble.partial.should.be.a.function;
+    it('should be a method on site.', function () {
+      site.partial.should.be.a.function;
     });
 
     it('should cache a partial defined as an object.', function () {
-      assemble.partial({
+      site.partial({
         name: 'test-partial-a',
         data: {title: 'test-partial-a'},
         content: 'Test partial A content'
       });
 
-      var partials = assemble.cache.partials;
+      var partials = site.cache.partials;
       partials.should.have.property('test-partial-a');
     });
   });
 
   xdescribe('options partials', function () {
-    it('should be a method on assemble.', function () {
-      // assemble.option('partials', ['test/fixtures/templates/partials/*.hbs']);
-      assemble.partial.should.be.a.function;
+    it('should be a method on site.', function () {
+      // site.option('partials', ['test/fixtures/templates/partials/*.hbs']);
+      site.partial.should.be.a.function;
     });
   });
 
   describe('.partials()', function () {
-    it('should be a method on assemble.', function () {
-      assemble.partials.should.be.a.function;
+    it('should be a method on site.', function () {
+      site.partials.should.be.a.function;
     });
 
     it('should return an empty array..', function () {
-      assemble.partials().should.be.empty;
+      site.partials().should.be.empty;
     });
 
     it('should cache an array of partials defined as objects.', function () {
-      assemble.partials([
+      site.partials([
         {
           name: 'test-partial-a',
           data: {title: 'test-partial-a'},
@@ -79,14 +79,14 @@ describe('assemble partials', function () {
         }
       ]);
 
-      var partials = assemble.cache.partials;
+      var partials = site.cache.partials;
       partials.should.have.property('test-partial-a');
       partials.should.have.property('test-partial-b');
       partials.should.have.property('test-partial-c');
     });
 
     it('should cache an object of partials defined as objects.', function () {
-      assemble.partials({
+      site.partials({
         'test-partial-a': {
           data: {title: 'test-partial-a'},
           content: 'Test partial A content'
@@ -101,7 +101,7 @@ describe('assemble partials', function () {
         }
       });
 
-      var partials = assemble.cache.partials;
+      var partials = site.cache.partials;
       partials.should.have.property('test-partial-a');
       partials.should.have.property('test-partial-b');
       partials.should.have.property('test-partial-c');
@@ -109,15 +109,15 @@ describe('assemble partials', function () {
 
     it('should cache an object of partials defined as a string of glob patterns.', function () {
 
-      assemble.partials('test/fixtures/templates/partials/*.hbs');
-      var partials = assemble.cache.partials;
+      site.partials('test/fixtures/templates/partials/*.hbs');
+      var partials = site.cache.partials;
       partials.should.have.property('a');
       partials.should.have.property('b');
       partials.should.have.property('c');
     });
 
     it('should add the partial data to the context manager', function () {
-      assemble.partials({
+      site.partials({
         'test-partial-a': {
           data: {title: 'test-partial-a'},
           content: 'Test partial A content'
@@ -132,7 +132,7 @@ describe('assemble partials', function () {
         }
       });
 
-      var context = assemble.context.get('partials');
+      var context = site.context.get('partials');
       context.should.have.property('test-partial-a');
       context.should.have.property('test-partial-b');
       context.should.have.property('test-partial-c');

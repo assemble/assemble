@@ -1,5 +1,5 @@
 /**
- * Assemble <http://assemble.io>
+ * Assemble <http://site.io>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -8,50 +8,50 @@
 'use strict';
 
 var should = require('should');
-var Assemble = require('..');
+var assemble = require('..');
 
 describe('assemble data', function() {
-  var assemble = null;
+  var site = null;
   beforeEach(function () {
-    assemble = Assemble.create();
+    site = assemble.create();
   });
   
   describe('.data()', function() {
     it('should set properties on the `data` object.', function() {
-      assemble.set('data.foo', 'bar');
-      assemble.get('data').foo.should.equal('bar');
-      assemble.get('data.foo').should.equal('bar');
+      site.set('data.foo', 'bar');
+      site.get('data').foo.should.equal('bar');
+      site.get('data.foo').should.equal('bar');
     });
 
     it('should read files and merge data onto `cache.data`', function() {
-      assemble.data('package.json');
-      assemble.get('data.name').should.equal('assemble');
+      site.data('package.json');
+      site.get('data.name').should.equal('assemble');
     });
 
     it('should read files and merge data onto `cache.data`', function() {
-      assemble.data({xyz: 'abc'});
-      assemble.get('data.xyz').should.equal('abc');
+      site.data({xyz: 'abc'});
+      site.get('data.xyz').should.equal('abc');
     });
 
     it('should read files and merge data onto `cache.data`', function() {
-      assemble.data([{aaa: 'bbb', ccc: 'ddd'}]);
-      assemble.get('data.aaa').should.equal('bbb');
-      assemble.get('data.ccc').should.equal('ddd');
+      site.data([{aaa: 'bbb', ccc: 'ddd'}]);
+      site.get('data.aaa').should.equal('bbb');
+      site.get('data.ccc').should.equal('ddd');
     });
   });
 
   describe('.extendData()', function() {
     it('should extend the `data` object.', function() {
-      assemble.extendData({x: 'x', y: 'y', z: 'z'});
-      assemble.get('data').should.have.property('x');
-      assemble.get('data').should.have.property('y');
-      assemble.get('data').should.have.property('z');
+      site.extendData({x: 'x', y: 'y', z: 'z'});
+      site.get('data').should.have.property('x');
+      site.get('data').should.have.property('y');
+      site.get('data').should.have.property('z');
     });
   });
 
   describe('.flattenData()', function() {
     it('should merge the value of a nested `data` property onto the root of the given object.', function() {
-      var root = assemble.flattenData({data: {x: 'x'}, y: 'y', z: 'z'});
+      var root = site.flattenData({data: {x: 'x'}, y: 'y', z: 'z'});
       root.should.have.property('x');
       root.should.have.property('y');
       root.should.have.property('z');
@@ -61,17 +61,17 @@ describe('assemble data', function() {
 
   describe('.plasma()', function() {
     it('should read JSON files and return an object.', function() {
-      var pkg = assemble.plasma('package.json');
+      var pkg = site.plasma('package.json');
       pkg.name.should.equal('assemble');
     });
 
     it('should expand a glob pattern, read JSON/YAML files and return an object.', function() {
-      var pkg = assemble.plasma('p*.json');
+      var pkg = site.plasma('p*.json');
       pkg.name.should.equal('assemble');
     });
 
     it('should accept and object and return an object.', function() {
-      var foo = assemble.plasma({a: 'b'});
+      var foo = site.plasma({a: 'b'});
       foo.a.should.equal('b');
     });
   });

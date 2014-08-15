@@ -61,14 +61,21 @@ New `options` settings:
 
 
 ## Install
-Install with [npm](npmjs.org):
+#### Install with [npm](npmjs.org):
 
 ```bash
 npm i assemble --save-dev
 ```
 
 ## API
-### [Assemble](lib/assemble.js#L82)
+[## Files](lib/assemble.js#L38)
+
+
+Just about all the deps below this line
+will be externalized into modules.
+
+
+ [## Assemble](lib/assemble.js#L82)
 
 Create an `assemble` task.
 
@@ -90,7 +97,7 @@ var config = new Assemble({foo: 'bar'});
 ```
 
 
-### [cwd](lib/assemble.js#L421)
+ [## cwd](lib/assemble.js#L438)
 
 Set the current working directory for all paths. Default is `process.cwd()`, this does not need to be changed unless you require something different.
 
@@ -102,7 +109,22 @@ assemble.cwd('bench');
 ```
 
 
-### [task](lib/assemble.js#L476)
+ [## middleware](lib/assemble.js#L464)
+
+Run the given middleware `fns` during the specified stage or stages.
+
+* `stage` **{String}**  
+* `fns` **{Array}**  
+* returns **{Object}** `Assemble`: to enable chaining.  
+
+```js
+assemble.middleware('src:*', function() {
+  // do stuff
+});
+``
+
+
+ [## task](lib/assemble.js#L493)
 
 Define an assemble task.
 
@@ -118,7 +140,7 @@ assemble.task('site', function() {
 ```
 
 
-### [src](lib/assemble.js#L527)
+ [## src](lib/assemble.js#L544)
 
 Glob patterns or filepaths to source files.
 
@@ -138,7 +160,7 @@ assemble.task('site', function() {
 ```
 
 
-### [dest](lib/assemble.js#L562)
+ [## dest](lib/assemble.js#L579)
 
 Specify a destination for processed files.
 
@@ -159,7 +181,7 @@ assemble.task('sitemap', function() {
 ```
 
 
-### [collection](lib/assemble.js#L604)
+ [## collection](lib/assemble.js#L621)
 
 The collection method returns a plugin used to create `index` pages and related-pages for any collections that have been defined.
 
@@ -177,18 +199,86 @@ a public method allowing this method to be replaced with a
 custom `collection` method if necessary.
 
 
-### [pages](lib/assemble.js#L695)
+ [## template](lib/assemble.js#L692)
 
-Load pages onto the cache as normalized pages-objects. Specify file paths or glob patterns for pages to use with the current view engine.
+Add a new template type to Assemble. Creates methods for adding templates to a cache based on the type name.
 
-* `patterns` **{String|Array|Object}**: Object, array of objects, file paths or glob patterns.  
-* `options` **{String}**: Options to pass to the `pagesCache.load()` method.  
+* `type` **{String}**: Name of the new type to add  
+* `options` **{Object}**  
 * returns **{Object}** `Assemble`: to enable chaining.  
+
+**Example:**
+
+```js
+assemble.template('include', {plural: 'includes'});
+```
+
+Two new methods are created on Assemble:
+`assemble.include();`
+`assemble.includes();`
+
+New cache object is add to assemble
+`assemble.cache.includes`
+
+Add an include to `cache.includes`. Includes can be defined either
+as objects, or as glob patterns or file paths to the files to read
+in and parse.
+
+Include objects are expected to have the following properties:
+
+  - `name` {String} The name of the include
+  - `data` {Object} Context for the include
+  - `content` {String} The actual content of the include.
+
+**Example:**
+
+```js
+assemble.include({
+  name: 'foo',
+  data: {title: 'Include Foo'},
+  content: 'Some content. '
+});
+```
+### Pages
+
+Add a page to `cache.pages`. pages can be defined either
+as objects, or as glob patterns or file paths to the files to read
+in and parse.
+
+page objects are expected to have the following properties:
+
+  - `name` {String} The name of the page
+  - `data` {Object} Context for the page
+  - `content` {String} The actual content of the page.
+  - `layout` {String} (Optional) You may optionally define a layout to use. This can also be defined on `data.layout`.
+
+* `patterns` **{String}**: File paths or glob patterns to pages.
+* `options` **{String}**: Options to pass to the `loader.load()` method.
+* returns **{Assemble}**: to enable chaining.
+
+**Example:**
+
+```js
+assemble.page({
+  name: 'a',
+  layout: 'b',
+  data: {title: 'page A'},
+  content: 'Some content. '
+});
+```
+
+Load pages onto the cache as normalized pages-objects.
+Specify file paths or glob patterns for pages to use with
+the current view engine.
 
 If a string or array of file paths or glob patterns is passed,
 pages will be read from the file system, parsed into an
 object, and stored on the `cache` using the full filepath
 of each page as its unique identifier.
+
+* `patterns` **{String|Array|Object}**: Object, array of objects, file paths or glob patterns.
+* `options` **{Object}**: Options to pass to the `loader.load()` method.
+* returns **{Assemble}**: to enable chaining.
 
 **Example:**
 
@@ -196,14 +286,11 @@ of each page as its unique identifier.
 assemble.pages('templates/pages/*.hbs');
 ```
 
+### Partials
 
-### [partial](lib/assemble.js#L749)
-
-Add a partial to `cache.partials`. Partials can be defined either as objects, or as glob patterns or file paths to the files to read in and parse.
-
-* `patterns` **{String}**: File paths or glob patterns to partials.  
-* `options` **{String}**  
-* returns: {Object}  
+Add a partial to `cache.partials`. Partials can be defined either
+as objects, or as glob patterns or file paths to the files to read
+in and parse.
 
 Partial objects are expected to have the following properties:
 
@@ -211,6 +298,10 @@ Partial objects are expected to have the following properties:
   - `data` {Object} Context for the partial
   - `content` {String} The actual content of the partial.
   - `layout` {String} (Optional) You may optionally define a layout to use. This can also be defined on `data.layout`.
+
+* `patterns` **{String|Array|Object}**: Object, array of objects, file paths or glob patterns.
+* `options` **{Object}**: Options to pass to the `loader.load()` method.
+* returns **{Assemble}**: to enable chaining.
 
 **Example:**
 
@@ -223,19 +314,18 @@ assemble.partial({
 });
 ```
 
-
-### [partials](lib/assemble.js#L777)
-
-Load partials onto the cache as normalized partials-objects. Specify file paths or glob patterns for partials to use with the current view engine.
-
-* `patterns` **{String|Array|Object}**: Object, array of objects, file paths or glob patterns.  
-* `options` **{String}**: Options to pass to the `partialsCache.load()` method.  
-* returns **{Object}** `Assemble`: to enable chaining.  
+Load partials onto the cache as normalized partials-objects.
+Specify file paths or glob patterns for partials to use with
+the current view engine.
 
 If a string or array of file paths or glob patterns is passed,
 partials will be read from the file system, parsed into an
 object, and stored on the `cache` using the full filepath
 of each partial as its unique identifier.
+
+* `patterns` **{String|Array|Object}**: Object, array of objects, file paths or glob patterns.
+* `options` **{Object}**: Options to pass to the `loader.load()` method.
+* returns **{Assemble}**: to enable chaining.
 
 **Example:**
 
@@ -243,78 +333,47 @@ of each partial as its unique identifier.
 assemble.partials('templates/partials/*.hbs');
 ```
 
+### Layouts
 
-### [layout](lib/assemble.js#L852)
+Add a layout to `cache.layouts`. Layouts can be defined either
+as objects, or as glob patterns or file paths to the files to read
+in and parse.
 
-Add a layout to `cache.layouts`. Partials can be defined either as objects, or as glob patterns or file paths to the files to read in and parse.
-
-* `patterns` **{String}**: File paths or glob patterns to layouts.  
-* `options` **{String}**  
-* returns: {Object}  
-
-Partial objects are expected to have the following properties:
+Layout objects are expected to have the following properties:
 
   - `name` {String} The name of the layout
   - `data` {Object} Context for the layout
   - `content` {String} The actual content of the layout.
   - `layout` {String} (Optional) You may optionally define a layout to use. This can also be defined on `data.layout`.
 
+* `patterns` **{String|Array|Object}**: Object, array of objects, file paths or glob patterns.
+* `options` **{Object}**: Options to pass to the `loader.load()` method.
+* returns **{Assemble}**: to enable chaining.
+
 **Example:**
 
 ```js
 assemble.layout({
   name: 'foo',
-  data: {title: 'Partial Foo'},
+  data: {title: 'Layout Foo'},
   content: 'Some content. '
 });
 ```
 
-
-### [layouts](lib/assemble.js#L874)
-
-Returns an object with all the parsed layouts by name. Internally uses the resolved layout filepaths from `options.layouts` to read in and cache any layouts not already cached.
-
-* `patterns` **{Array}**: Glob patterns for looking up layouts  
-* `options` **{Object}**: Options containing layout options  
-* returns **{Object}** `Assemble`: to enable chaining.  
-
-**Example**
-
-```js
-// TODO
-```
-
-
+Returns an object with all the parsed layouts by name. Internally uses
+the resolved layout filepaths from `options.layouts` to read in and cache
+any layouts not already cached.
+ 
 Use layout options to combine the patterns to make glob patterns for looking
 up layouts.
 
-
-### [helper](lib/assemble.js#L910)
-
-Returns an object with all loaded helpers;
-
-* returns **{Object}**: all the resolved and loaded helpers  
-
-
-```js
-var assemble = require('assemble');
-var helpers = require('your-custom-helpers');
-
-assemble
-  .registerHelper('foo', require('helper-foo'))
-  .registerHelper('a', helpers.a)
-  .registerHelper('b', helpers.b)
-  .registerHelper('c', helpers.c)
-
-  // or define one inline
-  .registerHelper('log', function (value) {
-    return console.log(value);
-  });
-```
+* `patterns` **{String|Array|Object}**: Object, array of objects, file paths or glob patterns.
+* `options` **{Object}**: Options to pass to the `loader.load()` method.
+* returns **{Assemble}**: to enable chaining.
 
 
 
-### [helpers](lib/assemble.js#L925)
+ [## helper](lib/assemble.js#L755)
 
 Returns an object with all loaded helpers;
 
@@ -339,7 +398,32 @@ assemble
 
 
 
-### [registerHelper](lib/assemble.js#L959)
+ [## helpers](lib/assemble.js#L770)
+
+Returns an object with all loaded helpers;
+
+* returns **{Object}**: all the resolved and loaded helpers  
+
+
+```js
+var assemble = require('assemble');
+var helpers = require('your-custom-helpers');
+
+assemble
+  .registerHelper('foo', require('helper-foo'))
+  .registerHelper('a', helpers.a)
+  .registerHelper('b', helpers.b)
+  .registerHelper('c', helpers.c)
+
+  // or define one inline
+  .registerHelper('log', function (value) {
+    return console.log(value);
+  });
+```
+
+
+
+ [## registerHelper](lib/assemble.js#L804)
 
 Register a helper for the current template engine.
 
@@ -362,7 +446,7 @@ assemble.render('<%= include("foo.md") %>');
 ```
 
 
-### [registerHelpers](lib/assemble.js#L985)
+ [## registerHelpers](lib/assemble.js#L830)
 
 Add an array or glob of template helpers.
 
@@ -381,7 +465,7 @@ assemble.registerHelpers('*.js');
 ```
 
 
-### [engine](lib/assemble.js#L1008)
+ [## engine](lib/assemble.js#L853)
 
 Register the given view engine callback `fn` as `ext`.
 
@@ -421,7 +505,7 @@ In this case, it is expected that the module export a `render` function which wi
 
 
 
-### [render](lib/assemble.js#L1056)
+ [## render](lib/assemble.js#L901)
 
 
 
@@ -431,7 +515,7 @@ In this case, it is expected that the module export a `render` function which wi
 so it can be replaced with a custom `render` method.
 
 
-### [parser](lib/assemble.js#L1117)
+ [## parser](lib/assemble.js#L962)
 
 Register a parser `fn` to be used on each `.src` file. This is used to parse front matter, but can be used for any kind of parsing.
 
@@ -457,7 +541,27 @@ assemble.parser('textile', function (file, enc, options) {
 [gray-matter]: https://github.com/assemble/gray-matter
 
 
-### [buffer](lib/assemble.js#L1217)
+ [## router](lib/assemble.js#L1027)
+
+**Example:**
+
+* `options` **{Object}**  
+* returns: {Function}  
+
+```js
+var myRoutes = assemble.router();
+myRoutes.route(':basename.hbs', function (file, params, next) {
+  // do something with the file
+  next();
+});
+
+assemble.src('')
+  .pipe(myRoutes())
+  .pipe(assemble.dset())
+```
+
+
+ [## buffer](lib/assemble.js#L1062)
 
 
 
@@ -466,7 +570,7 @@ assemble.parser('textile', function (file, enc, options) {
 so it can be replaced with a custom `buffer` method.
 
 
-### [highlight](lib/assemble.js#L1245)
+ [## highlight](lib/assemble.js#L1090)
 
 Register a function for syntax highlighting.
 
@@ -487,6 +591,24 @@ assemble.highlight(function(code, lang) {
 });
 ```
 
+
+ [## watch](lib/assemble.js#L1120)
+
+Rerun the specified task when a file changes.
+
+* `glob` **{String|Array}**: Filepaths or glob patterns.  
+* `options` **{String}**  
+* `fn` **{Function}**: Task(s) to watch.  
+* returns: {String}  
+
+```js
+assemble.task('watch', function() {
+  assemble.watch('docs/*.md', ['docs']);
+});
+```
+
+**Params:**
+
 ## Authors
  
 **Jon Schlinkert**
@@ -506,7 +628,7 @@ Released under the MIT license
 
 ***
 
-_This file was generated by [verb-cli](https://github.com/assemble/verb-cli) on August 13, 2014._
+_This file was generated by [verb-cli](https://github.com/assemble/verb-cli) on August 14, 2014._
 
 
 [gulp]: https://github.com/wearefractal/gulp

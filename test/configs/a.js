@@ -5,7 +5,7 @@ var handlebars = require('assemble-handlebars')(assemble);
 var parser = require('assemble-parser')(assemble);
 var options = require('load-options')('.assemblerc.yml', {cwd: __dirname});
 
-assemble.config({
+site.config({
   options: options,
   // options: opts({templates: 'test/fixtures'}),
   site: {
@@ -14,25 +14,25 @@ assemble.config({
 });
 
 
-assemble.plugin(require('assemble-core'));
-assemble.data('package.json');
+site.plugin(require('assemble-core'));
+site.data('package.json');
 
 console.log(assemble);
 
-//console.log('partials', assemble.partials());
+//console.log('partials', site.partials());
 //console.log();
-//console.log('layouts', assemble.layouts());
+//console.log('layouts', site.layouts());
 //console.log();
-//console.log('options', assemble.context);
+//console.log('options', site.context);
 //console.log();
 
-assemble.task('site', function () {
+site.task('site', function () {
   console.log('running site');
-  assemble.src('test/fixtures/pages/*.hbs')
+  site.src('test/fixtures/pages/*.hbs')
     .pipe(parser())
     .pipe(handlebars())
-    .pipe(assemble.dest('test/actual/'));
+    .pipe(site.dest('test/actual/'));
 });
 
-assemble.task('site');
+site.task('site');
 

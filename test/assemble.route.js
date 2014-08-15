@@ -15,7 +15,7 @@
 
 //   describe('route()', function() {
 //     beforeEach(function (done) {
-//       assemble.init();
+//       site.init();
 //       rimraf(outpath, done);
 //     });
 //     afterEach(function (done) {
@@ -24,14 +24,14 @@
 
 //     it('should set route for all text files', function (done) {
 //       var called = 0;
-//       assemble.route(/\.txt/, function (file, next) {
+//       site.route(/\.txt/, function (file, next) {
 //         called++;
 //         file.contents = new Buffer(file.contents.toString().toUpperCase());
 //         next();
 //       });
 
-//       var instream = assemble.src(join(__dirname, 'fixtures/routes/*.txt'));
-//       var outstream = assemble.dest(outpath);
+//       var instream = site.src(join(__dirname, 'fixtures/routes/*.txt'));
+//       var outstream = site.dest(outpath);
 //       instream.pipe(outstream);
 
 //       outstream.on('error', done);
@@ -53,20 +53,20 @@
 
 //       var called = {};
 //       var checked = 0;
-//       assemble.route(/\.txt/, function (file, next) {
+//       site.route(/\.txt/, function (file, next) {
 //         called['.txt'] = file.path;
 //         file.contents = new Buffer(file.contents.toString().toUpperCase());
 //         next();
 //       });
 
-//       assemble.route(/\.hbs/, function (file, next) {
+//       site.route(/\.hbs/, function (file, next) {
 //         called['.hbs'] = file.path;
 //         file.ext = '.html';
 //         next();
 //       });
 
-//       var instream = assemble.src(join(__dirname, 'fixtures/routes/*.*'));
-//       var outstream = assemble.dest(outpath);
+//       var instream = site.src(join(__dirname, 'fixtures/routes/*.*'));
+//       var outstream = site.dest(outpath);
 //       instream.pipe(outstream);
 
 //       outstream.on('error', done);
@@ -104,20 +104,20 @@
 
 //     it('should set multiple routes on same file', function (done) {
 //       var called = 0;
-//       assemble.route(/\.txt/, function (file, next) {
+//       site.route(/\.txt/, function (file, next) {
 //         called++;
 //         file.contents = new Buffer(file.contents.toString().toUpperCase());
 //         next();
 //       });
 
-//       assemble.route(/example/, function (file, next) {
+//       site.route(/example/, function (file, next) {
 //         called++;
 //         file.ext = '.html';
 //         next();
 //       });
 
-//       var instream = assemble.src(join(__dirname, 'fixtures/routes/*.txt'));
-//       var outstream = assemble.dest(outpath);
+//       var instream = site.src(join(__dirname, 'fixtures/routes/*.txt'));
+//       var outstream = site.dest(outpath);
 //       instream.pipe(outstream);
 
 //       outstream.on('error', done);
@@ -139,7 +139,7 @@
 
 //       var called = 0;
 
-//       assemble.route(/\.hbs/, function (file, next) {
+//       site.route(/\.hbs/, function (file, next) {
 //         called++;
 //         throw new Error('This is an error');
 //         next();
@@ -150,8 +150,8 @@
 //         next();
 //       });
 
-//       var instream = assemble.src(join(__dirname, 'fixtures/routes/*.*'));
-//       var outstream = assemble.dest(outpath);
+//       var instream = site.src(join(__dirname, 'fixtures/routes/*.*'));
+//       var outstream = site.dest(outpath);
 //       instream.pipe(outstream);
 
 //       outstream.on('error', done);
@@ -170,15 +170,15 @@
 
 //     it('should set routes with custom router', function (done) {
 //       var called = 0;
-//       var foo = assemble.router();
+//       var foo = site.router();
 //       foo.route(/\.txt/, function (file, next) {
 //         called++;
 //         file.contents = new Buffer('foo: ' + file.contents.toString().toUpperCase());
 //         next();
 //       });
 
-//       var instream = assemble.src(join(__dirname, 'fixtures/routes/*.txt'));
-//       var outstream = assemble.dest(outpath);
+//       var instream = site.src(join(__dirname, 'fixtures/routes/*.txt'));
+//       var outstream = site.dest(outpath);
 
 //       instream
 //         .pipe(foo())

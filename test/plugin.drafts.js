@@ -4,14 +4,14 @@ var path = require('path');
 var fs = require('graceful-fs');
 var should = require('should');
 var rimraf = require('rimraf');
-var Assemble = require('..');
+var assemble = require('..');
 
-var assemble = null;
+var site = null;
 var actual = __dirname + '/drafts-actual';
 
 describe('assemble drafts plugin', function() {
   before (function () {
-    assemble = Assemble.create();
+    site = assemble.create();
   });
 
   describe('drafts()', function() {
@@ -24,8 +24,8 @@ describe('assemble drafts plugin', function() {
 
     describe('when `draft: true` is defined in front matter:', function () {
       it('should not generate pages.', function (done) {
-        var instream = assemble.src(path.join(__dirname, 'fixtures/drafts/*.hbs'));
-        var outstream = assemble.dest(actual);
+        var instream = site.src(path.join(__dirname, 'fixtures/drafts/*.hbs'));
+        var outstream = site.dest(actual);
         instream.pipe(outstream);
 
         outstream.on('error', done);
@@ -36,7 +36,7 @@ describe('assemble drafts plugin', function() {
           /[ab]\.html$/.test(String(file.path)).should.be.false;
           /[cd]\.html$/.test(String(file.path)).should.be.true;
           /[CD]/.test(String(file.contents)).should.be.true;
-          assemble.files.length.should.equal(4);
+          site.files.length.should.equal(4);
         });
 
         outstream.on('end', function () {
