@@ -1,5 +1,5 @@
 /**
- * Assemble <http://site.io>
+ * assemble <https://github.com/assemble/assemble>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -27,7 +27,7 @@ describe('assemble engines', function () {
       should.exist(site.engines['.hbs'].render);
     });
 
-    it('should set a lazy layout engine when setting an engine', function () {
+    it('should lazily set a layout engine when setting a template engine', function () {
       var handlebars = require('../lib/engine/handlebars');
       site.engine('hbs', handlebars);
       should.exist(site.layoutSettings['.hbs']);

@@ -1,5 +1,5 @@
 /**
- * Assemble <http://site.io>
+ * assemble <https://github.com/assemble/assemble>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -15,7 +15,7 @@ describe('assemble data', function() {
   beforeEach(function () {
     site = assemble.create();
   });
-  
+
   describe('.data()', function() {
     it('should set properties on the `data` object.', function() {
       site.set('data.foo', 'bar');

@@ -1,5 +1,5 @@
 /**
- * Assemble <http://site.io>
+ * assemble <https://github.com/assemble/assemble>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -16,8 +16,9 @@ var assemble = require('..');
 var actual = __dirname + '/render-actual';
 
 describe('assemble render', function () {
-  describe('site.render()', function () {
-    var site = null;
+  var site = null;
+
+  xdescribe('assemble.render()', function () {
     beforeEach(function (done) {
       site = assemble.create();
       rimraf(actual, done);
@@ -31,6 +32,7 @@ describe('assemble render', function () {
       site.option({
         layout: 'default'
       });
+
       site.partials('test/fixtures/includes/*.hbs');
       site.layouts('test/fixtures/layouts/*.hbs');
 

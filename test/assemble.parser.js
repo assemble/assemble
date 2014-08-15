@@ -1,5 +1,5 @@
 /**
- * Assemble <http://site.io>
+ * assemble <https://github.com/assemble/assemble>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -16,7 +16,7 @@ describe('assemble parser', function () {
   beforeEach(function() {
     site = assemble.create();
   });
-  
+
   describe('.parser()', function () {
     it('should add a parser to the stack for a given extension.', function () {
       site.init();

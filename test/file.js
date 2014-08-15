@@ -1,5 +1,5 @@
 /**
- * Assemble <http://site.io>
+ * assemble <https://github.com/assemble/assemble>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -14,7 +14,7 @@ var Files = require('../lib/view/file');
 describe('Files', function () {
 
   var files = null;
-  beforeEach(function () { 
+  beforeEach(function () {
     files = new Files();
   });
 

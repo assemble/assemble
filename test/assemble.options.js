@@ -1,5 +1,5 @@
 /**!
- * Assemble <http://site.io>
+ * assemble <https://github.com/assemble/assemble>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -17,7 +17,7 @@ describe('assemble options', function () {
   beforeEach(function() {
     site = assemble.create();
   });
-  
+
   describe('.option()', function () {
     describe('.set()', function () {
       it('should set options on `site.options`', function () {

@@ -1,5 +1,5 @@
 /**
- * Assemble <http://site.io>
+ * assemble <https://github.com/assemble/assemble>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -17,7 +17,7 @@ describe('assemble data', function () {
     beforeEach(function () {
       site = assemble.create();
     });
-    
+
     it('should namespace data using the `:basename` of the file.', function() {
       site.namespace(':basename', 'test/fixtures/data/alert.json');
       site.get('data').should.have.property('alert');

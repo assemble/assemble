@@ -1,5 +1,5 @@
 /**
- * Assemble <http://site.io>
+ * assemble <https://github.com/assemble/assemble>
  *
  * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
  * Licensed under the MIT License (MIT).
@@ -17,7 +17,7 @@ describe('assemble defaultConfig', function () {
   beforeEach(function () {
     site = assemble.create();
   });
-  
+
   describe('.defaultConfig()', function () {
     it('should set default values', function () {
       site.init();
@@ -43,7 +43,7 @@ describe('assemble defaultConfig', function () {
       site.enabled('extend-dest plugin').should.be.true;
       site.enabled('collections plugin').should.be.true;
       site.enabled('dest plugin').should.be.true;
-      site.disabled('dest-routes plugin').should.be.true;
+      site.enabled('dest-routes plugin').should.be.true;
       site.enabled('render plugin').should.be.true;
 
       // View defaults
