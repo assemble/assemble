@@ -19,21 +19,21 @@ describe('assemble init', function () {
     });
 
     it('should create new template type methods on Assemble.prototype.', function () {
-      site.template('monkey', {plural: 'monkies'});
+      site.template('monkey', 'monkies');
       should.exist(site.monkey);
       should.exist(site.monkies);
       should.exist(site.cache.monkies);
     });
 
     it('should create new template type methods on Assemble.prototype for layout types.', function () {
-      site.template('lion', {plural: 'lions', isLayout: true});
+      site.template('lion', 'lions', {isLayout: true});
       should.exist(site.lion);
       should.exist(site.lions);
       should.exist(site.cache.lions);
     });
 
     it('should load new templates add store them on the cache for the custom template type.', function () {
-      site.template('doowb', {plural: 'doowbs'});
+      site.template('doowb', 'doowbs');
       site.doowb({
         name: 'brian',
         data: {
@@ -50,7 +50,7 @@ describe('assemble init', function () {
     });
 
     it('should load new templates add store them on the cache for the custom template type as layouts.', function () {
-      site.template('jon', {plural: 'jons', isLayout: true});
+      site.template('jon', 'jons', {isLayout: true});
       site.jon({
         name: 'jon',
         data: {
@@ -69,7 +69,7 @@ describe('assemble init', function () {
     });
 
     it('should store template context in the context manager for the correct type.', function () {
-      site.template('foo', {plural: 'foos', isLayout: true});
+      site.template('foo', 'foos', {isLayout: true});
       site.foo({
         name: 'bar',
         data: {

@@ -1,3 +1,28 @@
+## Create new template "types"
+
+Templates loaded using these methods are stored on `assemble.cache[type]`, or continuing with the example, `assemble.cache.includes`.
+
+**Loading template**
+
+When loading templates via `assemble.includes()` or `assemble.include()`, templates can be specified either as objects, or as strings or arrays of glob patterns or file paths to the files to be parsed into template objects.
+
+Template objects are expected to have the following properties:
+
+  - `name` {String} The name of the include
+  - `data` {Object} Context for the include
+  - `content` {String} The actual content of the include.
+  - `layout` {String} **Optionally** define a layout to be used for the given template.
+
+**Example:**
+
+```js
+assemble.include({
+ name: 'foo',
+ data: {title: 'Include Foo'},
+ content: 'Some content. '
+});
+```
+
 ## Pages
 
 Add a page to `cache.pages`. pages can be defined either
