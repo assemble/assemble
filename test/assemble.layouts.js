@@ -36,7 +36,8 @@ describe('assemble layouts', function () {
       site.layout({
         name: 'test-layout-a',
         data: {title: 'test-layout-a'},
-        content: 'Test layout A content'
+        content: 'Test layout A content',
+        ext: '.hbs'
       });
 
       var layouts = site.cache.layouts;
@@ -58,17 +59,20 @@ describe('assemble layouts', function () {
         {
           name: 'test-layout-a',
           data: {title: 'test-layout-a'},
-          content: 'Test layout A content'
+          content: 'Test layout A content',
+          ext: '.hbs'
         },
         {
           name: 'test-layout-b',
           data: {title: 'test-layout-b'},
-          content: 'Test layout B content'
+          content: 'Test layout B content',
+          ext: '.hbs'
         },
         {
           name: 'test-layout-c',
           data: {title: 'test-layout-c'},
-          content: 'Test layout C content'
+          content: 'Test layout C content',
+          ext: '.hbs'
         }
       ]);
 
@@ -82,15 +86,18 @@ describe('assemble layouts', function () {
       site.layouts({
         'test-layout-a': {
           data: {title: 'test-layout-a'},
-          content: 'Test layout A content'
+          content: 'Test layout A content',
+          ext: '.hbs'
         },
         'test-layout-b': {
           data: {title: 'test-layout-b'},
-          content: 'Test layout B content'
+          content: 'Test layout B content',
+          ext: '.hbs'
         },
         'test-layout-c': {
           data: {title: 'test-layout-c'},
-          content: 'Test layout C content'
+          content: 'Test layout C content',
+          ext: '.hbs'
         }
       });
 
