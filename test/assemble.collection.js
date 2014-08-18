@@ -10,6 +10,7 @@
 var assert = require('assert');
 var should = require('should');
 var assemble = require('..');
+var collections = require('../lib/plugins/collection');
 
 describe('assemble collection', function () {
 
@@ -21,7 +22,7 @@ describe('assemble collection', function () {
   describe('.collection()', function () {
 
     it('should return a stream', function (done) {
-      var stream = site.collection();
+      var stream = collections.call(assemble, {});
       should.exist(stream);
       should.exist(stream.on);
       done();
