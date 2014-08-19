@@ -87,17 +87,15 @@
   "devDependencies": {
     "graceful-fs": "^3.0.2",
     "grade": "^0.1.0",
-    "gulp": "^3.8.5",
-    "gulp-jshint": "^1.6.3",
-    "gulp-mocha": "^0.4.1",
+    "gulp": "^3.8.7",
+    "gulp-jshint": "^1.8.4",
+    "gulp-mocha": "^1.0.0",
     "gulp-tap": "^0.1.1",
-    "jshint-stylish": "^0.4.0",
     "mkdirp": "^0.5.0",
-    "mocha": "^1.20.1",
     "q": "^1.0.1",
     "rimraf": "^2.2.8",
     "should": "^4.0.4",
-    "verb": "^0.2.13",
+    "verb": "^0.2.15",
     "verb-tag-jscomments": "^0.2.0"
   },
   "keywords": [
