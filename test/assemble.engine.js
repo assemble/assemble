@@ -30,7 +30,7 @@ describe('assemble engines', function () {
     it('should lazily set a layout engine when setting a template engine', function () {
       var handlebars = require('../lib/engine/handlebars');
       site.engine('hbs', handlebars);
-      should.exist(site.layoutSettings['.hbs']);
+      should.exist(site.layoutEngines['.hbs']);
     });
   });
 });

@@ -65,7 +65,7 @@ describe('assemble init', function () {
       site.cache.jons.jon.original.toString().should.equal('---\nlast: Schlinkert\n---\nHi this is {{first}} {{last}}');
       should.exist(site.cache.jons.jon.data.first);
       should.exist(site.cache.jons.jon.data.last);
-      should.exist(site.layoutSettings['.hbs'].cache.jon);
+      should.exist(site.layoutEngines['.hbs'].cache.jon);
     });
 
     it('should store template context in the context manager for the correct type.', function () {
