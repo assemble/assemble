@@ -68,7 +68,7 @@ npm i assemble --save-dev
 ```
 
 ## API
-[## Files](lib/assemble.js#L38)
+[## Files](lib/assemble.js#L39)
 
 
 Just about all the deps below this line
@@ -97,7 +97,7 @@ var config = new Assemble({foo: 'bar'});
 ```
 
 
- [## cwd](lib/assemble.js#L438)
+ [## cwd](lib/assemble.js#L427)
 
 Set the current working directory for all paths. Default is `process.cwd()`, this does not need to be changed unless you require something different.
 
@@ -109,7 +109,7 @@ assemble.cwd('bench');
 ```
 
 
- [## middleware](lib/assemble.js#L464)
+ [## middleware](lib/assemble.js#L453)
 
 Run the given middleware `fns` during the specified stage or stages.
 
@@ -124,7 +124,7 @@ assemble.middleware('src:*', function() {
 ``
 
 
- [## task](lib/assemble.js#L493)
+ [## task](lib/assemble.js#L482)
 
 Define an assemble task.
 
@@ -140,7 +140,22 @@ assemble.task('site', function() {
 ```
 
 
- [## src](lib/assemble.js#L544)
+ [## normalize](lib/assemble.js#L528)
+
+Normalizes a file object to be an assemble vinyl file with the necessary properties to provide plugins in the pipeline with a consistent experience.
+
+* `file` **{Object}**: The file object to normalize. The following properties are expect on the source file.    
+  - `data` **{Object}**: : Typically metadata from locals or parsed front matter.  
+  - `content` **{String}**: : The actual content of the file.    
+* `options` **{Object}**: Options to pass to `normalize`    
+  - `data` **{Object}**: : Typically metadata from locals or parsed front matter.  
+  - `content` **{String}**: : The actual content of the file.    
+* returns **{Object}** `file`: A normalize file object.  
+
+This method will be externalized to [assemble-utils].
+
+
+ [## src](lib/assemble.js#L557)
 
 Glob patterns or filepaths to source files.
 
@@ -160,7 +175,7 @@ assemble.task('site', function() {
 ```
 
 
- [## dest](lib/assemble.js#L579)
+ [## dest](lib/assemble.js#L592)
 
 Specify a destination for processed files.
 
@@ -181,64 +196,145 @@ assemble.task('sitemap', function() {
 ```
 
 
- [## collection](lib/assemble.js#L621)
+ [## collection](lib/assemble.js#L628)
 
-The collection method returns a plugin used to create `index` pages and related-pages for any collections that have been defined.
+Register a collection to be used in assemble.
 
-* `options` **{Object}**: Options used to setup collection definitions.  
-* returns **{Stream}**: Plugin used in the pipeline.  
-
-**Example:**
-
-```js
-assemble.collection(TODO: @doowb);
-```
-
-This is `assemble`'s internal collection method, also exposed as
-a public method allowing this method to be replaced with a
-custom `collection` method if necessary.
-
-
- [## template](lib/assemble.js#L692)
-
-Add a new template type to Assemble. Creates methods for adding templates to a cache based on the type name.
-
-* `type` **{String}**: Name of the new type to add  
-* `options` **{Object}**  
+* `options` **{Object}**: Options used to build the collection.  
 * returns **{Object}** `Assemble`: to enable chaining.  
 
 **Example:**
 
 ```js
-assemble.template('include', {plural: 'includes'});
+assemble.collection({
+  name: 'tag',
+  plural: 'tags',
+  // Index of all tags
+  index: {
+    template: __dirname + 'layouts/tags.hbs',
+    pagination: {
+      prop: ':num',
+      limit: 10,
+      sortby: 'some.prop',
+      sortOrder: 'ASC'
+    },
+    permalinks: {
+      structure: ':foo/tags/:num/index.html'
+    }
+  },
+  // Index of pages related to each tag
+  related_pages: {
+    template: __dirname + 'layouts/tag.hbs',
+    pagination: {
+      limit: 10,
+      sortby: 'some.prop',
+      sortOrder: 'ASC'
+    },
+    permalinks: {
+      structure: ':foo/tags/:tag/index.html'
+    }
+  }
+});
 ```
 
-Two new methods are created on Assemble:
-`assemble.include();`
-`assemble.includes();`
 
-New cache object is add to assemble
-`assemble.cache.includes`
+Report any related issues to [assemble-collections].
+[assemble-collections]: https://github.com/assemble/assemble-collections/issues
 
-Add an include to `cache.includes`. Includes can be defined either
-as objects, or as glob patterns or file paths to the files to read
-in and parse.
 
-Include objects are expected to have the following properties:
+ [## collections](lib/assemble.js#L647)
+
+Register an array of collections to be used in assemble.
+
+* `cols` **{Array|Object}**: Array of collections used to build the collection.  
+* returns **{Object}** `Assemble`: to enable chaining.  
+
+**Example:**
+
+```js
+assemble.collections([
+  {
+    name: 'tag',
+    plural: 'tags',
+    // Index of all tags
+    index: { ... },
+    // Index of pages related to each tag
+    related_pages: { ... }
+  },
+  {
+    name: 'archive',
+    plural: 'archives',
+    // Index of all archives
+    index: { ... },
+    // Index of pages related to each archive
+    related_pages: { ... }
+  }
+]);
+```
+
+
+Report any related issues to [assemble-collections].
+[assemble-collections]: https://github.com/assemble/assemble-collections/issues
+
+
+ [## template](lib/assemble.js#L672)
+
+Add a new template `type` to Assemble by passing the singular and plural names to be used for `type`.
+
+* `type` **{String}**: Name of the new type to add  
+* `options` **{Object}**  
+* returns **{Object}** `Assemble`: to enable chaining.  
+
+```js
+assemble.template(singular, plural);
+```
+
+**Example:**
+
+```js
+assemble.template('include', 'includes');
+```
+
+Each new template `type` add two new methods to Assemble:
+
+ - a method for loading one `type` template at a time
+ - a method for loading multiple `type` templates at a time.
+
+
+Continuing our example above:
+
+```js
+// load one include at a time
+assemble.include();
+// load multiple includes
+assemble.includes();
+```
+
+### Create new template "types"
+
+Templates loaded using these methods are stored on `assemble.cache[type]`, or continuing with the example, `assemble.cache.includes`.
+
+**Loading template**
+
+When loading templates via `assemble.includes()` or `assemble.include()`, templates can be specified either as objects, or as strings or arrays of glob patterns or file paths to the files to be parsed into template objects.
+
+Template objects are expected to have the following properties:
 
   - `name` {String} The name of the include
   - `data` {Object} Context for the include
   - `content` {String} The actual content of the include.
+  - `layout` {String} **Optionally** define a layout to be used for the given template.
 
 **Example:**
 
 ```js
 assemble.include({
-  name: 'foo',
-  data: {title: 'Include Foo'},
-  content: 'Some content. '
+ name: 'foo',
+ data: {title: 'Include Foo'},
+ content: 'Some content. '
 });
 ```
+
 ### Pages
 
 Add a page to `cache.pages`. pages can be defined either
@@ -363,7 +459,7 @@ assemble.layout({
 Returns an object with all the parsed layouts by name. Internally uses
 the resolved layout filepaths from `options.layouts` to read in and cache
 any layouts not already cached.
- 
+
 Use layout options to combine the patterns to make glob patterns for looking
 up layouts.
 
@@ -373,7 +469,7 @@ up layouts.
 
 
 
- [## helper](lib/assemble.js#L755)
+ [## helper](lib/assemble.js#L753)
 
 Returns an object with all loaded helpers;
 
@@ -398,7 +494,7 @@ assemble
 
 
 
- [## helpers](lib/assemble.js#L770)
+ [## helpers](lib/assemble.js#L768)
 
 Returns an object with all loaded helpers;
 
@@ -423,7 +519,7 @@ assemble
 
 
 
- [## registerHelper](lib/assemble.js#L804)
+ [## registerHelper](lib/assemble.js#L802)
 
 Register a helper for the current template engine.
 
@@ -446,13 +542,13 @@ assemble.render('<%= include("foo.md") %>');
 ```
 
 
- [## registerHelpers](lib/assemble.js#L830)
+ [## registerHelpers](lib/assemble.js#L828)
 
-Add an array or glob of template helpers.
+Register an array or glob of template helpers.
 
 * `key` **{String}**  
 * `value` **{Object}**  
-* returns **{Assemble}**: to enable chaining.  
+* returns **{Object}** `Assemble`: to enable chaining.  
 
 **Example:**
 
@@ -465,69 +561,21 @@ assemble.registerHelpers('*.js');
 ```
 
 
- [## engine](lib/assemble.js#L853)
+ [## parser](lib/assemble.js#L864)
 
-Register the given view engine callback `fn` as `ext`.
-
-* `ext` **{String}**  
-* `fn` **{Function|Object}**: or `options`  
-* `options` **{Object}**  
-* returns **{Object}** `Assemble`: to enable chaining.  
-
-Template engines in Assemble are used to render:
-
-  - `views`:   Such as pages and partials. Views are used when generating web pages. The path of the layout file will be passed to the engine's `renderFile()` function.
-  - `layouts`: Views used when generating web pages.  The path of the layout file will be passed to the engine's `renderFile()` function.
-  - `content`: Text written in lightweight markup, which optionally has front matter.  Front matter will be removed from the content prior to rendering. `data` from front matter is merged into the context and passed to the engine's `render()` function.
-
-By default Assemble will `require()` the engine based on the file extension. For example if you try to render a "foo.hbs" file Assemble will invoke the following internally:
-
-```js
-var engine = require('engines');
-assemble.engine('hbs', engine.handlebars);
-```
-
-The module is expected to export a `.renderFile` function or, for compatibility with Express, an `__express` function.
-
-For engines that do not provide `.renderFile` out of the box, or if you wish to "map" a different extension to the template engine you may use this method. For example mapping the EJS template engine to ".html" files:
-
-```js
-assemble.engine('html', require('ejs').renderFile);
-```
-
-Additionally, template engines are used to render lightweight markup found in content files.  For example using Textile:
-
-```js
-assemble.engine('textile', require('textile-engine'));
-```
-
-In this case, it is expected that the module export a `render` function which will be passed content data (after removing any front matter).
-
-
-
- [## render](lib/assemble.js#L901)
-
-
-
-* `data` **{Object}**: Data to pass to registered view engines.  
-* `options` **{Object}**: Options to pass to registered view engines.  
-* returns: {String}  This is Assemble's internal render method, but it's exposed as a public method
-so it can be replaced with a custom `render` method.
-
-
- [## parser](lib/assemble.js#L962)
-
-Register a parser `fn` to be used on each `.src` file. This is used to parse front matter, but can be used for any kind of parsing.
+Register a parser `fn` or array of `fns` to be used on each `.src` file. This is used to parse front matter, but can be used for any kind of parsing.
 
 * `file` **{String}**: The file object  
 * `options` **{Object}**: Options to pass to parser.  
-* `fn` **{Function}**: The parsing function.  
+* `fn` **{Function|Array}**: The parsing function or array of functions.  
 * returns **{Object}** `Assemble`: to enable chaining.  
 
-By default, Assemble will parse front matter using [gray-matter][gray-matter].
-For front-matter in particular it is probably not necessary to register additional
-parsing functions, since gray-matter can support almost any format, but this is
-cusomizable if necessary or if a non-supported format is required.
+By default, Assemble will parse front matter using
+[gray-matter][gray-matter]. For front-matter in particular
+it is probably not necessary to register additional parsing
+functions, since gray-matter can support almost any format,
+but this is cusomizable if necessary or if a non-supported
+format is required.
 
 **Example:**
 
@@ -541,7 +589,113 @@ assemble.parser('textile', function (file, enc, options) {
 [gray-matter]: https://github.com/assemble/gray-matter
 
 
- [## router](lib/assemble.js#L1027)
+ [## parsers](lib/assemble.js#L905)
+
+Register an array or glob of parsers for the given `ext`.
+
+* `ext` **{String}**: The extension to associate with the parsers.  
+* `patterns` **{String|Array}**: File paths or glob patterns.  
+* returns **{Object}** `Assemble`: to enable chaining.  
+
+**Example:**
+
+```js
+assemble.parsers('hbs', 'a.js');
+// or
+assemble.parsers('md' ['a.js', 'b.js']);
+// or
+assemble.parsers('md', '*.js');
+```
+
+
+ [## runParsers](lib/assemble.js#L946)
+
+
+
+* `file` **{Object}**  
+* `opts` **{Object}**  
+* returns: {Object}  Run a file through a parser stack.
+
+
+ [## engine](lib/assemble.js#L983)
+
+Register the given view engine callback `fn` as `ext`.
+
+* `ext` **{String}**  
+* `fn` **{Function|Object}**: or `options`  
+* `options` **{Object}**  
+* returns **{Object}** `Assemble`: to enable chaining.  
+
+Template engines in Assemble are used to render templates.   following types of `views`:
+
+which are generally pages - but can be any custom template type, 
+
+  - `views`: Such as pages and partials. Views are used when generating web pages. The path of the layout file will be passed to the engine's `.render()` function.
+  - `layouts`: Templates used for wrapping pages. The path of the layout file will be passed to the engine's `.render()` function.
+  - `content`: Text written in lightweight markup, which optionally has front matter.  Front matter will be removed from the content prior to rendering. `data` from front matter is merged into the context and passed to the options on the engine's `.render()` function.
+
+By default Assemble will `require()` the engine based on the file extension. For example if you try to render a "foo.hbs" file Assemble will invoke the following internally:
+
+```js
+var engine = require('engines');
+assemble.engine('hbs', engine.handlebars);
+```
+
+```js
+assemble.engine('hbs', handlebars, {
+  layouts: {
+    delims: ['{{', '}}']
+    defaultLayout: 'default'
+  },
+  helpers: {},
+  partials: {},
+  destExt: '.html'
+});
+```
+
+Engines are expected to export a `.render()` function or, for compatibility with [Express](http://expressjs.com/), an `__express` function.
+
+For engines that do not provide `.render()` out of the box, you can alternatively map a different file extension to the template engine that you wish to use. For instance, you could map the EJS template engine to `.html` files.
+
+**Example:**
+
+```js
+assemble.engine('html', require('ejs').render);
+```
+
+Beyond templates, engines can be used to render lightweight markup found in content files, like [markdown](https://help.github.com/articles/markdown-basics) or [textile](http://redcloth.org/textile):
+
+**Example:**
+
+```js
+assemble.engine('textile', require('textile-engine'));
+```
+
+In this case, it is expected that the module export a `.render()` function which will be passed content data (after removing any front matter).
+
+
+
+ [## layoutEngine](lib/assemble.js#L1028)
+
+
+
+* `ext` **{String}**  
+* `fn` **{Function|Object}**: or `options`  
+* `options` **{Object}**  
+* returns **{Object}** `Assemble`: to enable chaining.  Register the given layout engine callback `fn` as `ext`.
+
+
+ [## render](lib/assemble.js#L1094)
+
+
+
+* `data` **{Object}**: Data to pass to registered view engines.  
+* `options` **{Object}**: Options to pass to registered view engines.  
+* returns: {String}  This is Assemble's internal render method, but it's exposed as a public method
+so it can be replaced with a custom `render` method.
+
+
+ [## router](lib/assemble.js#L1167)
 
 **Example:**
 
@@ -549,19 +703,19 @@ assemble.parser('textile', function (file, enc, options) {
 * returns: {Function}  
 
 ```js
-var myRoutes = assemble.router();
-myRoutes.route(':basename.hbs', function (file, params, next) {
+var routes = assemble.router();
+routes.route(':basename.hbs', function (file, params, next) {
   // do something with the file
   next();
 });
 
 assemble.src('')
-  .pipe(myRoutes())
-  .pipe(assemble.dset())
+  .pipe(routes())
+  .pipe(assemble.dest())
 ```
 
 
- [## buffer](lib/assemble.js#L1062)
+ [## buffer](lib/assemble.js#L1202)
 
 
 
@@ -570,7 +724,7 @@ assemble.src('')
 so it can be replaced with a custom `buffer` method.
 
 
- [## highlight](lib/assemble.js#L1090)
+ [## highlight](lib/assemble.js#L1230)
 
 Register a function for syntax highlighting.
 
@@ -592,7 +746,7 @@ assemble.highlight(function(code, lang) {
 ```
 
 
- [## watch](lib/assemble.js#L1120)
+ [## watch](lib/assemble.js#L1260)
 
 Rerun the specified task when a file changes.
 
@@ -628,7 +782,7 @@ Released under the MIT license
 
 ***
 
-_This file was generated by [verb-cli](https://github.com/assemble/verb-cli) on August 14, 2014._
+_This file was generated by [verb-cli](https://github.com/assemble/verb-cli) on August 19, 2014._
 
 
 [gulp]: https://github.com/wearefractal/gulp
