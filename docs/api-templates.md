@@ -1,3 +1,28 @@
+```js
+assemble.template(singular, plural);
+```
+
+**Example:**
+
+```js
+assemble.template('include', 'includes');
+```
+
+Each new template `type` add two new methods to Assemble:
+
+ - a method for loading one `type` template at a time
+ - a method for loading multiple `type` templates at a time.
+
+
+Continuing our example above:
+
+```js
+// load one include at a time
+assemble.include();
+// load multiple includes
+assemble.includes();
+```
+
 ## Create new template "types"
 
 Templates loaded using these methods are stored on `assemble.cache[type]`, or continuing with the example, `assemble.cache.includes`.
@@ -147,7 +172,7 @@ assemble.layout({
 Returns an object with all the parsed layouts by name. Internally uses
 the resolved layout filepaths from `options.layouts` to read in and cache
 any layouts not already cached.
- 
+
 Use layout options to combine the patterns to make glob patterns for looking
 up layouts.
 
