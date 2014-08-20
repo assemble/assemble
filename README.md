@@ -68,14 +68,7 @@ npm i assemble --save-dev
 ```
 
 ## API
-[## Files](lib/assemble.js#L39)
-
-
-Just about all the deps below this line
-will be externalized into modules.
-
-
- [## Assemble](lib/assemble.js#L82)
+### [Assemble](lib/assemble.js#L82)
 
 Create an `assemble` task.
 
@@ -97,7 +90,7 @@ var config = new Assemble({foo: 'bar'});
 ```
 
 
- [## cwd](lib/assemble.js#L427)
+### [.cwd](lib/assemble.js#L428)
 
 Set the current working directory for all paths. Default is `process.cwd()`, this does not need to be changed unless you require something different.
 
@@ -109,22 +102,7 @@ assemble.cwd('bench');
 ```
 
 
- [## middleware](lib/assemble.js#L453)
-
-Run the given middleware `fns` during the specified stage or stages.
-
-* `stage` **{String}**  
-* `fns` **{Array}**  
-* returns **{Object}** `Assemble`: to enable chaining.  
-
-```js
-assemble.middleware('src:*', function() {
-  // do stuff
-});
-``
-
-
- [## task](lib/assemble.js#L482)
+### [.task](lib/assemble.js#L484)
 
 Define an assemble task.
 
@@ -140,22 +118,7 @@ assemble.task('site', function() {
 ```
 
 
- [## normalize](lib/assemble.js#L528)
-
-Normalizes a file object to be an assemble vinyl file with the necessary properties to provide plugins in the pipeline with a consistent experience.
-
-* `file` **{Object}**: The file object to normalize. The following properties are expect on the source file.    
-  - `data` **{Object}**: : Typically metadata from locals or parsed front matter.  
-  - `content` **{String}**: : The actual content of the file.    
-* `options` **{Object}**: Options to pass to `normalize`    
-  - `data` **{Object}**: : Typically metadata from locals or parsed front matter.  
-  - `content` **{String}**: : The actual content of the file.    
-* returns **{Object}** `file`: A normalize file object.  
-
-This method will be externalized to [assemble-utils].
-
-
- [## src](lib/assemble.js#L557)
+### [.src](lib/assemble.js#L555)
 
 Glob patterns or filepaths to source files.
 
@@ -175,7 +138,7 @@ assemble.task('site', function() {
 ```
 
 
- [## dest](lib/assemble.js#L592)
+### [.dest](lib/assemble.js#L590)
 
 Specify a destination for processed files.
 
@@ -196,7 +159,7 @@ assemble.task('sitemap', function() {
 ```
 
 
- [## collection](lib/assemble.js#L628)
+### [.collection](lib/assemble.js#L627)
 
 Register a collection to be used in assemble.
 
@@ -238,11 +201,12 @@ assemble.collection({
 ```
 
 
+
 Report any related issues to [assemble-collections].
 [assemble-collections]: https://github.com/assemble/assemble-collections/issues
 
 
- [## collections](lib/assemble.js#L647)
+### [.collections](lib/assemble.js#L646)
 
 Register an array of collections to be used in assemble.
 
@@ -277,7 +241,7 @@ Report any related issues to [assemble-collections].
 [assemble-collections]: https://github.com/assemble/assemble-collections/issues
 
 
- [## template](lib/assemble.js#L672)
+### [.template](lib/assemble.js#L671)
 
 Add a new template `type` to Assemble by passing the singular and plural names to be used for `type`.
 
@@ -469,7 +433,7 @@ up layouts.
 
 
 
- [## helper](lib/assemble.js#L753)
+### [.helper](lib/assemble.js#L752)
 
 Returns an object with all loaded helpers;
 
@@ -494,7 +458,7 @@ assemble
 
 
 
- [## helpers](lib/assemble.js#L768)
+### [.helpers](lib/assemble.js#L767)
 
 Returns an object with all loaded helpers;
 
@@ -519,7 +483,7 @@ assemble
 
 
 
- [## registerHelper](lib/assemble.js#L802)
+### [.registerHelper](lib/assemble.js#L801)
 
 Register a helper for the current template engine.
 
@@ -542,7 +506,7 @@ assemble.render('<%= include("foo.md") %>');
 ```
 
 
- [## registerHelpers](lib/assemble.js#L828)
+### [.registerHelpers](lib/assemble.js#L827)
 
 Register an array or glob of template helpers.
 
@@ -561,7 +525,7 @@ assemble.registerHelpers('*.js');
 ```
 
 
- [## parser](lib/assemble.js#L864)
+### [.parser](lib/assemble.js#L863)
 
 Register a parser `fn` or array of `fns` to be used on each `.src` file. This is used to parse front matter, but can be used for any kind of parsing.
 
@@ -589,7 +553,7 @@ assemble.parser('textile', function (file, enc, options) {
 [gray-matter]: https://github.com/assemble/gray-matter
 
 
- [## parsers](lib/assemble.js#L905)
+### [.parsers](lib/assemble.js#L904)
 
 Register an array or glob of parsers for the given `ext`.
 
@@ -608,16 +572,7 @@ assemble.parsers('md', '*.js');
 ```
 
 
- [## runParsers](lib/assemble.js#L946)
-
-
-
-* `file` **{Object}**  
-* `opts` **{Object}**  
-* returns: {Object}  Run a file through a parser stack.
-
-
- [## engine](lib/assemble.js#L983)
+### [.engine](lib/assemble.js#L982)
 
 Register the given view engine callback `fn` as `ext`.
 
@@ -675,7 +630,7 @@ In this case, it is expected that the module export a `.render()` function which
 
 
 
- [## layoutEngine](lib/assemble.js#L1028)
+### [.layoutEngine](lib/assemble.js#L1027)
 
 
 
@@ -685,7 +640,7 @@ In this case, it is expected that the module export a `.render()` function which
 * returns **{Object}** `Assemble`: to enable chaining.  Register the given layout engine callback `fn` as `ext`.
 
 
- [## render](lib/assemble.js#L1094)
+### [.render](lib/assemble.js#L1093)
 
 
 
@@ -695,27 +650,7 @@ In this case, it is expected that the module export a `.render()` function which
 so it can be replaced with a custom `render` method.
 
 
- [## router](lib/assemble.js#L1167)
-
-**Example:**
-
-* `options` **{Object}**  
-* returns: {Function}  
-
-```js
-var routes = assemble.router();
-routes.route(':basename.hbs', function (file, params, next) {
-  // do something with the file
-  next();
-});
-
-assemble.src('')
-  .pipe(routes())
-  .pipe(assemble.dest())
-```
-
-
- [## buffer](lib/assemble.js#L1202)
+### [.buffer](lib/assemble.js#L1201)
 
 
 
@@ -724,7 +659,7 @@ assemble.src('')
 so it can be replaced with a custom `buffer` method.
 
 
- [## highlight](lib/assemble.js#L1230)
+### [.highlight](lib/assemble.js#L1229)
 
 Register a function for syntax highlighting.
 
@@ -745,24 +680,6 @@ assemble.highlight(function(code, lang) {
 });
 ```
 
-
- [## watch](lib/assemble.js#L1260)
-
-Rerun the specified task when a file changes.
-
-* `glob` **{String|Array}**: Filepaths or glob patterns.  
-* `options` **{String}**  
-* `fn` **{Function}**: Task(s) to watch.  
-* returns: {String}  
-
-```js
-assemble.task('watch', function() {
-  assemble.watch('docs/*.md', ['docs']);
-});
-```
-
-**Params:**
-
 ## Authors
  
 **Jon Schlinkert**
@@ -782,7 +699,7 @@ Released under the MIT license
 
 ***
 
-_This file was generated by [verb-cli](https://github.com/assemble/verb-cli) on August 19, 2014._
+_This file was generated by [verb-cli](https://github.com/assemble/verb-cli) on August 20, 2014._
 
 
 [gulp]: https://github.com/wearefractal/gulp
