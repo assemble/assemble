@@ -48,21 +48,21 @@ describe('utils', function() {
     });
   });
 
-  describe('.ensureExt()', function () {
+  describe('.formatExt()', function () {
     it('should prepend a . to the extension', function () {
-      utils.ensureExt('hbs').should.equal('.hbs');
+      utils.formatExt('hbs').should.equal('.hbs');
     });
     it('should keep the extension', function () {
-      utils.ensureExt('.hbs').should.equal('.hbs');
+      utils.formatExt('.hbs').should.equal('.hbs');
     });
   });
 
-  describe('.stripDot()', function () {
+  describe('.stripExtDot()', function () {
     it('should remove the . from the extension', function () {
-      utils.stripDot('.hbs').should.equal('hbs');
+      utils.stripExtDot('.hbs').should.equal('hbs');
     });
     it('should keep the extension', function () {
-      utils.stripDot('hbs').should.equal('hbs');
+      utils.stripExtDot('hbs').should.equal('hbs');
     });
   });
 
