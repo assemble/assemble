@@ -8,14 +8,14 @@ var rimraf = require('rimraf');
 var assemble = require('..');
 
 var site = null;
-var actual = __dirname + '/dynamic-actual';
+var actual = __dirname + '/assets-actual';
 
-describe('assemble dynamic plugin', function() {
+describe('assemble assets plugin', function() {
   before (function () {
     site = assemble.create();
   });
 
-  describe('dynamic()', function() {
+  describe('assets()', function() {
     beforeEach(function (done) {
       rimraf(actual, done);
     });
@@ -26,7 +26,7 @@ describe('assemble dynamic plugin', function() {
     describe('when `assets` is defined on options:', function () {
       it('should calculate the correct `assets` property on the file.', function (done) {
         site.set('assets', actual + '/assets');
-        var instream = site.src(path.join(__dirname, 'fixtures/dynamic/*.hbs'));
+        var instream = site.src(path.join(__dirname, 'fixtures/assets/*.hbs'));
         var outstream = site.dest(actual);
 
         instream
@@ -35,7 +35,7 @@ describe('assemble dynamic plugin', function() {
             should.exist(file.path);
             should.exist(file.contents);
             should.exist(file.assets);
-            file.assets.should.equal('../../dynamic-actual/assets');
+            file.assets.should.equal('../../assets-actual/assets');
           }))
           .pipe(outstream);
 
@@ -48,7 +48,7 @@ describe('assemble dynamic plugin', function() {
 
       it('should calculate the correct `assets` property on the file when the dest changes.', function (done) {
         site.set('assets', actual + '/assets');
-        var instream = site.src(path.join(__dirname, 'fixtures/dynamic/*.hbs'));
+        var instream = site.src(path.join(__dirname, 'fixtures/assets/*.hbs'));
         var outstream = site.dest(actual);
         instream.pipe(outstream);
 

@@ -36,7 +36,7 @@ describe('assemble defaultConfig', function () {
       site.enabled('extend-src plugin').should.be.true;
       site.enabled('parser plugin').should.be.true;
       site.enabled('drafts plugin').should.be.true;
-      site.enabled('dynamic plugin').should.be.true;
+      site.enabled('assets plugin').should.be.true;
       site.enabled('paginate plugin').should.be.true;
 
       // Default `dest` plugins
