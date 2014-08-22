@@ -9,7 +9,7 @@
 
 var matter = require('gray-matter');
 var should = require('should');
-var assemble = require('assemble');
+var assemble = require('..');
 var utils = require('../lib/utils');
 var normalizeFile = require('../lib/utils/normalize-file');
 
