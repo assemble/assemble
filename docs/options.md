@@ -12,6 +12,8 @@ Default: `src/data`
 
 Specify the data to supply to your templates. Data may be formatted in `JSON`, `YAML`, [YAML front matter](http://assemble.io/docs/YAML-front-matter.html), or passed directly as an object. Wildcard patterns may also be used.
 
+The filenames of the selected files must not collide with the [configuration options key names](http://assemble.io/docs/Options.html#configuration-options) for the assemble build task. For example, the files must not be called `assets.yml`,`collections.json`,….
+
 ## [layoutdir](http://assemble.io/docs/options-layoutdir.html)
 Type: `String`
 Default: `undefined`
