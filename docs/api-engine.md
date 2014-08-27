@@ -1,10 +1,10 @@
-Template engines in Assemble are used to render templates.   following types of `views`:
-
-which are generally pages - but can be any custom template type, 
+Template engines are used to render the following types of `views`:
 
   - `views`: Such as pages and partials. Views are used when generating web pages. The path of the layout file will be passed to the engine's `.render()` function.
   - `layouts`: Templates used for wrapping pages. The path of the layout file will be passed to the engine's `.render()` function.
   - `content`: Text written in lightweight markup, which optionally has front matter.  Front matter will be removed from the content prior to rendering. `data` from front matter is merged into the context and passed to the options on the engine's `.render()` function.
+
+Beyond the defaults, engines can render any custom template types.
 
 By default Assemble will `require()` the engine based on the file extension. For example if you try to render a "foo.hbs" file Assemble will invoke the following internally:
 
