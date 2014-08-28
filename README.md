@@ -62,7 +62,7 @@ assemble: {
 ```
 
 [grunt]: http://gruntjs.com/
-[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
+[Getting Started]: http://gruntjs.com/getting-started
 [package.json]: https://npmjs.org/doc/json.html
 
 
