@@ -30,6 +30,7 @@ describe('assemble helpers', function () {
 
   describe('.helpers()', function () {
     it('should return an empty list of helpers.', function () {
+      site._.helpers.should.be.empty;
       _.forOwn(site.engines, function (engine) {
         engine.helpers.should.be.empty;
       });
@@ -37,14 +38,14 @@ describe('assemble helpers', function () {
 
     it('should return helpers based on a glob pattern.', function () {
       var fixture = __dirname + '/fixtures/helpers/wrapped.js';
-      site.helpers('hbs', fixture);
+      site.helpers(fixture);
 
-      site.engines['.hbs'].helpers.should.have.property('wrapped');
-      site.engines['.hbs'].helpers['wrapped'].should.be.a.function;
+      site._.helpers.should.have.property('wrapped');
+      site._.helpers['wrapped'].should.be.a.function;
     });
 
     it('should register helpers and use them in templates.', function (done) {
-      site.helpers('hbs', {
+      site.helpers({
         upper: function (str) {
           return str.toUpperCase();
         }
@@ -72,7 +73,7 @@ describe('assemble helpers', function () {
 
   describe('site.registerHelpers():', function () {
     it('should register helpers and use them in templates.', function (done) {
-      site.registerHelpers('hbs', {
+      site.registerHelpers({
         upper: function (str) {
           return str.toUpperCase();
         }
@@ -100,7 +101,7 @@ describe('assemble helpers', function () {
 
   describe('site.helpers()', function () {
     it('should register helpers and use them in templates.', function (done) {
-      site.registerHelpers('hbs', {
+      site.registerHelpers({
         upper: function (str) {
           return str.toUpperCase();
         },
