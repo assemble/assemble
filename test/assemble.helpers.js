@@ -7,6 +7,7 @@
 
 'use strict';
 
+var _ = require('lodash');
 var fs = require('graceful-fs');
 var path = require('path');
 var should = require('should');
@@ -29,19 +30,21 @@ describe('assemble helpers', function () {
 
   describe('.helpers()', function () {
     it('should return an empty list of helpers.', function () {
-      site.cache.helpers.should.be.empty;
+      _.forOwn(site.engines, function (engine) {
+        engine.helpers.should.be.empty;
+      });
     });
 
     it('should return helpers based on a glob pattern.', function () {
       var fixture = __dirname + '/fixtures/helpers/wrapped.js';
-      site.helpers(fixture);
+      site.helpers('hbs', fixture);
 
-      site.cache.helpers.should.have.property('wrapped');
-      site.cache.helpers['wrapped'].should.be.a.function;
+      site.engines['.hbs'].helpers.should.have.property('wrapped');
+      site.engines['.hbs'].helpers['wrapped'].should.be.a.function;
     });
 
     it('should register helpers and use them in templates.', function (done) {
-      site.helpers({
+      site.helpers('hbs', {
         upper: function (str) {
           return str.toUpperCase();
         }
@@ -69,7 +72,7 @@ describe('assemble helpers', function () {
 
   describe('site.registerHelpers():', function () {
     it('should register helpers and use them in templates.', function (done) {
-      site.registerHelpers({
+      site.registerHelpers('hbs', {
         upper: function (str) {
           return str.toUpperCase();
         }
@@ -97,7 +100,7 @@ describe('assemble helpers', function () {
 
   describe('site.helpers()', function () {
     it('should register helpers and use them in templates.', function (done) {
-      site.registerHelpers({
+      site.registerHelpers('hbs', {
         upper: function (str) {
           return str.toUpperCase();
         },
