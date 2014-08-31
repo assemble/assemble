@@ -1,16 +1,15 @@
+**Example:**
 
 ```js
 var assemble = require('assemble');
-var helpers = require('your-custom-helpers');
+var helpers = require('foo-helpers');
 
 assemble
-  .registerHelper('foo', require('helper-foo'))
-  .registerHelper('a', helpers.a)
-  .registerHelper('b', helpers.b)
-  .registerHelper('c', helpers.c)
-
-  // or define one inline
-  .registerHelper('log', function (value) {
+  .addHelper('foo', require('helper-foo'))
+  .addHelper('a', helpers.a)
+  .addHelper('b', helpers.b)
+  .addHelper('c', helpers.c)
+  .addHelper('log', function (value) {
     return console.log(value);
   });
 ```

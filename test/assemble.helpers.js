@@ -44,7 +44,7 @@ describe('assemble helpers', function () {
       site._.helpers['wrapped'].should.be.a.function;
     });
 
-    it('should register helpers and use them in templates.', function (done) {
+    it('should add helpers and use them in templates.', function (done) {
       site.helpers({
         upper: function (str) {
           return str.toUpperCase();
@@ -71,9 +71,9 @@ describe('assemble helpers', function () {
     });
   });
 
-  describe('site.registerHelpers():', function () {
-    it('should register helpers and use them in templates.', function (done) {
-      site.registerHelpers({
+  describe('site.addHelpers():', function () {
+    it('should add helpers and use them in templates.', function (done) {
+      site.addHelpers({
         upper: function (str) {
           return str.toUpperCase();
         }
@@ -100,8 +100,8 @@ describe('assemble helpers', function () {
   });
 
   describe('site.helpers()', function () {
-    it('should register helpers and use them in templates.', function (done) {
-      site.registerHelpers({
+    it('should add helpers and use them in templates.', function (done) {
+      site.addHelpers({
         upper: function (str) {
           return str.toUpperCase();
         },
@@ -132,7 +132,7 @@ describe('assemble helpers', function () {
   });
 
   describe('options.set()', function () {
-    it('should register helpers and use them in templates.', function (done) {
+    it('should add helpers and use them in templates.', function (done) {
       site.option({
         helpers: {
           upper: function (str) {
@@ -166,7 +166,7 @@ describe('assemble helpers', function () {
   });
 
   describe('options.helpers', function () {
-    it('should register helpers and use them in templates.', function (done) {
+    it('should add helpers and use them in templates.', function (done) {
       site.options.helpers = {
         upper: function (str) {
           return str.toUpperCase();
@@ -198,7 +198,7 @@ describe('assemble helpers', function () {
   });
 
   describe('site.src("", {helpers:[]})', function () {
-    it('should register helpers on the `src` and use them in templates.', function (done) {
+    it('should add helpers on the `src` and use them in templates.', function (done) {
       var srcPath = path.join(__dirname, 'fixtures/templates/with-helpers/*.hbs');
       var instream = site.src(srcPath, {
         helpers: {
@@ -231,7 +231,7 @@ describe('assemble helpers', function () {
   });
 
   describe('site.dest("", {helpers:[]})', function () {
-    it('should register helpers on the `dest` and use them in templates.', function (done) {
+    it('should add helpers on the `dest` and use them in templates.', function (done) {
       var srcPath = path.join(__dirname, 'fixtures/templates/with-helpers/*.hbs');
       var instream = site.src(srcPath);
       var outstream = site.dest(actual, {

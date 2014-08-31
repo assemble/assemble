@@ -9,7 +9,7 @@
 
 var assert = require('assert');
 var should = require('should');
-var loader = require('helper-loader');
+var loader = require('load-helpers');
 
 describe('helper loader', function () {
   it('should load helpers from a file path', function () {
