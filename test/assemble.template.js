@@ -44,7 +44,7 @@ describe('assemble init', function () {
 
       should.exist(site.cache.doowbs.brian);
       site.cache.doowbs.brian.contents.toString().should.equal('Hi this is {{first}} {{last}}');
-      site.cache.doowbs.brian.original.toString().should.equal('---\nlast: Woodward\n---\nHi this is {{first}} {{last}}');
+      site.cache.doowbs.brian.orig.toString().should.equal('---\nlast: Woodward\n---\nHi this is {{first}} {{last}}');
       should.exist(site.cache.doowbs.brian.data.first);
       should.exist(site.cache.doowbs.brian.data.last);
     });
@@ -62,7 +62,7 @@ describe('assemble init', function () {
 
       should.exist(site.cache.jons.jon);
       site.cache.jons.jon.contents.toString().should.equal('Hi this is {{first}} {{last}}');
-      site.cache.jons.jon.original.toString().should.equal('---\nlast: Schlinkert\n---\nHi this is {{first}} {{last}}');
+      site.cache.jons.jon.orig.toString().should.equal('---\nlast: Schlinkert\n---\nHi this is {{first}} {{last}}');
       should.exist(site.cache.jons.jon.data.first);
       should.exist(site.cache.jons.jon.data.last);
       should.exist(site.layoutEngines['.hbs'].cache.jon);
