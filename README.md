@@ -129,7 +129,7 @@ Default: [handlebars-helpers](http://github.com/assemble/handlebars-helpers)
 
 Name of the npm module to use and/or the path(s) to any custom helpers to use with the current template engine. Wildcard patterns may also be used.
 
-By default, Assemble includes [handlebars-helpers](http://assemble.io/docs/helpers/index.html) as a dependency, so any helpers from that library are already available to be used in your templates.
+By default, Assemble includes [handlebars-helpers](http://assemble.io/helpers/) as a dependency, so any helpers from that library are already available to be used in your templates.
 
 See the [docs for helpers](http://assemble.io/helpers/).
 
