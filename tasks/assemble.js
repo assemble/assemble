@@ -697,7 +697,20 @@ module.exports = function(grunt) {
    * @return {String}         The raw, assembled, uncompiled and unprocessed page
    */
   var injectBody = function(layout, body) {
-    return layout.replace(assemble.engine.bodyRegex, body);
+    var indentation = getIndentation(layout);
+    var bodyWithIndentation = _.map(body.split('\n'), function (line){
+      return line.replace(/^/, indentation);
+    }).join('\n');
+    return layout.replace(assemble.engine.bodyRegex, bodyWithIndentation);
+  };
+
+  var getIndentation = function(layout) {
+    var bodyRegex = assemble.engine.bodyRegex;
+    var bodyRegexWithIndentation = new RegExp(/\s*/.source + bodyRegex.source);
+
+    return layout.match(bodyRegexWithIndentation)[0]
+      .replace(bodyRegex, '')
+      .replace('\n','');
   };
 
 };
