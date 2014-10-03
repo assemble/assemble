@@ -15,12 +15,12 @@ var View = require('../lib/view/view');
 describe('assemble defaultConfig', function () {
   var site = null;
   beforeEach(function () {
-    site = assemble.create();
+    site = assemble.createInst();
   });
 
   describe('.defaultConfig()', function () {
     it('should set default values', function () {
-      site.init();
+      // site.init();
 
       site.get('minimal config').should.be.false;
       site.get('env').should.equal('development');
@@ -52,8 +52,8 @@ describe('assemble defaultConfig', function () {
       site.get('views', 'templates');
       site.get('delims', ['{{', '}}']);
 
-      site.get('parsers.hbs').should.exist;
-      site.get('parsers.md').should.exist;
+      site.getParsers('hbs').should.exist;
+      site.getParsers('md').should.exist;
 
       site.engines['.*'].should.exist;
       site.engines['.md'].should.exist;

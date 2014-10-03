@@ -14,7 +14,7 @@ var assemble = require('..');
 describe('assemble cache', function () {
   var site = null;
   beforeEach(function() {
-    site = assemble.create();
+    site = assemble.createInst();
   });
 
   describe('.set()', function () {

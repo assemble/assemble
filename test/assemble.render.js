@@ -20,7 +20,7 @@ describe('assemble render', function () {
 
   xdescribe('assemble.render()', function () {
     beforeEach(function (done) {
-      site = assemble.create();
+      site = assemble.createInst();
       rimraf(actual, done);
     });
 

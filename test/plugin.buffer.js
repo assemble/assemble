@@ -13,7 +13,7 @@ var outpath = join(__dirname, './out-fixtures');
 describe('assemble buffer', function() {
   var site = null;
   before (function () {
-    site = assemble.create();
+    site = assemble.createInst();
   });
 
   describe('buffer()', function() {

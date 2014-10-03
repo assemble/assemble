@@ -16,7 +16,7 @@ describe('assemble cwd', function () {
 
   var site = null;
   beforeEach(function () {
-    site = assemble.create();
+    site = assemble.createInst();
   });
 
   describe('.cwd()', function () {

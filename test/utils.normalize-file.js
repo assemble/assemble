@@ -17,7 +17,7 @@ describe('assemble normalize-file', function() {
   var site = null;
   var vinylProps = ['cwd', 'base', 'stat', '_contents'];
   beforeEach(function () {
-    site = assemble.create();
+    site = assemble.createInst();
   });
 
   describe('vinyl files', function() {

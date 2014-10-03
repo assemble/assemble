@@ -15,7 +15,7 @@ describe('assemble data', function () {
   var site = null;
   describe('.namespace()', function() {
     beforeEach(function () {
-      site = assemble.create();
+      site = assemble.createInst();
     });
 
     it('should namespace data using the `:basename` of the file.', function() {

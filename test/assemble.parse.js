@@ -25,7 +25,7 @@ var dest = __dirname + '/actual';
 describe('assemble parse', function () {
   var site = null;
   beforeEach(function (done) {
-    site = assemble.create();
+    site = assemble.createInst();
     rimraf(dest, done);
   });
   afterEach(function (done) {

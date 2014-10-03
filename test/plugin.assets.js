@@ -12,7 +12,7 @@ var actual = __dirname + '/assets-actual';
 
 describe('assemble assets plugin', function() {
   before (function () {
-    site = assemble.create();
+    site = assemble.createInst();
   });
 
   describe('assets()', function() {

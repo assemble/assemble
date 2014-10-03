@@ -16,7 +16,7 @@ describe('assemble engines', function () {
 
     var site = null;
     beforeEach(function () {
-      site = assemble.create();
+      site = assemble.createInst();
     });
 
     it('should set an engine with the given extension', function () {
@@ -30,7 +30,7 @@ describe('assemble engines', function () {
     it('should lazily set a layout engine when setting a template engine', function () {
       var handlebars = require('../lib/engine/handlebars');
       site.engine('hbs', handlebars);
-      should.exist(site.layoutEngines['.hbs']);
+      should.exist(site.layoutSettings['.hbs']);
     });
   });
 });

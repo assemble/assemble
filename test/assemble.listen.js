@@ -13,7 +13,7 @@ var assemble = require('..');
 describe('assemble listen', function() {
   var site = null;
   beforeEach(function () {
-    site = assemble.create();
+    site = assemble.createInst();
   });
 
   describe('.listen()', function() {

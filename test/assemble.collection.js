@@ -16,7 +16,7 @@ describe('assemble collection', function () {
 
   var site = null;
   beforeEach(function () {
-      site = assemble.create();
+      site = assemble.createInst();
   });
 
   describe('.collection()', function () {

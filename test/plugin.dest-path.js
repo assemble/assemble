@@ -12,7 +12,7 @@ var actual = __dirname + '/dest-path-actual';
 
 describe('assemble dest-path plugin', function() {
   before (function () {
-    site = assemble.create();
+    site = assemble.createInst();
   });
 
   describe('destPath()', function() {

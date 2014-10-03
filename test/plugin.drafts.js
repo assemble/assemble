@@ -11,7 +11,7 @@ var actual = __dirname + '/drafts-actual';
 
 describe('assemble drafts plugin', function() {
   before (function () {
-    site = assemble.create();
+    site = assemble.createInst();
   });
 
   describe('drafts()', function() {

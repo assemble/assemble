@@ -15,7 +15,7 @@ var assemble = require('..');
 describe('assemble omit', function () {
   var site = null;
   beforeEach(function () {
-    site = assemble.create();
+    site = assemble.createInst();
   });
 
   describe('.omit()', function () {

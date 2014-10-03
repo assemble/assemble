@@ -10,7 +10,7 @@ describe('assemble input stream', function() {
   describe('src()', function() {
     describe('minimal config - enabled', function () {
       beforeEach(function () {
-        site = assemble.create();
+        site = assemble.createInst();
         site.enable('minimal config');
       });
 

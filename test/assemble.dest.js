@@ -25,7 +25,7 @@ describe('assemble output stream', function() {
     describe('minimal config - enabled', function () {
 
       beforeEach(function () {
-        site = assemble.create();
+        site = assemble.createInst();
         site.enable('minimal config');
       });
       afterEach(function () {
@@ -129,7 +129,7 @@ describe('assemble output stream', function() {
     describe('minimal config - disabled', function () {
 
       beforeEach(function () {
-        site = assemble.create();
+        site = assemble.createInst();
         site.set('ext', '.txt');
       });
 

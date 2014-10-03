@@ -14,7 +14,7 @@ var assemble = require('..');
 describe('assemble parsers', function () {
   var site = null;
   beforeEach(function() {
-    site = assemble.create();
+    site = assemble.createInst();
   });
 
   describe('.parsers()', function () {

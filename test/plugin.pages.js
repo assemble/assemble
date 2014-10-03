@@ -40,7 +40,7 @@ describe('assemble pages', function () {
 
   var site = null;
   beforeEach(function() {
-    site = assemble.create();
+    site = assemble.createInst();
   });
 
   /*describe('.pages()', function () {

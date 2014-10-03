@@ -20,7 +20,7 @@ var actual = __dirname + '/helpers-actual';
 describe('assemble helpers', function () {
   var site = null;
   beforeEach(function (done) {
-    site = assemble.create();
+    site = assemble.createInst();
     rimraf(actual, done);
   });
 

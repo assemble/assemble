@@ -15,7 +15,7 @@ describe('assemble init', function () {
 
   var site = null;
   beforeEach(function() {
-    site = assemble.create();
+    site = assemble.createInst();
   });
 
   describe('.init()', function () {
@@ -32,7 +32,7 @@ describe('assemble init', function () {
 
     it('should prepopulate default engines.', function () {
       site.init();
-      Object.keys(site.engines).length.should.equal(3);
+      Object.keys(site.engines).length.should.equal(4);
     });
   });
 });
