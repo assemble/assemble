@@ -1,6 +1,6 @@
 var grade = require('grade');
 
-var Cache = require('../lib/cache');
+var Cache = require('config-cache');
 
 var Benchmark = grade.Benchmark;
 
