@@ -145,8 +145,9 @@ describe('assemble output stream', function() {
       });
 
       it('should return an output stream that writes files', function (done) {
+        // site.disable('render plugin');
         var instream = site.src(join(__dirname, 'fixtures/copy/*.txt'));
-        var outstream = site.dest(outpath);
+        var outstream = site.dest(outpath, {ext: '.txt'});
         instream.pipe(outstream);
 
         outstream.on('error', done);
