@@ -11,8 +11,8 @@ lib-cov
 npm-debug.log
 .DS*
 
-# Always-ignor dirs
-/node_modules/
-/tmp/
-/temp/
-/vendor/
+# Always-ignore dirs
+node_modules
+tmp
+temp
+vendor

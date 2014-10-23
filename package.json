@@ -83,7 +83,7 @@
     "vinyl-fs": "^0.3.7"
   },
   "devDependencies": {
-    "mocha": "^1.21.4",
+    "engine-handlebars": "^0.2.0",
     "graceful-fs": "^3.0.2",
     "grade": "^0.1.0",
     "gulp": "^3.8.7",
@@ -92,6 +92,7 @@
     "gulp-tap": "^0.1.1",
     "load-helpers": "^0.1.0",
     "mkdirp": "^0.5.0",
+    "mocha": "^1.21.4",
     "q": "^1.0.1",
     "rimraf": "^2.2.8",
     "should": "^4.0.4",

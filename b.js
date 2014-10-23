@@ -16,7 +16,7 @@ dest.on('error', function (err) {
 });
 
 var peek = tap(function (file) {
-  // console.log('tap', file.contents.toString());
+  console.log('tap', file.contents.toString());
 });
 
 src.pipe(peek).pipe(dest).on('error', function (err) {
