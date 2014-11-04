@@ -1,28 +1,57 @@
 
 var assemble = require('./');
-assemble.engine('hbs', require('engine-handlebars'));
 var tap = require('gulp-tap');
 
-var src = assemble.src('./test/fixtures/templates/no-helpers/*.hbs');
-src.on('error', function (err) {
-  console.log('src error', err);
+var log = function () {
+  console.log.apply(console, arguments);
   console.log();
+}
+
+assemble.task('foo', function () {
+  var src = assemble.src('./test/fixtures/templates/no-helpers/*.hbs');
+  src.on('error', function (err) {
+    log('src error', err);
+  });
+
+  var dest = assemble.dest('_test_b');
+  dest.on('error', function (err) {
+    log('dest', err);
+  });
+
+  var peek = tap(function (file) {
+    file.data.title = (file.data.title || 'no title found').toUpperCase();
+    var contents = file.contents.toString();
+    contents += ' - additional info from tap.';
+    file.contents = new Buffer(contents);
+    console.log('tap', file.contents.toString());
+  });
+
+  src.pipe(peek).pipe(dest).on('error', function (err) {
+    log('pipeline error', err);
+  });
 });
 
-var dest = assemble.dest('_test_b');
-dest.on('error', function (err) {
-  console.log('dest', err);
-  console.log();
+assemble.task('bar', function () {
+  var src = assemble.src('./test/fixtures/templates/no-helpers/a.hbs');
+  src.on('error', function (err) {
+    log('src error', err);
+  });
+
+  var dest = assemble.dest('_test_bar');
+  dest.on('error', function (err) {
+    log('dest', err);
+  });
+
+  var peek = tap(function (file) {
+    log('tap', file.contents.toString());
+  });
+
+  src.pipe(peek).pipe(dest).on('error', function (err) {
+    log('pipeline', err);
+  });
 });
 
-var peek = tap(function (file) {
-  // console.log('tap', file.contents.toString());
-});
-
-src.pipe(peek).pipe(dest).on('error', function (err) {
-  console.log('pipeline error', err);
-  console.log();
-});
+assemble.run(['foo', 'bar']);
 
 
 // setTimeout(function () {

@@ -16,7 +16,7 @@ function inspect (obj) {
   return require('util').inspect(obj, null, 10);
 }
 
-describe.only('extension', function () {
+describe('extension', function () {
 
   var Assemble = function () {
     var args = arguments;

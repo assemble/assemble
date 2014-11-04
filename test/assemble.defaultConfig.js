@@ -10,7 +10,6 @@
 var assert = require('assert');
 var should = require('should');
 var assemble = require('..');
-var View = require('../lib/view/view');
 
 describe('assemble defaultConfig', function () {
   var site = null;
@@ -47,7 +46,6 @@ describe('assemble defaultConfig', function () {
       site.enabled('render plugin').should.be.true;
 
       // View defaults
-      site.get('view', View);
       site.get('view engine', 'noop');
       site.get('views', 'templates');
       site.get('delims', ['{{', '}}']);
