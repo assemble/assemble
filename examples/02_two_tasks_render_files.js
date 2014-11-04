@@ -16,14 +16,9 @@ assemble.task('foo', function () {
 assemble.task('bar', function () {
   assemble.src(__dirname + '/../test/fixtures/templates/no-helpers/a.hbs')
     .pipe(tap(function (file) {
-      console.log('tap', file.contents.toString());
+      // console.log('tap', file.contents.toString());
     }))
     .pipe(assemble.dest(__dirname + '/dist/02_bar'));
 });
 
 assemble.run(['foo', 'bar']);
-
-
-// setTimeout(function () {
-//   console.log(assemble.cache.pages);
-// }, 1000);
