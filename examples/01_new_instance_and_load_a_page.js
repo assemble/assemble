@@ -1,5 +1,5 @@
 
-var Assemble = require('./lib/assemble');
+var Assemble = require('../lib/assemble');
 var assemble = new Assemble();
 console.log(assemble);
 console.log();
