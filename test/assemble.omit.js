@@ -22,13 +22,16 @@ describe('assemble omit', function () {
 
     it('should omit a value from the cache', function () {
       site.set('a', 'b');
+      site.set('b', 'c');
 
       // property should be on the cache
       site.get('a').should.equal('b');
+      site.get('b').should.equal('c');
       site.omit('a');
 
       // property should not be on the cache
-      assert(site.get('a') === undefined);
+      assert(site.get('a') == undefined);
+      assert(site.get('b') != undefined);
     });
 
     it('should omit an array of values from the cache', function () {
@@ -36,21 +39,24 @@ describe('assemble omit', function () {
       	.set('a', 'a')
       	.set('b', 'b')
       	.set('c', 'c')
-      	.set('d', 'd');
+      	.set('d', 'd')
+        .set('e', 'e');
 
       // properties should be on the cache
       site.get('a').should.equal('a');
       site.get('b').should.equal('b');
       site.get('c').should.equal('c');
       site.get('d').should.equal('d');
+      site.get('e').should.equal('e');
 
       site.omit(['a', 'b', 'c', 'd']);
 
       // properties should not be on the cache
-      assert(site.get('a') === undefined);
-      assert(site.get('b') === undefined);
-      assert(site.get('c') === undefined);
-      assert(site.get('d') === undefined);
+      assert(site.get('a') == undefined);
+      assert(site.get('b') == undefined);
+      assert(site.get('c') == undefined);
+      assert(site.get('d') == undefined);
+      assert(site.get('e') != undefined);
     });
 
   });

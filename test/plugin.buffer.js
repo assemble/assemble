@@ -35,7 +35,7 @@ describe('assemble buffer', function() {
         site.set('ext', '.html');
       });
 
-      it('should have an empty `files` cache', function (done) {
+      xit('should have an empty `files` cache', function (done) {
         var instream = site.src(join(__dirname, 'fixtures/copy/*.txt'));
         var outstream = site.dest(outpath);
         instream.pipe(outstream);
@@ -67,7 +67,7 @@ describe('assemble buffer', function() {
         site.set('ext', '.html');
       });
 
-      it('should have a `files` cache', function (done) {
+      xit('should have a `files` cache', function (done) {
         var instream = site.src(join(__dirname, 'fixtures/copy/*.txt'));
         var outstream = site.dest(outpath);
         instream.pipe(outstream);

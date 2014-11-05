@@ -21,18 +21,18 @@ describe('assemble cwd', function () {
 
   describe('.cwd()', function () {
     it('should return the cwd', function () {
-      site.cwd().toLowerCase().should.equal(process.cwd().toLowerCase());
+      site.cwd.toLowerCase().should.equal(process.cwd().toLowerCase());
     });
 
     it('should return the cwd with appended arguments', function () {
       var expected = path.join(process.cwd(), 'path/to/something');
-      site.cwd('path', 'to', 'something').should.equal(expected);
+      path.join(site.cwd, 'path', 'to', 'something').should.equal(expected);
     });
     it('should return the modified cwd with appended arguments', function () {
       var expected = path.join(process.cwd(), 'test/fixtures/templates/pages');
-      site.set('cwd', process.cwd() + '/test/fixtures');
-      isAbsolute(site.get('cwd')).should.be.true;
-      site.cwd('templates', 'pages').should.equal(expected);
+      site.option('cwd', process.cwd() + '/test/fixtures');
+      isAbsolute(site.option('cwd')).should.be.true;
+      path.join(site.cwd, 'templates', 'pages').should.equal(expected);
     });
   });
 });

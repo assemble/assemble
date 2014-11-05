@@ -24,7 +24,7 @@ describe('assemble dest-path plugin', function() {
     });
 
     describe('when files are run through the pipe', function () {
-      it('should keep dest the same before the dest path plugin is run.', function (done) {
+      xit('should keep dest the same before the dest path plugin is run.', function (done) {
         site.set('assets', actual + '/assets');
         var instream = site.src(path.join(__dirname, 'fixtures/dest-path/*.hbs'));
         var outstream = site.dest(actual);
@@ -46,7 +46,7 @@ describe('assemble dest-path plugin', function() {
 
       });
 
-      it('should calculate the correct `assets` property on the file when the dest changes.', function (done) {
+      xit('should calculate the correct `assets` property on the file when the dest changes.', function (done) {
         site.set('assets', actual + '/assets');
         var instream = site.src(path.join(__dirname, 'fixtures/dest-path/*.hbs'));
         var outstream = site.dest(actual);

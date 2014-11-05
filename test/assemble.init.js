@@ -25,14 +25,13 @@ describe('assemble init', function () {
       site.cache.pages.should.be.empty;
       site.cache.partials.should.be.empty;
       site.cache.layouts.should.be.empty;
-      site.cache.helpers.should.be.empty;
       site.cache.locals.should.be.empty;
       site.cache.imports.should.be.empty;
     });
 
     it('should prepopulate default engines.', function () {
       site.init();
-      Object.keys(site.engines).length.should.equal(4);
+      Object.keys(site.engines).length.should.equal(2);
     });
   });
 });

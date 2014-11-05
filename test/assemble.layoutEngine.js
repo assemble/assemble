@@ -21,7 +21,7 @@ describe('assemble layout engines', function () {
     });
 
     it('should set a layout engine when setting a template engine', function () {
-      var handlebars = require('../lib/engine/handlebars');
+      var handlebars = require('consolidate').handlebars;
       site.engine('hbs', handlebars);
       should.exist(site.layoutSettings['.hbs']);
     });

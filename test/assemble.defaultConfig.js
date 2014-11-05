@@ -21,7 +21,7 @@ describe('assemble defaultConfig', function () {
     it('should set default values', function () {
       // site.init();
 
-      site.get('minimal config').should.be.false;
+      site.enabled('minimal config').should.be.false;
       site.get('env').should.equal('development');
       site.get('encoding').should.equal('utf8');
       site.get('cwd').should.equal(process.cwd());
@@ -31,7 +31,6 @@ describe('assemble defaultConfig', function () {
       // Default `src` plugins
       site.enabled('init plugin').should.be.true;
       site.enabled('src-routes plugin').should.be.true;
-      site.enabled('buffer plugin').should.be.true;
       site.enabled('extend-src plugin').should.be.true;
       site.enabled('parser plugin').should.be.true;
       site.enabled('drafts plugin').should.be.true;
@@ -50,11 +49,8 @@ describe('assemble defaultConfig', function () {
       site.get('views', 'templates');
       site.get('delims', ['{{', '}}']);
 
-      site.getParsers('hbs').should.exist;
-      site.getParsers('md').should.exist;
-
       site.engines['.*'].should.exist;
-      site.engines['.md'].should.exist;
+      site.engines['.hbs'].should.exist;
       site.highlighter.should.exist;
     });
   });
