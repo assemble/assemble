@@ -24,8 +24,8 @@ describe('assemble defaultConfig', function () {
       site.enabled('minimal config').should.be.false;
       site.get('env').should.equal('development');
       site.get('encoding').should.equal('utf8');
-      site.get('cwd').should.equal(process.cwd());
-      site.get('ext').should.equal('.html');
+      site.option('cwd').should.equal(process.cwd());
+      site.option('ext').should.equal('.hbs');
       // site.get('data').should.be.empty;
 
       // Default `src` plugins
