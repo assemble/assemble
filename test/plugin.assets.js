@@ -24,7 +24,7 @@ describe('assemble assets plugin', function() {
     });
 
     describe('when `assets` is defined on options:', function () {
-      xit('should calculate the correct `assets` property on the file.', function (done) {
+      it('should calculate the correct `assets` property on the file.', function (done) {
         site.set('assets', actual + '/assets');
         var instream = site.src(path.join(__dirname, 'fixtures/assets/*.hbs'));
         var outstream = site.dest(actual);
@@ -34,8 +34,8 @@ describe('assemble assets plugin', function() {
             should.exist(file);
             should.exist(file.path);
             should.exist(file.contents);
-            should.exist(file.assets);
-            file.assets.should.equal('../../assets-actual/assets');
+            should.exist(file.data.assets);
+            file.data.assets.should.equal('../../assets-actual/assets');
           }))
           .pipe(outstream);
 
@@ -46,7 +46,7 @@ describe('assemble assets plugin', function() {
 
       });
 
-      xit('should calculate the correct `assets` property on the file when the dest changes.', function (done) {
+      it('should calculate the correct `assets` property on the file when the dest changes.', function (done) {
         site.set('assets', actual + '/assets');
         var instream = site.src(path.join(__dirname, 'fixtures/assets/*.hbs'));
         var outstream = site.dest(actual);
@@ -57,8 +57,8 @@ describe('assemble assets plugin', function() {
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          should.exist(file.assets);
-          file.assets.should.equal('assets');
+          should.exist(file.data.assets);
+          file.data.assets.should.equal('assets');
           /assets/.test(String(file.contents)).should.be.true;
         });
 

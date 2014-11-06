@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "arrayify-compact": "^0.1.0",
+    "calculate-assets": "^0.1.2",
     "chalk": "^0.5.1",
     "config-cache": "^0.2.3",
     "context-manager": "^0.1.0",

@@ -24,7 +24,7 @@ describe('assemble dest-path plugin', function() {
     });
 
     describe('when files are run through the pipe', function () {
-      xit('should keep dest the same before the dest path plugin is run.', function (done) {
+      it('should keep dest the same before the dest path plugin is run.', function (done) {
         site.set('assets', actual + '/assets');
         var instream = site.src(path.join(__dirname, 'fixtures/dest-path/*.hbs'));
         var outstream = site.dest(actual);
@@ -34,8 +34,8 @@ describe('assemble dest-path plugin', function() {
             should.exist(file);
             should.exist(file.path);
             should.exist(file.contents);
-            file.dest.ext.should.equal('.hbs');
-            /fixtures[\/\\]dest-path[\/\\][cd]\.hbs/.test(file.dest.path).should.be.true;
+            file.data.dest.ext.should.equal('.hbs');
+            /fixtures[\/\\]dest-path[\/\\][cd]\.hbs/.test(file.data.dest.path).should.be.true;
           }))
           .pipe(outstream);
 
@@ -46,7 +46,7 @@ describe('assemble dest-path plugin', function() {
 
       });
 
-      xit('should calculate the correct `assets` property on the file when the dest changes.', function (done) {
+      it('should calculate the correct `assets` property on the file when the dest changes.', function (done) {
         site.set('assets', actual + '/assets');
         var instream = site.src(path.join(__dirname, 'fixtures/dest-path/*.hbs'));
         var outstream = site.dest(actual);
@@ -57,8 +57,8 @@ describe('assemble dest-path plugin', function() {
             should.exist(file);
             should.exist(file.path);
             should.exist(file.contents);
-            file.dest.ext.should.equal('.html');
-            /dest-path-actual[\/\\][cd]\.html/.test(file.dest.path).should.be.true;
+            file.data.dest.ext.should.equal('.html');
+            /dest-path-actual[\/\\][cd]\.html/.test(file.data.dest.path).should.be.true;
         });
 
         outstream.on('end', function () {
