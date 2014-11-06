@@ -49,6 +49,7 @@
     "debug": "^1.0.4",
     "delimiter-map": "^0.1.1",
     "engine-cache": "^0.2.5",
+    "engine-handlebars": "^0.3.0",
     "event-stream": "^3.1.7",
     "globby": "^0.1.1",
     "gray-matter": "^0.5.3",
@@ -73,7 +74,6 @@
   },
   "devDependencies": {
     "consolidate": "^0.10.0",
-    "engine-handlebars": "^0.3.0",
     "graceful-fs": "^3.0.2",
     "grade": "^0.1.0",
     "gulp": "^3.8.7",
