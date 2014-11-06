@@ -26,7 +26,6 @@ describe('assemble init', function () {
       site.cache.partials.should.be.empty;
       site.cache.layouts.should.be.empty;
       site.cache.locals.should.be.empty;
-      site.cache.imports.should.be.empty;
     });
 
     it('should prepopulate default engines.', function () {
