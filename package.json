@@ -53,7 +53,6 @@
     "event-stream": "^3.1.7",
     "globby": "^0.1.1",
     "gray-matter": "^0.5.3",
-    "gulp-plumber": "^0.6.6",
     "gulp-util": "^3.0.0",
     "handlebars": "^2.0.0-alpha.4",
     "helper-cache": "^0.2.0",
