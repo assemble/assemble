@@ -23,7 +23,7 @@ describe('assemble drafts plugin', function() {
     });
 
     describe('when `draft: true` is defined in front matter:', function () {
-      xit('should not generate pages.', function (done) {
+      it('should not generate pages.', function (done) {
         var instream = site.src(path.join(__dirname, 'fixtures/drafts/*.hbs'));
         var outstream = site.dest(actual);
         instream.pipe(outstream);
@@ -36,7 +36,7 @@ describe('assemble drafts plugin', function() {
           /[ab]\.html$/.test(String(file.path)).should.be.false;
           /[cd]\.html$/.test(String(file.path)).should.be.true;
           /[CD]/.test(String(file.contents)).should.be.true;
-          site.files.length.should.equal(4);
+          Object.keys(site.cache.pages).length.should.equal(4);
         });
 
         outstream.on('end', function () {
