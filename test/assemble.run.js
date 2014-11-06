@@ -18,8 +18,11 @@ describe('assemble run', function () {
   });
 
   describe('site.run()', function () {
-    xit('should run a task', function () {
-      // TODO
+    it('should run a task', function (done) {
+      site.task('foo', function () {
+        done();
+      });
+      site.run(['foo']);
     });
   });
 });

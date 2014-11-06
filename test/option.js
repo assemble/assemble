@@ -13,11 +13,19 @@ var assemble = require('..');
 
 describe('options', function () {
   describe('.options()', function () {
-    xit('should set an option', function () {
-      // TODO
+    var site = null;
+    beforeEach(function () {
+      site = assemble.createInst();
+    })
+    it('should set an option', function () {
+      site.option('foo', 'bar');
+      site.options.foo.should.exist;
+      site.options.foo.should.equal('bar');
     });
-    xit('should get an option', function () {
-      // TODO
+    it('should get an option', function () {
+      site.option('foo', 'bar');
+      site.option('foo').should.exist;
+      site.option('foo').should.equal('bar');
     });
   });
 });
