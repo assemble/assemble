@@ -194,21 +194,39 @@ describe('assemble output stream', function() {
 
       xit('should throw an error when trying to write streaming files', function (done) {
         var instream = site.src(join(__dirname, 'fixtures/copy/*.txt'), {buffer: false});
-        var outstream = instream.pipe(site.dest(outpath));
+        var outstream = site.dest(outpath);
+        var output = instream.pipe(outstream);
 
-        instream.on('error', function () {
-          done();
+        instream.on('error', function (err) {
+          console.log('error in instream', err);
+          // this.end();
+          // done();
         });
         instream.on('data', function () {
-          done(new Error('should have thrown an error'));
+          // this.end();
+          // done(new Error('should have thrown an error'));
         });
 
-        outstream.on('error', function () {
-          done();
+        outstream.on('error', function (err) {
+          console.log('error in outstream', err);
+          // this.end();
+          // done();
         });
         outstream.on('data', function () {
-          done(new Error('should have thrown an error'));
+          // this.end();
+          // done(new Error('should have thrown an error'));
         });
+
+        output.on('error', function (err) {
+          console.log('error in output', err);
+          // this.end(); 
+          // done();         
+        });
+        output.on('data', function () {
+          // this.end();
+          // done(new Error('should have thrown an error'));
+        });
+        output.on('end', done);
       });
 
       xit('should return an output stream that writes streaming files to new directories', function (done) {
