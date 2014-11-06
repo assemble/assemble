@@ -30,9 +30,7 @@ describe('assemble defaultConfig', function () {
 
       // Default `src` plugins
       site.enabled('init plugin').should.be.true;
-      site.enabled('src-routes plugin').should.be.true;
       site.enabled('extend-src plugin').should.be.true;
-      site.enabled('parser plugin').should.be.true;
       site.enabled('drafts plugin').should.be.true;
       site.enabled('assets plugin').should.be.true;
       site.enabled('paginate plugin').should.be.true;
@@ -41,7 +39,6 @@ describe('assemble defaultConfig', function () {
       site.enabled('extend-dest plugin').should.be.true;
       site.enabled('collections plugin').should.be.true;
       site.enabled('dest plugin').should.be.true;
-      site.enabled('dest-routes plugin').should.be.true;
       site.enabled('render plugin').should.be.true;
 
       // View defaults
