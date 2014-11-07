@@ -29,17 +29,17 @@ describe('assemble defaultConfig', function () {
       // site.get('data').should.be.empty;
 
       // Default `src` plugins
-      site.enabled('init plugin').should.be.true;
-      site.enabled('extend-src plugin').should.be.true;
-      site.enabled('drafts plugin').should.be.true;
-      site.enabled('assets plugin').should.be.true;
-      site.enabled('paginate plugin').should.be.true;
+      site.enabled('src:init plugin').should.be.true;
+      site.enabled('src:extend plugin').should.be.true;
+      site.enabled('src:drafts plugin').should.be.true;
+      site.enabled('src:assets plugin').should.be.true;
+      site.enabled('src:paginate plugin').should.be.true;
 
       // Default `dest` plugins
-      site.enabled('extend-dest plugin').should.be.true;
-      site.enabled('collections plugin').should.be.true;
-      site.enabled('dest plugin').should.be.true;
-      site.enabled('render plugin').should.be.true;
+      site.enabled('dest:extend plugin').should.be.true;
+      site.enabled('dest:collections plugin').should.be.true;
+      site.enabled('dest:paths plugin').should.be.true;
+      site.enabled('dest:render plugin').should.be.true;
 
       // View defaults
       site.get('view engine', 'noop');
