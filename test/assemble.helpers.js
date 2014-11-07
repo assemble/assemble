@@ -28,7 +28,7 @@ describe('assemble helpers', function () {
     rimraf(actual, done);
   });
 
-  describe('.addHelpers()', function () {
+  describe('.helpers()', function () {
     it('should return an empty list of helpers.', function () {
       _.forOwn(site.engines, function (engine) {
         engine.helpers.should.be.empty;
@@ -37,14 +37,14 @@ describe('assemble helpers', function () {
 
     it('should return helpers based on a glob pattern.', function () {
       var fixture = __dirname + '/fixtures/helpers/wrapped.js';
-      site.addHelpers(fixture);
+      site.helpers(fixture);
 
       site._.helpers.should.have.property('wrapped');
       site._.helpers['wrapped'].should.be.a.function;
     });
 
     it('should add helpers and use them in templates.', function (done) {
-      site.addHelpers({
+      site.helpers({
         upper: function (str) {
           return str.toUpperCase();
         }
@@ -70,9 +70,9 @@ describe('assemble helpers', function () {
     });
   });
 
-  describe('site.addHelpers():', function () {
+  describe('site.helpers():', function () {
     it('should add helpers and use them in templates.', function (done) {
-      site.addHelpers({
+      site.helpers({
         upper: function (str) {
           return str.toUpperCase();
         }
@@ -98,9 +98,9 @@ describe('assemble helpers', function () {
     });
   });
 
-  describe('site.addHelpers()', function () {
+  describe('site.helpers()', function () {
     it('should add helpers and use them in templates.', function (done) {
-      site.addHelpers({
+      site.helpers({
         upper: function (str) {
           return str.toUpperCase();
         },
