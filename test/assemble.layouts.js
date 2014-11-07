@@ -50,36 +50,8 @@ describe('assemble layouts', function () {
       site.layouts.should.be.a.function;
     });
 
-    xit('should return an empty array..', function () {
-      site.layouts().should.be.empty;
-    });
-
-    xit('should cache an array of layouts defined as objects.', function () {
-      site.layouts([
-        {
-          name: 'test-layout-a',
-          data: {title: 'test-layout-a'},
-          content: 'Test layout A content',
-          ext: '.hbs'
-        },
-        {
-          name: 'test-layout-b',
-          data: {title: 'test-layout-b'},
-          content: 'Test layout B content',
-          ext: '.hbs'
-        },
-        {
-          name: 'test-layout-c',
-          data: {title: 'test-layout-c'},
-          content: 'Test layout C content',
-          ext: '.hbs'
-        }
-      ]);
-
-      var layouts = site.cache.layouts;
-      layouts.should.have.property('test-layout-a');
-      layouts.should.have.property('test-layout-b');
-      layouts.should.have.property('test-layout-c');
+    it('should return an empty array..', function () {
+      site.cache.layouts.should.be.empty;
     });
 
     it('should cache an object of layouts defined as objects.', function () {

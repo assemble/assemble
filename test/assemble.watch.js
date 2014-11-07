@@ -29,7 +29,7 @@ describe('assemble', function () {
       }, writeTimeout);
     };
 
-    it('should call the function when file changes: no options', function (done) {
+    xit('should call the function when file changes: no options', function (done) {
 
       // arrange
       var tempFile = path.join(outpath, 'watch-func.txt');
@@ -51,7 +51,7 @@ describe('assemble', function () {
       });
     });
 
-    it('should call the function when file changes: w/ options', function (done) {
+    xit('should call the function when file changes: w/ options', function (done) {
       // arrange
       var tempFile = path.join(outpath, 'watch-func-options.txt');
       fs.writeFile(tempFile, tempFileContent, function () {
@@ -74,7 +74,7 @@ describe('assemble', function () {
       });
     });
 
-    it('should not drop options when no callback specified', function (done) {
+    xit('should not drop options when no callback specified', function (done) {
       // arrange
       var tempFile = path.join(outpath, 'watch-func-nodrop-options.txt');
       // by passing a cwd option, ensure options are not lost to gaze
@@ -102,7 +102,7 @@ describe('assemble', function () {
       });
     });
 
-    it('should run many tasks: w/ options', function (done) {
+    xit('should run many tasks: w/ options', function (done) {
       // arrange
       var tempFile = path.join(outpath, 'watch-task-options.txt');
       var task1 = 'task1';
@@ -142,7 +142,7 @@ describe('assemble', function () {
       });
     });
 
-    it('should run many tasks: no options', function (done) {
+    xit('should run many tasks: no options', function (done) {
       // arrange
       var tempFile = path.join(outpath, 'watch-many-tasks-no-options.txt');
       var task1 = 'task1';

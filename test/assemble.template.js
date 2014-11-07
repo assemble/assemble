@@ -44,13 +44,13 @@ describe('assemble init', function () {
 
       should.exist(site.cache.doowbs.brian);
       site.cache.doowbs.brian.content.should.equal('Hi this is {{first}} {{last}}');
-      site.cache.doowbs.brian.orig.should.equal('---\nlast: Woodward\n---\nHi this is {{first}} {{last}}');
+      // site.cache.doowbs.brian.orig.should.equal('---\nlast: Woodward\n---\nHi this is {{first}} {{last}}');
       should.exist(site.cache.doowbs.brian.data.first);
       should.exist(site.cache.doowbs.brian.data.last);
     });
 
     it('should load new templates add store them on the cache for the custom template type as layouts.', function () {
-      site.create('jon', 'jons', {isLayout: true});
+      site.create('jon', 'jons', {isLayout: true, ext: '.hbs'});
       site.jon({
         path: 'jon',
         data: {

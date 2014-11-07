@@ -36,7 +36,7 @@ describe('assemble drafts plugin', function() {
           /[ab]\.html$/.test(String(file.path)).should.be.false;
           /[cd]\.html$/.test(String(file.path)).should.be.true;
           /[CD]/.test(String(file.contents)).should.be.true;
-          site.files.length.should.equal(4);
+          Object.keys(site.cache.pages).length.should.equal(4);
         });
 
         outstream.on('end', function () {

@@ -75,7 +75,7 @@ describe('assemble cache', function () {
 
   describe('.get()', function () {
     it('should return undefined when no set', function () {
-      assert(site.get('a') === undefined);
+      assert(site.option('a') === undefined);
     });
 
     it('should otherwise return the value', function () {
@@ -99,14 +99,14 @@ describe('assemble cache', function () {
   describe('.enable()', function () {
     it('should set the value to true', function () {
       site.enable('foo').should.equal(site);
-      site.get('foo').should.be.ok;
+      site.option('foo').should.be.ok;
     });
   });
 
   describe('.disable()', function () {
     it('should set the value to false', function () {
       site.disable('foo').should.equal(site);
-      site.get('foo').should.be.false;
+      site.option('foo').should.be.false;
     });
   });
 
@@ -116,7 +116,7 @@ describe('assemble cache', function () {
     });
 
     it('should return true when set', function () {
-      site.set('a', 'b');
+      site.option('a', 'b');
       site.enabled('a').should.be.ok;
     });
   });
@@ -127,7 +127,7 @@ describe('assemble cache', function () {
     });
 
     it('should return false when set', function () {
-      site.set('abc', 'xyz');
+      site.option('abc', 'xyz');
       site.disabled('abc').should.be.false;
     });
   });
