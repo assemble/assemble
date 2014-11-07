@@ -48,7 +48,6 @@ describe('assemble defaultConfig', function () {
 
       site.engines['.*'].should.exist;
       site.engines['.hbs'].should.exist;
-      site.highlighter.should.exist;
     });
   });
 });
