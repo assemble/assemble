@@ -75,9 +75,9 @@ describe('assemble partials', function () {
 
       site.partials('test/fixtures/templates/partials/*.hbs');
       var partials = site.cache.partials;
-      partials.should.have.property('a.hbs');
-      partials.should.have.property('b.hbs');
-      partials.should.have.property('c.hbs');
+      partials.should.have.property('a');
+      partials.should.have.property('b');
+      partials.should.have.property('c');
     });
 
     xit('should use a renaming function on the partial names.', function () {

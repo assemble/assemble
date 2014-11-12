@@ -83,9 +83,9 @@ describe('assemble layouts', function () {
       site.layouts('test/fixtures/templates/layouts/*.hbs');
 
       var layouts = site.cache.layouts;
-      layouts.should.have.property('a.hbs');
-      layouts.should.have.property('b.hbs');
-      layouts.should.have.property('c.hbs');
+      layouts.should.have.property('a');
+      layouts.should.have.property('b');
+      layouts.should.have.property('c');
     });
   });
 });
