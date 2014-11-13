@@ -48,7 +48,7 @@
     "config-cache": "^0.3.0",
     "context-manager": "^0.1.0",
     "delimiter-map": "^0.1.1",
-    "engine-handlebars": "^0.3.0",
+    "engine-assemble": "^0.1.0",
     "event-stream": "^3.1.7",
     "globby": "^0.1.1",
     "gray-matter": "^0.5.3",
