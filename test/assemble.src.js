@@ -159,7 +159,7 @@ describe('assemble input stream', function() {
     describe('minimal config - disabled', function () {
 
       beforeEach(function () {
-        site.init();
+        site = assemble.createInst();
       });
 
       it('should return a stream', function (done) {

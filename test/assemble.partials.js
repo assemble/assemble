@@ -39,7 +39,7 @@ describe('assemble partials', function () {
         content: 'Test partial A content'
       });
 
-      var partials = site.cache.partials;
+      var partials = site.views.partials;
       partials.should.have.property('test-partial-a');
     });
   });
@@ -65,7 +65,7 @@ describe('assemble partials', function () {
         }
       });
 
-      var partials = site.cache.partials;
+      var partials = site.views.partials;
       partials.should.have.property('test-partial-a');
       partials.should.have.property('test-partial-b');
       partials.should.have.property('test-partial-c');
@@ -74,7 +74,7 @@ describe('assemble partials', function () {
     it('should cache an object of partials defined as a string of glob patterns.', function () {
 
       site.partials('test/fixtures/templates/partials/*.hbs');
-      var partials = site.cache.partials;
+      var partials = site.views.partials;
       partials.should.have.property('a');
       partials.should.have.property('b');
       partials.should.have.property('c');

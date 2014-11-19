@@ -56,7 +56,7 @@ describe('assemble partials-layouts', function () {
       }
     });
 
-    var layouts = site.cache.layouts;
+    var layouts = site.views.layouts;
     layouts.should.have.property('LAAA');
     layouts.should.have.property('LBBB');
     layouts.should.have.property('LCCC');
@@ -79,7 +79,7 @@ describe('assemble partials-layouts', function () {
       }
     });
 
-    var partials = site.cache.partials;
+    var partials = site.views.partials;
     partials.should.have.property('P111');
     partials.should.have.property('P222');
     partials.should.have.property('P333');
@@ -102,7 +102,7 @@ describe('assemble partials-layouts', function () {
       }
     });
 
-    var pages = site.cache.pages;
+    var pages = site.views.pages;
     pages.should.have.property('PAGE111');
     pages.should.have.property('PAGE222');
     pages.should.have.property('PAGE333');

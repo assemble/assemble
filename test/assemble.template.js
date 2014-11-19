@@ -22,14 +22,14 @@ describe('assemble init', function () {
       site.create('monkey', 'monkies');
       should.exist(site.monkey);
       should.exist(site.monkies);
-      should.exist(site.cache.monkies);
+      should.exist(site.views.monkies);
     });
 
     it('should create new template type methods on Assemble.prototype for layout types.', function () {
       site.create('lion', 'lions', {isLayout: true});
       should.exist(site.lion);
       should.exist(site.lions);
-      should.exist(site.cache.lions);
+      should.exist(site.views.lions);
     });
 
     it('should load new templates add store them on the cache for the custom template type.', function () {
@@ -42,11 +42,11 @@ describe('assemble init', function () {
         content: '---\nlast: Woodward\n---\nHi this is {{first}} {{last}}'
       });
 
-      should.exist(site.cache.doowbs.brian);
-      site.cache.doowbs.brian.content.should.equal('Hi this is {{first}} {{last}}');
-      // site.cache.doowbs.brian.orig.should.equal('---\nlast: Woodward\n---\nHi this is {{first}} {{last}}');
-      should.exist(site.cache.doowbs.brian.data.first);
-      should.exist(site.cache.doowbs.brian.data.last);
+      should.exist(site.views.doowbs.brian);
+      site.views.doowbs.brian.content.should.equal('Hi this is {{first}} {{last}}');
+      // site.views.doowbs.brian.orig.should.equal('---\nlast: Woodward\n---\nHi this is {{first}} {{last}}');
+      should.exist(site.views.doowbs.brian.data.first);
+      should.exist(site.views.doowbs.brian.data.last);
     });
 
     it('should load new templates add store them on the cache for the custom template type as layouts.', function () {
@@ -62,12 +62,12 @@ describe('assemble init', function () {
         content: '---\nlast: Schlinkert\n---\nHi this is {{first}} {{last}}'
       });
 
-      should.exist(site.cache.jons.jon);
-      site.cache.jons.jon.content.should.equal('Hi this is {{first}} {{last}}');
-      // site.cache.jons.jon.orig.should.equal('---\nlast: Schlinkert\n---\nHi this is {{first}} {{last}}');
-      should.exist(site.cache.jons.jon.data.first);
-      should.exist(site.cache.jons.jon.data.last);
-      should.exist(site.layoutSettings['.hbs'].cache.jon);
+      should.exist(site.views.jons.jon);
+      site.views.jons.jon.content.should.equal('Hi this is {{first}} {{last}}');
+      // site.views.jons.jon.orig.should.equal('---\nlast: Schlinkert\n---\nHi this is {{first}} {{last}}');
+      should.exist(site.views.jons.jon.data.first);
+      should.exist(site.views.jons.jon.data.last);
+      // should.exist(site.layoutSettings['.hbs'].views.jon);
     });
 
     xit('should store template context in the context manager for the correct type.', function () {

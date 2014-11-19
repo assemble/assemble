@@ -61,7 +61,7 @@ describe('assemble helpers', function () {
         should.exist(file.contents);
         /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
         /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
-        Object.keys(site.cache.pages).length.should.equal(4);
+        Object.keys(site.views.pages).length.should.equal(4);
       });
 
       output.on('end', function () {
@@ -89,7 +89,7 @@ describe('assemble helpers', function () {
         should.exist(file.contents);
         /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
         /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
-        Object.keys(site.cache.pages).length.should.equal(4);
+        Object.keys(site.views.pages).length.should.equal(4);
       });
 
       outstream.on('end', function () {
@@ -121,7 +121,7 @@ describe('assemble helpers', function () {
         /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
         /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
         /foo[abcd]/.test(String(file.contents)).should.be.true;
-        Object.keys(site.cache.pages).length.should.equal(4);
+        Object.keys(site.views.pages).length.should.equal(4);
       });
 
       outstream.on('end', function () {
@@ -155,7 +155,7 @@ describe('assemble helpers', function () {
         /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
         /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
         /foo[abcd]/.test(String(file.contents)).should.be.true;
-        Object.keys(site.cache.pages).length.should.equal(4);
+        Object.keys(site.views.pages).length.should.equal(4);
       });
 
       outstream.on('end', function () {
@@ -187,7 +187,7 @@ describe('assemble helpers', function () {
         /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
         /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
         /foo[abcd]/.test(String(file.contents)).should.be.true;
-        Object.keys(site.cache.pages).length.should.equal(4);
+        Object.keys(site.views.pages).length.should.equal(4);
       });
 
       outstream.on('end', function () {
@@ -220,7 +220,7 @@ describe('assemble helpers', function () {
         /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
         /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
         /foo[abcd]/.test(String(file.contents)).should.be.true;
-        Object.keys(site.cache.pages).length.should.equal(4);
+        Object.keys(site.views.pages).length.should.equal(4);
       });
 
       outstream.on('end', function () {
@@ -253,7 +253,7 @@ describe('assemble helpers', function () {
         /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
         /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
         /foo[abcd]/.test(String(file.contents)).should.be.true;
-        Object.keys(site.cache.pages).length.should.equal(4);
+        Object.keys(site.views.pages).length.should.equal(4);
       });
 
       outstream.on('end', function () {

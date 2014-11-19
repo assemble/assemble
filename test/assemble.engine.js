@@ -26,10 +26,5 @@ describe('assemble engines', function () {
       should.exist(site.engines['.hbs'].renderSync);
       should.exist(site.engines['.hbs'].render);
     });
-
-    it('should lazily set a layout engine when setting a template engine', function () {
-      site.engine('hbs', consolidate.handlebars);
-      should.exist(site.layoutSettings['.hbs']);
-    });
   });
 });

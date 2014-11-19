@@ -40,7 +40,7 @@ describe('assemble layouts', function () {
         ext: '.hbs'
       });
 
-      var layouts = site.cache.layouts;
+      var layouts = site.views.layouts;
       layouts.should.have.property('test-layout-a');
     });
   });
@@ -51,7 +51,7 @@ describe('assemble layouts', function () {
     });
 
     it('should return an empty array..', function () {
-      site.cache.layouts.should.be.empty;
+      site.views.layouts.should.be.empty;
     });
 
     it('should cache an object of layouts defined as objects.', function () {
@@ -73,7 +73,7 @@ describe('assemble layouts', function () {
         }
       });
 
-      var layouts = site.cache.layouts;
+      var layouts = site.views.layouts;
       layouts.should.have.property('test-layout-a');
       layouts.should.have.property('test-layout-b');
       layouts.should.have.property('test-layout-c');
@@ -82,7 +82,7 @@ describe('assemble layouts', function () {
     it('should cache an object of layouts defined as a string of glob patterns.', function () {
       site.layouts('test/fixtures/templates/layouts/*.hbs');
 
-      var layouts = site.cache.layouts;
+      var layouts = site.views.layouts;
       layouts.should.have.property('a');
       layouts.should.have.property('b');
       layouts.should.have.property('c');

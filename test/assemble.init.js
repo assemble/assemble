@@ -20,16 +20,13 @@ describe('assemble init', function () {
 
   describe('.init()', function () {
     it('should re-initialize all values', function () {
-      site.init();
-
-      site.cache.pages.should.be.empty;
-      site.cache.partials.should.be.empty;
-      site.cache.layouts.should.be.empty;
+      site.views.pages.should.be.empty;
+      site.views.partials.should.be.empty;
+      site.views.layouts.should.be.empty;
       site.cache.locals.should.be.empty;
     });
 
     it('should prepopulate default engines.', function () {
-      site.init();
       Object.keys(site.engines).length.should.equal(2);
     });
   });
