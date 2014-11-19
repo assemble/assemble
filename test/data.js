@@ -13,8 +13,14 @@ var assemble = require('..');
 
 describe('data', function () {
   describe('.data()', function () {
-    xit('should add data', function () {
-      // TODO
+    var site = null;
+    beforeEach(function () {
+      site = assemble.createInst();
+    });
+    it('should add data', function () {
+      site.data({ foo: 'bar' });
+      site.cache.data.foo.should.exist;
+      site.cache.data.foo.should.equal('bar');
     });
   });
 });

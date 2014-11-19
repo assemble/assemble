@@ -14,12 +14,15 @@ var assemble = require('..');
 describe('assemble run', function () {
   var site = null;
   beforeEach(function() {
-    site = assemble.create();
+    site = assemble.createInst();
   });
 
   describe('site.run()', function () {
-    xit('should run a task', function () {
-      // TODO
+    it('should run a task', function (done) {
+      site.task('foo', function () {
+        done();
+      });
+      site.run(['foo']);
     });
   });
 });

@@ -1,8 +1,9 @@
 'use strict';
 
+var session = require('../lib/session');
+var should = require('should');
 var assemble = require('..');
 var Q = require('q');
-var should = require('should');
 require('mocha');
 
 describe('assemble tasks', function() {
@@ -154,5 +155,25 @@ describe('assemble tasks', function() {
       assemble.reset();
       done();
     });
+    it('should set the task name on the session', function (done) {
+      var a, fn, fn2;
+      a = 0;
+      fn = function() {
+        ++a;
+        this.should.equal(assemble);
+        session.get('task name').should.equal('test');
+      };
+      fn2 = function() {
+        ++a;
+        this.should.equal(assemble);
+        session.get('task name').should.equal('test2');
+      };
+      assemble.task('test', fn);
+      assemble.task('test2', fn2);
+      assemble.run('test', 'test2');
+      a.should.equal(2);
+      assemble.reset();
+      done();
+    })
   });
 });

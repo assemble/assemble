@@ -20,7 +20,7 @@ var actual = __dirname + '/layouts-actual';
 describe('assemble layouts', function () {
   var site = null;
   beforeEach(function (done) {
-    site = assemble.create();
+    site = assemble.createInst();
     rimraf(actual, done);
   });
   afterEach(function (done) {
@@ -34,7 +34,7 @@ describe('assemble layouts', function () {
 
     it('should cache a layout defined as an object.', function () {
       site.layout({
-        name: 'test-layout-a',
+        path: 'test-layout-a',
         data: {title: 'test-layout-a'},
         content: 'Test layout A content',
         ext: '.hbs'
@@ -51,35 +51,7 @@ describe('assemble layouts', function () {
     });
 
     it('should return an empty array..', function () {
-      site.layouts().should.be.empty;
-    });
-
-    it('should cache an array of layouts defined as objects.', function () {
-      site.layouts([
-        {
-          name: 'test-layout-a',
-          data: {title: 'test-layout-a'},
-          content: 'Test layout A content',
-          ext: '.hbs'
-        },
-        {
-          name: 'test-layout-b',
-          data: {title: 'test-layout-b'},
-          content: 'Test layout B content',
-          ext: '.hbs'
-        },
-        {
-          name: 'test-layout-c',
-          data: {title: 'test-layout-c'},
-          content: 'Test layout C content',
-          ext: '.hbs'
-        }
-      ]);
-
-      var layouts = site.cache.layouts;
-      layouts.should.have.property('test-layout-a');
-      layouts.should.have.property('test-layout-b');
-      layouts.should.have.property('test-layout-c');
+      site.cache.layouts.should.be.empty;
     });
 
     it('should cache an object of layouts defined as objects.', function () {

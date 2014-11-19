@@ -9,6 +9,7 @@
 
 var should = require('should');
 var assemble = require('..');
+var consolidate = require('consolidate');
 
 
 describe('assemble engines', function () {
@@ -16,21 +17,19 @@ describe('assemble engines', function () {
 
     var site = null;
     beforeEach(function () {
-      site = assemble.create();
+      site = assemble.createInst();
     });
 
     it('should set an engine with the given extension', function () {
-      var handlebars = require('../lib/engine/handlebars');
-      site.engine('hbs', handlebars);
+      site.engine('hbs', consolidate.handlebars);
       should.exist(site.engines['.hbs']);
-      should.exist(site.engines['.hbs'].renderFile);
+      should.exist(site.engines['.hbs'].renderSync);
       should.exist(site.engines['.hbs'].render);
     });
 
     it('should lazily set a layout engine when setting a template engine', function () {
-      var handlebars = require('../lib/engine/handlebars');
-      site.engine('hbs', handlebars);
-      should.exist(site.layoutEngines['.hbs']);
+      site.engine('hbs', consolidate.handlebars);
+      should.exist(site.layoutSettings['.hbs']);
     });
   });
 });

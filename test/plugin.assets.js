@@ -12,7 +12,7 @@ var actual = __dirname + '/assets-actual';
 
 describe('assemble assets plugin', function() {
   before (function () {
-    site = assemble.create();
+    site = assemble.createInst();
   });
 
   describe('assets()', function() {
@@ -34,8 +34,8 @@ describe('assemble assets plugin', function() {
             should.exist(file);
             should.exist(file.path);
             should.exist(file.contents);
-            should.exist(file.assets);
-            file.assets.should.equal('../../assets-actual/assets');
+            should.exist(file.data.assets);
+            file.data.assets.should.equal('../../assets-actual/assets');
           }))
           .pipe(outstream);
 
@@ -57,8 +57,8 @@ describe('assemble assets plugin', function() {
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          should.exist(file.assets);
-          file.assets.should.equal('assets');
+          should.exist(file.data.assets);
+          file.data.assets.should.equal('assets');
           /assets/.test(String(file.contents)).should.be.true;
         });
 

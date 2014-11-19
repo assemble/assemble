@@ -15,7 +15,7 @@ var assemble = require('..');
 describe('config process', function () {
   var site = null;
   beforeEach(function() {
-    site = assemble.create();
+    site = assemble.createInst();
   });
 
   describe('.process()', function () {

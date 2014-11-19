@@ -17,27 +17,13 @@ describe('assemble layout engines', function () {
 
     var site = null;
     beforeEach(function () {
-      site = assemble.create();
-    });
-
-    it('should set a layout engine with the given extension', function () {
-      var engine = new Layouts();
-      site.layoutEngine('hbs', engine);
-      should.exist(site.layoutEngines['.hbs']);
-      should.exist(site.layoutEngines['.hbs'].render);
-    });
-
-    it('should set a layout engine using options', function () {
-      site.layoutEngine('md', {layoutDelims: ['{%', '%}']});
-      should.exist(site.layoutEngines['.md']);
-      should.exist(site.layoutEngines['.md'].render);
-      site.layoutEngines['.md'].cache.delims.should.eql(['{%', '%}']);
+      site = assemble.createInst();
     });
 
     it('should set a layout engine when setting a template engine', function () {
-      var handlebars = require('../lib/engine/handlebars');
+      var handlebars = require('consolidate').handlebars;
       site.engine('hbs', handlebars);
-      should.exist(site.layoutEngines['.hbs']);
+      should.exist(site.layoutSettings['.hbs']);
     });
   });
 });
