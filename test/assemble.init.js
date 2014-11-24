@@ -23,7 +23,6 @@ describe('assemble init', function () {
       site.views.pages.should.be.empty;
       site.views.partials.should.be.empty;
       site.views.layouts.should.be.empty;
-      site.cache.locals.should.be.empty;
     });
 
     it('should prepopulate default engines.', function () {

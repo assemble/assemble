@@ -1,6 +1,6 @@
 'use strict';
 
-var verb = require('verb4');
+var verb = require('verb');
 var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
 
