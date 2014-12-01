@@ -24,7 +24,7 @@ describe('assemble data', function() {
     });
 
     it('should read files and merge data onto `cache.data`', function() {
-      site.data('package.json');
+      site.data('package.json', { namespace: false });
       site.get('data.name').should.equal('assemble');
     });
 
@@ -61,12 +61,12 @@ describe('assemble data', function() {
 
   describe('.plasma()', function() {
     it('should read JSON files and return an object.', function() {
-      var pkg = site.plasma('package.json');
+      var pkg = site.plasma('package.json', { namespace: false });
       pkg.name.should.equal('assemble');
     });
 
     it('should expand a glob pattern, read JSON/YAML files and return an object.', function() {
-      var pkg = site.plasma('p*.json');
+      var pkg = site.plasma('p*.json', { namespace: false });
       pkg.name.should.equal('assemble');
     });
 
