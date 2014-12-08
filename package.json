@@ -46,15 +46,14 @@
     "calculate-assets": "^0.1.2",
     "chalk": "^0.5.1",
     "computed-property": "^0.1.0",
-    "context-manager": "^0.1.0",
     "delimiter-map": "^0.1.1",
     "engine-assemble": "^0.2.0",
     "event-stream": "^3.1.7",
     "globby": "^0.1.1",
-    "gray-matter": "^0.5.3",
+    "gray-matter": "^1.0.1",
+    "gulp-extname": "^0.1.1",
     "gulp-util": "^3.0.0",
     "handlebars": "^2.0.0-alpha.4",
-    "highlight.js": "^8.1.0",
     "interpret": "^0.3.7",
     "is-absolute": "^0.1.5",
     "lang-map": "^0.1.3",
@@ -71,7 +70,6 @@
     "template-utils": "^0.1.2",
     "through2": "^0.6.1",
     "tildify": "^1.0.0",
-    "vinyl": "^0.4.2",
     "vinyl-fs": "^0.3.7"
   },
   "devDependencies": {
@@ -88,7 +86,8 @@
     "mocha": "^1.21.4",
     "q": "^1.0.1",
     "rimraf": "^2.2.8",
-    "should": "^4.0.4"
+    "should": "^4.0.4",
+    "vinyl": "^0.4.6"
   },
   "keywords": [
     "HTML",
