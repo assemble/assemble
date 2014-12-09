@@ -4,10 +4,5 @@
 
 
 
-## .lookup
-
-Lookup a view by the given `filepath`
-
-
 ## .partial
 

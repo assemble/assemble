@@ -1,4 +1,6 @@
+# Using gulp-tap to inspect files
 
+```js
 var assemble = require('../');
 
 // tap is used to update the file.data during the build
@@ -22,3 +24,4 @@ assemble.task('bar', function () {
 });
 
 assemble.run(['foo', 'bar']);
+```
