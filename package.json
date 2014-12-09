@@ -68,7 +68,7 @@
     "rewrite-ext": "^0.1.0",
     "semver": "^3.0.1",
     "session-cache": "^0.1.0",
-    "template": "^0.4.0",
+    "template": "^0.5.0",
     "template-utils": "^0.1.2",
     "through2": "^0.6.1",
     "tildify": "^1.0.0",
