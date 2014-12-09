@@ -12,7 +12,6 @@ var should = require('should');
 var utils = require('../lib/utils');
 
 describe('utils', function() {
-
   describe('.noop()', function () {
     it('should return the same value passed in', function () {
       utils.noop('foo').should.eql('foo');
@@ -30,21 +29,6 @@ describe('utils', function() {
   describe('.fixPath()', function () {
     it('should fix a path with a lowercase drive letter', function () {
       utils.fixPath('c:\\', 'some', 'file', 'path')[0].should.equal('C');
-    });
-  });
-
-  describe('.typeOf()', function () {
-    it('should get typeof String', function () {
-      utils.typeOf('foo').should.equal('string');
-    });
-    it('should get typeof Object', function () {
-      utils.typeOf({foo: 'bar'}).should.equal('object');
-    });
-    it('should get typeof Array', function () {
-      utils.typeOf(['foo', 'bar']).should.equal('array');
-    });
-    it('should get typeof Function', function () {
-      utils.typeOf(function () { return 'foo'; }).should.equal('function');
     });
   });
 
@@ -76,5 +60,4 @@ describe('utils', function() {
       utils.engineDelims('handlebars').should.eql(['{{', '}}']);
     });
   });
-
 });

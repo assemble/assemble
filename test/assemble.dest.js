@@ -1,20 +1,17 @@
 'use strict';
 
-var assemble = require('..');
-var should = require('should');
 var join = require('path').join;
-var rimraf = require('rimraf');
 var fs = require('graceful-fs');
+var rimraf = require('rimraf');
+var should = require('should');
 require('mocha');
 
-var outpath = join(__dirname, './out-fixtures');
-
+var assemble = require('..');
+var outpath = join(__dirname, 'out-fixtures');
+var app;
 
 describe('assemble output stream', function() {
-
   describe('dest()', function() {
-
-    var site = null;
     beforeEach(function (done) {
       rimraf(outpath, done);
     });
@@ -23,25 +20,24 @@ describe('assemble output stream', function() {
     });
 
     describe('minimal config - enabled', function () {
-
       beforeEach(function () {
-        site = assemble.createInst();
-        site.enable('minimal config');
+        app = assemble.createInst();
+        app.enable('minimal config');
       });
       afterEach(function () {
-        site.disable('minimal config');
+        app.disable('minimal config');
       });
 
       it('should return a stream', function (done) {
-        var stream = site.dest(join(__dirname, 'fixtures/'));
+        var stream = app.dest(join(__dirname, 'fixtures/'));
         should.exist(stream);
         should.exist(stream.on);
         done();
       });
 
       it('should return an output stream that writes files', function (done) {
-        var instream = site.src(join(__dirname, 'fixtures/copy/*.txt'));
-        var outstream = site.dest(outpath);
+        var instream = app.src(join(__dirname, 'fixtures/copy/*.txt'));
+        var outstream = app.dest(outpath);
         instream.pipe(outstream);
 
         outstream.on('error', done);
@@ -64,8 +60,8 @@ describe('assemble output stream', function() {
       });
 
       it('should return an output stream that does not write non-read files', function (done) {
-        var instream = site.src(join(__dirname, 'fixtures/copy/*.txt'), {read: false});
-        var outstream = site.dest(outpath);
+        var instream = app.src(join(__dirname, 'fixtures/copy/*.txt'), {read: false});
+        var outstream = app.dest(outpath);
         instream.pipe(outstream);
 
         outstream.on('error', done);
@@ -87,8 +83,8 @@ describe('assemble output stream', function() {
       });
 
       it('should return an output stream that writes streaming files', function (done) {
-        var instream = site.src(join(__dirname, 'fixtures/copy/*.txt'), {buffer: false});
-        var outstream = instream.pipe(site.dest(outpath));
+        var instream = app.src(join(__dirname, 'fixtures/copy/*.txt'), {buffer: false});
+        var outstream = instream.pipe(app.dest(outpath));
 
         outstream.on('error', done);
         outstream.on('data', function (file) {
@@ -127,27 +123,26 @@ describe('assemble output stream', function() {
     });
 
     describe('minimal config - disabled', function () {
-
       beforeEach(function () {
-        site = assemble.createInst();
-        site.set('ext', '.txt');
+        app = assemble.createInst();
+        app.set('ext', '.txt');
       });
 
       afterEach(function () {
-        site.set('ext', '.html');
+        app.set('ext', '.html');
       });
 
       it('should return a stream', function (done) {
-        var stream = site.dest(join(__dirname, 'fixtures/'));
+        var stream = app.dest(join(__dirname, 'fixtures/'));
         should.exist(stream);
         should.exist(stream.on);
         done();
       });
 
       it('should return an output stream that writes files', function (done) {
-        // site.disable('render plugin');
-        var instream = site.src(join(__dirname, 'fixtures/copy/*.txt'));
-        var outstream = site.dest(outpath, {ext: '.txt'});
+        // app.disable('render plugin');
+        var instream = app.src(join(__dirname, 'fixtures/copy/*.txt'));
+        var outstream = app.dest(outpath, {ext: '.txt'});
         instream.pipe(outstream);
 
         outstream.on('error', done);
@@ -170,8 +165,8 @@ describe('assemble output stream', function() {
       });
 
       it('should return an output stream that does not write non-read files', function (done) {
-        var instream = site.src(join(__dirname, 'fixtures/copy/*.txt'), {read: false});
-        var outstream = site.dest(outpath);
+        var instream = app.src(join(__dirname, 'fixtures/copy/*.txt'), {read: false});
+        var outstream = app.dest(outpath);
         instream.pipe(outstream);
 
         outstream.on('error', done);
@@ -192,9 +187,9 @@ describe('assemble output stream', function() {
         });
       });
 
-      xit('should throw an error when trying to write streaming files', function (done) {
-        var instream = site.src(join(__dirname, 'fixtures/copy/*.txt'), {buffer: false});
-        var outstream = site.dest(outpath);
+      it.skip('should throw an error when trying to write streaming files', function (done) {
+        var instream = app.src(join(__dirname, 'fixtures/copy/*.txt'), {buffer: false});
+        var outstream = app.dest(outpath);
         var output = instream.pipe(outstream);
 
         instream.on('error', function (err) {
@@ -219,8 +214,8 @@ describe('assemble output stream', function() {
 
         output.on('error', function (err) {
           console.log('error in output', err);
-          // this.end(); 
-          // done();         
+          // this.end();
+          // done();
         });
         output.on('data', function () {
           // this.end();
@@ -229,27 +224,27 @@ describe('assemble output stream', function() {
         output.on('end', done);
       });
 
-      xit('should return an output stream that writes streaming files to new directories', function (done) {
+      it.skip('should return an output stream that writes streaming files to new directories', function (done) {
         testWriteDir({}, done);
       });
 
-      xit('should return an output stream that writes streaming files to new directories (buffer: false)', function (done) {
+      it.skip('should return an output stream that writes streaming files to new directories (buffer: false)', function (done) {
         testWriteDir({buffer: false}, done);
       });
 
-      xit('should return an output stream that writes streaming files to new directories (read: false)', function (done) {
+      it.skip('should return an output stream that writes streaming files to new directories (read: false)', function (done) {
         testWriteDir({read: false}, done);
       });
 
-      xit('should return an output stream that writes streaming files to new directories (read: false, buffer: false)', function (done) {
+      it.skip('should return an output stream that writes streaming files to new directories (read: false, buffer: false)', function (done) {
         testWriteDir({buffer: false, read: false}, done);
       });
 
     });
 
     function testWriteDir(srcOptions, done) {
-      var instream = site.src(join(__dirname, 'fixtures/generic'), srcOptions);
-      var outstream = instream.pipe(site.dest(outpath));
+      var instream = app.src(join(__dirname, 'fixtures/generic'), srcOptions);
+      var outstream = instream.pipe(app.dest(outpath));
 
       outstream.on('error', done);
       outstream.on('data', function(file) {

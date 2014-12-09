@@ -18,9 +18,9 @@ var assemble = require('..');
 var actual = __dirname + '/helpers-actual';
 
 describe('assemble helpers', function () {
-  var site = null;
+  var app = null;
   beforeEach(function (done) {
-    site = assemble.createInst();
+    app = assemble.createInst();
     rimraf(actual, done);
   });
 
@@ -30,28 +30,28 @@ describe('assemble helpers', function () {
 
   describe('.helpers()', function () {
     it('should return an empty list of helpers.', function () {
-      _.forOwn(site.engines, function (engine) {
+      _.forOwn(app.engines, function (engine) {
         engine.helpers.should.be.empty;
       });
     });
 
     it('should return helpers based on a glob pattern.', function () {
       var fixture = __dirname + '/fixtures/helpers/wrapped.js';
-      site.helpers(fixture);
+      app.helpers(fixture);
 
-      site._.helpers.should.have.property('wrapped');
-      site._.helpers['wrapped'].should.be.a.function;
+      app._.helpers.should.have.property('wrapped');
+      app._.helpers['wrapped'].should.be.a.function;
     });
 
     it('should add helpers and use them in templates.', function (done) {
-      site.helpers({
+      app.helpers({
         upper: function (str) {
           return str.toUpperCase();
         }
       });
 
-      var instream = site.src(path.join(__dirname, 'fixtures/templates/with-helper/*.hbs'));
-      var outstream = site.dest(actual);
+      var instream = app.src(path.join(__dirname, 'fixtures/templates/with-helper/*.hbs'));
+      var outstream = app.dest(actual);
       var output = instream.pipe(outstream);
 
       output.on('error', done);
@@ -61,7 +61,7 @@ describe('assemble helpers', function () {
         should.exist(file.contents);
         /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
         /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
-        Object.keys(site.views.pages).length.should.equal(4);
+        Object.keys(app.views.pages).length.should.equal(4);
       });
 
       output.on('end', function () {
@@ -70,16 +70,16 @@ describe('assemble helpers', function () {
     });
   });
 
-  describe('site.helpers():', function () {
+  describe('app.helpers():', function () {
     it('should add helpers and use them in templates.', function (done) {
-      site.helpers({
+      app.helpers({
         upper: function (str) {
           return str.toUpperCase();
         }
       });
 
-      var instream = site.src(path.join(__dirname, 'fixtures/templates/with-helper/*.hbs'));
-      var outstream = site.dest(actual);
+      var instream = app.src(path.join(__dirname, 'fixtures/templates/with-helper/*.hbs'));
+      var outstream = app.dest(actual);
       var output = instream.pipe(outstream);
 
       outstream.on('error', done);
@@ -89,7 +89,7 @@ describe('assemble helpers', function () {
         should.exist(file.contents);
         /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
         /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
-        Object.keys(site.views.pages).length.should.equal(4);
+        Object.keys(app.views.pages).length.should.equal(4);
       });
 
       outstream.on('end', function () {
@@ -98,9 +98,9 @@ describe('assemble helpers', function () {
     });
   });
 
-  describe('site.helpers()', function () {
+  describe('app.helpers()', function () {
     it('should add helpers and use them in templates.', function (done) {
-      site.helpers({
+      app.helpers({
         upper: function (str) {
           return str.toUpperCase();
         },
@@ -109,8 +109,8 @@ describe('assemble helpers', function () {
         }
       });
 
-      var instream = site.src(path.join(__dirname, 'fixtures/templates/with-helpers/*.hbs'));
-      var outstream = site.dest(actual);
+      var instream = app.src(path.join(__dirname, 'fixtures/templates/with-helpers/*.hbs'));
+      var outstream = app.dest(actual);
       instream.pipe(outstream);
 
       outstream.on('error', done);
@@ -121,7 +121,7 @@ describe('assemble helpers', function () {
         /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
         /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
         /foo[abcd]/.test(String(file.contents)).should.be.true;
-        Object.keys(site.views.pages).length.should.equal(4);
+        Object.keys(app.views.pages).length.should.equal(4);
       });
 
       outstream.on('end', function () {
@@ -132,7 +132,7 @@ describe('assemble helpers', function () {
 
   describe('options.set()', function () {
     it('should add helpers and use them in templates.', function (done) {
-      site.option({
+      app.option({
         helpers: {
           upper: function (str) {
             return str.toUpperCase();
@@ -143,8 +143,8 @@ describe('assemble helpers', function () {
         }
       });
 
-      var instream = site.src(path.join(__dirname, 'fixtures/templates/with-helpers/*.hbs'));
-      var outstream = site.dest(actual);
+      var instream = app.src(path.join(__dirname, 'fixtures/templates/with-helpers/*.hbs'));
+      var outstream = app.dest(actual);
       instream.pipe(outstream);
 
       outstream.on('error', done);
@@ -155,7 +155,7 @@ describe('assemble helpers', function () {
         /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
         /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
         /foo[abcd]/.test(String(file.contents)).should.be.true;
-        Object.keys(site.views.pages).length.should.equal(4);
+        Object.keys(app.views.pages).length.should.equal(4);
       });
 
       outstream.on('end', function () {
@@ -166,7 +166,7 @@ describe('assemble helpers', function () {
 
   describe('options.helpers', function () {
     it('should add helpers and use them in templates.', function (done) {
-      site.options.helpers = {
+      app.options.helpers = {
         upper: function (str) {
           return str.toUpperCase();
         },
@@ -175,8 +175,8 @@ describe('assemble helpers', function () {
         }
       };
 
-      var instream = site.src(path.join(__dirname, 'fixtures/templates/with-helpers/*.hbs'));
-      var outstream = site.dest(actual);
+      var instream = app.src(path.join(__dirname, 'fixtures/templates/with-helpers/*.hbs'));
+      var outstream = app.dest(actual);
       instream.pipe(outstream);
 
       outstream.on('error', done);
@@ -187,7 +187,7 @@ describe('assemble helpers', function () {
         /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
         /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
         /foo[abcd]/.test(String(file.contents)).should.be.true;
-        Object.keys(site.views.pages).length.should.equal(4);
+        Object.keys(app.views.pages).length.should.equal(4);
       });
 
       outstream.on('end', function () {
@@ -196,10 +196,10 @@ describe('assemble helpers', function () {
     });
   });
 
-  describe('site.src("", {helpers:[]})', function () {
+  describe('app.src("", {helpers:[]})', function () {
     it('should add helpers on the `src` and use them in templates.', function (done) {
       var srcPath = path.join(__dirname, 'fixtures/templates/with-helpers/*.hbs');
-      var instream = site.src(srcPath, {
+      var instream = app.src(srcPath, {
         helpers: {
           upper: function (str) {
             return str.toUpperCase();
@@ -209,7 +209,7 @@ describe('assemble helpers', function () {
           }
         }
       });
-      var outstream = site.dest(actual);
+      var outstream = app.dest(actual);
       instream.pipe(outstream);
 
       outstream.on('error', done);
@@ -220,7 +220,7 @@ describe('assemble helpers', function () {
         /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
         /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
         /foo[abcd]/.test(String(file.contents)).should.be.true;
-        Object.keys(site.views.pages).length.should.equal(4);
+        Object.keys(app.views.pages).length.should.equal(4);
       });
 
       outstream.on('end', function () {
@@ -229,11 +229,11 @@ describe('assemble helpers', function () {
     });
   });
 
-  describe('site.dest("", {helpers:[]})', function () {
+  describe('app.dest("", {helpers:[]})', function () {
     it('should add helpers on the `dest` and use them in templates.', function (done) {
       var srcPath = path.join(__dirname, 'fixtures/templates/with-helpers/*.hbs');
-      var instream = site.src(srcPath);
-      var outstream = site.dest(actual, {
+      var instream = app.src(srcPath);
+      var outstream = app.dest(actual, {
         helpers: {
           upper: function (str) {
             return str.toUpperCase();
@@ -253,7 +253,7 @@ describe('assemble helpers', function () {
         /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
         /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
         /foo[abcd]/.test(String(file.contents)).should.be.true;
-        Object.keys(site.views.pages).length.should.equal(4);
+        Object.keys(app.views.pages).length.should.equal(4);
       });
 
       outstream.on('end', function () {
