@@ -75,6 +75,7 @@
     "vinyl-fs": "^0.3.7"
   },
   "devDependencies": {
+    "assemble-render": "git://github.com/assemble/assemble-render",
     "config-cache": "^0.3.4",
     "consolidate": "^0.10.0",
     "graceful-fs": "^3.0.2",
