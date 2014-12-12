@@ -11,13 +11,18 @@ var should = require('should');
 var assemble = require('..');
 
 describe('assemble cache', function () {
-  it('when an object is passed to set:', function () {
-    assemble.set({one: 1, two: 2});
-    assemble.get('one').should.eql(1);
-    assemble.get('two').should.eql(2);
+  beforeEach(function () {
+    assemble.init();
   });
 
+
   describe('set() - add:', function () {
+    it('when an object is passed to set:', function () {
+      assemble.set({one: 1, two: 2});
+      assemble.get('one').should.eql(1);
+      assemble.get('two').should.eql(2);
+    });
+
     it('should set a new property with the given value', function () {
       assemble.set('one', 1);
       assemble.get('one').should.eql(1);
@@ -37,7 +42,7 @@ describe('assemble cache', function () {
     });
 
     var obj = {a: {b: {c: 1, d: '', e: null, f: undefined, 'g.h.i': 2}}};
-    assemble.merge(obj);
+    assemble.set(obj);
 
     it('should get immediate properties.', function() {
       assemble.get('a').should.eql(obj.a);
@@ -94,8 +99,8 @@ describe('assemble cache', function () {
       assemble.cache.b.c.d.should.eql(1);
     });
     it('literal backslash should escape period in property name.', function() {
-      assemble.set('e\\.f\\.g', 1);
-      assemble.get('e\\.f\\.g').should.eql(1);
+      assemble.set('e\\.f\\.g', 1, true);
+      assemble.get('e\\.f\\.g', true).should.eql(1);
       assemble.cache['e.f.g'].should.eql(1);
     });
   });
@@ -113,25 +118,24 @@ describe('assemble cache', function () {
     it('nested property should exist.', function() {
       assemble.exists('a.b.c').should.be.true;
     });
-    console.log(assemble.cache)
-    it.only('nested property should exist.', function() {
+    it('nested property should exist.', function() {
       assemble.exists('a.b.d').should.be.true;
     });
-    // it('nested property should exist.', function() {
-    //   assemble.exists('a.b.e').should.be.true;
-    // });
-    // it('nested property should exist.', function() {
-    //   assemble.exists('a.b.f').should.be.true;
-    // });
-    // it('nonexistent property should not exist.', function() {
-    //   assemble.exists('x').should.eql(false);
-    // });
-    // it('nonexistent property should not exist.', function() {
-    //   assemble.exists('a.x').should.eql(false);
-    // });
-    // it('nonexistent property should not exist.', function() {
-    //   assemble.exists('a.b.x').should.eql(false);
-    // });
+    it('nested property should exist.', function() {
+      assemble.exists('a.b.e').should.be.true;
+    });
+    it('nested property should exist.', function() {
+      assemble.exists('a.b.f').should.be.true;
+    });
+    it('nonexistent property should not exist.', function() {
+      assemble.exists('x').should.eql(false);
+    });
+    it('nonexistent property should not exist.', function() {
+      assemble.exists('a.x').should.eql(false);
+    });
+    it('nonexistent property should not exist.', function() {
+      assemble.exists('a.b.x').should.eql(false);
+    });
   });
 
   describe('events:', function () {
@@ -241,26 +245,6 @@ describe('assemble cache', function () {
         });
 
         assemble.omit(['one', 'two', 'thr', 'fou', 'fiv', 'six', 'sev']);
-
-        called.should.be.true;
-      });
-
-
-      it('should emit `merged` when items are merged into the cache', function () {
-        var called = false;
-
-        assemble.on('merge', function (key) {
-          assemble.get(key).should.be.undefined;
-          called = true;
-        });
-
-        assemble.merge({ one: 'a' });
-        assemble.merge({ two: 'c' });
-        assemble.merge({ thr: 'd' });
-        assemble.merge({ fou: 'e' });
-        assemble.merge({ fiv: 'f' });
-        assemble.merge({ six: 'g' });
-        assemble.merge({ sev: 'h' });
 
         called.should.be.true;
       });

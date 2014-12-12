@@ -77,7 +77,7 @@
     "vinyl-fs": "^0.3.7"
   },
   "devDependencies": {
-    "config-cache": "^0.3.4",
+    "config-cache": "^0.5.0",
     "consolidate": "^0.10.0",
     "graceful-fs": "^3.0.2",
     "grade": "^0.1.0",
