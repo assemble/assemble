@@ -43,6 +43,8 @@
   "dependencies": {
     "archy": "^1.0.0",
     "arrayify-compact": "^0.1.0",
+    "assemble-init": "^0.1.0",
+    "assemble-render": "^0.1.0",
     "calculate-assets": "^0.1.2",
     "chalk": "^0.5.1",
     "computed-property": "^0.1.0",
@@ -75,7 +77,6 @@
     "vinyl-fs": "^0.3.7"
   },
   "devDependencies": {
-    "assemble-render": "git://github.com/assemble/assemble-render",
     "config-cache": "^0.3.4",
     "consolidate": "^0.10.0",
     "graceful-fs": "^3.0.2",
