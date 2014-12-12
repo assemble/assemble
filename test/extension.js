@@ -9,7 +9,6 @@
 
 var assert = require('assert');
 var should = require('should');
-
 var extension = require('../lib/extensions');
 
 function inspect (obj) {
@@ -17,11 +16,10 @@ function inspect (obj) {
 }
 
 describe('extension', function () {
-
-  var Assemble = function () {
+  function Assemble() {
     var args = arguments;
-    Assemble.constructorStack.forEach(function (constructor) {
-      constructor.apply(this, args);
+    Assemble.constructorStack.forEach(function (ctor) {
+      ctor.apply(this, args);
     }, this);
   }
 
@@ -33,7 +31,7 @@ describe('extension', function () {
     });
   });
 
-  describe('init(Assemble)', function () {
+  describe('initialize(Assemble)', function () {
     it('should add extension method and default extensions to assemble object', function () {
       var extensions = [
         __dirname + '/fixtures/extensions/foo-class',
@@ -41,7 +39,7 @@ describe('extension', function () {
         __dirname + '/fixtures/extensions/foo-object'
       ];
       extension.extend(Assemble);
-      extension.init(Assemble, extensions);
+      extension.initialize(Assemble, extensions);
       var assemble = new Assemble();
 
       Assemble.prototype.should.have.property('fooClass');

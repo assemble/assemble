@@ -10,7 +10,6 @@
 var should = require('should');
 var assemble = require('..');
 
-
 describe('assemble run', function () {
   var site = null;
   beforeEach(function() {

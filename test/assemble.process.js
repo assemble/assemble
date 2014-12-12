@@ -11,8 +11,7 @@ var assert = require('assert');
 var should = require('should');
 var assemble = require('..');
 
-
-describe('config process', function () {
+describe('assemble process', function () {
   var site = null;
   beforeEach(function() {
     site = assemble.createInst();

@@ -10,9 +10,7 @@
 
 // var outpath = join(__dirname, './out-fixtures');
 
-
 // describe('assemble route', function() {
-
 //   describe('route()', function() {
 //     beforeEach(function (done) {
 //       site.init();
