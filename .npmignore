@@ -1,0 +1,31 @@
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.rar
+*.sublime-*
+npm-debug.log
+.DS*
+
+# Always-ignore dirs
+node_modules
+tmp
+temp
+vendor
+
+# npmignore
+.editorconfig
+.gitattributes
+.gitignore
+.jshintrc
+.verb.md
+assemblefile.js
+benchmark
+CONTRIBUTING.md
+docs
+test
+verbfile.js
