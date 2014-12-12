@@ -20,7 +20,7 @@ var actual = __dirname + '/partials-actual';
 describe('assemble partials', function () {
   var site = null;
   beforeEach(function (done) {
-    site = assemble.createInst();
+    site = assemble.init();
     rimraf(actual, done);
   });
   afterEach(function (done) {

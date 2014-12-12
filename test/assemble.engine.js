@@ -17,7 +17,7 @@ describe('assemble engines', function () {
 
     var site = null;
     beforeEach(function () {
-      site = assemble.createInst();
+      site = assemble.init();
     });
 
     it('should set an engine with the given extension', function () {

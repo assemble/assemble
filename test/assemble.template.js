@@ -12,10 +12,10 @@ var assemble = require('..');
 
 
 describe('assemble init', function () {
-  describe('.createInst()', function () {
+  describe('.init()', function () {
     var site = null;
     beforeEach(function () {
-      site = assemble.createInst();
+      site = assemble.init();
     });
 
     it('should create new template type methods on Assemble.prototype.', function () {

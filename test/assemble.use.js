@@ -19,7 +19,7 @@ describe('assemble use', function () {
   describe('assemble.use()', function () {
     var site = null;
     beforeEach(function (done) {
-      site = assemble.createInst();
+      site = assemble.init();
       rimraf(outpath, done);
     });
     afterEach(function (done) {

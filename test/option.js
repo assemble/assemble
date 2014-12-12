@@ -15,7 +15,7 @@ describe('options', function () {
   describe('.options()', function () {
     var site = null;
     beforeEach(function () {
-      site = assemble.createInst();
+      site = assemble.init();
     })
     it('should set an option', function () {
       site.option('foo', 'bar');

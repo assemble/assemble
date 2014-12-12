@@ -15,7 +15,7 @@ var assemble = require('..');
 describe('assemble options', function () {
   var site = null;
   beforeEach(function() {
-    site = assemble.createInst();
+    site = assemble.init();
   });
 
   describe('.option()', function () {

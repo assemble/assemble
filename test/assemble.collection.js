@@ -15,7 +15,7 @@ var app;
 
 describe('assemble collection', function () {
   beforeEach(function () {
-    app = assemble.createInst();
+    app = assemble.init();
   });
 
   describe('.collection()', function () {

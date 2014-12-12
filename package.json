@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "archy": "^1.0.0",
+    "array-slice": "^0.2.2",
     "assemble-init": "^0.1.0",
     "assemble-render": "^0.1.0",
     "calculate-assets": "^0.1.2",

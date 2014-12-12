@@ -15,7 +15,7 @@ describe('data', function () {
   describe('.data()', function () {
     var site = null;
     beforeEach(function () {
-      site = assemble.createInst();
+      site = assemble.init();
     });
     it('should add data', function () {
       site.data({ foo: 'bar' });

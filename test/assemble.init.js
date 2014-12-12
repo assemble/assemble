@@ -15,7 +15,7 @@ describe('assemble init', function () {
 
   var site = null;
   beforeEach(function() {
-    site = assemble.createInst();
+    site = assemble.init();
   });
 
   describe('.init()', function () {

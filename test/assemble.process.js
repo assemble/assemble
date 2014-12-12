@@ -14,7 +14,7 @@ var assemble = require('..');
 describe('assemble process', function () {
   var site = null;
   beforeEach(function() {
-    site = assemble.createInst();
+    site = assemble.init();
   });
 
   describe('.process()', function () {

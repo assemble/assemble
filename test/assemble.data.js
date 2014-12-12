@@ -13,7 +13,7 @@ var assemble = require('..');
 describe('assemble data', function() {
   var site = null;
   beforeEach(function () {
-    site = assemble.createInst();
+    site = assemble.init();
   });
 
   describe('.data()', function() {

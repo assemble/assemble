@@ -19,7 +19,7 @@ var actual = __dirname + '/layouts-actual';
 
 describe('assemble partials-layouts', function () {
   beforeEach(function (done) {
-    site = new assemble.createInst();
+    site = new assemble.init();
     rimraf(actual, done);
   });
   afterEach(function (done) {

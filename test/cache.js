@@ -61,7 +61,7 @@ describe('assemble cache', function () {
     it('should return values.', function() {
       (typeof assemble.get('a.b.f')).should.be.undefined;
     });
-    xit('literal backslash should escape period in property name.', function() {
+    it('literal backslash should escape period in property name.', function() {
       assemble.get('a.b.g\\.h\\.i').should.eql(2);
     });
     it('should just return existing properties.', function() {
@@ -69,9 +69,6 @@ describe('assemble cache', function () {
     });
     it('should create immediate properties.', function() {
       assemble.get('b', true).should.eql(assemble.cache.b);
-    });
-    xit('should create nested properties.', function() {
-      assemble.get('c.d.e', true).should.eql(assemble.cache.c.d.e);
     });
   });
 
@@ -96,7 +93,7 @@ describe('assemble cache', function () {
     it('should set property value.', function() {
       assemble.cache.b.c.d.should.eql(1);
     });
-    xit('literal backslash should escape period in property name.', function() {
+    it('literal backslash should escape period in property name.', function() {
       assemble.set('e\\.f\\.g', 1);
       assemble.get('e\\.f\\.g').should.eql(1);
       assemble.cache['e.f.g'].should.eql(1);
@@ -105,38 +102,36 @@ describe('assemble cache', function () {
 
   describe('exists():', function () {
     var obj = {a: {b: {c: 1, d: '', e: null, f: undefined, 'g.h.i': 2}}};
-    assemble.merge(obj);
+    assemble.set(obj);
 
     it('immediate property should exist.', function() {
-      assemble.exists('a').should.be.ok;
+      assemble.exists('a').should.be.true;
     });
     it('nested property should exist.', function() {
-      assemble.exists('a.b').should.be.ok;
+      assemble.exists('a.b').should.be.true;
     });
     it('nested property should exist.', function() {
-      assemble.exists('a.b.c').should.be.ok;
+      assemble.exists('a.b.c').should.be.true;
     });
-    xit('nested property should exist.', function() {
-      assemble.exists('a.b.d').should.be.ok;
+    console.log(assemble.cache)
+    it.only('nested property should exist.', function() {
+      assemble.exists('a.b.d').should.be.true;
     });
-    xit('nested property should exist.', function() {
-      assemble.exists('a.b.e').should.be.ok;
-    });
-    xit('nested property should exist.', function() {
-      assemble.exists('a.b.f').should.be.ok;
-    });
-    it('literal backslash should escape period in property name.', function() {
-      assemble.exists('a.b.g\\.h\\.i').should.be.ok;
-    });
-    it('nonexistent property should not exist.', function() {
-      assemble.exists('x').should.eql(false);
-    });
-    it('nonexistent property should not exist.', function() {
-      assemble.exists('a.x').should.eql(false);
-    });
-    it('nonexistent property should not exist.', function() {
-      assemble.exists('a.b.x').should.eql(false);
-    });
+    // it('nested property should exist.', function() {
+    //   assemble.exists('a.b.e').should.be.true;
+    // });
+    // it('nested property should exist.', function() {
+    //   assemble.exists('a.b.f').should.be.true;
+    // });
+    // it('nonexistent property should not exist.', function() {
+    //   assemble.exists('x').should.eql(false);
+    // });
+    // it('nonexistent property should not exist.', function() {
+    //   assemble.exists('a.x').should.eql(false);
+    // });
+    // it('nonexistent property should not exist.', function() {
+    //   assemble.exists('a.b.x').should.eql(false);
+    // });
   });
 
   describe('events:', function () {
@@ -212,47 +207,6 @@ describe('assemble cache', function () {
         assemble.set('two', 'd');
 
         called.should.be.true;
-      });
-
-      it('should emit `set`', function () {
-        var called = false;
-
-        assemble.on('set', function (key, value) {
-          called = true;
-          value.should.eql('baz');
-        });
-
-        assemble.set('foo', 'baz');
-        called.should.be.true;
-      });
-
-      xit('should emit `enabled` when a value is enabled', function () {
-        var called = false;
-
-        assemble.once('enable', function (key, value) {
-          called = true;
-          assemble.enable('hidden');
-        });
-
-        assemble.enable('option');
-        assemble.enabled('hidden').should.be.true;
-        called.should.be.true;
-      });
-
-      xit('should emit `disable` when items on the cache are disabled.', function () {
-        var called = false;
-
-        assemble.enable('foo');
-        assemble.enabled('foo').should.be.true;
-
-        assemble.once('disable', function (key, value) {
-          called = true;
-        });
-
-        assemble.disable('foo');
-        called.should.be.true;
-
-        assemble.enabled('foo').should.be.false;
       });
 
       it('should emit `clear` when an item is removed from the cache', function () {
