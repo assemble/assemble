@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "archy": "^1.0.0",
+    "array-slice": "^0.2.2",
     "arrayify-compact": "^0.1.0",
     "calculate-assets": "^0.1.2",
     "chalk": "^0.5.1",
@@ -91,6 +92,7 @@
     "q": "^1.0.1",
     "rimraf": "^2.2.8",
     "should": "^4.0.4",
+    "verb": "^0.3.8",
     "vinyl": "^0.4.6"
   },
   "keywords": [
