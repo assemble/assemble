@@ -36,7 +36,6 @@ describe('assemble.files', function() {
     it('should get files from the task specific collection', function (done) {
       inst.task('test', function () {
         var stream = inst.src('test/fixtures/templates/partials/*.hbs');
-        inst.session.bindEmitter(stream);
         stream.on('end', function () {
             Object.keys(inst.views['__task__tests']).length.should.eql(3);
             Object.keys(inst.files).length.should.eql(3);
@@ -53,7 +52,6 @@ describe('assemble.files', function() {
     it('should get files for the correct task', function (done) {
       inst.task('test-a', function () {
         var stream = inst.src('test/fixtures/templates/partials/*.hbs');
-        inst.session.bindEmitter(stream);
         stream.on('end', function () {
             Object.keys(inst.views['__task__test-as']).length.should.eql(3);
             Object.keys(inst.files).length.should.eql(3);
@@ -68,7 +66,6 @@ describe('assemble.files', function() {
 
       inst.task('test-b', function () {
         var stream = inst.src('test/fixtures/templates/partials/*.hbs');
-        inst.session.bindEmitter(stream);
         stream.on('end', function () {
             Object.keys(inst.views['__task__test-bs']).length.should.eql(3);
             Object.keys(inst.files).length.should.eql(3);
