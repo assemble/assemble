@@ -61,13 +61,12 @@ describe('assemble cache', function () {
     });
     it('should return values.', function() {
       (typeof assemble.get('a.b.e')).should.be.an.object;
-      // assemble.get('a.b.e').should.equal.null;
     });
     it('should return values.', function() {
       (typeof assemble.get('a.b.f')).should.be.undefined;
     });
     it('literal backslash should escape period in property name.', function() {
-      assemble.get('a.b.g\\.h\\.i').should.eql(2);
+      assemble.get('a.b.g\\.h\\.i', true).should.eql(2);
     });
     it('should just return existing properties.', function() {
       assemble.get('a', true).should.eql(assemble.cache.a);
