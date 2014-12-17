@@ -44,6 +44,7 @@
     "archy": "^1.0.0",
     "array-slice": "^0.2.2",
     "arrayify-compact": "^0.1.0",
+    "assemble-utils": "^0.2.0",
     "calculate-assets": "^0.1.2",
     "chalk": "^0.5.1",
     "computed-property": "^0.1.0",
