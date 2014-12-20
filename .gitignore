@@ -10,9 +10,10 @@ lib-cov
 *.sublime-*
 npm-debug.log
 .DS*
+TODO.md
 
 # Always-ignore dirs
-node_modules
-tmp
-temp
-vendor
+node_modules/
+tmp/
+temp/
+vendor/
