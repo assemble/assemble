@@ -37,12 +37,12 @@ describe('assemble.files', function() {
       inst.task('test', function () {
         var stream = inst.src('test/fixtures/templates/partials/*.hbs');
         stream.on('end', function () {
-            Object.keys(inst.views['__task__tests']).length.should.eql(3);
-            Object.keys(inst.files).length.should.eql(3);
-            inst.views['__task__tests'].should.have.properties(['a', 'b', 'c']);
-            inst.files.should.have.properties(['a', 'b', 'c']);
-            inst.files.should.eql(inst.views['__task__tests']);
-          });
+          Object.keys(inst.views['__task__tests']).length.should.eql(3);
+          Object.keys(inst.files).length.should.eql(3);
+          inst.views['__task__tests'].should.have.properties(['a', 'b', 'c']);
+          inst.files.should.have.properties(['a', 'b', 'c']);
+          inst.files.should.eql(inst.views['__task__tests']);
+        });
         return stream;
       });
       inst.task('default', ['test'], function () { done(); });
@@ -53,28 +53,28 @@ describe('assemble.files', function() {
       inst.task('test-a', function () {
         var stream = inst.src('test/fixtures/templates/partials/*.hbs');
         stream.on('end', function () {
-            Object.keys(inst.views['__task__test-as']).length.should.eql(3);
-            Object.keys(inst.files).length.should.eql(3);
-            inst.views['__task__test-as'].should.have.properties(['a', 'b', 'c']);
-            inst.files.should.have.properties(['a', 'b', 'c']);
-            inst.files.should.eql(inst.views['__task__test-as']);
-            inst.views['__task__test-as'].should.not.eql(inst.views['__task__test-bs']);
-            inst.files.should.not.eql(inst.views['__task__test-bs']);
-          });
+          Object.keys(inst.views['__task__test-as']).length.should.eql(3);
+          Object.keys(inst.files).length.should.eql(3);
+          inst.views['__task__test-as'].should.have.properties(['a', 'b', 'c']);
+          inst.files.should.have.properties(['a', 'b', 'c']);
+          inst.files.should.eql(inst.views['__task__test-as']);
+          inst.views['__task__test-as'].should.not.eql(inst.views['__task__test-bs']);
+          inst.files.should.not.eql(inst.views['__task__test-bs']);
+        });
         return stream;
       });
 
       inst.task('test-b', function () {
         var stream = inst.src('test/fixtures/templates/partials/*.hbs');
         stream.on('end', function () {
-            Object.keys(inst.views['__task__test-bs']).length.should.eql(3);
-            Object.keys(inst.files).length.should.eql(3);
-            inst.views['__task__test-bs'].should.have.properties(['a', 'b', 'c']);
-            inst.files.should.have.properties(['a', 'b', 'c']);
-            inst.files.should.eql(inst.views['__task__test-bs']);
-            inst.views['__task__test-as'].should.not.eql(inst.views['__task__test-bs']);
-            inst.files.should.not.eql(inst.views['__task__test-as']);
-          });
+          Object.keys(inst.views['__task__test-bs']).length.should.eql(3);
+          Object.keys(inst.files).length.should.eql(3);
+          inst.views['__task__test-bs'].should.have.properties(['a', 'b', 'c']);
+          inst.files.should.have.properties(['a', 'b', 'c']);
+          inst.files.should.eql(inst.views['__task__test-bs']);
+          inst.views['__task__test-as'].should.not.eql(inst.views['__task__test-bs']);
+          inst.files.should.not.eql(inst.views['__task__test-as']);
+        });
         return stream;
       });
 
