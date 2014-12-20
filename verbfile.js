@@ -4,8 +4,6 @@ var verb = require('verb');
 var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
 
-verb.data('package.json');
-
 verb.task('mocha', ['jshint'], function () {
   verb.src('test/*.js')
     .pipe(mocha({reporter: 'spec'}));
@@ -22,4 +20,5 @@ verb.task('readme', function () {
     .pipe(verb.dest('./'));
 });
 
+verb.task('test', ['mocha', 'jshint']);
 verb.task('default', ['readme']);
