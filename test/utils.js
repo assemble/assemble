@@ -19,13 +19,4 @@ describe('utils', function() {
       utils.formatExt('.hbs').should.equal('.hbs');
     });
   });
-
-  describe('.stripExtDot()', function () {
-    it('should remove the . from the extension', function () {
-      utils.stripExtDot('.hbs').should.equal('hbs');
-    });
-    it('should keep the extension', function () {
-      utils.stripExtDot('hbs').should.equal('hbs');
-    });
-  });
 });
