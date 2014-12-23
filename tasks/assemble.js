@@ -338,6 +338,15 @@ module.exports = function(grunt) {
                 // if there is a pages property, build the pages contained therein.
                 if(assemble.options.pages) {
                   _.forOwn(assemble.options.pages, function(fileInfo, filename) {
+
+                    // Quick and dirty check to ensure we only build these pages once. Prevents multiplication of assemble.task.files by assemble.options.pages as highlighted in https://github.com/assemble/assemble/issues/611
+                    // Ideally would un-nest this for the main assemble.task.files loop but would require more of a refactor
+                    if(fileInfo.built === true) {
+                      return;
+                    } else {
+                      fileInfo.built = true;
+                    }
+
                     if(!filename || filename.length === 0) {
                       grunt.warn('Pages need a filename.');
                       buildDone();
