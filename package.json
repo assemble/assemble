@@ -63,7 +63,7 @@
     "semver": "^4.1.1",
     "sessionify": "^0.1.0",
     "template": "^0.6.2",
-    "template-init": "^0.2.1",
+    "template-init": "^0.3.0",
     "template-render": "^0.2.2",
     "template-utils": "^0.3.0",
     "through2": "^0.6.3",
