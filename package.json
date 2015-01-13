@@ -45,7 +45,6 @@
     "chalk": "^0.5.1",
     "computed-property": "^0.1.2",
     "engine-assemble": "^0.2.2",
-    "event-stream": "^3.1.7",
     "extend-shallow": "^0.2.0",
     "gulp-drafts": "^0.1.0",
     "gulp-util": "^3.0.1",
@@ -62,6 +61,7 @@
     "rewrite-ext": "^0.1.0",
     "semver": "^4.1.1",
     "sessionify": "^0.1.0",
+    "stream-splice": "^1.0.8",
     "template": "^0.6.2",
     "template-init": "^0.2.1",
     "template-render": "^0.2.2",
@@ -71,6 +71,7 @@
     "vinyl-fs": "^0.3.13"
   },
   "devDependencies": {
+    "concat-stream": "^1.4.7",
     "consolidate": "^0.10.0",
     "graceful-fs": "^3.0.2",
     "gray-matter": "^1.0.2",

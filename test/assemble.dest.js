@@ -4,6 +4,7 @@ var join = require('path').join;
 var fs = require('graceful-fs');
 var rimraf = require('rimraf');
 var should = require('should');
+var through2 = require("through2");
 require('mocha');
 
 var assemble = require('..');
@@ -143,25 +144,30 @@ describe('assemble output stream', function() {
         // app.disable('render plugin');
         var instream = app.src(join(__dirname, 'fixtures/copy/*.txt'));
         var outstream = app.dest(outpath, {ext: '.txt'});
-        instream.pipe(outstream);
+        instream
+          .pipe(outstream)
+          .pipe(through2.obj(function(file, enc, cb) {
 
-        outstream.on('error', done);
-        outstream.on('data', function (file) {
-          // data should be re-emitted correctly
-          should.exist(file);
-          should.exist(file.path);
-          should.exist(file.contents);
-          join(file.path, '').should.equal(join(outpath, 'example.txt'));
-          String(file.contents).should.equal('this is a test');
-        });
-        outstream.on('end', function () {
-          fs.readFile(join(outpath, 'example.txt'), function (err, contents) {
-            should.not.exist(err);
-            should.exist(contents);
-            String(contents).should.equal('this is a test');
-            done();
-          });
-        });
+            should.exist(file);
+            should.exist(file.path);
+            should.exist(file.contents);
+            join(file.path, '').should.equal(join(outpath, 'example.txt'));
+            String(file.contents).should.equal('this is a test');
+
+          
+          }, function() {
+
+            fs.readFile(join(outpath, 'example.txt'), function (err, contents) {
+              should.not.exist(err);
+              should.exist(contents);
+              String(contents).should.equal('this is a test');
+              done();
+            });
+
+          
+          }));
+        
+        
       });
 
       it('should return an output stream that does not write non-read files', function (done) {
