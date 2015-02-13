@@ -1,5 +1,3 @@
-'use strict';
-
 var verb = require('verb');
 var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
@@ -16,7 +14,7 @@ verb.task('jshint', function() {
 });
 
 verb.task('readme', function () {
-  verb.src('.verb*.md')
+  verb.src('.verb.md')
     .pipe(verb.dest('./'));
 });
 
