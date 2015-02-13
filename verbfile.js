@@ -18,5 +18,10 @@ verb.task('readme', function () {
     .pipe(verb.dest('./'));
 });
 
+verb.task('docs', function () {
+  verb.src('docs/_verb/*.md')
+    .pipe(verb.dest('docs'));
+});
+
 verb.task('test', ['mocha', 'jshint']);
-verb.task('default', ['readme']);
+verb.task('default', ['readme', 'docs']);
