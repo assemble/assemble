@@ -1,7 +1,7 @@
 /**
  * assemble <https://github.com/assemble/assemble>
  *
- * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
+ * Copyright (c) 2014-2015, Jon Schlinkert, Brian Woodward.
  * Licensed under the MIT License (MIT).
  */
 
@@ -12,7 +12,6 @@ var should = require('should');
 var assemble = require('..');
 
 describe('assemble init', function () {
-
   var site = null;
   beforeEach(function() {
     site = assemble.init();

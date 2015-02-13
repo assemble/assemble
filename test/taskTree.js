@@ -2,7 +2,6 @@
 
 var taskTree = require('../lib/taskTree');
 var should = require('should');
-
 require('mocha');
 
 describe('taskTree()', function() {

@@ -1,7 +1,7 @@
 /**
  * assemble <https://github.com/assemble/assemble>
  *
- * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
+ * Copyright (c) 2014-2015, Jon Schlinkert, Brian Woodward.
  * Licensed under the MIT License (MIT).
  */
 
@@ -27,7 +27,7 @@ describe('assemble input stream', function() {
         should.exist(stream.on);
         done();
       });
-      it('should return a input stream from a flat glob', function (done) {
+      it('should return an input stream from a flat glob', function (done) {
         var stream = site.src(join(__dirname, './fixtures/*.coffee'));
         stream.on('error', done);
         stream.on('data', function (file) {
@@ -42,7 +42,7 @@ describe('assemble input stream', function() {
         });
       });
 
-      it('should return a input stream for multiple globs', function (done) {
+      it('should return an input stream for multiple globs', function (done) {
         var globArray = [
           join(__dirname, './fixtures/generic/run.dmc'),
           join(__dirname, './fixtures/generic/test.dmc')
@@ -64,7 +64,7 @@ describe('assemble input stream', function() {
         });
       });
 
-      it('should return a input stream for multiple globs, with negation', function (done) {
+      it('should return an input stream for multiple globs, with negation', function (done) {
         var expectedPath = join(__dirname, './fixtures/generic/run.dmc');
         var globArray = [
           join(__dirname, './fixtures/generic/*.dmc'),
@@ -86,7 +86,7 @@ describe('assemble input stream', function() {
         });
       });
 
-      it('should return a input stream with no contents when read is false', function (done) {
+      it('should return an input stream with no contents when read is false', function (done) {
         var stream = site.src(join(__dirname, './fixtures/*.coffee'), {read: false});
         stream.on('error', done);
         stream.on('data', function (file) {
@@ -99,7 +99,7 @@ describe('assemble input stream', function() {
           done();
         });
       });
-      it('should return a input stream with contents as stream when buffer is false', function (done) {
+      it('should return an input stream with contents as stream when buffer is false', function (done) {
         var stream = site.src(join(__dirname, './fixtures/*.coffee'), {buffer: false});
         stream.on('error', done);
         stream.on('data', function (file) {
@@ -117,7 +117,7 @@ describe('assemble input stream', function() {
           join(file.path, '').should.equal(join(__dirname, './fixtures/test.coffee'));
         });
       });
-      it('should return a input stream from a deep glob', function (done) {
+      it('should return an input stream from a deep glob', function (done) {
         var stream = site.src(join(__dirname, './fixtures/**/*.jade'));
         stream.on('error', done);
         stream.on('data', function (file) {
@@ -131,7 +131,7 @@ describe('assemble input stream', function() {
           done();
         });
       });
-      it('should return a input stream from a deeper glob', function (done) {
+      it('should return an input stream from a deeper glob', function (done) {
         var stream = site.src(join(__dirname, './fixtures/**/*.dmc'));
         var a = 0;
         stream.on('error', done);
@@ -175,7 +175,7 @@ describe('assemble input stream', function() {
         should.exist(stream.on);
         done();
       });
-      it('should return a input stream from a flat glob', function (done) {
+      it('should return an input stream from a flat glob', function (done) {
         var stream = site.src(join(__dirname, './fixtures/*.coffee'));
         stream.on('error', done);
         stream.on('data', function (file) {
@@ -190,7 +190,7 @@ describe('assemble input stream', function() {
         });
       });
 
-      it('should return a input stream for multiple globs', function (done) {
+      it('should return an input stream for multiple globs', function (done) {
         var globArray = [
           join(__dirname, './fixtures/generic/run.dmc'),
           join(__dirname, './fixtures/generic/test.dmc')
@@ -212,7 +212,7 @@ describe('assemble input stream', function() {
         });
       });
 
-      it('should return a input stream for multiple globs, with negation', function (done) {
+      it('should return an input stream for multiple globs, with negation', function (done) {
         var expectedPath = join(__dirname, './fixtures/generic/run.dmc');
         var globArray = [
           join(__dirname, './fixtures/generic/*.dmc'),
@@ -234,7 +234,7 @@ describe('assemble input stream', function() {
         });
       });
 
-      it('should return a input stream with no contents when read is false', function (done) {
+      it('should return an input stream with no contents when read is false', function (done) {
         var stream = site.src(join(__dirname, './fixtures/*.coffee'), {read: false});
         stream.on('error', done);
         stream.on('data', function (file) {
@@ -247,7 +247,8 @@ describe('assemble input stream', function() {
           done();
         });
       });
-      xit('should return a throw an error when buffer is false', function (done) {
+
+      it.skip('should return a throw an error when buffer is false', function (done) {
         var stream = site.src(join(__dirname, './fixtures/*.coffee'), {buffer: false});
         stream.on('error', function () {
           done();
@@ -256,7 +257,8 @@ describe('assemble input stream', function() {
           done(new Error('should have thrown an error'));
         });
       });
-      it('should return a input stream from a deep glob', function (done) {
+
+      it('should return an input stream from a deep glob', function (done) {
         var stream = site.src(join(__dirname, './fixtures/**/*.jade'));
         stream.on('error', done);
         stream.on('data', function (file) {
@@ -270,7 +272,7 @@ describe('assemble input stream', function() {
           done();
         });
       });
-      it('should return a input stream from a deeper glob', function (done) {
+      it('should return an input stream from a deeper glob', function (done) {
         var stream = site.src(join(__dirname, './fixtures/**/*.dmc'));
         var a = 0;
         stream.on('error', done);

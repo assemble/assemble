@@ -1,7 +1,7 @@
 /**
  * assemble <https://github.com/assemble/assemble>
  *
- * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
+ * Copyright (c) 2014-2015, Jon Schlinkert, Brian Woodward.
  * Licensed under the MIT License (MIT).
  */
 
@@ -19,7 +19,7 @@ var actual = __dirname + '/layouts-actual';
 
 describe('assemble partials-layouts', function () {
   beforeEach(function (done) {
-    site = new assemble.init();
+    site = assemble.init();
     rimraf(actual, done);
   });
   afterEach(function (done) {

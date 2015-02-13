@@ -1,7 +1,7 @@
 /**
  * assemble <https://github.com/assemble/assemble>
  *
- * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
+ * Copyright (c) 2014-2015, Jon Schlinkert, Brian Woodward.
  * Licensed under the MIT License (MIT).
  */
 
@@ -11,11 +11,6 @@ var should = require('should');
 var assemble = require('..');
 
 describe('assemble cache', function () {
-  beforeEach(function () {
-    assemble.init();
-  });
-
-
   describe('set() - add:', function () {
     it('when an object is passed to set:', function () {
       assemble.set({one: 1, two: 2});
@@ -51,7 +46,7 @@ describe('assemble cache', function () {
       assemble.get('a.b').should.eql(obj.a.b);
     });
     it('should return undefined for nonexistent properties.', function() {
-      (typeof assemble.get('a.x')).should.be.undefined;
+      (typeof assemble.get('a.x') === 'undefined').should.be.true;
     });
     it('should return values.', function() {
       assemble.get('a.b.c').should.eql(1);
@@ -63,7 +58,7 @@ describe('assemble cache', function () {
       (typeof assemble.get('a.b.e')).should.be.an.object;
     });
     it('should return values.', function() {
-      (typeof assemble.get('a.b.f')).should.be.undefined;
+      (typeof assemble.get('a.b.f') === 'undefined').should.be.true;
     });
     it('literal backslash should escape period in property name.', function() {
       assemble.get('a.b.g\\.h\\.i', true).should.eql(2);
@@ -208,42 +203,6 @@ describe('assemble cache', function () {
         assemble.set('two', 'c');
         assemble.set('one', 'b');
         assemble.set('two', 'd');
-
-        called.should.be.true;
-      });
-
-      it('should emit `clear` when an item is removed from the cache', function () {
-        var called = false;
-        assemble.set('one', 'a');
-        assemble.set('two', 'c');
-
-        assemble.on('clear', function (key, value) {
-          called = true;
-          assemble.get(key).should.be.undefined;
-        });
-
-        assemble.clear('one');
-        assemble.clear('two');
-
-        called.should.be.true;
-      });
-
-      it('should emit `omit` when items are omitted from the cache', function () {
-        var called = false;
-        assemble.set('one', 'a');
-        assemble.set('two', 'c');
-        assemble.set('thr', 'd');
-        assemble.set('fou', 'e');
-        assemble.set('fiv', 'f');
-        assemble.set('six', 'g');
-        assemble.set('sev', 'h');
-
-        assemble.on('omit', function (key) {
-          assemble.get(key).should.be.undefined;
-          called = true;
-        });
-
-        assemble.omit(['one', 'two', 'thr', 'fou', 'fiv', 'six', 'sev']);
 
         called.should.be.true;
       });

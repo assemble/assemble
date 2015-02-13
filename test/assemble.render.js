@@ -1,7 +1,7 @@
 /**
  * assemble <https://github.com/assemble/assemble>
  *
- * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
+ * Copyright (c) 2014-2015, Jon Schlinkert, Brian Woodward.
  * Licensed under the MIT License (MIT).
  */
 
@@ -38,11 +38,11 @@ describe('assemble render', function () {
       site.layouts(['test/fixtures/layouts/*.hbs']);
       site.data({
         posts: [
-          { author: 'Brian Woodward', timestamp: '2014-11-01', summary: 'This is just a summary. First', content: "Here's the real content. One" },
-          { author: 'Brian Woodward', timestamp: '2014-11-02', summary: 'This is just a summary. Second', content: "Here's the real content. Two" },
-          { author: 'Jon Schlinkert', timestamp: '2014-11-03', summary: 'This is just a summary. Third', content: "Here's the real content. Three" },
-          { author: 'Jon Schlinkert', timestamp: '2014-11-04', summary: 'This is just a summary. Fourth', content: "Here's the real content. Four" },
-          { author: 'Brian Woodward', timestamp: '2014-11-05', summary: 'This is just a summary. Fifth', content: "Here's the real content. Five" },
+          { author: 'Brian Woodward', timestamp: '2014-11-01', summary: 'This is just a summary. First', content: 'Here\'s the real content. One' },
+          { author: 'Brian Woodward', timestamp: '2014-11-02', summary: 'This is just a summary. Second', content: 'Here\'s the real content. Two' },
+          { author: 'Jon Schlinkert', timestamp: '2014-11-03', summary: 'This is just a summary. Third', content: 'Here\'s the real content. Three' },
+          { author: 'Jon Schlinkert', timestamp: '2014-11-04', summary: 'This is just a summary. Fourth', content: 'Here\'s the real content. Four' },
+          { author: 'Brian Woodward', timestamp: '2014-11-05', summary: 'This is just a summary. Fifth', content: 'Here\'s the real content. Five' },
         ]
       });
 

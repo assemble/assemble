@@ -1,14 +1,14 @@
 /**
  * assemble <https://github.com/assemble/assemble>
  *
- * Copyright (c) 2014, Jon Schlinkert, Brian Woodward, contributors.
+ * Copyright (c) 2014-2015, Jon Schlinkert, Brian Woodward.
  * Licensed under the MIT License (MIT).
  */
 
 'use strict';
 
-var should = require('should');
 var matter = require('gray-matter');
+require('should');
 
 
 describe('Read from strings:', function () {

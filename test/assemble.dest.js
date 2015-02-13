@@ -140,7 +140,7 @@ describe('.dest()', function() {
       });
 
       it('should return an output stream that writes files', function (done) {
-        // app.disable('render plugin');
+        app.disable('render plugin');
         var instream = app.src(join(__dirname, 'fixtures/copy/*.txt'));
         var outstream = app.dest(outpath, {ext: '.txt'});
         instream.pipe(outstream);
