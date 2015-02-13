@@ -9,7 +9,6 @@
   "funcscope": true,
   "immed": true,
   "indent": 2,
-  "latedef": true,
   "laxcomma": false,
   "maxcomplexity": 7,
   "maxdepth": 3,
