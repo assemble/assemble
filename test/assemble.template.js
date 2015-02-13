@@ -43,7 +43,7 @@ describe('assemble init', function () {
       });
 
       should.exist(site.views.doowbs.brian);
-      site.views.doowbs.brian.content.should.equal('Hi this is {{first}} {{last}}');
+      site.views.doowbs.brian.content.should.equal('\nHi this is {{first}} {{last}}');
       // site.views.doowbs.brian.orig.should.equal('---\nlast: Woodward\n---\nHi this is {{first}} {{last}}');
       should.exist(site.views.doowbs.brian.data.first);
       should.exist(site.views.doowbs.brian.data.last);
@@ -54,7 +54,7 @@ describe('assemble init', function () {
       site.jon({path: 'jon', data: {first: 'Jon'}, options: {ext: '.hbs'}, content: '---\nlast: Schlinkert\n---\nHi this is {{first}} {{last}}'});
 
       should.exist(site.views.jons.jon);
-      site.views.jons.jon.content.should.equal('Hi this is {{first}} {{last}}');
+      site.views.jons.jon.content.should.equal('\nHi this is {{first}} {{last}}');
       // site.views.jons.jon.orig.should.equal('---\nlast: Schlinkert\n---\nHi this is {{first}} {{last}}');
       should.exist(site.views.jons.jon.data.first);
       should.exist(site.views.jons.jon.data.last);
