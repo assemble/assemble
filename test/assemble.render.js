@@ -10,7 +10,6 @@
 var path = require('path');
 var should = require('should');
 var rimraf = require('rimraf');
-var tap = require('gulp-tap');
 
 var assemble = require('..');
 var actual = __dirname + '/render-actual';
@@ -47,11 +46,6 @@ describe('assemble render', function () {
       });
 
       site.src('test/fixtures/pages/*.hbs')
-        // .pipe(tap(function (file) {
-        //   console.log('tap-file', file.contents.toString());
-        //   console.log('tap-hasLayout', file.options.layoutApplied);
-        //   console.log();
-        // }))
         .pipe(site.dest(actual))
         .on('data', function (file) {
           file.options.layoutApplied.should.be.true;

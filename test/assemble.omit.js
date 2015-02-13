@@ -30,8 +30,8 @@ describe('assemble omit', function () {
       site.omit('a');
 
       // property should not be on the cache
-      assert(site.get('a') == undefined);
-      assert(site.get('b') != undefined);
+      assert.equal(typeof site.get('a'), 'undefined');
+      assert.equal(site.get('b'), 'c');
     });
 
     it('should omit an array of values from the cache', function () {

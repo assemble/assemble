@@ -7,15 +7,14 @@
 
 'use strict';
 
-var assert = require('assert');
 var should = require('should');
-var assemble = require('..');
-var app;
+var Assemble = require('..');
+var assemble;
 // var collections = require('../lib/plugins/collection');
 
 describe('assemble collection', function () {
   beforeEach(function () {
-    app = assemble.init();
+    assemble = Assemble.init();
   });
 
   describe('.collection()', function () {

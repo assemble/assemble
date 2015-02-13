@@ -181,6 +181,6 @@ describe('assemble tasks', function() {
       a.should.equal(2);
       assemble.reset();
       done();
-    })
+    });
   });
 });

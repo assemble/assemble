@@ -7,10 +7,7 @@
 
 'use strict';
 
-var fs = require('graceful-fs');
-var path = require('path');
 var should = require('should');
-var File = require('vinyl');
 var rimraf = require('rimraf');
 var assemble = require('..');
 

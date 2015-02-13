@@ -7,6 +7,7 @@
 
 'use strict';
 
+var assert = require('assert');
 var should = require('should');
 var assemble = require('..');
 
@@ -46,7 +47,7 @@ describe('assemble cache', function () {
       assemble.get('a.b').should.eql(obj.a.b);
     });
     it('should return undefined for nonexistent properties.', function() {
-      (typeof assemble.get('a.x') === 'undefined').should.be.true;
+      assert.equal(typeof assemble.get('a.x'), 'undefined');
     });
     it('should return values.', function() {
       assemble.get('a.b.c').should.eql(1);
@@ -55,13 +56,13 @@ describe('assemble cache', function () {
       assemble.get('a.b.d').should.eql('');
     });
     it('should return values.', function() {
-      (typeof assemble.get('a.b.e')).should.be.an.object;
+      assert.equal(typeof assemble.get('a.b.e'), 'object');
     });
     it('should return values.', function() {
-      (typeof assemble.get('a.b.f') === 'undefined').should.be.true;
+      assert.equal(typeof assemble.get('a.b.f'), 'undefined');
     });
     it('literal backslash should escape period in property name.', function() {
-      assemble.get('a.b.g\\.h\\.i', true).should.eql(2);
+      assemble.get('a.b.g\\.h\\.i', true).should.equal(2);
     });
     it('should just return existing properties.', function() {
       assemble.get('a', true).should.eql(assemble.cache.a);
@@ -80,22 +81,22 @@ describe('assemble cache', function () {
   describe('set()/get():', function () {
     it('should return immediate property value.', function() {
       assemble.set('a', 1);
-      assemble.get('a').should.eql(1)
+      assemble.get('a').should.equal(1);
     });
     it('should set property value.', function() {
-      assemble.cache.a.should.eql(1);
+      assemble.cache.a.should.equal(1);
     });
     it('should return nested property value.', function() {
       assemble.set('b.c.d', 1);
-      assemble.get('b.c.d').should.eql(1);
+      assemble.get('b.c.d').should.equal(1);
     });
     it('should set property value.', function() {
-      assemble.cache.b.c.d.should.eql(1);
+      assemble.cache.b.c.d.should.equal(1);
     });
     it('literal backslash should escape period in property name.', function() {
       assemble.set('e\\.f\\.g', 1, true);
-      assemble.get('e\\.f\\.g', true).should.eql(1);
-      assemble.cache['e.f.g'].should.eql(1);
+      assemble.get('e\\.f\\.g', true).should.equal(1);
+      assemble.cache['e.f.g'].should.equal(1);
     });
   });
 
@@ -122,13 +123,13 @@ describe('assemble cache', function () {
       assemble.exists('a.b.f').should.be.false;
     });
     it('nonexistent property should not exist.', function() {
-      assemble.exists('x').should.eql(false);
+      assemble.exists('x').should.be.false;
     });
     it('nonexistent property should not exist.', function() {
-      assemble.exists('a.x').should.eql(false);
+      assemble.exists('a.x').should.be.false;
     });
     it('nonexistent property should not exist.', function() {
-      assemble.exists('a.b.x').should.eql(false);
+      assemble.exists('a.b.x').should.be.false;
     });
   });
 
@@ -142,7 +143,6 @@ describe('assemble cache', function () {
 
     describe('when a listener is removed', function () {
       it('should remove listener', function () {
-        var called = false;
         var type = 'foo', listeners;
         var fn = function () {};
 
@@ -194,7 +194,7 @@ describe('assemble cache', function () {
       it('should emit `set` when items are set on the assemble.', function () {
         var called = false;
 
-        assemble.on('set', function (key, value) {
+        assemble.on('set', function (key) {
           called = true;
           assemble.exists(key).should.be.true;
         });

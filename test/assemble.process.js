@@ -7,7 +7,6 @@
 
 'use strict';
 
-var assert = require('assert');
 var should = require('should');
 var assemble = require('..');
 
@@ -20,12 +19,12 @@ describe('assemble process', function () {
   describe('.process()', function () {
     it('should resolve template strings in config values', function () {
       var store = site.process({a: '<%= b %>', b: 'c'});
-      store.a.should.equal('c')
+      store.a.should.equal('c');
     });
 
     it('should resolve es6 template strings in config values', function () {
       var store = site.process({a: '${b}', b: 'c'});
-      store.a.should.equal('c')
+      store.a.should.equal('c');
     });
 
     it('should recursively resolve template strings.', function () {

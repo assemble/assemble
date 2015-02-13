@@ -2,17 +2,16 @@
 
 var path = require('path');
 var tap = require('gulp-tap');
-var fs = require('graceful-fs');
 var should = require('should');
 var rimraf = require('rimraf');
-var assemble = require('..');
+var Assemble = require('..');
 
-var site = null;
+var assemble = null;
 var actual = __dirname + '/dest-path-actual';
 
 describe('assemble dest-path plugin', function() {
   before (function () {
-    site = assemble.init();
+    assemble = Assemble.init();
   });
 
   describe('destPath()', function() {
@@ -25,9 +24,9 @@ describe('assemble dest-path plugin', function() {
 
     describe('when files are run through the pipe', function () {
       it('should keep dest the same before the dest path plugin is run.', function (done) {
-        site.set('assets', actual + '/assets');
-        var instream = site.src(path.join(__dirname, 'fixtures/dest-path/*.hbs'));
-        var outstream = site.dest(actual);
+        assemble.set('assets', actual + '/assets');
+        var instream = assemble.src(path.join(__dirname, 'fixtures/dest-path/*.hbs'));
+        var outstream = assemble.dest(actual);
 
         instream
           .pipe(tap(function (file) {
@@ -35,7 +34,7 @@ describe('assemble dest-path plugin', function() {
             should.exist(file.path);
             should.exist(file.contents);
             file.data.dest.ext.should.equal('.hbs');
-            /fixtures[\/\\]dest-path[\/\\][cd]\.hbs/.test(file.data.dest.path).should.be.true;
+            file.data.dest.path.should.match(/fixtures[\\\/]dest-path[\\\/][cd]\.hbs/);
           }))
           .pipe(outstream);
 
@@ -47,9 +46,9 @@ describe('assemble dest-path plugin', function() {
       });
 
       it('should calculate the correct `assets` property on the file when the dest changes.', function (done) {
-        site.set('assets', actual + '/assets');
-        var instream = site.src(path.join(__dirname, 'fixtures/dest-path/*.hbs'));
-        var outstream = site.dest(actual);
+        assemble.set('assets', actual + '/assets');
+        var instream = assemble.src(path.join(__dirname, 'fixtures/dest-path/*.hbs'));
+        var outstream = assemble.dest(actual);
         instream.pipe(outstream);
 
         outstream.on('error', done);
@@ -58,7 +57,7 @@ describe('assemble dest-path plugin', function() {
             should.exist(file.path);
             should.exist(file.contents);
             file.data.dest.ext.should.equal('.html');
-            /dest-path-actual[\/\\][cd]\.html/.test(file.data.dest.path).should.be.true;
+            file.data.dest.path.should.match(/dest-path-actual[\/\\][cd]\.html/);
         });
 
         outstream.on('end', function () {

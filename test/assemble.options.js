@@ -7,10 +7,8 @@
 
 'use strict';
 
-var assert = require('assert');
 var should = require('should');
 var assemble = require('..');
-
 
 describe('assemble options', function () {
   var site = null;

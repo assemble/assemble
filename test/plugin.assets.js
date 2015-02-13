@@ -2,7 +2,6 @@
 
 var path = require('path');
 var tap = require('gulp-tap');
-var fs = require('graceful-fs');
 var should = require('should');
 var rimraf = require('rimraf');
 var assemble = require('..');
@@ -59,7 +58,7 @@ describe('assemble assets plugin', function() {
           should.exist(file.contents);
           should.exist(file.data.assets);
           file.data.assets.should.equal('assets');
-          /assets/.test(String(file.contents)).should.be.true;
+          String(file.contents).should.match(/assets/);
         });
 
         outstream.on('end', function () {

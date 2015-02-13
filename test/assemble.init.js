@@ -7,7 +7,6 @@
 
 'use strict';
 
-var assert = require('assert');
 var should = require('should');
 var assemble = require('..');
 
@@ -25,7 +24,7 @@ describe('assemble init', function () {
     });
 
     it('should prepopulate default engines.', function () {
-      site.engines.should.have.property('.hbs')
+      site.engines.should.have.property('.hbs');
     });
   });
 });

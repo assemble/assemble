@@ -1,7 +1,6 @@
 'use strict';
 
 var path = require('path');
-var fs = require('graceful-fs');
 var should = require('should');
 var rimraf = require('rimraf');
 var assemble = require('..');
@@ -33,9 +32,9 @@ describe('assemble drafts plugin', function() {
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          /[ab]\.html$/.test(String(file.path)).should.be.false;
-          /[cd]\.html$/.test(String(file.path)).should.be.true;
-          /[CD]/.test(String(file.contents)).should.be.true;
+          String(file.path).should.match(/[ab]\.html$/);
+          String(file.path).should.match(/[cd]\.html$/);
+          String(file.contents).should.match(/[CD]/);
           Object.keys(site.views.pages).length.should.equal(4);
         });
 

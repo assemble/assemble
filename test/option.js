@@ -8,24 +8,24 @@
 'use strict';
 
 var should = require('should');
-var assemble = require('..');
+var Assemble = require('..');
 
 
 describe('options', function () {
   describe('.options()', function () {
-    var site = null;
+    var assemble = null;
     beforeEach(function () {
-      site = assemble.init();
-    })
+      assemble = Assemble.init();
+    });
     it('should set an option', function () {
-      site.option('foo', 'bar');
-      site.options.foo.should.exist;
-      site.options.foo.should.equal('bar');
+      assemble.option('foo', 'bar');
+      assemble.options.foo.should.exist;
+      assemble.options.foo.should.equal('bar');
     });
     it('should get an option', function () {
-      site.option('foo', 'bar');
-      site.option('foo').should.exist;
-      site.option('foo').should.equal('bar');
+      assemble.option('foo', 'bar');
+      assemble.option('foo').should.exist;
+      assemble.option('foo').should.equal('bar');
     });
   });
 });

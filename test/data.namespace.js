@@ -21,7 +21,7 @@ describe('assemble data', function () {
     it('should namespace data using the `:basename` of the file.', function() {
       site.data('test/fixtures/data/alert.json');
       site.get('data').should.have.property('alert');
-    })
+    });
 
     it('should namespace the data using the `:basename` of each file in a glob.', function() {
       site.data('test/fixtures/data/*.json');
