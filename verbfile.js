@@ -2,7 +2,7 @@ var verb = require('verb');
 var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
 
-verb.task('mocha', ['jshint'], function () {
+verb.task('mocha', function () {
   verb.src('test/*.js')
     .pipe(mocha({reporter: 'spec'}));
 });
@@ -23,5 +23,4 @@ verb.task('docs', function () {
     .pipe(verb.dest('docs'));
 });
 
-verb.task('test', ['mocha', 'jshint']);
-verb.task('default', ['readme', 'docs']);
+verb.task('default', ['mocha', 'jshint', 'readme', 'docs']);
