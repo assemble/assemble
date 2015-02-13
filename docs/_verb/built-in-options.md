@@ -2,41 +2,22 @@
 
 > If defined, these options will be used as configuration settings for assemble's built-in features
 
-- `assets`
-- `base`
-- `defaults`
-- `delims`
-- `destExt`
-- `encoding`
-- `env`
-- `ext`
-- `flatten` (WIP - not working yet)
-- `layout`
-- `layoutext`
-- `layouts`
-- `renameKey`
-- `root`
-- `templates`
-- `viewEngine`
-- `views`
-
-
-- `viewEngine`: (default: `.hbs`)
-- `destExt`: (default: `.html`)
-- `ext`: (default: `.hbs`)
-- `defaults', {
-- `renameKey', function(filepath) {
-- `defaults');
-
-- `env`:  `process.env.NODE_ENV` or `dev`
-- `encoding`: (default: `utf8`)
-- `base`: `this.cache.cwd);`
 - `assets`: (default: `assets`)
-- `root`: (default: `dist`)
+- `base`:  (default: `cwd`)
 - `delims`: `['{{', '}}']`
-- `views`: (default: `templates`)
+- `destExt`: (default: `.html`)
+- `encoding`: (default: `utf8`)
+- `env`:  (default: `process.env.NODE_ENV` or `dev`)
+- `ext`: (default: `.hbs`)
+- `flatten` (WIP - not working yet)
+- `layout`: (default: `default`)
+- `layoutext`: (default: `.hbs`)
+- `layouts`: (default: `undefined`)
+- `renameKey`: (default: uses `path.basename()`)
+- `root`: (default: `dist`)
 - `templates`: (default: `templates`)
-
+- `viewEngine`: (default: `.hbs`)
+- `views`: (default: `templates`)
 
 ### Enabled by default
 
