@@ -20,9 +20,9 @@ describe('assemble engines', function () {
       site = assemble.init();
     });
 
-    it('should set an engine with the given extension', function () {
+    it('should register an engine to the given extension', function () {
       site.engine('hbs', consolidate.handlebars);
-      should.exist(site.engines['.hbs']);
+      site.engines['.hbs'].should.exist;
       should.exist(site.engines['.hbs'].renderSync);
       should.exist(site.engines['.hbs'].render);
     });

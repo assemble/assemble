@@ -19,15 +19,17 @@ describe('assemble defaultConfig', function () {
 
   describe('.defaultConfig()', function () {
     it('should set default values', function () {
-      // site.init();
-
-      site.enabled('minimal config').should.be.false;
-      site.get('env').should.equal('development');
-      site.get('encoding').should.equal('utf8');
+      // Default options
+      site.option('env').should.equal('dev');
       site.option('cwd').should.equal(process.cwd());
       site.option('ext').should.equal('.hbs');
-      // site.get('data').should.be.empty;
+      // views
+      site.option('view engine', 'noop');
+      site.option('views', 'templates');
+      site.option('delims', ['{{', '}}']);
+    });
 
+    it('should enable some plugins by default', function () {
       // Default `src` plugins
       site.enabled('src:init plugin').should.be.true;
       site.enabled('src:extend plugin').should.be.true;
@@ -40,14 +42,11 @@ describe('assemble defaultConfig', function () {
       site.enabled('dest:collections plugin').should.be.true;
       site.enabled('dest:paths plugin').should.be.true;
       site.enabled('dest:render plugin').should.be.true;
+    });
 
-      // View defaults
-      site.get('view engine', 'noop');
-      site.get('views', 'templates');
-      site.get('delims', ['{{', '}}']);
-
-      site.engines['.*'].should.exist;
-      site.engines['.hbs'].should.exist;
+    it('should disable some boolean options by default', function () {
+      site.enabled('minimal config').should.be.false;
+      site.disabled('minimal config').should.be.true;
     });
   });
 });

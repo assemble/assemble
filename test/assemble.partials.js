@@ -12,15 +12,14 @@ var path = require('path');
 var should = require('should');
 var File = require('vinyl');
 var rimraf = require('rimraf');
-var assemble = require('..');
+var Assemble = require('..');
 
 var actual = __dirname + '/partials-actual';
 
-
 describe('assemble partials', function () {
-  var site = null;
+  var assemble = null;
   beforeEach(function (done) {
-    site = assemble.init();
+    assemble = Assemble.init();
     rimraf(actual, done);
   });
   afterEach(function (done) {
@@ -28,29 +27,29 @@ describe('assemble partials', function () {
   });
 
   describe('.partial()', function () {
-    it('should be a method on site.', function () {
-      site.partial.should.be.a.function;
+    it('should be a method on assemble.', function () {
+      assemble.partial.should.be.a.function;
     });
 
     it('should cache a partial defined as an object.', function () {
-      site.partial({
+      assemble.partial({
         path: 'test-partial-a',
         data: {title: 'test-partial-a'},
         content: 'Test partial A content'
       });
 
-      var partials = site.views.partials;
+      var partials = assemble.views.partials;
       partials.should.have.property('test-partial-a');
     });
   });
 
   describe('.partials()', function () {
-    it('should be a method on site.', function () {
-      site.partials.should.be.a.function;
+    it('should be a method on assemble.', function () {
+      assemble.partials.should.be.a.function;
     });
 
     it('should cache an object of partials defined as objects.', function () {
-      site.partials({
+      assemble.partials({
         'test-partial-a': {
           data: {title: 'test-partial-a'},
           content: 'Test partial A content'
@@ -65,23 +64,31 @@ describe('assemble partials', function () {
         }
       });
 
-      var partials = site.views.partials;
+      var partials = assemble.views.partials;
       partials.should.have.property('test-partial-a');
       partials.should.have.property('test-partial-b');
       partials.should.have.property('test-partial-c');
     });
 
     it('should cache an object of partials defined as a string of glob patterns.', function () {
-
-      site.partials('test/fixtures/templates/partials/*.hbs');
-      var partials = site.views.partials;
+      assemble.partials('test/fixtures/templates/partials/*.hbs');
+      var partials = assemble.views.partials;
       partials.should.have.property('a');
       partials.should.have.property('b');
       partials.should.have.property('c');
     });
 
-    xit('should use a renaming function on the partial names.', function () {
-      // todo
+    it('should use a renaming function on the partial names.', function () {
+      assemble.partials('test/fixtures/templates/partials/*.hbs');
+      assemble.option({
+        name: function (fp) {
+          return fp;
+        }
+      });
+      var partials = assemble.views.partials;
+      partials.should.have.property('a');
+      partials.should.have.property('b');
+      partials.should.have.property('c');
     });
   });
 });

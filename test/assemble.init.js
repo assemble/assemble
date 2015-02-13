@@ -26,7 +26,7 @@ describe('assemble init', function () {
     });
 
     it('should prepopulate default engines.', function () {
-      Object.keys(site.engines).length.should.equal(3);
+      site.engines.should.have.property('.hbs')
     });
   });
 });
