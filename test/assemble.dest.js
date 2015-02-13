@@ -10,8 +10,8 @@ var assemble = require('..');
 var outpath = join(__dirname, 'out-fixtures');
 var app;
 
-describe('assemble output stream', function() {
-  describe('dest()', function() {
+describe('.dest()', function() {
+  describe('assemble output stream', function() {
     beforeEach(function (done) {
       rimraf(outpath, done);
     });
@@ -154,6 +154,7 @@ describe('assemble output stream', function() {
           join(file.path, '').should.equal(join(outpath, 'example.txt'));
           String(file.contents).should.equal('this is a test');
         });
+
         outstream.on('end', function () {
           fs.readFile(join(outpath, 'example.txt'), function (err, contents) {
             should.not.exist(err);
