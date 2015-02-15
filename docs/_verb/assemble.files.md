@@ -10,8 +10,8 @@ Returns something like:
 
 ```js
 { home: {
-    base: '/site/template/pages/',
-    content: '{{ msg }}',
+    base: '/site/template/',
+    content: 'foo {{ msg }} bar',
     cwd: '/site',
     data: { msg: 'hello world', src: [Object], dest: [Object] },
     options: {},
@@ -20,6 +20,8 @@ Returns something like:
     relative: 'home.hbs'
 }}
 ```
+
+**Usage in plugins**
 
 When `files` is used inside a plugin, the stream must be bound to the session via `session.bindEmitter`:
 

@@ -2,6 +2,14 @@
 
 > Using helpers in templates
 
+
+## Overview
+
+- Helpers are stored on the `assemble.options` object.
+- Helpers can be defined and used in any way you need in your projects. 
+- Assemble uses the same API to set [default options][built-in options] for some of assemble's built-in features, such as `layout` and `layoutdir`. Defaults can easily be changed, disabled or overridden.
+
+
 ## What are helpers?
 
 Helpers are just regular javascript functions that can be used in templates. Helpers are used to inject or transform data or content. 

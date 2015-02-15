@@ -1,45 +1,23 @@
-The `assets` property on the options is used to calculate the relative path from any generated files (usually HTML) to whatever folder is specified in the `assets` option.  For example, say you have the following template, `foo.hbs`:
+# options.assets
 
-```handlebars
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Foo</title>
-    <link rel="stylesheet" href="\{{assets}}/css/styles.css">
-  </head>
-  <body>
-    \{{> body }}
-  </body>
-</html>
-```
+The `assets` property on the options is used to calculate the relative path from any generated files (usually HTML) to whatever folder is specified in the `assets` option. 
 
-Note the `\{{assets}}` handlebars expression. When `foo.hbs` is rendered, this expression will be resolved with the value that is calculated from `foo`'s destination to whatever value is defined in  `options.assets`. So this:
+**Example**
+
+Define the `assets` option in your project's [assemblefile.js](./assemblefile.md):
 
 ```js
-assemble: {
-  options: {
-    assets: 'dist/public'
-  },
-  site: {
-    src: 'templates/foo.hbs',
-    dest: 'dist/'
-  }
-}
+assemble.option('assets', 'site/public');
 ```
 
-Results in `dist/foo.html`, with this content:
+Now you can use it in templates:
 
 ```handlebars
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Foo</title>
-    <link rel="stylesheet" href="public/css/styles.css">
-  </head>
-  <body>
-    ....
-  </body>
-</html>
+<link rel="stylesheet" href="{{assets}}/css/styles.css">
+```
+
+Renders to:
+
+```handlebars
+<link rel="stylesheet" href="site/public/css/styles.css">
 ```
