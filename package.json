@@ -68,7 +68,7 @@
     "rewrite-ext": "^0.1.0",
     "semver": "^4.3.0",
     "sessionify": "^0.1.0",
-    "template": "^0.9.0",
+    "template": "^0.10.0",
     "template-init": "^0.3.0",
     "template-render": "^0.3.1",
     "template-utils": "^0.4.0",
