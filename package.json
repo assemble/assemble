@@ -50,7 +50,7 @@
     "assemble-utils": "^0.2.0",
     "chalk": "^0.5.1",
     "computed-property": "^0.1.2",
-    "engine-assemble": "^0.2.2",
+    "engine-assemble": "^0.3.0",
     "event-stream": "^3.2.2",
     "extend-shallow": "^0.2.0",
     "gulp-drafts": "^0.1.0",
@@ -92,7 +92,7 @@
     "q": "^1.1.2",
     "rimraf": "^2.2.8",
     "should": "^5.0.0",
-    "verb": "^0.3.9",
+    "verb": "^0.4.5",
     "vinyl": "^0.4.6"
   },
   "keywords": [
