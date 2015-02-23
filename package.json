@@ -70,7 +70,7 @@
     "sessionify": "^0.1.0",
     "template": "^0.10.0",
     "template-init": "^0.3.0",
-    "template-render": "^0.3.1",
+    "template-render": "^0.4.0",
     "template-utils": "^0.4.0",
     "through2": "^0.6.3",
     "tildify": "^1.0.0",
