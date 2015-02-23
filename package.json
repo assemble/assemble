@@ -84,6 +84,7 @@
     "gulp-jshint": "^1.9.2",
     "gulp-mocha": "^2.0.0",
     "gulp-tap": "^0.1.3",
+    "helper-reflinks": "^1.0.0",
     "is-absolute": "^0.1.5",
     "jshint-stylish": "^1.0.0",
     "load-helpers": "^0.1.0",
