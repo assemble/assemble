@@ -122,7 +122,7 @@ module.exports = function(grunt) {
           assemble.options.data[filename] = _.extend({}, parsedPartial.data || {}, assemble.options.data[filename] || {});
 
           // register the partial
-          assemble.options.registerPartial(assemble.engine, filename, parsedPartial.content);
+          assemble.options.registerPartial(assemble.engine, filename, parsedPartial.content, filepath);
         });
       }
 
