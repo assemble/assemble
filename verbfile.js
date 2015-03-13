@@ -14,6 +14,7 @@ verb.task('apidocs', function () {
 });
 
 verb.task('lint', function() {
+  /* deps:jshint-stylish */
   verb.src(['index.js', 'lib/**/*.js', 'test/*.js'])
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
