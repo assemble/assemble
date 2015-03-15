@@ -104,6 +104,34 @@ describe('.dest()', function() {
         });
       });
 
+      it('should return an output stream that doesn\'t curropt file contents', function (done) {
+        var instream = app.src(join(__dirname, 'fixtures/copy/*.png'));
+        var outstream = app.dest(outpath);
+        instream.pipe(outstream);
+
+        outstream.on('error', done);
+        outstream.on('data', function (file) {
+          // data should be re-emitted correctly
+          should.exist(file);
+          should.exist(file.path);
+          should.exist(file.contents);
+          join(file.path, '').should.equal(join(outpath, 'assemble.png'));
+        });
+
+        outstream.on('end', function () {
+          fs.readFile(join(__dirname, 'fixtures/copy/assemble.png'), function (err, srcContents) {
+            if (err) return done(err);
+            fs.readFile(join(outpath, 'assemble.png'), function (err, destContents) {
+              should.not.exist(err);
+              should.exist(destContents);
+              srcContents.should.eql(destContents);
+              done();
+            });
+          });
+        });
+      });
+
+
       it('should return an output stream that writes streaming files to new directories', function (done) {
         testWriteDir({}, done);
       });
@@ -223,6 +251,33 @@ describe('.dest()', function() {
           // done(new Error('should have thrown an error'));
         });
         output.on('end', done);
+      });
+
+      it.skip('should return an output stream that doesn\'t curropt file contents', function (done) {
+        var instream = app.src(join(__dirname, 'fixtures/copy/*.png'));
+        var outstream = app.dest(outpath);
+        instream.pipe(outstream);
+
+        outstream.on('error', done);
+        outstream.on('data', function (file) {
+          // data should be re-emitted correctly
+          should.exist(file);
+          should.exist(file.path);
+          should.exist(file.contents);
+          join(file.path, '').should.equal(join(outpath, 'assemble.png'));
+        });
+
+        outstream.on('end', function () {
+          fs.readFile(join(__dirname, 'fixtures/copy/assemble.png'), function (err, srcContents) {
+            if (err) return done(err);
+            fs.readFile(join(outpath, 'assemble.png'), function (err, destContents) {
+              should.not.exist(err);
+              should.exist(destContents);
+              srcContents.should.eql(destContents);
+              done();
+            });
+          });
+        });
       });
 
       it.skip('should return an output stream that writes streaming files to new directories', function (done) {
