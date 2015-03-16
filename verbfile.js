@@ -9,7 +9,7 @@ verb.helper('require', function () {
 
 verb.helper('resolve', function (name) {
   var base = path.resolve(process.cwd(), 'node_modules', name);
-  var pkg = tryRequire(path.join(base, 'package.json'));
+  var pkg = require(path.join(base, 'package.json'));
   var cwd = path.join(base, pkg.main);
 
   var res = {};
