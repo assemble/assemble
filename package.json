@@ -70,7 +70,7 @@
     "rewrite-ext": "^0.2.0",
     "semver": "^4.3.1",
     "sessionify": "^0.1.0",
-    "template": "^0.11.1",
+    "template": "0.10.2",
     "template-init": "^0.3.0",
     "template-render": "^0.4.1",
     "template-utils": "^0.5.1",
