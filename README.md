@@ -7,7 +7,7 @@
 **Install globally with [npm](npmjs.org)**
 
 ```bash
-npm i -g assemble
+npm i -g assemble@beta
 ```
 
 ### CLI
@@ -15,7 +15,7 @@ npm i -g assemble
 **Install locally with [npm](npmjs.org)**
 
 ```bash
-npm i assemble --save
+npm i assemble@beta --save
 ```
 
 ## Usage
@@ -77,7 +77,7 @@ assemble('default', ['css']);
 
 **Or, using an engine**
 
-Instead of a plugin you can register an engine, such as [engine-less](https://github.com/jonschlinkert/engine-less). 
+Instead of a plugin you can register an engine, such as [engine-less](https://github.com/jonschlinkert/engine-less).
 
 _(Engines are run automatically on any files that have a file extension matching the name that you used when registering the engine.)_
 
@@ -285,20 +285,20 @@ npm i -d && npm test
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](git://github.com/assemble/assemble/issues)
 
 ## Authors
- 
+
 **Jon Schlinkert**
- 
+
 + [github/jonschlinkert](https://github.com/jonschlinkert)
-+ [twitter/jonschlinkert](http://twitter.com/jonschlinkert) 
- 
++ [twitter/jonschlinkert](http://twitter.com/jonschlinkert)
+
 **Brian Woodward**
- 
+
 + [github/doowb](https://github.com/doowb)
-+ [twitter/doowb](http://twitter.com/doowb) 
++ [twitter/doowb](http://twitter.com/doowb)
 
 
 ## License
-Copyright (c) 2014-2015 Assemble  
+Copyright (c) 2014-2015 Assemble
 Copyright (c) 2014 Fractal <contact@wearefractal.com> (for completions and CLI)
 Released under the MIT license
 
