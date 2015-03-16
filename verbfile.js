@@ -3,6 +3,22 @@ var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
 var verb = require('verb');
 
+verb.helper('require', function () {
+  return require.apply(require, arguments);
+});
+
+verb.helper('resolve', function (name) {
+  var base = path.resolve(process.cwd(), 'node_modules', name);
+  var pkg = tryRequire(path.join(base, 'package.json'));
+  var cwd = path.join(base, pkg.main);
+
+  var res = {};
+  res.pkg = pkg;
+  res.cwd = relative(cwd);
+  res.dest = pkg.homepage;
+  return res;
+});
+
 verb.task('readme', function () {
   verb.src('.verb.md')
     .pipe(verb.dest('./'));

@@ -1,7 +1,3 @@
-{%= apidocs(require('resolve').sync('template'), {
-  dest: "https://github.com/jonschlinkert/template/blob/master/index.js"
-}) %}
-
 # Options API
 
 > The Options API exposes methods for setting and getting options in Assemble. 
