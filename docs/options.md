@@ -1,5 +1,3 @@
-
-
 # Options API
 
 > The Options API exposes methods for setting and getting options in Assemble. 
