@@ -72,7 +72,7 @@ assemble.task('css', function () {
     .pipe(assemble.dest('dist/assets/css'));
 });
 
-assemble('default', ['css']);
+assemble.task('default', ['css']);
 ```
 
 **Or, using an engine**
@@ -90,7 +90,7 @@ assemble.task('css', function () {
     .pipe(assemble.dest('dist/assets/css'));
 });
 
-assemble('default', ['css']);
+assemble.task('default', ['css']);
 ```
 
 
