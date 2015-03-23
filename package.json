@@ -1,7 +1,7 @@
 {
   "name": "assemble",
   "description": "Static site generator for Grunt.js, Yeoman and Node.js. Used by Zurb Foundation, Zurb Ink, H5BP/Effeckt, Less.js / lesscss.org, Topcoat, Web Experience Toolkit, and hundreds of other projects to build sites, themes, components, documentation, blogs and gh-pages.",
-  "version": "0.6.0-beta.4",
+  "version": "0.6.0-beta.5",
   "homepage": "http://assemble.io",
   "author": {
     "name": "Assemble",
@@ -70,7 +70,7 @@
     "rewrite-ext": "^0.2.0",
     "semver": "^4.3.1",
     "sessionify": "^0.1.0",
-    "template": "^0.12.4",
+    "template": "^0.12.6",
     "template-init": "^0.3.0",
     "template-render": "^0.4.1",
     "template-utils": "^0.5.1",
