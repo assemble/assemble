@@ -30,3 +30,4 @@ var stream = through.obj(...);
 assemble.session.bindEmitter(stream);
 return stream;
 ```
+ 

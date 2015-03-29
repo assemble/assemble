@@ -70,3 +70,5 @@ If you're planning to author a helper, here are some suggestions to help you get
 
 
 [handlebars-helpers]: https://github.com/assemble/handlebars-helpers
+
+
