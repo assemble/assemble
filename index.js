@@ -4,9 +4,9 @@
  * Module dependencies
  */
 
-var path = require('path');
+var diff = require('diff');
+var chalk = require('chalk');
 var es = require('event-stream');
-var slice = require('array-slice');
 var Task = require('orchestrator');
 var Template = require('template');
 var vfs = require('vinyl-fs');
@@ -17,7 +17,6 @@ var _ = require('lodash');
  */
 
 var session = require('./lib/session');
-var utils = require('./lib/utils/');
 var stack = require('./lib/stack');
 var init = require('./lib/init');
 
@@ -36,7 +35,7 @@ function Assemble() {
 }
 
 _.extend(Assemble.prototype, Task.prototype);
-Assemble = Template.extend(Assemble.prototype);
+Template.extend(Assemble.prototype);
 
 /**
  * Initialize default configuration.
@@ -67,12 +66,10 @@ Assemble.prototype.defaultOptions = function() {
  */
 
 Assemble.prototype.src = function (glob, options) {
-  options = _.extend({}, this.options, options);
-
+  options = _.merge({}, this.options, options);
   if(this.enabled('minimal config') || options.minimal) {
     return vfs.src(glob, options);
   }
-
   return es.pipe.apply(es, [
     vfs.src(glob, options),
     stack.src.call(this, glob, options)
@@ -93,11 +90,9 @@ Assemble.prototype.src = function (glob, options) {
 
 Assemble.prototype.dest = function (dest, options) {
   options = options || {};
-
   if (this.enabled('minimal config') || options.minimal) {
     return vfs.dest(dest, options);
   }
-
   return es.pipe.apply(es, [
     stack.dest.call(this, dest, options),
     vfs.dest(dest, options)
@@ -123,7 +118,7 @@ Assemble.prototype.dest = function (dest, options) {
  * @api public
  */
 
-Assemble.prototype.copy = function(glob, dest, options) {
+Assemble.prototype.copy = function(glob, dest, opts) {
   return vfs.src(glob, opts).pipe(vfs.dest(dest, opts));
 };
 
@@ -170,6 +165,28 @@ Object.defineProperty(Assemble.prototype, 'files', {
     return this.views[plural];
   }
 });
+
+/**
+ * Display a visual representation of the
+ * difference between `a` and `b`
+ */
+
+Assemble.prototype.diff = function(a, b, method) {
+  method = method || 'diffJson';
+  a = a || this.env;
+  b = b || this.cache.data;
+  diff[method](a, b).forEach(function (res) {
+    var color = chalk.gray;
+    if (res.added) {
+      color = chalk.green;
+    }
+    if (res.removed) {
+      color = chalk.red;
+    }
+    process.stderr.write(color(res.value));
+  });
+  console.log('\n');
+};
 
 /**
  * Run an array of tasks.
