@@ -36,7 +36,6 @@ function Assemble() {
   this.defaultRoutes();
   this.defaultTemplates();
   init(this);
-  this.defaultPlugins();
 }
 
 _.extend(Assemble.prototype, Task.prototype);
@@ -48,54 +47,7 @@ Assemble = Template.extend(Assemble.prototype);
 
 Assemble.prototype.defaultOptions = function() {
   Assemble.__super__.defaultOptions.apply(this, arguments);
-  this.option('env', process.env.NODE_ENV || 'dev');
-  this.option('assets', 'assets');
-  this.option('viewEngine', '.hbs');
-  this.option('defaults', {
-    isRenderable: true,
-    isPartial: true
-  });
-
-  // file extensions
-  this.option('engineExts', ['hbs', 'md']);
-  this.option('destExt', '.html');
-  this.option('ext', '.hbs');
-
-  // view defaults
-  this.option('delims', ['{{', '}}']);
-  this.disable('default engines');
   this.disable('default routes');
-
-  // routes
-  this.enable('case sensitive routing');
-  this.enable('strict routing');
-
-  this.option('renameKey', function(filepath) {
-    return path.basename(filepath, path.extname(filepath));
-  });
-};
-
-/**
- * Load default plugins.
- */
-
-Assemble.prototype.defaultPlugins = function() {
-  // enable all plugins by default
-  this.disable('minimal config');
-
-  // default `src` plugins
-  this.enable('src:init plugin');
-  this.enable('src:assets plugin');
-  this.enable('src:extend plugin');
-  this.enable('src:drafts plugin');
-  this.enable('src:paginate plugin');
-
-  // default `dest` plugins
-  this.enable('dest:extend plugin');
-  this.enable('dest:collections plugin');
-  this.enable('dest:paths plugin');
-  this.enable('dest:ext plugin');
-  this.enable('dest:render plugin');
 };
 
 /**
