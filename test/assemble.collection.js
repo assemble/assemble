@@ -13,14 +13,14 @@ var Assemble = require('..');
 var assemble;
 // var collections = require('../lib/plugins/collection');
 
-describe('assemble collection', function () {
+describe.skip('assemble collection', function () {
   beforeEach(function () {
     assemble = Assemble.init();
   });
 
   describe('.collection()', function () {
     it.skip('should return a stream', function (done) {
-      var stream = collections.call(assemble, {});
+      // var stream = collections.call(assemble, {});
       should.exist(stream);
       should.exist(stream.on);
       done();

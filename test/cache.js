@@ -12,6 +12,39 @@ var should = require('should');
 var assemble = require('..');
 
 describe('assemble cache', function () {
+  describe('exists():', function () {
+    var obj = {a: {b: {c: 1, d: '', e: null, f: undefined, 'g.h.i': 2}}};
+    assemble.extend(obj);
+
+    it('immediate property should exist.', function() {
+      assert.equal(assemble.exists('a'), true);
+    });
+    it('nested property should exist.', function() {
+      assert.equal(assemble.exists('a.b'), true);
+    });
+    it('nested property should exist.', function() {
+      assert.equal(assemble.exists('a.b.c'), true);
+    });
+    it('nested property should exist.', function() {
+      assert.equal(assemble.exists('a.b.d'), true);
+    });
+    it('nested property should exist.', function() {
+      assert.equal(assemble.exists('a.b.e'), true);
+    });
+    it('nested property should exist.', function() {
+      assert.equal(assemble.exists('a.b.f'), true);
+    });
+    it('nonexistent property should not exist.', function() {
+      assert.equal(assemble.exists('x'), false);
+    });
+    it('nonexistent property should not exist.', function() {
+      assert.equal(assemble.exists('a.x'), false);
+    });
+    it('nonexistent property should not exist.', function() {
+      assert.equal(assemble.exists('a.b.x'), false);
+    });
+  });
+
   describe('set() - add:', function () {
     it('when an object is passed to set:', function () {
       assemble.set({one: 1, two: 2});
@@ -33,10 +66,6 @@ describe('assemble cache', function () {
   });
 
   describe('get():', function () {
-    it('should get the given property', function () {
-      assemble.get('one').should.eql(2);
-    });
-
     var obj = {a: {b: {c: 1, d: '', e: null, f: undefined, 'g.h.i': 2}}};
     assemble.set(obj);
 
@@ -67,9 +96,6 @@ describe('assemble cache', function () {
     it('should just return existing properties.', function() {
       assemble.get('a', true).should.eql(assemble.cache.a);
     });
-    it('should create immediate properties.', function() {
-      assemble.get('b', true).should.eql(assemble.cache.b);
-    });
   });
 
   describe('all:', function () {
@@ -99,113 +125,72 @@ describe('assemble cache', function () {
       assemble.cache['e.f.g'].should.equal(1);
     });
   });
+});
 
-  describe('exists():', function () {
-    var obj = {a: {b: {c: 1, d: '', e: null, f: undefined, 'g.h.i': 2}}};
-    assemble.set(obj);
+describe('cache events:', function () {
+  describe('when a listener is removed', function () {
+    it('should remove listener', function () {
+      var type = 'foo', listeners;
+      var fn = function () {};
 
-    it('immediate property should exist.', function() {
-      assemble.exists('a').should.be.true;
-    });
-    it('nested property should exist.', function() {
-      assemble.exists('a.b').should.be.true;
-    });
-    it('nested property should exist.', function() {
-      assemble.exists('a.b.c').should.be.true;
-    });
-    it.skip('nested property should exist.', function() {
-      assemble.exists('a.b.d').should.be.true;
-    });
-    it('nested property should exist.', function() {
-      assemble.exists('a.b.e').should.be.false;
-    });
-    it('nested property should exist.', function() {
-      assemble.exists('a.b.f').should.be.false;
-    });
-    it('nonexistent property should not exist.', function() {
-      assemble.exists('x').should.be.false;
-    });
-    it('nonexistent property should not exist.', function() {
-      assemble.exists('a.x').should.be.false;
-    });
-    it('nonexistent property should not exist.', function() {
-      assemble.exists('a.b.x').should.be.false;
+      // add
+      assemble.on(type, fn);
+      listeners = assemble.listeners(type);
+      listeners.length.should.equal(1);
+
+      // remove
+      assemble.removeListener(type, fn);
+      listeners = assemble.listeners(type);
+      listeners.length.should.equal(0);
     });
   });
 
-  describe('events:', function () {
-    describe('when assembleuration settings are customized', function () {
-      it('should have the custom settings', function () {
-        assemble.wildcard.should.be.true;
-        assemble.listenerTree.should.be.an.object;
+  describe('when listeners are added', function () {
+    it('should add the listeners', function () {
+      var called = false;
+      assemble.on('foo', function () {
+        called = 'a';
       });
+      assemble.emit('foo');
+      called.should.equal('a');
+      assemble.on('foo', function () {
+        called = 'b';
+      });
+      assemble.emit('foo');
+      called.should.equal('b');
+      assemble.on('foo', function () {
+        called = true;
+      });
+      assemble.emit('foo');
+      called.should.equal(true);
+      assemble.listeners('foo').length.should.equal(3);
     });
 
-    describe('when a listener is removed', function () {
-      it('should remove listener', function () {
-        var type = 'foo', listeners;
-        var fn = function () {};
-
-        // add
-        assemble.on(type, fn);
-        listeners = assemble.listeners(type);
-        listeners.length.should.equal(1);
-
-        // remove
-        assemble.removeListener(type, fn);
-        listeners = assemble.listeners(type);
-        listeners.length.should.equal(0);
+    it('should emit `set` when a value is set', function () {
+      var called = false;
+      var value = '';
+      assemble.on('set', function (key, val) {
+        called = key;
+        value = val;
       });
+      assemble.set('foo', 'bar');
+      called.should.equal('foo');
+      value.should.equal('bar');
     });
 
-    describe('when listeners are added', function () {
-      it('should add the listeners', function () {
-        var called = false;
-        assemble.on('foo', function () {
-          called = 'a';
-        });
-        assemble.emit('foo');
-        called.should.equal('a');
-        assemble.on('foo', function () {
-          called = 'b';
-        });
-        assemble.emit('foo');
-        called.should.equal('b');
-        assemble.on('foo', function () {
-          called = true;
-        });
-        assemble.emit('foo');
-        called.should.equal(true);
-        assemble.listeners('foo').length.should.equal(3);
+    it('should emit `set` when items are set on the assemble.', function () {
+      var called = false;
+
+      assemble.on('set', function (key) {
+        called = true;
+        assemble.has(key).should.be.true;
       });
 
-      it('should emit `set` when a value is set', function () {
-        var called = false;
-        var value = '';
-        assemble.on('set', function (key, val) {
-          called = key;
-          value = val;
-        });
-        assemble.set('foo', 'bar');
-        called.should.equal('foo');
-        value.should.equal('bar');
-      });
-
-      it('should emit `set` when items are set on the assemble.', function () {
-        var called = false;
-
-        assemble.on('set', function (key) {
-          called = true;
-          assemble.exists(key).should.be.true;
-        });
-
-        assemble.set('one', 'a');
-        assemble.set('two', 'c');
-        assemble.set('one', 'b');
-        assemble.set('two', 'd');
-
-        called.should.be.true;
-      });
+      assemble.set('one', 'a');
+      assemble.set('two', 'c');
+      assemble.set('one', 'b');
+      assemble.set('two', 'd');
+      called.should.be.true;
     });
   });
 });

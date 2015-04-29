@@ -156,12 +156,9 @@ Object.defineProperty(Assemble.prototype, 'files', {
   enumerable: true,
   configurable: true,
   get: function () {
-    var taskName = this.session.get('task name');
-    var templateType = 'page';
-    if (taskName) {
-      templateType = '__task__' + taskName;
-    }
-    var plural = this.collection[templateType];
+    var task = this.session.get('task name');
+    var type = task ? ('__task__' + task) : 'page';
+    var plural = this.inflections[type];
     return this.views[plural];
   }
 });

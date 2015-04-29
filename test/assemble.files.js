@@ -19,8 +19,8 @@ describe('assemble.files', function() {
 
     it('should get files from the `pages` collection', function(done) {
       inst.pages('home', { path: 'home.hbs', content: 'This is home.' });
-      Object.keys(inst.views.pages).length.should.eql(1);
-      Object.keys(inst.files).length.should.eql(1);
+      Object.keys(inst.views.pages).length.should.equal(1);
+      Object.keys(inst.files).length.should.equal(1);
       inst.views.pages.should.have.property('home');
       inst.files.should.have.property('home');
       inst.files.should.eql(inst.views.pages);

@@ -124,7 +124,7 @@ describe('assemble input stream', function() {
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          join(file.path, '').should.equal(join(__dirname, './fixtures/test/run.jade'));
+          join(file.path, '').should.equal('test/fixtures/test/run.jade');
           String(file.contents).should.equal('test template');
         });
         stream.on('end', function () {
@@ -164,7 +164,6 @@ describe('assemble input stream', function() {
     });
 
     describe('minimal config - disabled', function () {
-
       beforeEach(function () {
         site = assemble.init();
       });
@@ -182,7 +181,7 @@ describe('assemble input stream', function() {
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          join(file.path, '').should.equal(join(__dirname, './fixtures/test.coffee'));
+          join(file.path, '').should.equal('test/fixtures/test.coffee');
           String(file.contents).should.equal('this is a test');
         });
         stream.on('end', function () {
@@ -206,14 +205,13 @@ describe('assemble input stream', function() {
         });
         stream.on('end', function () {
           files.length.should.equal(2);
-          files[0].path.should.equal(globArray[0]);
-          files[1].path.should.equal(globArray[1]);
+          files[0].path.should.equal('test/fixtures/generic/run.dmc');
+          files[1].path.should.equal('test/fixtures/generic/test.dmc');
           done();
         });
       });
 
       it('should return an input stream for multiple globs, with negation', function (done) {
-        var expectedPath = join(__dirname, './fixtures/generic/run.dmc');
         var globArray = [
           join(__dirname, './fixtures/generic/*.dmc'),
           '!' + join(__dirname, './fixtures/generic/test.dmc'),
@@ -229,7 +227,7 @@ describe('assemble input stream', function() {
         });
         stream.on('end', function () {
           files.length.should.equal(1);
-          files[0].path.should.equal(expectedPath);
+          files[0].path.should.equal('test/fixtures/generic/run.dmc');
           done();
         });
       });
@@ -241,7 +239,7 @@ describe('assemble input stream', function() {
           should.exist(file);
           should.exist(file.path);
           should.not.exist(file.contents);
-          join(file.path, '').should.equal(join(__dirname, './fixtures/test.coffee'));
+          join(file.path, '').should.equal('test/fixtures/test.coffee');
         });
         stream.on('end', function () {
           done();
@@ -265,7 +263,7 @@ describe('assemble input stream', function() {
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          join(file.path, '').should.equal(join(__dirname, './fixtures/test/run.jade'));
+          join(file.path, '').should.equal('test/fixtures/test/run.jade');
           String(file.contents).should.equal('test template');
         });
         stream.on('end', function () {
@@ -294,7 +292,7 @@ describe('assemble input stream', function() {
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          join(file.path, '').should.equal(join(__dirname, './fixtures/test.coffee'));
+          join(file.path, '').should.equal('test/fixtures/test.coffee');
           String(file.contents).should.equal('this is a test');
         });
         stream.on('end', function () {

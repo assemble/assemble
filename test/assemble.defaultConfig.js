@@ -21,7 +21,6 @@ describe('assemble defaultConfig', function () {
     it('should set default values', function () {
       // Default options
       site.option('env').should.equal('dev');
-      site.option('cwd').should.equal(process.cwd());
       site.option('ext').should.equal('.hbs');
       // views
       site.option('view engine', 'noop');
