@@ -35,7 +35,7 @@ function Assemble() {
   this.session = session;
   this.defaultRoutes();
   this.defaultTemplates();
-  init.call(this, this);
+  init(this);
   this.defaultPlugins();
 }
 
