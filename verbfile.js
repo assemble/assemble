@@ -21,7 +21,7 @@ verb.helper('resolve', function (name) {
 
 verb.task('readme', function () {
   verb.src('.verb.md')
-    .pipe(verb.dest('./'));
+    .pipe(verb.dest('.'));
 });
 
 verb.task('apidocs', function () {
@@ -44,7 +44,7 @@ verb.task('test', function (cb) {
       verb.src('test/*.js')
         .pipe(mocha())
         .pipe(istanbul.writeReports({
-          reporters: [ 'text' ],
+          reporters: [ 'text-summary' ],
           reportOpts: {dir: 'coverage', file: 'summary.txt'}
         }))
         .on('end', cb);
