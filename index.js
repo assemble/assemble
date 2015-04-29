@@ -51,17 +51,13 @@ Assemble.prototype.defaultOptions = function() {
  * Specify source files using glob patterns or filepaths.
  * Options may be passed as a second argument.
  *
- *
  * ```js
- * assemble.src('src/*.hbs', {layout: 'default'})
- * ```
+ * assemble.src('src/*.hbs', {layout: 'default'});
  *
- * **Example usage**
- *
- * ```js
+ * // usage in a task
  * assemble.task('site', function() {
  *   assemble.src('src/*.hbs', {layout: 'default'})
- *     assemble.dest('dist')
+ *     .pipe(assemble.dest('dist'));
  * });
  * ```
  *
@@ -114,7 +110,7 @@ Assemble.prototype.dest = function (dest, options) {
  * ```js
  * assemble.copy('assets/**', 'dist/');
  *
- * // or in a task
+ * // usage in a task
  * assemble.task('copy-assets', function() {
  *   return assemble.copy('assets/**', 'dist/');
  * });
@@ -132,7 +128,7 @@ Assemble.prototype.copy = function(glob, dest, options) {
 };
 
 /**
- * Define an assemble task.
+ * Define an assemble task. (read more about [tasks](./docs/tasks.md))
  *
  * ```js
  * assemble.task('default', function() {
@@ -141,10 +137,7 @@ Assemble.prototype.copy = function(glob, dest, options) {
  * });
  * ```
  *
- * Read more about [tasks](./docs/tasks.md)
- *
- * @type method
- * @param {String} `name`
+ * @param {String} `name` Task name
  * @param {Function} `fn`
  * @api public
  */
@@ -152,12 +145,15 @@ Assemble.prototype.copy = function(glob, dest, options) {
 Assemble.prototype.task = Assemble.prototype.add;
 
 /**
- * The `files` property is session-context-specific
- * and returns the `files` collection being used in
- * the current `task`.
+ * `files` is a session-context-specific getter that
+ * returns the collection of files from the current `task`.
  *
- * @name assemble.files
- * @return {Object} Template files from current task.
+ * ```js
+ * var files = assemble.files;
+ * ```
+ *
+ * @name .files
+ * @return {Object} Get the files from the current task.
  * @api public
  */
 
@@ -210,6 +206,9 @@ Assemble.prototype._runTask = function(task) {
  * Rerun the specified task when a file changes.
  *
  * ```js
+ * assemble.watch('docs/*.md', ['docs']);
+ *
+ * // usage in a task
  * assemble.task('watch', function() {
  *   assemble.watch('docs/*.md', ['docs']);
  * });
@@ -238,6 +237,7 @@ Assemble.prototype.watch = function(glob, opts, fn) {
  * ```js
  * assemble.init();
  * ```
+ *
  * @api public
  */
 
