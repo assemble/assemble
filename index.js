@@ -18,8 +18,9 @@ var _ = require('lodash');
 
 var middleware = require('./lib/middleware/');
 var session = require('./lib/session');
+var utils = require('./lib/utils/');
 var stack = require('./lib/stack');
-var utils = require('./lib/utils');
+var init = require('./lib/init');
 
 /**
  * Initialize `Assemble`
@@ -35,6 +36,7 @@ function Assemble() {
   this.defaultRoutes();
   this.defaultTemplates();
   this.defaultEngines();
+  init.call(this, this);
   this.defaultPlugins();
 }
 
@@ -112,8 +114,7 @@ Assemble.prototype.defaultRoutes = function() {
  */
 
 Assemble.prototype.defaultEngines = function() {
-  var exts = this.option('engineExts');
-  this.engine(exts, require('engine-assemble'), {
+  this.engine(this.option('engineExts'), require('engine-assemble'), {
     layoutDelims: ['{%', '%}'],
     destExt: '.html'
   });
@@ -167,10 +168,10 @@ Assemble.prototype.src = function (glob, options) {
     return vfs.src(glob, options);
   }
 
-  return es.pipe.apply(es, utils.arrayify([
+  return es.pipe.apply(es, [
     vfs.src(glob, options),
     stack.src.call(this, glob, options)
-  ]));
+  ]);
 };
 
 /**
@@ -192,10 +193,10 @@ Assemble.prototype.dest = function (dest, options) {
     return vfs.dest(dest, options);
   }
 
-  return es.pipe.apply(es, utils.arrayify([
+  return es.pipe.apply(es, [
     stack.dest.call(this, dest, options),
     vfs.dest(dest, options)
-  ]));
+  ]);
 };
 
 /**
