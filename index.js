@@ -34,7 +34,6 @@ function Assemble() {
   Task.apply(this, arguments);
   this.session = session;
   this.defaultRoutes();
-  this.defaultTemplates();
   init(this);
 }
 
@@ -58,17 +57,6 @@ Assemble.prototype.defaultRoutes = function() {
   this.onLoad(/./, middleware.props);
   this.onLoad(/./, middleware.parse);
   this.preRender(/./, middleware.assets(this));
-};
-
-/**
- * Load default template types
- */
-
-Assemble.prototype.defaultTemplates = function() {
-  var opts = this.option('defaults');
-  this.create('page', _.defaults({ isRenderable: true, isPartial: false }, opts));
-  this.create('layout', _.defaults({ isLayout: true }, opts));
-  this.create('partial', _.defaults({ isPartial: true }, opts));
 };
 
 /**

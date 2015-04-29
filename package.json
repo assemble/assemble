@@ -60,6 +60,7 @@
     "liftoff": "^2.0.3",
     "lodash": "^3.7.0",
     "minimist": "^1.1.1",
+    "object.defaults": "^0.3.0",
     "object.reduce": "^0.1.7",
     "orchestrator": "^0.3.7",
     "parse-filepath": "^0.5.0",
