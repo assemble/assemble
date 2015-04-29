@@ -16,7 +16,6 @@ var _ = require('lodash');
  * Local dependencies
  */
 
-var middleware = require('./lib/middleware/');
 var session = require('./lib/session');
 var utils = require('./lib/utils/');
 var stack = require('./lib/stack');
@@ -33,7 +32,6 @@ function Assemble() {
   Template.apply(this, arguments);
   Task.apply(this, arguments);
   this.session = session;
-  this.defaultRoutes();
   init(this);
 }
 
@@ -47,16 +45,6 @@ Assemble = Template.extend(Assemble.prototype);
 Assemble.prototype.defaultOptions = function() {
   Assemble.__super__.defaultOptions.apply(this, arguments);
   this.disable('default routes');
-};
-
-/**
- * Load default routes and middleware
- */
-
-Assemble.prototype.defaultRoutes = function() {
-  this.onLoad(/./, middleware.props);
-  this.onLoad(/./, middleware.parse);
-  this.preRender(/./, middleware.assets(this));
 };
 
 /**
