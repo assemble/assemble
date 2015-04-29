@@ -106,6 +106,9 @@ function handleArguments(env) {
   gutil.log('Using assemblefile', chalk.magenta(tildify(env.configPath)));
 
   var assembleInst = require(env.modulePath);
+  // extend command line arguments onto the `assemble.cache.argv` object
+  assembleInst.extend('argv', argv);
+  assembleInst.emit('init');
   logEvents(assembleInst);
 
   process.nextTick(function () {
