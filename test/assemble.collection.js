@@ -7,6 +7,7 @@
 
 'use strict';
 
+/* deps: should */
 var should = require('should');
 var Assemble = require('..');
 var assemble;
