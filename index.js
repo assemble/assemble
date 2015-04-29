@@ -35,7 +35,6 @@ function Assemble() {
   this.session = session;
   this.defaultRoutes();
   this.defaultTemplates();
-  this.defaultEngines();
   init.call(this, this);
   this.defaultPlugins();
 }
@@ -107,24 +106,6 @@ Assemble.prototype.defaultRoutes = function() {
   this.onLoad(/./, middleware.props);
   this.onLoad(/./, middleware.parse);
   this.preRender(/./, middleware.assets(this));
-};
-
-/**
- * Load default engine
- */
-
-Assemble.prototype.defaultEngines = function() {
-  this.engine(this.option('engineExts'), require('engine-assemble'), {
-    layoutDelims: ['{%', '%}'],
-    destExt: '.html'
-  });
-
-  this.engine('*', function noop(str, opts, cb) {
-    if (typeof opts === 'function') {
-      cb = opts;
-    }
-    cb(null,  str);
-  });
 };
 
 /**
