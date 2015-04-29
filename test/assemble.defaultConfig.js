@@ -36,7 +36,7 @@ describe('assemble defaultConfig', function () {
       site.enabled('src:assets plugin').should.be.true;
 
       // Default `dest` plugins
-      site.enabled('dest:paths plugin').should.be.true;
+      site.enabled('dest:dest plugin').should.be.true;
       site.enabled('dest:render plugin').should.be.true;
     });
 
