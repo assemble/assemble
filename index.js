@@ -179,7 +179,7 @@ Assemble.prototype.getCollection = function(name) {
  */
 
 Assemble.prototype.getViews = function() {
-  return this.getCollection(this.getTask())
+  return this.getCollection(this.getTask());
 };
 
 /**
