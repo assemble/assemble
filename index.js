@@ -6,18 +6,15 @@
 
 var diff = require('diff');
 var chalk = require('chalk');
-var es = require('event-stream');
-var Task = require('orchestrator');
 var Template = require('template');
+var toVinyl = require('to-vinyl');
+var Task = require('orchestrator');
 var vfs = require('vinyl-fs');
 var _ = require('lodash');
 
-/**
- * Local dependencies
- */
-
 var session = require('./lib/session');
 var stack = require('./lib/stack');
+var utils = require('./lib/utils');
 var init = require('./lib/init');
 
 /**
@@ -47,8 +44,7 @@ Assemble.prototype.defaultOptions = function() {
 };
 
 /**
- * Specify source files using glob patterns or filepaths.
- * Options may be passed as a second argument.
+ * Glob patterns or filepaths to source files.
  *
  * ```js
  * assemble.src('src/*.hbs', {layout: 'default'});
@@ -60,43 +56,36 @@ Assemble.prototype.defaultOptions = function() {
  * });
  * ```
  *
- * @param {String|Array|Function} `patterns` Glob patterns, file paths, or renaming function.
- * @param {Object} `options` Options to pass to source plugins.
+ * @param {String|Array} `glob` Glob patterns or file paths to source files.
+ * @param {Object} `options` Options or locals to merge into the context and/or pass to `src` plugins
  * @api public
  */
 
-Assemble.prototype.src = function (glob, options) {
-  options = _.merge({}, this.options, options);
-  if(this.enabled('minimal config') || options.minimal) {
-    return vfs.src(glob, options);
+Assemble.prototype.src = function (glob, opts) {
+  opts = _.merge({}, this.options, opts);
+  if (this.enabled('minimal config') || opts.minimal) {
+    return vfs.src(glob, opts);
   }
-  return es.pipe.apply(es, [
-    vfs.src(glob, options),
-    stack.src.call(this, glob, options)
-  ]);
+  return stack.src(this, glob, opts);
 };
 
 /**
- * Specify the destination for processed files. Options
- * may be passed as a second argument.
+ * Specify a destination for processed files.
  *
  * ```js
  * assemble.dest('_gh_pages/', {ext: '.html'});
  * ```
- * @param {String} `dest` Destination directory
- * @param {Object} `options` Options to be passed to `dest` plugins.
+ *
+ * @param {String|Function} `dest` File path or rename function.
+ * @param {Object} `options` Options or locals to merge into the context and/or pass to `dest` plugins
  * @api public
  */
 
-Assemble.prototype.dest = function (dest, options) {
-  options = options || {};
-  if (this.enabled('minimal config') || options.minimal) {
-    return vfs.dest(dest, options);
+Assemble.prototype.dest = function (dest, opts) {
+  if (this.enabled('minimal config') || opts && opts.minimal) {
+    return vfs.dest(dest, opts);
   }
-  return es.pipe.apply(es, [
-    stack.dest.call(this, dest, options),
-    vfs.dest(dest, options)
-  ]);
+  return stack.dest(this, dest, opts);
 };
 
 /**
@@ -111,10 +100,9 @@ Assemble.prototype.dest = function (dest, options) {
  * });
  * ```
  *
- * @param  {String|Array} `filepath` Source file path and/or glob patterns.
- * @param  {String|Function} `dest` Destination folder or function for renaming.
- * @param  {Object} `options` Additional options
- * @return {Stream} Stream to allow doing additional work.
+ * @param  {String|Array} `glob`
+ * @param  {String|Function} `dest`
+ * @return {Stream} Stream, to continue processing if necessary.
  * @api public
  */
 
@@ -140,6 +128,93 @@ Assemble.prototype.copy = function(glob, dest, opts) {
 Assemble.prototype.task = Assemble.prototype.add;
 
 /**
+ * Get the id from the current task. Used in plugins to get
+ * the current session.
+ *
+ * ```js
+ * var id = assemble.getTask();
+ * assemble.views[id];
+ * ```
+ *
+ * @return {String} `task` The currently running task.
+ * @api public
+ */
+
+Assemble.prototype.getTask = function() {
+  var name = this.session.get('task');
+  return typeof name === 'string'
+    ? 'task_' + name
+    : 'page';
+};
+
+/**
+ * Get the collection name (inflection) of the given
+ * template type.
+ *
+ * ```js
+ * var collection = verb.getCollection('page');
+ * // gets the `pages` collection
+ * //=> {a: {}, b: {}, ...}
+ * ```
+ *
+ * @return {String} `name` Singular name of the collection to get
+ * @api public
+ */
+
+Assemble.prototype.getCollection = function(name) {
+  var collection = this.inflections[name];
+  return this.views[collection];
+};
+
+/**
+ * Used in plugins to get a template from the current session.
+ *
+ * ```js
+ * var views = app.getViews();
+ * ```
+ *
+ * @return {String} `id` Pass the task-id from the current session.
+ * @return {Object} `file` Vinyl file object. Must have an `id` property that matches the `id` of the session.
+ * @api public
+ */
+
+Assemble.prototype.getViews = function() {
+  return this.getCollection(this.getTask())
+};
+
+/**
+ * Get a template (file) from the current session in a stream.
+ *
+ * ```js
+ * var file = app.getSessionFile(file);
+ * ```
+ *
+ * @return {Object} `file` Vinyl file object. Must have an `id` property that matches the `id` of the session.
+ * @api public
+ */
+
+Assemble.prototype.getSessionFile = function(file) {
+  return this.getViews()[file.id];
+};
+
+/**
+ * Get a template from the current session, convert it to a vinyl
+ * file, and push it into the stream.
+ *
+ * ```js
+ * app.pushToStream(file);
+ * ```
+ *
+ * @param {Stream} `stream` Vinyl stream
+ * @param {String} `id` Get the session `id` using `app.getTask()`
+ * @api public
+ */
+
+Assemble.prototype.pushToStream = function(id, stream) {
+  return utils.pushToStream(this.getCollection(id), stream, toVinyl);
+};
+
+/**
  * `files` is a session-context-specific getter that
  * returns the collection of files from the current `task`.
  *
@@ -153,13 +228,10 @@ Assemble.prototype.task = Assemble.prototype.add;
  */
 
 Object.defineProperty(Assemble.prototype, 'files', {
-  enumerable: true,
   configurable: true,
+  enumerable: true,
   get: function () {
-    var task = this.session.get('task name');
-    var type = task ? ('__task__' + task) : 'page';
-    var plural = this.inflections[type];
-    return this.views[plural];
+    return this.views[this.inflections[this.getTask()]];
   }
 });
 
@@ -196,8 +268,8 @@ Assemble.prototype.diff = function(a, b, method) {
  * @api private
  */
 
-Assemble.prototype.run = function () {
-  var tasks = !arguments.length ? ['default'] : arguments;
+Assemble.prototype.run = function() {
+  var tasks = arguments.length ? arguments : ['default'];
   this.start.apply(this, tasks);
 };
 
@@ -211,7 +283,7 @@ Assemble.prototype.run = function () {
 Assemble.prototype._runTask = function(task) {
   var assemble = this;
   assemble.session.run(function () {
-    assemble.session.set('task name', task.name);
+    assemble.session.set('task', task.name);
     Task.prototype._runTask.call(assemble, task);
   });
 };
