@@ -30,13 +30,14 @@ describe('assemble defaultConfig', function () {
 
     it('should enable some plugins by default', function () {
       // Default `src` plugins
+      site.enabled('src:vfs plugin').should.be.true;
       site.enabled('src:init plugin').should.be.true;
       site.enabled('src:drafts plugin').should.be.true;
-      site.enabled('src:assets plugin').should.be.true;
 
       // Default `dest` plugins
-      site.enabled('dest:dest plugin').should.be.true;
+      site.enabled('dest:paths plugin').should.be.true;
       site.enabled('dest:render plugin').should.be.true;
+      site.enabled('dest:vfs plugin').should.be.true;
     });
 
     it('should disable some boolean options by default', function () {

@@ -153,11 +153,11 @@ describe('.dest()', function() {
     describe('minimal config - disabled', function () {
       beforeEach(function () {
         app = assemble.init();
-        app.set('ext', '.txt');
+        app.option('ext', '.txt');
       });
 
       afterEach(function () {
-        app.set('ext', '.html');
+        app.option('ext', '.html');
       });
 
       it('should return a stream', function (done) {
@@ -168,7 +168,8 @@ describe('.dest()', function() {
       });
 
       it('should return an output stream that writes files', function (done) {
-        app.disable('render plugin');
+        app.disable('dest:render plugin');
+
         var instream = app.src(join(__dirname, 'fixtures/copy/*.txt'));
         var outstream = app.dest(outpath, {ext: '.txt'});
         instream.pipe(outstream);
