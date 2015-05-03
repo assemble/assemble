@@ -195,6 +195,7 @@ describe('.dest()', function() {
       });
 
       it('should return an output stream that does not write non-read files', function (done) {
+        app.option({read: false});
         var instream = app.src(join(__dirname, 'fixtures/copy/*.txt'), {read: false});
         var outstream = app.dest(outpath);
         instream.pipe(outstream);
@@ -319,6 +320,5 @@ describe('.dest()', function() {
         });
       });
     }
-
   });
 });
