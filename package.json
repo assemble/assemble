@@ -22,7 +22,7 @@
     "url": "git://github.com/assemble/assemble.git"
   },
   "bugs": {
-    "url": "git://github.com/assemble/assemble/issues"
+    "url": "https://github.com/assemble/assemble/issues"
   },
   "license": {
     "type": "MIT",
@@ -77,8 +77,8 @@
     "session-cache": "^0.1.3",
     "sessionify": "^0.1.0",
     "template": "^0.13.0",
-    "template-init": "^0.4.1",
-    "template-render": "^0.5.0",
+    "template-init": "^0.3.0",
+    "template-render": "^0.4.0",
     "through2": "^0.6.5",
     "tildify": "^1.0.0",
     "to-vinyl": "^0.1.2",
