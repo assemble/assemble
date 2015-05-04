@@ -153,7 +153,7 @@ describe('assemble input stream', function() {
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          path.join(file.path, '').should.equal(path.join(__dirname, './fixtures/test.coffee'));
+          path.join(file.path, '').should.equal(path.resolve(__dirname, './fixtures/test.coffee'));
           String(file.contents).should.equal('this is a test');
         });
         stream.on('end', function () {
@@ -181,7 +181,7 @@ describe('assemble input stream', function() {
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          path.join(file.path, '').should.equal('test/fixtures/test.coffee');
+          path.join(file.path, '').should.equal(path.resolve('test/fixtures/test.coffee'));
           String(file.contents).should.equal('this is a test');
         });
         stream.on('end', function () {
@@ -205,8 +205,8 @@ describe('assemble input stream', function() {
         });
         stream.on('end', function () {
           files.length.should.equal(2);
-          files[0].path.should.equal('test/fixtures/generic/run.dmc');
-          files[1].path.should.equal('test/fixtures/generic/test.dmc');
+          files[0].path.should.equal(path.resolve('test/fixtures/generic/run.dmc'));
+          files[1].path.should.equal(path.resolve('test/fixtures/generic/test.dmc'));
           done();
         });
       });
@@ -227,7 +227,7 @@ describe('assemble input stream', function() {
         });
         stream.on('end', function () {
           files.length.should.equal(1);
-          files[0].path.should.equal('test/fixtures/generic/run.dmc');
+          files[0].path.should.equal(path.resolve('test/fixtures/generic/run.dmc'));
           done();
         });
       });
@@ -241,7 +241,7 @@ describe('assemble input stream', function() {
           should.exist(file);
           should.exist(file.path);
           should.not.exist(file.contents);
-          path.join(file.path, '').should.equal('test/fixtures/test.coffee');
+          path.join(file.path, '').should.equal(path.resolve('test/fixtures/test.coffee'));
         });
         stream.on('end', function () {
           done();
@@ -294,7 +294,7 @@ describe('assemble input stream', function() {
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          path.join(file.path, '').should.equal('test/fixtures/test.coffee');
+          path.join(file.path, '').should.equal(path.resolve('test/fixtures/test.coffee'));
           String(file.contents).should.equal('this is a test');
         });
         stream.on('end', function () {
