@@ -1,9 +1,5 @@
 'use strict';
 
-/**
- * Module dependencies
- */
-
 var diff = require('diff');
 var chalk = require('chalk');
 var Template = require('template');
@@ -47,13 +43,7 @@ Assemble.prototype.defaultOptions = function() {
  * Glob patterns or filepaths to source files.
  *
  * ```js
- * assemble.src('src/*.hbs', {layout: 'default'});
- *
- * // usage in a task
- * assemble.task('site', function() {
- *   assemble.src('src/*.hbs', {layout: 'default'})
- *     .pipe(assemble.dest('dist'));
- * });
+ * assemble.src('src/*.hbs', {layout: 'default'})
  * ```
  *
  * @param {String|Array} `glob` Glob patterns or file paths to source files.
@@ -73,11 +63,11 @@ Assemble.prototype.src = function (glob, opts) {
  * Specify a destination for processed files.
  *
  * ```js
- * assemble.dest('_gh_pages/', {ext: '.html'});
+ * assemble.dest('dist')
  * ```
  *
  * @param {String|Function} `dest` File path or rename function.
- * @param {Object} `options` Options or locals to merge into the context and/or pass to `dest` plugins
+ * @param {Object} `options` Options and locals to pass to `dest` plugins
  * @api public
  */
 
@@ -92,11 +82,8 @@ Assemble.prototype.dest = function (dest, opts) {
  * Copy a `glob` of files to the specified `dest`.
  *
  * ```js
- * assemble.copy('assets/**', 'dist/');
- *
- * // usage in a task
- * assemble.task('copy-assets', function() {
- *   return assemble.copy('assets/**', 'dist/');
+ * assemble.task('assets', function() {
+ *   assemble.copy('assets/**', 'dist');
  * });
  * ```
  *
@@ -111,7 +98,7 @@ Assemble.prototype.copy = function(glob, dest, opts) {
 };
 
 /**
- * Define an assemble task. (read more about [tasks](./docs/tasks.md))
+ * Define an Assemble task.
  *
  * ```js
  * assemble.task('default', function() {
@@ -128,31 +115,29 @@ Assemble.prototype.copy = function(glob, dest, opts) {
 Assemble.prototype.task = Assemble.prototype.add;
 
 /**
- * Get the id from the current task. Used in plugins to get
- * the current session.
+ * Get the name of the currently running task from `session-cache`.
+ * This may then be used to get the view collection that was dynamically
+ * created for the task (by the `file` loader).
  *
  * ```js
- * var id = assemble.getTask();
- * assemble.views[id];
+ * var taskName = assemble.getTask();
+ * var views = assemble.views[taskName];
  * ```
  *
- * @return {String} `task` The currently running task.
+ * @return {String} `task` If a task is running, returns the name of the task, otherwise returns `page`.
  * @api public
  */
 
 Assemble.prototype.getTask = function() {
   var name = this.session.get('task');
-  return typeof name === 'string'
-    ? 'task_' + name
-    : 'page';
+  return typeof name === 'string' ? name : 'page';
 };
 
 /**
- * Get the collection name (inflection) of the given
- * template type.
+ * Get a view collection by its singular-form `name`.
  *
  * ```js
- * var collection = verb.getCollection('page');
+ * var collection = assemble.getCollection('page');
  * // gets the `pages` collection
  * //=> {a: {}, b: {}, ...}
  * ```
@@ -162,39 +147,34 @@ Assemble.prototype.getTask = function() {
  */
 
 Assemble.prototype.getCollection = function(name) {
-  var collection = this.inflections[name];
-  return this.views[collection];
+  if (typeof name === 'undefined') {
+    name = this.getTask();
+  }
+
+  if (this.views.hasOwnProperty(name)) {
+    return this.views[name];
+  }
+
+  name = this.inflections[name];
+  return this.views[name];
 };
 
 /**
- * Used in plugins to get a template from the current session.
+ * Get a file from the currently running task.
  *
  * ```js
- * var views = app.getViews();
+ * var file = assemble.getFile(file);
  * ```
  *
- * @return {String} `id` Pass the task-id from the current session.
- * @return {Object} `file` Vinyl file object. Must have an `id` property that matches the `id` of the session.
+ * @return {Object} `file` Vinyl file object. Files must have an `id` property.
  * @api public
  */
 
-Assemble.prototype.getViews = function() {
-  return this.getCollection(this.getTask());
-};
-
-/**
- * Get a template (file) from the current session in a stream.
- *
- * ```js
- * var file = app.getSessionFile(file);
- * ```
- *
- * @return {Object} `file` Vinyl file object. Must have an `id` property that matches the `id` of the session.
- * @api public
- */
-
-Assemble.prototype.getSessionFile = function(file) {
-  return this.getViews()[file.id];
+Assemble.prototype.getFile = function(file, id) {
+  if (typeof file === 'object' || !file.hasOwnProperty('id')) {
+    throw new Error('Assemble.getFile expects file objects to have an `id` property.');
+  }
+  return this.getCollection(id)[file.id];
 };
 
 /**
@@ -215,8 +195,8 @@ Assemble.prototype.pushToStream = function(id, stream) {
 };
 
 /**
- * `files` is a session-context-specific getter that
- * returns the collection of files from the current `task`.
+ * Session-context-specific getter that returns the collection of
+ * files for the currently running `task`.
  *
  * ```js
  * var files = assemble.files;
@@ -231,7 +211,7 @@ Object.defineProperty(Assemble.prototype, 'files', {
   configurable: true,
   enumerable: true,
   get: function () {
-    return this.views[this.inflections[this.getTask()]];
+    return this.getCollection(this.getTask());
   }
 });
 
@@ -289,21 +269,16 @@ Assemble.prototype._runTask = function(task) {
 };
 
 /**
- * Rerun the specified task when a file changes.
+ * Re-run the specified task(s) when a file changes.
  *
  * ```js
- * assemble.watch('docs/*.md', ['docs']);
- *
- * // usage in a task
  * assemble.task('watch', function() {
  *   assemble.watch('docs/*.md', ['docs']);
  * });
  * ```
  *
  * @param  {String|Array} `glob` Filepaths or glob patterns.
- * @param  {String} `options`
  * @param  {Function} `fn` Task(s) to watch.
- * @return {String}
  * @api public
  */
 
