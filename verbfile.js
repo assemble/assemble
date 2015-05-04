@@ -1,3 +1,5 @@
+var path = require('path');
+var relative = require('relative');
 var istanbul = require('gulp-istanbul');
 var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
