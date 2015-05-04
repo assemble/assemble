@@ -28,8 +28,10 @@ describe('assemble dest-path plugin', function() {
         var instream = assemble.src(path.join(__dirname, 'fixtures/dest-path/*.hbs'));
         var outstream = assemble.dest(actual);
 
+        var i = 0;
         instream
           .pipe(tap(function (file) {
+            i++;
             should.exist(file);
             should.exist(file.path);
             should.exist(file.contents);
@@ -40,6 +42,7 @@ describe('assemble dest-path plugin', function() {
 
         outstream.on('error', done);
         outstream.on('end', function () {
+          i.should.equal(1);
           done();
         });
 
@@ -53,11 +56,11 @@ describe('assemble dest-path plugin', function() {
 
         outstream.on('error', done);
         outstream.on('data', function (file) {
-            should.exist(file);
-            should.exist(file.path);
-            should.exist(file.contents);
-            file.data.dest.ext.should.equal('.html');
-            file.data.dest.path.should.match(/dest-path-actual[\/\\][cd]\.html/);
+          should.exist(file);
+          should.exist(file.path);
+          should.exist(file.contents);
+          file.data.dest.ext.should.equal('.html');
+          file.data.dest.path.should.match(/dest-path-actual[\/\\][cd]\.html/);
         });
 
         outstream.on('end', function () {

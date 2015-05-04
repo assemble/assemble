@@ -27,8 +27,10 @@ describe('assemble drafts plugin', function() {
         var outstream = site.dest(actual);
         instream.pipe(outstream);
 
+        var i = 0;
         outstream.on('error', done);
         outstream.on('data', function (file) {
+          i++;
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
@@ -39,6 +41,7 @@ describe('assemble drafts plugin', function() {
         });
 
         outstream.on('end', function () {
+          i.should.equal(1);
           done();
         });
       });
