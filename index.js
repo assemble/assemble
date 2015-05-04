@@ -52,10 +52,6 @@ Assemble.prototype.defaultOptions = function() {
  */
 
 Assemble.prototype.src = function (glob, opts) {
-  opts = _.merge({}, this.options, opts);
-  if (this.enabled('minimal config') || opts.minimal) {
-    return vfs.src(glob, opts);
-  }
   return stack.src(this, glob, opts);
 };
 
@@ -72,9 +68,6 @@ Assemble.prototype.src = function (glob, opts) {
  */
 
 Assemble.prototype.dest = function (dest, opts) {
-  if (this.enabled('minimal config') || opts && opts.minimal) {
-    return vfs.dest(dest, opts);
-  }
   return stack.dest(this, dest, opts);
 };
 
@@ -171,9 +164,9 @@ Assemble.prototype.getCollection = function(name) {
  */
 
 Assemble.prototype.getFile = function(file, id) {
-  if (typeof file === 'object' || !file.hasOwnProperty('id')) {
-    throw new Error('Assemble.getFile expects file objects to have an `id` property.');
-  }
+  // if (typeof file === 'object' || !file.hasOwnProperty('id')) {
+  //   throw new Error('Assemble.getFile expects file objects to have an `id` property.');
+  // }
   return this.getCollection(id)[file.id];
 };
 
