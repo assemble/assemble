@@ -164,9 +164,9 @@ Assemble.prototype.getCollection = function(name) {
  */
 
 Assemble.prototype.getFile = function(file, id) {
-  // if (typeof file === 'object' || !file.hasOwnProperty('id')) {
-  //   throw new Error('Assemble.getFile expects file objects to have an `id` property.');
-  // }
+  if (typeof file === 'object' || !file.hasOwnProperty('id')) {
+    throw new Error('Assemble.getFile expects file objects to have an `id` property.');
+  }
   return this.getCollection(id)[file.id];
 };
 
