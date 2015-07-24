@@ -1,5 +1,7 @@
 # assemble [![NPM version](https://badge.fury.io/js/assemble.svg)](http://badge.fury.io/js/assemble)
 
+[![Join the chat at https://gitter.im/assemble/assemble](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/assemble/assemble?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 > Static site generator for Grunt.js, Yeoman and Node.js. Used by Zurb Foundation, Zurb Ink, H5BP/Effeckt, Less.js / lesscss.org, Topcoat, Web Experience Toolkit, and hundreds of other projects to build sites, themes, components, documentation, blogs and gh-pages.
 
 ### Install globally
