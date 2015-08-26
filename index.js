@@ -7,7 +7,6 @@ var delegate = require('delegate-properties');
 var extend = require('extend-shallow');
 var pascal = require('pascalcase');
 var lazy = require('lazy-cache')(require);
-var session = require('./lib/session');
 
 /**
  * Lazily required module dependencies
@@ -28,7 +27,7 @@ lazy('dest');
 // var Boilerplate = lazy('boilerplate');
 // var Generate = lazy('generate');
 // var Scaffold = lazy('scaffold');
-var Composer = require('composer').Composer;
+var Composer = require('composer');
 var Template = require('template');
 // var Snippet = lazy('snippet');
 
@@ -49,7 +48,7 @@ function Assemble(options) {
     return new Assemble(options);
   }
   Template.apply(this, arguments);
-  Composer.apply(this, arguments);
+  Composer.call(this, 'assemble');
 }
 
 Template.extend(Assemble);
