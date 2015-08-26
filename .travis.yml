@@ -3,6 +3,9 @@ language: node_js
 node_js:
   - "0.10"
   - "0.12"
+  - "0.13"
   - "iojs"
-git:
-  depth: 10
+matrix:
+  fast_finish: true
+  allow_failures:
+    - node_js: "0.13"

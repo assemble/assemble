@@ -1,132 +1,105 @@
 {
   "name": "assemble",
-  "description": "Static site generator for Grunt.js, Yeoman and Node.js. Used by Zurb Foundation, Zurb Ink, H5BP/Effeckt, Less.js / lesscss.org, Topcoat, Web Experience Toolkit, and hundreds of other projects to build sites, themes, components, documentation, blogs and gh-pages.",
-  "version": "0.6.0-beta.5",
-  "homepage": "http://assemble.io",
-  "author": {
-    "name": "Assemble",
-    "url": "https://github.com/assemble/assemble"
-  },
-  "maintainers": [
-    {
-      "name": "Brian Woodward",
-      "url": "https://github.com/doowb"
-    },
-    {
-      "name": "Jon Schlinkert",
-      "url": "https://github.com/jonschlinkert"
-    }
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/assemble/assemble.git"
-  },
+  "description": "Make stuff.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jonschlinkert/assemble",
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/assemble",
   "bugs": {
-    "url": "git://github.com/assemble/assemble/issues"
+    "url": "https://github.com/jonschlinkert/assemble/issues"
   },
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/assemble/assemble/blob/master/LICENSE"
-  },
+  "license": "MIT",
   "files": [
-    "index.js",
-    "lib/",
-    "bin/",
-    "completion/"
+    "index.js"
   ],
-  "main": "./lib/index.js",
+  "main": "index.js",
   "engines": {
-    "node": ">= 0.10.0"
-  },
-  "bin": {
-    "assemble": "./bin/assemble.js"
+    "node": ">=0.10.0"
   },
   "scripts": {
     "test": "mocha"
   },
   "dependencies": {
-    "archy": "^1.0.0",
-    "array-slice": "^0.2.2",
-    "assemble-utils": "^0.2.0",
-    "chalk": "^1.0.0",
+    "composer": "^0.4.0",
     "computed-property": "^0.1.2",
-    "engine-assemble": "^0.4.0",
-    "event-stream": "^3.3.0",
-    "extend-shallow": "^1.1.2",
-    "gulp-drafts": "^0.1.0",
-    "gulp-util": "^3.0.4",
-    "interpret": "^0.5.1",
-    "liftoff": "^2.0.2",
-    "lodash": "^3.5.0",
-    "minimist": "^1.1.1",
-    "object.reduce": "^0.1.3",
-    "orchestrator": "^0.3.7",
-    "parse-filepath": "^0.5.0",
-    "parser-front-matter": "^1.2.0",
-    "pretty-hrtime": "^1.0.0",
+    "delegate-properties": "^0.2.1",
+    "dest": "^0.1.1",
+    "engine-handlebars": "^0.6.1",
+    "extend-shallow": "^2.0.1",
+    "lazy-cache": "^0.2.2",
+    "object.defaults": "^0.3.0",
+    "parser-front-matter": "^1.2.5",
+    "pascalcase": "^0.1.0",
     "relative-dest": "^0.1.0",
-    "rewrite-ext": "^0.2.0",
-    "semver": "^4.3.1",
-    "sessionify": "^0.1.0",
-    "template": "^0.12.6",
-    "template-init": "^0.3.0",
-    "template-render": "^0.4.1",
-    "template-utils": "^0.5.1",
-    "through2": "^0.6.3",
-    "tildify": "^1.0.0",
-    "vinyl-fs": "^1.0.0",
-    "word-wrap": "^1.0.2"
+    "template": "^0.17.0",
+    "template-config": "^0.1.2",
+    "through2": "^2.0.0",
+    "to-vinyl": "^0.2.0",
+    "vinyl": "^0.5.1",
+    "vinyl-fs": "^1.0.0"
   },
   "devDependencies": {
-    "consolidate": "^0.11.0",
-    "graceful-fs": "^3.0.5",
-    "gray-matter": "^1.2.3",
-    "gulp-istanbul": "^0.6.0",
-    "gulp-jshint": "^1.9.2",
-    "gulp-mocha": "^2.0.0",
-    "gulp-tap": "^0.1.3",
-    "jshint-stylish": "^1.0.0",
-    "load-helpers": "^0.1.0",
-    "mkdirp": "^0.5.0",
-    "mocha": "^2.1.0",
-    "q": "^1.1.2",
-    "rimraf": "^2.2.8",
-    "should": "^5.0.0",
-    "verb": "^0.6.2"
+    "ansi-red": "^0.1.1",
+    "export-files": "^2.1.0",
+    "gulp-extname": "^0.2.0",
+    "helper-markdown": "^0.1.1",
+    "mocha": "^2.2.5",
+    "scaffold": "0.0.2",
+    "should": "^7.0.4"
   },
   "keywords": [
-    "HTML",
+    "html generator",
+    "website builder",
+    "free website builder",
+    "create website",
+    "api",
+    "app",
+    "assemble",
     "blog",
     "boilerplate",
     "boilerplates",
     "bootstrap",
     "build",
     "builder",
+    "component",
     "components",
+    "create",
+    "doc",
+    "docs",
+    "documentation",
+    "front",
     "front-matter",
     "generate",
     "generator",
     "handlebars",
     "helpers",
+    "html",
     "jekyll",
+    "markdown",
+    "matter",
+    "md",
     "pages",
     "partial",
     "partials",
+    "post",
     "scaffold",
     "scaffolds",
     "site",
     "static",
+    "static-site",
     "task",
     "templates",
     "templating",
+    "web",
     "website",
     "yaml",
     "yeoman"
   ],
   "verb": {
-    "deps": {
-      "ignore": [
-        "coverage"
+    "related": {
+      "list": [
+        "template",
+        "verb"
       ]
     }
   }
