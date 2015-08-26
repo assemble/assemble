@@ -138,8 +138,10 @@ delegate(Assemble.prototype, {
 
   src: function (glob, options) {
     if (!this.loaded) this.defaultConfig();
-    this.files(glob, options);
-    var stream = this.toStream('files');
+    var name = this.taskName();
+    // TODO: should template use camelcase?
+    this[name](glob, options);
+    var stream = this.toStream(name);
     process.nextTick(function () {
       stream.end();
     });
@@ -204,6 +206,9 @@ delegate(Assemble.prototype, {
    */
 
   toStream: function (plural, locals) {
+    if (!this.views.hasOwnProperty(plural)) {
+      plural = this.inflections[plural];
+    }
     var views = this.views[plural] || {};
     return lazy.through.obj(function (file, enc, cb) {
       this.push(file);
@@ -233,7 +238,10 @@ delegate(Assemble.prototype, {
    */
 
   renderFile: function (locals) {
-    var File = this.get(pascal(this.taskName()));
+    var name = this.taskName();
+    // TODO: update template to use pascalcase
+    name = name[0].toUpperCase() + name.slice(1);
+    var File = this.get(name);
     var self = this;
 
     return lazy.through.obj(function (file, enc, cb) {
