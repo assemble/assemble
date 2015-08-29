@@ -44,10 +44,10 @@ app.task('load', function (done) {
   done();
 });
 
-app.task('doc', ['load'], function () {
+app.task('docs', ['load'], function () {
   return app.src('docs/src/templates/*.hbs')
     // .on('error', console.error)
-    // .pipe(app.toStream('doc'))
+    // .pipe(app.toStream('docs'))
     // .pipe(app.toStream('recipes'))
     .pipe(app.renderFile())
     .pipe(extname())
@@ -58,8 +58,8 @@ app.task('doc', ['load'], function () {
 
 });
 
-app.task('watch', ['doc'], function () {
+app.task('watch', ['docs'], function () {
   app.watch('docs/**/*.{md,hbs}', ['default']);
 });
 
-app.task('default', ['doc']);
+app.task('default', ['docs']);

@@ -19,6 +19,7 @@ lazy('vinyl-fs', 'vfs');
 lazy('vinyl', 'Vinyl');
 lazy('to-vinyl');
 lazy('dest');
+lazy('inflection');
 
 /**
  * Extend `Assemble`
@@ -239,6 +240,7 @@ delegate(Assemble.prototype, {
 
   renderFile: function (locals) {
     var name = this.taskName();
+    name = lazy.inflection.singularize(name);
     // TODO: update template to use pascalcase
     name = name[0].toUpperCase() + name.slice(1);
     var File = this.get(name);

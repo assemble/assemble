@@ -26,6 +26,7 @@
     "dest": "^0.1.1",
     "engine-handlebars": "^0.6.1",
     "extend-shallow": "^2.0.1",
+    "inflection": "^1.7.1",
     "lazy-cache": "^0.2.2",
     "object.defaults": "^0.3.0",
     "parser-front-matter": "^1.2.5",
