@@ -39,15 +39,15 @@ app.data({
 app.task('load', function (done) {
   app.partials('docs/src/templates/partials/*.hbs');
   app.layouts('docs/src/templates/layouts/*.hbs');
-  app.recipes('docs/recipes/*.md');
-  app.docs('docs/*.md');
+  app.recipes('docs/src/recipes/*.md');
+  app.docs('docs/src/content/*.md');
   done();
 });
 
-app.task('docs', ['load'], function () {
+app.task('doc', ['load'], function () {
   return app.src('docs/src/templates/*.hbs')
     // .on('error', console.error)
-    // .pipe(app.toStream('docs'))
+    // .pipe(app.toStream('doc'))
     // .pipe(app.toStream('recipes'))
     .pipe(app.renderFile())
     .pipe(extname())
@@ -58,8 +58,8 @@ app.task('docs', ['load'], function () {
 
 });
 
-app.task('watch', ['docs'], function () {
+app.task('watch', ['doc'], function () {
   app.watch('docs/**/*.{md,hbs}', ['default']);
 });
 
-app.task('default', ['docs']);
+app.task('default', ['doc']);
