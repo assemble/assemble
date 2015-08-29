@@ -240,10 +240,7 @@ delegate(Assemble.prototype, {
 
   renderFile: function (locals) {
     var name = this.taskName();
-    name = lazy.inflection.singularize(name);
-    // TODO: update template to use pascalcase
-    name = name[0].toUpperCase() + name.slice(1);
-    var File = this.get(name);
+    var collection = this.views[name];
     var self = this;
 
     return lazy.through.obj(function (file, enc, cb) {
@@ -252,7 +249,8 @@ delegate(Assemble.prototype, {
         locals = {};
       }
 
-      self.render(new File(file), locals, function (err, res) {
+      collection.set(file.path, file);
+      self.render(collection.get(file.path), locals, function (err, res) {
         if (err) return cb(err);
         res.contents = new Buffer(res.content);
         file = new lazy.Vinyl(res);
