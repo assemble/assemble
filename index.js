@@ -139,14 +139,15 @@ delegate(Assemble.prototype, {
 
   src: function (glob, options) {
     if (!this.loaded) this.defaultConfig();
-    var name = this.taskName();
-    // TODO: should template use camelcase?
-    this[name](glob, options);
-    var stream = this.toStream(name);
-    process.nextTick(function () {
-      stream.end();
-    });
-    return stream;
+    return lazy.vfs.src.apply(lazy.vfs, arguments);
+    // var name = this.taskName();
+    // // TODO: should template use camelcase?
+    // this[name](glob, options);
+    // var stream = this.toStream(name);
+    // process.nextTick(function () {
+    //   stream.end();
+    // });
+    // return stream;
   },
 
   /**
@@ -240,7 +241,6 @@ delegate(Assemble.prototype, {
 
   renderFile: function (locals) {
     var name = this.taskName();
-    var collection = this.views[name];
     var self = this;
 
     return lazy.through.obj(function (file, enc, cb) {
@@ -248,9 +248,9 @@ delegate(Assemble.prototype, {
         cb = locals;
         locals = {};
       }
-
-      collection.set(file.path, file);
-      self.render(collection.get(file.path), locals, function (err, res) {
+      self[name].addView(file.path, file);
+      var view = self[name].get(file.path);
+      self.render(view, locals, function (err, res) {
         if (err) return cb(err);
         res.contents = new Buffer(res.content);
         file = new lazy.Vinyl(res);
