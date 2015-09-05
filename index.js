@@ -2,10 +2,10 @@
 
 var path = require('path');
 var util = require('util');
+var pascal = require('pascalcase');
+var extend = require('extend-shallow');
 var defaults = require('object.defaults');
 var delegate = require('delegate-properties');
-var extend = require('extend-shallow');
-var pascal = require('pascalcase');
 var lazy = require('lazy-cache')(require);
 
 /**
@@ -66,7 +66,6 @@ delegate(Assemble.prototype, {
 
     var exts = ['hbs', 'html', 'md'];
     this.engine(exts, require('engine-handlebars'));
-
 
     this.onLoad(/\.(hbs|md|html)$/, function (view, next) {
       lazy.matter.parse(view, next);
@@ -139,7 +138,6 @@ delegate(Assemble.prototype, {
   src: function (glob, options) {
     if (!this.loaded) this.defaultConfig();
     var name = this.taskName();
-    // TODO: should template use camelcase?
     this[name](glob, options);
     var stream = this.toStream(name);
     process.nextTick(function () {
@@ -206,10 +204,7 @@ delegate(Assemble.prototype, {
    */
 
   toStream: function (plural, locals) {
-    if (!this.views.hasOwnProperty(plural)) {
-      plural = this.inflections[plural];
-    }
-    var views = this.views[plural] || {};
+    var views = this.getViews(plural) || {};
     return lazy.through.obj(function (file, enc, cb) {
       this.push(file);
       return cb();
@@ -238,10 +233,8 @@ delegate(Assemble.prototype, {
    */
 
   renderFile: function (locals) {
-    var name = this.taskName();
     // TODO: update template to use pascalcase
-    name = name[0].toUpperCase() + name.slice(1);
-    var File = this.get(name);
+    var File = this[this.taskName()];
     var self = this;
 
     return lazy.through.obj(function (file, enc, cb) {
@@ -274,9 +267,19 @@ delegate(Assemble.prototype, {
  * @api public
  */
 
-Assemble.extend = function(Ctor) {
+Assemble.extend = function(Ctor, proto) {
   util.inherits(Ctor, Assemble);
-  delegate(Ctor, Assemble);
+  for (var key in Assemble) {
+    Ctor[key] = Assemble[key];
+  }
+
+  if (typeof proto === 'object') {
+    var obj = Object.create(proto);
+
+    for (var k in obj) {
+      Ctor.prototype[k] = obj[k];
+    }
+  }
 };
 
 /**

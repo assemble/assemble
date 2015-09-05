@@ -40,7 +40,7 @@ app.task('load', function (done) {
   app.partials('docs/src/templates/partials/*.hbs');
   app.layouts('docs/src/templates/layouts/*.hbs');
   app.recipes('docs/recipes/*.md');
-  app.docs('docs/*.md');
+  // app.docs('docs/content/*.md');
   done();
 });
 
@@ -63,3 +63,6 @@ app.task('watch', ['docs'], function () {
 });
 
 app.task('default', ['docs']);
+app.run('default', function () {
+
+})
