@@ -2,10 +2,10 @@
 
 var path = require('path');
 var util = require('util');
+var pascal = require('pascalcase');
+var extend = require('extend-shallow');
 var defaults = require('object.defaults');
 var delegate = require('delegate-properties');
-var extend = require('extend-shallow');
-var pascal = require('pascalcase');
 var lazy = require('lazy-cache')(require);
 
 /**
@@ -19,7 +19,6 @@ lazy('vinyl-fs', 'vfs');
 lazy('vinyl', 'Vinyl');
 lazy('to-vinyl');
 lazy('dest');
-lazy('inflection');
 
 /**
  * Extend `Assemble`
@@ -67,7 +66,6 @@ delegate(Assemble.prototype, {
 
     var exts = ['hbs', 'html', 'md'];
     this.engine(exts, require('engine-handlebars'));
-
 
     this.onLoad(/\.(hbs|md|html)$/, function (view, next) {
       lazy.matter.parse(view, next);
@@ -139,15 +137,13 @@ delegate(Assemble.prototype, {
 
   src: function (glob, options) {
     if (!this.loaded) this.defaultConfig();
-    return lazy.vfs.src.apply(lazy.vfs, arguments);
-    // var name = this.taskName();
-    // // TODO: should template use camelcase?
-    // this[name](glob, options);
-    // var stream = this.toStream(name);
-    // process.nextTick(function () {
-    //   stream.end();
-    // });
-    // return stream;
+    var name = this.taskName();
+    this[name](glob, options);
+    var stream = this.toStream(name);
+    process.nextTick(function () {
+      stream.end();
+    });
+    return stream;
   },
 
   /**
@@ -208,10 +204,7 @@ delegate(Assemble.prototype, {
    */
 
   toStream: function (plural, locals) {
-    if (!this.views.hasOwnProperty(plural)) {
-      plural = this.inflections[plural];
-    }
-    var views = this.views[plural] || {};
+    var views = this.getViews(plural) || {};
     return lazy.through.obj(function (file, enc, cb) {
       this.push(file);
       return cb();
@@ -240,7 +233,8 @@ delegate(Assemble.prototype, {
    */
 
   renderFile: function (locals) {
-    var name = this.taskName();
+    // TODO: update template to use pascalcase
+    var File = this[this.taskName()];
     var self = this;
 
     return lazy.through.obj(function (file, enc, cb) {
@@ -248,9 +242,8 @@ delegate(Assemble.prototype, {
         cb = locals;
         locals = {};
       }
-      self[name].addView(file.path, file);
-      var view = self[name].get(file.path);
-      self.render(view, locals, function (err, res) {
+
+      self.render(new File(file), locals, function (err, res) {
         if (err) return cb(err);
         res.contents = new Buffer(res.content);
         file = new lazy.Vinyl(res);
@@ -274,9 +267,19 @@ delegate(Assemble.prototype, {
  * @api public
  */
 
-Assemble.extend = function(Ctor) {
+Assemble.extend = function(Ctor, proto) {
   util.inherits(Ctor, Assemble);
-  delegate(Ctor, Assemble);
+  for (var key in Assemble) {
+    Ctor[key] = Assemble[key];
+  }
+
+  if (typeof proto === 'object') {
+    var obj = Object.create(proto);
+
+    for (var k in obj) {
+      Ctor.prototype[k] = obj[k];
+    }
+  }
 };
 
 /**

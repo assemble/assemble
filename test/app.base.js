@@ -7,10 +7,6 @@ var App = require('..').Assemble;
 var app;
 
 describe('App', function () {
-  // beforEach(function () {
-  //   app = new assemble.Assemble();
-  // })
-
   it('should create a new instance of App:', function () {
     var app = new App();
     assert.equal(app instanceof App, true);
