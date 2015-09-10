@@ -5,7 +5,7 @@ var App = require('../');
 var app;
 
 describe('app', function () {
-  describe.only('constructor', function () {
+  describe('constructor', function () {
     it('should create an instance of App:', function () {
       app = new App();
       assert(app instanceof App);

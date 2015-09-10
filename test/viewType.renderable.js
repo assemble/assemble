@@ -11,6 +11,7 @@ describe('viewType', function () {
     });
 
     it('should add collection (plural) to the `viewTypes` object', function () {
+      app.viewTypes = []; // reset
       app.create('foo', {viewType: 'layout'});
       app.create('bar', {viewType: 'layout'});
       assert.deepEqual(app.viewTypes.layout, [ 'foos', 'bars' ]);

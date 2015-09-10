@@ -135,8 +135,9 @@ describe('helpers', function () {
     });
 
     it('should fail gracefully on bad globs:', function () {
-      app.asyncHelpers('test/fixtures/helpers/*.foo');
-      app._.helpers.async.should.eql({});
+      (function() {
+        app.asyncHelpers('test/fixtures/helpers/*.foo');
+      }).should.not.throw;
     });
 
     it('should throw an error if an invalid arg is passed:', function () {

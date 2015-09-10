@@ -29,7 +29,7 @@ function Assemble(options) {
     return new Assemble(options);
   }
   Templates.apply(this, arguments);
-  // Composer.apply(this, arguments);
+  Composer.apply(this, arguments);
   this.init();
 }
 
@@ -37,7 +37,6 @@ Templates.extend(Assemble, {
   constructor: Assemble,
 
   init: function() {
-    console.log(this)
     this.engine(['hbs', 'html', 'md'], require('engine-handlebars'));
 
     this.preLayout(/\.(hbs|md|html)$/, function (view, next) {
@@ -211,7 +210,7 @@ Templates.extend(Assemble, {
   }
 });
 
-// utils.extend(Assemble.prototype, Composer.prototype);
+utils.extend(Assemble.prototype, Composer.prototype);
 
 /**
  * Expose the `Assemble` constructor
