@@ -1,45 +1,26 @@
 'use strict';
 
+/**
+ * module dependencies
+ */
+
 var path = require('path');
-var util = require('util');
-var pascal = require('pascalcase');
-var extend = require('extend-shallow');
-var defaults = require('object.defaults');
-var delegate = require('delegate-properties');
-var lazy = require('lazy-cache')(require);
-
-/**
- * Lazily required module dependencies
- */
-
-lazy('through2', 'through');
-lazy('template-config', 'config');
-lazy('parser-front-matter', 'matter');
-lazy('vinyl-fs', 'vfs');
-lazy('vinyl', 'Vinyl');
-lazy('to-vinyl');
-lazy('dest');
-
-/**
- * Extend `Assemble`
- */
-
-// var Boilerplate = lazy('boilerplate');
-// var Generate = lazy('generate');
-// var Scaffold = lazy('scaffold');
+var Boilerplate = require('boilerplate');
+var Scaffold = require('scaffold');
 var Composer = require('composer');
-var Template = require('template');
-// var Snippet = lazy('snippet');
+var Templates = require('templates');
+var utils = require('./lib/utils');
 
 /**
- * Create an instance of `Assemble` with the given `options`.
+ * Create a Assemble application. The `assemble()` function
+ * is the main function exported by the assemble module.
  *
  * ```js
- * var Assemble = require('assemble');
- * var app = new Assemble();
+ * var assemble = require('assemble');
+ * var app = assemble();
  * ```
  *
- * @param {Object} `options`
+ * @param {Object} `options` Optionally pass default options to use.
  * @api public
  */
 
@@ -47,53 +28,36 @@ function Assemble(options) {
   if (!(this instanceof Assemble)) {
     return new Assemble(options);
   }
-  Template.apply(this, arguments);
-  Composer.call(this, 'assemble');
+  Templates.apply(this, arguments);
+  // Composer.apply(this, arguments);
+  this.init();
 }
 
-Template.extend(Assemble);
-extend(Assemble.prototype, Composer.prototype);
-
-/**
- * Default configuration
- */
-
-delegate(Assemble.prototype, {
+Templates.extend(Assemble, {
   constructor: Assemble,
 
-  defaultConfig: function() {
-    this.mixin('config', lazy.config(this));
+  init: function() {
+    console.log(this)
+    this.engine(['hbs', 'html', 'md'], require('engine-handlebars'));
 
-    var exts = ['hbs', 'html', 'md'];
-    this.engine(exts, require('engine-handlebars'));
-
-    this.onLoad(/\.(hbs|md|html)$/, function (view, next) {
-      lazy.matter.parse(view, next);
-    });
-
-    this.preLayout(/./, function (view, next) {
-      if (/\.(hbs|md|html)$/.test(view.path)) {
-        if (!view.layout) view.layout = view.locals.layout;
-        if (!view.layout) view.layout = view.data.layout;
-      } else {
-        view.layout = null;
-      }
+    this.preLayout(/\.(hbs|md|html)$/, function (view, next) {
+      if (!view.layout) view.layout = view.locals.layout || view.data.layout;
       next();
     });
 
-    this.preRender(/\.(hbs|md|html)$/, function (view, next) {
-      extend(view.data, view.parsePath())
+    this.onLoad(/\.(hbs|md|html)$/, function (view, next) {
+      utils.matter.parse(view, next);
     });
 
     this.create('partials', {
-      viewType: ['partial'],
+      viewType: 'partial',
       renameKey: function (fp) {
         return path.basename(fp, path.extname(fp));
       }
     });
 
     this.create('layouts', {
-      viewType: ['layout'],
+      viewType: 'layout',
       renameKey: function (fp) {
         return path.basename(fp, path.extname(fp));
       }
@@ -108,20 +72,20 @@ delegate(Assemble.prototype, {
     this.loaded = true;
   },
 
-  // boilerplate: function (name, config) {
-  //   this.boilerplates[name] = new Boilerplate(config);
-  //   return this;
-  // },
+  generate: function (config, cb) {
+    // generate(config, cb);
+    return this;
+  },
 
-  // scaffold: function (name, config) {
-  //   this.scaffolds[name] = new Scaffold(config);
-  //   return this;
-  // },
+  boilerplate: function (name, config) {
+    this.boilerplates[name] = new Boilerplate(config);
+    return this;
+  },
 
-  // snippet: function (name, config) {
-  //   this.snippets[name] = new Snippet(config);
-  //   return this;
-  // },
+  scaffold: function (name, config) {
+    this.scaffolds[name] = new Scaffold(config);
+    return this;
+  },
 
   /**
    * Glob patterns or filepaths to source files.
@@ -136,14 +100,8 @@ delegate(Assemble.prototype, {
    */
 
   src: function (glob, options) {
-    if (!this.loaded) this.defaultConfig();
-    var name = this.taskName();
-    this[name](glob, options);
-    var stream = this.toStream(name);
-    process.nextTick(function () {
-      stream.end();
-    });
-    return stream;
+    if (!this.loaded) this.init();
+    return utils.vfs.src.apply(utils.vfs, arguments);
   },
 
   /**
@@ -159,12 +117,12 @@ delegate(Assemble.prototype, {
    */
 
   dest: function (/*dest, options*/) {
-    return lazy.dest.apply(lazy.dest, arguments);
+    return utils.dest.apply(utils.dest, arguments);
   },
 
   task: function (name) {
     var task = Composer.prototype.task;
-    if (!this.loaded) this.defaultConfig();
+    if (!this.loaded) this.init();
     var key = 'task_' + name;
     this.create(key, {
       renameKey: function (fp) {
@@ -190,8 +148,8 @@ delegate(Assemble.prototype, {
    */
 
   copy: function(patterns, destDir, opts) {
-    return lazy.vfs.src(patterns, opts)
-      .pipe(lazy.vfs.dest(destDir, opts));
+    return utils.vfs.src(patterns, opts)
+      .pipe(utils.vfs.dest(destDir, opts));
   },
 
   /**
@@ -205,13 +163,13 @@ delegate(Assemble.prototype, {
 
   toStream: function (plural, locals) {
     var views = this.getViews(plural) || {};
-    return lazy.through.obj(function (file, enc, cb) {
+    return utils.through.obj(function (file, enc, cb) {
       this.push(file);
       return cb();
     }, function (cb) {
       Object.keys(views).forEach(function (key) {
         var view = views[key];
-        var file = lazy.toVinyl(view);
+        var file = utils.toVinyl(view);
         this.push(file);
       }.bind(this));
       cb();
@@ -237,7 +195,7 @@ delegate(Assemble.prototype, {
     var File = this[this.taskName()];
     var self = this;
 
-    return lazy.through.obj(function (file, enc, cb) {
+    return utils.through.obj(function (file, enc, cb) {
       if (typeof locals === 'function') {
         cb = locals;
         locals = {};
@@ -246,50 +204,17 @@ delegate(Assemble.prototype, {
       self.render(new File(file), locals, function (err, res) {
         if (err) return cb(err);
         res.contents = new Buffer(res.content);
-        file = new lazy.Vinyl(res);
+        file = new utils.Vinyl(res);
         cb(null, file);
       });
     });
   }
 });
 
-/**
- * Static method for allowing other classes to inherit
- * both prototype and static methods from `Assemble`.
- *
- * ```js
- * function MyApp(options) {...}
- * Assemble.extend(MyApp);
- * ```
- *
- * @param  {Object} `Ctor` Constructor function to extend with `Assemble`
- * @return {undefined}
- * @api public
- */
-
-Assemble.extend = function(Ctor, proto) {
-  util.inherits(Ctor, Assemble);
-  for (var key in Assemble) {
-    Ctor[key] = Assemble[key];
-  }
-
-  if (typeof proto === 'object') {
-    var obj = Object.create(proto);
-
-    for (var k in obj) {
-      Ctor.prototype[k] = obj[k];
-    }
-  }
-};
+// utils.extend(Assemble.prototype, Composer.prototype);
 
 /**
- * Expose an instance of `Assemble`
+ * Expose the `Assemble` constructor
  */
 
-module.exports = new Assemble();
-
-/**
- * Allow users to instantiate `Assemble`.
- */
-
-module.exports.Assemble = Assemble;
+module.exports = Assemble;

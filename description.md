@@ -1,0 +1,1 @@
+Assemble's context is an object which provides many helpful methods for writing web applications and APIs. The methods exposed on the context perform operations that are used so frequently in node.js application development that they were added at this level instead of a higher level framework, which would force middleware to re-implement this common functionality.

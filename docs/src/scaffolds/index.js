@@ -1,6 +1,6 @@
 
 
-var Scaffold = require('template');
+var Scaffold = require('templates');
 var scaffold = new Scaffold();
 
 
