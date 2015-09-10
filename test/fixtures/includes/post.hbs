@@ -1,0 +1,11 @@
+<div class="author">{{author}}</div>
+<div class="timestamp">{{timestamp}}</div>
+{{#if ../show-full}}
+  <div class="post">
+    {{content}}
+  </div>
+{{else}}
+  <div class="summary">
+    {{summary}}
+  </div>
+{{/if}}
