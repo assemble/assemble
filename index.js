@@ -318,16 +318,7 @@ Templates.extend(Assemble, {
   },
 
   task: function (name) {
-    // TODO: move this logic to composer
-    if (arguments.length === 0) {
-      return this.session.get('task');
-    }
-
-    if (!this.runtimes) {
-      this.define('runtimes', true);
-      runtimes(this);
-    }
-
+    runtimes(this);
     if (!this.loaded) this.init();
     return proto.task.apply(this, arguments);
   },
