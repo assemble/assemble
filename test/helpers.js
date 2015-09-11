@@ -75,14 +75,14 @@ describe('helpers', function () {
       }).should.throw('expected helpers to be an object.');
     });
 
-    it('should add a glob of sync helper objects:', function () {
+    it.skip('should add a glob of sync helper objects:', function () {
       app.helpers('test/fixtures/helpers/!([a-c]).js');
       assert(typeof app._.helpers.sync.one === 'function');
       assert(typeof app._.helpers.sync.two === 'function');
       assert(typeof app._.helpers.sync.three === 'function');
     });
 
-    it('should add a glob with mixed helper objects and functions:', function () {
+    it.skip('should add a glob with mixed helper objects and functions:', function () {
       app.helpers('test/fixtures/helpers/*.js');
       assert(typeof app._.helpers.sync.a === 'function');
       assert(typeof app._.helpers.sync.b === 'function');
@@ -133,7 +133,7 @@ describe('helpers', function () {
       assert(typeof app._.helpers.async.c === 'function');
     });
 
-    it('should add a glob of async helper objects:', function () {
+    it.skip('should add a glob of async helper objects:', function () {
       app.asyncHelpers('test/fixtures/helpers/!([a-c]).js');
       assert(typeof app._.helpers.async.one === 'function');
       assert(typeof app._.helpers.async.two === 'function');
@@ -152,7 +152,7 @@ describe('helpers', function () {
       }).should.throw('expected helpers to be an object.');
     });
 
-    it('should add a glob with mixed helper objects and functions:', function () {
+    it.skip('should add a glob with mixed helper objects and functions:', function () {
       app.asyncHelpers('test/fixtures/helpers/*.js');
       assert(typeof app._.helpers.async.a === 'function');
       assert(typeof app._.helpers.async.b === 'function');
