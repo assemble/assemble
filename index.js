@@ -9,9 +9,9 @@ var util = require('util');
 var async = require('async');
 var runtimes = require('composer-runtimes');
 var Boilerplate = require('boilerplate');
+var Templates = require('templates');
 var Scaffold = require('scaffold');
 var Composer = require('composer');
-var Templates = require('templates');
 var proto = Composer.prototype;
 var utils = require('./lib/utils');
 
@@ -50,8 +50,11 @@ Templates.inherit(Assemble, Composer);
 Templates.extend(Assemble, {
   constructor: Assemble,
 
+  /**
+   * Initialize Assemble defaults
+   */
+
   init: function() {
-    runtimes(this);
     this.defaultEngine();
     this.defaultMiddleware();
     this.defaultViewTypes();
@@ -67,7 +70,7 @@ Templates.extend(Assemble, {
   },
 
   /**
-   * Dfault middleware
+   * Default middleware
    *  | Ensure user-defined layout is recognized
    *  | Parse front-matter
    */
@@ -118,7 +121,6 @@ Templates.extend(Assemble, {
     });
   },
 
-
   /**
    * Copy a file from `src` to `dest` and process any templates in
    * `file.contents`.
@@ -134,10 +136,9 @@ Templates.extend(Assemble, {
     var pre = options.preprocess || options.pipeline || utils.identity;
     var post = options.postprocess || utils.identity;
     var stream = this.src(file.src);
-    stream = pre(stream, this)
-      .pipe(this.renderFile(file.data || {}));
-    return post(stream, this)
-      .pipe(this.dest(file.dest));
+
+    stream = pre(stream, this).pipe(this.renderFile(file.data || {}));
+    return post(stream, this).pipe(this.dest(file.dest));
   },
 
   /**
@@ -152,7 +153,7 @@ Templates.extend(Assemble, {
    */
 
   generate: function (config, cb) {
-    var opts = config.options || {};
+    var opts = {};
     opts.preprocess = config.preprocess;
     opts.postprocess = config.postprocess;
     async.each(config.files, function (file, next) {
@@ -241,7 +242,7 @@ Templates.extend(Assemble, {
 
   dest: function () {
     return utils.vfs.dest.apply(utils.vfs, arguments)
-      .on('data', function () {})
+      .on('data', function () {}); // TODO: fix this
   },
 
   /**
@@ -318,6 +319,7 @@ Templates.extend(Assemble, {
   },
 
   task: function (name) {
+    runtimes(this);
     if (!this.loaded) this.init();
     this.create('task_' + name, {
       renameKey: function (fp) {
