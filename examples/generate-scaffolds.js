@@ -1,6 +1,6 @@
 var async = require('async');
 var through = require('through2');
-var assemble = require('./');
+var assemble = require('../');
 var app = assemble();
 
 app.engine('txt', require('engine-handlebars'));
