@@ -20,29 +20,34 @@
     "test": "mocha"
   },
   "dependencies": {
+    "async": "^1.4.2",
     "boilerplate": "^0.3.0",
     "composer": "^0.4.0",
+    "composer-runtimes": "^0.3.0",
     "delegate-properties": "^0.3.0",
     "dest": "^0.1.1",
     "engine-handlebars": "^0.6.1",
     "export-files": "^2.1.0",
     "extend-shallow": "^2.0.1",
+    "get-value": "^1.2.1",
     "lazy-cache": "^0.2.3",
     "parser-front-matter": "^1.2.5",
     "scaffold": "^0.1.1",
     "templates": "^0.1.12",
     "through2": "^2.0.0",
     "to-vinyl": "^0.2.0",
-    "vinyl": "^0.5.3",
-    "vinyl-fs": "^1.0.0"
+    "vinyl": "wearefractal/vinyl",
+    "vinyl-fs": "wearefractal/vinyl-fs"
   },
   "devDependencies": {
     "ansi-red": "^0.1.1",
+    "buffer-equal": "0.0.1",
     "consolidate": "^0.13.1",
     "engine-base": "^0.1.2",
     "event-stream": "^3.3.1",
-    "get-value": "^1.2.1",
+    "for-own": "^0.1.3",
     "globby": "^3.0.1",
+    "graceful-fs": "^4.1.2",
     "gulp": "^3.9.0",
     "gulp-extname": "^0.2.0",
     "gulp-istanbul": "^0.10.0",
@@ -52,7 +57,9 @@
     "jshint-stylish": "^2.0.1",
     "mocha": "^2.2.5",
     "relative-dest": "^0.1.0",
+    "rimraf": "^2.4.3",
     "should": "^7.0.4",
+    "sinon": "^1.16.1",
     "swig": "^1.4.2"
   },
   "keywords": [
