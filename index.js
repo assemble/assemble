@@ -5,7 +5,6 @@
  */
 
 var path = require('path');
-var util = require('util');
 var async = require('async');
 var runtimes = require('composer-runtimes');
 var Boilerplate = require('boilerplate');
@@ -31,6 +30,7 @@ function Assemble(options) {
   if (!(this instanceof Assemble)) {
     return new Assemble(options);
   }
+
   Templates.apply(this, arguments);
   Composer.apply(this, arguments);
   this.set('Boilerplate', this.options.Boilerplate || Boilerplate);
@@ -57,7 +57,6 @@ Templates.extend(Assemble, {
     this.defaultEngine();
     this.defaultMiddleware();
     this.defaultViewTypes();
-    this.loaded = true;
   },
 
   /**
@@ -174,6 +173,10 @@ Templates.extend(Assemble, {
    */
 
   boilerplate: function (name, config) {
+    if (!config && typeof name === 'string') {
+      return this.boilerplates[name];
+    }
+
     var Boilerplate = this.get('Boilerplate');
     var boilerplate = !(config instanceof Boilerplate)
       ? new Boilerplate(config)
@@ -202,6 +205,10 @@ Templates.extend(Assemble, {
    */
 
   scaffold: function (name, config) {
+    if (!config && typeof name === 'string') {
+      return this.scaffolds[name];
+    }
+
     var Scaffold = this.get('Scaffold');
     var scaffold = !(config instanceof Scaffold)
       ? new Scaffold(config)
@@ -231,12 +238,21 @@ Templates.extend(Assemble, {
    */
 
   src: function () {
-    if (!this.loaded) this.init();
     return utils.vfs.src.apply(utils.vfs, arguments);
   },
 
+  /**
+   * Glob patterns or paths for symlinks.
+   *
+   * ```js
+   * app.symlink('src/**');
+   * ```
+   * @name .symlink
+   * @param {String|Array} `glob`
+   * @api public
+   */
+
   symlink: function () {
-    if (!this.loaded) this.init();
     return utils.vfs.symlink.apply(utils.vfs, arguments);
   },
 
@@ -358,7 +374,6 @@ Templates.extend(Assemble, {
 
   task: function (name) {
     runtimes(this);
-    if (!this.loaded) this.init();
     return proto.task.apply(this, arguments);
   },
 
