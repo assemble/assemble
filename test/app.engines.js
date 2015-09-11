@@ -72,6 +72,16 @@ describe('engines', function () {
       assert(typeof app.engines['.hbs'] === 'object');
     });
 
+    it('should set an engine with the given extension', function () {
+      var hbs = function() {};
+      hbs.render = function() {};
+      hbs.renderFile = function() {};
+      app.engine('hbs', hbs);
+      assert(app.engines['.hbs']);
+      assert(app.engines['.hbs'].renderFile);
+      assert(app.engines['.hbs'].render);
+    });
+
     it('should get an engine:', function () {
       app.engine('hbs', function () {});
       var hbs = app.engine('hbs');

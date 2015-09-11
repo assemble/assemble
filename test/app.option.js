@@ -100,4 +100,33 @@ describe('app.option', function () {
     app.option('x').should.equal('xxx');
     app.option('a').should.equal('aaa');
   });
+
+  describe('.set()', function () {
+    it('should set options on `app.options`', function () {
+      app.option('a', 'b');
+      app.options.a.should.equal('b');
+    });
+
+    it('should set options objects on `app.options`', function () {
+      app.option({d: 'e', f: 'g'});
+      app.options.d.should.equal('e');
+      app.options.f.should.equal('g');
+    });
+  });
+
+  describe('.get()', function () {
+    it('should get options', function () {
+      app.option({d: 'e', f: 'g'});
+      app.option('d').should.equal('e');
+      app.option('f').should.equal('g');
+    });
+  });
+
+  describe('.extend()', function () {
+    it('should extend the options', function () {
+      app.option({d: 'e', f: 'g'});
+      app.option('d').should.equal('e');
+      app.option('f').should.equal('g');
+    });
+  });
 });
