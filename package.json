@@ -33,7 +33,7 @@
     "lazy-cache": "^0.2.3",
     "parser-front-matter": "^1.2.5",
     "scaffold": "^0.1.1",
-    "templates": "^0.1.12",
+    "templates": "^0.1.13",
     "through2": "^2.0.0",
     "to-vinyl": "^0.2.0",
     "vinyl": "wearefractal/vinyl",
