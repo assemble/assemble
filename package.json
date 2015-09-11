@@ -109,9 +109,20 @@
   "verb": {
     "related": {
       "list": [
-        "template",
+        "composer",
+        "generate",
+        "boilerplate",
+        "scaffold",
+        "templates",
         "verb"
       ]
-    }
+    },
+    "reflinks": [
+      "scaffold",
+      "boilerplate",
+      "template",
+      "template",
+      "verb"
+    ]
   }
 }

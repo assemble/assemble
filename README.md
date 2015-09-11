@@ -14,11 +14,70 @@ $ npm i assemble --save
 
 ```js
 var assemble = require('assemble');
+var app = assemble();
 ```
 
 ## API
 
-### [.src](index.js#L53)
+### [Assemble](index.js#L30)
+
+Create an `assemble` application. This is the main function exported by the assemble module.
+
+**Params**
+
+* `options` **{Object}**: Optionally pass default options to use.
+
+**Example**
+
+```js
+var assemble = require('assemble');
+var app = assemble();
+```
+
+### [.process](index.js#L134)
+
+Copy a file from `src` to `dest` and process any templates in
+`file.contents`.
+
+**Params**
+
+* `file` **{Object}**: [Vinyl][] file object.
+* `options` **{Object}**
+* `returns` **{Stream}**: Returns a stream to continue processing if needed.
+
+### [.generate](index.js#L156)
+
+Generate all of the `src`/`dest` definitions in the given
+`config` object. Used for generating [boilerplates][] and
+[scaffolds][].
+
+**Params**
+
+* `config` **{Object}**: The configuration object to use.
+* `cb` **{Function}**: Callback function, exposes `err` on the callback.
+* `returns` **{Object}**: Returns the `Assemble` instance for chaining.
+
+### [.boilerplate](index.js#L176)
+
+Register and/or generate a boilerplate from the given `config`.
+
+**Params**
+
+* `name` **{String}**: The name of the boilerplate to register
+* `config` **{Object}**: The configuration object to use.
+* `returns` **{Object}**: Returns the `Boilerplate` instance for chaining.
+
+### [.scaffold](index.js#L204)
+
+Generate a scaffold from the given `config`.
+
+**Params**
+
+* `name` **{String}**
+* `config` **{Object}**
+* `returns` **{Object}**: Returns the `Assemble` instance for chaining
+
+### [.src](index.js#L233)
 
 Glob patterns or filepaths to source files.
 
@@ -30,10 +89,10 @@ Glob patterns or filepaths to source files.
 **Example**
 
 ```js
-assemble.src('src/*.hbs', {layout: 'default'});
+app.src('src/*.hbs', {layout: 'default'});
 ```
 
-### [.dest](index.js#L69)
+### [.dest](index.js#L255)
 
 Specify a destination for processed files.
 
@@ -45,76 +104,119 @@ Specify a destination for processed files.
 **Example**
 
 ```js
-assemble.dest('dist')
+app.dest('dist/');
 ```
 
-### [.copy](index.js#L88)
+### [.copy](index.js#L275)
 
 Copy files with the given glob `patterns` to the specified `destDir`.
 
 **Params**
 
 * `patterns` **{String|Array}**: Glob patterns of files to copy.
-* `destDir` **{String|Function}**: Desination directory.
+* `dest` **{String|Function}**: Desination directory.
 * `returns` **{Stream}**: Stream, to continue processing if necessary.
 
 **Example**
 
 ```js
-assemble.task('assets', function() {
-  assemble.copy('assets/**', 'dist');
+app.task('assets', function() {
+  app.copy('assets/**', 'dist/');
 });
 ```
 
-### [.task](index.js#L108)
+### [.toStream](index.js#L295)
+
+Push a view collection into a vinyl stream.
+
+**Params**
+
+* `collection` **{String}**: The name of the view collection to push into the stream.
+* **{Function}**: Optionally pass a filter function to use for filtering views.
+* `returns` **{Stream}**
+
+**Example**
+
+```js
+app.toStream('posts', function(file) {
+  return file.path !== 'index.hbs';
+})
+```
+
+### [.renderFile](index.js#L324)
+
+Render a vinyl file.
+
+**Params**
+
+* `locals` **{Object}**: Optionally locals to pass to the template engine for rendering.
+* `returns` **{Object}**
+
+**Example**
+
+```js
+app.src('*.hbs')
+  .pipe(app.renderFile());
+```
+
+### [.task](index.js#L359)
 
 Define an Assemble task.
 
 **Params**
 
 * `name` **{String}**: Task name
-* `fn` **{Function}**
+* `fn` **{Function}**: function that is called when the task is run.
 
 **Example**
 
 ```js
-assemble.task('default', function() {
-  assemble.src('templates/*.hbs')
-    .pipe(assemble.dest('dist/'));
+app.task('default', function() {
+  app.src('templates/*.hbs')
+    .pipe(app.dest('dist/'));
 });
 ```
 
-### [.watch](index.js#L140)
+### [.run](index.js#L388)
 
-Re-run the specified task(s) when a file changes.
+Run one or more tasks.
+
+**Params**
+
+* `tasks` **{Array|String}**: Task name or array of task names.
+* `cb` **{Function}**: callback function that exposes `err`
+
+**Example**
+
+```js
+app.run(['foo', 'bar'], function(err) {
+  if (err) console.error('ERROR:', err);
+});
+```
 
 **Params**
 
 * `glob` **{String|Array}**: Filepaths or glob patterns.
-* `fn` **{Function}**: Task(s) to watch.
+* `tasks` **{Array}**: Task(s) to watch.
 
 **Example**
 
 ```js
-assemble.task('watch', function() {
-  assemble.watch('docs/*.md', ['docs']);
+app.task('watch', function() {
+  app.watch('docs/*.md', ['docs']);
 });
 ```
 
-### [.renderFile](index.js#L159)
-
-Render a vinyl file.
-
-**Params**
-
-* **{Object}**: file
-* **{Function}**: cb Callback
-* `returns` **{Object}**
-
 ## Related projects
 
-* [template](https://github.com/jonschlinkert/template): Render templates using any engine. Supports, layouts, pages, partials and custom template types. Use template… [more](https://github.com/jonschlinkert/template)
-* [verb](https://github.com/assemble/verb): Documentation generator for GitHub projects. Extremely powerful, easy to use, can generate anything from API… [more](https://github.com/assemble/verb)
+Assemble is built on top of these great projects:
+
+* [boilerplate](https://www.npmjs.com/package/boilerplate): Tools and conventions for authoring and publishing boilerplates that can be generated by any build… [more](https://www.npmjs.com/package/boilerplate) | [homepage](http://boilerplates.io)
+* [composer](https://www.npmjs.com/package/composer): API-first task runner with three methods: task, run and watch. | [homepage](https://github.com/jonschlinkert/composer)
+* [generate](https://www.npmjs.com/package/generate): Project generator, for node.js. | [homepage](https://github.com/generate/generate)
+* [scaffold](https://www.npmjs.com/package/scaffold): Conventions and API for creating scaffolds that can by used by any build system or… [more](https://www.npmjs.com/package/scaffold) | [homepage](https://github.com/jonschlinkert/scaffold)
+* [templates](https://www.npmjs.com/package/templates): System for creating and managing template collections, and rendering templates with any node.js template engine.… [more](https://www.npmjs.com/package/templates) | [homepage](https://github.com/jonschlinkert/templates)
+* [verb](https://www.npmjs.com/package/verb): Documentation generator for GitHub projects. Verb is extremely powerful, easy to use, and is used… [more](https://www.npmjs.com/package/verb) | [homepage](https://github.com/verbose/verb)
 
 ## Running tests
 
@@ -126,7 +228,9 @@ $ npm i -d && npm test
 
 ## Contributing
 
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/jonschlinkert/assemble/issues/new)
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/jonschlinkert/assemble/issues/new).
+
+If Assemble doesn't do what you need, [please let us know][issue].
 
 ## Author
 
@@ -142,4 +246,10 @@ Released under the MIT license.
 
 ***
 
-_This file was generated by [verb-cli](https://github.com/assemble/verb-cli) on July 24, 2015._
+_This file was generated by [verb-cli](https://github.com/assemble/verb-cli) on September 11, 2015._
+
+[boilerplate]: http://boilerplates.io
+[scaffold]: https://github.com/jonschlinkert/scaffold
+[template]: https://github.com/jonschlinkert/template
+[template]: https://github.com/jonschlinkert/template
+[verb]: https://github.com/verbose/verb

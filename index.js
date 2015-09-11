@@ -16,14 +16,13 @@ var proto = Composer.prototype;
 var utils = require('./lib/utils');
 
 /**
- * Create a Assemble application. The `assemble()` function
- * is the main function exported by the assemble module.
+ * Create an `assemble` application. This is the main function exported
+ * by the assemble module.
  *
  * ```js
  * var assemble = require('assemble');
  * var app = assemble();
  * ```
- *
  * @param {Object} `options` Optionally pass default options to use.
  * @api public
  */
@@ -125,6 +124,7 @@ Templates.extend(Assemble, {
    * Copy a file from `src` to `dest` and process any templates in
    * `file.contents`.
    *
+   * @name .process
    * @param {Object} `file` [Vinyl][] file object.
    * @param {Object} `options`
    * @return {Stream} Returns a stream to continue processing if needed.
@@ -146,6 +146,7 @@ Templates.extend(Assemble, {
    * `config` object. Used for generating [boilerplates][] and
    * [scaffolds][].
    *
+   * @name .generate
    * @param {Object} `config` The configuration object to use.
    * @param {Function} `cb` Callback function, exposes `err` on the callback.
    * @return {Object} Returns the `Assemble` instance for chaining.
@@ -163,8 +164,9 @@ Templates.extend(Assemble, {
   },
 
   /**
-   * Register a boilerplate.
+   * Register and/or generate a boilerplate from the given `config`.
    *
+   * @name .boilerplate
    * @param {String} `name` The name of the boilerplate to register
    * @param {Object} `config` The configuration object to use.
    * @return {Object} Returns the `Boilerplate` instance for chaining.
@@ -189,6 +191,16 @@ Templates.extend(Assemble, {
     return boilerplate;
   },
 
+  /**
+   * Generate a scaffold from the given `config`.
+   *
+   * @name .scaffold
+   * @param {String} `name`
+   * @param {Object} `config`
+   * @return {Object} Returns the `Assemble` instance for chaining
+   * @api public
+   */
+
   scaffold: function (name, config) {
     var Scaffold = this.get('Scaffold');
     var scaffold = !(config instanceof Scaffold)
@@ -212,7 +224,7 @@ Templates.extend(Assemble, {
    * ```js
    * app.src('src/*.hbs', {layout: 'default'});
    * ```
-   *
+   * @name .src
    * @param {String|Array} `glob` Glob patterns or file paths to source files.
    * @param {Object} `options` Options or locals to merge into the context and/or pass to `src` plugins
    * @api public
@@ -234,7 +246,7 @@ Templates.extend(Assemble, {
    * ```js
    * app.dest('dist/');
    * ```
-   *
+   * @name .dest
    * @param {String|Function} `dest` File path or rename function.
    * @param {Object} `options` Options and locals to pass to `dest` plugins
    * @api public
@@ -253,7 +265,7 @@ Templates.extend(Assemble, {
    *   app.copy('assets/**', 'dist/');
    * });
    * ```
-   *
+   * @name .copy
    * @param {String|Array} `patterns` Glob patterns of files to copy.
    * @param  {String|Function} `dest` Desination directory.
    * @return {Stream} Stream, to continue processing if necessary.
@@ -268,14 +280,20 @@ Templates.extend(Assemble, {
   /**
    * Push a view collection into a vinyl stream.
    *
-   * @param {String} `plural`
-   * @param {Object} `locals`
+   * ```js
+   * app.toStream('posts', function(file) {
+   *   return file.path !== 'index.hbs';
+   * })
+   * ```
+   * @name .toStream
+   * @param {String} `collection` The name of the view collection to push into the stream.
+   * @param {Function} Optionally pass a filter function to use for filtering views.
    * @return {Stream}
    * @api public
    */
 
-  toStream: function (plural, locals) {
-    var views = this.getViews(plural) || {};
+  toStream: function (collection, fn) {
+    var views = this.getViews(collection) || {};
     return utils.through.obj(function (file, enc, cb) {
       this.push(file);
       return cb();
@@ -292,8 +310,13 @@ Templates.extend(Assemble, {
   /**
    * Render a vinyl file.
    *
-   * @param  {Object} file
-   * @param  {Function} cb Callback
+   * ```js
+   * app.src('*.hbs')
+   *   .pipe(app.renderFile());
+   * ```
+   *
+   * @name .renderFile
+   * @param  {Object} `locals` Optionally locals to pass to the template engine for rendering.
    * @return {Object}
    * @api public
    */
@@ -317,17 +340,61 @@ Templates.extend(Assemble, {
     });
   },
 
+  /**
+   * Define an Assemble task.
+   *
+   * ```js
+   * app.task('default', function() {
+   *   app.src('templates/*.hbs')
+   *     .pipe(app.dest('dist/'));
+   * });
+   * ```
+   *
+   * @name .task
+   * @param {String} `name` Task name
+   * @param {Function} `fn` function that is called when the task is run.
+   * @api public
+   */
+
   task: function (name) {
     runtimes(this);
     if (!this.loaded) this.init();
     return proto.task.apply(this, arguments);
   },
 
-  run: function (name) {
+  /**
+   * Run one or more tasks.
+   *
+   * ```js
+   * app.run(['foo', 'bar'], function(err) {
+   *   if (err) console.error('ERROR:', err);
+   * });
+   * ```
+   * @name .run
+   * @param {Array|String} `tasks` Task name or array of task names.
+   * @param {Function} `cb` callback function that exposes `err`
+   * @api public
+   */
+
+  run: function (tasks, cb) {
     return proto.run.apply(this, arguments);
   },
 
-  watch: function (name) {
+  /**
+   * Re-run the specified task(s) when a file changes.
+   *
+   * ```js
+   * app.task('watch', function() {
+   *   app.watch('docs/*.md', ['docs']);
+   * });
+   * ```
+   *
+   * @param  {String|Array} `glob` Filepaths or glob patterns.
+   * @param  {Array} `tasks` Task(s) to watch.
+   * @api public
+   */
+
+  watch: function (glob, tasks) {
     return proto.watch.apply(this, arguments);
   }
 });
