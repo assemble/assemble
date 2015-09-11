@@ -41,12 +41,6 @@ describe('helpers', function () {
       app = new App();
     });
 
-    it.skip('should throw an error when value is invalid:', function () {
-      (function () {
-        app.helper('foo', {});
-      }).should.throw('expected helper fn to be a function.');
-    });
-
     it('should add a sync helper to the `sync` object:', function () {
       app.helper('one', function () {});
       assert(typeof app._.helpers.sync.one === 'function');
@@ -64,25 +58,17 @@ describe('helpers', function () {
       app._.helpers.sync.should.eql({});
     });
 
-    it.skip('should throw an error if an invalid arg is passed:', function () {
-      (function () {
-        app.helpers(function() {});
-      }).should.throw('expected helpers to be an object.');
-    });
-
-    it.skip('should add a glob of sync helper objects:', function () {
+    it('should add a glob of sync helper objects:', function () {
       app.helpers('test/fixtures/helpers/!([a-c]).js');
-      assert(typeof app._.helpers.sync.one === 'function');
       assert(typeof app._.helpers.sync.two === 'function');
       assert(typeof app._.helpers.sync.three === 'function');
     });
 
-    it.skip('should add a glob with mixed helper objects and functions:', function () {
+    it('should add a glob with mixed helper objects and functions:', function () {
       app.helpers('test/fixtures/helpers/*.js');
       assert(typeof app._.helpers.sync.a === 'function');
       assert(typeof app._.helpers.sync.b === 'function');
       assert(typeof app._.helpers.sync.c === 'function');
-      assert(typeof app._.helpers.sync.one === 'function');
       assert(typeof app._.helpers.sync.two === 'function');
       assert(typeof app._.helpers.sync.three === 'function');
     });
@@ -103,12 +89,6 @@ describe('helpers', function () {
   describe('async helpers', function() {
     beforeEach(function() {
       app = new App();
-    });
-
-    it.skip('should throw an error when value is invalid:', function () {
-      (function () {
-        app.asyncHelper('foo', {});
-      }).should.throw('expected helper fn to be a function.');
     });
 
     it('should add an async helper to the `async` object:', function () {
@@ -134,12 +114,6 @@ describe('helpers', function () {
       (function() {
         app.asyncHelpers('test/fixtures/helpers/*.foo');
       }).should.not.throw;
-    });
-
-    it.skip('should throw an error if an invalid arg is passed:', function () {
-      (function () {
-        app.asyncHelpers(function() {});
-      }).should.throw('expected helpers to be an object.');
     });
 
     it.skip('should add a glob with mixed helper objects and functions:', function () {
@@ -358,18 +332,6 @@ describe('built-in helpers:', function () {
       });
     });
 
-    it.skip('should prefer front-matter over view locals and helper locals.', function (done) {
-      // app.disable('prefer locals');
-      app.partial('a.md', {content: '---\nname: "AAA"\n---\n<%= name %>', locals: {name: 'BBB'}});
-      app.page('b.md', {path: 'b.md', content: 'foo <%= partial("a.md") %> bar'});
-
-      app.render('b.md', function (err, res) {
-        if (err) return done(err);
-        res.contents.toString().should.equal('foo AAA bar');
-        done();
-      });
-    });
-
     it('should prefer helper locals over view locals.', function (done) {
       app.partial('abc.md', {content: '<%= name %>', name: 'BBB'});
       app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md", { name: "CCC" }) %> bar'});
@@ -473,7 +435,7 @@ describe('built-in helpers:', function () {
   });
 });
 
-describe.skip('helpers integrating', function () {
+describe.skip('helpers integration', function () {
   var actual = __dirname + '/helpers-actual';
 
   beforeEach(function (done) {
