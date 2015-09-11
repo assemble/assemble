@@ -64,7 +64,7 @@ app.task('watch', ['docs'], function () {
 });
 
 app.task('default', ['docs']);
-app.run('default', function () {
+// app.run('default', function () {})
 
-})
+module.exports = app;
 
