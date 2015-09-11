@@ -4,7 +4,8 @@ var red = require('ansi-red');
 var path = require('path');
 var extname = require('gulp-extname');
 var through = require('through2');
-var app = require('./');
+var assemble = require('./');
+var app = assemble();
 
 // create a custom view-collection for docs
 app.create('docs', {
@@ -25,15 +26,15 @@ app.helpers(require('./docs/src/helpers'));
 //   next();
 // });
 
-app.data({
-  destBase: '_gh_pages/',
-  assets: 'assets',
-  links: [{
-    dest: 'assemble',
-    collection: 'docs',
-    text: 'Assemble'
-  }]
-});
+// app.data({
+//   destBase: '_gh_pages/',
+//   assets: 'assets',
+//   links: [{
+//     dest: 'assemble',
+//     collection: 'docs',
+//     text: 'Assemble'
+//   }]
+// });
 
 // load templates
 app.task('load', function (done) {
@@ -45,7 +46,7 @@ app.task('load', function (done) {
 });
 
 app.task('docs', ['load'], function () {
-  return app.src('docs/src/templates/*.hbs')
+  return app.src('docs/src/templates/foo.hbs')
     // .on('error', console.error)
     // .pipe(app.toStream('docs'))
     // .pipe(app.toStream('recipes'))
@@ -66,3 +67,4 @@ app.task('default', ['docs']);
 app.run('default', function () {
 
 })
+

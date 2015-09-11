@@ -299,16 +299,15 @@ Templates.extend(Assemble, {
    */
 
   renderFile: function (locals) {
-    var name = this.taskName();
     var app = this;
-
+    var collection = this.collection();
     return utils.through.obj(function (file, enc, cb) {
       if (typeof locals === 'function') {
         cb = locals;
         locals = {};
       }
-      app[name].addView(file.path, file);
-      var view = app[name].getView(file.path);
+      var view = collection.view(file);
+      app.handleView('onLoad', view)
       app.render(view, locals, function (err, res) {
         if (err) return cb(err);
         res.contents = new Buffer(res.content);
@@ -319,21 +318,18 @@ Templates.extend(Assemble, {
   },
 
   task: function (name) {
-    runtimes(this);
-    if (!this.loaded) this.init();
-    this.create('task_' + name, {
-      renameKey: function (fp) {
-        return fp;
-      }
-    });
-    return proto.task.apply(this, arguments);
-  },
+    // TODO: move this logic to composer
+    if (arguments.length === 0) {
+      return this.session.get('task');
+    }
 
-  taskName: function () {
-    var task = this.session.get('task');
-    return task
-      ? ('task_' + task.name)
-      : 'file';
+    if (!this.runtimes) {
+      this.define('runtimes', true);
+      runtimes(this);
+    }
+
+    if (!this.loaded) this.init();
+    return proto.task.apply(this, arguments);
   },
 
   run: function (name) {
