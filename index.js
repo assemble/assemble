@@ -311,17 +311,15 @@ Templates.extend(Assemble, {
   toStream: function (collection, fn) {
     var views = this.getViews(collection) || {};
     var stream = utils.through.obj();
-    return utils.srcStream(function () {
-      setImmediate(function () {
-        Object.keys(views).forEach(function (key) {
-          var view = views[key];
-          var file = utils.toVinyl(view);
-          stream.write(file);
-        });
-        stream.end();
-      }());
-      return stream;
+    setImmediate(function () {
+      Object.keys(views).forEach(function (key) {
+        var view = views[key];
+        var file = utils.toVinyl(view);
+        stream.write(file);
+      });
+      stream.end();
     });
+    return utils.srcStream(stream);
   },
 
   /**
