@@ -11,7 +11,7 @@ describe('app', function () {
     app = assemble();
   });
 
-  it('should run a task when a file changes', function (done) {
+  it.skip('should run a task when a file changes', function (done) {
     var fn = function () {
       done();
     };
