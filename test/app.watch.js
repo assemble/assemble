@@ -1,6 +1,8 @@
 var assert = require('assert');
+var path = require('path');
 var fs = require('fs');
 
+var fixture = path.join(__dirname, 'fixtures/watch');
 var assemble = require('../');
 var app;
 
@@ -14,9 +16,9 @@ describe('app', function () {
       done();
     };
     app.task('watch-test', fn);
-    app.watch(['./test/fixtures/watch/**/*.*'], ['watch-test']);
+    app.watch(fixture + '/**/*.*', ['watch-test']);
     setImmediate(function () {
-      fs.writeFileSync('test/fixtures/watch/test.txt', 'test');
+      fs.writeFileSync(path.join(fixture, 'test.txt'), 'test');
     });
   });
 });
