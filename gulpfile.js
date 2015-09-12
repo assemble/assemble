@@ -22,4 +22,9 @@ gulp.task('test', ['jshint'], function (cb) {
     });
 });
 
-gulp.task('default', ['test']);
+gulp.task('default', ['test'], function (cb) {
+  // force the process to end since `assemble.watch` is holding it open in the tests
+  console.log('Finished \'default\'');
+  process.exit();
+  cb();
+});
