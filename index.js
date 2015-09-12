@@ -294,16 +294,17 @@ Templates.extend(Assemble, {
 
   toStream: function (collection, fn) {
     var views = this.getViews(collection) || {};
-    return utils.through.obj(function (file, enc, cb) {
-      this.push(file);
-      return cb();
-    }, function (cb) {
-      Object.keys(views).forEach(function (key) {
-        var view = views[key];
-        var file = utils.toVinyl(view);
-        this.push(file);
-      }.bind(this));
-      cb();
+    var stream = utils.through.obj();
+    return utils.srcStream(function () {
+      setImmediate(function () {
+        Object.keys(views).forEach(function (key) {
+          var view = views[key];
+          var file = utils.toVinyl(view);
+          stream.write(file);
+        });
+        stream.end();
+      });
+      return stream;
     });
   },
 
