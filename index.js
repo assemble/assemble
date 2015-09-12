@@ -319,7 +319,7 @@ Templates.extend(Assemble, {
           stream.write(file);
         });
         stream.end();
-      });
+      }());
       return stream;
     });
   },
