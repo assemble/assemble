@@ -1,5 +1,6 @@
 require('mocha');
 require('should');
+var through = require('through2');
 var assert = require('assert');
 var App = require('../');
 var View = App.View;
@@ -32,9 +33,6 @@ describe('app', function () {
         path: 'test/fixtures/pages/a.hbs'
       });
       app.process(view)
-        .on('data', function (data) {
-          console.log(data)
-        })
         .on('error', done)
         .on('end', done);
     });
@@ -92,9 +90,9 @@ describe('app', function () {
   });
 
   describe('cwd', function () {
-    it('should use `cwd`:', function (done) {
+    it('should use `cwd` from app.options:', function (done) {
+      app.option('cwd', 'test/fixtures/pages');
       var view = new View({
-        cwd: 'test/fixtures/pages',
         path: 'a.hbs',
         dest: 'test/actual/process'
       });
@@ -102,17 +100,35 @@ describe('app', function () {
         .on('error', done)
         .on('end', done);
     });
-  });
 
+    it('should use `cwd` from view:', function (done) {
+      var view = new View({
+        cwd: 'test/fixtures/pages',
+        path: 'a.hbs',
+        dest: 'test/actual/process'
+      });
+
+      app.process(view)
+        .on('error', done)
+        .on('end', done);
+    });
+  });
 
   describe('rendering', function () {
     it('should use render templates:', function (done) {
       var view = new View({
+        data: {title: 'View Title'},
         src: 'test/fixtures/pages/a.hbs',
         dest: 'test/actual/process'
       });
+
+      assert(view.data.title === 'View Title');
+
       app.process(view)
         .on('error', done)
+        .on('data', function (data) {
+          console.log(data.contents.toString())
+        })
         .on('end', done);
     });
 

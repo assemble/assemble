@@ -140,21 +140,34 @@ Templates.extend(Assemble, {
       throw new TypeError('process expects file to be an object.');
     }
 
-    file.dest = file.dest || this.options.dest;
-    if (!file.dest) {
+    file.path = file.path || file.src;
+    var view = this.view(file.path, file);
+
+    var opts = utils.extend({}, this.options, options, view.options);
+    view.dest = view.dest || opts.dest;
+    if (!view.dest) {
       throw new Error('process expects file to have a dest defined.');
     }
 
-    var opts = utils.extend({}, this.options, file.options);
-    opts.base = file.base || opts.base;
-    opts.cwd = file.cwd || opts.cwd;
+    // get cwd and base to use
+    opts.cwd = opts.cwd || view.cwd;
+    opts.base = opts.base || view.base;
 
-    var pre = options.preprocess || options.pipeline || utils.identity;
-    var post = options.postprocess || utils.identity;
-    var stream = this.src(file.src || file.path, opts);
+    // these are necessary since `view` adds a `cwd` if not defined
+    if (this.options.cwd && view.cwd === process.cwd()) {
+      opts.cwd = this.options.cwd || opts.cwd;
+    }
+    if (this.options.base && view.base === process.cwd()) {
+      opts.base = this.options.base || opts.base;
+    }
 
-    stream = pre(stream, this).pipe(this.renderFile(file.data || {}));
-    return post(stream, this).pipe(this.dest(file.dest, opts));
+    var pre = opts.preprocess || opts.pipeline || utils.identity;
+    var post = opts.postprocess || utils.identity;
+    var stream = this.src(view.path, opts);
+
+    stream = pre(stream, this).pipe(this.renderFile());
+    stream = post(stream, this).pipe(this.dest(view.dest, opts));
+    return stream;
   },
 
   /**
@@ -361,11 +374,12 @@ Templates.extend(Assemble, {
         cb = locals;
         locals = {};
       }
+
       var view = collection.view(file);
-      app.handleView('onLoad', view)
-      app.render(view, locals, function (err, res) {
+      app.handleView('onLoad', view);
+      var ctx = utils.merge({}, app.cache.data, locals, view.data);
+      app.render(view, ctx, function (err, res) {
         if (err) return cb(err);
-        res.contents = new Buffer(res.content);
         file = new utils.Vinyl(res);
         cb(null, file);
       });
