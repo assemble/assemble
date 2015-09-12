@@ -9,7 +9,7 @@ describe('compile', function () {
     app.create('page');
   });
 
-  it('should throw an error when no callback is given:', function () {
+  it('should throw an error when an engine cannot be found:', function () {
     app.page('foo.bar', {content: '<%= name %>'});
     var page = app.pages.getView('foo.bar');
     (function() {
@@ -24,5 +24,20 @@ describe('compile', function () {
     var page = app.pages.getView('a.tmpl');
     var view = app.compile(page);
     assert.equal(typeof view.fn, 'function');
+  });
+
+  it('should throw an error when a callback is given:', function () {
+    app.engine('md', require('engine-base'));
+    app.page('foo.md', {content: '<%= name %>'});
+    var page = app.pages.getView('foo.md');
+    (function() {
+      app.compile(page, function () {
+      });
+    }).should.throw('Templates#compile is sync and does not take a callback function');
+
+    (function() {
+      app.compile(page, {}, function () {
+      });
+    }).should.throw('Templates#compile is sync and does not take a callback function');
   });
 });
