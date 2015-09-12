@@ -56,6 +56,7 @@
     "gulp-jshint": "^1.11.2",
     "gulp-mocha": "^2.1.3",
     "helper-markdown": "^0.1.1",
+    "is-buffer": "^1.0.2",
     "jshint-stylish": "^2.0.1",
     "mocha": "^2.2.5",
     "relative-dest": "^0.1.0",

@@ -2,7 +2,10 @@ require('mocha');
 require('should');
 var path = require('path');
 var assert = require('assert');
-var Views = require('../').Views;
+var isBuffer = require('is-buffer');
+var List = require('..').List;
+var View = require('..').View;
+var Views = require('..').Views;
 var collection;
 
 describe('views', function () {
@@ -102,7 +105,7 @@ describe('views', function () {
 
       collection.addView('one', {contents: new Buffer('...')});
       assert(typeof collection.views.one === 'object');
-      assert(Buffer.isBuffer(collection.views.one.contents));
+      assert(isBuffer(collection.views.one.contents));
     });
 
     it('should create an instance of `View`:', function () {
@@ -128,7 +131,7 @@ describe('views', function () {
       collection.addView('one', view);
       view.set('abc', 'xyz');
       assert(collection.views.one instanceof collection.View);
-      assert(Buffer.isBuffer(collection.views.one.contents));
+      assert(isBuffer(collection.views.one.contents));
       assert(collection.views.one.abc === 'xyz');
     });
   });
@@ -143,8 +146,79 @@ describe('views', function () {
         one: {contents: new Buffer('foo')},
         two: {contents: new Buffer('bar')}
       });
-      assert(Buffer.isBuffer(collection.views.one.contents));
-      assert(Buffer.isBuffer(collection.views.two.contents));
+      assert(isBuffer(collection.views.one.contents));
+      assert(isBuffer(collection.views.two.contents));
+    });
+
+    it('should create views from an instance of Views', function () {
+      collection.addViews({
+        one: {contents: new Buffer('foo')},
+        two: {contents: new Buffer('bar')}
+      });
+      var pages = new Views(collection);
+      assert(isBuffer(pages.views.one.contents));
+      assert(isBuffer(pages.views.two.contents));
+    });
+
+    it('should add an array of views:', function () {
+      collection.addViews([
+        {path: 'one', contents: new Buffer('foo')},
+        {path: 'two', contents: new Buffer('bar')}
+      ]);
+      assert(isBuffer(collection.views.one.contents));
+      assert(isBuffer(collection.views.two.contents));
+    });
+  });
+
+  describe('view', function() {
+    beforeEach(function() {
+      collection = new Views();
+    });
+
+    it('should return a single collection view from a key-value pair', function () {
+      var one = collection.view('one', {contents: new Buffer('foo')});
+      var two = collection.view('two', {contents: new Buffer('bar')});
+
+      assert(one instanceof View);
+      assert(one.path === 'one');
+      assert(two instanceof View);
+      assert(two.path === 'two');
+    });
+
+    it('should return a single collection view from an object', function () {
+      var one = collection.view({path: 'one', contents: new Buffer('foo')});
+      var two = collection.view({path: 'two', contents: new Buffer('bar')});
+
+      assert(one instanceof View);
+      assert(one.path === 'one');
+      assert(two instanceof View);
+      assert(two.path === 'two');
+    });
+  });
+
+  describe('addList', function() {
+    beforeEach(function() {
+      collection = new Views();
+    });
+
+    it('should add a list of views:', function () {
+      collection.addList([
+        {path: 'one', contents: new Buffer('foo')},
+        {path: 'two', contents: new Buffer('bar')}
+      ]);
+      assert(isBuffer(collection.views.one.contents));
+      assert(isBuffer(collection.views.two.contents));
+    });
+
+    it('should add a list of views from the constructor:', function () {
+      var list = new List([
+        {path: 'one', contents: new Buffer('foo')},
+        {path: 'two', contents: new Buffer('bar')}
+      ]);
+
+      collection = new Views(list);
+      assert(isBuffer(collection.views.one.contents));
+      assert(isBuffer(collection.views.two.contents));
     });
   });
 
@@ -155,8 +229,8 @@ describe('views', function () {
     it('should get a view from `views`:', function () {
       collection.addView('one', {contents: new Buffer('aaa')});
       collection.addView('two', {contents: new Buffer('zzz')});
-      assert(Buffer.isBuffer(collection.views.one.contents));
-      assert(Buffer.isBuffer(collection.getView('one').contents));
+      assert(isBuffer(collection.views.one.contents));
+      assert(isBuffer(collection.getView('one').contents));
       assert(collection.getView('one').contents.toString() === 'aaa');
       assert(collection.getView('two').contents.toString() === 'zzz');
     });

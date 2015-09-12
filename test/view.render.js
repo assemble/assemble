@@ -10,6 +10,8 @@ describe.skip('helpers', function () {
     beforeEach(function () {
       app = new App();
       view = new View();
+      app.engine('tmpl', require('engine-base'));
+      app.create('pages');
     });
 
     it('should expose `.render` for rendering a view:', function (done) {
@@ -17,22 +19,6 @@ describe.skip('helpers', function () {
         .render({a: 'bbb'}, function (err, res) {
           if (err) return done(err);
           res.contents.toString().should.equal('bbb');
-          done();
-        });
-    });
-
-    it('should use helpers to render a view:', function (done) {
-      var locals = {name: 'Halle'};
-
-      view.helper('upper', function (str) {
-        return str.toUpperCase(str);
-      });
-
-      var buffer = new Buffer('a <%= upper(name) %> b');
-      view.page('a.tmpl', {contents: buffer, locals: locals})
-        .render(function (err, res) {
-          if (err) return done(err);
-          assert(res.contents.toString() === 'a HALLE b');
           done();
         });
     });

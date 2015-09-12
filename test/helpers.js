@@ -195,8 +195,8 @@ describe('async helpers', function () {
     var page = app.pages.getView('a.tmpl');
     app.render(page, function (err, view) {
       if (err) return done(err);
-      assert.equal(typeof view.contents.toString(), 'string');
-      assert.equal(view.contents.toString(), 'bbb');
+      assert.equal(typeof view.content, 'string');
+      assert.equal(view.content, 'bbb');
       done();
     });
   });
@@ -384,16 +384,16 @@ describe('built-in helpers:', function () {
       });
     });
 
-    it.skip('should use the `partial` helper with handlebars.', function (done) {
+    it('should use the `partial` helper with handlebars.', function (done) {
       app.engine(['tmpl', 'md'], require('engine-base'));
       app.engine('hbs', handlebars);
 
-      app.partial('title', {content: '<title>{{name}}</title>', locals: {name: 'BBB'}});
+      app.partial('title.hbs', {content: '<title>{{name}}</title>', locals: {name: 'BBB'}});
       app.page('a.hbs', {path: 'a.hbs', content: 'foo {{{partial "title.hbs" this}}} bar'});
 
       app.render('a.hbs', {name: 'Halle Nicole'}, function (err, res) {
         if (err) return done(err);
-        res.contents.toString().should.equal('foo <title>Halle Nicole</title> bar');
+        res.content.should.equal('foo <title>Halle Nicole</title> bar');
         done();
       });
     });

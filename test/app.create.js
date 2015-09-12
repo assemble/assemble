@@ -147,4 +147,24 @@ describe('create', function () {
       assert.deepEqual(app.foos.options.viewType, ['layout', 'renderable']);
     });
   });
+
+  describe('options', function () {
+    beforeEach(function () {
+      app = new App();
+      app.engine('tmpl', require('engine-base'));
+    });
+
+    it('should support a custom extendView function passed on options:', function () {
+      app.create('layout', {
+        viewType: 'layout',
+        extendViews: function (layouts) {
+          layouts.options.foo = 'bar';
+          return layouts;
+        }
+      });
+
+      app.layout('one', {path: 'two', contents: '...'});
+      assert(app.layouts.options.foo === 'bar');
+    });
+  });
 });
