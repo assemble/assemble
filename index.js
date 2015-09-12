@@ -57,6 +57,10 @@ Templates.extend(Assemble, {
     this.defaultEngine();
     this.defaultMiddleware();
     this.defaultViewTypes();
+
+    this.option('extendView', function (view) {
+      if (view.src) view.path = view.src;
+    });
   },
 
   /**
@@ -132,12 +136,25 @@ Templates.extend(Assemble, {
 
   process: function (file, options) {
     options = options || {};
+    if (file == null || typeof file !== 'object') {
+      throw new TypeError('process expects file to be an object.');
+    }
+
+    file.dest = file.dest || this.options.dest;
+    if (!file.dest) {
+      throw new Error('process expects file to have a dest defined.');
+    }
+
+    var opts = utils.extend({}, this.options, file.options);
+    opts.base = file.base || opts.base;
+    opts.cwd = file.cwd || opts.cwd;
+
     var pre = options.preprocess || options.pipeline || utils.identity;
     var post = options.postprocess || utils.identity;
-    var stream = this.src(file.src);
+    var stream = this.src(file.src || file.path, opts);
 
     stream = pre(stream, this).pipe(this.renderFile(file.data || {}));
-    return post(stream, this).pipe(this.dest(file.dest));
+    return post(stream, this).pipe(this.dest(file.dest, opts));
   },
 
   /**
