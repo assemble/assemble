@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "async": "^1.4.2",
-    "boilerplate": "^0.3.0",
     "composer": "^0.4.1",
     "composer-runtimes": "^0.3.1",
     "delegate-properties": "^0.3.0",

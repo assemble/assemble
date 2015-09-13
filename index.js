@@ -7,9 +7,7 @@
 var path = require('path');
 var async = require('async');
 var runtimes = require('composer-runtimes');
-var Boilerplate = require('boilerplate');
 var Templates = require('templates');
-var Scaffold = require('scaffold');
 var Composer = require('composer');
 var proto = Composer.prototype;
 var utils = require('./lib/utils');
@@ -33,8 +31,7 @@ function Assemble(options) {
 
   Templates.apply(this, arguments);
   Composer.apply(this, arguments);
-  this.set('Boilerplate', this.options.Boilerplate || Boilerplate);
-  this.set('Scaffold', this.options.Scaffold || Scaffold);
+  this.isAssemble = true;
   this.boilerplates = {};
   this.scaffolds = {};
   this.init();
@@ -57,6 +54,24 @@ Templates.extend(Assemble, {
     this.defaultEngine();
     this.defaultMiddleware();
     this.defaultViewTypes();
+    this.defaultTemplates();
+    var app = this;
+
+    this.on('option', function (key) {
+      for (var k in app.views) {
+        if (app.views.hasOwnProperty(k)) {
+          reloadViews(k, key, app.views[k], app.options);
+        }
+      }
+    });
+
+    function reloadViews(name, key, views, options) {
+      if (typeof app[name][key] !== 'function') {
+        app.create(name, utils.merge({}, views.options, options));
+        delete views.options;
+        app[name].addViews(views);
+      }
+    }
 
     this.option('extendView', function (view) {
       if (view.src) view.path = view.src;
@@ -121,6 +136,10 @@ Templates.extend(Assemble, {
         return fp;
       }
     });
+  },
+
+  defaultTemplates: function () {
+    // this.visit('scaffold', require('./templates/scaffolds'));
   },
 
   /**
@@ -189,69 +208,6 @@ Templates.extend(Assemble, {
     async.each(config.files, function (file, next) {
       utils.parallel(this.process(file, opts), next);
     }.bind(this), cb);
-    return this;
-  },
-
-  /**
-   * Register and/or generate a boilerplate from the given `config`.
-   *
-   * @name .boilerplate
-   * @param {String} `name` The name of the boilerplate to register
-   * @param {Object} `config` The configuration object to use.
-   * @return {Object} Returns the `Boilerplate` instance for chaining.
-   * @api public
-   */
-
-  boilerplate: function (name, config) {
-    if (!config && typeof name === 'string') {
-      return this.boilerplates[name];
-    }
-
-    var Boilerplate = this.get('Boilerplate');
-    var boilerplate = !(config instanceof Boilerplate)
-      ? new Boilerplate(config)
-      : config;
-
-    var app = this;
-    boilerplate.generate = function (options, cb) {
-      var targets = Object.keys(boilerplate.targets);
-      async.each(targets, function (target, next) {
-        app.generate(target, options, next);
-      }, cb);
-    };
-
-    this.boilerplates[name] = boilerplate;
-    return boilerplate;
-  },
-
-  /**
-   * Generate a scaffold from the given `config`.
-   *
-   * @name .scaffold
-   * @param {String} `name`
-   * @param {Object} `config`
-   * @return {Object} Returns the `Assemble` instance for chaining
-   * @api public
-   */
-
-  scaffold: function (name, config) {
-    if (!config && typeof name === 'string') {
-      return this.scaffolds[name];
-    }
-
-    var Scaffold = this.get('Scaffold');
-    var scaffold = !(config instanceof Scaffold)
-      ? new Scaffold(config)
-      : config;
-
-    var app = this;
-    scaffold.generate = function (cb) {
-      var args = [].slice.call(arguments);
-      args.unshift(this);
-      return app.generate.apply(app, args);
-    };
-
-    this.scaffolds[name] = scaffold;
     return this;
   },
 
@@ -421,7 +377,7 @@ Templates.extend(Assemble, {
    * @api public
    */
 
-  run: function (tasks, cb) {
+  run: function (/*tasks, cb*/) {
     return proto.run.apply(this, arguments);
   },
 
@@ -439,7 +395,7 @@ Templates.extend(Assemble, {
    * @api public
    */
 
-  watch: function (glob, tasks) {
+  watch: function (/*glob, tasks*/) {
     return proto.watch.apply(this, arguments);
   }
 });
