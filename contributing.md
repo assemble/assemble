@@ -14,14 +14,21 @@ Creating an issue is the simplest form of contributing to a project. But there a
 
 **Before creating an issue**
 
-Before you create an issue, please make sure you're creating one in the right place:
+Please make sure you're creating one in the right place:
 
 - do you have a template syntax question? Like how to accomplish something with handlebars? The best place to get answers for this is [stackoverflow.com][], the [handlebars docs](handlebarsjs.com), or the documentation for the template engine you're using.
 - Are you having an issue with an Assemble feature that is powered by an underlying lib? This is sometimes difficult to know, but sometimes it can be pretty easy to find out. For example, if you use a glob pattern somewhere and you found what you believe to be a matching bug, that would probably be an issue for [node-glob][] or [micromatch][]
 
 **Creating an issue**
 
-Please be as descriptive as possible when creating an issue. 
+Please be as descriptive as possible when creating an issue. Give us the information we need to successfully answer your question or address your issue by answering the following in your issue:
+
+- what version of assemble are you using? 
+- is the issue helper-related? If so, this issue should probably be opened on the repo related to the helper being used.
+- do you have any custom helpers defined? Is the issue related to the helper itself, data (context) being passed to the helper, or actually registering the helper in the first place?
+- are you using middleware?
+- any plugins?
+
 
 ## Above and beyond
 

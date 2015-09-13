@@ -6,6 +6,15 @@
   </head>
   <body>
     {% body %}
+
+
+{{#if related}}
+## Related topics
+{{#each related}}
+- {{toReflink related.title related.url}}
+{{/each}}
+{{/if}}
+
   </body>
 </html>
 

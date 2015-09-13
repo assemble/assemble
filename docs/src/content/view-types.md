@@ -13,3 +13,4 @@ related:
 
 ## What is a "view type"?
 
+Assemble has three different view-types, each comes with special 
