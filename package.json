@@ -35,6 +35,7 @@
     "parser-front-matter": "^1.2.5",
     "scaffold": "^0.1.1",
     "src-stream": "^0.1.1",
+    "stream-combiner": "^0.2.2",
     "templates": "^0.1.15",
     "through2": "^2.0.0",
     "to-vinyl": "^0.2.0",

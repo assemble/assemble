@@ -159,6 +159,7 @@ Templates.extend(Assemble, {
       throw new TypeError('process expects file to be an object.');
     }
 
+    file.src = Array.isArray(file.src) ? file.src[0] : file.src;
     file.path = file.path || file.src;
     var view = this.view(file.path, file);
 
@@ -182,10 +183,10 @@ Templates.extend(Assemble, {
 
     var pre = opts.preprocess || opts.pipeline || utils.identity;
     var post = opts.postprocess || utils.identity;
-    var stream = this.src(view.path, opts);
 
-    stream = pre(stream, this).pipe(this.renderFile());
-    stream = post(stream, this).pipe(this.dest(view.dest, opts));
+    var stream = this.src(view.path, opts);
+    stream = utils.combine(pre(stream, this), this.renderFile());
+    stream = utils.combine(post(stream, this), this.dest(view.dest, opts));
     return stream;
   },
 
