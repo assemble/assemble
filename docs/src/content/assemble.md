@@ -1,6 +1,10 @@
 ---
 title: About
+description: >
+  Get a high level overview of Assemble, and answers to questions like, "What is Assemble?", "What does Assemble do?", "Is Assemble a good fit for me?".
 ---
+
+{{description}}
 
 <!-- toc -->
 
