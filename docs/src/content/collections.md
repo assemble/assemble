@@ -30,6 +30,3 @@ _(WIP)_
 ### Partials
 
 ## Custom view collections
-
-
-## Related
