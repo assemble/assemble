@@ -28,7 +28,7 @@ describe('app.use', function () {
       .use(function (inst) {
         assert(inst instanceof App);
         done();
-      })
+      });
   });
 
   it('should pass to collection `use` if a function is returned:', function () {
@@ -44,7 +44,7 @@ describe('app.use', function () {
     app.create('pages')
       .foo({path: 'a.md', content: '...'})
       .addView({path: 'b.md', content: '...'})
-      .addView({path: 'c.md', content: '...'})
+      .addView({path: 'c.md', content: '...'});
 
     assert(app.views.pages.hasOwnProperty('a.md'));
     assert(app.views.pages.hasOwnProperty('b.md'));
@@ -76,13 +76,13 @@ describe('app.use', function () {
           assert(collection instanceof Views);
           return collection;
         };
-      })
+      });
 
     var pages = app.create('pages');
 
-    pages.foo({path: 'a.md', content: '...'})
-    pages.bar({path: 'b.md', content: '...'})
-    pages.baz({path: 'c.md', content: '...'})
+    pages.foo({path: 'a.md', content: '...'});
+    pages.bar({path: 'b.md', content: '...'});
+    pages.baz({path: 'c.md', content: '...'});
 
     assert(app.views.pages.hasOwnProperty('a.md'));
     assert(app.views.pages.hasOwnProperty('b.md'));
@@ -108,7 +108,7 @@ describe('app.use', function () {
     app.create('pages')
       .foo({path: 'a.md', content: '...'})
       .foo({path: 'b.md', content: '...'})
-      .foo({path: 'c.md', content: '...'})
+      .foo({path: 'c.md', content: '...'});
 
     assert(app.views.pages.hasOwnProperty('a.md'));
     assert(app.views.pages.hasOwnProperty('b.md'));
@@ -158,16 +158,16 @@ describe('app.use', function () {
             return view;
           };
         };
-      })
+      });
 
     var pages = app.create('pages');
 
-    pages.foo({path: 'a.md', content: '...'})
-    pages.bar({path: 'b.md', content: '...'})
+    pages.foo({path: 'a.md', content: '...'});
+    pages.bar({path: 'b.md', content: '...'});
     pages.baz({path: 'c.md', content: '...'})
       .a({path: 'x.md', content: '...'})
       .b({path: 'y.md', content: '...'})
-      .c({path: 'z.md', content: '...'})
+      .c({path: 'z.md', content: '...'});
 
     assert(app.views.pages.hasOwnProperty('a.md'));
     assert(app.views.pages.hasOwnProperty('b.md'));
@@ -209,6 +209,7 @@ describe('app.use', function () {
         };
       })
       .use(function (inst) {
+        assert(inst instanceof App);
         assert(this instanceof App);
 
         return function (collection) {
@@ -223,16 +224,16 @@ describe('app.use', function () {
             return view;
           };
         };
-      })
+      });
 
     var pages = app.create('pages');
 
-    pages.foo({path: 'a.md', content: '...'})
-    pages.bar({path: 'b.md', content: '...'})
+    pages.foo({path: 'a.md', content: '...'});
+    pages.bar({path: 'b.md', content: '...'});
     pages.baz({path: 'c.md', content: '...'})
       .a({path: 'x.md', content: '...'})
       .b({path: 'y.md', content: '...'})
-      .c({path: 'z.md', content: '...'})
+      .c({path: 'z.md', content: '...'});
 
     assert(app.views.pages.hasOwnProperty('a.md'));
     assert(app.views.pages.hasOwnProperty('b.md'));
@@ -244,12 +245,12 @@ describe('app.use', function () {
 
     var posts = app.create('posts');
 
-    posts.foo({path: 'a.md', content: '...'})
-    posts.bar({path: 'b.md', content: '...'})
+    posts.foo({path: 'a.md', content: '...'});
+    posts.bar({path: 'b.md', content: '...'});
     posts.baz({path: 'c.md', content: '...'})
       .a({path: 'x.md', content: '...'})
       .b({path: 'y.md', content: '...'})
-      .c({path: 'z.md', content: '...'})
+      .c({path: 'z.md', content: '...'});
 
     assert(app.views.posts.hasOwnProperty('a.md'));
     assert(app.views.posts.hasOwnProperty('b.md'));
@@ -261,12 +262,12 @@ describe('app.use', function () {
 
     var docs = app.create('docs');
 
-    docs.foo({path: 'a.md', content: '...'})
-    docs.bar({path: 'b.md', content: '...'})
+    docs.foo({path: 'a.md', content: '...'});
+    docs.bar({path: 'b.md', content: '...'});
     docs.baz({path: 'c.md', content: '...'})
       .a({path: 'x.md', content: '...'})
       .b({path: 'y.md', content: '...'})
-      .c({path: 'z.md', content: '...'})
+      .c({path: 'z.md', content: '...'});
 
     assert(app.views.docs.hasOwnProperty('a.md'));
     assert(app.views.docs.hasOwnProperty('b.md'));

@@ -1,17 +1,16 @@
-var assert = require('assert');
 var path = require('path');
 var fs = require('fs');
 
 var fixture = path.join(__dirname, 'fixtures/watch');
-var assemble = require('../');
+var App = require('../');
 var app;
 
 describe('app', function () {
   beforeEach(function () {
-    app = assemble();
+    app = new App({runtimes: false});
   });
 
-  it.skip('should run a task when a file changes', function (done) {
+  it('should run a task when a file changes', function (done) {
     var fn = function () {
       done();
     };

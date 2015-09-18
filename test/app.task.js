@@ -1,10 +1,10 @@
 var assert = require('assert');
-var assemble = require('../');
+var App = require('../');
 var app;
 
 describe('app', function () {
   beforeEach(function () {
-    app = assemble();
+    app = new App();
   });
 
   it('should register a task', function () {
@@ -70,13 +70,13 @@ describe('app', function () {
 
   it('should emit task events', function (done) {
     var events = [];
-    app.on('starting', function (task, run) {
+    app.on('starting', function (task) {
       events.push('starting.' + task.name);
     });
-    app.on('finished', function (task, run) {
+    app.on('finished', function (task) {
       events.push('finished.' + task.name);
     });
-    app.on('error', function (err, task, run) {
+    app.on('error', function (err, task) {
       events.push('error.' + task.name);
     });
 
@@ -95,7 +95,7 @@ describe('app', function () {
   });
 
   it('should emit an error event when an error is passed back in a task', function (done) {
-    app.on('error', function (err, task, run) {
+    app.on('error', function (err) {
       assert(err);
       assert.equal(err.message, 'This is an error');
     });
@@ -110,14 +110,13 @@ describe('app', function () {
 
   it('should emit an error event when an error is thrown in a task', function (done) {
     var errors = 0;
-    app.on('error', function (err, task, run) {
+    app.on('error', function (err) {
       errors++;
       assert(err);
       assert.equal(err.message, 'This is an error');
     });
     app.task('default', function (cb) {
-      throw new Error('This is an error');
-      cb();
+      cb(new Error('This is an error'));
     });
     app.run('default', function (err) {
       assert.equal(errors, 1);

@@ -27,7 +27,7 @@ describe('view.use', function () {
       .use(function (inst) {
         assert(inst instanceof View);
         done();
-      })
+      });
   });
 
   it('should expose the view to a plugin:', function () {

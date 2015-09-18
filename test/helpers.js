@@ -1,8 +1,5 @@
 require('mocha');
-require('should');
 var path = require('path');
-var fs = require('graceful-fs');
-var File = require('vinyl');
 var assert = require('assert');
 var forOwn = require('for-own');
 var consolidate = require('consolidate');
@@ -12,7 +9,6 @@ var rimraf = require('rimraf');
 var swig = consolidate.swig;
 require('swig');
 
-var assemble = require('..');
 var App = require('..');
 var app;
 
@@ -113,10 +109,13 @@ describe('helpers', function () {
       assert(typeof app._.helpers.async.three === 'function');
     });
 
-    it('should fail gracefully on bad globs:', function () {
-      (function() {
+    it('should fail gracefully on bad globs:', function (done) {
+      try {
         app.asyncHelpers('test/fixtures/helpers/*.foo');
-      }).should.not.throw;
+        done();
+      } catch(err) {
+        done(new Error('should not throw an error.'));
+      }
     });
 
     it('should add a glob with mixed helper objects and functions:', function () {
@@ -153,8 +152,8 @@ describe('sync helpers', function () {
   it('should register a helper:', function () {
     app.helper('a', function () {});
     app.helper('b', function () {});
-    app._.helpers.sync.should.have.property('a');
-    app._.helpers.sync.should.have.property('b');
+    assert(app._.helpers.sync.hasOwnProperty('a'));
+    assert(app._.helpers.sync.hasOwnProperty('b'));
   });
 
   it('should use a helper:', function (done) {
@@ -422,11 +421,11 @@ describe('built-in helpers:', function () {
   });
 });
 
-describe.skip('helpers integration', function () {
+describe('helpers integration', function () {
   var actual = __dirname + '/helpers-actual';
 
   beforeEach(function (done) {
-    app = assemble();
+    app = new App();
     rimraf(actual, done);
   });
 
@@ -436,18 +435,12 @@ describe.skip('helpers integration', function () {
 
   describe('.helpers()', function () {
     it('should return an empty list of helpers.', function () {
-      app._.helpers.should.be.empty;
+      assert(!Object.keys(app._.helpers.async).length);
+      assert(!Object.keys(app._.helpers.sync).length);
+
       forOwn(app.engines, function (engine) {
-        engine.helpers.should.be.empty;
+        assert(!Object.keys(engine.helpers).length);
       });
-    });
-
-    it('should return helpers based on a glob pattern.', function () {
-      var fixture = __dirname + '/fixtures/helpers/wrapped.js';
-      app.helpers(fixture);
-
-      app._.helpers.should.have.property('wrapped');
-      app._.helpers['wrapped'].should.be.a.function;
     });
 
     it('should add helpers and use them in templates.', function (done) {
@@ -463,11 +456,11 @@ describe.skip('helpers integration', function () {
 
       outstream.on('error', done);
       outstream.on('data', function (file) {
-        should.exist(file);
-        should.exist(file.path);
-        should.exist(file.contents);
-        /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
-        /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
+        assert(file);
+        assert(file.path);
+        assert(file.contents);
+        assert(/none:\s+([abcd])/.test(String(file.contents)));
+        assert(/helper:\s+[ABCD]/.test(String(file.contents)));
         app.files.length.should.equal(4);
       });
 
@@ -477,9 +470,9 @@ describe.skip('helpers integration', function () {
     });
   });
 
-  describe('app.addHelpers():', function () {
+  describe('app.helpers():', function () {
     it('should add helpers and use them in templates.', function (done) {
-      app.addHelpers({
+      app.helpers({
         upper: function (str) {
           return str.toUpperCase();
         }
@@ -491,11 +484,11 @@ describe.skip('helpers integration', function () {
 
       outstream.on('error', done);
       outstream.on('data', function (file) {
-        should.exist(file);
-        should.exist(file.path);
-        should.exist(file.contents);
-        /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
-        /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
+        assert(file);
+        assert(file.path);
+        assert(file.contents);
+        assert(/none:\s+([abcd])/.test(String(file.contents)));
+        assert(/helper:\s+[ABCD]/.test(String(file.contents)));
         app.files.length.should.equal(4);
       });
 
@@ -507,7 +500,7 @@ describe.skip('helpers integration', function () {
 
   describe('app.helpers()', function () {
     it('should add helpers and use them in templates.', function (done) {
-      app.addHelpers({
+      app.helpers({
         upper: function (str) {
           return str.toUpperCase();
         },
@@ -522,12 +515,12 @@ describe.skip('helpers integration', function () {
 
       outstream.on('error', done);
       outstream.on('data', function (file) {
-        should.exist(file);
-        should.exist(file.path);
-        should.exist(file.contents);
-        /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
-        /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
-        /foo[abcd]/.test(String(file.contents)).should.be.true;
+        assert(file);
+        assert(file.path);
+        assert(file.contents);
+        assert(/none:\s+([abcd])/.test(String(file.contents)));
+        assert(/helper:\s+[ABCD]/.test(String(file.contents)));
+        assert(/foo[abcd]/.test(String(file.contents)));
         app.files.length.should.equal(4);
       });
 
@@ -556,12 +549,12 @@ describe.skip('helpers integration', function () {
 
       outstream.on('error', done);
       outstream.on('data', function (file) {
-        should.exist(file);
-        should.exist(file.path);
-        should.exist(file.contents);
-        /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
-        /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
-        /foo[abcd]/.test(String(file.contents)).should.be.true;
+        assert(file);
+        assert(file.path);
+        assert(file.contents);
+        assert(/none:\s+([abcd])/.test(String(file.contents)));
+        assert(/helper:\s+[ABCD]/.test(String(file.contents)));
+        assert(/foo[abcd]/.test(String(file.contents)));
         app.files.length.should.equal(4);
       });
 
@@ -588,12 +581,12 @@ describe.skip('helpers integration', function () {
 
       outstream.on('error', done);
       outstream.on('data', function (file) {
-        should.exist(file);
-        should.exist(file.path);
-        should.exist(file.contents);
-        /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
-        /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
-        /foo[abcd]/.test(String(file.contents)).should.be.true;
+        assert(file);
+        assert(file.path);
+        assert(file.contents);
+        assert(/none:\s+([abcd])/.test(String(file.contents)));
+        assert(/helper:\s+[ABCD]/.test(String(file.contents)));
+        assert(/foo[abcd]/.test(String(file.contents)));
         app.files.length.should.equal(4);
       });
 
@@ -621,12 +614,12 @@ describe.skip('helpers integration', function () {
 
       outstream.on('error', done);
       outstream.on('data', function (file) {
-        should.exist(file);
-        should.exist(file.path);
-        should.exist(file.contents);
-        /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
-        /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
-        /foo[abcd]/.test(String(file.contents)).should.be.true;
+        assert(file);
+        assert(file.path);
+        assert(file.contents);
+        assert(/none:\s+([abcd])/.test(String(file.contents)));
+        assert(/helper:\s+[ABCD]/.test(String(file.contents)));
+        assert(/foo[abcd]/.test(String(file.contents)));
         app.files.length.should.equal(4);
       });
 
@@ -654,12 +647,12 @@ describe.skip('helpers integration', function () {
 
       outstream.on('error', done);
       outstream.on('data', function (file) {
-        should.exist(file);
-        should.exist(file.path);
-        should.exist(file.contents);
-        /none:\s+([abcd])/.test(String(file.contents)).should.be.true;
-        /helper:\s+[ABCD]/.test(String(file.contents)).should.be.true;
-        /foo[abcd]/.test(String(file.contents)).should.be.true;
+        assert(file);
+        assert(file.path);
+        assert(file.contents);
+        assert(/none:\s+([abcd])/.test(String(file.contents)));
+        assert(/helper:\s+[ABCD]/.test(String(file.contents)));
+        assert(/foo[abcd]/.test(String(file.contents)));
         app.files.length.should.equal(4);
       });
 

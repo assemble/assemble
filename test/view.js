@@ -240,7 +240,7 @@ describe('View', function () {
         contents: 'a <%= name %> z'
       });
 
-      view.render(function (err, res) {
+      view.render(function (err) {
         assert(err.message === 'name is not defined');
         done();
       });

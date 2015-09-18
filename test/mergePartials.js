@@ -5,7 +5,7 @@ var app;
 describe('mergePartials', function () {
   beforeEach(function () {
     app = new App();
-  })
+  });
 
   it('should merge multiple partials collections onto one collection:', function () {
     var opts = { viewType: 'partial' };
@@ -44,7 +44,7 @@ describe('mergePartials', function () {
     app.create('baz', opts);
     var arr = [];
 
-    app.on('onMerge', function (view, locals) {
+    app.on('onMerge', function (view) {
       arr.push(view.content);
     });
 

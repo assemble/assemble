@@ -2,13 +2,15 @@ var spies = require('./support/spy');
 var chmodSpy = spies.chmodSpy;
 var statSpy = spies.statSpy;
 
-var assemble = require('../');
+var assert = require('assert');
+var App = require('../');
 var app;
 
 var path = require('path');
 var fs = require('graceful-fs');
 var rimraf = require('rimraf');
 
+var bufferStream;
 var bufEqual = require('buffer-equal');
 var through = require('through2');
 var File = require('vinyl');
@@ -17,7 +19,7 @@ var should = require('should');
 require('mocha');
 
 var wipeOut = function(cb) {
-  app = assemble();
+  app = new App();
   rimraf(path.join(__dirname, './out-fixtures/'), cb);
   spies.setError('false');
   statSpy.reset();
@@ -42,7 +44,7 @@ describe('dest stream', function() {
   it('should explode on invalid folder (empty)', function(done) {
     var stream;
     try {
-      stream = gulp.dest();
+      stream = app.dest();
     } catch (err) {
       should.exist(err);
       should.not.exist(stream);
@@ -53,7 +55,7 @@ describe('dest stream', function() {
   it('should explode on invalid folder (empty string)', function(done) {
     var stream;
     try {
-      stream = gulp.dest('');
+      stream = app.dest('');
     } catch (err) {
       should.exist(err);
       should.not.exist(stream);
@@ -361,7 +363,7 @@ describe('dest stream', function() {
 
     stream1.on('data', function(file) {
       file.path.should.equal(inputPath1);
-    })
+    });
 
     stream1.pipe(rename).pipe(stream2);
     stream2.on('data', function(file) {
@@ -377,7 +379,7 @@ describe('dest stream', function() {
       path: inputPath1,
       cwd: __dirname,
       contents: content
-    })
+    });
 
     stream1.write(file);
     stream1.end();
@@ -388,8 +390,6 @@ describe('dest stream', function() {
     var inputBase = path.join(__dirname, './fixtures/vinyl/');
     var expectedPath = path.join(__dirname, './out-fixtures/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
-    var expectedCwd = __dirname;
-    var expectedBase = path.join(__dirname, './out-fixtures');
     var expectedMode = 0666 & (~process.umask());
 
     var expectedFile = new File({
@@ -423,8 +423,6 @@ describe('dest stream', function() {
     var inputBase = path.join(__dirname, './fixtures/vinyl/');
     var expectedPath = path.join(__dirname, './out-fixtures/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
-    var expectedCwd = __dirname;
-    var expectedBase = path.join(__dirname, './out-fixtures');
     var expectedMode = 0744;
 
     var expectedFile = new File({
@@ -458,7 +456,6 @@ describe('dest stream', function() {
     var inputBase = path.join(__dirname, './fixtures/vinyl/');
     var expectedPath = path.join(__dirname, './out-fixtures/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
-    var expectedCwd = __dirname;
     var expectedBase = path.join(__dirname, './out-fixtures');
     var startMode = 0655;
     var expectedMode = 0722;
@@ -474,7 +471,7 @@ describe('dest stream', function() {
     });
 
     var onEnd = function(){
-      should(chmodSpy.called).be.ok;
+      assert(chmodSpy.called);
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       fs.existsSync(expectedPath).should.equal(true);
@@ -596,7 +593,6 @@ describe('dest stream', function() {
     var inputBase = path.join(__dirname, './fixtures/vinyl/');
     var expectedPath = path.join(__dirname, './out-fixtures/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
-    var expectedCwd = __dirname;
     var expectedBase = path.join(__dirname, './out-fixtures');
     var expectedMode = 0722;
 
@@ -627,7 +623,6 @@ describe('dest stream', function() {
     var inputBase = path.join(__dirname, './fixtures/vinyl/');
     var expectedPath = path.join(__dirname, './out-fixtures/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
-    var expectedCwd = __dirname;
     var expectedBase = path.join(__dirname, './out-fixtures');
     var expectedMode = 0722;
 
@@ -663,7 +658,6 @@ describe('dest stream', function() {
     var inputBase = path.join(__dirname, './fixtures/vinyl/');
     var expectedPath = path.join(__dirname, './out-fixtures/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
-    var expectedCwd = __dirname;
     var expectedBase = path.join(__dirname, './out-fixtures');
     var expectedMode = 0722;
 
@@ -699,7 +693,6 @@ describe('dest stream', function() {
     var inputBase = path.join(__dirname, './fixtures/vinyl/');
     var expectedPath = path.join(__dirname, './out-fixtures/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
-    var expectedCwd = __dirname;
     var expectedBase = path.join(__dirname, './out-fixtures');
     var expectedMode = 0722;
 
@@ -722,7 +715,7 @@ describe('dest stream', function() {
 
     var onEnd = function(){
       expectedCount.should.equal(1);
-      should(chmodSpy.called).be.not.ok;
+      assert(!chmodSpy.called);
       realMode(fs.lstatSync(expectedPath).mode).should.equal(expectedMode);
       done();
     };
@@ -748,7 +741,6 @@ describe('dest stream', function() {
     var inputBase = path.join(__dirname, './fixtures/vinyl/');
     var expectedPath = path.join(__dirname, './out-fixtures/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
-    var expectedCwd = __dirname;
     var expectedBase = path.join(__dirname, './out-fixtures');
     var expectedMode = 03722;
     var normalMode = 0722;
@@ -772,7 +764,7 @@ describe('dest stream', function() {
 
     var onEnd = function(){
       expectedCount.should.equal(1);
-      should(chmodSpy.called).be.not.ok;
+      assert(!chmodSpy.called);
       done();
     };
 
@@ -880,7 +872,7 @@ describe('dest stream', function() {
     inputFile.symlink = inputRelativeSymlinkPath;
 
     var onEnd = function(){
-      fs.readlink(buffered[0].path, function (err, link) {
+      fs.readlink(buffered[0].path, function () {
         buffered[0].symlink.should.equal(inputFile.symlink);
         buffered[0].path.should.equal(expectedPath);
         done();

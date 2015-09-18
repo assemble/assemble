@@ -28,7 +28,7 @@ describe('collection.use', function () {
       .use(function (inst) {
         assert(inst instanceof Views);
         done();
-      })
+      });
   });
 
   it('should expose the collection to a plugin:', function () {
@@ -37,7 +37,7 @@ describe('collection.use', function () {
       views.foo = views.addView.bind(views);
     });
 
-    collection.foo('a', {content: '...'})
+    collection.foo('a', {content: '...'});
     assert(collection.views.hasOwnProperty('a'));
   });
 
@@ -58,9 +58,9 @@ describe('collection.use', function () {
 
     var pages = collection;
 
-    pages.foo({path: 'a', content: '...'})
-    pages.bar({path: 'b', content: '...'})
-    pages.baz({path: 'c', content: '...'})
+    pages.foo({path: 'a', content: '...'});
+    pages.bar({path: 'b', content: '...'});
+    pages.baz({path: 'c', content: '...'});
 
     assert(collection.views.hasOwnProperty('a'));
     assert(collection.views.hasOwnProperty('b'));
@@ -85,9 +85,9 @@ describe('collection.use', function () {
 
     var pages = collection;
 
-    pages.foo({path: 'a', content: '...'})
-    pages.bar({path: 'b', content: '...'})
-    pages.baz({path: 'c', content: '...'})
+    pages.foo({path: 'a', content: '...'});
+    pages.bar({path: 'b', content: '...'});
+    pages.baz({path: 'c', content: '...'});
 
     assert(collection.views.hasOwnProperty('a'));
     assert(collection.views.hasOwnProperty('b'));
@@ -107,7 +107,7 @@ describe('collection.use', function () {
     collection.addView('a', {content: '...'})
       .foo({path: 'b', content: '...'})
       .foo({path: 'c', content: '...'})
-      .foo({path: 'd', content: '...'})
+      .foo({path: 'd', content: '...'});
 
     assert(collection.views.hasOwnProperty('a'));
     assert(collection.views.hasOwnProperty('b'));
@@ -140,12 +140,12 @@ describe('collection.use', function () {
           view.baz = views.addView.bind(views);
           assert(view instanceof View);
         };
-      })
+      });
 
     collection.addView('a', {content: '...'})
       .foo({path: 'b', content: '...'})
       .bar({path: 'c', content: '...'})
-      .baz({path: 'd', content: '...'})
+      .baz({path: 'd', content: '...'});
 
     assert(collection.views.hasOwnProperty('a'));
     assert(collection.views.hasOwnProperty('b'));

@@ -124,7 +124,7 @@ describe('collection singular method', function () {
     });
 
     it('should expose the `option` method:', function () {
-      app.pages.option('foo', 'bar')
+      app.pages.option('foo', 'bar');
       app.pages.options.should.have.property('foo', 'bar');
     });
   });

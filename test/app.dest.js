@@ -3,13 +3,13 @@ var path = require('path');
 var fs = require('graceful-fs');
 var should = require('should');
 var rimraf = require('rimraf');
-var assemble = require('..');
+var App = require('..');
+var app;
 
 var outpath = path.join(__dirname, './out-fixtures');
 
-describe('assemble output stream', function() {
+describe('app output stream', function() {
   describe('dest()', function() {
-    var site = null;
     beforeEach(function (done) {
       rimraf(outpath, done);
     });
@@ -19,19 +19,19 @@ describe('assemble output stream', function() {
 
     describe('minimal config - enabled', function () {
       beforeEach(function () {
-        site = assemble();
+        app = new App();
       });
 
       it('should return a stream', function (done) {
-        var stream = site.dest(path.join(__dirname, 'fixtures/'));
+        var stream = app.dest(path.join(__dirname, 'fixtures/'));
         should.exist(stream);
         should.exist(stream.on);
         done();
       });
 
       it('should return an output stream that writes files', function (done) {
-        var instream = site.src(path.join(__dirname, 'fixtures/copy/*.txt'));
-        var outstream = site.dest(outpath);
+        var instream = app.src(path.join(__dirname, 'fixtures/copy/*.txt'));
+        var outstream = app.dest(outpath);
         instream.pipe(outstream);
 
         outstream.on('error', done);
@@ -54,8 +54,8 @@ describe('assemble output stream', function() {
       });
 
       it('should return an output stream that does not write non-read files', function (done) {
-        var instream = site.src(path.join(__dirname, 'fixtures/copy/*.txt'), {read: false});
-        var outstream = site.dest(outpath);
+        var instream = app.src(path.join(__dirname, 'fixtures/copy/*.txt'), {read: false});
+        var outstream = app.dest(outpath);
         instream.pipe(outstream);
 
         outstream.on('error', done);
@@ -77,8 +77,8 @@ describe('assemble output stream', function() {
       });
 
       it('should return an output stream that writes streaming files', function (done) {
-        var instream = site.src(path.join(__dirname, 'fixtures/copy/*.txt'), {buffer: false});
-        var outstream = instream.pipe(site.dest(outpath));
+        var instream = app.src(path.join(__dirname, 'fixtures/copy/*.txt'), {buffer: false});
+        var outstream = instream.pipe(app.dest(outpath));
 
         outstream.on('error', done);
         outstream.on('data', function (file) {
@@ -118,24 +118,24 @@ describe('assemble output stream', function() {
 
     describe('minimal config - disabled', function () {
       beforeEach(function () {
-        site = assemble();
-        site.set('ext', '.txt');
+        app = new App();
+        app.set('ext', '.txt');
       });
 
       afterEach(function () {
-        site.set('ext', '.html');
+        app.set('ext', '.html');
       });
 
       it('should return a stream', function (done) {
-        var stream = site.dest(path.join(__dirname, 'fixtures/'));
+        var stream = app.dest(path.join(__dirname, 'fixtures/'));
         should.exist(stream);
         should.exist(stream.on);
         done();
       });
 
       it('should return an output stream that writes files', function (done) {
-        var instream = site.src(path.join(__dirname, 'fixtures/copy/*.txt'));
-        var outstream = site.dest(outpath);
+        var instream = app.src(path.join(__dirname, 'fixtures/copy/*.txt'));
+        var outstream = app.dest(outpath);
         instream.pipe(outstream);
 
         outstream.on('error', done);
@@ -158,8 +158,8 @@ describe('assemble output stream', function() {
       });
 
       it('should return an output stream that does not write non-read files', function (done) {
-        var instream = site.src(path.join(__dirname, 'fixtures/copy/*.txt'), {read: false});
-        var outstream = site.dest(outpath);
+        var instream = app.src(path.join(__dirname, 'fixtures/copy/*.txt'), {read: false});
+        var outstream = app.dest(outpath);
         instream.pipe(outstream);
 
         outstream.on('error', done);
@@ -198,8 +198,8 @@ describe('assemble output stream', function() {
     });
 
     function testWriteDir(srcOptions, done) {
-      var instream = site.src(path.join(__dirname, 'fixtures/generic'), srcOptions);
-      var outstream = instream.pipe(site.dest(outpath));
+      var instream = app.src(path.join(__dirname, 'fixtures/generic'), srcOptions);
+      var outstream = instream.pipe(app.dest(outpath));
 
       outstream.on('error', done);
       outstream.on('data', function(file) {

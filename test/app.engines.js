@@ -104,7 +104,7 @@ describe('engines', function () {
     app.create('pages');
     app.pages('foo.tmpl', {content: 'A <%= letter %> {{= letter }} C'});
     app.pages('bar.tmpl', {content: 'A <%= letter %> {{ letter }} C'});
-  })
+  });
 
   it('should register an engine:', function () {
     app.engine('a', {render: function () {}});

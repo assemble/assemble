@@ -12,7 +12,7 @@ describe('collection events', function () {
     app.pages('a.tmpl', {path: 'a.tmpl', content: '<%= a %>'});
     var events = [];
 
-    app.pages.on('option', function (key, value) {
+    app.pages.on('option', function (key) {
       events.push(key);
     });
 

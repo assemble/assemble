@@ -50,7 +50,7 @@ describe('middleware', function () {
     });
 
     app.page('foo.tmpl', {content: 'foo'})
-      .render(function (err, res) {
+      .render(function (err) {
         if (err) return done(err);
         assert(i === 3);
         done();

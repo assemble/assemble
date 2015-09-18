@@ -9,7 +9,7 @@ describe('handler', function () {
     app = new App();
     app.create('pages');
     app.handlers(['foo']);
-  })
+  });
 
   it('should support custom handle methods:', function (done) {
     var page = app.page('foo', {contents: null});

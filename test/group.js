@@ -118,7 +118,7 @@ describe('group', function () {
         .use(function (group) {
           group.options.foo = 'bar';
         })
-        .use(function (group, options) {
+        .use(function () {
           this.set('one', 'two');
         });
 

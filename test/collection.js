@@ -1,10 +1,9 @@
 require('mocha');
 require('should');
-var fs = require('fs');
 var assert = require('assert');
-var App = require('../');
+var App = require('..');
 var Views = App.Views;
-var app;
+var collection;
 
 describe('collection', function () {
   describe('method', function () {
@@ -54,7 +53,7 @@ describe('collection', function () {
       collection.option('foo', 'bar')
         .addViews('a.hbs')
         .addViews('b.hbs')
-        .addViews('c.hbs')
+        .addViews('c.hbs');
 
       collection.options.should.have.property('foo', 'bar');
       collection.views.should.have.properties([
@@ -111,7 +110,7 @@ describe('collection', function () {
       collection.option('foo', 'bar')
         .addViews('a.hbs')
         .addViews('b.hbs')
-        .addViews('c.hbs')
+        .addViews('c.hbs');
 
       collection.options.should.have.property('foo', 'bar');
       collection.views.should.have.properties([

@@ -1,6 +1,5 @@
 require('mocha');
 require('should');
-var assert = require('assert');
 var View = require('../').View;
 var App = require('..');
 var view, app;

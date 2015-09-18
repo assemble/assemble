@@ -1,11 +1,11 @@
 require('should');
 var assert = require('assert');
-var assemble = require('..');
+var App = require('..');
 var app;
 
 describe('app.set()', function () {
   beforeEach(function() {
-    app = assemble();
+    app = new App();
   });
 
   it('should set a value', function () {
@@ -57,7 +57,7 @@ describe('app.set()', function () {
 
 describe('app.get()', function () {
   beforeEach(function() {
-    app = assemble();
+    app = new App();
   });
 
   it('should return undefined when no set', function () {
