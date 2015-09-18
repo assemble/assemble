@@ -1,7 +1,7 @@
 {
   "name": "assemble",
   "description": "Make stuff.",
-  "version": "0.1.0",
+  "version": "0.6.0-beta.6",
   "homepage": "https://github.com/jonschlinkert/assemble",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/assemble",
