@@ -35,7 +35,7 @@ describe('helpers', function () {
         return str.toUpperCase(str);
       });
 
-      app.page('a.tmpl', {contents: new Buffer('a <%= upper(name) %> b'), locals: locals});
+      app.page('a.tmpl', {content: 'a <%= upper(name) %> b', locals: locals});
       var page = app.pages.getView('a.tmpl');
 
       app.render(page, function (err, res) {
@@ -53,7 +53,7 @@ describe('helpers', function () {
         return str.toUpperCase(str);
       });
 
-      app.page('a.tmpl', {contents: new Buffer('a <%= upper(name) %> b'), locals: locals});
+      app.page('a.tmpl', {content: 'a <%= upper(name) %> b', locals: locals});
       var page = app.pages.getView('a.tmpl');
 
       app.render(page, function (err, res) {
@@ -65,7 +65,7 @@ describe('helpers', function () {
     });
 
     it('should render a template when contents is a buffer:', function (done) {
-      app.pages('a.tmpl', {contents: new Buffer('<%= a %>'), locals: {a: 'b'}});
+      app.pages('a.tmpl', {content: '<%= a %>', locals: {a: 'b'}});
       var view = app.pages.getView('a.tmpl');
 
       app.render(view, function (err, view) {

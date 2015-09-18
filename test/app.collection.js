@@ -5,24 +5,24 @@ var assert = require('assert');
 var App = require('../');
 var app;
 
-describe('create', function () {
+describe('collection', function () {
   describe('method', function () {
     beforeEach(function () {
       app = new App();
     });
 
-    it('should expose the create method', function () {
-      assert(typeof app.create === 'function');
+    it('should expose the collection method', function () {
+      assert(typeof app.collection === 'function');
     });
 
-    it('should add a collection to `views`', function () {
-      app.create('pages');
-      assert(typeof app.views.pages === 'object');
+    it('should return a new collection', function () {
+      var collection = app.collection();
+      assert(typeof collection === 'object');
     });
 
-    it('should create a pluralized collection from a singular-form name:', function () {
-      app.create('page');
-      assert(typeof app.views.pages === 'object');
+    it('should have isCollection property', function () {
+      var collection = app.collection();
+      assert(collection.isCollection === true);
     });
   });
 

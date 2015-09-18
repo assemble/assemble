@@ -73,7 +73,7 @@ Templates.extend(Assemble, {
       }
     }
 
-    this.option('extendView', function (view) {
+    this.option('view', function (view) {
       if (view.src) view.path = view.src;
     });
   },

@@ -6,7 +6,6 @@ var assert = require('assert');
 var App = require('../');
 var app;
 
-
 describe('create', function () {
   describe('inflections', function () {
     beforeEach(function () {
@@ -40,9 +39,9 @@ describe('create', function () {
     });
 
     it('should create views from key-value pairs:', function () {
-      app.page('a.hbs', {path: 'a.hbs', contents: new Buffer('a')});
-      app.page('b.hbs', {path: 'b.hbs', contents: new Buffer('b')});
-      app.page('c.hbs', {path: 'c.hbs', contents: new Buffer('c')});
+      app.page('a.hbs', {path: 'a.hbs', content: 'a'});
+      app.page('b.hbs', {path: 'b.hbs', content: 'b'});
+      app.page('c.hbs', {path: 'c.hbs', content: 'c'});
       var a = app.pages.getView('a.hbs');
       a.custom('foo');
       a.foo.should.equal('nonsense');
@@ -55,9 +54,9 @@ describe('create', function () {
       var Views = App.Views;
       var views = new Views({View: Vinyl});
 
-      views.addView('a.hbs', {path: 'a.hbs', contents: new Buffer('a')});
-      views.addView('b.hbs', {path: 'b.hbs', contents: new Buffer('b')});
-      views.addView('c.hbs', {path: 'c.hbs', contents: new Buffer('c')});
+      views.addView('a.hbs', {path: 'a.hbs', content: 'a'});
+      views.addView('b.hbs', {path: 'b.hbs', content: 'b'});
+      views.addView('c.hbs', {path: 'c.hbs', content: 'c'});
 
       app = new App();
       app.create('pages', views);
@@ -66,7 +65,7 @@ describe('create', function () {
       assert(a instanceof Vinyl);
       assert(Vinyl.isVinyl(a));
 
-      views.addView('d.hbs', {path: 'd.hbs', contents: new Buffer('d')});
+      views.addView('d.hbs', {path: 'd.hbs', content: 'd'});
       var d = app.pages.getView('d.hbs');
       assert(d instanceof Vinyl);
       assert(Vinyl.isVinyl(d));
@@ -81,9 +80,9 @@ describe('create', function () {
     });
 
     it('should create views from key-value pairs:', function () {
-      app.page('a.hbs', {contents: new Buffer('a')});
-      app.page('b.hbs', {contents: new Buffer('b')});
-      app.page('c.hbs', {contents: new Buffer('c')});
+      app.page('a.hbs', {content: 'a'});
+      app.page('b.hbs', {content: 'b'});
+      app.page('c.hbs', {content: 'c'});
       app.views.pages.should.have.properties(['a.hbs', 'b.hbs', 'c.hbs']);
       assert(app.views.pages['a.hbs'].contents.toString() === 'a');
     });
@@ -148,21 +147,20 @@ describe('create', function () {
     });
   });
 
-  describe('options', function () {
+  describe('events', function () {
     beforeEach(function () {
       app = new App();
       app.engine('tmpl', require('engine-base'));
     });
 
-    it('should support a custom extendView function passed on options:', function () {
-      app.create('layout', {
-        viewType: 'layout',
-        extendViews: function (layouts) {
-          layouts.options.foo = 'bar';
-          return layouts;
+    it('should emit `create` when a collection is created:', function () {
+      app.on('create', function (collection) {
+        if (collection.options.plural === 'layouts') {
+          collection.options.foo = 'bar';
         }
       });
 
+      app.create('layout');
       app.layout('one', {path: 'two', contents: '...'});
       assert(app.layouts.options.foo === 'bar');
     });

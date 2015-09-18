@@ -54,12 +54,14 @@ describe('helpers', function () {
     });
 
     it('should fail gracefully on bad globs:', function () {
-      app.helpers('test/fixtures/helpers/*.foo');
-      app._.helpers.sync.should.eql({});
+      (function() {
+        app.helpers('test/fixtures/helpers/*.foo');
+      }).should.not.throw();
     });
 
     it('should add a glob of sync helper objects:', function () {
       app.helpers('test/fixtures/helpers/!([a-c]).js');
+      assert(typeof app._.helpers.sync.one === 'function');
       assert(typeof app._.helpers.sync.two === 'function');
       assert(typeof app._.helpers.sync.three === 'function');
     });
@@ -69,6 +71,7 @@ describe('helpers', function () {
       assert(typeof app._.helpers.sync.a === 'function');
       assert(typeof app._.helpers.sync.b === 'function');
       assert(typeof app._.helpers.sync.c === 'function');
+      assert(typeof app._.helpers.sync.one === 'function');
       assert(typeof app._.helpers.sync.two === 'function');
       assert(typeof app._.helpers.sync.three === 'function');
     });
@@ -103,7 +106,7 @@ describe('helpers', function () {
       assert(typeof app._.helpers.async.c === 'function');
     });
 
-    it.skip('should add a glob of async helper objects:', function () {
+    it('should add a glob of async helper objects:', function () {
       app.asyncHelpers('test/fixtures/helpers/!([a-c]).js');
       assert(typeof app._.helpers.async.one === 'function');
       assert(typeof app._.helpers.async.two === 'function');
@@ -116,7 +119,7 @@ describe('helpers', function () {
       }).should.not.throw;
     });
 
-    it.skip('should add a glob with mixed helper objects and functions:', function () {
+    it('should add a glob with mixed helper objects and functions:', function () {
       app.asyncHelpers('test/fixtures/helpers/*.js');
       assert(typeof app._.helpers.async.a === 'function');
       assert(typeof app._.helpers.async.b === 'function');
@@ -295,22 +298,6 @@ describe('built-in helpers:', function () {
         if (err) return done(err);
         res.contents.toString().should.equal('foo  bar');
         done();
-      });
-    });
-
-    it.skip('should throw an error when something is wrong in a partial', function (done) {
-      var called = false;
-      var cb = function (err) {
-        if (called) return;
-        called = true;
-        done(err);
-      };
-
-      app.partial('abc.md', {content: '---\nname: "AAA"\n---\n<%= name %> - <%= foo(name) %>', locals: {name: 'BBB'}});
-      app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md", { name: "CCC" }) %> bar'});
-      app.render('xyz.md', {name: 'DDD'}, function (err, res) {
-        if (!err) return cb('Expected an error.');
-        cb();
       });
     });
   });

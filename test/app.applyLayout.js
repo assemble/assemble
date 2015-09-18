@@ -24,7 +24,7 @@ describe('helpers', function () {
       app.layout('fofof.tmpl', {content: '..'});
       app.page('a.tmpl', page)
         .render(function (err) {
-          assert(err.message === 'cannot find layout: default.tmpl');
+          assert(err.message === 'Templates#layouts no layouts are registered, but one is defined: default.tmpl');
           done();
         });
     });
@@ -32,9 +32,10 @@ describe('helpers', function () {
     it('should emit an error when a layout cannot be found:', function (done) {
       app.layout('fofof.tmpl', {content: '..'});
       app.on('error', function (err) {
-        assert(err.message === 'cannot find layout: default.tmpl');
+        assert(err.message === 'Templates#layouts no layouts are registered, but one is defined: default.tmpl');
         done();
       });
+
       app.page('a.tmpl', page)
         .render(function () {
         });
@@ -43,14 +44,14 @@ describe('helpers', function () {
     it('should throw an error - layout defined but no layouts registered:', function (done) {
       app.page('a.tmpl', page)
         .render(function (err) {
-          assert(err.message === 'no layouts are registered.');
+          assert(err.message === 'Templates#layouts no layouts are registered, but one is defined: default.tmpl');
           done();
         });
     });
 
     it('should emit an error - layout defined but no layouts registered:', function (done) {
       app.on('error', function (err) {
-        assert(err.message === 'no layouts are registered.');
+        assert(err.message === 'Templates#layouts no layouts are registered, but one is defined: default.tmpl');
         done();
       });
       app.page('a.tmpl', page)

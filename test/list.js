@@ -72,20 +72,14 @@ describe('list', function () {
       list = new List();
     });
 
-    it('should throw an error when value is invalid:', function () {
-      (function () {
-        list.addItem('foo');
-      }).should.throw('expected value to be an object.');
-    });
-
     it('should add an item to `items`:', function () {
-      list.addItem('one', {contents: new Buffer('...')});
+      list.addItem('one', {content: '...'});
       assert(list.items.length === 1);
       assert(Buffer.isBuffer(list.items[0].contents));
     });
 
     it('should create an instance of `Item`:', function () {
-      list.addItem('one', {contents: new Buffer('...')});
+      list.addItem('one', {content: '...'});
       assert(list.items[0] instanceof list.Item);
     });
 
@@ -95,15 +89,14 @@ describe('list', function () {
         this[key] = value;
       };
       list = new List({Item: Vinyl});
-      list.addItem('one', {contents: new Buffer('...')});
+      list.addItem('one', {content: '...'});
       list.items[0].foo('bar', 'baz');
       assert(list.items[0].bar === 'baz');
     });
 
     it('should allow an instance of `Item` to be passed:', function () {
-      var View = require('../').View;
       var list = new List({Item: View});
-      var view = new View({contents: new Buffer('...')});
+      var view = new View({content: '...'});
       list.addItem('one', view);
       view.set('abc', 'xyz');
       assert(list.items[0] instanceof list.Item);
@@ -119,8 +112,8 @@ describe('list', function () {
 
     it('should add an object with multiple items:', function () {
       list.addItems({
-        one: {contents: new Buffer('foo')},
-        two: {contents: new Buffer('bar')}
+        one: {content: 'foo'},
+        two: {content: 'bar'}
       });
       assert(Buffer.isBuffer(list.items[0].contents));
       assert(Buffer.isBuffer(list.items[1].contents));
@@ -134,8 +127,8 @@ describe('list', function () {
 
     it('should add an array with multiple items:', function () {
       list.addList([
-        {path: 'one', contents: new Buffer('foo')},
-        {path: 'two', contents: new Buffer('bar')}
+        {path: 'one', content: 'foo'},
+        {path: 'two', content: 'bar'}
       ]);
       assert(Buffer.isBuffer(list.items[0].contents));
       assert(Buffer.isBuffer(list.items[1].contents));
@@ -337,6 +330,36 @@ describe('list', function () {
       list = new List();
       list.addList(items);
 
+      var res = list.groupBy('locals.foo');
+      var keys = ['zzz', 'mmm', 'xxx', 'aaa', 'ccc', 'rrr', 'ttt', 'yyy'];
+      assert.deepEqual(Object.keys(res), keys);
+    });
+  });
+
+  describe('sort and group', function() {
+    var items = [
+      { path: 'a.md', locals: { date: '2014-01-01', foo: 'zzz', bar: 1 } },
+      { path: 'f.md', locals: { date: '2014-01-01', foo: 'mmm', bar: 2 } },
+      { path: 'd.md', locals: { date: '2013-01-01', foo: 'xxx', bar: 3 } },
+      { path: 'i.md', locals: { date: '2013-02-01', foo: 'xxx', bar: 5 } },
+      { path: 'i.md', locals: { date: '2013-02-01', foo: 'lll', bar: 5 } },
+      { path: 'k.md', locals: { date: '2013-03-01', foo: 'xxx', bar: 1 } },
+      { path: 'j.md', locals: { date: '2013-02-01', foo: 'xxx', bar: 4 } },
+      { path: 'h.md', locals: { date: '2014-01-01', foo: 'xxx', bar: 6 } },
+      { path: 'm.md', locals: { date: '2014-01-01', foo: 'xxx', bar: 7 } },
+      { path: 'n.md', locals: { date: '2013-01-01', foo: 'xxx', bar: 7 } },
+      { path: 'o.md', locals: { date: '2013-01-01', foo: 'xxx', bar: 7 } },
+      { path: 'p.md', locals: { date: '2013-01-01', foo: 'xxx', bar: 7 } },
+      { path: 'e.md', locals: { date: '2015-01-02', foo: 'aaa', bar: 8 } },
+      { path: 'b.md', locals: { date: '2012-01-02', foo: 'ccc', bar: 9 } },
+      { path: 'f.md', locals: { date: '2014-06-01', foo: 'rrr', bar: 10 } },
+      { path: 'c.md', locals: { date: '2015-04-12', foo: 'ttt', bar: 11 } },
+      { path: 'g.md', locals: { date: '2014-02-02', foo: 'yyy', bar: 12 } },
+    ];
+
+    it('should group a list by a property:', function () {
+      list = new List(items);
+
       var compare = function(prop) {
         return function (a, b, fn) {
           var valA = get(a, prop);
@@ -345,9 +368,21 @@ describe('list', function () {
         };
       };
 
-      var res = list.groupBy('locals.foo');
-      var keys = ['zzz', 'mmm', 'xxx', 'aaa', 'ccc', 'rrr', 'ttt', 'yyy'];
-      assert.deepEqual(Object.keys(res), keys);
+      var context = list
+        .sortBy('locals.date')
+        .groupBy(function (view) {
+          var date = view.locals.date;
+          view.locals.year = date.slice(0, 4);
+          view.locals.month = date.slice(5, 7);
+          view.locals.day = date.slice(8, 10);
+          return view.locals.year;
+        }, 'locals.month');
+
+      var keys = Object.keys(context);
+      assert(keys[0] === '2012');
+      assert(keys[1] === '2013');
+      assert(keys[2] === '2014');
+      assert(keys[3] === '2015');
     });
   });
 
@@ -369,8 +404,7 @@ describe('list', function () {
     ];
 
     it('should paginate a list:', function () {
-      list = new List();
-      list.addList(items);
+      list = new List(items);
 
       var res = list.paginate();
       assert.equal(res.length, 2);
@@ -379,10 +413,9 @@ describe('list', function () {
     });
 
     it('should paginate a list with given options:', function () {
-      list = new List();
-      list.addList(items);
-
+      list = new List(items);
       var res = list.paginate({limit: 5});
+
       assert.equal(res.length, 3);
       assert.containEql(res[0].items, items.slice(0, 5));
       assert.containEql(res[1].items, items.slice(5, 10));
@@ -397,8 +430,8 @@ describe('list', function () {
 
     it('should add views from an instance of Views:', function () {
       views.addViews({
-        one: {contents: new Buffer('foo')},
-        two: {contents: new Buffer('bar')}
+        one: {content: 'foo'},
+        two: {content: 'bar'}
       });
 
       list = new List(views);
@@ -412,8 +445,8 @@ describe('list', function () {
       list = new List();
     });
     it('should get the index of a key when key is not renamed:', function () {
-      list.addItem('a/b/c/ddd.hbs', {contents: new Buffer('ddd')});
-      list.addItem('a/b/c/eee.hbs', {contents: new Buffer('eee')});
+      list.addItem('a/b/c/ddd.hbs', {content: 'ddd'});
+      list.addItem('a/b/c/eee.hbs', {content: 'eee'});
       assert(list.getIndex('a/b/c/ddd.hbs') === 0);
       assert(list.getIndex('a/b/c/eee.hbs') === 1);
     });
@@ -424,8 +457,8 @@ describe('list', function () {
           return path.basename(key);
         }
       });
-      list.addItem('a/b/c/ddd.hbs', {contents: new Buffer('ddd')});
-      list.addItem('a/b/c/eee.hbs', {contents: new Buffer('eee')});
+      list.addItem('a/b/c/ddd.hbs', {content: 'ddd'});
+      list.addItem('a/b/c/eee.hbs', {content: 'eee'});
       assert(list.getIndex('a/b/c/ddd.hbs') === 0);
       assert(list.getIndex('ddd.hbs') === 0);
       assert(list.getIndex('a/b/c/eee.hbs') === 1);
@@ -439,8 +472,8 @@ describe('list', function () {
     });
 
     it('should get an view from `views`:', function () {
-      list.addItem('one', {contents: new Buffer('aaa')});
-      list.addItem('two', {contents: new Buffer('zzz')});
+      list.addItem('one', {content: 'aaa'});
+      list.addItem('two', {content: 'zzz'});
       assert(list.items.length === 2);
       assert(Buffer.isBuffer(list.items[0].contents));
       assert(Buffer.isBuffer(list.getItem('one').contents));
@@ -455,8 +488,8 @@ describe('list', function () {
     });
 
     it('should use middleware on a list:', function () {
-      list.addItem('one', {contents: new Buffer('aaa')});
-      list.addItem('two', {contents: new Buffer('zzz')});
+      list.addItem('one', {content: 'aaa'});
+      list.addItem('two', {content: 'zzz'});
 
       list
         .use(function (list, options) {
@@ -468,24 +501,6 @@ describe('list', function () {
 
       assert(list.one === 'two');
       assert(list.options.foo === 'bar');
-    });
-  });
-
-  describe('count', function() {
-    beforeEach(function() {
-      list = new List();
-    });
-
-    it('should get the number of views:', function () {
-      list.addItem('one', {contents: new Buffer('aaa')});
-      list.addItem('two', {contents: new Buffer('zzz')});
-      assert(list.count === 2);
-    });
-
-    it('should throw an error if attemptin to set count:', function () {
-      (function () {
-        list.count = 5;
-      }).should.throw('count is a read-only getter and cannot be defined.');
     });
   });
 });

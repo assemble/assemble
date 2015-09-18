@@ -35,4 +35,16 @@ describe('events', function () {
     assert(Array.isArray(app._callbacks['$foo']));
     app.emit('foo', 'bar');
   });
+
+  it('should listen for `view` events:', function () {
+    var app = new App();
+    app.initialize();
+
+    app.on('view', function (view) {
+      view.foo = 'bar';
+    });
+
+    var view = app.view({path: 'a', content: 'b'});
+    assert(view.foo === 'bar');
+  });
 });

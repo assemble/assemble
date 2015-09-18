@@ -23,23 +23,20 @@ describe('lookups', function () {
     });
     app.create('pages')
       .use(function (pages) {
-        var fn = pages.decorateView;
-        pages.decorateView = function () {
-          var view = fn.apply(fn, arguments);
+        pages.on('addViews', function (glob) {
+          var files = resolveGlob(glob);
+          files.forEach(function (fp) {
+            pages.addView(fp, {path: fp});
+          });
+          pages.loaded = true;
+        });
+        return function (view) {
           view.read = function () {
             this.contents = fs.readFileSync(this.path);
           };
           return view;
-        };
-        pages.loader = function (pattern) {
-          var files = resolveGlob(pattern);
-          return files.reduce(function (acc, fp) {
-            acc[fp] = {path: fp};
-            return acc;
-          }, {});
-        };
-        return pages;
-      });
+        }
+      })
 
     app.pages('test/fixtures/templates/*.tmpl');
   });

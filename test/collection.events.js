@@ -2,7 +2,7 @@ require('should');
 var App = require('..');
 var app;
 
-describe('collection.option()', function () {
+describe('collection events', function () {
   beforeEach(function () {
     app = new App();
     app.create('page');

@@ -20,7 +20,7 @@ describe('middleware', function () {
     });
 
     assert(i === 0);
-    app.page('foo.tmpl', {contents: new Buffer('foo')});
+    app.page('foo.tmpl', {content: 'foo'});
     assert(i === 1);
   });
 
@@ -33,7 +33,7 @@ describe('middleware', function () {
     });
 
     assert(i === 0);
-    app.page('foo.tmpl', {contents: new Buffer('foo')});
+    app.page('foo.tmpl', {content: 'foo'});
     assert(i === 1);
   });
 
@@ -49,7 +49,7 @@ describe('middleware', function () {
       i++;
     });
 
-    app.page('foo.tmpl', {contents: new Buffer('foo')})
+    app.page('foo.tmpl', {content: 'foo'})
       .render(function (err, res) {
         if (err) return done(err);
         assert(i === 3);
