@@ -29,7 +29,6 @@ function Assemble(options) {
 
   Templates.apply(this, arguments);
   Composer.apply(this, arguments);
-  this.isAssemble = true;
   this.boilerplates = {};
   this.scaffolds = {};
   this.init();
@@ -50,6 +49,7 @@ Templates.extend(Assemble, {
 
   init: function() {
     var app = this;
+    this.isAssemble = true;
     this.defaultEngine();
     this.defaultMiddleware();
     this.defaultViewTypes();
@@ -73,7 +73,7 @@ Templates.extend(Assemble, {
    */
 
   defaultEngine: function () {
-    this.engine(['hbs', 'html', 'md'], require('engine-handlebars'));
+    this.engine(['hbs', 'html', 'md'], utils.engine);
   },
 
   /**
