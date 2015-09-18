@@ -29,8 +29,7 @@ function Assemble(options) {
 
   Templates.apply(this, arguments);
   Composer.apply(this, arguments);
-  this.boilerplates = {};
-  this.scaffolds = {};
+  this.options = options || {};
   this.init();
 }
 
@@ -245,13 +244,14 @@ Templates.extend(Assemble, {
    * @api public
    */
 
-  dest: function () {
+  dest: function (dest) {
+    if (!dest) throw new Error('expected dest to be a string.');
     return utils.vfs.dest.apply(utils.vfs, arguments)
       .on('data', function () {}); // TODO: fix this
   },
 
   /**
-   * Copy files with the given glob `patterns` to the specified `destDir`.
+   * Copy files with the given glob `patterns` to the specified `dest`.
    *
    * ```js
    * app.task('assets', function() {
@@ -285,8 +285,8 @@ Templates.extend(Assemble, {
    * @api public
    */
 
-  toStream: function (collection, fn) {
-    var views = this.getViews(collection) || {};
+  toStream: function (name) {
+    var views = this.getViews(name) || {};
     var stream = utils.through.obj();
     setImmediate(function () {
       Object.keys(views).forEach(function (key) {
@@ -324,6 +324,7 @@ Templates.extend(Assemble, {
 
       var view = collection.view(file);
       app.handleView('onLoad', view);
+
       var ctx = utils.merge({}, app.cache.data, locals, view.data);
       app.render(view, ctx, function (err, res) {
         if (err) return cb(err);
@@ -334,7 +335,7 @@ Templates.extend(Assemble, {
   },
 
   /**
-   * Define an Assemble task.
+   * Define a task to be run when the task is called.
    *
    * ```js
    * app.task('default', function() {
@@ -342,15 +343,14 @@ Templates.extend(Assemble, {
    *     .pipe(app.dest('dist/'));
    * });
    * ```
-   *
    * @name .task
    * @param {String} `name` Task name
    * @param {Function} `fn` function that is called when the task is run.
    * @api public
    */
 
-  task: function (name) {
-    utils.runtimes(this);
+  task: function (/*name*/) {
+      utils.runtimes(this);
     return proto.task.apply(this, arguments);
   },
 
