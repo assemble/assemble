@@ -5,8 +5,6 @@
  */
 
 var path = require('path');
-var async = require('async');
-var runtimes = require('composer-runtimes');
 var Templates = require('templates');
 var Composer = require('composer');
 var proto = Composer.prototype;
@@ -51,30 +49,22 @@ Templates.extend(Assemble, {
    */
 
   init: function() {
+    var app = this;
     this.defaultEngine();
     this.defaultMiddleware();
     this.defaultViewTypes();
     this.defaultTemplates();
-    var app = this;
-
-    this.on('option', function (key) {
-      for (var k in app.views) {
-        if (app.views.hasOwnProperty(k)) {
-          reloadViews(k, key, app.views[k], app.options);
-        }
-      }
-    });
-
-    function reloadViews(name, key, views, options) {
-      if (typeof app[name][key] !== 'function') {
-        app.create(name, utils.merge({}, views.options, options));
-        delete views.options;
-        app[name].addViews(views);
-      }
-    }
 
     this.option('view', function (view) {
       if (view.src) view.path = view.src;
+    });
+
+    this.on('option', function (key) {
+      utils.reloadViews(app, key);
+    });
+
+    this.on('use', function () {
+      utils.reloadViews(app);
     });
   },
 
@@ -163,7 +153,7 @@ Templates.extend(Assemble, {
     file.path = file.path || file.src;
     var view = this.view(file.path, file);
 
-    var opts = utils.extend({}, this.options, options, view.options);
+    var opts = utils.merge({}, this.options, options, view.options);
     view.dest = view.dest || opts.dest;
     if (!view.dest) {
       throw new Error('process expects file to have a dest defined.');
@@ -206,7 +196,7 @@ Templates.extend(Assemble, {
     var opts = {};
     opts.preprocess = config.preprocess;
     opts.postprocess = config.postprocess;
-    async.each(config.files, function (file, next) {
+    utils.async.each(config.files, function (file, next) {
       utils.parallel(this.process(file, opts), next);
     }.bind(this), cb);
     return this;
@@ -360,7 +350,7 @@ Templates.extend(Assemble, {
    */
 
   task: function (name) {
-    runtimes(this);
+    utils.runtimes(this);
     return proto.task.apply(this, arguments);
   },
 
