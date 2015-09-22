@@ -9,7 +9,7 @@ describe('render', function () {
     var view;
 
     beforeEach(function () {
-      app = new App();
+      app = new App({silent: true});
       app.engine('tmpl', require('engine-base'));
       app.create('page');
       view = {contents: new Buffer('a <%= name %> b'), locals: {name: 'Halle'}};
@@ -37,7 +37,7 @@ describe('render', function () {
     it('should re-throw an error when rethrow is true:', function (done) {
       delete view.locals.name;
 
-      app = new App({rethrow: true});
+      app = new App({rethrow: true, silent: true});
       app.engine('tmpl', require('engine-base'));
       app.create('page');
 
@@ -51,7 +51,7 @@ describe('render', function () {
     it('should emit a re-thrown error when rethrow is true:', function (done) {
       delete view.locals.name;
 
-      app = new App({rethrow: true});
+      app = new App({rethrow: true, silent: true});
       app.engine('tmpl', require('engine-base'));
       app.create('page');
 

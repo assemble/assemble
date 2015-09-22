@@ -1,4 +1,6 @@
 require('mocha');
+require('should');
+var fs = require('fs');
 var path = require('path');
 var assert = require('assert');
 var forOwn = require('for-own');
@@ -8,6 +10,12 @@ var matter = require('parser-front-matter');
 var rimraf = require('rimraf');
 var swig = consolidate.swig;
 require('swig');
+
+function load(fp) {
+  fp = path.join(__dirname, 'fixtures', fp);
+  var str = fs.readFileSync(fp, 'utf8');
+  return str;
+}
 
 var App = require('..');
 var app;
@@ -49,10 +57,13 @@ describe('helpers', function () {
       assert(typeof app._.helpers.sync.c === 'function');
     });
 
-    it('should fail gracefully on bad globs:', function () {
-      (function() {
+    it('should fail gracefully on bad globs:', function (done) {
+      try {
         app.helpers('test/fixtures/helpers/*.foo');
-      }).should.not.throw();
+        done();
+      } catch(err) {
+        done(new Error('should not throw an error.'));
+      }
     });
 
     it('should add a glob of sync helper objects:', function () {
@@ -215,11 +226,7 @@ describe('built-in helpers:', function () {
 
       // parse front matter
       app.onLoad(/./, function (view, next) {
-        matter.parse(view, function(err, res) {
-          view.contents = new Buffer(res.content);
-          view.data = res.data;
-          next();
-        });
+        matter.parse(view, next);
       });
     });
 
@@ -310,11 +317,7 @@ describe('built-in helpers:', function () {
 
       // parse front matter
       app.onLoad(/./, function (view, next) {
-        matter.parse(view, function(err, res) {
-          view.contents = new Buffer(res.content);
-          view.data = res.data;
-          next();
-        });
+        matter.parse(view, next);
       });
     });
 
@@ -362,11 +365,7 @@ describe('built-in helpers:', function () {
 
       // parse front matter
       app.onLoad(/./, function (view, next) {
-        matter.parse(view, function(err, res) {
-          view.contents = new Buffer(res.content);
-          view.data = res.data;
-          next();
-        });
+        matter.parse(view, next);
       });
     });
 
@@ -421,28 +420,29 @@ describe('built-in helpers:', function () {
   });
 });
 
-describe('helpers integration', function () {
-  var actual = __dirname + '/helpers-actual';
-
-  beforeEach(function (done) {
+describe('helpers defaults', function () {
+  beforeEach(function () {
     app = new App();
-    rimraf(actual, done);
   });
 
-  afterEach(function (done) {
-    rimraf(actual, done);
+  it('should return an empty list of helpers.', function () {
+    assert(!Object.keys(app._.helpers.async).length);
+    assert(!Object.keys(app._.helpers.sync).length);
+
+    forOwn(app.engines, function (engine) {
+      assert(!Object.keys(engine.helpers).length);
+    });
+  });
+});
+
+describe('helpers integration', function () {
+  beforeEach(function () {
+    app = new App();
+    app.create('pages');
+    app.engine('md', require('engine-base'));
   });
 
   describe('.helpers()', function () {
-    it('should return an empty list of helpers.', function () {
-      assert(!Object.keys(app._.helpers.async).length);
-      assert(!Object.keys(app._.helpers.sync).length);
-
-      forOwn(app.engines, function (engine) {
-        assert(!Object.keys(engine.helpers).length);
-      });
-    });
-
     it('should add helpers and use them in templates.', function (done) {
       app.helpers({
         upper: function (str) {
@@ -450,88 +450,48 @@ describe('helpers integration', function () {
         }
       });
 
-      var instream = app.src(path.join(__dirname, 'fixtures/templates/with-helper/*.hbs'));
-      var outstream = app.dest(actual);
-      instream.pipe(outstream);
-
-      outstream.on('error', done);
-      outstream.on('data', function (file) {
-        assert(file);
-        assert(file.path);
-        assert(file.contents);
-        assert(/none:\s+([abcd])/.test(String(file.contents)));
-        assert(/helper:\s+[ABCD]/.test(String(file.contents)));
-        app.files.length.should.equal(4);
-      });
-
-      outstream.on('end', function () {
-        done();
-      });
+      app.page('doc.md', {content: 'a <%= upper(name) %> b'})
+        .render({name: 'Halle'}, function (err, res) {
+          if (err) return done(err);
+          assert(res.content === 'a HALLE b');
+          done();
+        });
     });
   });
 
-  describe('app.helpers():', function () {
-    it('should add helpers and use them in templates.', function (done) {
-      app.helpers({
-        upper: function (str) {
-          return str.toUpperCase();
-        }
+  describe('helper options:', function () {
+    it('should expose `this.options` to helpers:', function (done) {
+      app.helper('cwd', function (fp) {
+        return path.join(this.options.cwd, fp);
       });
 
-      var instream = app.src(path.join(__dirname, 'fixtures/templates/with-helper/*.hbs'));
-      var outstream = app.dest(actual);
-      instream.pipe(outstream);
+      app.option('cwd', 'foo/bar');
+      app.page('doc.md', {content: 'a <%= cwd("baz") %> b'})
+        .render(function (err, res) {
+          if (err) return done(err);
+          assert(res.content === 'a foo/bar/baz b');
+          done();
+        });
+    });
 
-      outstream.on('error', done);
-      outstream.on('data', function (file) {
-        assert(file);
-        assert(file.path);
-        assert(file.contents);
-        assert(/none:\s+([abcd])/.test(String(file.contents)));
-        assert(/helper:\s+[ABCD]/.test(String(file.contents)));
-        app.files.length.should.equal(4);
+    it('should pass helper options to helpers:', function (done) {
+      app.helper('cwd', function (fp) {
+        return path.join(this.options.cwd, fp);
       });
 
-      outstream.on('end', function () {
-        done();
-      });
+      app.option('helper.cwd', 'foo/bar');
+
+      app.page('doc.md', {content: 'a <%= cwd("baz") %> b'})
+        .render(function (err, res) {
+          if (err) return done(err);
+          assert(res.content === 'a foo/bar/baz b');
+          done();
+        });
     });
   });
 
-  describe('app.helpers()', function () {
-    it('should add helpers and use them in templates.', function (done) {
-      app.helpers({
-        upper: function (str) {
-          return str.toUpperCase();
-        },
-        foo: function (str) {
-          return 'foo' + str;
-        }
-      });
-
-      var instream = app.src(path.join(__dirname, 'fixtures/templates/with-helpers/*.hbs'));
-      var outstream = app.dest(actual);
-      instream.pipe(outstream);
-
-      outstream.on('error', done);
-      outstream.on('data', function (file) {
-        assert(file);
-        assert(file.path);
-        assert(file.contents);
-        assert(/none:\s+([abcd])/.test(String(file.contents)));
-        assert(/helper:\s+[ABCD]/.test(String(file.contents)));
-        assert(/foo[abcd]/.test(String(file.contents)));
-        app.files.length.should.equal(4);
-      });
-
-      outstream.on('end', function () {
-        done();
-      });
-    });
-  });
-
-  describe('options.set()', function () {
-    it('should add helpers and use them in templates.', function (done) {
+  describe('options.helpers', function () {
+    it('should register helpers passed on the options:', function (done) {
       app.option({
         helpers: {
           upper: function (str) {
@@ -543,24 +503,12 @@ describe('helpers integration', function () {
         }
       });
 
-      var instream = app.src(path.join(__dirname, 'fixtures/templates/with-helpers/*.hbs'));
-      var outstream = app.dest(actual);
-      instream.pipe(outstream);
-
-      outstream.on('error', done);
-      outstream.on('data', function (file) {
-        assert(file);
-        assert(file.path);
-        assert(file.contents);
-        assert(/none:\s+([abcd])/.test(String(file.contents)));
-        assert(/helper:\s+[ABCD]/.test(String(file.contents)));
-        assert(/foo[abcd]/.test(String(file.contents)));
-        app.files.length.should.equal(4);
-      });
-
-      outstream.on('end', function () {
-        done();
-      });
+      app.page('doc.md', {content: 'a <%= upper(name) %> <%= foo("bar") %> b'})
+        .render({name: 'Halle'}, function (err, res) {
+          if (err) return done(err);
+          assert(res.content === 'a HALLE foobar b');
+          done();
+        });
     });
   });
 
@@ -575,90 +523,87 @@ describe('helpers integration', function () {
         }
       };
 
-      var instream = app.src(path.join(__dirname, 'fixtures/templates/with-helpers/*.hbs'));
-      var outstream = app.dest(actual);
-      instream.pipe(outstream);
+      app.page('doc.md', {content: 'a <%= upper(name) %> b'})
+        .render({name: 'Halle'}, function (err, res) {
+          if (err) return done(err);
+          assert(res.content === 'a HALLE b');
+          done();
+        });
+    });
+  });
+});
 
-      outstream.on('error', done);
-      outstream.on('data', function (file) {
-        assert(file);
-        assert(file.path);
-        assert(file.contents);
-        assert(/none:\s+([abcd])/.test(String(file.contents)));
-        assert(/helper:\s+[ABCD]/.test(String(file.contents)));
-        assert(/foo[abcd]/.test(String(file.contents)));
-        app.files.length.should.equal(4);
-      });
-
-      outstream.on('end', function () {
-        done();
-      });
+describe('collection helpers', function () {
+  beforeEach(function () {
+    app = new App();
+    app.create('posts');
+    app.create('pages', {engine: 'hbs'});
+    app.create('partials', {viewType: 'partial', engine: 'hbs'});
+    app.create('snippet', {viewType: 'partial'});
+    app.engine('hbs', require('engine-handlebars'));
+    app.helper('log', function (ctx) {
+      console.log(ctx);
     });
   });
 
-  describe('app.src("", {helpers:[]})', function () {
-    it('should add helpers on the `src` and use them in templates.', function (done) {
-      var srcPath = path.join(__dirname, 'fixtures/templates/with-helpers/*.hbs');
-      var instream = app.src(srcPath, {
-        helpers: {
-          upper: function (str) {
-            return str.toUpperCase();
-          },
-          foo: function (str) {
-            return 'foo' + str;
-          }
-        }
-      });
-      var outstream = app.dest(actual);
-      instream.pipe(outstream);
+  describe('plural', function () {
+    it('should get the given collection', function (done) {
+      app.post('a.hbs', {content: 'foo'});
+      app.post('b.hbs', {content: 'bar'});
+      app.post('c.hbs', {content: 'baz'});
 
-      outstream.on('error', done);
-      outstream.on('data', function (file) {
-        assert(file);
-        assert(file.path);
-        assert(file.contents);
-        assert(/none:\s+([abcd])/.test(String(file.contents)));
-        assert(/helper:\s+[ABCD]/.test(String(file.contents)));
-        assert(/foo[abcd]/.test(String(file.contents)));
-        app.files.length.should.equal(4);
+      app.partial('list.hbs', {
+        content: '{{#posts}}{{#each items}}{{content}}{{/each}}{{/posts}}'
       });
 
-      outstream.on('end', function () {
-        done();
-      });
+      app.page('index.hbs', {
+        content: '{{> list.hbs }}'
+      })
+        .render(function (err, res) {
+          if (err) return done(err);
+          assert(res.content === 'foobarbaz');
+          done();
+        });
     });
   });
 
-  describe('app.dest("", {helpers:[]})', function () {
-    it('should add helpers on the `dest` and use them in templates.', function (done) {
-      var srcPath = path.join(__dirname, 'fixtures/templates/with-helpers/*.hbs');
-      var instream = app.src(srcPath);
-      var outstream = app.dest(actual, {
-        helpers: {
-          upper: function (str) {
-            return str.toUpperCase();
-          },
-          foo: function (str) {
-            return 'foo' + str;
-          }
-        }
-      });
-      instream.pipe(outstream);
+  describe('single', function () {
+    it('should get a view from an unspecified collection', function (done) {
+      app.post('a.hbs', {content: 'post-a'});
+      app.post('b.hbs', {content: 'post-b'});
 
-      outstream.on('error', done);
-      outstream.on('data', function (file) {
-        assert(file);
-        assert(file.path);
-        assert(file.contents);
-        assert(/none:\s+([abcd])/.test(String(file.contents)));
-        assert(/helper:\s+[ABCD]/.test(String(file.contents)));
-        assert(/foo[abcd]/.test(String(file.contents)));
-        app.files.length.should.equal(4);
-      });
+      var one = app.page('one', {content: '{{view "a.hbs"}}'})
+        .compile()
+        .fn()
 
-      outstream.on('end', function () {
-        done();
-      });
+      var two = app.page('two', {content: '{{view "b.hbs"}}'})
+        .compile()
+        .fn()
+
+      assert(one === 'post-a');
+      assert(two === 'post-b');
+      done();
+    });
+
+    it('should get a specific view from the given collection', function (done) {
+      app.post('a.hbs', {content: 'post-a'});
+      app.post('b.hbs', {content: 'post-b'});
+      app.post('c.hbs', {content: 'post-c'});
+      app.page('a.hbs', {content: 'page-a'});
+      app.page('b.hbs', {content: 'page-b'});
+      app.page('c.hbs', {content: 'page-c'});
+
+      var one = app.page('one', {content: '{{view "a.hbs" "posts"}}'})
+        .compile()
+        .fn()
+
+      var two = app.page('two', {content: '{{view "b.hbs" "pages"}}'})
+        .compile()
+        .fn()
+
+      assert(one === 'post-a');
+      assert(two === 'page-b');
+      done();
     });
   });
 });

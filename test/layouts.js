@@ -84,26 +84,8 @@ describe('layouts', function () {
 
     app.render(page, function (err, view) {
       if (err) return done(err);
-      assert(view.layoutStack.length === 4);
-      assert(typeof view.layoutStack[0] === 'object');
-      assert(typeof view.layoutStack[0].depth === 'number');
-      done();
-    });
-  });
-
-  it('should handle contents as a buffer:', function (done) {
-    app.layout('a', {path: 'a.tmpl', contents: new Buffer('a {% body %} a'), layout: 'b'});
-    app.layout('b', {path: 'b.tmpl', contents: new Buffer('b {% body %} b'), layout: 'c'});
-    app.layout('c', {path: 'c.tmpl', contents: new Buffer('c {% body %} c'), layout: 'base'});
-    app.layout('base', {path: 'base.tmpl', contents: new Buffer('outter {% body %} outter')});
-
-    app.pages('z.tmpl', {path: 'a.tmpl', contents: new Buffer('inner'), layout: 'a'});
-    var page = app.pages.getView('z.tmpl');
-
-    app.render(page, function (err, view) {
-      if (err) return done(err);
-      assert.equal(typeof view.contents.toString(), 'string');
-      assert.equal(view.contents.toString(), 'outter c b a inner a b c outter');
+      assert.equal(typeof view.content, 'string');
+      assert.equal(view.content, 'outter c b a inner a b c outter');
       done();
     });
   });
@@ -122,8 +104,8 @@ describe('layouts', function () {
 
     app.render(page, function (err, view) {
       if (err) return done(err);
-      assert.equal(typeof view.contents.toString(), 'string');
-      assert.equal(view.contents.toString(), 'outter c b a inner a b c outter');
+      assert.equal(typeof view.content, 'string');
+      assert.equal(view.content, 'outter c b a inner a b c outter');
       done();
     });
   });

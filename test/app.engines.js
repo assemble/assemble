@@ -143,3 +143,62 @@ describe('engines', function () {
     a.should.have.property('render');
   });
 });
+
+
+describe('engine selection:', function (done) {
+  beforeEach(function () {
+    app = new App();
+    app.engine('tmpl', require('engine-base'));
+    app.engine('hbs', require('engine-handlebars'));
+    app.create('pages');
+  });
+
+  it('should get the engine from file extension:', function (done) {
+    app.page('a.tmpl', {content: '<%= a %>', locals: {a: 'b'}})
+      .render(function (err, view) {
+        if (err) return done(err);
+        assert(view.content === 'b');
+        done();
+      });
+  });
+
+  it('should use the engine defined on the collection:', function (done) {
+    app.create('posts', {engine: 'hbs'});
+    app.post('a', {content: '{{a}}', locals: {a: 'b'}})
+      .render(function (err, view) {
+        if (err) return done(err);
+        assert(view.content === 'b');
+        done();
+      });
+  });
+
+  it('should use the engine defined on the view:', function (done) {
+    app.create('posts');
+    app.post('a', {content: '{{a}}', engine: 'hbs', locals: {a: 'b'}})
+      .render(function (err, view) {
+        if (err) return done(err);
+        assert(view.content === 'b');
+        done();
+      });
+  });
+
+  it('should use the engine defined on `view.data`:', function (done) {
+    app.create('posts');
+    app.post('a', {content: '{{a}}', locals: {a: 'b'}, data: {engine: 'hbs'}})
+      .render(function (err, view) {
+        if (err) return done(err);
+        assert(view.content === 'b');
+        done();
+      });
+  });
+
+  it('should use the engine defined on render locals:', function (done) {
+    app.create('posts');
+    app.post('a', {content: '{{a}}', locals: {a: 'b'}})
+      .render({engine: 'hbs'}, function (err, view) {
+        if (err) return done(err);
+        assert(view.content === 'b');
+        done();
+      });
+  });
+});

@@ -4,7 +4,7 @@ var app;
 
 
 describe('viewType', function () {
-  describe('viewType', function () {
+  describe('view types', function () {
     beforeEach(function () {
       app = new App();
       app.engine('tmpl', require('engine-base'));

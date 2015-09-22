@@ -51,6 +51,10 @@ describe('create', function () {
   describe('custom instances', function () {
     it('should create views from custom `View` and `Views` instance/ctor:', function () {
       var Vinyl = require('vinyl');
+      Vinyl.prototype.read = function () {
+        return fs.readFileSync(file.path);
+      };
+
       var Views = App.Views;
       var views = new Views({View: Vinyl});
 
@@ -64,6 +68,7 @@ describe('create', function () {
       var a = app.pages.getView('a.hbs');
       assert(a instanceof Vinyl);
       assert(Vinyl.isVinyl(a));
+      assert(typeof a.read === 'function');
 
       views.addView('d.hbs', {path: 'd.hbs', content: 'd'});
       var d = app.pages.getView('d.hbs');
