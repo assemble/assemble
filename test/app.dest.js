@@ -12,16 +12,14 @@ describe('app output stream', function() {
   describe('dest()', function() {
     beforeEach(function (done) {
       rimraf(outpath, done);
+      app = new App();
     });
+
     afterEach(function (done) {
       rimraf(outpath, done);
     });
 
-    describe('minimal config - enabled', function () {
-      beforeEach(function () {
-        app = new App();
-      });
-
+    describe('streams', function () {
       it('should return a stream', function (done) {
         var stream = app.dest(path.join(__dirname, 'fixtures/'));
         should.exist(stream);
@@ -116,7 +114,7 @@ describe('app output stream', function() {
 
     });
 
-    describe('minimal config - disabled', function () {
+    describe('ext', function () {
       beforeEach(function () {
         app = new App();
         app.set('ext', '.txt');

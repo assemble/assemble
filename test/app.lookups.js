@@ -88,25 +88,6 @@ describe('lookups', function () {
     });
   });
 
-  describe('matchView', function () {
-    it('should find a view', function () {
-      var view = app.matchView('pages', 'a.tmpl');
-      assert(typeof view.path === 'string');
-    });
-
-    it('should find a view using a glob pattern', function () {
-      var view = app.matchView('pages', 'a.*');
-      assert(typeof view.path === 'string');
-    });
-  });
-
-  describe('matchViews', function () {
-    it('should return matching views', function () {
-      var views = app.matchViews('pages', '*.tmpl');
-      assert(Object.keys(views).length > 1);
-    });
-  });
-
   describe('find', function () {
     it('should return null when a view is not found:', function () {
       (function () {

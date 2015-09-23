@@ -2,6 +2,7 @@ require('mocha');
 require('should');
 var assert = require('assert');
 var App = require('../');
+var Base = App.Base;
 var app;
 
 describe('app', function () {
@@ -79,6 +80,21 @@ describe('app', function () {
         }
       });
       assert(typeof app.foo ==='function');
+    });
+
+    it('should update constructors after init:', function () {
+      var Group = App.Group;
+      function MyGroup() {
+        Base.call(this);
+      }
+      Base.extend(MyGroup);
+
+      app = new App();
+      assert.equal(app.Group, Group)
+      assert.equal(app.get('Group'), Group)
+      app.option('Group', MyGroup);
+      assert.equal(app.Group, MyGroup);
+      assert.equal(app.get('Group'), MyGroup);
     });
 
     it('should mixin prototype methods defined on options:', function () {

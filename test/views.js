@@ -2,10 +2,13 @@ require('mocha');
 require('should');
 var path = require('path');
 var assert = require('assert');
+var typeOf = require('kind-of');
 var isBuffer = require('is-buffer');
-var List = require('..').List;
-var View = require('..').View;
-var Views = require('..').Views;
+var support = require('./support');
+var App = require('..');
+var List = App.List;
+var View = App.View;
+var Views = App.Views;
 var collection;
 
 describe('views', function () {
@@ -27,32 +30,51 @@ describe('views', function () {
       collection = new Views();
     });
 
-    it('should expose `set`', function () {
-      assert(typeof collection.set ==='function');
+    var methods = [ 
+      'use',
+      'setView',
+      'addView',
+      'addViews',
+      'addList',
+      'getView',
+      'constructor',
+      'set',
+      'get',
+      'del',
+      'define',
+      'visit',
+      'on',
+      'once',
+      'off',
+      'emit',
+      'listeners',
+      'hasListeners' 
+    ].forEach(function (method) {
+      it('should expose ' + method + ' method', function () {
+        assert(typeof collection[method] === 'function');
+      });
     });
-    it('should expose `get`', function () {
-      assert(typeof collection.get ==='function');
+
+    it('should expose isCollection property', function () {
+      assert(typeof collection.isCollection === 'boolean');
     });
-    it('should expose `visit`', function () {
-      assert(typeof collection.visit ==='function');
+
+    it('should expose queue property', function () {
+      assert(Array.isArray(collection.queue));
     });
-    it('should expose `define`', function () {
-      assert(typeof collection.define ==='function');
+
+    it('should expose views property', function () {
+      assert(typeOf(collection.views) === 'object');
     });
-    it('should expose `addView`', function () {
-      assert(typeof collection.addView ==='function');
+
+    it('should expose options property', function () {
+      assert(typeOf(collection.options) === 'object');
     });
   });
 
   describe('instance', function () {
     beforeEach(function() {
       collection = new Views();
-    });
-
-    it('should throw an error if attempting to set count:', function () {
-      (function () {
-        collection.count = 5;
-      }).should.throw('count is a read-only getter and cannot be defined.');
     });
 
     it('should set a value on the instance:', function () {
@@ -312,7 +334,7 @@ describe('views', function () {
     it('should get the number of views:', function () {
       collection.addView('one', {content: 'aaa'});
       collection.addView('two', {content: 'zzz'});
-      assert(collection.count === 2);
+      assert(Object.keys(collection.views).length === 2);
     });
   });
 });

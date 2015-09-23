@@ -32,8 +32,8 @@ describe('app.data', function () {
     assert(app.cache.data.c.three.c === 'ccc');
   });
 
-  it('should use `namespaceData` defined on global opts:', function () {
-    app.option('namespaceData', function (key) {
+  it('should use `namespace` defined on global opts:', function () {
+    app.option('namespace', function (key) {
       return 'prefix_' + path.basename(key, path.extname(key));
     });
     app.data('test/fixtures/data/*.json');
@@ -42,9 +42,9 @@ describe('app.data', function () {
     assert(app.cache.data.prefix_c.three.c === 'ccc');
   });
 
-  it('should use `namespaceData` defined on data opts:', function () {
+  it('should use `namespace` defined on data opts:', function () {
     app.data('test/fixtures/data/*.json', {
-      namespaceData: function (key) {
+      namespace: function (key) {
         return 'prefix_' + path.basename(key, path.extname(key));
       }
     });

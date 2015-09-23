@@ -19,11 +19,13 @@ describe('create', function () {
     it('should add a collection to `views`', function () {
       app.create('pages');
       assert(typeof app.views.pages === 'object');
+      assert(typeof app.pages === 'function');
     });
 
     it('should add a pluralized collection to `views`', function () {
       app.create('page');
       assert(typeof app.views.pages === 'object');
+      assert(typeof app.page === 'function');
     });
   });
 
