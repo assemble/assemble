@@ -48,13 +48,13 @@ Templates.extend(Assemble, {
 
   init: function() {
     var app = this;
-    this.isAssemble = true;
-    this.defaultEngine();
-    this.defaultMiddleware();
-    this.defaultViewTypes();
-    this.defaultTemplates();
 
-    this.option('view', function (view) {
+    this.define('isAssemble', true);
+    this.defaultEngine();
+    this.defaultViewTypes();
+    this.defaultMiddleware();
+
+    this.on('view', function (view) {
       if (view.src) view.path = view.src;
     });
 
@@ -121,10 +121,6 @@ Templates.extend(Assemble, {
         return fp;
       }
     });
-  },
-
-  defaultTemplates: function () {
-    // this.visit('scaffold', require('./templates/scaffolds'));
   },
 
   /**
