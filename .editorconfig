@@ -13,7 +13,7 @@ insert_final_newline = true
 trim_trailing_whitespace = false
 insert_final_newline = false
 
-[{,test/}{actual,fixtures}/**]
+[test/**]
 trim_trailing_whitespace = false
 insert_final_newline = false
 
