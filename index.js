@@ -8,6 +8,7 @@ var path = require('path');
 var Templates = require('templates');
 var Composer = require('composer');
 var proto = Composer.prototype;
+var plugin = require('./lib/plugins');
 var utils = require('./lib/utils');
 
 /**
@@ -49,10 +50,10 @@ Templates.extend(Assemble, {
   init: function() {
     var app = this;
 
+    this.use(plugin.process());
+
     this.define('isAssemble', true);
-    this.defaultEngine();
     this.defaultViewTypes();
-    this.defaultMiddleware();
 
     this.on('view', function (view) {
       if (view.src) view.path = view.src;
@@ -65,23 +66,19 @@ Templates.extend(Assemble, {
     this.on('use', function () {
       utils.reloadViews(app);
     });
-  },
 
-  /**
-   * Default template engine and related extensions.
-   */
+    /**
+     * Default template engine and related extensions.
+     */
 
-  defaultEngine: function () {
     this.engine(['hbs', 'html', 'md'], utils.engine);
-  },
 
-  /**
-   * Default middleware
-   *  | Ensure user-defined layout is recognized
-   *  | Parse front-matter
-   */
+    /**
+     * Default middleware
+     *  | Ensure user-defined layout is recognized
+     *  | Parse front-matter
+     */
 
-  defaultMiddleware: function () {
     this.onLoad(/\.(hbs|md|html)$/, function (view, next) {
       utils.matter.parse(view, next);
     });
@@ -121,76 +118,6 @@ Templates.extend(Assemble, {
         return fp;
       }
     });
-  },
-
-  /**
-   * Copy a file from `src` to `dest` and process any templates in
-   * `file.contents`.
-   *
-   * @name .process
-   * @param {Object} `file` [Vinyl][] file object.
-   * @param {Object} `options`
-   * @return {Stream} Returns a stream to continue processing if needed.
-   * @api public
-   */
-
-  process: function (file, options) {
-    options = options || {};
-    if (file == null || typeof file !== 'object') {
-      throw new TypeError('process expects file to be an object.');
-    }
-
-    file.src = Array.isArray(file.src) ? file.src[0] : file.src;
-    file.path = file.path || file.src;
-    var view = this.view(file.path, file);
-
-    var opts = utils.merge({}, this.options, options, view.options);
-    view.dest = view.dest || opts.dest;
-    if (!view.dest) {
-      throw new Error('process expects file to have a dest defined.');
-    }
-
-    // get cwd and base to use
-    opts.cwd = opts.cwd || view.cwd;
-    opts.base = opts.base || view.base;
-
-    // these are necessary since `view` adds a `cwd` if not defined
-    if (this.options.cwd && view.cwd === process.cwd()) {
-      opts.cwd = this.options.cwd || opts.cwd;
-    }
-    if (this.options.base && view.base === process.cwd()) {
-      opts.base = this.options.base || opts.base;
-    }
-
-    var pre = opts.preprocess || opts.pipeline || utils.identity;
-    var post = opts.postprocess || utils.identity;
-
-    var stream = this.src(view.path, opts);
-    stream = utils.combine(pre(stream, this), this.renderFile());
-    stream = utils.combine(post(stream, this), this.dest(view.dest, opts));
-    return stream;
-  },
-
-  /**
-   * Generate all of the `src`/`dest` definitions in the given
-   * `config` object. Used for generating [boilerplates][] and
-   * [scaffolds][].
-   *
-   * @name .generate
-   * @param {Object} `config` The configuration object to use.
-   * @param {Function} `cb` Callback function, exposes `err` on the callback.
-   * @return {Object} Returns the `Assemble` instance for chaining.
-   * @api public
-   */
-
-  generate: function (config, cb) {
-    var opts = {};
-    opts.preprocess = config.preprocess;
-    opts.postprocess = config.postprocess;
-    utils.async.each(config.files, function (file, next) {
-      utils.parallel(this.process(file, opts), next);
-    }.bind(this), cb);
-    return this;
   },
 
   /**
