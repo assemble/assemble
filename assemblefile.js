@@ -1,70 +1,84 @@
 'use strict';
 
-var red = require('ansi-red');
 var path = require('path');
+var loader = require('assemble-loader');
 var extname = require('gulp-extname');
-var through = require('through2');
 var assemble = require('./');
 var app = assemble();
+app.use(loader());
 
-// create a custom view-collection for docs
-app.create('docs', {
-  layout: 'markdown',
-  renameKey: function (fp) {
-    return path.basename(fp, path.extname(fp));
-  }
+app.option('renameKey', function (fp) {
+  return path.basename(fp, path.extname(fp));
 });
 
-app.create('recipes', {layout: 'recipe'});
+/**
+ * Custom view collection
+ */
 
-// register helpers
-app.helpers(require('./docs/src/helpers'));
+app.create('docs');
 
-// app.onLoad(/\.(hbs|md)$/, function (view, next) {
-//   var parsed = view.parsePath();
-//   view.permalink('all-the-same.html', parsed);
-//   next();
-// });
+/**
+ * Load helpers
+ */
 
-// app.data({
-//   destBase: '_gh_pages/',
-//   assets: 'assets',
-//   links: [{
-//     dest: 'assemble',
-//     collection: 'docs',
-//     text: 'Assemble'
-//   }]
-// });
+app.helpers('docs/src/helpers/*.js');
 
-// load templates
-app.task('load', function (done) {
-  app.partials('docs/src/templates/partials/*.hbs');
-  app.layouts('docs/src/templates/layouts/*.hbs');
-  app.recipes('docs/recipes/*.md');
-  // app.docs('docs/content/*.md');
-  done();
+/**
+ * Load some "global" data
+ */
+
+app.data({
+  site: {
+    title: 'Assemble Docs'
+  },
+  destBase: '_gh_pages/',
+  assets: 'assets',
+  links: [{
+    dest: 'assemble',
+    collection: 'docs',
+    text: 'Assemble'
+  }]
 });
 
-app.task('docs', ['load'], function () {
-  return app.src('docs/src/templates/foo.hbs')
-    // .on('error', console.error)
-    // .pipe(app.toStream('docs'))
-    // .pipe(app.toStream('recipes'))
+/**
+ * Task for building docs
+ */
+
+app.task('default', ['load'], function () {
+  return app.src('docs/src/templates/pages/index.hbs')
     .pipe(app.renderFile())
     .pipe(extname())
     .pipe(app.dest(function (file) {
       file.base = file.dirname;
       return '_gh_pages/';
-    }))
-
+    }));
 });
+
+/**
+ * Re-load templates when triggered by watch
+ */
+
+app.task('load', function (cb) {
+  app.docs.load('docs/src/content/*.md');
+  app.partials.load('docs/src/templates/partials/*.hbs');
+  app.layouts.load('docs/src/templates/layouts/*.hbs');
+  cb();
+});
+
+/**
+ * Watch files for changes
+ */
 
 app.task('watch', ['docs'], function () {
-  app.watch('docs/**/*.{md,hbs}', ['default']);
+  app.watch('docs/**/*.*', ['default']);
 });
 
-app.task('default', ['docs']);
-// app.run('default', function () {})
+/**
+ * Run the default task
+ */
+
+app.run('default', function (err) {
+  if (err) console.log(err);
+});
 
 module.exports = app;
-
