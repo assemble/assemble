@@ -82,10 +82,6 @@ Templates.extend(Assemble, {
    */
 
   defaultMiddleware: function () {
-    this.preLayout(/\.(hbs|md|html)$/, function (view, next) {
-      if (!view.layout) view.layout = view.locals.layout || view.data.layout;
-      next();
-    });
     this.onLoad(/\.(hbs|md|html)$/, function (view, next) {
       utils.matter.parse(view, next);
     });
@@ -315,7 +311,7 @@ Templates.extend(Assemble, {
 
   renderFile: function (locals) {
     var app = this;
-    var collection = this.collection();
+    var collection = this.viewCollection();
     return utils.through.obj(function (file, enc, cb) {
       if (typeof locals === 'function') {
         cb = locals;
@@ -350,7 +346,7 @@ Templates.extend(Assemble, {
    */
 
   task: function (/*name*/) {
-      utils.runtimes(this);
+    utils.runtimes(this);
     return proto.task.apply(this, arguments);
   },
 
