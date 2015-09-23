@@ -1,15 +1,11 @@
 var assemble = require('../');
 
-var Views = assemble.Views;
-var views = new Views();
-
-views.addView({path: 'a', contents: 'aaa'});
-views.addView({path: 'b', contents: 'bbb'});
-views.addView({path: 'c', contents: 'ccc'});
-views.addView({path: 'd', contents: 'ddd'});
-views.addView({path: 'e', contents: 'eee'});
-console.log(views)
-
 var List = assemble.List;
-var list = new List(views);
+var list = new List();
+
+list.addItem({path: 'a', content: 'aaa'});
+list.addItem({path: 'b', content: 'bbb'});
+list.addItem({path: 'c', content: 'ccc'});
+list.addItem({path: 'd', content: 'ddd'});
+list.addItem({path: 'e', content: 'eee'});
 console.log(list);
