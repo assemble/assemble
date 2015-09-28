@@ -1,7 +1,8 @@
-var relativePath = require('relative-dest');
+var relative = require('relative-dest');
 
 module.exports = function assets() {
   var view = this.context.view;
   var dest = view.data.dest || view.path;
-  return relativePath(dest, this.context.assets || '');
+  var assets = this.context.assets || '';
+  return relative(dest, assets);
 };
