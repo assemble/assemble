@@ -50,22 +50,19 @@ Templates.extend(Assemble, {
   init: function() {
     var app = this;
 
+    this.use(plugin.generate());
     this.use(plugin.process());
 
     this.define('isAssemble', true);
     this.defaultViewTypes();
 
-    this.on('view', function (view) {
-      if (view.src) view.path = view.src;
-    });
-
-    this.on('option', function (key) {
-      utils.reloadViews(app, key);
-    });
-
-    this.on('use', function () {
-      utils.reloadViews(app);
-    });
+    this
+      .on('option', function (key) {
+        utils.reloadViews(app, key);
+      })
+      .on('use', function () {
+        utils.reloadViews(app);
+      });
 
     /**
      * Default template engine and related extensions.
@@ -74,9 +71,7 @@ Templates.extend(Assemble, {
     this.engine(['hbs', 'html', 'md'], utils.engine);
 
     /**
-     * Default middleware
-     *  | Ensure user-defined layout is recognized
-     *  | Parse front-matter
+     * Default middleware for parsing front matter
      */
 
     this.onLoad(/\.(hbs|md|html)$/, function (view, next) {
@@ -85,7 +80,7 @@ Templates.extend(Assemble, {
   },
 
   /**
-   * Default `viewTypes`
+   * Default view collections
    *  | partials
    *  | layouts
    *  | pages
@@ -94,6 +89,7 @@ Templates.extend(Assemble, {
 
   defaultViewTypes: function () {
     this.create('partials', {
+      engine: 'hbs',
       viewType: 'partial',
       renameKey: function (fp) {
         return path.basename(fp, path.extname(fp));
@@ -101,6 +97,7 @@ Templates.extend(Assemble, {
     });
 
     this.create('layouts', {
+      engine: 'hbs',
       viewType: 'layout',
       renameKey: function (fp) {
         return path.basename(fp, path.extname(fp));
@@ -108,12 +105,14 @@ Templates.extend(Assemble, {
     });
 
     this.create('pages', {
+      engine: 'hbs',
       renameKey: function (fp) {
         return fp;
       }
     });
 
     this.create('files', {
+      engine: 'hbs',
       renameKey: function (fp) {
         return fp;
       }
@@ -164,9 +163,8 @@ Templates.extend(Assemble, {
    */
 
   dest: function (dest) {
-    if (!dest) throw new Error('expected dest to be a string.');
-    return utils.vfs.dest.apply(utils.vfs, arguments)
-      .on('data', function () {}); // TODO: fix this
+    if (!dest) throw new Error('expected dest to be a string or function.');
+    return utils.vfs.dest.apply(utils.vfs, arguments);
   },
 
   /**
@@ -241,7 +239,7 @@ Templates.extend(Assemble, {
         locals = {};
       }
 
-      var view = collection.view(file);
+      var view = collection.setView(file);
       app.handleView('onLoad', view);
 
       var ctx = utils.merge({}, app.cache.data, locals, view.data);
