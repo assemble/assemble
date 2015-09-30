@@ -30,7 +30,7 @@ function Assemble(options) {
   Templates.apply(this, arguments);
   Composer.apply(this, arguments);
   this.options = options || {};
-  this.init();
+  this.init(this);
 }
 
 Templates.inherit(Assemble, Composer);
@@ -46,22 +46,18 @@ Templates.extend(Assemble, {
    * Initialize Assemble defaults
    */
 
-  init: function() {
-    var app = this;
-
+  init: function(app) {
+    this.define('isAssemble', true);
+    this.use(plugin.collections());
     this.use(plugin.generate());
     this.use(plugin.process());
 
-    this.define('isAssemble', true);
-    this.defaultViewTypes();
-
-    this
-      .on('option', function (key) {
-        utils.reloadViews(app, key);
-      })
-      .on('use', function () {
-        utils.reloadViews(app);
-      });
+    this.on('option', function (key) {
+      utils.reloadViews(app, key);
+    });
+    this.on('use', function () {
+      utils.reloadViews(app);
+    });
 
     /**
      * Default template engine and related extensions.
@@ -75,46 +71,6 @@ Templates.extend(Assemble, {
 
     this.onLoad(/\.(hbs|md|html)$/, function (view, next) {
       utils.matter.parse(view, next);
-    });
-  },
-
-  /**
-   * Default view collections
-   *  | partials
-   *  | layouts
-   *  | pages
-   *  | files
-   */
-
-  defaultViewTypes: function () {
-    this.create('partials', {
-      engine: 'hbs',
-      viewType: 'partial',
-      renameKey: function (fp) {
-        return path.basename(fp, path.extname(fp));
-      }
-    });
-
-    this.create('layouts', {
-      engine: 'hbs',
-      viewType: 'layout',
-      renameKey: function (fp) {
-        return path.basename(fp, path.extname(fp));
-      }
-    });
-
-    this.create('pages', {
-      engine: 'hbs',
-      renameKey: function (fp) {
-        return fp;
-      }
-    });
-
-    this.create('files', {
-      engine: 'hbs',
-      renameKey: function (fp) {
-        return fp;
-      }
     });
   },
 
