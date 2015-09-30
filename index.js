@@ -6,8 +6,6 @@
 
 var path = require('path');
 var Templates = require('templates');
-var Composer = require('composer');
-var proto = Composer.prototype;
 var plugin = require('./lib/plugins');
 var utils = require('./lib/utils');
 
@@ -28,12 +26,9 @@ function Assemble(options) {
     return new Assemble(options);
   }
   Templates.apply(this, arguments);
-  Composer.apply(this, arguments);
   this.options = options || {};
   this.init(this);
 }
-
-Templates.inherit(Assemble, Composer);
 
 /**
  * `Assemble` prototype methods
@@ -49,6 +44,7 @@ Templates.extend(Assemble, {
   init: function(app) {
     this.define('isAssemble', true);
     this.use(plugin.vinyl());
+    this.use(plugin.composer());
     this.use(plugin.collections());
     this.use(plugin.reloadViews());
     this.use(plugin.generate());
@@ -149,62 +145,6 @@ Templates.extend(Assemble, {
         cb(null, file);
       });
     });
-  },
-
-  /**
-   * Define a task to be run when the task is called.
-   *
-   * ```js
-   * app.task('default', function() {
-   *   app.src('templates/*.hbs')
-   *     .pipe(app.dest('dist/'));
-   * });
-   * ```
-   * @name .task
-   * @param {String} `name` Task name
-   * @param {Function} `fn` function that is called when the task is run.
-   * @api public
-   */
-
-  task: function (/*name*/) {
-    utils.runtimes(this);
-    return proto.task.apply(this, arguments);
-  },
-
-  /**
-   * Run one or more tasks.
-   *
-   * ```js
-   * app.run(['foo', 'bar'], function(err) {
-   *   if (err) console.error('ERROR:', err);
-   * });
-   * ```
-   * @name .run
-   * @param {Array|String} `tasks` Task name or array of task names.
-   * @param {Function} `cb` callback function that exposes `err`
-   * @api public
-   */
-
-  run: function (/*tasks, cb*/) {
-    return proto.run.apply(this, arguments);
-  },
-
-  /**
-   * Re-run the specified task(s) when a file changes.
-   *
-   * ```js
-   * app.task('watch', function() {
-   *   app.watch('docs/*.md', ['docs']);
-   * });
-   * ```
-   *
-   * @param  {String|Array} `glob` Filepaths or glob patterns.
-   * @param  {Array} `tasks` Task(s) to watch.
-   * @api public
-   */
-
-  watch: function (/*glob, tasks*/) {
-    return proto.watch.apply(this, arguments);
   }
 });
 
