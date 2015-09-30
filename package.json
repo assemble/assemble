@@ -34,7 +34,6 @@
     "stream-combiner": "^0.2.2",
     "templates": "^0.2.0",
     "through2": "^2.0.0",
-    "to-vinyl": "^0.2.0",
     "vinyl": "wearefractal/vinyl",
     "vinyl-fs": "wearefractal/vinyl-fs"
   },
