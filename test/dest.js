@@ -46,7 +46,7 @@ describe('dest stream', function() {
     try {
       stream = app.dest();
     } catch (err) {
-      should.exist(err);
+      assert(err && typeof err === 'object');
       should.not.exist(stream);
       done();
     }
@@ -57,7 +57,7 @@ describe('dest stream', function() {
     try {
       stream = app.dest('');
     } catch (err) {
-      should.exist(err);
+      assert(err && typeof err === 'object');
       should.not.exist(stream);
       done();
     }
