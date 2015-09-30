@@ -48,16 +48,11 @@ Templates.extend(Assemble, {
 
   init: function(app) {
     this.define('isAssemble', true);
+    this.use(plugin.vinyl());
     this.use(plugin.collections());
+    this.use(plugin.reloadViews());
     this.use(plugin.generate());
     this.use(plugin.process());
-
-    this.on('option', function (key) {
-      utils.reloadViews(app, key);
-    });
-    this.on('use', function () {
-      utils.reloadViews(app);
-    });
 
     /**
      * Default template engine and related extensions.
@@ -72,54 +67,6 @@ Templates.extend(Assemble, {
     this.onLoad(/\.(hbs|md|html)$/, function (view, next) {
       utils.matter.parse(view, next);
     });
-  },
-
-  /**
-   * Glob patterns or filepaths to source files.
-   *
-   * ```js
-   * app.src('src/*.hbs', {layout: 'default'});
-   * ```
-   * @name .src
-   * @param {String|Array} `glob` Glob patterns or file paths to source files.
-   * @param {Object} `options` Options or locals to merge into the context and/or pass to `src` plugins
-   * @api public
-   */
-
-  src: function () {
-    return utils.vfs.src.apply(utils.vfs, arguments);
-  },
-
-  /**
-   * Glob patterns or paths for symlinks.
-   *
-   * ```js
-   * app.symlink('src/**');
-   * ```
-   * @name .symlink
-   * @param {String|Array} `glob`
-   * @api public
-   */
-
-  symlink: function () {
-    return utils.vfs.symlink.apply(utils.vfs, arguments);
-  },
-
-  /**
-   * Specify a destination for processed files.
-   *
-   * ```js
-   * app.dest('dist/');
-   * ```
-   * @name .dest
-   * @param {String|Function} `dest` File path or rename function.
-   * @param {Object} `options` Options and locals to pass to `dest` plugins
-   * @api public
-   */
-
-  dest: function (dest) {
-    if (!dest) throw new Error('expected dest to be a string or function.');
-    return utils.vfs.dest.apply(utils.vfs, arguments);
   },
 
   /**
@@ -162,9 +109,7 @@ Templates.extend(Assemble, {
     var stream = utils.through.obj();
     setImmediate(function () {
       Object.keys(views).forEach(function (key) {
-        var view = views[key];
-        var file = utils.toVinyl(view);
-        stream.write(file);
+        stream.write(views[key]);
       });
       stream.end();
     });
