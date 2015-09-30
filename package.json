@@ -32,7 +32,7 @@
     "parser-front-matter": "^1.2.5",
     "src-stream": "^0.1.1",
     "stream-combiner": "^0.2.2",
-    "templates": "^0.1.26",
+    "templates": "^0.2.0",
     "through2": "^2.0.0",
     "to-vinyl": "^0.2.0",
     "vinyl": "wearefractal/vinyl",

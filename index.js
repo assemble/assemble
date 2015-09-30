@@ -27,7 +27,6 @@ function Assemble(options) {
   if (!(this instanceof Assemble)) {
     return new Assemble(options);
   }
-
   Templates.apply(this, arguments);
   Composer.apply(this, arguments);
   this.options = options || {};
@@ -232,7 +231,7 @@ Templates.extend(Assemble, {
 
   renderFile: function (locals) {
     var app = this;
-    var collection = this.viewCollection();
+    var collection = this.collection();
     return utils.through.obj(function (file, enc, cb) {
       if (typeof locals === 'function') {
         cb = locals;

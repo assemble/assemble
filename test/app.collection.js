@@ -4,7 +4,8 @@ var fs = require('fs');
 var assert = require('assert');
 var define = require('define-property');
 var utils = require('../lib/utils');
-var App = require('../');
+var App = require('..');
+var Collection = App.Collection;
 var app;
 
 describe('collection', function () {
@@ -91,8 +92,12 @@ describe('collection', function () {
   });
 
   describe('addItem', function () {
+    beforeEach(function () {
+      app = new App();
+    });
+
     it('should add items to a collection', function () {
-      var pages = app.collection();
+      var pages = app.collection({Collection: Collection});
       pages.addItem('foo');
       pages.addItem('bar');
       pages.addItem('baz');
@@ -103,7 +108,7 @@ describe('collection', function () {
     });
 
     it('should create a collection from an existing collection:', function () {
-      var pages = app.collection();
+      var pages = app.collection({Collection: Collection});
       pages.addItem('foo');
       pages.addItem('bar');
       pages.addItem('baz');
