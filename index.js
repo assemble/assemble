@@ -5,7 +5,10 @@
  */
 
 var path = require('path');
+var only = require('emitter-only');
 var Templates = require('templates');
+var render = require('assemble-render-file');
+var stream = require('assemble-stream');
 var plugin = require('./lib/plugins');
 var utils = require('./lib/utils');
 
@@ -44,6 +47,8 @@ Templates.extend(Assemble, {
   init: function(app) {
     this.define('isAssemble', true);
     this.use(plugin.vinyl());
+    this.use(stream());
+    this.use(render());
     this.use(plugin.composer());
     this.use(plugin.collections());
     this.use(plugin.reloadViews());
@@ -54,7 +59,13 @@ Templates.extend(Assemble, {
      * Default template engine and related extensions.
      */
 
-    this.engine(['hbs', 'html', 'md'], utils.engine);
+    this.option('extensions', ['hbs', 'html', 'md']);
+
+    /**
+     * Default template engine and related extensions.
+     */
+
+    this.engine(this.options.extensions, utils.engine);
 
     /**
      * Default middleware for parsing front matter
@@ -63,6 +74,16 @@ Templates.extend(Assemble, {
     this.onLoad(/\.(hbs|md|html)$/, function (view, next) {
       utils.matter.parse(view, next);
     });
+  },
+
+  /**
+   * Allow events to be registered only once, so
+   * that we can reinitialize the application and
+   * avoid re-registering the same emitters.
+   */
+
+  only: function () {
+    return only.apply(this, arguments);
   },
 
   /**
@@ -82,7 +103,8 @@ Templates.extend(Assemble, {
 
   copy: function(patterns, dest, options) {
     return utils.vfs.src(patterns, options)
-      .pipe(utils.vfs.dest(dest, options));
+      .pipe(utils.vfs.dest(dest, options))
+      .on('data', function() {})
   },
 
   /**
@@ -110,41 +132,6 @@ Templates.extend(Assemble, {
       stream.end();
     });
     return utils.srcStream(stream);
-  },
-
-  /**
-   * Render a vinyl file.
-   *
-   * ```js
-   * app.src('*.hbs')
-   *   .pipe(app.renderFile());
-   * ```
-   *
-   * @name .renderFile
-   * @param  {Object} `locals` Optionally locals to pass to the template engine for rendering.
-   * @return {Object}
-   * @api public
-   */
-
-  renderFile: function (locals) {
-    var app = this;
-    var collection = this.collection();
-    return utils.through.obj(function (file, enc, cb) {
-      if (typeof locals === 'function') {
-        cb = locals;
-        locals = {};
-      }
-
-      var view = collection.setView(file);
-      app.handleView('onLoad', view);
-
-      var ctx = utils.merge({}, app.cache.data, locals, view.data);
-      app.render(view, ctx, function (err, res) {
-        if (err) return cb(err);
-        file = new utils.Vinyl(res);
-        cb(null, file);
-      });
-    });
   }
 });
 

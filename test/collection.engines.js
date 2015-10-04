@@ -93,15 +93,18 @@ describe('engines', function () {
 });
 
 
-describe('engine selection:', function (done) {
-  beforeEach(function () {
+describe('engine selection:', function () {
+  beforeEach(function (done) {
     collection = new Views();
     collection.engine('tmpl', require('engine-base'));
     collection.engine('hbs', require('engine-handlebars'));
+    done();
   });
 
   it('should get the engine from file extension:', function (done) {
     var pages = new Views();
+    pages.engine('tmpl', require('engine-base'));
+    pages.engine('hbs', require('engine-handlebars'));
     pages.addView('a.tmpl', {content: '<%= a %>', locals: {a: 'b'}})
       .render(function (err, view) {
         if (err) return done(err);
@@ -112,7 +115,9 @@ describe('engine selection:', function (done) {
 
   it('should use the engine defined on the collection:', function (done) {
     var posts = new Views({engine: 'hbs'});
-    
+    posts.engine('tmpl', require('engine-base'));
+    posts.engine('hbs', require('engine-handlebars'));
+
     posts.addView('a', {content: '{{a}}', locals: {a: 'b'}})
       .render(function (err, view) {
         if (err) return done(err);
@@ -123,6 +128,8 @@ describe('engine selection:', function (done) {
 
   it('should use the engine defined on the view:', function (done) {
     var posts = new Views();
+    posts.engine('tmpl', require('engine-base'));
+    posts.engine('hbs', require('engine-handlebars'));
     posts.addView('a', {content: '{{a}}', engine: 'hbs', locals: {a: 'b'}})
       .render(function (err, view) {
         if (err) return done(err);
@@ -133,6 +140,8 @@ describe('engine selection:', function (done) {
 
   it('should use the engine defined on view.options:', function (done) {
     var posts = new Views();
+    posts.engine('tmpl', require('engine-base'));
+    posts.engine('hbs', require('engine-handlebars'));
     posts.addView('a', {content: '{{a}}', data: {a: 'b'}, options: {engine: 'hbs'}})
       .render(function (err, view) {
         if (err) return done(err);
@@ -143,6 +152,8 @@ describe('engine selection:', function (done) {
 
   it('should use the engine defined on view.data:', function (done) {
     var posts = new Views();
+    posts.engine('tmpl', require('engine-base'));
+    posts.engine('hbs', require('engine-handlebars'));
     posts.addView('a', {content: '{{a}}', locals: {a: 'b'}, data: {engine: 'hbs'}})
       .render(function (err, view) {
         if (err) return done(err);
@@ -153,6 +164,8 @@ describe('engine selection:', function (done) {
 
   it('should use the engine defined on render locals:', function (done) {
     var posts = new Views();
+    posts.engine('tmpl', require('engine-base'));
+    posts.engine('hbs', require('engine-handlebars'));
     posts.addView('a', {content: '{{a}}', locals: {a: 'b'}})
       .render({engine: 'hbs'}, function (err, view) {
         if (err) return done(err);

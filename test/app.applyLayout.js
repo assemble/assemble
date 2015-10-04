@@ -79,28 +79,6 @@ describe('helpers', function () {
         done();
       });
     });
-
-    it('should throw an error when a defined layout is not applied:', function (done) {
-      app.layout('no_body_tag.tmpl', {content: 'who? me?'});
-      page.layout = 'no_body_tag.tmpl';
-      app.page('a.tmpl', page)
-        .render(function (err) {
-          assert(err.message === 'cannot find layout tag "body" in "no_body_tag.tmpl"');
-          done();
-        });
-    });
-
-    it('should emit an error when a defined layout is not applied:', function (done) {
-      app.on('error', function (err) {
-        assert(err.message === 'cannot find layout tag "body" in "no_body_tag.tmpl"');
-        done();
-      });
-      page.layout = 'no_body_tag.tmpl';
-      app.layout('no_body_tag.tmpl', {content: 'who? me?'});
-      app.page('a.tmpl', page)
-        .render(function () {
-        });
-    });
   });
 });
 

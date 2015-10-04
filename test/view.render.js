@@ -10,6 +10,7 @@ describe('helpers', function () {
       app = new App();
       view = new View();
       app.engine('tmpl', require('engine-base'));
+      app.create('layouts', {viewType: 'layout'});
       app.create('pages');
     });
 
@@ -18,6 +19,32 @@ describe('helpers', function () {
         .render({a: 'bbb'}, function (err, res) {
           if (err) return done(err);
           res.content.should.equal('bbb');
+          done();
+        });
+    });
+
+    it('should render a view with a layout', function (done) {
+      app.layout('default.tmpl', {content: 'a {% body %} b'});
+      app.pages('a.tmpl', {content: '<%= title %>', layout: 'default.tmpl'})
+        .render({title: 'zzz'}, function (err, res) {
+          if (err) return done(err);
+          res.content.should.equal('a zzz b');
+          done();
+        });
+    });
+
+    it('should render a view with a layout', function (done) {
+      app.layout('foo.tmpl', {content: 'a {% body %} a'});
+      app.layout('bar.tmpl', {content: 'b {% body %} b'});
+      app.pages('a.tmpl', {content: '<%= title %>'});
+
+      var page = app.pages.getView('a.tmpl')
+        .option('resolveLayout', function () {
+          return 'bar.tmpl';
+        })
+        .render({title: 'zzz'}, function (err, res) {
+          if (err) return done(err);
+          res.content.should.equal('b zzz b');
           done();
         });
     });

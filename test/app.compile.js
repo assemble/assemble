@@ -26,6 +26,14 @@ describe('compile', function () {
     assert.equal(typeof view.fn, 'function');
   });
 
+  it('should compile a template by name:', function () {
+    app.engine('tmpl', require('engine-base'));
+    app.pages('a.tmpl', {path: 'a.tmpl', content: '<%= a %>', a: 'b'});
+
+    var view = app.compile('a.tmpl');
+    assert.equal(typeof view.fn, 'function');
+  });
+
   it('should throw an error when a callback is given:', function () {
     app.engine('md', require('engine-base'));
     app.page('foo.md', {content: '<%= name %>'});

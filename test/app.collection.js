@@ -3,8 +3,7 @@ require('should');
 var fs = require('fs');
 var assert = require('assert');
 var define = require('define-property');
-var utils = require('../lib/utils');
-var App = require('..');
+var App = require('../');
 var Collection = App.Collection;
 var app;
 
@@ -33,7 +32,7 @@ describe('collection', function () {
     beforeEach(function () {
       app = new App()
         .use(function () {
-          return function (collection) {
+          return function () {
             define(this, 'count', {
               get: function() {
                 return Object.keys(this.views).length;

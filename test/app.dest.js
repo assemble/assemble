@@ -8,8 +8,8 @@ var app;
 
 var outpath = path.join(__dirname, './out-fixtures');
 
-describe('app output stream', function() {
-  describe('dest()', function() {
+describe('dest()', function() {
+  describe('output stream', function() {
     beforeEach(function (done) {
       rimraf(outpath, done);
       app = new App();
@@ -75,7 +75,7 @@ describe('app output stream', function() {
       });
 
       it('should return an output stream that writes streaming files', function (done) {
-        var instream = app.src(path.join(__dirname, 'fixtures/copy/*.txt'), {buffer: false});
+        var instream = app.src(path.join(__dirname, 'fixtures/dest/*.txt'), {buffer: false});
         var outstream = instream.pipe(app.dest(outpath));
 
         outstream.on('error', done);
@@ -132,7 +132,7 @@ describe('app output stream', function() {
       });
 
       it('should return an output stream that writes files', function (done) {
-        var instream = app.src(path.join(__dirname, 'fixtures/copy/*.txt'));
+        var instream = app.src(path.join(__dirname, 'fixtures/dest/*.txt'));
         var outstream = app.dest(outpath);
         instream.pipe(outstream);
 
@@ -156,7 +156,7 @@ describe('app output stream', function() {
       });
 
       it('should return an output stream that does not write non-read files', function (done) {
-        var instream = app.src(path.join(__dirname, 'fixtures/copy/*.txt'), {read: false});
+        var instream = app.src(path.join(__dirname, 'fixtures/dest/*.txt'), {read: false});
         var outstream = app.dest(outpath);
         instream.pipe(outstream);
 

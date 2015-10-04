@@ -8,6 +8,8 @@ var forOwn = require('for-own');
 var consolidate = require('consolidate');
 var handlebars = require('engine-handlebars');
 var matter = require('parser-front-matter');
+var helpers = require('templates/lib/plugins/helpers');
+var init = require('templates/lib/plugins/init');
 var rimraf = require('rimraf');
 var swig = consolidate.swig;
 require('swig');
@@ -38,6 +40,19 @@ describe('helpers', function () {
     });
     it('should expose `asyncHelper`', function () {
       assert(typeof app.asyncHelper ==='function');
+    });
+  });
+
+  describe('instance', function () {
+    it('should prime _', function () {
+      function Foo() {
+        Base.call(this);
+        init(this);
+      }
+      Base.extend(Foo);
+      var foo = new Foo();
+      helpers(foo);
+      assert(typeof foo._ ==='object');
     });
   });
 
@@ -96,6 +111,18 @@ describe('helpers', function () {
       assert(typeof app._.helpers.sync.y === 'function');
       assert(typeof app._.helpers.sync.z === 'function');
     });
+
+    it('should add a helper "group":', function () {
+      app.helperGroup('foo', {
+        x: function () {},
+        y: function () {},
+        z: function () {}
+      });
+
+      assert(typeof app._.helpers.sync.foo.x === 'function');
+      assert(typeof app._.helpers.sync.foo.y === 'function');
+      assert(typeof app._.helpers.sync.foo.z === 'function');
+    });
   });
 
   describe('async helpers', function() {
@@ -152,6 +179,18 @@ describe('helpers', function () {
       assert(typeof app._.helpers.async.y === 'function');
       assert(typeof app._.helpers.async.z === 'function');
     });
+
+    it('should add an async helper "group":', function () {
+      app.helperGroup('foo', {
+        x: function () {},
+        y: function () {},
+        z: function () {}
+      }, true);
+
+      assert(typeof app._.helpers.async.foo.x === 'function');
+      assert(typeof app._.helpers.async.foo.y === 'function');
+      assert(typeof app._.helpers.async.foo.z === 'function');
+    });
   });
 });
 
@@ -174,6 +213,28 @@ describe('sync helpers', function () {
     app.helper('upper', function (str) {
       return str.toUpperCase();
     });
+
+    var page = app.pages.getView('a.tmpl');
+
+    app.render(page, function (err, view) {
+      if (err) return done(err);
+
+      assert.equal(typeof view.contents.toString(), 'string');
+      assert.equal(view.contents.toString(), 'BBB');
+      done();
+    });
+  });
+
+  it.skip('should use a namespaced helper:', function (done) {
+    app.pages('a.tmpl', {path: 'a.tmpl', content: '<%= foo.upper(a) %>', locals: {a: 'bbb'}});
+
+    app.helperGroup('foo', {
+      upper: function (str) {
+        return str.toUpperCase();
+      }
+    });
+
+    // console.log(app._.helpers)
 
     var page = app.pages.getView('a.tmpl');
     app.render(page, function (err, view) {
@@ -452,6 +513,7 @@ describe('helpers integration', function () {
         return path.join(this.options.cwd, fp);
       });
 
+      app.option('one', 'two');
       app.option('cwd', 'foo/bar');
       app.page('doc.md', {content: 'a <%= cwd("baz") %> b'})
         .render(function (err, res) {
@@ -467,6 +529,7 @@ describe('helpers integration', function () {
       });
 
       app.option('helper.cwd', 'foo/bar');
+      app.option('helper.whatever', '...');
 
       app.page('doc.md', {content: 'a <%= cwd("baz") %> b'})
         .render(function (err, res) {
@@ -569,6 +632,62 @@ describe('collection helpers', function () {
 
       assert(one === 'post-a');
       assert(two === 'post-b');
+      done();
+    });
+
+    it('should return an empty string if not found', function (done) {
+      var one = app.page('one', {content: '{{view "foo.hbs"}}'})
+        .compile()
+        .fn()
+      assert(one === '');
+      done();
+    });
+
+    it('should handle engine errors', function (done) {
+      app.page('one', {content: '{{posts "foo.hbs"}}'})
+        .render(function (err, res) {
+          assert(err);
+          assert(typeof err === 'object');
+          assert(typeof err.message === 'string');
+          assert(/is not a function/.test(err.message));
+          done();
+        });
+    });
+
+    it('should handle engine errors', function (done) {
+      app.engine('tmpl', require('engine-base'));
+      app.create('foo', {engine: 'tmpl'});
+      app.create('bar', {engine: 'tmpl'});
+
+      app.create('foo', {viewType: 'partial'});
+      app.foo('foo.tmpl', {path: 'foo.tmpl', content: '<%= blah.bar %>'});
+      app.bar('one.tmpl', {content: '<%= foo("foo.tmpl") %>'})
+        .render(function (err, res) {
+          assert(err);
+          assert(typeof err === 'object');
+          assert(/blah is not defined/.test(err.message));
+          done();
+        });
+    });
+
+    it('should work with non-handlebars engine', function (done) {
+      app.engine('tmpl', require('engine-base'));
+      app.create('foo', {engine: 'tmpl'});
+      app.create('bar', {engine: 'tmpl'});
+
+      app.foo('a.tmpl', {content: 'foo-a'});
+      app.foo('b.tmpl', {content: 'foo-b'});
+
+      var one = app.bar('one', {content: '<%= view("a.tmpl") %>'})
+        .compile()
+        .fn()
+
+      var two = app.bar('two', {content: '<%= view("b.tmpl") %>'})
+        .compile()
+        .fn()
+
+      assert(one === 'foo-a');
+      assert(two === 'foo-b');
       done();
     });
 

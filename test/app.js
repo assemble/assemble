@@ -90,8 +90,8 @@ describe('app', function () {
       Base.extend(MyGroup);
 
       app = new App();
-      assert.equal(app.Group, Group)
-      assert.equal(app.get('Group'), Group)
+      assert.equal(app.Group, Group);
+      assert.equal(app.get('Group'), Group);
       app.option('Group', MyGroup);
       assert.equal(app.Group, MyGroup);
       assert.equal(app.get('Group'), MyGroup);
@@ -105,6 +105,18 @@ describe('app', function () {
       });
       assert(typeof app.foo ==='function');
       delete App.prototype.foo;
+    });
+
+    it('should expose `_` on app:', function () {
+      app = new App();
+      assert(typeof app._ ==='object');
+    });
+
+    it('should not re-add `_` in init:', function () {
+      app = new App();
+      app._.foo = 'bar';
+      app.defaultConfig();
+      assert(app._.foo ==='bar');
     });
   });
 });

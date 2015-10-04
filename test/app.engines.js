@@ -38,6 +38,11 @@ describe('engine support', function() {
     assert(hbs.hasOwnProperty('compile'));
   });
 
+  it('should return undefined if no engine is found:', function () {
+    var hbs = app.getEngine();
+    assert.equal(typeof hbs, 'undefined');
+  });
+
   it('should register multiple engines to the given extension', function () {
     app.engine(['hbs', 'md'], function () {});
     assert(typeof app.engines['.hbs'] === 'object');
@@ -92,12 +97,13 @@ describe('engines', function () {
 });
 
 
-describe('engine selection:', function (done) {
-  beforeEach(function () {
+describe('engine selection:', function () {
+  beforeEach(function (done) {
     app = new App();
     app.engine('tmpl', require('engine-base'));
     app.engine('hbs', require('engine-handlebars'));
     app.create('pages');
+    done();
   });
 
   it('should get the engine from file extension:', function (done) {

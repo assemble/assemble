@@ -4,7 +4,7 @@ var fs = require('fs');
 var path = require('path');
 var globby = require('globby');
 var assert = require('assert');
-var Templates = require('../');
+var App = require('../');
 var utils = require('../lib/utils');
 var app;
 
@@ -17,7 +17,7 @@ function resolveGlob(patterns, options) {
 
 describe('lookups', function () {
   beforeEach(function () {
-    app = new Templates();
+    app = new App();
     app.option('renameKey', function (key) {
       return path.basename(key);
     });
@@ -97,6 +97,17 @@ describe('lookups', function () {
 
     it('should find a view by collection name:', function () {
       var view = app.find('a.tmpl', 'pages');
+      assert(typeof view.path === 'string');
+    });
+
+    it('should find a view by collection name:', function () {
+      app = new App();
+      app.option('renameKey', function (key) {
+        return path.basename(key);
+      });
+      app.create('pages');
+      app.page('a/b/c.md', {content: '...'});
+      var view = app.find('a/b/c.md');
       assert(typeof view.path === 'string');
     });
 

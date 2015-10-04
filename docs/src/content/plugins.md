@@ -1,7 +1,7 @@
 ---
 title: Assemble Plugins
 description: >
-  This document describes Assemble's built-in collections and how to create custom collections.
+  This document tells you how to use and author plugins with Assemble. 
 related: 
   - {title: middleware, url: middleware.md}
   - {title: helpers, url: helpers.md}
@@ -10,6 +10,8 @@ related:
 {{description}}
 
 <!-- toc -->
+
+Assemble's first-class plugin system makes it super easy to add custom features and functionality. 
 
 ## Plugin types
 

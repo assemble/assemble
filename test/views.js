@@ -17,6 +17,11 @@ describe('views', function () {
       var collection = new Views();
       assert(collection instanceof Views);
     });
+
+    it('should instantiate without `new`:', function () {
+      var collection = Views();
+      assert(collection instanceof Views);
+    });
   });
 
   describe('static methods', function () {
@@ -156,6 +161,26 @@ describe('views', function () {
     });
   });
 
+  describe('loadView', function() {
+    beforeEach(function() {
+      collection = new Views({
+        renameKey: function (key) {
+          return path.basename(key);
+        }
+      });
+    });
+
+    it('should load a file and add it to `views`:', function () {
+      collection.loadView('test/fixtures/templates/a.tmpl');
+      collection.views.should.have.property('a.tmpl');
+    });
+
+    it('should handle files with no extension:', function () {
+      collection.loadView('test/fixtures/noext/license');
+      collection.views.should.have.property('license');
+    });
+  });
+
   describe('addViews', function() {
     beforeEach(function() {
       collection = new Views();
@@ -263,12 +288,34 @@ describe('views', function () {
         while (list.length) {
           collection.addView({path: list.pop()});
         }
+        this.loaded = true;
       });
 
       collection.addList(['a.txt', 'b.txt', 'c.txt']);
       assert(collection.views.hasOwnProperty('a.txt'));
       assert(collection.views['a.txt'].path === 'a.txt');
     });
+
+    it('should load an array of items from the addList callback:', function () {
+      var collection = new Views();
+
+      collection.addList(['a.txt', 'b.txt', 'c.txt'], function (fp) {
+        return {path: fp};
+      });
+      assert(collection.views.hasOwnProperty('a.txt'));
+      assert(collection.views['a.txt'].path === 'a.txt');
+    });
+
+    // it('should not blow up on', function () {
+    //   var collection = new Views();
+    //   var list = [{path: 'a.txt'}, {path: 'b.txt'}, {path: 'c.txt'}];
+    //   collection.addList(list, function (item) {
+    //     item.content = path.basename(item.path, path.extname(item.path));
+    //   });
+    //   assert(collection.views.hasOwnProperty('a.txt'));
+    //   assert(collection.views['a.txt'].path === 'a.txt');
+    //   assert(collection.views['a.txt'].content === 'a');
+    // });
 
     it('should load an object of views from an event:', function () {
       var collection = new Views();
@@ -366,3 +413,51 @@ describe('options', function() {
   });
 });
 
+
+describe('queue', function () {
+  beforeEach(function () {
+    collection = new Views();
+  });
+
+  it('should emit arguments on addView', function (done) {
+    collection.on('addView', function (args) {
+      assert(args[0] === 'a');
+      assert(args[1] === 'b');
+      assert(args[2] === 'c');
+      assert(args[3] === 'd');
+      assert(args[4] === 'e');
+      done();
+    });
+
+    collection.addView('a', 'b', 'c', 'd', 'e');
+  });
+
+  it('should expose the `queue` property for loading views', function () {
+    collection.queue.push(collection.view('b', {path: 'b'}));
+
+    collection.addView('a', {path: 'a'});
+    assert(collection.views.hasOwnProperty('a'));
+    assert(collection.views.hasOwnProperty('b'));
+  });
+
+  it('should load all views on the queue when addView is called', function () {
+    collection.on('addView', function (args) {
+      var len = args.length;
+      var last = args[len - 1];
+      if (typeof last === 'string') {
+        args[len - 1] = { content: last };
+      }
+    });
+
+    collection.addView('a.html', 'aaa');
+    collection.addView('b.html', 'bbb');
+    collection.addView('c.html', 'ccc');
+
+    assert(collection.views.hasOwnProperty('a.html'));
+    assert(collection.getView('a.html').content === 'aaa');
+    assert(collection.views.hasOwnProperty('b.html'));
+    assert(collection.getView('b.html').content === 'bbb');
+    assert(collection.views.hasOwnProperty('c.html'));
+    assert(collection.getView('c.html').content === 'ccc');
+  });
+});

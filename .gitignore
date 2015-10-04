@@ -13,3 +13,4 @@ vendor
 .idea
 benchmark
 coverage
+spec

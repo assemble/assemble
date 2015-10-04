@@ -4,41 +4,41 @@ var async = require('async');
 var assert = require('assert');
 var utils = require('../lib/utils');
 var List = require('..').List;
-var Views = require('..').Views;
+var List = require('..').List;
 var pages;
 
 describe('render', function () {
   describe('rendering', function () {
     beforeEach(function () {
-      pages = new Views();
+      pages = new List();
       pages.engine('tmpl', require('engine-base'));
     });
 
     it('should throw an error when no callback is given:', function () {
       (function() {
         pages.render({});
-      }).should.throw('Views#render is async and expects a callback function');
+      }).should.throw('List#render is async and expects a callback function');
     });
 
     it('should throw an error when an engine is not defined:', function (done) {
-      pages.addView('foo.bar', {content: '<%= name %>'});
-      var page = pages.getView('foo.bar');
+      pages.addItem('foo.bar', {content: '<%= name %>'});
+      var page = pages.getItem('foo.bar');
 
       pages.render(page, function(err) {
-        assert(err.message === 'Views#render cannot find an engine for: .bar');
+        assert(err.message === 'List#render cannot find an engine for: .bar');
         done();
       });
     });
 
-    it('should use helpers to render a view:', function (done) {
+    it('should use helpers to render a item:', function (done) {
       var locals = {name: 'Halle'};
 
       pages.helper('upper', function (str) {
         return str.toUpperCase(str);
       });
 
-      pages.addView('a.tmpl', {content: 'a <%= upper(name) %> b', locals: locals});
-      var page = pages.getView('a.tmpl');
+      pages.addItem('a.tmpl', {content: 'a <%= upper(name) %> b', locals: locals});
+      var page = pages.getItem('a.tmpl');
 
       pages.render(page, function (err, res) {
         if (err) return done(err);
@@ -48,14 +48,14 @@ describe('render', function () {
       });
     });
 
-    it('should use helpers when rendering a view:', function (done) {
+    it('should use helpers when rendering a item:', function (done) {
       var locals = {name: 'Halle'};
       pages.helper('upper', function (str) {
         return str.toUpperCase(str);
       });
 
-      pages.addView('a.tmpl', {content: 'a <%= upper(name) %> b', locals: locals});
-      var page = pages.getView('a.tmpl');
+      pages.addItem('a.tmpl', {content: 'a <%= upper(name) %> b', locals: locals});
+      var page = pages.getItem('a.tmpl');
 
       pages.render(page, function (err, res) {
         if (err) return done(err);
@@ -65,33 +65,33 @@ describe('render', function () {
     });
 
     it('should render a template when contents is a buffer:', function (done) {
-      pages.addView('a.tmpl', {content: '<%= a %>', locals: {a: 'b'}});
-      var view = pages.getView('a.tmpl');
+      pages.addItem('a.tmpl', {content: '<%= a %>', locals: {a: 'b'}});
+      var item = pages.getItem('a.tmpl');
 
-      pages.render(view, function (err, view) {
+      pages.render(item, function (err, item) {
         if (err) return done(err);
-        assert(view.contents.toString() === 'b');
+        assert(item.contents.toString() === 'b');
         done();
       });
     });
 
     it('should render a template when content is a string:', function (done) {
-      pages.addView('a.tmpl', {content: '<%= a %>', locals: {a: 'b'}});
-      var view = pages.getView('a.tmpl');
+      pages.addItem('a.tmpl', {content: '<%= a %>', locals: {a: 'b'}});
+      var item = pages.getItem('a.tmpl');
 
-      pages.render(view, function (err, view) {
+      pages.render(item, function (err, item) {
         if (err) return done(err);
-        assert(view.contents.toString() === 'b');
+        assert(item.contents.toString() === 'b');
         done();
       });
     });
 
-    it('should render a view from its path:', function (done) {
-      pages.addView('a.tmpl', {content: '<%= a %>', locals: {a: 'b'}});
+    it('should render a item from its path:', function (done) {
+      pages.addItem('a.tmpl', {content: '<%= a %>', locals: {a: 'b'}});
 
-      pages.render('a.tmpl', function (err, view) {
+      pages.render('a.tmpl', function (err, item) {
         if (err) return done(err);
-        assert(view.content === 'b');
+        assert(item.content === 'b');
         done();
       });
     });
@@ -100,7 +100,7 @@ describe('render', function () {
       pages.engine('tmpl', require('engine-base'));
       pages.option('engine', 'tmpl');
 
-      pages.addViews({
+      pages.addItems({
         'a': {content: '<%= title %>', locals: {title: 'aaa'}},
         'b': {content: '<%= title %>', locals: {title: 'bbb'}},
         'c': {content: '<%= title %>', locals: {title: 'ccc'}},

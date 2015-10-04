@@ -53,7 +53,7 @@ describe('create', function () {
   describe('custom instances', function () {
     it('should create views from custom `View` and `Views` instance/ctor:', function () {
       var Vinyl = require('vinyl');
-      Vinyl.prototype.read = function () {
+      Vinyl.prototype.read = function (file) {
         return fs.readFileSync(file.path);
       };
 

@@ -67,6 +67,25 @@ describe('helpers', function () {
           done();
         });
     });
+
+    it('should use the engine defined on view options:', function (done) {
+      app.engine('hbs', require('engine-handlebars'));
+      var locals = {name: 'Halle'};
+
+      app.helpers({
+        prepend: function (prefix, str) {
+          return prefix + str;
+        }
+      });
+
+      var buffer = new Buffer('a {{prepend "foo " name}} b');
+      app.page('a.tmpl', {contents: buffer, locals: locals, options: {engine: 'hbs'}})
+        .render(function (err, res) {
+          if (err) return done(err);
+          assert(res.contents.toString() === 'a foo Halle b');
+          done();
+        });
+    });
   });
 });
 

@@ -2,6 +2,7 @@ require('mocha');
 require('should');
 var path = require('path');
 var get = require('get-value');
+var isBuffer = require('is-buffer')
 var assert = require('assert');
 var typeOf = require('kind-of');
 var support = require('./support/');
@@ -17,6 +18,11 @@ describe('list', function () {
   describe('constructor', function () {
     it('should create an instance of List', function () {
       var list = new List();
+      assert(list instanceof List);
+    });
+
+    it('should instaniate without `new`', function () {
+      var list = List();
       assert(list instanceof List);
     });
   });
@@ -169,12 +175,34 @@ describe('list', function () {
         one: {content: 'foo'},
         two: {content: 'bar'}
       });
-      assert(Buffer.isBuffer(list.items[0].contents));
-      assert(Buffer.isBuffer(list.items[1].contents));
+      assert(isBuffer(list.items[0].contents));
+      assert(isBuffer(list.items[1].contents));
+    });
+
+    it('should signal `loaded` when finished (addItems)', function () {
+      list.on('addItems', function (items) {
+        for (var key in items) {
+          if (key === 'c') {
+            list.loaded = true;
+            break;
+          }
+          list.addItem('foo/' + key, items[key]);
+        }
+      });
+
+      list.addItems({
+        a: {path: 'a.txt'},
+        b: {path: 'b.txt'},
+        c: {path: 'c.txt'}
+      });
+
+      assert.equal(list.items.length, 2);
+      assert.equal(list.items[0].key, 'foo/a');
+      assert.equal(list.items[0].path, 'a.txt');
     });
   });
 
-  describe('addItems', function() {
+  describe('addList', function () {
     beforeEach(function() {
       list = new List();
     });
@@ -184,11 +212,11 @@ describe('list', function () {
         {path: 'one', content: 'foo'},
         {path: 'two', content: 'bar'}
       ]);
-      assert(Buffer.isBuffer(list.items[0].contents));
-      assert(Buffer.isBuffer(list.items[1].contents));
+      assert(isBuffer(list.items[0].contents));
+      assert(isBuffer(list.items[1].contents));
     });
 
-    it('should take a sync callback on `addList`', function () {
+    it('should take a callback on `addList`', function () {
       function addContents(item) {
         item.contents = new Buffer(item.path.charAt(0));
       }
@@ -199,9 +227,49 @@ describe('list', function () {
         { path: 'd.md', locals: { date: '2014-01-01', foo: 'xxx', bar: 3 } },
       ], addContents);
 
-      assert(Buffer.isBuffer(list.items[0].contents));
-      assert(Buffer.isBuffer(list.items[1].contents));
-      assert(Buffer.isBuffer(list.items[2].contents));
+      assert(isBuffer(list.items[0].contents));
+      assert(isBuffer(list.items[1].contents));
+      assert(isBuffer(list.items[2].contents));
+    });
+
+    it('should throw an error when the list is not an array', function () {
+      function addContents(item) {
+        item.contents = new Buffer(item.path.charAt(0));
+      }
+
+      (function () {
+        list.addList({
+          'a.md': {locals: { date: '2014-01-01', foo: 'zzz', bar: 1 }},
+          'f.md': {locals: { date: '2014-01-01', foo: 'mmm', bar: 2 }},
+          'd.md': {locals: { date: '2014-01-01', foo: 'xxx', bar: 3 }},
+        }, addContents);
+
+        assert(isBuffer(list.items[0].contents));
+        assert(isBuffer(list.items[1].contents));
+        assert(isBuffer(list.items[2].contents));
+      }).should.throw('expected list to be an array.');
+    });
+
+    it('should signal `loaded` when finished (addList)', function () {
+      list.on('addList', function (items) {
+        var len = items.length, i = -1;
+        while (++i < len) {
+          if (items[i].path === 'd.md') {
+            list.loaded = true;
+            break;
+          }
+          list.addItem('foo/' + items[i].path, items[i]);
+        }
+      });
+
+      list.addList([
+        { path: 'a.md', locals: { date: '2014-01-01', foo: 'zzz', bar: 1 } },
+        { path: 'f.md', locals: { date: '2014-01-01', foo: 'mmm', bar: 2 } },
+        { path: 'd.md', locals: { date: '2014-01-01', foo: 'xxx', bar: 3 } },
+      ]);
+
+      assert.equal(list.items.length, 2);
+      assert.equal(list.keys.indexOf('d.md'), -1);
     });
   });
 
@@ -211,12 +279,12 @@ describe('list', function () {
     });
 
     it('should emit arguments on addItem', function (done) {
-      list.on('addItem', function (a, b, c, d, e) {
-        assert(a === 'a');
-        assert(b === 'b');
-        assert(c === 'c');
-        assert(d === 'd');
-        assert(e === 'e');
+      list.on('addItem', function (args) {
+        assert(args[0] === 'a');
+        assert(args[1] === 'b');
+        assert(args[2] === 'c');
+        assert(args[3] === 'd');
+        assert(args[4] === 'e');
         done();
       });
 
@@ -231,9 +299,13 @@ describe('list', function () {
       assert(list.items[1].key === 'b');
     });
 
-    it.skip('should load all items on the queue when addItem is called', function () {
-      list.on('addItem', function (key, value) {
-        list.queue.push(list.item(key, {content: value}));
+    it('should load all items on the queue when addItem is called', function () {
+      list.on('addItem', function (args) {
+        var len = args.length;
+        var last = args[len - 1];
+        if (typeof last === 'string') {
+          args[len - 1] = { content: last };
+        }
       });
 
       list.addItem('a.html', 'aaa');
@@ -241,7 +313,6 @@ describe('list', function () {
       list.addItem('c.html', 'ccc');
 
       assert(list.items[0].path === 'a.html');
-      // console.log(list.getItem('a.html').content)
       assert(list.getItem('a.html').content === 'aaa');
       assert(list.items[1].path === 'b.html');
       assert(list.getItem('b.html').content === 'bbb');
@@ -503,6 +574,14 @@ describe('list', function () {
       assert.containEql(res[1].items, items.slice(10));
     });
 
+    it('should add pager properties', function () {
+      list = new List({pager: true});
+      list.addList(items);
+      list.items.forEach(function (item, i) {
+        assert.equal(item.data.pager.index, i);
+      });
+    });
+
     it('should paginate a list with given options', function () {
       list = new List(items);
       var res = list.paginate({limit: 5});
@@ -526,8 +605,8 @@ describe('list', function () {
       });
 
       list = new List(views);
-      assert(Buffer.isBuffer(list.items[0].contents));
-      assert(Buffer.isBuffer(list.items[1].contents));
+      assert(isBuffer(list.items[0].contents));
+      assert(isBuffer(list.items[1].contents));
     });
   });
 
@@ -566,8 +645,8 @@ describe('list', function () {
       list.addItem('one', {content: 'aaa'});
       list.addItem('two', {content: 'zzz'});
       assert(list.items.length === 2);
-      assert(Buffer.isBuffer(list.items[0].contents));
-      assert(Buffer.isBuffer(list.getItem('one').contents));
+      assert(isBuffer(list.items[0].contents));
+      assert(isBuffer(list.getItem('one').contents));
       assert(list.getItem('one').contents.toString() === 'aaa');
       assert(list.getItem('two').contents.toString() === 'zzz');
     });
