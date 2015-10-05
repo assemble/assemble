@@ -1,8 +1,8 @@
 var assert = require('assert');
-var App = require('../');
+var App = require('..');
 var app;
 
-describe('app', function () {
+describe('task()', function () {
   beforeEach(function () {
     app = new App();
   });
@@ -39,7 +39,7 @@ describe('app', function () {
       cb();
     });
 
-    app.run('default', function (err) {
+    app.build('default', function (err) {
       if (err) return done(err);
       assert.equal(count, 1);
       done();
@@ -53,16 +53,16 @@ describe('app', function () {
       cb();
     });
 
-    app.run('default', function (err) {
+    app.build('default', function (err) {
       if (!err) return done(new Error('Expected an error to be thrown.'));
       assert.equal(count, 0);
       done();
     });
   });
 
-  it('should throw an error when `.run` is called without a callback function.', function () {
+  it('should throw an error when `.build` is called without a callback function.', function () {
     try {
-      app.run('default');
+      app.build('default');
       throw new Error('Expected an error to be thrown.');
     } catch (err) {
     }
@@ -87,7 +87,7 @@ describe('app', function () {
       cb();
     });
     app.task('default', ['bar']);
-    app.run('default', function (err) {
+    app.build('default', function (err) {
       if (err) return done(err);
       assert.deepEqual(events, ['starting.foo','finished.foo','starting.bar','finished.bar','starting.default','finished.default']);
       done();
@@ -102,7 +102,7 @@ describe('app', function () {
     app.task('default', function (cb) {
       return cb(new Error('This is an error'));
     });
-    app.run('default', function (err) {
+    app.build('default', function (err) {
       if (err) return done();
       done(new Error('Expected an error'));
     });
@@ -118,7 +118,7 @@ describe('app', function () {
     app.task('default', function (cb) {
       cb(new Error('This is an error'));
     });
-    app.run('default', function (err) {
+    app.build('default', function (err) {
       assert.equal(errors, 1);
       if (err) return done();
       done(new Error('Expected an error'));
@@ -140,7 +140,7 @@ describe('app', function () {
       cb();
     });
 
-    app.run('default', function (err) {
+    app.build('default', function (err) {
       if (err) return done(err);
       assert.deepEqual(seq, ['foo', 'bar', 'default']);
       done();

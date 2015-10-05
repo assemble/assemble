@@ -4,7 +4,7 @@ var assert = require('assert');
 var assemble = require('..');
 var app;
 
-describe('app', function () {
+describe('.page()', function () {
   beforeEach(function() {
     app = assemble();
   });

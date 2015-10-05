@@ -6,6 +6,7 @@ node_modules
 npm-debug.log
 actual
 test/actual
+test/_spec
 temp
 tmp
 TODO.md
@@ -13,4 +14,3 @@ vendor
 .idea
 benchmark
 coverage
-spec

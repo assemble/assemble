@@ -2,11 +2,11 @@ require('mocha');
 require('should');
 var through = require('through2');
 var assert = require('assert');
-var App = require('../');
+var App = require('..');
 var View = App.View;
 var app;
 
-describe('app', function () {
+describe('.process()', function () {
   beforeEach(function () {
     app = new App();
   });
