@@ -22,6 +22,7 @@ app.engine('hbs', require('engine-handlebars'));
 
 /**
  * Define a middleware for parsing front-matter
+ * on any files that match the given regex
  */
 
 app.onLoad(/\.hbs$/, function (view, next) {
@@ -68,7 +69,7 @@ app.data({
 });
 
 /**
- * Re-load templates when triggered by watch
+ * Task for re-loading templates when triggered by watch
  */
 
 app.task('load', function (cb) {
@@ -79,7 +80,7 @@ app.task('load', function (cb) {
 });
 
 /**
- * Task for building docs
+ * Default task, for building the assemble docs
  */
 
 app.task('default', ['load'], function () {

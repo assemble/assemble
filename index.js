@@ -5,9 +5,9 @@
  */
 
 var only = require('emitter-only');
-var reloadViews = require('assemble-reload-views');
 var render = require('assemble-render-file');
-var Core = require('templates');
+var reloadViews = require('assemble-reload-views');
+var Templates = require('templates');
 
 /**
  * Local dependencies
@@ -32,7 +32,7 @@ function Assemble(options) {
   if (!(this instanceof Assemble)) {
     return new Assemble(options);
   }
-  Core.apply(this, arguments);
+  Templates.apply(this, arguments);
   this.options = options || {};
   this.init(this);
 }
@@ -41,7 +41,7 @@ function Assemble(options) {
  * `Assemble` prototype methods
  */
 
-Core.extend(Assemble, {
+Templates.extend(Assemble, {
   constructor: Assemble,
 
   /**
