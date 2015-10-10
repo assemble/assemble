@@ -16,7 +16,7 @@ describe('helpers', function () {
     });
 
     it('should expose `.render` for rendering a view:', function (done) {
-      app.pages('a.tmpl', {path: 'a.tmpl', content: '<%= a %>'})
+      app.page('a.tmpl', {path: 'a.tmpl', content: '<%= a %>'})
         .render({a: 'bbb'}, function (err, res) {
           if (err) return done(err);
           res.content.should.equal('bbb');
@@ -26,7 +26,7 @@ describe('helpers', function () {
 
     it('should render a view with a layout', function (done) {
       app.layout('default.tmpl', {content: 'a {% body %} b'});
-      app.pages('a.tmpl', {content: '<%= title %>', layout: 'default.tmpl'})
+      app.page('a.tmpl', {content: '<%= title %>', layout: 'default.tmpl'})
         .render({title: 'zzz'}, function (err, res) {
           if (err) return done(err);
           res.content.should.equal('a zzz b');
