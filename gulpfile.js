@@ -1,10 +1,6 @@
 'use strict';
 
 var gulp = require('gulp');
-var async = require('async');
-var argv = require('minimist')(process.argv.slice(2));
-var through = require('through2');
-var expand = require('expand-files');
 var stylish = require('jshint-stylish');
 var istanbul = require('gulp-istanbul');
 var jshint = require('gulp-jshint');
@@ -12,29 +8,20 @@ var mocha = require('gulp-mocha');
 var git = require('gulp-git');
 var del = require('rimraf');
 
-var deps = {
-  'jonschlinkert/templates': {}
-}
-
-var files = {
-  test: ['test/_spec/test/*.js', 'test/*.js'],
-  lint: ['index.js', 'lib/*.js']
-};
+var lint = ['index.js', 'lib/*.js'];
 
 function url(repo) {
   return 'https://github.com/' + repo;
 }
-var repo = url('jonschlinkert/templates');
-
 
 gulp.task('coverage', function () {
-  return gulp.src(files.lint)
+  return gulp.src(lint)
     .pipe(istanbul())
     .pipe(istanbul.hookRequire());
 });
 
 gulp.task('test', ['clone', 'coverage'], function () {
-  return gulp.src(files.test)
+  return gulp.src('test/*.js')
     .pipe(mocha({reporter: 'spec'}))
     .pipe(istanbul.writeReports())
     .pipe(istanbul.writeReports({
@@ -44,26 +31,26 @@ gulp.task('test', ['clone', 'coverage'], function () {
 });
 
 gulp.task('lint', function () {
-  return gulp.src(files.lint)
+  return gulp.src(lint.concat('test/*.js'))
     .pipe(jshint())
     .pipe(jshint.reporter(stylish));
 });
 
-gulp.task('clone', ['clean'], function(cb) {
-  git.clone(repo, {args: 'test/_spec'}, cb);
-  // git.clone(repo, {args: 'test/_spec'}, function (err) {
-  //   if (err) return cb(err);
-
-  //   gulp.src('test/_temp/test/**')
-  //     .pipe(gulp.dest('test/spec'))
-  //     .on('end', function() {
-  //       del('test/_temp', cb);
-  //     });
-  // });
+gulp.task('spec', ['clone'], function (cb) {
+  gulp.src('test/_spec/test/*.js')
+    .pipe(mocha({reporter: 'spec'}))
+    .on('end', function () {
+      del('test/_spec', cb)
+    });
 });
 
-gulp.task('clean', function (cb) {
-  del(argv.del || 'test/_spec', cb);
+gulp.task('clone', function(cb) {
+  del('test/_spec', function (err) {
+    if (err) return cb(err);
+    git.clone(url('jonschlinkert/templates'), {
+      args: 'test/_spec'
+    }, cb);
+  });
 });
 
-gulp.task('default', ['test', 'lint']);
+gulp.task('default', ['test', 'spec', 'lint']);
