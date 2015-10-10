@@ -52,6 +52,14 @@ Core.extend(Assemble, {
     this.isAssemble = true;
 
     /**
+     * Allow events to be registered only once, so
+     * that we can reinitialize the application and
+     * avoid re-registering the same emitters.
+     */
+
+    this.mixin('only', only.bind(this));
+
+    /**
      * Load core plugins
      */
 
@@ -62,14 +70,6 @@ Core.extend(Assemble, {
     this.use(init());
 
     this.use(reloadViews());
-
-    /**
-     * Allow events to be registered only once, so
-     * that we can reinitialize the application and
-     * avoid re-registering the same emitters.
-     */
-
-    this.mixin('only', only.bind(this));
   }
 });
 
