@@ -5,6 +5,7 @@
  */
 
 var only = require('emitter-only');
+var Composer = require('composer');
 var render = require('assemble-render-file');
 var reloadViews = require('assemble-reload-views');
 var Templates = require('templates');
@@ -13,7 +14,6 @@ var Templates = require('templates');
  * Local dependencies
  */
 
-var composer = require('./lib/composer');
 var init = require('./lib/init');
 
 /**
@@ -33,6 +33,7 @@ function Assemble(options) {
     return new Assemble(options);
   }
   Templates.apply(this, arguments);
+  Composer.call(this);
   this.options = options || {};
   this.init(this);
 }
@@ -65,13 +66,18 @@ Templates.extend(Assemble, {
 
     this.use(require('assemble-fs'));
     this.use(require('assemble-streams'));
-    this.use(composer());
     this.use(render());
     this.use(init());
 
     this.use(reloadViews());
   }
 });
+
+/**
+ * Inherit Composer
+ */
+
+Templates.inherit(Assemble, Composer);
 
 /**
  * Expose the `Assemble` constructor
