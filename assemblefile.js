@@ -102,14 +102,6 @@ app.task('watch', ['docs'], function () {
 });
 
 /**
- * Run the default task
- */
-
-app.build('default', function (err) {
-  if (err) console.log(err);
-});
-
-/**
  * Expose the `app` instance to the assemble CLI
  */
 
