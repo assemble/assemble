@@ -37,8 +37,8 @@ exports.resolve = function(filepath) {
     return cache[key];
   }
 
-  var prefix = pkg.name !== 'templates'
-    ? 'templates'
+  var prefix = pkg.name !== 'assemble-core'
+    ? 'assemble-core'
     : '';
 
   var base = filepath

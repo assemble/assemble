@@ -6,16 +6,16 @@ var App = require('..');
 var app;
 
 var fixtures = path.join(__dirname, 'fixtures/copy/*.txt');
-var outpath = path.join(__dirname, 'out-fixtures');
+var actual = path.join(__dirname, 'actual');
 
 describe('copy()', function() {
   beforeEach(function (done) {
-    rimraf(outpath, done);
+    rimraf(actual, done);
     app = new App();
   });
 
   afterEach(function (done) {
-    rimraf(outpath, done);
+    rimraf(actual, done);
   });
 
   describe('streams', function () {

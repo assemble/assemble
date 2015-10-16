@@ -20,7 +20,7 @@ gulp.task('coverage', function () {
     .pipe(istanbul.hookRequire());
 });
 
-gulp.task('test', ['clone', 'coverage'], function () {
+gulp.task('test', ['coverage'], function () {
   return gulp.src('test/*.js')
     .pipe(mocha({reporter: 'spec'}))
     .pipe(istanbul.writeReports())
@@ -53,4 +53,4 @@ gulp.task('clone', function(cb) {
   });
 });
 
-gulp.task('default', ['test', 'spec', 'lint']);
+gulp.task('default', ['test', 'lint']);

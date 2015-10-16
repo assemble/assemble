@@ -17,12 +17,11 @@ var bufEqual = require('buffer-equal');
 var through = require('through2');
 var File = require('vinyl');
 
-var outpath = path.join(__dirname, 'out-fixtures');
-
+var actual = path.join(__dirname, 'actual');
 
 var wipeOut = function(cb) {
   app = new App();
-  rimraf(path.join(__dirname, 'out-fixtures/'), cb);
+  rimraf(path.join(__dirname, 'actual/'), cb);
   spies.setError('false');
   statSpy.reset();
   chmodSpy.reset();
@@ -81,7 +80,7 @@ describe('dest stream', function() {
       done();
     };
 
-    var stream = app.dest('./out-fixtures/', {cwd: __dirname});
+    var stream = app.dest('./actual/', {cwd: __dirname});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -106,7 +105,7 @@ describe('dest stream', function() {
       done();
     };
 
-    var stream = app.dest(path.join(__dirname, 'out-fixtures/'));
+    var stream = app.dest(path.join(__dirname, 'actual/'));
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -118,9 +117,9 @@ describe('dest stream', function() {
   it('should not write null files', function(done) {
     var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
-    var expectedPath = path.join(__dirname, 'out-fixtures/test.coffee');
+    var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedCwd = __dirname;
-    var expectedBase = path.join(__dirname, 'out-fixtures');
+    var expectedBase = path.join(__dirname, 'actual');
 
     var expectedFile = new File({
       base: inputBase,
@@ -139,7 +138,7 @@ describe('dest stream', function() {
       done();
     };
 
-    var stream = app.dest('./out-fixtures/', {cwd: __dirname});
+    var stream = app.dest('./actual/', {cwd: __dirname});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -151,9 +150,9 @@ describe('dest stream', function() {
   it('should write buffer files to the right folder with relative cwd', function(done) {
     var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
-    var expectedPath = path.join(__dirname, 'out-fixtures/test.coffee');
+    var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedCwd = __dirname;
-    var expectedBase = path.join(__dirname, 'out-fixtures');
+    var expectedBase = path.join(__dirname, 'actual');
     var expectedContents = fs.readFileSync(inputPath);
 
     var expectedFile = new File({
@@ -174,7 +173,7 @@ describe('dest stream', function() {
       done();
     };
 
-    var stream = app.dest('./out-fixtures/', {cwd: path.relative(process.cwd(), __dirname)});
+    var stream = app.dest('./actual/', {cwd: path.relative(process.cwd(), __dirname)});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -186,9 +185,9 @@ describe('dest stream', function() {
   it('should write buffer files to the right folder with function and relative cwd', function(done) {
     var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
-    var expectedPath = path.join(__dirname, 'out-fixtures/test.coffee');
+    var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedCwd = __dirname;
-    var expectedBase = path.join(__dirname, 'out-fixtures');
+    var expectedBase = path.join(__dirname, 'actual');
     var expectedContents = fs.readFileSync(inputPath);
 
     var expectedFile = new File({
@@ -212,7 +211,7 @@ describe('dest stream', function() {
     var stream = app.dest(function(file){
       should.exist(file);
       file.should.equal(expectedFile);
-      return './out-fixtures';
+      return './actual';
     }, {cwd: path.relative(process.cwd(), __dirname)});
 
     var buffered = [];
@@ -225,10 +224,10 @@ describe('dest stream', function() {
   it('should write buffer files to the right folder', function(done) {
     var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
-    var expectedPath = path.join(__dirname, 'out-fixtures/test.coffee');
+    var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
     var expectedCwd = __dirname;
-    var expectedBase = path.join(__dirname, 'out-fixtures');
+    var expectedBase = path.join(__dirname, 'actual');
     var expectedMode = 0655;
 
     var expectedFile = new File({
@@ -253,7 +252,7 @@ describe('dest stream', function() {
       done();
     };
 
-    var stream = app.dest('./out-fixtures/', {cwd: __dirname});
+    var stream = app.dest('./actual/', {cwd: __dirname});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -265,10 +264,10 @@ describe('dest stream', function() {
   it('should write streaming files to the right folder', function(done) {
     var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
-    var expectedPath = path.join(__dirname, 'out-fixtures/test.coffee');
+    var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
     var expectedCwd = __dirname;
-    var expectedBase = path.join(__dirname, 'out-fixtures');
+    var expectedBase = path.join(__dirname, 'actual');
     var expectedMode = 0655;
 
     var contentStream = through.obj();
@@ -294,7 +293,7 @@ describe('dest stream', function() {
       done();
     };
 
-    var stream = app.dest('./out-fixtures/', {cwd: __dirname});
+    var stream = app.dest('./actual/', {cwd: __dirname});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -310,9 +309,9 @@ describe('dest stream', function() {
   it('should write directories to the right folder', function(done) {
     var inputPath = path.join(__dirname, 'fixtures/vinyl/test');
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
-    var expectedPath = path.join(__dirname, 'out-fixtures/test');
+    var expectedPath = path.join(__dirname, 'actual/test');
     var expectedCwd = __dirname;
-    var expectedBase = path.join(__dirname, 'out-fixtures');
+    var expectedBase = path.join(__dirname, 'actual');
     var expectedMode = 0655;
 
     var expectedFile = new File({
@@ -340,7 +339,7 @@ describe('dest stream', function() {
       done();
     };
 
-    var stream = app.dest('./out-fixtures/', {cwd: __dirname});
+    var stream = app.dest('./actual/', {cwd: __dirname});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -350,12 +349,12 @@ describe('dest stream', function() {
   });
 
   it('should allow piping multiple dests in streaming mode', function(done) {
-    var inputPath1 = path.join(__dirname, 'out-fixtures/multiple-first');
-    var inputPath2 = path.join(__dirname, 'out-fixtures/multiple-second');
-    var inputBase = path.join(__dirname, 'out-fixtures/');
+    var inputPath1 = path.join(__dirname, 'actual/multiple-first');
+    var inputPath2 = path.join(__dirname, 'actual/multiple-second');
+    var inputBase = path.join(__dirname, 'actual/');
     var srcPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
-    var stream1 = app.dest('./out-fixtures/', {cwd: __dirname});
-    var stream2 = app.dest('./out-fixtures/', {cwd: __dirname});
+    var stream1 = app.dest('./actual/', {cwd: __dirname});
+    var stream2 = app.dest('./actual/', {cwd: __dirname});
     var content = fs.readFileSync(srcPath);
     var rename = through.obj(function(file, _, next) {
       file.path = inputPath2;
@@ -390,7 +389,7 @@ describe('dest stream', function() {
   it('should write new files with the default user mode', function(done) {
     var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
-    var expectedPath = path.join(__dirname, 'out-fixtures/test.coffee');
+    var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
     var expectedMode = 0666 & (~process.umask());
 
@@ -410,7 +409,7 @@ describe('dest stream', function() {
     };
 
     chmodSpy.reset();
-    var stream = app.dest('./out-fixtures/', {cwd: __dirname});
+    var stream = app.dest('./actual/', {cwd: __dirname});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -423,7 +422,7 @@ describe('dest stream', function() {
   it('should write new files with the specified mode', function(done) {
     var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
-    var expectedPath = path.join(__dirname, 'out-fixtures/test.coffee');
+    var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
     var expectedMode = 0744;
 
@@ -443,7 +442,7 @@ describe('dest stream', function() {
     };
 
     chmodSpy.reset();
-    var stream = app.dest('./out-fixtures/', {cwd: __dirname, mode:expectedMode});
+    var stream = app.dest('./actual/', {cwd: __dirname, mode:expectedMode});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -456,9 +455,9 @@ describe('dest stream', function() {
   it('should update file mode to match the vinyl mode', function(done) {
     var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
-    var expectedPath = path.join(__dirname, 'out-fixtures/test.coffee');
+    var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
-    var expectedBase = path.join(__dirname, 'out-fixtures');
+    var expectedBase = path.join(__dirname, 'actual');
     var startMode = 0655;
     var expectedMode = 0722;
 
@@ -486,7 +485,7 @@ describe('dest stream', function() {
     fs.chmodSync(expectedPath, startMode);
 
     chmodSpy.reset();
-    var stream = app.dest('./out-fixtures/', {cwd: __dirname});
+    var stream = app.dest('./actual/', {cwd: __dirname});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -499,7 +498,7 @@ describe('dest stream', function() {
   it('should use different modes for files and directories', function(done) {
     var inputBase = path.join(__dirname, 'fixtures/vinyl');
     var inputPath = path.join(__dirname, 'fixtures/vinyl/wow/suchempty');
-    var expectedBase = path.join(__dirname, 'out-fixtures/wow');
+    var expectedBase = path.join(__dirname, 'actual/wow');
     var expectedDirMode = 0755;
     var expectedFileMode = 0655;
 
@@ -516,7 +515,7 @@ describe('dest stream', function() {
       done();
     };
 
-    var stream = app.dest('./out-fixtures/', {
+    var stream = app.dest('./actual/', {
       cwd: __dirname,
       mode: expectedFileMode,
       dirMode: expectedDirMode
@@ -545,7 +544,7 @@ describe('dest stream', function() {
       done();
     };
 
-    var stream = app.dest('./out-fixtures/', {
+    var stream = app.dest('./actual/', {
       cwd: __dirname,
       base: inputBase
     });
@@ -573,7 +572,7 @@ describe('dest stream', function() {
       done();
     };
 
-    var stream = app.dest('./out-fixtures/', {
+    var stream = app.dest('./actual/', {
       cwd: __dirname,
       base: function(file){
         should.exist(file);
@@ -593,9 +592,9 @@ describe('dest stream', function() {
   it('should report IO errors', function(done) {
     var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
-    var expectedPath = path.join(__dirname, 'out-fixtures/test.coffee');
+    var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
-    var expectedBase = path.join(__dirname, 'out-fixtures');
+    var expectedBase = path.join(__dirname, 'actual');
     var expectedMode = 0722;
 
     var expectedFile = new File({
@@ -612,7 +611,7 @@ describe('dest stream', function() {
     fs.closeSync(fs.openSync(expectedPath, 'w'));
     fs.chmodSync(expectedPath, 0);
 
-    var stream = app.dest('./out-fixtures/', {cwd: __dirname});
+    var stream = app.dest('./actual/', {cwd: __dirname});
     stream.on('error', function(err) {
       err.code.should.equal('EACCES');
       done();
@@ -623,9 +622,9 @@ describe('dest stream', function() {
   it('should report stat errors', function(done) {
     var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
-    var expectedPath = path.join(__dirname, 'out-fixtures/test.coffee');
+    var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
-    var expectedBase = path.join(__dirname, 'out-fixtures');
+    var expectedBase = path.join(__dirname, 'actual');
     var expectedMode = 0722;
 
     var expectedFile = new File({
@@ -647,7 +646,7 @@ describe('dest stream', function() {
       }
     });
 
-    var stream = app.dest('./out-fixtures/', {cwd: __dirname});
+    var stream = app.dest('./actual/', {cwd: __dirname});
     stream.on('error', function(err) {
       err.message.should.equal('stat error');
       done();
@@ -658,9 +657,9 @@ describe('dest stream', function() {
   it('should report chmod errors', function(done) {
     var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
-    var expectedPath = path.join(__dirname, 'out-fixtures/test.coffee');
+    var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
-    var expectedBase = path.join(__dirname, 'out-fixtures');
+    var expectedBase = path.join(__dirname, 'actual');
     var expectedMode = 0722;
 
     var expectedFile = new File({
@@ -682,7 +681,7 @@ describe('dest stream', function() {
       }
     });
 
-    var stream = app.dest('./out-fixtures/', {cwd: __dirname});
+    var stream = app.dest('./actual/', {cwd: __dirname});
     stream.on('error', function(err) {
       err.message.should.equal('chmod error');
       done();
@@ -693,9 +692,9 @@ describe('dest stream', function() {
   it('should not chmod a matching file', function(done) {
     var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
-    var expectedPath = path.join(__dirname, 'out-fixtures/test.coffee');
+    var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
-    var expectedBase = path.join(__dirname, 'out-fixtures');
+    var expectedBase = path.join(__dirname, 'actual');
     var expectedMode = 0722;
 
     var expectedFile = new File({
@@ -728,7 +727,7 @@ describe('dest stream', function() {
 
     statSpy.reset();
     chmodSpy.reset();
-    var stream = app.dest('./out-fixtures/', {cwd: __dirname});
+    var stream = app.dest('./actual/', {cwd: __dirname});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -741,9 +740,9 @@ describe('dest stream', function() {
   it('should see a file with special chmod (setuid/setgid/sticky) as matching', function(done) {
     var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
-    var expectedPath = path.join(__dirname, 'out-fixtures/test.coffee');
+    var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
-    var expectedBase = path.join(__dirname, 'out-fixtures');
+    var expectedBase = path.join(__dirname, 'actual');
     var expectedMode = 03722;
     var normalMode = 0722;
 
@@ -776,7 +775,7 @@ describe('dest stream', function() {
 
     statSpy.reset();
     chmodSpy.reset();
-    var stream = app.dest('./out-fixtures/', {cwd: __dirname});
+    var stream = app.dest('./actual/', {cwd: __dirname});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -791,8 +790,8 @@ describe('dest stream', function() {
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
     var inputContents = fs.readFileSync(inputPath);
 
-    var expectedPath = path.join(__dirname, 'out-fixtures/test.coffee');
-    var expectedBase = path.join(__dirname, 'out-fixtures');
+    var expectedPath = path.join(__dirname, 'actual/test.coffee');
+    var expectedBase = path.join(__dirname, 'actual');
     var existingContents = 'Lorem Ipsum';
 
     var inputFile = new File({
@@ -812,7 +811,7 @@ describe('dest stream', function() {
     fs.mkdirSync(expectedBase);
     fs.writeFileSync(expectedPath, existingContents);
 
-    var stream = app.dest('./out-fixtures/', {cwd: __dirname, overwrite: false});
+    var stream = app.dest('./actual/', {cwd: __dirname, overwrite: false});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -826,8 +825,8 @@ describe('dest stream', function() {
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
     var inputContents = fs.readFileSync(inputPath);
 
-    var expectedPath = path.join(__dirname, 'out-fixtures/test.coffee');
-    var expectedBase = path.join(__dirname, 'out-fixtures');
+    var expectedPath = path.join(__dirname, 'actual/test.coffee');
+    var expectedBase = path.join(__dirname, 'actual');
     var existingContents = 'Lorem Ipsum';
 
     var inputFile = new File({
@@ -847,7 +846,7 @@ describe('dest stream', function() {
     fs.mkdirSync(expectedBase);
     fs.writeFileSync(expectedPath, existingContents);
 
-    var stream = app.dest('./out-fixtures/', {cwd: __dirname, overwrite: true});
+    var stream = app.dest('./actual/', {cwd: __dirname, overwrite: true});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -861,7 +860,7 @@ describe('dest stream', function() {
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
     var inputRelativeSymlinkPath = 'wow';
 
-    var expectedPath = path.join(__dirname, 'out-fixtures/test-create-dir-symlink');
+    var expectedPath = path.join(__dirname, 'actual/test-create-dir-symlink');
 
     var inputFile = new File({
       base: inputBase,
@@ -881,7 +880,7 @@ describe('dest stream', function() {
       });
     };
 
-    var stream = app.dest('./out-fixtures/', {cwd: __dirname});
+    var stream = app.dest('./actual/', {cwd: __dirname});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -892,7 +891,7 @@ describe('dest stream', function() {
 
   it('should emit finish event', function(done) {
     var srcPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
-    var stream = app.dest('./out-fixtures/', {cwd: __dirname});
+    var stream = app.dest('./actual/', {cwd: __dirname});
 
     stream.once('finish', function() {
       done();
@@ -911,12 +910,12 @@ describe('dest stream', function() {
 
 describe('dest', function() {
   beforeEach(function (done) {
-    rimraf(outpath, done);
+    rimraf(actual, done);
     app = new App();
   });
 
   afterEach(function (done) {
-    rimraf(outpath, done);
+    rimraf(actual, done);
   });
 
   describe('streams', function () {
@@ -928,8 +927,8 @@ describe('dest', function() {
     });
 
     it('should return an output stream that writes files', function (done) {
-      var instream = app.src(path.join(__dirname, 'fixtures/copy/*.txt'));
-      var outstream = app.dest(outpath);
+      var instream = app.src(path.join(__dirname, 'fixtures/copy/e*.txt'));
+      var outstream = app.dest(actual);
       instream.pipe(outstream);
 
       outstream.on('error', done);
@@ -938,11 +937,11 @@ describe('dest', function() {
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
-        path.join(file.path, '').should.equal(path.join(outpath, 'example.txt'));
+        path.join(file.path, '').should.equal(path.join(actual, 'example.txt'));
         String(file.contents).should.equal('Hello world!');
       });
       outstream.on('end', function () {
-        fs.readFile(path.join(outpath, 'example.txt'), function (err, contents) {
+        fs.readFile(path.join(actual, 'example.txt'), function (err, contents) {
           should.not.exist(err);
           should.exist(contents);
           String(contents).should.equal('Hello world!');
@@ -952,8 +951,8 @@ describe('dest', function() {
     });
 
     it('should return an output stream that does not write non-read files', function (done) {
-      var instream = app.src(path.join(__dirname, 'fixtures/copy/*.txt'), {read: false});
-      var outstream = app.dest(outpath);
+      var instream = app.src(path.join(__dirname, 'fixtures/copy/e*.txt'), {read: false});
+      var outstream = app.dest(actual);
       instream.pipe(outstream);
 
       outstream.on('error', done);
@@ -962,11 +961,11 @@ describe('dest', function() {
         should.exist(file);
         should.exist(file.path);
         should.not.exist(file.contents);
-        path.join(file.path, '').should.equal(path.join(outpath, 'example.txt'));
+        path.join(file.path, '').should.equal(path.join(actual, 'example.txt'));
       });
 
       outstream.on('end', function () {
-        fs.readFile(path.join(outpath, 'example.txt'), function (err, contents) {
+        fs.readFile(path.join(actual, 'example.txt'), function (err, contents) {
           should.exist(err);
           should.not.exist(contents);
           done();
@@ -975,8 +974,8 @@ describe('dest', function() {
     });
 
     it('should return an output stream that writes streaming files', function (done) {
-      var instream = app.src(path.join(__dirname, 'fixtures/copy/*.txt'), {buffer: false});
-      var outstream = instream.pipe(app.dest(outpath));
+      var instream = app.src(path.join(__dirname, 'fixtures/copy/e*.txt'), {buffer: false});
+      var outstream = instream.pipe(app.dest(actual));
 
       outstream.on('error', done);
       outstream.on('data', function (file) {
@@ -984,10 +983,10 @@ describe('dest', function() {
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
-        path.join(file.path, '').should.equal(path.join(outpath, 'example.txt'));
+        path.join(file.path, '').should.equal(path.join(actual, 'example.txt'));
       });
       outstream.on('end', function () {
-        fs.readFile(path.join(outpath, 'example.txt'), function (err, contents) {
+        fs.readFile(path.join(actual, 'example.txt'), function (err, contents) {
           should.not.exist(err);
           should.exist(contents);
           String(contents).should.equal('Hello world!');
@@ -1032,8 +1031,8 @@ describe('dest', function() {
     });
 
     it('should return an output stream that writes files', function (done) {
-      var instream = app.src(path.join(__dirname, 'fixtures/copy/*.txt'));
-      var outstream = app.dest(outpath);
+      var instream = app.src(path.join(__dirname, 'fixtures/copy/e*.txt'));
+      var outstream = app.dest(actual);
       instream.pipe(outstream);
 
       outstream.on('error', done);
@@ -1042,11 +1041,11 @@ describe('dest', function() {
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
-        path.join(file.path, '').should.equal(path.join(outpath, 'example.txt'));
+        path.join(file.path, '').should.equal(path.join(actual, 'example.txt'));
         String(file.contents).should.equal('Hello world!');
       });
       outstream.on('end', function () {
-        fs.readFile(path.join(outpath, 'example.txt'), function (err, contents) {
+        fs.readFile(path.join(actual, 'example.txt'), function (err, contents) {
           should.not.exist(err);
           should.exist(contents);
           String(contents).should.equal('Hello world!');
@@ -1057,7 +1056,7 @@ describe('dest', function() {
 
     it('should return an output stream that does not write non-read files', function (done) {
       var instream = app.src(path.join(__dirname, 'fixtures/dest/*.txt'), {read: false});
-      var outstream = app.dest(outpath);
+      var outstream = app.dest(actual);
       instream.pipe(outstream);
 
       outstream.on('error', done);
@@ -1066,11 +1065,11 @@ describe('dest', function() {
         should.exist(file);
         should.exist(file.path);
         should.not.exist(file.contents);
-        path.join(file.path, '').should.equal(path.join(outpath, 'example.txt'));
+        path.join(file.path, '').should.equal(path.join(actual, 'example.txt'));
       });
 
       outstream.on('end', function () {
-        fs.readFile(path.join(outpath, 'example.txt'), function (err, contents) {
+        fs.readFile(path.join(actual, 'example.txt'), function (err, contents) {
           should.exist(err);
           should.not.exist(contents);
           done();
@@ -1081,18 +1080,18 @@ describe('dest', function() {
 
   function testWriteDir(srcOptions, done) {
     var instream = app.src(path.join(__dirname, 'fixtures/generic'), srcOptions);
-    var outstream = instream.pipe(app.dest(outpath));
+    var outstream = instream.pipe(app.dest(actual));
 
     outstream.on('error', done);
     outstream.on('data', function(file) {
       // data should be re-emitted correctly
       should.exist(file);
       should.exist(file.path);
-      path.join(file.path,'').should.equal(path.join(outpath, 'generic'));
+      path.join(file.path,'').should.equal(path.join(actual, 'generic'));
     });
 
     outstream.on('end', function() {
-      fs.exists(path.join(outpath, 'generic'), function(exists) {
+      fs.exists(path.join(actual, 'generic'), function(exists) {
         /* jshint expr: true */
         should(exists).be.ok;
         /* jshint expr: false */

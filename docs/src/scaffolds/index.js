@@ -1,13 +1,13 @@
 
 
-var Scaffold = require('templates');
-var scaffold = new Scaffold();
+// var Scaffold = require('templates');
+// var scaffold = new Scaffold();
 
 
-scaffold.create('pages');
-scaffold.create('posts');
-scaffold.create('layouts');
+// scaffold.create('pages');
+// scaffold.create('posts');
+// scaffold.create('layouts');
 
-scaffold.layouts('docs/scaffolds/layouts/*.hbs');
+// scaffold.layouts('docs/scaffolds/layouts/*.hbs');
 
-module.exports = scaffold.views;
+// module.exports = scaffold.views;
