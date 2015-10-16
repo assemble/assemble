@@ -4,17 +4,9 @@
  * module dependencies
  */
 
-var only = require('emitter-only');
-var Composer = require('composer');
-var render = require('assemble-render-file');
-var reloadViews = require('assemble-reload-views');
-var Templates = require('templates');
-
-/**
- * Local dependencies
- */
-
-var init = require('./lib/init');
+var path = require('path');
+var Core = require('assemble-core');
+var reload = require('assemble-reload-views');
 
 /**
  * Create an `assemble` application. This is the main function exported
@@ -32,52 +24,63 @@ function Assemble(options) {
   if (!(this instanceof Assemble)) {
     return new Assemble(options);
   }
-  Templates.apply(this, arguments);
-  Composer.call(this);
-  this.options = options || {};
-  this.init(this);
+  Core.apply(this, arguments);
+  this.initAssemble();
 }
 
 /**
- * `Assemble` prototype methods
+ * Inherit assemble-core
  */
 
-Templates.extend(Assemble, {
-  constructor: Assemble,
-
-  /**
-   * Initialize Assemble defaults
-   */
-
-  init: function() {
-    this.isAssemble = true;
-
-    /**
-     * Allow events to be registered only once, so
-     * that we can reinitialize the application and
-     * avoid re-registering the same emitters.
-     */
-
-    this.mixin('only', only.bind(this));
-
-    /**
-     * Load core plugins
-     */
-
-    this.use(require('assemble-fs'));
-    this.use(require('assemble-streams'));
-    this.use(render());
-    this.use(init());
-
-    this.use(reloadViews());
-  }
-});
+Core.extend(Assemble);
 
 /**
- * Inherit Composer
+ * Initialize Assemble defaults
  */
 
-Templates.inherit(Assemble, Composer);
+Assemble.prototype.initAssemble = function() {
+  this.isAssemble = true;
+
+  if (this.options.reload !== false) {
+    this.use(reload());
+  }
+
+  /**
+   * Define default view collections
+   *  | partials
+   *  | layouts
+   *  | pages
+   *  | files
+   */
+
+  var engine = this.options.engine || 'hbs';
+
+  if (this.options.init !== false) {
+    this.create('partials', {
+      engine: engine,
+      viewType: 'partial',
+      renameKey: function (fp) {
+        return path.basename(fp, path.extname(fp));
+      }
+    });
+
+    this.create('layouts', {
+      engine: engine,
+      viewType: 'layout',
+      renameKey: function (fp) {
+        return path.basename(fp, path.extname(fp));
+      }
+    });
+
+    this.create('pages', {
+      engine: engine,
+      renameKey: function (fp) {
+        return fp;
+      }
+    });
+  }
+};
+
 
 /**
  * Expose the `Assemble` constructor
