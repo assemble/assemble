@@ -2,15 +2,14 @@
   "name": "assemble",
   "description": "Static site generator for Grunt.js, Yeoman and Node.js. Used in projects like Zurb Foundation, Zurb Ink, H5BP/Effeckt, Less.js / lesscss.org, Topcoat, Web Experience Toolkit, and hundreds of other projects, to build sites, themes, components, documentation, blogs and gh-pages.",
   "version": "0.6.0",
-  "homepage": "https://github.com/jonschlinkert/assemble",
+  "homepage": "https://github.com/assemble/assemble",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
-  "repository": "jonschlinkert/assemble",
+  "repository": "assemble/assemble",
   "bugs": {
-    "url": "https://github.com/jonschlinkert/assemble/issues"
+    "url": "https://github.com/assemble/assemble/issues"
   },
   "license": "MIT",
   "files": [
-    "lib/",
     "index.js"
   ],
   "main": "index.js",
@@ -21,13 +20,8 @@
     "test": "mocha"
   },
   "dependencies": {
-    "assemble-fs": "^0.1.1",
-    "assemble-reload-views": "^0.1.2",
-    "assemble-render-file": "^0.1.1",
-    "assemble-streams": "^0.1.1",
-    "composer": "^0.5.0",
-    "emitter-only": "^0.1.0",
-    "templates": "^0.3.5"
+    "assemble-core": "^0.1.1",
+    "assemble-reload-views": "^0.1.2"
   },
   "devDependencies": {
     "ansi-red": "^0.1.1",
@@ -131,6 +125,14 @@
         "templates",
         "verb"
       ]
-    }
+    },
+    "reflinks": [
+      "assemble",
+      "scaffold",
+      "boilerplate",
+      "template",
+      "template",
+      "verb"
+    ]
   }
 }
