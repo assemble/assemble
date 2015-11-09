@@ -20,12 +20,6 @@ describe('app.option', function () {
     assert(app.options.c === 'd');
   });
 
-  it('should throw on invalid args:', function () {
-    (function () {
-      app.option(function () {});
-    }).should.throw('expected a string or object.');
-  });
-
   it('should set an option.', function() {
     app.option('a', 'b');
     app.options.should.have.property('a');

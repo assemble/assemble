@@ -1,33 +1,14 @@
 'use strict';
 
 var path = require('path');
-var loader = require('assemble-loader');
 var extname = require('gulp-extname');
-var matter = require('parser-front-matter');
-var init = require('./lib/init');
 var assemble = require('./');
 
 /**
  * Create our assemble appplication
  */
 
-var app = assemble()
-  .use(loader());
-
-/**
- * Define the engine to use for `hbs` files
- */
-
-app.engine('hbs', require('engine-handlebars'));
-
-/**
- * Define a middleware for parsing front-matter
- * on any files that match the given regex
- */
-
-app.onLoad(/\.hbs$/, function (view, next) {
-  matter.parse(view, next);
-});
+var app = assemble();
 
 /**
  * Customize how templates are stored. This changes the
@@ -42,7 +23,6 @@ app.option('renameKey', function (fp) {
  * Create a custom view collection
  */
 
-app.use(init(app.options));
 app.create('docs');
 
 /**

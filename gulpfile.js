@@ -1,9 +1,8 @@
 'use strict';
 
 var gulp = require('gulp');
-var stylish = require('jshint-stylish');
 var istanbul = require('gulp-istanbul');
-var jshint = require('gulp-jshint');
+var eslint = require('gulp-eslint');
 var mocha = require('gulp-mocha');
 var git = require('gulp-git');
 var del = require('rimraf');
@@ -20,20 +19,15 @@ gulp.task('coverage', function () {
     .pipe(istanbul.hookRequire());
 });
 
-gulp.task('test', ['coverage'], function () {
+gulp.task('mocha', ['coverage'], function () {
   return gulp.src('test/*.js')
     .pipe(mocha({reporter: 'spec'}))
-    .pipe(istanbul.writeReports())
-    .pipe(istanbul.writeReports({
-      reporters: [ 'text' ],
-      reportOpts: {dir: 'coverage', file: 'summary.txt'}
-    }));
+    .pipe(istanbul.writeReports());
 });
 
-gulp.task('lint', function () {
-  return gulp.src(lint.concat('test/*.js'))
-    .pipe(jshint())
-    .pipe(jshint.reporter(stylish));
+gulp.task('eslint', function () {
+  return gulp.src(lint)
+    .pipe(eslint())
 });
 
 gulp.task('spec', ['clone'], function (cb) {

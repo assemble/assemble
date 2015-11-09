@@ -1,6 +1,7 @@
 require('mocha');
 require('should');
 var fs = require('fs');
+var path = require('path');
 var assert = require('assert');
 var define = require('define-property');
 var support = require('./support');
@@ -51,7 +52,7 @@ describe('collection', function () {
 
     it('should load a view onto the respective collection:', function () {
       app.pages('test/fixtures/pages/a.hbs');
-      app.views.pages.should.have.property('test/fixtures/pages/a.hbs');
+      app.views.pages.should.have.property(path.resolve('test/fixtures/pages/a.hbs'));
     });
 
     it('should allow collection methods to be chained:', function () {
@@ -61,9 +62,9 @@ describe('collection', function () {
         .pages('test/fixtures/pages/c.hbs');
 
       app.views.pages.should.have.properties([
-        'test/fixtures/pages/a.hbs',
-        'test/fixtures/pages/b.hbs',
-        'test/fixtures/pages/c.hbs'
+        path.resolve('test/fixtures/pages/a.hbs'),
+        path.resolve('test/fixtures/pages/b.hbs'),
+        path.resolve('test/fixtures/pages/c.hbs')
       ]);
     });
 
@@ -74,10 +75,11 @@ describe('collection', function () {
         .pages('test/fixtures/pages/c.hbs');
 
       app.pages.options.should.have.property('foo', 'bar');
+
       app.views.pages.should.have.properties([
-        'test/fixtures/pages/a.hbs',
-        'test/fixtures/pages/b.hbs',
-        'test/fixtures/pages/c.hbs'
+        path.resolve('test/fixtures/pages/a.hbs'),
+        path.resolve('test/fixtures/pages/b.hbs'),
+        path.resolve('test/fixtures/pages/c.hbs')
       ]);
     });
 
@@ -129,11 +131,6 @@ describe('collection', function () {
 
     it('should render a view with inherited app.render', function (done) {
       app.page('test/fixtures/templates/a.tmpl')
-        .use(function (view) {
-          if (!view.contents) {
-            view.contents = fs.readFileSync(view.path);
-          }
-        })
         .set('data.name', 'Brian')
         .render(function (err, res) {
           if (err) return done(err);
@@ -165,7 +162,7 @@ describe('collection singular method', function () {
 
     it('should add a view to the created collection:', function () {
       app.page('test/fixtures/pages/a.hbs');
-      assert(typeof app.views.pages['test/fixtures/pages/a.hbs'] === 'object');
+      assert(typeof app.views.pages[path.resolve('test/fixtures/pages/a.hbs')] === 'object');
     });
 
     it('should expose the `option` method:', function () {

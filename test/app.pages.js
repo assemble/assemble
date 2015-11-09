@@ -19,4 +19,11 @@ describe('.pages()', function () {
       assert(Object.keys(app.views.pages).length === 3);
     });
   });
+
+  describe('load pages', function () {
+    it('should load pages onto `app.views.pages`:', function () {
+      app.pages('test/fixtures/pages/*.hbs');
+      assert(Object.keys(app.views.pages).length === 3);
+    });
+  });
 });
