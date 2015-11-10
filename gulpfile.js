@@ -47,4 +47,4 @@ gulp.task('clone', function(cb) {
   });
 });
 
-gulp.task('default', ['test', 'lint']);
+gulp.task('default', ['mocha', 'eslint']);
