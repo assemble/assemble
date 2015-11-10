@@ -6,7 +6,7 @@
 
 var path = require('path');
 var Core = require('assemble-core');
-var reload = require('assemble-reload-views');
+var utils = require('./lib/utils');
 
 /**
  * Create an `assemble` application. This is the main function exported
@@ -40,10 +40,24 @@ Core.extend(Assemble);
 
 Assemble.prototype.initAssemble = function() {
   this.isAssemble = true;
+  this.use(utils.loader());
 
-  if (this.options.reload !== false) {
-    this.use(reload());
-  }
+  var exts = this.options.exts || ['md', 'hbs', 'html'];
+  var regex = utils.extRegex(exts);
+
+  /**
+   * Default engine
+   */
+
+  this.engine(exts, require('engine-handlebars'));
+
+  /**
+   * Middleware for parsing front matter
+   */
+
+  this.onLoad(regex, function (view, next) {
+    utils.matter.parse(view, next);
+  });
 
   /**
    * Define default view collections
@@ -53,7 +67,7 @@ Assemble.prototype.initAssemble = function() {
    *  | files
    */
 
-  var engine = this.options.engine || 'hbs';
+  var engine = this.options.defaultEngine || 'hbs';
 
   if (this.options.init !== false) {
     this.create('partials', {
