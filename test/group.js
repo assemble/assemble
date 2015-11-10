@@ -66,6 +66,10 @@ describe('group', function () {
       group = new Group();
     });
 
+    it('should expose options:', function () {
+      assert(typeof group.options === 'object');
+    });
+
     it('should set a value on the instance:', function () {
       group.set('a', 'b');
       assert(group.a ==='b');

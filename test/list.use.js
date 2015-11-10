@@ -3,123 +3,123 @@ require('should');
 var assert = require('assert');
 var support = require('./support');
 var App = support.resolve();
-var Collection = App.Collection;
+var List = App.List;
 var Item = App.Item;
-var collection;
+var list;
 
-describe('collection.use', function () {
+describe('list.use', function () {
   beforeEach(function () {
-    collection = new Collection();
+    list = new List();
   });
 
   it('should expose the instance to `use`:', function (done) {
-    collection.use(function (inst) {
-      assert(inst instanceof Collection);
+    list.use(function (inst) {
+      assert(inst instanceof List);
       done();
     });
   });
 
   it('should be chainable:', function (done) {
-    collection.use(function (inst) {
-        assert(inst instanceof Collection);
+    list.use(function (inst) {
+        assert(inst instanceof List);
       })
       .use(function (inst) {
-        assert(inst instanceof Collection);
+        assert(inst instanceof List);
       })
       .use(function (inst) {
-        assert(inst instanceof Collection);
+        assert(inst instanceof List);
         done();
       });
   });
 
-  it('should expose the collection to a plugin:', function () {
-    collection.use(function (items) {
-      assert(items instanceof Collection);
+  it('should expose the list to a plugin:', function () {
+    list.use(function (items) {
+      assert(items instanceof List);
       items.foo = items.addItem.bind(items);
     });
 
-    collection.foo('a', {content: '...'});
-    assert(collection.items.hasOwnProperty('a'));
+    list.foo('a', {content: '...'});
+    assert(list.hasItem('a'));
   });
 
-  it('should expose collection when chained:', function () {
-    collection
+  it('should expose list when chained:', function () {
+    list
       .use(function (items) {
-        assert(items instanceof Collection);
+        assert(items instanceof List);
         items.foo = items.addItem.bind(items);
       })
       .use(function (items) {
-        assert(items instanceof Collection);
+        assert(items instanceof List);
         items.bar = items.addItem.bind(items);
       })
       .use(function (items) {
-        assert(items instanceof Collection);
+        assert(items instanceof List);
         items.baz = items.addItem.bind(items);
       });
 
-    var pages = collection;
+    var pages = list;
 
     pages.foo({path: 'a', content: '...'});
     pages.bar({path: 'b', content: '...'});
     pages.baz({path: 'c', content: '...'});
 
-    assert(collection.items.hasOwnProperty('a'));
-    assert(collection.items.hasOwnProperty('b'));
-    assert(collection.items.hasOwnProperty('c'));
+    assert(list.hasItem('a'));
+    assert(list.hasItem('b'));
+    assert(list.hasItem('c'));
   });
 
   it('should work when a custom `Item` constructor is passed:', function () {
-    collection = new Collection({Item: require('vinyl')});
-    collection
+    list = new List({Item: require('vinyl')});
+    list
       .use(function (items) {
-        assert(items instanceof Collection);
+        assert(items instanceof List);
         items.foo = items.addItem.bind(items);
       })
       .use(function (items) {
-        assert(items instanceof Collection);
+        assert(items instanceof List);
         items.bar = items.addItem.bind(items);
       })
       .use(function (items) {
-        assert(items instanceof Collection);
+        assert(items instanceof List);
         items.baz = items.addItem.bind(items);
       });
 
-    var pages = collection;
+    var pages = list;
 
     pages.foo({path: 'a', content: '...'});
     pages.bar({path: 'b', content: '...'});
     pages.baz({path: 'c', content: '...'});
 
-    assert(collection.items.hasOwnProperty('a'));
-    assert(collection.items.hasOwnProperty('b'));
-    assert(collection.items.hasOwnProperty('c'));
+    assert(list.hasItem('a'));
+    assert(list.hasItem('b'));
+    assert(list.hasItem('c'));
   });
 
   it('should pass to item `use` if a function is returned:', function () {
-    collection.use(function (items) {
-      assert(items instanceof Collection);
+    list.use(function (items) {
+      assert(items instanceof List);
 
       return function (item) {
         item.foo = items.addItem.bind(items);
-        assert(item instanceof Item);
+        assert(item.isItem || item.isView);
       };
     });
 
-    collection.addItem('a', {content: '...'})
+    list.addItem('a', {content: '...'})
       .foo({path: 'b', content: '...'})
       .foo({path: 'c', content: '...'})
       .foo({path: 'd', content: '...'});
 
-    assert(collection.items.hasOwnProperty('a'));
-    assert(collection.items.hasOwnProperty('b'));
-    assert(collection.items.hasOwnProperty('c'));
-    assert(collection.items.hasOwnProperty('d'));
+    assert(list.hasItem('a'));
+    assert(list.hasItem('b'));
+    assert(list.hasItem('c'));
+    assert(list.hasItem('d'));
   });
 
   it('should be chainable when a item function is returned:', function () {
-    collection
+    list
       .use(function (items) {
-        assert(items instanceof Collection);
+        assert(items instanceof List);
 
         return function (item) {
           item.foo = items.addItem.bind(items);
@@ -127,7 +127,7 @@ describe('collection.use', function () {
         };
       })
       .use(function (items) {
-        assert(items instanceof Collection);
+        assert(items instanceof List);
 
         return function (item) {
           item.bar = items.addItem.bind(items);
@@ -135,7 +135,7 @@ describe('collection.use', function () {
         };
       })
       .use(function (items) {
-        assert(items instanceof Collection);
+        assert(items instanceof List);
 
         return function (item) {
           item.baz = items.addItem.bind(items);
@@ -143,14 +143,14 @@ describe('collection.use', function () {
         };
       });
 
-    collection.addItem('a', {content: '...'})
+    list.addItem('a', {content: '...'})
       .foo({path: 'b', content: '...'})
       .bar({path: 'c', content: '...'})
       .baz({path: 'd', content: '...'});
 
-    assert(collection.items.hasOwnProperty('a'));
-    assert(collection.items.hasOwnProperty('b'));
-    assert(collection.items.hasOwnProperty('c'));
-    assert(collection.items.hasOwnProperty('d'));
+    assert(list.hasItem('a'));
+    assert(list.hasItem('b'));
+    assert(list.hasItem('c'));
+    assert(list.hasItem('d'));
   });
 });

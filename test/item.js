@@ -478,8 +478,10 @@ describe('Item', function() {
 
       assert(copy.stat.isFile());
       assert(!copy.stat.isDirectory());
-      assert(item.stat instanceof fs.Stats);
-      assert(copy.stat instanceof fs.Stats);
+
+      assert(item.stat.hasOwnProperty('birthtime'));
+      assert(copy.stat.hasOwnProperty('birthtime'));
+      assert.deepEqual(item.stat, copy.stat);
       done();
     });
 
