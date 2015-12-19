@@ -21,7 +21,6 @@ describe('assemble defaultConfig', function () {
     it('should set default values', function () {
       // Default options
       site.option('env').should.equal('dev');
-      site.option('cwd').should.equal(process.cwd());
       site.option('ext').should.equal('.hbs');
       // views
       site.option('view engine', 'noop');
@@ -31,17 +30,14 @@ describe('assemble defaultConfig', function () {
 
     it('should enable some plugins by default', function () {
       // Default `src` plugins
+      site.enabled('src:vfs plugin').should.be.true;
       site.enabled('src:init plugin').should.be.true;
-      site.enabled('src:extend plugin').should.be.true;
       site.enabled('src:drafts plugin').should.be.true;
-      site.enabled('src:assets plugin').should.be.true;
-      site.enabled('src:paginate plugin').should.be.true;
 
       // Default `dest` plugins
-      site.enabled('dest:extend plugin').should.be.true;
-      site.enabled('dest:collections plugin').should.be.true;
       site.enabled('dest:paths plugin').should.be.true;
       site.enabled('dest:render plugin').should.be.true;
+      site.enabled('dest:vfs plugin').should.be.true;
     });
 
     it('should disable some boolean options by default', function () {

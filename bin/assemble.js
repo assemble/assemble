@@ -9,9 +9,9 @@ var archy = require('archy');
 var Liftoff = require('liftoff');
 var tildify = require('tildify');
 var interpret = require('interpret');
-var completion = require('../lib/completion');
 var argv = require('minimist')(process.argv.slice(2));
-var taskTree = require('../lib/taskTree');
+var completion = require('../lib/utils/completion');
+var taskTree = require('../lib/utils/taskTree');
 
 // set env var for ORIGINAL cwd
 // before anything touches it
@@ -106,6 +106,9 @@ function handleArguments(env) {
   gutil.log('Using assemblefile', chalk.magenta(tildify(env.configPath)));
 
   var assembleInst = require(env.modulePath);
+  // extend command line arguments onto the `assemble.cache.argv` object
+  assembleInst.extend('argv', argv);
+  assembleInst.emit('init');
   logEvents(assembleInst);
 
   process.nextTick(function () {

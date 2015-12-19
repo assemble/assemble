@@ -168,12 +168,12 @@ describe('assemble tasks', function() {
       fn = function() {
         ++a;
         this.should.equal(assemble);
-        session.get('task name').should.equal('test');
+        session.get('task').should.equal('test');
       };
       fn2 = function() {
         ++a;
         this.should.equal(assemble);
-        session.get('task name').should.equal('test2');
+        session.get('task').should.equal('test2');
       };
       assemble.task('test', fn);
       assemble.task('test2', fn2);

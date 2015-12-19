@@ -10,16 +10,16 @@
 var path = require('path');
 var should = require('should');
 var rimraf = require('rimraf');
+var app;
 
 var assemble = require('..');
 var actual = __dirname + '/render-actual';
 
 describe('assemble render', function () {
-  var site = null;
 
   describe('assemble.render()', function () {
     beforeEach(function (done) {
-      site = assemble.init();
+      app = assemble.init();
       rimraf(actual, done);
     });
 
@@ -28,14 +28,14 @@ describe('assemble render', function () {
     });
 
     it('should render a file', function (done) {
-      site.option('layout', 'default');
-      site.option('renameKey', function (key) {
+      app.option('layout', 'default');
+      app.option('renameKey', function (key) {
         return path.basename(key, path.extname(key));
       });
 
-      site.partials(['test/fixtures/includes/*.hbs']);
-      site.layouts(['test/fixtures/layouts/*.hbs']);
-      site.data({
+      app.partials(['test/fixtures/includes/*.hbs']);
+      app.layouts(['test/fixtures/layouts/*.hbs']);
+      app.data({
         posts: [
           { author: 'Brian Woodward', timestamp: '2014-11-01', summary: 'This is just a summary. First', content: 'Here\'s the real content. One' },
           { author: 'Brian Woodward', timestamp: '2014-11-02', summary: 'This is just a summary. Second', content: 'Here\'s the real content. Two' },
@@ -45,16 +45,20 @@ describe('assemble render', function () {
         ]
       });
 
-      site.src('test/fixtures/pages/*.hbs')
-        .pipe(site.dest(actual))
+      var i = 0;
+      app.src('test/fixtures/pages/*.hbs')
+        .pipe(app.dest(actual))
         .on('data', function (file) {
+          i++;
           file.options.layoutApplied.should.be.true;
           (file.path.indexOf('.html') > -1).should.be.true;
           (file.contents.toString().indexOf('doctype html') > -1).should.be.true;
         })
         .on('error', done)
-        .on('end', done);
-
+        .on('end', function () {
+          i.should.equal(1);
+          done();
+        });
     });
   });
 });

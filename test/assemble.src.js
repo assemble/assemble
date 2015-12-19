@@ -7,9 +7,9 @@
 
 'use strict';
 
-var assemble = require('..');
+var path = require('path');
 var should = require('should');
-var join = require('path').join;
+var assemble = require('..');
 
 describe('assemble input stream', function() {
   var site = null;
@@ -22,19 +22,19 @@ describe('assemble input stream', function() {
       });
 
       it('should return a stream', function (done) {
-        var stream = site.src(join(__dirname, './fixtures/*.coffee'));
+        var stream = site.src(path.join(__dirname, './fixtures/*.coffee'));
         should.exist(stream);
         should.exist(stream.on);
         done();
       });
       it('should return an input stream from a flat glob', function (done) {
-        var stream = site.src(join(__dirname, './fixtures/*.coffee'));
+        var stream = site.src(path.join(__dirname, './fixtures/*.coffee'));
         stream.on('error', done);
         stream.on('data', function (file) {
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          join(file.path, '').should.equal(join(__dirname, './fixtures/test.coffee'));
+          path.join(file.path, '').should.equal(path.join(__dirname, './fixtures/test.coffee'));
           String(file.contents).should.equal('this is a test');
         });
         stream.on('end', function () {
@@ -44,8 +44,8 @@ describe('assemble input stream', function() {
 
       it('should return an input stream for multiple globs', function (done) {
         var globArray = [
-          join(__dirname, './fixtures/generic/run.dmc'),
-          join(__dirname, './fixtures/generic/test.dmc')
+          path.join(__dirname, './fixtures/generic/run.dmc'),
+          path.join(__dirname, './fixtures/generic/test.dmc')
         ];
         var stream = site.src(globArray);
 
@@ -65,10 +65,10 @@ describe('assemble input stream', function() {
       });
 
       it('should return an input stream for multiple globs, with negation', function (done) {
-        var expectedPath = join(__dirname, './fixtures/generic/run.dmc');
+        var expectedPath = path.join(__dirname, './fixtures/generic/run.dmc');
         var globArray = [
-          join(__dirname, './fixtures/generic/*.dmc'),
-          '!' + join(__dirname, './fixtures/generic/test.dmc'),
+          path.join(__dirname, './fixtures/generic/*.dmc'),
+          '!' + path.join(__dirname, './fixtures/generic/test.dmc'),
         ];
         var stream = site.src(globArray);
 
@@ -87,20 +87,20 @@ describe('assemble input stream', function() {
       });
 
       it('should return an input stream with no contents when read is false', function (done) {
-        var stream = site.src(join(__dirname, './fixtures/*.coffee'), {read: false});
+        var stream = site.src(path.join(__dirname, './fixtures/*.coffee'), {read: false});
         stream.on('error', done);
         stream.on('data', function (file) {
           should.exist(file);
           should.exist(file.path);
           should.not.exist(file.contents);
-          join(file.path, '').should.equal(join(__dirname, './fixtures/test.coffee'));
+          path.join(file.path, '').should.equal(path.join(__dirname, './fixtures/test.coffee'));
         });
         stream.on('end', function () {
           done();
         });
       });
       it('should return an input stream with contents as stream when buffer is false', function (done) {
-        var stream = site.src(join(__dirname, './fixtures/*.coffee'), {buffer: false});
+        var stream = site.src(path.join(__dirname, './fixtures/*.coffee'), {buffer: false});
         stream.on('error', done);
         stream.on('data', function (file) {
           should.exist(file);
@@ -114,17 +114,17 @@ describe('assemble input stream', function() {
             buf.should.equal('this is a test');
             done();
           });
-          join(file.path, '').should.equal(join(__dirname, './fixtures/test.coffee'));
+          path.join(file.path, '').should.equal(path.join(__dirname, './fixtures/test.coffee'));
         });
       });
       it('should return an input stream from a deep glob', function (done) {
-        var stream = site.src(join(__dirname, './fixtures/**/*.jade'));
+        var stream = site.src(path.join(__dirname, './fixtures/**/*.jade'));
         stream.on('error', done);
         stream.on('data', function (file) {
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          join(file.path, '').should.equal(join(__dirname, './fixtures/test/run.jade'));
+          path.join(file.path, '').should.equal('test/fixtures/test/run.jade');
           String(file.contents).should.equal('test template');
         });
         stream.on('end', function () {
@@ -132,7 +132,7 @@ describe('assemble input stream', function() {
         });
       });
       it('should return an input stream from a deeper glob', function (done) {
-        var stream = site.src(join(__dirname, './fixtures/**/*.dmc'));
+        var stream = site.src(path.join(__dirname, './fixtures/**/*.dmc'));
         var a = 0;
         stream.on('error', done);
         stream.on('data', function () {
@@ -146,14 +146,14 @@ describe('assemble input stream', function() {
 
       it('should return a file stream from a flat path', function (done) {
         var a = 0;
-        var stream = site.src(join(__dirname, './fixtures/test.coffee'));
+        var stream = site.src(path.join(__dirname, './fixtures/test.coffee'));
         stream.on('error', done);
         stream.on('data', function (file) {
           ++a;
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          join(file.path, '').should.equal(join(__dirname, './fixtures/test.coffee'));
+          path.join(file.path, '').should.equal(path.resolve(__dirname, './fixtures/test.coffee'));
           String(file.contents).should.equal('this is a test');
         });
         stream.on('end', function () {
@@ -164,25 +164,24 @@ describe('assemble input stream', function() {
     });
 
     describe('minimal config - disabled', function () {
-
       beforeEach(function () {
         site = assemble.init();
       });
 
       it('should return a stream', function (done) {
-        var stream = site.src(join(__dirname, './fixtures/*.coffee'));
+        var stream = site.src(path.join(__dirname, './fixtures/*.coffee'));
         should.exist(stream);
         should.exist(stream.on);
         done();
       });
       it('should return an input stream from a flat glob', function (done) {
-        var stream = site.src(join(__dirname, './fixtures/*.coffee'));
+        var stream = site.src(path.join(__dirname, './fixtures/*.coffee'));
         stream.on('error', done);
         stream.on('data', function (file) {
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          join(file.path, '').should.equal(join(__dirname, './fixtures/test.coffee'));
+          path.join(file.path, '').should.equal(path.resolve('test/fixtures/test.coffee'));
           String(file.contents).should.equal('this is a test');
         });
         stream.on('end', function () {
@@ -192,8 +191,8 @@ describe('assemble input stream', function() {
 
       it('should return an input stream for multiple globs', function (done) {
         var globArray = [
-          join(__dirname, './fixtures/generic/run.dmc'),
-          join(__dirname, './fixtures/generic/test.dmc')
+          path.join(__dirname, './fixtures/generic/run.dmc'),
+          path.join(__dirname, './fixtures/generic/test.dmc')
         ];
         var stream = site.src(globArray);
 
@@ -206,17 +205,16 @@ describe('assemble input stream', function() {
         });
         stream.on('end', function () {
           files.length.should.equal(2);
-          files[0].path.should.equal(globArray[0]);
-          files[1].path.should.equal(globArray[1]);
+          files[0].path.should.equal(path.resolve('test/fixtures/generic/run.dmc'));
+          files[1].path.should.equal(path.resolve('test/fixtures/generic/test.dmc'));
           done();
         });
       });
 
       it('should return an input stream for multiple globs, with negation', function (done) {
-        var expectedPath = join(__dirname, './fixtures/generic/run.dmc');
         var globArray = [
-          join(__dirname, './fixtures/generic/*.dmc'),
-          '!' + join(__dirname, './fixtures/generic/test.dmc'),
+          path.join(__dirname, './fixtures/generic/*.dmc'),
+          '!' + path.join(__dirname, './fixtures/generic/test.dmc'),
         ];
         var stream = site.src(globArray);
 
@@ -229,19 +227,21 @@ describe('assemble input stream', function() {
         });
         stream.on('end', function () {
           files.length.should.equal(1);
-          files[0].path.should.equal(expectedPath);
+          files[0].path.should.equal(path.resolve('test/fixtures/generic/run.dmc'));
           done();
         });
       });
 
       it('should return an input stream with no contents when read is false', function (done) {
-        var stream = site.src(join(__dirname, './fixtures/*.coffee'), {read: false});
+        site.option({read: false});
+
+        var stream = site.src(path.join(__dirname, './fixtures/*.coffee'), {read: false});
         stream.on('error', done);
         stream.on('data', function (file) {
           should.exist(file);
           should.exist(file.path);
           should.not.exist(file.contents);
-          join(file.path, '').should.equal(join(__dirname, './fixtures/test.coffee'));
+          path.join(file.path, '').should.equal(path.resolve('test/fixtures/test.coffee'));
         });
         stream.on('end', function () {
           done();
@@ -249,7 +249,7 @@ describe('assemble input stream', function() {
       });
 
       it.skip('should return a throw an error when buffer is false', function (done) {
-        var stream = site.src(join(__dirname, './fixtures/*.coffee'), {buffer: false});
+        var stream = site.src(path.join(__dirname, './fixtures/*.coffee'), {buffer: false});
         stream.on('error', function () {
           done();
         });
@@ -259,13 +259,13 @@ describe('assemble input stream', function() {
       });
 
       it('should return an input stream from a deep glob', function (done) {
-        var stream = site.src(join(__dirname, './fixtures/**/*.jade'));
+        var stream = site.src(path.join(__dirname, './fixtures/**/*.jade'));
         stream.on('error', done);
         stream.on('data', function (file) {
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          join(file.path, '').should.equal(join(__dirname, './fixtures/test/run.jade'));
+          path.join(file.path, '').should.equal('test/fixtures/test/run.jade');
           String(file.contents).should.equal('test template');
         });
         stream.on('end', function () {
@@ -273,7 +273,7 @@ describe('assemble input stream', function() {
         });
       });
       it('should return an input stream from a deeper glob', function (done) {
-        var stream = site.src(join(__dirname, './fixtures/**/*.dmc'));
+        var stream = site.src(path.join(__dirname, './fixtures/**/*.dmc'));
         var a = 0;
         stream.on('error', done);
         stream.on('data', function () {
@@ -287,14 +287,14 @@ describe('assemble input stream', function() {
 
       it('should return a file stream from a flat path', function (done) {
         var a = 0;
-        var stream = site.src(join(__dirname, './fixtures/test.coffee'));
+        var stream = site.src(path.join(__dirname, './fixtures/test.coffee'));
         stream.on('error', done);
         stream.on('data', function (file) {
           ++a;
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          join(file.path, '').should.equal(join(__dirname, './fixtures/test.coffee'));
+          path.join(file.path, '').should.equal(path.resolve('test/fixtures/test.coffee'));
           String(file.contents).should.equal('this is a test');
         });
         stream.on('end', function () {

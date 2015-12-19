@@ -1,3 +1,5 @@
+var path = require('path');
+var relative = require('relative');
 var istanbul = require('gulp-istanbul');
 var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
@@ -21,7 +23,7 @@ verb.helper('resolve', function (name) {
 
 verb.task('readme', function () {
   verb.src('.verb.md')
-    .pipe(verb.dest('./'));
+    .pipe(verb.dest('.'));
 });
 
 verb.task('apidocs', function () {
@@ -30,20 +32,23 @@ verb.task('apidocs', function () {
 });
 
 verb.task('lint', function() {
-  /* deps:jshint-stylish */
+  /* deps: jshint-stylish */
   verb.src(['index.js', 'lib/**/*.js', 'test/*.js'])
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
 verb.task('test', function (cb) {
-  verb.src(['index.js', 'lib/**/*.js', 'bin/*.js'])
+  verb.src(['index.js', 'lib/**/*.js'])
     .pipe(istanbul())
     .pipe(istanbul.hookRequire())
     .on('finish', function () {
       verb.src('test/*.js')
         .pipe(mocha())
-        .pipe(istanbul.writeReports())
+        .pipe(istanbul.writeReports({
+          reporters: [ 'text-summary' ],
+          reportOpts: {dir: 'coverage', file: 'summary.txt'}
+        }))
         .on('end', cb);
     });
 });
