@@ -1,0 +1,69 @@
+# ==================================================
+# ASSEMBLE DEFAULTS:
+# ==================================================
+
+# Drop an `.assemble.yml` file into your own project
+# to customize these settings.
+
+
+# Destination
+dest:         _gh_pages
+assets:       '${dest}/assets'
+
+
+# ===========================================
+# SETTINGS
+# ===========================================
+
+# Variables
+flatten:      true
+engine:       handlebars
+ext:          .html
+
+
+# ===========================================
+# METADATA
+# ===========================================
+
+# Data
+data:         ['data/*.{json,yml}']
+plasma:
+
+
+# ===========================================
+# TEMPLATES
+# ===========================================
+
+# Base directory for templates
+templates:    templates
+
+# Layouts
+layoutdir:    '${templates}/layouts'        # layout directory
+layouts:      ['${layoutdir}/*.hbs']        # glob pattern of layouts to search
+layout:       default                       # default "master" layout to use
+layoutext:    .hbs                          # default extension to use
+
+# Pages
+pages:        ['${templates}/pages/*.hbs']  # default directory for "pages"
+
+# Includes
+partials:     ['${templates}/{partials,includes}/*.hbs']
+
+
+# ===========================================
+# EXTENSIONS
+# ===========================================
+
+# Base directory for extensions
+extensions:   templates
+
+# Plugins are run by each task in the assemblefile.js
+plugins:      ['${extensions}/plugins/*.js']
+
+# Helpers are used in templates. If your template engine of choice uses `tags`
+# and/or `filters`, use those options instead of `helpers`.
+helpers:      ['${extensions}/helpers/*.js', 'handlebars-helper-*']
+
+# Mixins are functions, just like helpers, but they can be used on config data,
+# and they are loaded before any tasks run
+mixins:       ['${extensions}/mixins/*.js']
