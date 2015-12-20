@@ -6,16 +6,16 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('set', function () {
-  beforeEach(function () {
+describe('set', function() {
+  beforeEach(function() {
     app = new App();
     app.create('page');
     app.engine('tmpl', require('engine-base'));
   });
 
-  it('should set a property on a view:', function (done) {
+  it('should set a property on a view:', function(done) {
     app.page('abc', {path: 'test/fixtures/templates/a.tmpl'})
-      .set('read', function () {
+      .set('read', function() {
         this.contents = fs.readFileSync(this.path);
         return this;
       });
@@ -24,7 +24,7 @@ describe('set', function () {
     app.views.pages.abc
       .read()
       .set('data.name', 'Brooke')
-      .render(function (err, res) {
+      .render(function(err, res) {
         if (err) return done(err);
 
         assert(res.content === 'Brooke');

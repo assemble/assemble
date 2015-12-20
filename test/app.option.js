@@ -5,17 +5,17 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('app.option', function () {
-  beforeEach(function () {
+describe('app.option', function() {
+  beforeEach(function() {
     app = new App();
   });
 
-  it('should set a key-value pair on options:', function () {
+  it('should set a key-value pair on options:', function() {
     app.option('a', 'b');
     assert(app.options.a === 'b');
   });
 
-  it('should set an object on options:', function () {
+  it('should set an object on options:', function() {
     app.option({c: 'd'});
     assert(app.options.c === 'd');
   });

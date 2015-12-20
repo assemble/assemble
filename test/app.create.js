@@ -7,33 +7,33 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('create', function () {
-  describe('inflections', function () {
-    beforeEach(function () {
+describe('create', function() {
+  describe('inflections', function() {
+    beforeEach(function() {
       app = new App();
     });
 
-    it('should expose the create method', function () {
+    it('should expose the create method', function() {
       assert(typeof app.create === 'function');
     });
 
-    it('should add a collection to `views`', function () {
+    it('should add a collection to `views`', function() {
       app.create('pages');
       assert(typeof app.views.pages === 'object');
       assert(typeof app.pages === 'function');
     });
 
-    it('should add a pluralized collection to `views`', function () {
+    it('should add a pluralized collection to `views`', function() {
       app.create('page');
       assert(typeof app.views.pages === 'object');
       assert(typeof app.page === 'function');
     });
   });
 
-  describe('custom constructors', function () {
-    beforeEach(function () {
+  describe('custom constructors', function() {
+    beforeEach(function() {
       var Vinyl = require('vinyl');
-      Vinyl.prototype.custom = function (key) {
+      Vinyl.prototype.custom = function(key) {
         this[key] = 'nonsense';
         return this;
       };
@@ -41,7 +41,7 @@ describe('create', function () {
       app.create('pages');
     });
 
-    it('should create views from key-value pairs:', function () {
+    it('should create views from key-value pairs:', function() {
       app.page('a.hbs', {path: 'a.hbs', content: 'a'});
       app.page('b.hbs', {path: 'b.hbs', content: 'b'});
       app.page('c.hbs', {path: 'c.hbs', content: 'c'});
@@ -51,10 +51,10 @@ describe('create', function () {
     });
   });
 
-  describe('custom instances', function () {
-    it('should create views from custom `View` and `Views` instance/ctor:', function () {
+  describe('custom instances', function() {
+    it('should create views from custom `View` and `Views` instance/ctor:', function() {
       var Vinyl = require('vinyl');
-      Vinyl.prototype.read = function (file) {
+      Vinyl.prototype.read = function(file) {
         return fs.readFileSync(file.path);
       };
 
@@ -80,14 +80,14 @@ describe('create', function () {
     });
   });
 
-  describe('chaining', function () {
-    beforeEach(function () {
+  describe('chaining', function() {
+    beforeEach(function() {
       app = new App();
       app.engine('tmpl', require('engine-base'));
       app.create('page');
     });
 
-    it('should create views from key-value pairs:', function () {
+    it('should create views from key-value pairs:', function() {
       app.page('a.hbs', {content: 'a'});
       app.page('b.hbs', {content: 'b'});
       app.page('c.hbs', {content: 'c'});
@@ -95,7 +95,7 @@ describe('create', function () {
       assert(app.views.pages['a.hbs'].contents.toString() === 'a');
     });
 
-    it('should create views from file paths:', function () {
+    it('should create views from file paths:', function() {
       app.page('test/fixtures/pages/a.hbs');
       app.page('test/fixtures/pages/b.hbs');
       app.page('test/fixtures/pages/c.hbs');
@@ -109,22 +109,22 @@ describe('create', function () {
   });
 
 
-  describe('instance', function () {
-    beforeEach(function () {
+  describe('instance', function() {
+    beforeEach(function() {
       app = new App();
       app.engine('tmpl', require('engine-base'));
     });
 
-    it('should return the collection instance', function () {
+    it('should return the collection instance', function() {
       var collection = app.create('pages');
       assert(collection instanceof App.Views);
 
-      collection.option('renameKey', function (key) {
+      collection.option('renameKey', function(key) {
         return path.basename(key);
       });
       collection
-        .use(function (views) {
-          views.read = function (name) {
+        .use(function(views) {
+          views.read = function(name) {
             var view = this.getView(name);
             if (!view.contents) {
               view.contents = fs.readFileSync(view.path);
@@ -138,31 +138,31 @@ describe('create', function () {
     });
   });
 
-  describe('viewType', function () {
-    beforeEach(function () {
+  describe('viewType', function() {
+    beforeEach(function() {
       app = new App();
       app.engine('tmpl', require('engine-base'));
     });
 
-    it('should add collection to the given viewType', function () {
+    it('should add collection to the given viewType', function() {
       app.create('layout', {viewType: 'layout'});
       assert(app.layouts.options.viewType[0] === 'layout');
     });
 
-    it('should add a collection to multiple viewTypes', function () {
+    it('should add a collection to multiple viewTypes', function() {
       app.create('foo', {viewType: ['layout', 'renderable']});
       assert.deepEqual(app.foos.options.viewType, ['layout', 'renderable']);
     });
   });
 
-  describe('events', function () {
-    beforeEach(function () {
+  describe('events', function() {
+    beforeEach(function() {
       app = new App();
       app.engine('tmpl', require('engine-base'));
     });
 
-    it('should emit `create` when a collection is created:', function () {
-      app.on('create', function (collection) {
+    it('should emit `create` when a collection is created:', function() {
+      app.on('create', function(collection) {
         if (collection.options.plural === 'layouts') {
           collection.options.foo = 'bar';
         }

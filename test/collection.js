@@ -12,28 +12,28 @@ var Item = App.Item;
 var Collection = App.Collection;
 var collection;
 
-describe('collection', function () {
-  describe('constructor', function () {
-    it('should create an instance of Collection', function () {
+describe('collection', function() {
+  describe('constructor', function() {
+    it('should create an instance of Collection', function() {
       var collection = new Collection();
       assert(collection instanceof Collection);
       assert(typeof collection === 'object');
     });
 
-    it('should instantiate without new', function () {
+    it('should instantiate without new', function() {
       var collection = Collection();
       assert(collection instanceof Collection);
       assert(typeof collection === 'object');
     });
   });
 
-  describe('static methods', function () {
-    it('should expose `extend`', function () {
-      assert(typeof Collection.extend ==='function');
+  describe('static methods', function() {
+    it('should expose `extend`', function() {
+      assert(typeof Collection.extend === 'function');
     });
   });
 
-  describe('prototype methods', function () {
+  describe('prototype methods', function() {
     beforeEach(function() {
       collection = new Collection();
     });
@@ -59,37 +59,37 @@ describe('collection', function () {
       'hasListeners'
     ];
 
-    methods.forEach(function (method) {
-      it('should expose ' + method + ' method', function () {
+    methods.forEach(function(method) {
+      it('should expose ' + method + ' method', function() {
         assert(typeof collection[method] === 'function');
       });
     });
 
-    it('should expose isCollection property', function () {
+    it('should expose isCollection property', function() {
       assert(typeof collection.isCollection === 'boolean');
     });
 
-    it('should expose queue property', function () {
+    it('should expose queue property', function() {
       assert(Array.isArray(collection.queue));
     });
 
-    it('should expose items property', function () {
+    it('should expose items property', function() {
       assert(typeOf(collection.items) === 'object');
     });
 
-    it('should expose options property', function () {
+    it('should expose options property', function() {
       assert(typeOf(collection.options) === 'object');
     });
   });
 });
 
-describe('methods', function () {
+describe('methods', function() {
   beforeEach(function() {
     collection = new Collection();
   });
 
-  describe('chaining', function () {
-    it('should allow collection methods to be chained', function () {
+  describe('chaining', function() {
+    it('should allow collection methods to be chained', function() {
       collection
         .addItems({'a.hbs': {path: 'a.hbs'}})
         .addItems({'b.hbs': {path: 'b.hbs'}})
@@ -103,20 +103,20 @@ describe('methods', function () {
     });
   });
 
-  describe('use', function () {
-    it('should expose the instance to plugins', function () {
+  describe('use', function() {
+    it('should expose the instance to plugins', function() {
       collection
-        .use(function (inst) {
+        .use(function(inst) {
           inst.foo = 'bar';
         });
 
       assert(collection.foo === 'bar');
     });
 
-    it('should expose `item` when the plugin returns a function', function () {
+    it('should expose `item` when the plugin returns a function', function() {
       collection
-        .use(function () {
-          return function (item) {
+        .use(function() {
+          return function(item) {
             item.foo = 'bar';
           };
         });
@@ -131,24 +131,24 @@ describe('methods', function () {
     });
   });
 
-  describe('get / set', function () {
-    it('should set a value on the instance', function () {
+  describe('get / set', function() {
+    it('should set a value on the instance', function() {
       collection.set('a', 'b');
-      assert(collection.a ==='b');
+      assert(collection.a === 'b');
     });
 
-    it('should get a value from the instance', function () {
+    it('should get a value from the instance', function() {
       collection.set('a', 'b');
-      assert(collection.get('a') ==='b');
+      assert(collection.get('a') === 'b');
     });
   });
 
-  describe('adding items', function () {
-    beforeEach(function () {
+  describe('adding items', function() {
+    beforeEach(function() {
       collection = new Collection();
     });
 
-    it('should load a item onto the respective collection', function () {
+    it('should load a item onto the respective collection', function() {
       collection.addItem('a.hbs');
       collection.items.should.have.property('a.hbs');
     });
@@ -159,7 +159,7 @@ describe('methods', function () {
       collection = new Collection();
     });
 
-    it('should return a single collection item from a key-value pair', function () {
+    it('should return a single collection item from a key-value pair', function() {
       var one = collection.item('one', {content: 'foo'});
       var two = collection.item('two', {content: 'bar'});
 
@@ -171,7 +171,7 @@ describe('methods', function () {
       assert(two.path === 'two');
     });
 
-    it('should return a single collection item from an object', function () {
+    it('should return a single collection item from an object', function() {
       var one = collection.item({path: 'one', content: 'foo'});
       var two = collection.item({path: 'two', content: 'bar'});
 
@@ -187,13 +187,13 @@ describe('methods', function () {
       collection = new Collection();
     });
 
-    it('should throw an error when args are invalid', function () {
-      (function () {
+    it('should throw an error when args are invalid', function() {
+      (function() {
         collection.addItem(function() {});
       }).should.throw('expected value to be an object.');
     });
 
-    it('should add a item to `items`', function () {
+    it('should add a item to `items`', function() {
       collection.addItem('foo');
       collection.items.should.have.property('foo');
 
@@ -202,12 +202,12 @@ describe('methods', function () {
       assert(isBuffer(collection.items.one.contents));
     });
 
-    it('should create an instance of `Item`', function () {
+    it('should create an instance of `Item`', function() {
       collection.addItem('one', {content: '...'});
       assert(collection.items.one instanceof collection.Item);
     });
 
-    it('should allow an `Item` constructor to be passed', function () {
+    it('should allow an `Item` constructor to be passed', function() {
       Item.prototype.foo = function(key, value) {
         this[key] = value;
       };
@@ -217,7 +217,7 @@ describe('methods', function () {
       assert(collection.items.one.bar === 'baz');
     });
 
-    it('should allow an instance of `Item` to be passed', function () {
+    it('should allow an instance of `Item` to be passed', function() {
       var collection = new Collection({Item: Item});
       var item = new Item({content: '...'});
       collection.addItem('one', item);
@@ -228,8 +228,8 @@ describe('methods', function () {
     });
   });
 
-  describe('addItems', function () {
-    it('should add multiple items', function () {
+  describe('addItems', function() {
+    it('should add multiple items', function() {
       collection.addItems({
         one: {content: 'foo'},
         two: {content: 'bar'}
@@ -238,7 +238,7 @@ describe('methods', function () {
       assert(isBuffer(collection.items.two.contents));
     });
 
-    it('should create items from an instance of Collection', function () {
+    it('should create items from an instance of Collection', function() {
       collection.addItems({
         one: {content: 'foo'},
         two: {content: 'bar'}
@@ -248,7 +248,7 @@ describe('methods', function () {
       assert(isBuffer(pages.items.two.contents));
     });
 
-    it('should add an array of plain-objects', function () {
+    it('should add an array of plain-objects', function() {
       collection.addItems([
         {path: 'one', content: 'foo'},
         {path: 'two', content: 'bar'}
@@ -257,7 +257,7 @@ describe('methods', function () {
       assert(isBuffer(collection.items.two.contents));
     });
 
-    it('should add an array of items', function () {
+    it('should add an array of items', function() {
       var list = new List([
         {path: 'one', content: 'foo'},
         {path: 'two', content: 'bar'}
@@ -274,7 +274,7 @@ describe('methods', function () {
       collection = new Collection();
     });
 
-    it('should add a list of items', function () {
+    it('should add a list of items', function() {
       collection.addList([
         {path: 'one', content: 'foo'},
         {path: 'two', content: 'bar'}
@@ -283,7 +283,7 @@ describe('methods', function () {
       assert(isBuffer(collection.items.two.contents));
     });
 
-    it('should add a list of items from the constructor', function () {
+    it('should add a list of items from the constructor', function() {
       var list = new List([
         {path: 'one', content: 'foo'},
         {path: 'two', content: 'bar'}
@@ -294,25 +294,25 @@ describe('methods', function () {
       assert(isBuffer(collection.items.two.contents));
     });
 
-    it('should throw an error when list is not an array', function () {
+    it('should throw an error when list is not an array', function() {
       var items = new Collection();
-      (function () {
+      (function() {
         items.addList();
       }).should.throw('expected list to be an array.');
 
-      (function () {
+      (function() {
         items.addList({});
       }).should.throw('expected list to be an array.');
 
-      (function () {
+      (function() {
         items.addList('foo');
       }).should.throw('expected list to be an array.');
     });
 
-    it('should load an array of items from an event', function () {
+    it('should load an array of items from an event', function() {
       var collection = new Collection();
 
-      collection.on('addList', function (list) {
+      collection.on('addList', function(list) {
         while (list.length) {
           collection.addItem({path: list.pop()});
         }
@@ -323,20 +323,20 @@ describe('methods', function () {
       assert(collection.items['a.txt'].path === 'a.txt');
     });
 
-    it('should load an array of items from the addList callback:', function () {
+    it('should load an array of items from the addList callback:', function() {
       var collection = new Collection();
 
-      collection.addList(['a.txt', 'b.txt', 'c.txt'], function (fp) {
+      collection.addList(['a.txt', 'b.txt', 'c.txt'], function(fp) {
         return {path: fp};
       });
       assert(collection.items.hasOwnProperty('a.txt'));
       assert(collection.items['a.txt'].path === 'a.txt');
     });
 
-    it('should load an object of items from an event', function () {
+    it('should load an object of items from an event', function() {
       var collection = new Collection();
 
-      collection.on('addItems', function (items) {
+      collection.on('addItems', function(items) {
         for (var key in items) {
           collection.addItem('foo/' + key, items[key]);
           delete items[key];
@@ -353,10 +353,10 @@ describe('methods', function () {
       assert(collection.items['foo/a'].path === 'a.txt');
     });
 
-    it('should signal `loaded` when finished (addItems)', function () {
+    it('should signal `loaded` when finished (addItems)', function() {
       var collection = new Collection();
 
-      collection.on('addItems', function (items) {
+      collection.on('addItems', function(items) {
         for (var key in items) {
           if (key === 'c') {
             collection.loaded = true;
@@ -377,10 +377,10 @@ describe('methods', function () {
       assert(collection.items['foo/a'].path === 'a.txt');
     });
 
-    it('should signal `loaded` when finished (addList)', function () {
+    it('should signal `loaded` when finished (addList)', function() {
       var collection = new Collection();
 
-      collection.on('addList', function (items) {
+      collection.on('addList', function(items) {
         for (var i = 0; i < items.length; i++) {
           var item = items[i];
           if (item.key === 'c') {
@@ -408,7 +408,7 @@ describe('methods', function () {
     beforeEach(function() {
       collection = new Collection();
     });
-    it('should get a item from `items`', function () {
+    it('should get a item from `items`', function() {
       collection.addItem('one', {content: 'aaa'});
       collection.addItem('two', {content: 'zzz'});
       assert(isBuffer(collection.items.one.contents));
@@ -419,13 +419,13 @@ describe('methods', function () {
   });
 });
 
-describe('queue', function () {
-  beforeEach(function () {
+describe('queue', function() {
+  beforeEach(function() {
     collection = new Collection();
   });
 
-  it('should emit arguments on addItem', function (done) {
-    collection.on('addItem', function (args) {
+  it('should emit arguments on addItem', function(done) {
+    collection.on('addItem', function(args) {
       assert(args[0] === 'a');
       assert(args[1] === 'b');
       assert(args[2] === 'c');
@@ -437,7 +437,7 @@ describe('queue', function () {
     collection.addItem('a', 'b', 'c', 'd', 'e');
   });
 
-  it('should expose the `queue` property for loading items', function () {
+  it('should expose the `queue` property for loading items', function() {
     collection.queue.push(collection.item('b', {path: 'b'}));
 
     collection.addItem('a', {path: 'a'});
@@ -445,8 +445,8 @@ describe('queue', function () {
     assert(collection.items.hasOwnProperty('b'));
   });
 
-  it('should load all items on the queue when addItem is called', function () {
-    collection.on('addItem', function (args) {
+  it('should load all items on the queue when addItem is called', function() {
+    collection.on('addItem', function(args) {
       var len = args.length;
       var last = args[len - 1];
       if (typeof last === 'string') {
@@ -473,12 +473,12 @@ describe('options', function() {
       collection = new Collection();
     });
 
-    it('should expose the `option` method', function () {
+    it('should expose the `option` method', function() {
       collection.option('foo', 'bar');
       collection.options.should.have.property('foo', 'bar');
     });
 
-    it('should be chainable', function () {
+    it('should be chainable', function() {
       collection.option('foo', 'bar')
         .addItems('a.hbs')
         .addItems('b.hbs')
@@ -492,17 +492,17 @@ describe('options', function() {
       ]);
     });
 
-    it('should set a key/value pair on options', function () {
+    it('should set a key/value pair on options', function() {
       collection.option('a', 'b');
       assert(collection.options.a === 'b');
     });
 
-    it('should set an object on options', function () {
+    it('should set an object on options', function() {
       collection.option({c: 'd'});
       assert(collection.options.c === 'd');
     });
 
-    it('should get an option', function () {
+    it('should get an option', function() {
       collection.option({c: 'd'});
       var c = collection.option('c');
       assert(c === 'd');
@@ -512,7 +512,7 @@ describe('options', function() {
   describe('options.renameKey', function() {
     beforeEach(function() {
       collection = new Collection({
-        renameKey: function (key) {
+        renameKey: function(key) {
           return path.basename(key);
         }
       });
@@ -523,12 +523,12 @@ describe('options', function() {
       assert(collection.items['d.hbs'].contents.toString() === 'foo bar baz');
     });
 
-    it('should get a item with the renamed key', function () {
+    it('should get a item with the renamed key', function() {
       collection.addItem('a/b/c/d.hbs', {content: 'foo bar baz'});
       assert(collection.getItem('d.hbs').contents.toString() === 'foo bar baz');
     });
 
-    it('should get a item with the original key', function () {
+    it('should get a item with the original key', function() {
       collection.addItem('a/b/c/d.hbs', {content: 'foo bar baz'});
       assert(collection.getItem('a/b/c/d.hbs').contents.toString() === 'foo bar baz');
     });

@@ -7,33 +7,33 @@ var List = App.List;
 var Item = App.Item;
 var list;
 
-describe('list.use', function () {
-  beforeEach(function () {
+describe('list.use', function() {
+  beforeEach(function() {
     list = new List();
   });
 
-  it('should expose the instance to `use`:', function (done) {
-    list.use(function (inst) {
+  it('should expose the instance to `use`:', function(done) {
+    list.use(function(inst) {
       assert(inst instanceof List);
       done();
     });
   });
 
-  it('should be chainable:', function (done) {
-    list.use(function (inst) {
+  it('should be chainable:', function(done) {
+    list.use(function(inst) {
+      assert(inst instanceof List);
+    })
+      .use(function(inst) {
         assert(inst instanceof List);
       })
-      .use(function (inst) {
-        assert(inst instanceof List);
-      })
-      .use(function (inst) {
+      .use(function(inst) {
         assert(inst instanceof List);
         done();
       });
   });
 
-  it('should expose the list to a plugin:', function () {
-    list.use(function (items) {
+  it('should expose the list to a plugin:', function() {
+    list.use(function(items) {
       assert(items instanceof List);
       items.foo = items.addItem.bind(items);
     });
@@ -42,17 +42,17 @@ describe('list.use', function () {
     assert(list.hasItem('a'));
   });
 
-  it('should expose list when chained:', function () {
+  it('should expose list when chained:', function() {
     list
-      .use(function (items) {
+      .use(function(items) {
         assert(items instanceof List);
         items.foo = items.addItem.bind(items);
       })
-      .use(function (items) {
+      .use(function(items) {
         assert(items instanceof List);
         items.bar = items.addItem.bind(items);
       })
-      .use(function (items) {
+      .use(function(items) {
         assert(items instanceof List);
         items.baz = items.addItem.bind(items);
       });
@@ -68,18 +68,18 @@ describe('list.use', function () {
     assert(list.hasItem('c'));
   });
 
-  it('should work when a custom `Item` constructor is passed:', function () {
+  it('should work when a custom `Item` constructor is passed:', function() {
     list = new List({Item: require('vinyl')});
     list
-      .use(function (items) {
+      .use(function(items) {
         assert(items instanceof List);
         items.foo = items.addItem.bind(items);
       })
-      .use(function (items) {
+      .use(function(items) {
         assert(items instanceof List);
         items.bar = items.addItem.bind(items);
       })
-      .use(function (items) {
+      .use(function(items) {
         assert(items instanceof List);
         items.baz = items.addItem.bind(items);
       });
@@ -95,11 +95,11 @@ describe('list.use', function () {
     assert(list.hasItem('c'));
   });
 
-  it('should pass to item `use` if a function is returned:', function () {
-    list.use(function (items) {
+  it('should pass to item `use` if a function is returned:', function() {
+    list.use(function(items) {
       assert(items instanceof List);
 
-      return function (item) {
+      return function(item) {
         item.foo = items.addItem.bind(items);
         assert(item.isItem || item.isView);
       };
@@ -116,28 +116,28 @@ describe('list.use', function () {
     assert(list.hasItem('d'));
   });
 
-  it('should be chainable when a item function is returned:', function () {
+  it('should be chainable when a item function is returned:', function() {
     list
-      .use(function (items) {
+      .use(function(items) {
         assert(items instanceof List);
 
-        return function (item) {
+        return function(item) {
           item.foo = items.addItem.bind(items);
           assert(item instanceof Item);
         };
       })
-      .use(function (items) {
+      .use(function(items) {
         assert(items instanceof List);
 
-        return function (item) {
+        return function(item) {
           item.bar = items.addItem.bind(items);
           assert(item instanceof Item);
         };
       })
-      .use(function (items) {
+      .use(function(items) {
         assert(items instanceof List);
 
-        return function (item) {
+        return function(item) {
           item.baz = items.addItem.bind(items);
           assert(item instanceof Item);
         };

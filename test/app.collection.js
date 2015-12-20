@@ -9,37 +9,37 @@ var App = support.resolve();
 var Collection = App.Collection;
 var app;
 
-describe('collection', function () {
-  describe('method', function () {
-    beforeEach(function () {
+describe('collection', function() {
+  describe('method', function() {
+    beforeEach(function() {
       app = new App();
     });
 
-    it('should expose the collection method', function () {
+    it('should expose the collection method', function() {
       assert(typeof app.collection === 'function');
     });
 
-    it('should return a new collection', function () {
+    it('should return a new collection', function() {
       var collection = app.collection();
       assert(typeof collection === 'object');
     });
 
-    it('should have isCollection property', function () {
+    it('should have isCollection property', function() {
       var collection = app.collection();
       assert(collection.isCollection === true);
     });
   });
 
-  describe('adding views', function () {
-    beforeEach(function () {
+  describe('adding views', function() {
+    beforeEach(function() {
       app = new App()
-        .use(function () {
-          return function () {
+        .use(function() {
+          return function() {
             define(this, 'count', {
               get: function() {
                 return Object.keys(this.views).length;
               },
-              set: function () {
+              set: function() {
                 throw new Error('count is a read-only getter and cannot be defined.');
               }
             });
@@ -50,12 +50,12 @@ describe('collection', function () {
       app.create('pages');
     });
 
-    it('should load a view onto the respective collection:', function () {
+    it('should load a view onto the respective collection:', function() {
       app.pages('test/fixtures/pages/a.hbs');
       app.views.pages.should.have.property(path.resolve('test/fixtures/pages/a.hbs'));
     });
 
-    it('should allow collection methods to be chained:', function () {
+    it('should allow collection methods to be chained:', function() {
       app
         .pages('test/fixtures/pages/a.hbs')
         .pages('test/fixtures/pages/b.hbs')
@@ -68,7 +68,7 @@ describe('collection', function () {
       ]);
     });
 
-    it('should expose the `option` method:', function () {
+    it('should expose the `option` method:', function() {
       app.pages.option('foo', 'bar')
         .pages('test/fixtures/pages/a.hbs')
         .pages('test/fixtures/pages/b.hbs')
@@ -83,7 +83,7 @@ describe('collection', function () {
       ]);
     });
 
-    it('should expose the `option` method:', function () {
+    it('should expose the `option` method:', function() {
       app.pages.option('foo', 'bar')
         .pages('test/fixtures/pages/a.hbs')
         .pages('test/fixtures/pages/b.hbs')
@@ -93,12 +93,12 @@ describe('collection', function () {
     });
   });
 
-  describe('addItem', function () {
-    beforeEach(function () {
+  describe('addItem', function() {
+    beforeEach(function() {
       app = new App();
     });
 
-    it('should add items to a collection', function () {
+    it('should add items to a collection', function() {
       var pages = app.collection({Collection: Collection});
       pages.addItem('foo');
       pages.addItem('bar');
@@ -109,7 +109,7 @@ describe('collection', function () {
       pages.items.hasOwnProperty('baz');
     });
 
-    it('should create a collection from an existing collection:', function () {
+    it('should create a collection from an existing collection:', function() {
       var pages = app.collection({Collection: Collection});
       pages.addItem('foo');
       pages.addItem('bar');
@@ -122,17 +122,17 @@ describe('collection', function () {
     });
   });
 
-  describe('rendering views', function () {
-    beforeEach(function () {
+  describe('rendering views', function() {
+    beforeEach(function() {
       app = new App();
       app.engine('tmpl', require('engine-base'));
       app.create('pages');
     });
 
-    it('should render a view with inherited app.render', function (done) {
+    it('should render a view with inherited app.render', function(done) {
       app.page('test/fixtures/templates/a.tmpl')
         .set('data.name', 'Brian')
-        .render(function (err, res) {
+        .render(function(err, res) {
           if (err) return done(err);
           assert(res.contents.toString() === 'Brian');
           done();
@@ -141,31 +141,31 @@ describe('collection', function () {
   });
 });
 
-describe('collection singular method', function () {
-  describe('create', function () {
-    beforeEach(function () {
+describe('collection singular method', function() {
+  describe('create', function() {
+    beforeEach(function() {
       app = new App();
     });
 
-    it('should add a pluralized collection from singular name', function () {
+    it('should add a pluralized collection from singular name', function() {
       app.create('page');
       assert(typeof app.views.pages === 'object');
     });
   });
 
-  describe('adding views', function () {
-    beforeEach(function () {
+  describe('adding views', function() {
+    beforeEach(function() {
       app = new App();
       app.engine('tmpl', require('engine-base'));
       app.create('page');
     });
 
-    it('should add a view to the created collection:', function () {
+    it('should add a view to the created collection:', function() {
       app.page('test/fixtures/pages/a.hbs');
       assert(typeof app.views.pages[path.resolve('test/fixtures/pages/a.hbs')] === 'object');
     });
 
-    it('should expose the `option` method:', function () {
+    it('should expose the `option` method:', function() {
       app.pages.option('foo', 'bar');
       app.pages.options.should.have.property('foo', 'bar');
     });

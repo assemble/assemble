@@ -6,35 +6,35 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('app.data', function () {
-  beforeEach(function () {
+describe('app.data', function() {
+  beforeEach(function() {
     app = new App();
   });
 
-  it('should set a key-value pair on cache.data:', function () {
+  it('should set a key-value pair on cache.data:', function() {
     app.data('a', 'b');
     assert(app.cache.data.a === 'b');
   });
 
-  it('should set an object on cache.data:', function () {
+  it('should set an object on cache.data:', function() {
     app.data({c: 'd'});
     assert(app.cache.data.c === 'd');
   });
 
-  it('should load data from a file onto cache.data:', function () {
+  it('should load data from a file onto cache.data:', function() {
     app.data('test/fixtures/data/a.json');
     assert(app.cache.data.a.one.a === 'aaa');
   });
 
-  it('should load a glob of data onto cache.data:', function () {
+  it('should load a glob of data onto cache.data:', function() {
     app.data('test/fixtures/data/*.json');
     assert(app.cache.data.a.one.a === 'aaa');
     assert(app.cache.data.b.two.b === 'bbb');
     assert(app.cache.data.c.three.c === 'ccc');
   });
 
-  it('should use `namespace` defined on global opts:', function () {
-    app.option('namespace', function (key) {
+  it('should use `namespace` defined on global opts:', function() {
+    app.option('namespace', function(key) {
       return 'prefix_' + path.basename(key, path.extname(key));
     });
     app.data('test/fixtures/data/*.json');
@@ -43,9 +43,9 @@ describe('app.data', function () {
     assert(app.cache.data.prefix_c.three.c === 'ccc');
   });
 
-  it('should use `namespace` defined on data opts:', function () {
+  it('should use `namespace` defined on data opts:', function() {
     app.data('test/fixtures/data/*.json', {
-      namespace: function (key) {
+      namespace: function(key) {
         return 'prefix_' + path.basename(key, path.extname(key));
       }
     });
@@ -54,9 +54,9 @@ describe('app.data', function () {
     assert(app.cache.data.prefix_c.three.c === 'ccc');
   });
 
-  it('should use `renameKey` defined on data opts:', function () {
+  it('should use `renameKey` defined on data opts:', function() {
     app.data('test/fixtures/data/*.json', {
-      renameKey: function (key) {
+      renameKey: function(key) {
         return 'prefix_' + path.basename(key, path.extname(key));
       }
     });

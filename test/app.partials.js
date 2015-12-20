@@ -4,13 +4,13 @@ var assert = require('assert');
 var assemble = require('..');
 var app;
 
-describe('.partials()', function () {
+describe('.partials()', function() {
   beforeEach(function() {
     app = assemble();
   });
 
-  describe('add partials', function () {
-    it('should add partials to `app.views.partials`:', function () {
+  describe('add partials', function() {
+    it('should add partials to `app.views.partials`:', function() {
       app.partials({
         'a.hbs': {path: 'a.hbs', contents: new Buffer('a')},
         'b.hbs': {path: 'b.hbs', contents: new Buffer('b')},

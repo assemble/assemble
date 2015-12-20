@@ -7,33 +7,33 @@ var Collection = App.Collection;
 var Item = App.Item;
 var collection;
 
-describe('collection.use', function () {
-  beforeEach(function () {
+describe('collection.use', function() {
+  beforeEach(function() {
     collection = new Collection();
   });
 
-  it('should expose the instance to `use`:', function (done) {
-    collection.use(function (inst) {
+  it('should expose the instance to `use`:', function(done) {
+    collection.use(function(inst) {
       assert(inst instanceof Collection);
       done();
     });
   });
 
-  it('should be chainable:', function (done) {
-    collection.use(function (inst) {
+  it('should be chainable:', function(done) {
+    collection.use(function(inst) {
+      assert(inst instanceof Collection);
+    })
+      .use(function(inst) {
         assert(inst instanceof Collection);
       })
-      .use(function (inst) {
-        assert(inst instanceof Collection);
-      })
-      .use(function (inst) {
+      .use(function(inst) {
         assert(inst instanceof Collection);
         done();
       });
   });
 
-  it('should expose the collection to a plugin:', function () {
-    collection.use(function (items) {
+  it('should expose the collection to a plugin:', function() {
+    collection.use(function(items) {
       assert(items instanceof Collection);
       items.foo = items.addItem.bind(items);
     });
@@ -42,17 +42,17 @@ describe('collection.use', function () {
     assert(collection.items.hasOwnProperty('a'));
   });
 
-  it('should expose collection when chained:', function () {
+  it('should expose collection when chained:', function() {
     collection
-      .use(function (items) {
+      .use(function(items) {
         assert(items instanceof Collection);
         items.foo = items.addItem.bind(items);
       })
-      .use(function (items) {
+      .use(function(items) {
         assert(items instanceof Collection);
         items.bar = items.addItem.bind(items);
       })
-      .use(function (items) {
+      .use(function(items) {
         assert(items instanceof Collection);
         items.baz = items.addItem.bind(items);
       });
@@ -68,18 +68,18 @@ describe('collection.use', function () {
     assert(collection.items.hasOwnProperty('c'));
   });
 
-  it('should work when a custom `Item` constructor is passed:', function () {
+  it('should work when a custom `Item` constructor is passed:', function() {
     collection = new Collection({Item: require('vinyl')});
     collection
-      .use(function (items) {
+      .use(function(items) {
         assert(items instanceof Collection);
         items.foo = items.addItem.bind(items);
       })
-      .use(function (items) {
+      .use(function(items) {
         assert(items instanceof Collection);
         items.bar = items.addItem.bind(items);
       })
-      .use(function (items) {
+      .use(function(items) {
         assert(items instanceof Collection);
         items.baz = items.addItem.bind(items);
       });
@@ -95,11 +95,11 @@ describe('collection.use', function () {
     assert(collection.items.hasOwnProperty('c'));
   });
 
-  it('should pass to item `use` if a function is returned:', function () {
-    collection.use(function (items) {
+  it('should pass to item `use` if a function is returned:', function() {
+    collection.use(function(items) {
       assert(items instanceof Collection);
 
-      return function (item) {
+      return function(item) {
         item.foo = items.addItem.bind(items);
         assert(item instanceof Item);
       };
@@ -116,28 +116,28 @@ describe('collection.use', function () {
     assert(collection.items.hasOwnProperty('d'));
   });
 
-  it('should be chainable when a item function is returned:', function () {
+  it('should be chainable when a item function is returned:', function() {
     collection
-      .use(function (items) {
+      .use(function(items) {
         assert(items instanceof Collection);
 
-        return function (item) {
+        return function(item) {
           item.foo = items.addItem.bind(items);
           assert(item instanceof Item);
         };
       })
-      .use(function (items) {
+      .use(function(items) {
         assert(items instanceof Collection);
 
-        return function (item) {
+        return function(item) {
           item.bar = items.addItem.bind(items);
           assert(item instanceof Item);
         };
       })
-      .use(function (items) {
+      .use(function(items) {
         assert(items instanceof Collection);
 
-        return function (item) {
+        return function(item) {
           item.baz = items.addItem.bind(items);
           assert(item instanceof Item);
         };

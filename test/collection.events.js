@@ -3,17 +3,17 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('collection events', function () {
-  beforeEach(function () {
+describe('collection events', function() {
+  beforeEach(function() {
     app = new App();
     app.create('page');
   });
 
-  it('should emit events:', function () {
+  it('should emit events:', function() {
     app.pages('a.tmpl', {path: 'a.tmpl', content: '<%= a %>'});
     var events = [];
 
-    app.pages.on('option', function (key) {
+    app.pages.on('option', function(key) {
       events.push(key);
     });
 

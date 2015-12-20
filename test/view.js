@@ -10,102 +10,102 @@ var App = support.resolve();
 var View = App.View;
 var view;
 
-describe('View', function () {
-  describe('instance', function () {
-    it('should create an instance of View:', function () {
+describe('View', function() {
+  describe('instance', function() {
+    it('should create an instance of View:', function() {
       view = new View();
       assert(view instanceof View);
     });
   });
 
-  describe('static methods', function () {
-    it('should expose `extend`:', function () {
+  describe('static methods', function() {
+    it('should expose `extend`:', function() {
       assert(typeof View.extend === 'function');
     });
   });
 
-  describe('prototype methods', function () {
-    beforeEach(function () {
+  describe('prototype methods', function() {
+    beforeEach(function() {
       view = new View();
     });
 
-    it('should expose `set`:', function () {
+    it('should expose `set`:', function() {
       assert(typeof view.set === 'function');
     });
-    it('should expose `get`:', function () {
+    it('should expose `get`:', function() {
       assert(typeof view.get === 'function');
     });
-    it('should expose `del`:', function () {
+    it('should expose `del`:', function() {
       assert(typeof view.del === 'function');
     });
-    it('should expose `define`:', function () {
+    it('should expose `define`:', function() {
       assert(typeof view.define === 'function');
     });
-    it('should expose `visit`:', function () {
+    it('should expose `visit`:', function() {
       assert(typeof view.visit === 'function');
     });
-    it('should expose `compile`:', function () {
+    it('should expose `compile`:', function() {
       assert(typeof view.compile === 'function');
     });
-    it('should expose `render`:', function () {
+    it('should expose `render`:', function() {
       assert(typeof view.render === 'function');
     });
   });
 
-  describe('properties', function () {
-    it('should expose an `options` property', function () {
+  describe('properties', function() {
+    it('should expose an `options` property', function() {
       view = new View({});
       assert.deepEqual(view.options, {});
       assert(view.hasOwnProperty('options'));
     });
 
-    it('should add `options` when passed on the constructor', function () {
+    it('should add `options` when passed on the constructor', function() {
       view = new View({options: {foo: 'bar'}});
       assert(view.options.foo === 'bar');
     });
 
-    it('should expose a `data` property', function () {
+    it('should expose a `data` property', function() {
       view = new View({app: {}});
       assert.deepEqual(view.data, {});
       assert(view.hasOwnProperty('data'));
     });
 
-    it('should add `data` when passed on the constructor', function () {
+    it('should add `data` when passed on the constructor', function() {
       view = new View({data: {foo: 'bar'}});
       assert(view.data.foo === 'bar');
     });
 
-    it('should add `locals` when passed on the constructor', function () {
+    it('should add `locals` when passed on the constructor', function() {
       view = new View({locals: {foo: 'bar'}});
       assert(view.locals.foo === 'bar');
     });
   });
 
-  describe('set', function () {
-    it('should set properties on the object', function () {
+  describe('set', function() {
+    it('should set properties on the object', function() {
       view = new View();
       view.set('foo', 'bar');
       assert.equal(view.foo, 'bar');
     });
   });
 
-  describe('get', function () {
-    it('should get properties from the object', function () {
+  describe('get', function() {
+    it('should get properties from the object', function() {
       view = new View();
       view.set('foo', 'bar');
       assert.equal(view.get('foo'), 'bar');
     });
   });
 
-  describe('cwd', function () {
-    it('should get properties from the object', function () {
+  describe('cwd', function() {
+    it('should get properties from the object', function() {
       view = new View({cwd: 'test/fixtures'});
       assert(view.cwd === 'test/fixtures');
     });
   });
 
-  describe('clone', function () {
-    it('should clone the view:', function () {
+  describe('clone', function() {
+    it('should clone the view:', function() {
       view = new View({content: 'foo'});
       view.set({path: 'foo/bar'});
       view.set('options.one', 'two');
@@ -121,7 +121,7 @@ describe('View', function () {
       assert(view.get('options.three') === 'four');
     });
 
-    it('should deep clone the entire object', function () {
+    it('should deep clone the entire object', function() {
       view = new View({content: 'foo'});
       view.set({path: 'foo/bar'});
       view.set('options.one', 'two');
@@ -134,8 +134,8 @@ describe('View', function () {
     });
   });
 
-  describe('visit', function () {
-    it('should visit all properties on an object and call the specified method', function () {
+  describe('visit', function() {
+    it('should visit all properties on an object and call the specified method', function() {
       view = new View();
       var obj = {
         foo: 'bar',
@@ -148,7 +148,7 @@ describe('View', function () {
       assert.equal(view.get('baz'), 'bang');
     });
 
-    it('should visit all properties on all objects in an array and call the specified method', function () {
+    it('should visit all properties on all objects in an array and call the specified method', function() {
       view = new View();
       var arr = [{foo: 'bar', bar: 'baz', baz: 'bang'}];
       view.visit('set', arr);
@@ -158,41 +158,41 @@ describe('View', function () {
     });
   });
 
-  describe('compile', function () {
-    it('should get view.layout from view.data.layout', function () {
+  describe('compile', function() {
+    it('should get view.layout from view.data.layout', function() {
       view = new View({path: 'foo', contents: 'a b c', data: {layout: 'default'}});
       assert(view.layout === 'default');
     });
-    it('should get view.layout from view.options.layout', function () {
+    it('should get view.layout from view.options.layout', function() {
       view = new View({path: 'foo', contents: 'a b c', options: {layout: 'default'}});
       assert(view.layout === 'default');
     });
-    it('should get view.layout from view.locals.layout', function () {
+    it('should get view.layout from view.locals.layout', function() {
       view = new View({path: 'foo', contents: 'a b c', locals: {layout: 'default'}});
       assert(view.layout === 'default');
     });
-    it('should get view.layout from the view', function () {
+    it('should get view.layout from the view', function() {
       view = new View({path: 'foo', contents: 'a b c', layout: 'default'});
       assert(view.layout === 'default');
     });
 
-    it('should add a compiled function to `view.fn`', function () {
+    it('should add a compiled function to `view.fn`', function() {
       view = new View({path: 'foo', contents: 'a <%= name %> z'});
       view.compile();
       assert(typeof view.fn === 'function');
     });
 
-    it('should render a compiled template', function (done) {
+    it('should render a compiled template', function(done) {
       view = new View({path: 'foo', contents: 'a <%= name %> z'});
       view.compile();
-      view.render({name: 'Halle'}, function (err, res) {
+      view.render({name: 'Halle'}, function(err, res) {
         if (err) return done(err);
         assert(res.contents.toString() === 'a Halle z');
         done();
       });
     });
 
-    it('should render `fn` using data passed on the constructor', function (done) {
+    it('should render `fn` using data passed on the constructor', function(done) {
       view = new View({
         path: 'foo',
         contents: 'a <%= name %> z',
@@ -202,7 +202,7 @@ describe('View', function () {
       });
 
       view.compile();
-      view.render(function (err, res) {
+      view.render(function(err, res) {
         if (err) return done(err);
         assert(res.contents.toString() === 'a Brooke z');
         done();
@@ -210,17 +210,17 @@ describe('View', function () {
     });
   });
 
-  describe('render', function () {
-    it('should render a template', function (done) {
+  describe('render', function() {
+    it('should render a template', function(done) {
       view = new View({path: 'foo', contents: 'a <%= name %> z'});
-      view.render({name: 'Halle'}, function (err, res) {
+      view.render({name: 'Halle'}, function(err, res) {
         if (err) return done(err);
         assert(res.contents.toString() === 'a Halle z');
         done();
       });
     });
 
-    it('should render fn using data passed on the constructor', function (done) {
+    it('should render fn using data passed on the constructor', function(done) {
       view = new View({
         path: 'foo',
         contents: 'a <%= name %> z',
@@ -229,20 +229,20 @@ describe('View', function () {
         }
       });
 
-      view.render(function (err, res) {
+      view.render(function(err, res) {
         if (err) return done(err);
         assert(res.contents.toString() === 'a Brooke z');
         done();
       });
     });
 
-    it('should pass errors in the callback.', function (done) {
+    it('should pass errors in the callback.', function(done) {
       view = new View({
         path: 'foo',
         contents: 'a <%= name %> z'
       });
 
-      view.render(function (err) {
+      view.render(function(err) {
         assert(err.message === 'name is not defined');
         done();
       });
@@ -950,7 +950,7 @@ describe('View', function() {
         cwd: '/',
         path: '/test/test.coffee'
       });
-      view.relative.should.equal(path.join('test','test.coffee'));
+      view.relative.should.equal(path.join('test', 'test.coffee'));
       done();
     });
   });

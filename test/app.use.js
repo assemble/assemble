@@ -7,35 +7,35 @@ var Views = App.Views;
 var View = App.View;
 var app;
 
-describe('app.use', function () {
-  beforeEach(function () {
+describe('app.use', function() {
+  beforeEach(function() {
     app = new App();
   });
 
-  it('should expose the instance to `use`:', function (done) {
-    app.use(function (inst) {
+  it('should expose the instance to `use`:', function(done) {
+    app.use(function(inst) {
       assert(inst instanceof App);
       done();
     });
   });
 
-  it('should be chainable:', function (done) {
-    app.use(function (inst) {
+  it('should be chainable:', function(done) {
+    app.use(function(inst) {
+      assert(inst instanceof App);
+    })
+      .use(function(inst) {
         assert(inst instanceof App);
       })
-      .use(function (inst) {
-        assert(inst instanceof App);
-      })
-      .use(function (inst) {
+      .use(function(inst) {
         assert(inst instanceof App);
         done();
       });
   });
 
-  it('should pass to collection `use` if a function is returned:', function () {
-    app.use(function (inst) {
+  it('should pass to collection `use` if a function is returned:', function() {
+    app.use(function(inst) {
       assert(inst instanceof App);
-      return function (collection) {
+      return function(collection) {
         collection.foo = collection.addView;
         assert(collection instanceof Views);
         return collection;
@@ -52,27 +52,27 @@ describe('app.use', function () {
     assert(app.views.pages.hasOwnProperty('c.md'));
   });
 
-  it('should be chainable when a collection function is returned:', function () {
+  it('should be chainable when a collection function is returned:', function() {
     app
-      .use(function (inst) {
+      .use(function(inst) {
         assert(inst instanceof App);
-        return function (collection) {
+        return function(collection) {
           collection.foo = collection.addView;
           assert(collection instanceof Views);
           return collection;
         };
       })
-      .use(function (inst) {
+      .use(function(inst) {
         assert(inst instanceof App);
-        return function (collection) {
+        return function(collection) {
           collection.bar = collection.addView;
           assert(collection instanceof Views);
           return collection;
         };
       })
-      .use(function (inst) {
+      .use(function(inst) {
         assert(inst instanceof App);
-        return function (collection) {
+        return function(collection) {
           collection.baz = collection.addView;
           assert(collection instanceof Views);
           return collection;
@@ -90,15 +90,15 @@ describe('app.use', function () {
     assert(app.views.pages.hasOwnProperty('c.md'));
   });
 
-  it('should pass to view `use` if collection.use returns a function:', function () {
-    app.use(function (inst) {
+  it('should pass to view `use` if collection.use returns a function:', function() {
+    app.use(function(inst) {
       assert(inst instanceof App);
 
-      return function (collection) {
+      return function(collection) {
         assert(collection instanceof Views);
         collection.foo = collection.addView;
 
-        return function (view) {
+        return function(view) {
           assert(view instanceof View);
           view.foo = collection.addView.bind(collection);
           return view;
@@ -116,44 +116,44 @@ describe('app.use', function () {
     assert(app.views.pages.hasOwnProperty('c.md'));
   });
 
-  it('should be chainable when a view function is returned:', function () {
+  it('should be chainable when a view function is returned:', function() {
     app
-      .use(function (inst) {
+      .use(function(inst) {
         assert(inst instanceof App);
 
-        return function (collection) {
+        return function(collection) {
           assert(collection instanceof Views);
           collection.foo = collection.addView;
 
-          return function (view) {
+          return function(view) {
             assert(view instanceof View);
             view.a = collection.addView.bind(collection);
             return view;
           };
         };
       })
-      .use(function (inst) {
+      .use(function(inst) {
         assert(inst instanceof App);
 
-        return function (collection) {
+        return function(collection) {
           assert(collection instanceof Views);
           collection.bar = collection.addView;
 
-          return function (view) {
+          return function(view) {
             assert(view instanceof View);
             view.b = collection.addView.bind(collection);
             return view;
           };
         };
       })
-      .use(function (inst) {
+      .use(function(inst) {
         assert(inst instanceof App);
 
-        return function (collection) {
+        return function(collection) {
           assert(collection instanceof Views);
           collection.baz = collection.addView;
 
-          return function (view) {
+          return function(view) {
             assert(view instanceof View);
             view.c = collection.addView.bind(collection);
             return view;
@@ -179,46 +179,46 @@ describe('app.use', function () {
     assert(app.views.pages.hasOwnProperty('z.md'));
   });
 
-  it('should work with multiple collections:', function () {
+  it('should work with multiple collections:', function() {
     app
-      .use(function (inst) {
+      .use(function(inst) {
         assert(inst instanceof App);
 
-        return function (collection) {
+        return function(collection) {
           assert(collection instanceof Views);
           collection.foo = collection.addView;
 
-          return function (view) {
+          return function(view) {
             assert(view instanceof View);
             view.a = collection.addView.bind(collection);
             return view;
           };
         };
       })
-      .use(function (inst) {
+      .use(function(inst) {
         assert(inst instanceof App);
 
-        return function (collection) {
+        return function(collection) {
           assert(collection instanceof Views);
           collection.bar = collection.addView;
 
-          return function (view) {
+          return function(view) {
             assert(view instanceof View);
             view.b = collection.addView.bind(collection);
             return view;
           };
         };
       })
-      .use(function (inst) {
+      .use(function(inst) {
         assert(inst instanceof App);
         assert(this instanceof App);
 
-        return function (collection) {
+        return function(collection) {
           collection.baz = collection.addView;
           assert(collection instanceof Views);
           assert(this instanceof Views);
 
-          return function (view) {
+          return function(view) {
             assert(this instanceof View);
             assert(view instanceof View);
             view.c = collection.addView.bind(collection);

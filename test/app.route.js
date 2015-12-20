@@ -5,13 +5,13 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('routes', function () {
+describe('routes', function() {
   beforeEach(function() {
     app = new App();
   });
 
   describe('routes', function() {
-    it('should create a route for the given path:', function (done) {
+    it('should create a route for the given path:', function(done) {
       app = new App();
       app.create('posts');
 
@@ -29,7 +29,7 @@ describe('routes', function () {
       app.post('whatever', {path: 'blog/foo.js', content: 'bar baz'});
     });
 
-    it('should emit events when a route method is called:', function (done) {
+    it('should emit events when a route method is called:', function(done) {
       app = new App();
       app.create('posts');
 
@@ -38,12 +38,12 @@ describe('routes', function () {
         done();
       });
 
-      app.param('title', function (view, next, title) {
+      app.param('title', function(view, next, title) {
         assert(title === 'foo.js');
         next();
       });
 
-      app.onLoad('blog/:title', function (view, next) {
+      app.onLoad('blog/:title', function(view, next) {
         assert(view.path === 'blog/foo.js');
         next();
       });
@@ -51,7 +51,7 @@ describe('routes', function () {
       app.post('whatever', {path: 'blog/foo.js', content: 'bar baz'});
     });
 
-    it('should emit errors', function (done) {
+    it('should emit errors', function(done) {
       app = new App();
       app.create('posts');
 
@@ -61,12 +61,12 @@ describe('routes', function () {
       });
 
       // wrong...
-      app.param('title', function (view, next, title) {
+      app.param('title', function(view, next, title) {
         assert(title === 'fo.js');
         next();
       });
 
-      app.onLoad('/blog/:title', function (view, next) {
+      app.onLoad('/blog/:title', function(view, next) {
         assert(view.path === '/blog/foo.js');
         next();
       });
@@ -74,16 +74,16 @@ describe('routes', function () {
       app.post('whatever', {path: '/blog/foo.js', content: 'bar baz'});
     });
 
-    it('should have path property', function () {
+    it('should have path property', function() {
       var route = new app.Route('/blog/:year/:month/:day/:slug').all([
-        function () {}
+        function() {}
       ]);
       route.path.should.equal('/blog/:year/:month/:day/:slug');
     });
 
-    it('should have stack property', function () {
+    it('should have stack property', function() {
       var route = new app.Route('/blog/:year/:month/:day/:slug').all([
-        function () {}
+        function() {}
       ]);
 
       route.stack.should.be.instanceof(Array);

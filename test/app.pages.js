@@ -4,13 +4,13 @@ var assert = require('assert');
 var assemble = require('..');
 var app;
 
-describe('.pages()', function () {
+describe('.pages()', function() {
   beforeEach(function() {
     app = assemble();
   });
 
-  describe('add pages', function () {
-    it('should add pages to `app.views.pages`:', function () {
+  describe('add pages', function() {
+    it('should add pages to `app.views.pages`:', function() {
       app.pages({
         'a.hbs': {path: 'a.hbs', contents: new Buffer('a')},
         'b.hbs': {path: 'b.hbs', contents: new Buffer('b')},
@@ -20,8 +20,8 @@ describe('.pages()', function () {
     });
   });
 
-  describe('load pages', function () {
-    it('should load pages onto `app.views.pages`:', function () {
+  describe('load pages', function() {
+    it('should load pages onto `app.views.pages`:', function() {
       app.pages('test/fixtures/pages/*.hbs');
       assert(Object.keys(app.views.pages).length === 3);
     });

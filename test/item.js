@@ -11,14 +11,14 @@ var App = support.resolve();
 var Item = App.Item;
 var item;
 
-describe('Item', function () {
-  describe('instance', function () {
-    it('should create an instance of Item:', function () {
+describe('Item', function() {
+  describe('instance', function() {
+    it('should create an instance of Item:', function() {
       item = new Item();
       assert(item instanceof Item);
     });
 
-    it('should instantiate without new:', function () {
+    it('should instantiate without new:', function() {
       item = Item();
       assert(item instanceof Item);
     });
@@ -31,88 +31,88 @@ describe('Item', function () {
     });
   });
 
-  describe('static methods', function () {
-    it('should expose `extend`:', function () {
+  describe('static methods', function() {
+    it('should expose `extend`:', function() {
       assert(typeof Item.extend === 'function');
     });
   });
 
-  describe('prototype methods', function () {
-    beforeEach(function () {
+  describe('prototype methods', function() {
+    beforeEach(function() {
       item = new Item();
     });
 
-    it('should expose `set`:', function () {
+    it('should expose `set`:', function() {
       assert(typeof item.set === 'function');
     });
-    it('should expose `get`:', function () {
+    it('should expose `get`:', function() {
       assert(typeof item.get === 'function');
     });
-    it('should expose `del`:', function () {
+    it('should expose `del`:', function() {
       assert(typeof item.del === 'function');
     });
-    it('should expose `define`:', function () {
+    it('should expose `define`:', function() {
       assert(typeof item.define === 'function');
     });
-    it('should expose `visit`:', function () {
+    it('should expose `visit`:', function() {
       assert(typeof item.visit === 'function');
     });
   });
 
-  describe('properties', function () {
-    it('should expose an `options` property', function () {
+  describe('properties', function() {
+    it('should expose an `options` property', function() {
       item = new Item({});
       assert.deepEqual(item.options, {});
       assert(item.hasOwnProperty('options'));
     });
 
-    it('should add `options` when passed on the constructor', function () {
+    it('should add `options` when passed on the constructor', function() {
       item = new Item({options: {foo: 'bar'}});
       assert(item.options.foo === 'bar');
     });
 
-    it('should expose a `data` property', function () {
+    it('should expose a `data` property', function() {
       item = new Item({app: {}});
       assert.deepEqual(item.data, {});
       assert(item.hasOwnProperty('data'));
     });
 
-    it('should add `data` when passed on the constructor', function () {
+    it('should add `data` when passed on the constructor', function() {
       item = new Item({data: {foo: 'bar'}});
       assert(item.data.foo === 'bar');
     });
 
-    it('should add `locals` when passed on the constructor', function () {
+    it('should add `locals` when passed on the constructor', function() {
       item = new Item({locals: {foo: 'bar'}});
       assert(item.locals.foo === 'bar');
     });
   });
 
-  describe('set', function () {
-    it('should set properties on the object', function () {
+  describe('set', function() {
+    it('should set properties on the object', function() {
       item = new Item();
       item.set('foo', 'bar');
       assert.equal(item.foo, 'bar');
     });
   });
 
-  describe('get', function () {
-    it('should get properties from the object', function () {
+  describe('get', function() {
+    it('should get properties from the object', function() {
       item = new Item();
       item.set('foo', 'bar');
       assert.equal(item.get('foo'), 'bar');
     });
   });
 
-  describe('cwd', function () {
-    it('should get properties from the object', function () {
+  describe('cwd', function() {
+    it('should get properties from the object', function() {
       item = new Item({cwd: 'test/fixtures'});
       assert(item.cwd === 'test/fixtures');
     });
   });
 
-  describe('clone', function () {
-    it('should clone the item:', function () {
+  describe('clone', function() {
+    it('should clone the item:', function() {
       item = new Item({content: 'foo'});
       item.set({path: 'foo/bar'});
       item.set('options.one', 'two');
@@ -128,7 +128,7 @@ describe('Item', function () {
       assert(item.get('options.three') === 'four');
     });
 
-    it('should deep clone the entire object', function () {
+    it('should deep clone the entire object', function() {
       item = new Item({content: 'foo'});
       item.set({path: 'foo/bar'});
       item.set('options.one', 'two');
@@ -141,8 +141,8 @@ describe('Item', function () {
     });
   });
 
-  describe('visit', function () {
-    it('should visit all properties on an object and call the specified method', function () {
+  describe('visit', function() {
+    it('should visit all properties on an object and call the specified method', function() {
       item = new Item();
       var obj = {
         foo: 'bar',
@@ -155,7 +155,7 @@ describe('Item', function () {
       assert.equal(item.get('baz'), 'bang');
     });
 
-    it('should visit all properties on all objects in an array and call the specified method', function () {
+    it('should visit all properties on all objects in an array and call the specified method', function() {
       item = new Item();
       var arr = [{foo: 'bar', bar: 'baz', baz: 'bang'}];
       item.visit('set', arr);
@@ -865,7 +865,7 @@ describe('Item', function() {
         cwd: '/',
         path: '/test/test.coffee'
       });
-      item.relative.should.equal(path.join('test','test.coffee'));
+      item.relative.should.equal(path.join('test', 'test.coffee'));
       done();
     });
   });

@@ -5,30 +5,30 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('handlers', function () {
-  describe('custom handlers', function () {
-    beforeEach(function () {
+describe('handlers', function() {
+  describe('custom handlers', function() {
+    beforeEach(function() {
       app = new App();
       app.create('page');
     });
 
-    it('should add custom middleware handlers:', function () {
+    it('should add custom middleware handlers:', function() {
       app.handler('foo');
       app.handler('bar');
 
-      app.pages.use(function () {
-        return function (view) {
+      app.pages.use(function() {
+        return function(view) {
           app.handle('foo', view);
           app.handle('bar', view);
         };
       });
 
-      app.foo(/a/, function (view, next) {
+      app.foo(/a/, function(view, next) {
         view.one = 'aaa';
         next();
       });
 
-      app.bar(/z/, function (view, next) {
+      app.bar(/z/, function(view, next) {
         view.two = 'zzz';
         next();
       });
