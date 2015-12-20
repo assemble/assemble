@@ -15,28 +15,28 @@ var helpers = App._.proto.helpers;
 var init = App._.proto.init;
 var app;
 
-describe('helpers', function () {
-  describe('constructor', function () {
-    it('should create an instance of Helpers:', function () {
+describe('helpers', function() {
+  describe('constructor', function() {
+    it('should create an instance of Helpers:', function() {
       app = new App();
       assert(app instanceof App);
     });
   });
 
-  describe('prototype methods', function () {
+  describe('prototype methods', function() {
     beforeEach(function() {
       app = new App();
     });
-    it('should expose `helper`', function () {
-      assert(typeof app.helper ==='function');
+    it('should expose `helper`', function() {
+      assert(typeof app.helper === 'function');
     });
-    it('should expose `asyncHelper`', function () {
-      assert(typeof app.asyncHelper ==='function');
+    it('should expose `asyncHelper`', function() {
+      assert(typeof app.asyncHelper === 'function');
     });
   });
 
-  describe('instance', function () {
-    it('should prime _', function () {
+  describe('instance', function() {
+    it('should prime _', function() {
       function Foo() {
         Base.call(this);
         init(this);
@@ -44,7 +44,7 @@ describe('helpers', function () {
       Base.extend(Foo);
       var foo = new Foo();
       helpers(foo);
-      assert(typeof foo._ ==='object');
+      assert(typeof foo._ === 'object');
     });
   });
 
@@ -53,12 +53,12 @@ describe('helpers', function () {
       app = new App();
     });
 
-    it('should add a sync helper to the `sync` object:', function () {
-      app.helper('one', function () {});
+    it('should add a sync helper to the `sync` object:', function() {
+      app.helper('one', function() {});
       assert(typeof app._.helpers.sync.one === 'function');
     });
 
-    it('should load a glob of sync helper functions:', function () {
+    it('should load a glob of sync helper functions:', function() {
       app.helpers('test/fixtures/helpers/[a-c].js');
 
       assert(typeof app._.helpers.sync.c === 'function');
@@ -66,23 +66,23 @@ describe('helpers', function () {
       assert(typeof app._.helpers.sync.a === 'function');
     });
 
-    it('should fail gracefully on bad globs:', function (done) {
+    it('should fail gracefully on bad globs:', function(done) {
       try {
         app.helpers('test/fixtures/helpers/*.foo');
         done();
-      } catch(err) {
+      } catch (err) {
         done(new Error('should not throw an error.'));
       }
     });
 
-    it('should add a glob of sync helper objects:', function () {
+    it('should add a glob of sync helper objects:', function() {
       app.helpers('test/fixtures/helpers/!([a-c]).js');
       assert(typeof app._.helpers.sync.one === 'function');
       assert(typeof app._.helpers.sync.two === 'function');
       assert(typeof app._.helpers.sync.three === 'function');
     });
 
-    it('should add a glob with mixed helper objects and functions:', function () {
+    it('should add a glob with mixed helper objects and functions:', function() {
       app.helpers('test/fixtures/helpers/*.js');
       assert(typeof app._.helpers.sync.a === 'function');
       assert(typeof app._.helpers.sync.b === 'function');
@@ -92,11 +92,11 @@ describe('helpers', function () {
       assert(typeof app._.helpers.sync.three === 'function');
     });
 
-    it('should add an object of sync helpers to the `sync` object:', function () {
+    it('should add an object of sync helpers to the `sync` object:', function() {
       app.helpers({
-        x: function () {},
-        y: function () {},
-        z: function () {}
+        x: function() {},
+        y: function() {},
+        z: function() {}
       });
 
       assert(typeof app._.helpers.sync.x === 'function');
@@ -104,11 +104,11 @@ describe('helpers', function () {
       assert(typeof app._.helpers.sync.z === 'function');
     });
 
-    it('should add a helper "group":', function () {
+    it('should add a helper "group":', function() {
       app.helperGroup('foo', {
-        x: function () {},
-        y: function () {},
-        z: function () {}
+        x: function() {},
+        y: function() {},
+        z: function() {}
       });
 
       assert(typeof app._.helpers.sync.foo.x === 'function');
@@ -122,35 +122,35 @@ describe('helpers', function () {
       app = new App();
     });
 
-    it('should add an async helper to the `async` object:', function () {
-      app.asyncHelper('two', function () {});
+    it('should add an async helper to the `async` object:', function() {
+      app.asyncHelper('two', function() {});
       assert(typeof app._.helpers.async.two === 'function');
     });
 
-    it('should load a glob of async helper functions:', function () {
+    it('should load a glob of async helper functions:', function() {
       app.asyncHelpers('test/fixtures/helpers/[a-c].js');
       assert(typeof app._.helpers.async.a === 'function');
       assert(typeof app._.helpers.async.b === 'function');
       assert(typeof app._.helpers.async.c === 'function');
     });
 
-    it('should add a glob of async helper objects:', function () {
+    it('should add a glob of async helper objects:', function() {
       app.asyncHelpers('test/fixtures/helpers/!([a-c]).js');
       assert(typeof app._.helpers.async.one === 'function');
       assert(typeof app._.helpers.async.two === 'function');
       assert(typeof app._.helpers.async.three === 'function');
     });
 
-    it('should fail gracefully on bad globs:', function (done) {
+    it('should fail gracefully on bad globs:', function(done) {
       try {
         app.asyncHelpers('test/fixtures/helpers/*.foo');
         done();
-      } catch(err) {
+      } catch (err) {
         done(new Error('should not throw an error.'));
       }
     });
 
-    it('should add a glob with mixed helper objects and functions:', function () {
+    it('should add a glob with mixed helper objects and functions:', function() {
       app.asyncHelpers('test/fixtures/helpers/*.js');
       assert(typeof app._.helpers.async.a === 'function');
       assert(typeof app._.helpers.async.b === 'function');
@@ -160,11 +160,11 @@ describe('helpers', function () {
       assert(typeof app._.helpers.async.three === 'function');
     });
 
-    it('should add an object of async helpers to the `async` object:', function () {
+    it('should add an object of async helpers to the `async` object:', function() {
       app.asyncHelpers({
-        x: function () {},
-        y: function () {},
-        z: function () {}
+        x: function() {},
+        y: function() {},
+        z: function() {}
       });
 
       assert(typeof app._.helpers.async.x === 'function');
@@ -172,11 +172,11 @@ describe('helpers', function () {
       assert(typeof app._.helpers.async.z === 'function');
     });
 
-    it('should add an async helper "group":', function () {
+    it('should add an async helper "group":', function() {
       app.helperGroup('foo', {
-        x: function () {},
-        y: function () {},
-        z: function () {}
+        x: function() {},
+        y: function() {},
+        z: function() {}
       }, true);
 
       assert(typeof app._.helpers.async.foo.x === 'function');
@@ -186,29 +186,29 @@ describe('helpers', function () {
   });
 });
 
-describe('sync helpers', function () {
-  beforeEach(function () {
+describe('sync helpers', function() {
+  beforeEach(function() {
     app = new App();
     app.engine('tmpl', require('engine-base'));
     app.create('page');
   });
 
-  it('should register a helper:', function () {
-    app.helper('a', function () {});
-    app.helper('b', function () {});
+  it('should register a helper:', function() {
+    app.helper('a', function() {});
+    app.helper('b', function() {});
     assert(app._.helpers.sync.hasOwnProperty('a'));
     assert(app._.helpers.sync.hasOwnProperty('b'));
   });
 
-  it('should use a helper:', function (done) {
+  it('should use a helper:', function(done) {
     app.pages('a.tmpl', {path: 'a.tmpl', content: '<%= upper(a) %>', locals: {a: 'bbb'}});
-    app.helper('upper', function (str) {
+    app.helper('upper', function(str) {
       return str.toUpperCase();
     });
 
     var page = app.pages.getView('a.tmpl');
 
-    app.render(page, function (err, view) {
+    app.render(page, function(err, view) {
       if (err) return done(err);
 
       assert.equal(typeof view.contents.toString(), 'string');
@@ -217,11 +217,11 @@ describe('sync helpers', function () {
     });
   });
 
-  it('should use a namespaced helper:', function (done) {
+  it('should use a namespaced helper:', function(done) {
     app.pages('a.tmpl', {path: 'a.tmpl', content: '<%= foo.upper(a) %>', locals: {a: 'bbb'}});
 
     app.helperGroup('foo', {
-      upper: function (str) {
+      upper: function(str) {
         return str.toUpperCase();
       }
     });
@@ -229,7 +229,7 @@ describe('sync helpers', function () {
     // console.log(app._.helpers)
 
     var page = app.pages.getView('a.tmpl');
-    app.render(page, function (err, view) {
+    app.render(page, function(err, view) {
       if (err) return done(err);
 
       assert.equal(typeof view.contents.toString(), 'string');
@@ -239,29 +239,29 @@ describe('sync helpers', function () {
   });
 });
 
-describe('async helpers', function () {
-  beforeEach(function () {
+describe('async helpers', function() {
+  beforeEach(function() {
     app = new App();
     app.engine('tmpl', require('engine-base'));
     app.create('page');
   });
 
-  it('should register an async helper:', function () {
-    app.asyncHelper('a', function () {});
-    app.asyncHelper('b', function () {});
+  it('should register an async helper:', function() {
+    app.asyncHelper('a', function() {});
+    app.asyncHelper('b', function() {});
     app._.helpers.async.should.have.property('a');
     app._.helpers.async.should.have.property('b');
   });
 
-  it('should use an async helper:', function (done) {
+  it('should use an async helper:', function(done) {
     app.pages('a.tmpl', {path: 'a.tmpl', content: '<%= lower(a) %>', locals: {a: 'BBB'}});
-    app.asyncHelper('lower', function (str, next) {
+    app.asyncHelper('lower', function(str, next) {
       if (typeof next !== 'function') return str;
       next(null, str.toLowerCase());
     });
 
     var page = app.pages.getView('a.tmpl');
-    app.render(page, function (err, view) {
+    app.render(page, function(err, view) {
       if (err) return done(err);
       assert.equal(typeof view.content, 'string');
       assert.equal(view.content, 'bbb');
@@ -270,9 +270,9 @@ describe('async helpers', function () {
   });
 });
 
-describe('built-in helpers:', function () {
-  describe('automatically generated helpers for default view types:', function () {
-    beforeEach(function () {
+describe('built-in helpers:', function() {
+  describe('automatically generated helpers for default view types:', function() {
+    beforeEach(function() {
       app = new App({rethrow: false});
       app.engine('md', require('engine-base'));
       app.engine('tmpl', require('engine-base'));
@@ -280,60 +280,60 @@ describe('built-in helpers:', function () {
       app.create('pages');
 
       // parse front matter
-      app.onLoad(/./, function (view, next) {
+      app.onLoad(/./, function(view, next) {
         matter.parse(view, next);
       });
     });
 
-    it('should expose front matter to the `partial` helper.', function (done) {
+    it('should expose front matter to the `partial` helper.', function(done) {
       app.partial('a.md', {content: '---\nname: "AAA"\n---\n<%= name %>', locals: {name: 'BBB'}});
       app.page('b.md', {path: 'b.md', content: 'foo <%= partial("a.md") %> bar'});
 
-      app.render('b.md', function (err, res) {
+      app.render('b.md', function(err, res) {
         if (err) return done(err);
         res.content.should.equal('foo AAA bar');
         done();
       });
     });
 
-    it('should use helper locals.', function (done) {
+    it('should use helper locals.', function(done) {
       app.partial('abc.md', {content: '---\nname: "AAA"\n---\n<%= name %>', locals: {name: 'BBB'}});
       app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md", { name: "CCC" }) %> bar'});
 
-      app.render('xyz.md', {name: 'DDD'}, function (err, res) {
+      app.render('xyz.md', {name: 'DDD'}, function(err, res) {
         if (err) return done(err);
         res.content.should.equal('foo CCC bar');
         done();
       });
     });
 
-    it('should use front matter data.', function (done) {
+    it('should use front matter data.', function(done) {
       app.partial('abc.md', {content: '---\nname: "AAA"\n---\n<%= name %>'});
       app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md") %> bar'});
 
-      app.render('xyz.md', {name: 'DDD'}, function (err, res) {
+      app.render('xyz.md', {name: 'DDD'}, function(err, res) {
         if (err) return done(err);
         res.content.should.equal('foo AAA bar');
         done();
       });
     });
 
-    it('should use partial locals:', function (done) {
+    it('should use partial locals:', function(done) {
       app.partial('abc.md', {content: '<%= name %>', locals: {name: 'EEE'}});
 
       app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md") %> bar'})
-        .render({name: 'DDD'}, function (err, res) {
+        .render({name: 'DDD'}, function(err, res) {
           if (err) return done(err);
           res.content.should.equal('foo EEE bar');
           done();
         });
     });
 
-    it('should use locals from the `view.render` method:', function (done) {
+    it('should use locals from the `view.render` method:', function(done) {
       app.partial('abc.md', {content: '<%= name %>', locals: {name: 'EEE'}});
 
       app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md") %> bar'})
-        .render({name: 'DDD'}, function (err, res) {
+        .render({name: 'DDD'}, function(err, res) {
           if (err) return done(err);
 
           res.content.should.equal('foo EEE bar');
@@ -341,21 +341,21 @@ describe('built-in helpers:', function () {
         });
     });
 
-    it('should use locals from the `app.render` method:', function (done) {
+    it('should use locals from the `app.render` method:', function(done) {
       app.partial('abc.md', {content: '<%= name %>'});
       app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md") %> bar'});
 
-      app.render('xyz.md', {name: 'DDD'}, function (err, res) {
+      app.render('xyz.md', {name: 'DDD'}, function(err, res) {
         if (err) return done(err);
         res.content.should.equal('foo DDD bar');
         done();
       });
     });
 
-    it('should return an empty string when the partial is missing.', function (done) {
+    it('should return an empty string when the partial is missing.', function(done) {
       app.partial('abc.md', {content: '---\nname: "AAA"\n---\n<%= name %>', locals: {name: 'BBB'}});
       app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("def.md", { name: "CCC" }) %> bar'});
-      app.render('xyz.md', {name: 'DDD'}, function (err, res) {
+      app.render('xyz.md', {name: 'DDD'}, function(err, res) {
         if (err) return done(err);
         res.content.should.equal('foo  bar');
         done();
@@ -363,48 +363,48 @@ describe('built-in helpers:', function () {
     });
   });
 
-  describe('helper context:', function () {
-    beforeEach(function () {
+  describe('helper context:', function() {
+    beforeEach(function() {
       app = new App({rethrow: false});
       app.engine(['tmpl', 'md'], require('engine-base'));
       app.create('partial', { viewType: 'partial' });
       app.create('page');
 
       // parse front matter
-      app.onLoad(/./, function (view, next) {
+      app.onLoad(/./, function(view, next) {
         matter.parse(view, next);
       });
     });
 
-    it('should prefer helper locals over view locals.', function (done) {
+    it('should prefer helper locals over view locals.', function(done) {
       app.partial('abc.md', {content: '<%= name %>', name: 'BBB'});
       app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md", { name: "CCC" }) %> bar'});
 
-      app.render('xyz.md', {name: 'DDD'}, function (err, res) {
+      app.render('xyz.md', {name: 'DDD'}, function(err, res) {
         if (err) return done(err);
         res.content.should.equal('foo CCC bar');
         done();
       });
     });
 
-    it('should give preference to view locals over render locals.', function (done) {
+    it('should give preference to view locals over render locals.', function(done) {
       app.partial('abc.md', {content: '<%= name %>', locals: {name: 'BBB'}});
       app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md") %> bar'});
 
       var page = app.pages.getView('xyz.md');
 
-      app.render(page, {name: 'DDD'}, function (err, res) {
+      app.render(page, {name: 'DDD'}, function(err, res) {
         if (err) return done(err);
         res.content.should.equal('foo BBB bar');
         done();
       });
     });
 
-    it('should use render locals when other locals are not defined.', function (done) {
+    it('should use render locals when other locals are not defined.', function(done) {
       app.partial('abc.md', {content: '<%= name %>'});
       app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md") %> bar'});
 
-      app.render('xyz.md', {name: 'DDD'}, function (err, res) {
+      app.render('xyz.md', {name: 'DDD'}, function(err, res) {
         if (err) return done(err);
         res.content.should.equal('foo DDD bar');
         done();
@@ -412,33 +412,33 @@ describe('built-in helpers:', function () {
     });
   });
 
-  describe('user-defined engines:', function () {
-    beforeEach(function () {
+  describe('user-defined engines:', function() {
+    beforeEach(function() {
       app = new App({rethrow: false});
       app.create('partial', { viewType: 'partial' });
       app.create('page');
 
       // parse front matter
-      app.onLoad(/./, function (view, next) {
+      app.onLoad(/./, function(view, next) {
         matter.parse(view, next);
       });
     });
 
-    it('should use the `partial` helper with handlebars.', function (done) {
+    it('should use the `partial` helper with handlebars.', function(done) {
       app.engine(['tmpl', 'md'], require('engine-base'));
       app.engine('hbs', handlebars);
 
       app.partial('title.hbs', {content: '<title>{{name}}</title>', locals: {name: 'BBB'}});
       app.page('a.hbs', {path: 'a.hbs', content: 'foo {{{partial "title.hbs" this}}} bar'});
 
-      app.render('a.hbs', {name: 'Halle Nicole'}, function (err, res) {
+      app.render('a.hbs', {name: 'Halle Nicole'}, function(err, res) {
         if (err) return done(err);
         res.content.should.equal('foo <title>Halle Nicole</title> bar');
         done();
       });
     });
 
-    it('should use the `partial` helper with any engine.', function (done) {
+    it('should use the `partial` helper with any engine.', function(done) {
       app.engine('hbs', handlebars);
       app.engine('md', handlebars);
       app.engine('swig', swig);
@@ -454,19 +454,19 @@ describe('built-in helpers:', function () {
       app.page('with-partial.hbs', {path: 'with-partial.hbs', content: '{{{partial "a.hbs" custom.locals}}}'});
 
       var locals = {custom: {locals: {name: 'Halle Nicole' }}};
-      app.render('a.hbs', locals, function (err, res) {
+      app.render('a.hbs', locals, function(err, res) {
         if (err) return console.log(err);
         res.content.should.equal('<title>Halle Nicole</title>');
       });
 
-      app.render('with-partial.hbs', locals, function (err, res) {
+      app.render('with-partial.hbs', locals, function(err, res) {
         if (err) return console.log(err);
         res.content.should.equal('<title>Halle Nicole</title>');
       });
 
       var page = app.pages.getView('g.md');
       locals.author = page.data.author || locals.author;
-      page.render(locals, function (err, res) {
+      page.render(locals, function(err, res) {
         if (err) return done(err);
         res.content.should.equal('<title>Brian Woodward</title>');
         done(null, res.content);
@@ -475,23 +475,23 @@ describe('built-in helpers:', function () {
   });
 });
 
-describe('helpers integration', function () {
-  beforeEach(function () {
+describe('helpers integration', function() {
+  beforeEach(function() {
     app = new App();
     app.create('pages');
     app.engine('md', require('engine-base'));
   });
 
-  describe('.helpers()', function () {
-    it('should add helpers and use them in templates.', function (done) {
+  describe('.helpers()', function() {
+    it('should add helpers and use them in templates.', function(done) {
       app.helpers({
-        upper: function (str) {
+        upper: function(str) {
           return str.toUpperCase();
         }
       });
 
       app.page('doc.md', {content: 'a <%= upper(name) %> b'})
-        .render({name: 'Halle'}, function (err, res) {
+        .render({name: 'Halle'}, function(err, res) {
           if (err) return done(err);
           assert(res.content === 'a HALLE b');
           done();
@@ -499,24 +499,24 @@ describe('helpers integration', function () {
     });
   });
 
-  describe('helper options:', function () {
-    it('should expose `this.options` to helpers:', function (done) {
-      app.helper('cwd', function (fp) {
+  describe('helper options:', function() {
+    it('should expose `this.options` to helpers:', function(done) {
+      app.helper('cwd', function(fp) {
         return path.join(this.options.cwd, fp);
       });
 
       app.option('one', 'two');
       app.option('cwd', 'foo/bar');
       app.page('doc.md', {content: 'a <%= cwd("baz") %> b'})
-        .render(function (err, res) {
+        .render(function(err, res) {
           if (err) return done(err);
           assert(res.content === 'a foo/bar/baz b');
           done();
         });
     });
 
-    it('should pass helper options to helpers:', function (done) {
-      app.helper('cwd', function (fp) {
+    it('should pass helper options to helpers:', function(done) {
+      app.helper('cwd', function(fp) {
         return path.join(this.options.cwd, fp);
       });
 
@@ -524,7 +524,7 @@ describe('helpers integration', function () {
       app.option('helper.whatever', '...');
 
       app.page('doc.md', {content: 'a <%= cwd("baz") %> b'})
-        .render(function (err, res) {
+        .render(function(err, res) {
           if (err) return done(err);
           assert(res.content === 'a foo/bar/baz b');
           done();
@@ -532,21 +532,21 @@ describe('helpers integration', function () {
     });
   });
 
-  describe('options.helpers', function () {
-    it('should register helpers passed on the options:', function (done) {
+  describe('options.helpers', function() {
+    it('should register helpers passed on the options:', function(done) {
       app.option({
         helpers: {
-          upper: function (str) {
+          upper: function(str) {
             return str.toUpperCase();
           },
-          foo: function (str) {
+          foo: function(str) {
             return 'foo' + str;
           }
         }
       });
 
       app.page('doc.md', {content: 'a <%= upper(name) %> <%= foo("bar") %> b'})
-        .render({name: 'Halle'}, function (err, res) {
+        .render({name: 'Halle'}, function(err, res) {
           if (err) return done(err);
           assert(res.content === 'a HALLE foobar b');
           done();
@@ -554,19 +554,19 @@ describe('helpers integration', function () {
     });
   });
 
-  describe('options.helpers', function () {
-    it('should add helpers and use them in templates.', function (done) {
+  describe('options.helpers', function() {
+    it('should add helpers and use them in templates.', function(done) {
       app.options.helpers = {
-        upper: function (str) {
+        upper: function(str) {
           return str.toUpperCase();
         },
-        foo: function (str) {
+        foo: function(str) {
           return 'foo' + str;
         }
       };
 
       app.page('doc.md', {content: 'a <%= upper(name) %> b'})
-        .render({name: 'Halle'}, function (err, res) {
+        .render({name: 'Halle'}, function(err, res) {
           if (err) return done(err);
           assert(res.content === 'a HALLE b');
           done();
@@ -575,21 +575,21 @@ describe('helpers integration', function () {
   });
 });
 
-describe('collection helpers', function () {
-  beforeEach(function () {
+describe('collection helpers', function() {
+  beforeEach(function() {
     app = new App();
     app.create('posts');
     app.create('pages', {engine: 'hbs'});
     app.create('partials', {viewType: 'partial', engine: 'hbs'});
     app.create('snippet', {viewType: 'partial'});
     app.engine('hbs', require('engine-handlebars'));
-    app.helper('log', function (ctx) {
+    app.helper('log', function(ctx) {
       console.log(ctx);
     });
   });
 
-  describe('plural', function () {
-    it('should get the given collection', function (done) {
+  describe('plural', function() {
+    it('should get the given collection', function(done) {
       app.post('a.hbs', {content: 'foo'});
       app.post('b.hbs', {content: 'bar'});
       app.post('c.hbs', {content: 'baz'});
@@ -601,7 +601,7 @@ describe('collection helpers', function () {
       app.page('index.hbs', {
         content: '{{> list.hbs }}'
       })
-        .render(function (err, res) {
+        .render(function(err, res) {
           if (err) return done(err);
           assert(res.content === 'foobarbaz');
           done();
@@ -609,8 +609,8 @@ describe('collection helpers', function () {
     });
   });
 
-  describe('single', function () {
-    it('should get a view from an unspecified collection', function (done) {
+  describe('single', function() {
+    it('should get a view from an unspecified collection', function(done) {
       app.post('a.hbs', {content: 'post-a'});
       app.post('b.hbs', {content: 'post-b'});
 
@@ -627,7 +627,7 @@ describe('collection helpers', function () {
       done();
     });
 
-    it('should return an empty string if not found', function (done) {
+    it('should return an empty string if not found', function(done) {
       var one = app.page('one', {content: '{{view "foo.hbs"}}'})
         .compile()
         .fn();
@@ -635,18 +635,19 @@ describe('collection helpers', function () {
       done();
     });
 
-    it('should handle engine errors', function (done) {
+    it('should handle engine errors', function(done) {
+      app.post('foo.hbs', {content: '{{one "two"}}'});
       app.page('one', {content: '{{posts "foo.hbs"}}'})
-        .render(function (err) {
+        .render(function(err) {
           assert(err);
           assert(typeof err === 'object');
           assert(typeof err.message === 'string');
-          assert(/is not a function/.test(err.message));
+          assert(/Missing helper: "one"/.test(err.message));
           done();
         });
     });
 
-    it('should handle engine errors', function (done) {
+    it('should handle engine errors2', function(done) {
       app.engine('tmpl', require('engine-base'));
       app.create('foo', {engine: 'tmpl'});
       app.create('bar', {engine: 'tmpl'});
@@ -654,7 +655,7 @@ describe('collection helpers', function () {
       app.create('foo', {viewType: 'partial'});
       app.foo('foo.tmpl', {path: 'foo.tmpl', content: '<%= blah.bar %>'});
       app.bar('one.tmpl', {content: '<%= foo("foo.tmpl") %>'})
-        .render(function (err) {
+        .render(function(err) {
           assert(err);
           assert(typeof err === 'object');
           assert(/blah is not defined/.test(err.message));
@@ -662,7 +663,7 @@ describe('collection helpers', function () {
         });
     });
 
-    it('should work with non-handlebars engine', function (done) {
+    it('should work with non-handlebars engine', function(done) {
       app.engine('tmpl', require('engine-base'));
       app.create('foo', {engine: 'tmpl'});
       app.create('bar', {engine: 'tmpl'});
@@ -683,7 +684,7 @@ describe('collection helpers', function () {
       done();
     });
 
-    it('should get a specific view from the given collection', function (done) {
+    it('should get a specific view from the given collection', function(done) {
       app.post('a.hbs', {content: 'post-a'});
       app.post('b.hbs', {content: 'post-b'});
       app.post('c.hbs', {content: 'post-c'});

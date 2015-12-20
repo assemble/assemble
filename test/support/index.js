@@ -1,8 +1,7 @@
 'use strict';
 
 var path = require('path');
-var pkg = require('load-pkg');
-var lookup = require('look-up');
+var loadpkg = require('load-pkg');
 var assert = require('assert');
 var ignore = require('./ignore');
 var cache = {};
@@ -37,8 +36,9 @@ exports.resolve = function(filepath) {
     return cache[key];
   }
 
-  var prefix = pkg.name !== 'assemble-core'
-    ? 'assemble-core'
+  var pkg = loadpkg.sync(process.cwd());
+  var prefix = pkg.name !== 'templates'
+    ? 'templates'
     : '';
 
   var base = filepath
@@ -56,20 +56,9 @@ exports.resolve = function(filepath) {
 function tryResolve(name) {
   try {
     return require.resolve(name);
-  } catch(err) {}
+  } catch (err) {}
 
   try {
     return require.resolve(path.resolve(name));
-  } catch(err) {}
+  } catch (err) {}
 }
-
-function tryRequire(name) {
-  try {
-    return require(name);
-  } catch(err) {}
-
-  try {
-    return require(path.resolve(name));
-  } catch(err) {}
-}
-

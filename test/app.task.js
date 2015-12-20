@@ -70,13 +70,13 @@ describe('task()', function () {
 
   it('should emit task events', function (done) {
     var events = [];
-    app.on('starting', function (task) {
+    app.on('task:starting', function(task) {
       events.push('starting.' + task.name);
     });
-    app.on('finished', function (task) {
+    app.on('task:finished', function(task) {
       events.push('finished.' + task.name);
     });
-    app.on('error', function (err, task) {
+    app.on('task:error', function(err, task) {
       events.push('error.' + task.name);
     });
 
