@@ -26,7 +26,6 @@ describe('Item', function() {
     it('inspect should not double name `Stream` when ctor is `Stream`', function(done) {
       var val = new Stream();
       var item = new Item({contents: val});
-      console.log(util.inspect(item).name);
       done();
     });
   });

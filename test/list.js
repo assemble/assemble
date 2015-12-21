@@ -135,6 +135,16 @@ describe('list', function() {
   });
 
   describe('addItem', function() {
+   beforeEach(function() {
+      list = new List();
+    });
+
+    it('should add items to a list', function() {
+      list.addItem('a', {content: '...'});
+      list.addItem('b', {content: '...'});
+      list.addItem('c', {content: '...'});
+      assert(list.items.length === 3);
+    });
   });
 
   describe('removeItem', function() {

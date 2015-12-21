@@ -11,6 +11,8 @@ describe('set', function() {
     app = new App();
     app.create('page');
     app.engine('tmpl', require('engine-base'));
+
+    app.cache.data = {};
   });
 
   it('should set a property on a view:', function(done) {
@@ -26,7 +28,6 @@ describe('set', function() {
       .set('data.name', 'Brooke')
       .render(function(err, res) {
         if (err) return done(err);
-
         assert(res.content === 'Brooke');
         done();
       });

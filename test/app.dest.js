@@ -855,7 +855,7 @@ describe('dest stream', function() {
     stream.end();
   });
 
-  it('should create symlinks when the `symlink` attribute is set on the file', function (done) {
+  it('should create symlinks when the `symlink` attribute is set on the file', function(done) {
     var inputPath = path.join(__dirname, 'fixtures/vinyl/test-create-dir-symlink');
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
     var inputRelativeSymlinkPath = 'wow';
@@ -873,7 +873,7 @@ describe('dest stream', function() {
     inputFile.symlink = inputRelativeSymlinkPath;
 
     var onEnd = function(){
-      fs.readlink(buffered[0].path, function () {
+      fs.readlink(buffered[0].path, function() {
         buffered[0].symlink.should.equal(inputFile.symlink);
         buffered[0].path.should.equal(expectedPath);
         done();
@@ -909,30 +909,30 @@ describe('dest stream', function() {
 });
 
 describe('dest', function() {
-  beforeEach(function (done) {
+  beforeEach(function(done) {
     rimraf(actual, done);
     app = new App();
   });
 
-  afterEach(function (done) {
+  afterEach(function(done) {
     rimraf(actual, done);
   });
 
-  describe('streams', function () {
-    it('should return a stream', function (done) {
+  describe('streams', function() {
+    it('should return a stream', function(done) {
       var stream = app.dest(path.join(__dirname, 'fixtures/'));
       should.exist(stream);
       should.exist(stream.on);
       done();
     });
 
-    it('should return an output stream that writes files', function (done) {
+    it('should return an output stream that writes files', function(done) {
       var instream = app.src(path.join(__dirname, 'fixtures/copy/e*.txt'));
       var outstream = app.dest(actual);
       instream.pipe(outstream);
 
       outstream.on('error', done);
-      outstream.on('data', function (file) {
+      outstream.on('data', function(file) {
         // data should be re-emitted correctly
         should.exist(file);
         should.exist(file.path);
@@ -940,8 +940,8 @@ describe('dest', function() {
         path.join(file.path, '').should.equal(path.join(actual, 'example.txt'));
         String(file.contents).should.equal('Hello world!');
       });
-      outstream.on('end', function () {
-        fs.readFile(path.join(actual, 'example.txt'), function (err, contents) {
+      outstream.on('end', function() {
+        fs.readFile(path.join(actual, 'example.txt'), function(err, contents) {
           should.not.exist(err);
           should.exist(contents);
           String(contents).should.equal('Hello world!');
@@ -950,13 +950,13 @@ describe('dest', function() {
       });
     });
 
-    it('should return an output stream that does not write non-read files', function (done) {
+    it('should return an output stream that does not write non-read files', function(done) {
       var instream = app.src(path.join(__dirname, 'fixtures/copy/e*.txt'), {read: false});
       var outstream = app.dest(actual);
       instream.pipe(outstream);
 
       outstream.on('error', done);
-      outstream.on('data', function (file) {
+      outstream.on('data', function(file) {
         // data should be re-emitted correctly
         should.exist(file);
         should.exist(file.path);
@@ -964,8 +964,8 @@ describe('dest', function() {
         path.join(file.path, '').should.equal(path.join(actual, 'example.txt'));
       });
 
-      outstream.on('end', function () {
-        fs.readFile(path.join(actual, 'example.txt'), function (err, contents) {
+      outstream.on('end', function() {
+        fs.readFile(path.join(actual, 'example.txt'), function(err, contents) {
           should.exist(err);
           should.not.exist(contents);
           done();
@@ -973,20 +973,20 @@ describe('dest', function() {
       });
     });
 
-    it('should return an output stream that writes streaming files', function (done) {
+    it('should return an output stream that writes streaming files', function(done) {
       var instream = app.src(path.join(__dirname, 'fixtures/copy/e*.txt'), {buffer: false});
       var outstream = instream.pipe(app.dest(actual));
 
       outstream.on('error', done);
-      outstream.on('data', function (file) {
+      outstream.on('data', function(file) {
         // data should be re-emitted correctly
         should.exist(file);
         should.exist(file.path);
         should.exist(file.contents);
         path.join(file.path, '').should.equal(path.join(actual, 'example.txt'));
       });
-      outstream.on('end', function () {
-        fs.readFile(path.join(actual, 'example.txt'), function (err, contents) {
+      outstream.on('end', function() {
+        fs.readFile(path.join(actual, 'example.txt'), function(err, contents) {
           should.not.exist(err);
           should.exist(contents);
           String(contents).should.equal('Hello world!');
@@ -995,48 +995,48 @@ describe('dest', function() {
       });
     });
 
-    it('should return an output stream that writes streaming files to new directories', function (done) {
+    it('should return an output stream that writes streaming files to new directories', function(done) {
       testWriteDir({}, done);
     });
 
-    it('should return an output stream that writes streaming files to new directories (buffer: false)', function (done) {
+    it('should return an output stream that writes streaming files to new directories (buffer: false)', function(done) {
       testWriteDir({buffer: false}, done);
     });
 
-    it('should return an output stream that writes streaming files to new directories (read: false)', function (done) {
+    it('should return an output stream that writes streaming files to new directories (read: false)', function(done) {
       testWriteDir({read: false}, done);
     });
 
-    it('should return an output stream that writes streaming files to new directories (read: false, buffer: false)', function (done) {
+    it('should return an output stream that writes streaming files to new directories (read: false, buffer: false)', function(done) {
       testWriteDir({buffer: false, read: false}, done);
     });
 
   });
 
-  describe('ext', function () {
-    beforeEach(function () {
+  describe('ext', function() {
+    beforeEach(function() {
       app = new App();
       app.set('ext', '.txt');
     });
 
-    afterEach(function () {
+    afterEach(function() {
       app.set('ext', '.html');
     });
 
-    it('should return a stream', function (done) {
+    it('should return a stream', function(done) {
       var stream = app.dest(path.join(__dirname, 'fixtures/'));
       should.exist(stream);
       should.exist(stream.on);
       done();
     });
 
-    it('should return an output stream that writes files', function (done) {
+    it('should return an output stream that writes files', function(done) {
       var instream = app.src(path.join(__dirname, 'fixtures/copy/e*.txt'));
       var outstream = app.dest(actual);
       instream.pipe(outstream);
 
       outstream.on('error', done);
-      outstream.on('data', function (file) {
+      outstream.on('data', function(file) {
         // data should be re-emitted correctly
         should.exist(file);
         should.exist(file.path);
@@ -1044,8 +1044,8 @@ describe('dest', function() {
         path.join(file.path, '').should.equal(path.join(actual, 'example.txt'));
         String(file.contents).should.equal('Hello world!');
       });
-      outstream.on('end', function () {
-        fs.readFile(path.join(actual, 'example.txt'), function (err, contents) {
+      outstream.on('end', function() {
+        fs.readFile(path.join(actual, 'example.txt'), function(err, contents) {
           should.not.exist(err);
           should.exist(contents);
           String(contents).should.equal('Hello world!');
@@ -1054,13 +1054,13 @@ describe('dest', function() {
       });
     });
 
-    it('should return an output stream that does not write non-read files', function (done) {
+    it('should return an output stream that does not write non-read files', function(done) {
       var instream = app.src(path.join(__dirname, 'fixtures/dest/*.txt'), {read: false});
       var outstream = app.dest(actual);
       instream.pipe(outstream);
 
       outstream.on('error', done);
-      outstream.on('data', function (file) {
+      outstream.on('data', function(file) {
         // data should be re-emitted correctly
         should.exist(file);
         should.exist(file.path);
@@ -1068,8 +1068,8 @@ describe('dest', function() {
         path.join(file.path, '').should.equal(path.join(actual, 'example.txt'));
       });
 
-      outstream.on('end', function () {
-        fs.readFile(path.join(actual, 'example.txt'), function (err, contents) {
+      outstream.on('end', function() {
+        fs.readFile(path.join(actual, 'example.txt'), function(err, contents) {
           should.exist(err);
           should.not.exist(contents);
           done();

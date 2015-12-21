@@ -549,7 +549,6 @@ describe('View', function() {
     });
 
     it('should properly clone the `stat` property', function(done) {
-
       var options = {
         cwd: '/',
         base: '/test/',

@@ -20,4 +20,14 @@ describe('handler', function() {
       done();
     });
   });
+
+  it('should not blow up if `options.handled` does not exist:', function(done) {
+    var page = app.page('foo', {contents: null});
+    delete page.options.handled;
+
+    app.handle('foo', page, function(err, view) {
+      assert(typeof view.path === 'string');
+      done();
+    });
+  });
 });

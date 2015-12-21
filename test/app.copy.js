@@ -21,6 +21,7 @@ describe('copy()', function() {
   describe('streams', function() {
     it('should copy files', function(cb) {
       app.copy(fixtures, path.join(__dirname, 'actual'))
+        .on('error', cb)
         .on('data', function(file) {
           assert.equal(typeof file, 'object');
         })

@@ -12,8 +12,7 @@ describe('events', function() {
 
   it('should listen for an event:', function() {
     var app = new App();
-    app.on('foo', function() {
-    });
+    app.on('foo', function() {});
     assert(Array.isArray(app._callbacks['$foo']));
   });
 

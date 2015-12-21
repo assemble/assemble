@@ -55,7 +55,7 @@ Assemble.prototype.initAssemble = function() {
    * Middleware for parsing front matter
    */
 
-  this.onLoad(regex, function (view, next) {
+  this.onLoad(regex, function(view, next) {
     utils.matter.parse(view, next);
   });
 
@@ -73,7 +73,7 @@ Assemble.prototype.initAssemble = function() {
     this.create('partials', {
       engine: engine,
       viewType: 'partial',
-      renameKey: function (fp) {
+      renameKey: function(fp) {
         return path.basename(fp, path.extname(fp));
       }
     });
@@ -81,14 +81,14 @@ Assemble.prototype.initAssemble = function() {
     this.create('layouts', {
       engine: engine,
       viewType: 'layout',
-      renameKey: function (fp) {
+      renameKey: function(fp) {
         return path.basename(fp, path.extname(fp));
       }
     });
 
     this.create('pages', {
       engine: engine,
-      renameKey: function (fp) {
+      renameKey: function(fp) {
         return fp;
       }
     });

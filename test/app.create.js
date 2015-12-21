@@ -92,7 +92,7 @@ describe('create', function() {
       app.page('b.hbs', {content: 'b'});
       app.page('c.hbs', {content: 'c'});
       app.views.pages.should.have.properties(['a.hbs', 'b.hbs', 'c.hbs']);
-      assert(app.views.pages['a.hbs'].contents.toString() === 'a');
+      assert(app.views.pages['a.hbs'].content === 'a');
     });
 
     it('should create views from file paths:', function() {
@@ -134,7 +134,7 @@ describe('create', function() {
 
       collection.addView('test/fixtures/templates/a.tmpl');
       collection.read('a.tmpl');
-      assert(collection.getView('a.tmpl').contents.toString() === '<%= name %>');
+      assert(collection.getView('a.tmpl').content === '<%= name %>');
     });
   });
 
@@ -171,6 +171,20 @@ describe('create', function() {
       app.create('layout');
       app.layout('one', {path: 'two', contents: '...'});
       assert(app.layouts.options.foo === 'bar');
+    });
+  });
+
+  describe('collection instantiation', function() {
+    it('should expose collection instance methods that are created after instantiation on the app collection loader', function() {
+      app.create('pages');
+      app.pages.use(function(collection) {
+        collection.define('foo', function(msg) {
+          return 'foo ' + msg;
+        });
+      });
+
+      assert(app.pages.foo);
+      assert(typeof app.pages.foo === 'function');
     });
   });
 });

@@ -168,6 +168,30 @@ describe('views', function() {
       collection = new Views();
     });
 
+    it('should emit an error if a string glob pattern is passed', function(done) {
+      try {
+        collection.addViews('*.js');
+        done(new Error('expected an error'));
+      } catch(err) {
+        assert(err);
+        assert(err.message);
+        assert(/glob/.test(err.message));
+        done();
+      }
+    });
+
+    it('should emit an error if an array glob pattern is passed', function(done) {
+      try {
+        collection.addViews(['*.js']);
+        done(new Error('expected an error'));
+      } catch(err) {
+        assert(err);
+        assert(err.message);
+        assert(/glob/.test(err.message));
+        done();
+      }
+    });
+
     it('should add multiple views:', function() {
       collection.addViews({
         one: {content: 'foo'},
@@ -175,6 +199,18 @@ describe('views', function() {
       });
       assert(isBuffer(collection.views.one.contents));
       assert(isBuffer(collection.views.two.contents));
+    });
+
+    it('should return the collection instance for chaining:', function() {
+      var views = collection.addViews({
+        one: {content: 'foo'},
+        two: {content: 'bar'}
+      });
+
+      var view = views.getView('one');
+      assert(view);
+      assert(view.content);
+      assert(view.content === 'foo');
     });
 
     it('should create views from an instance of Views', function() {
@@ -228,6 +264,30 @@ describe('views', function() {
       collection = new Views();
     });
 
+    it('should emit an error if a string glob pattern is passed', function(done) {
+      try {
+        collection.addList('*.js');
+        done(new Error('expected an error'));
+      } catch(err) {
+        assert(err);
+        assert(err.message);
+        assert(/glob/.test(err.message));
+        done();
+      }
+    });
+
+    it('should emit an error if an array glob pattern is passed', function(done) {
+      try {
+        collection.addList(['*.js']);
+        done(new Error('expected an error'));
+      } catch(err) {
+        assert(err);
+        assert(err.message);
+        assert(/glob/.test(err.message));
+        done();
+      }
+    });
+
     it('should add a list of views:', function() {
       collection.addList([
         {path: 'one', content: 'foo'},
@@ -237,13 +297,24 @@ describe('views', function() {
       assert(isBuffer(collection.views.two.contents));
     });
 
-    it('should add a list of views from the constructor:', function() {
+    it('should add a list from the constructor:', function() {
       var list = new List([
         {path: 'one', content: 'foo'},
         {path: 'two', content: 'bar'}
       ]);
 
       collection = new Views(list);
+      assert(isBuffer(collection.views.one.contents));
+      assert(isBuffer(collection.views.two.contents));
+    });
+
+    it('should add list items from the constructor:', function() {
+      var list = new List([
+        {path: 'one', content: 'foo'},
+        {path: 'two', content: 'bar'}
+      ]);
+
+      collection = new Views(list.items);
       assert(isBuffer(collection.views.one.contents));
       assert(isBuffer(collection.views.two.contents));
     });
@@ -287,17 +358,6 @@ describe('views', function() {
       assert(collection.views.hasOwnProperty('a.txt'));
       assert(collection.views['a.txt'].path === 'a.txt');
     });
-
-    // it('should not blow up on', function () {
-    //   var collection = new Views();
-    //   var list = [{path: 'a.txt'}, {path: 'b.txt'}, {path: 'c.txt'}];
-    //   collection.addList(list, function (item) {
-    //     item.content = path.basename(item.path, path.extname(item.path));
-    //   });
-    //   assert(collection.views.hasOwnProperty('a.txt'));
-    //   assert(collection.views['a.txt'].path === 'a.txt');
-    //   assert(collection.views['a.txt'].content === 'a');
-    // });
 
     it('should load an object of views from an event:', function() {
       var collection = new Views();

@@ -33,19 +33,14 @@ describe('list', function() {
     beforeEach(function() {
       app = new App();
       app.engine('tmpl', require('engine-base'));
-      app.create('pages', {
-        renameKey: function(key) {
-          return path.basename(key);
-        }
-      });
+      app.create('pages');
     });
 
     it('should add an item to a list:', function() {
       app.pages('test/fixtures/pages/a.hbs');
       var list = app.list();
-
       list.addItem(app.pages.getView('test/fixtures/pages/a.hbs'));
-      assert(list.hasItem('test/fixtures/pages/a.hbs'));
+      assert(list.hasItem(path.resolve('test/fixtures/pages/a.hbs')));
     });
 
     it('should expose the `option` method from a list:', function() {
@@ -90,6 +85,8 @@ describe('list', function() {
       app = new App();
       app.engine('tmpl', require('engine-base'));
       app.create('pages');
+
+      app.cache.data = {};
     });
 
     it('should render a item with inherited app.render', function(done) {
@@ -102,7 +99,7 @@ describe('list', function() {
         .set('data.name', 'Brian')
         .render(function(err, res) {
           if (err) return done(err);
-          assert(res.contents.toString() === 'Brian');
+          assert(res.content === 'Brian');
           done();
         });
     });
