@@ -5,12 +5,12 @@
   "homepage": "https://github.com/assemble/assemble",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "authors": [
-    "Jon Schlinkert (https://github.com/jonschlinkert)",
-    "Brian Woodward (https://github.com/doowb)"
+    "Brian Woodward (https://github.com/doowb)",
+    "Jon Schlinkert (https://github.com/jonschlinkert)"
   ],
   "maintainers": [
-    "Jon Schlinkert (https://github.com/jonschlinkert)",
-    "Brian Woodward (https://github.com/doowb)"
+    "Brian Woodward (https://github.com/doowb)",
+    "Jon Schlinkert (https://github.com/jonschlinkert)"
   ],
   "repository": "assemble/assemble",
   "bugs": {
@@ -59,12 +59,12 @@
     "istanbul": "^0.4.1",
     "kind-of": "^3.0.2",
     "load-pkg": "^3.0.1",
-    "mocha": "^2.3.4",
+    "mocha": "*",
     "relative-dest": "^0.1.0",
     "resolve-glob": "^0.1.7",
     "rimraf": "^2.4.4",
     "scaffold": "^0.2.1",
-    "should": "^8.0.2",
+    "should": "*",
     "sinon": "^1.17.2",
     "swig": "^1.4.2",
     "through2": "^2.0.0",
@@ -117,9 +117,9 @@
   "verb": {
     "related": {
       "list": [
+        "boilerplate",
         "composer",
         "generate",
-        "boilerplate",
         "scaffold",
         "templates",
         "verb"
@@ -127,11 +127,23 @@
     },
     "reflinks": [
       "assemble",
-      "scaffold",
+      "assemble-core",
+      "assemble-loader",
       "boilerplate",
+      "engine-handlebars",
+      "gulp",
+      "handlebars",
+      "lazy-cache",
+      "less",
+      "parser-front-matter",
+      "scaffold",
       "template",
-      "template",
-      "verb"
-    ]
+      "verb",
+      "vinyl-fs"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "layout": "default"
   }
 }
