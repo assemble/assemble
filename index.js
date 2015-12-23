@@ -69,30 +69,28 @@ Assemble.prototype.initAssemble = function() {
 
   var engine = this.options.defaultEngine || 'hbs';
 
-  if (this.options.init !== false) {
-    this.create('partials', {
-      engine: engine,
-      viewType: 'partial',
-      renameKey: function(fp) {
-        return path.basename(fp, path.extname(fp));
-      }
-    });
+  this.create('partials', {
+    engine: engine,
+    viewType: 'partial',
+    renameKey: function(fp) {
+      return path.basename(fp, path.extname(fp));
+    }
+  });
 
-    this.create('layouts', {
-      engine: engine,
-      viewType: 'layout',
-      renameKey: function(fp) {
-        return path.basename(fp, path.extname(fp));
-      }
-    });
+  this.create('layouts', {
+    engine: engine,
+    viewType: 'layout',
+    renameKey: function(fp) {
+      return path.basename(fp, path.extname(fp));
+    }
+  });
 
-    this.create('pages', {
-      engine: engine,
-      renameKey: function(fp) {
-        return fp;
-      }
-    });
-  }
+  this.create('pages', {
+    engine: engine,
+    renameKey: function(fp) {
+      return fp;
+    }
+  });
 };
 
 
