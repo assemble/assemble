@@ -13,6 +13,10 @@ insert_final_newline = true
 trim_trailing_whitespace = false
 insert_final_newline = false
 
-[test/**/*]
+[test/**]
+trim_trailing_whitespace = false
+insert_final_newline = false
+
+[templates/**]
 trim_trailing_whitespace = false
 insert_final_newline = false
