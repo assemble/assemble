@@ -35,8 +35,8 @@ describe('assemble dest-path plugin', function() {
             should.exist(file);
             should.exist(file.path);
             should.exist(file.contents);
-            file.data.dest.ext.should.equal('.hbs');
-            file.data.dest.path.should.match(/fixtures[\\\/]dest-path[\\\/][cd]\.hbs/);
+            file.ext.should.equal('.hbs');
+            file.path.should.match(/fixtures[\\\/]dest-path[\\\/][a]\.hbs/);
           }))
           .pipe(outstream);
 
@@ -59,8 +59,8 @@ describe('assemble dest-path plugin', function() {
           should.exist(file);
           should.exist(file.path);
           should.exist(file.contents);
-          file.data.dest.ext.should.equal('.html');
-          file.data.dest.path.should.match(/dest-path-actual[\/\\][cd]\.html/);
+          file.data.dest.extname.should.equal('.hbs');
+          file.data.dest.path.should.match(/dest-path-actual[\/\\][a]\.hbs/);
         });
 
         outstream.on('end', function () {

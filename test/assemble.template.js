@@ -32,7 +32,7 @@ describe('assemble.template', function () {
       should.exist(site.views.lions);
     });
 
-    it('should load new templates add store them on the cache for the custom template type.', function () {
+    it('should load new templates and store them on the cache for the custom template type.', function () {
       site.create('doowb', 'doowbs');
       site.doowb({path: 'brian', data: {first: 'Brian'}, content: '---\nlast: Woodward\n---\nHi this is {{first}} {{last}}'});
 
@@ -43,7 +43,7 @@ describe('assemble.template', function () {
       should.exist(site.views.doowbs.brian.data.last);
     });
 
-    it('should load new templates add store them on the cache for the custom template type as layouts.', function () {
+    it('should load new templates and store them on the cache for the custom template type as layouts.', function () {
       site.create('jon', 'jons', {isLayout: true, ext: '.hbs'});
       site.jon({path: 'jon', data: {first: 'Jon'}, options: {ext: '.hbs'}, content: '---\nlast: Schlinkert\n---\nHi this is {{first}} {{last}}'});
 

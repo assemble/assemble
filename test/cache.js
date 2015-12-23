@@ -146,50 +146,59 @@ describe('cache events:', function () {
   });
 
   describe('when listeners are added', function () {
+    var app = null;
+    beforeEach(function() {
+      app = assemble.init();
+    });
+
+    afterEach(function() {
+      app = null;
+    });
+
     it('should add the listeners', function () {
       var called = false;
-      assemble.on('foo', function () {
+      app.on('foo', function () {
         called = 'a';
       });
-      assemble.emit('foo');
+      app.emit('foo');
       called.should.equal('a');
-      assemble.on('foo', function () {
+      app.on('foo', function () {
         called = 'b';
       });
-      assemble.emit('foo');
+      app.emit('foo');
       called.should.equal('b');
-      assemble.on('foo', function () {
+      app.on('foo', function () {
         called = true;
       });
-      assemble.emit('foo');
+      app.emit('foo');
       called.should.equal(true);
-      assemble.listeners('foo').length.should.equal(3);
+      app.listeners('foo').length.should.equal(3);
     });
 
     it('should emit `set` when a value is set', function () {
       var called = false;
       var value = '';
-      assemble.on('set', function (key, val) {
+      app.on('set', function (key, val) {
         called = key;
         value = val;
       });
-      assemble.set('foo', 'bar');
+      app.set('foo', 'bar');
       called.should.equal('foo');
       value.should.equal('bar');
     });
 
-    it('should emit `set` when items are set on the assemble.', function () {
+    it('should emit `set` when items are set on the app.', function () {
       var called = false;
 
-      assemble.on('set', function (key) {
+      app.on('set', function (key) {
         called = true;
-        assemble.has(key).should.be.true;
+        app.has(key).should.be.true;
       });
 
-      assemble.set('one', 'a');
-      assemble.set('two', 'c');
-      assemble.set('one', 'b');
-      assemble.set('two', 'd');
+      app.set('one', 'a');
+      app.set('two', 'c');
+      app.set('one', 'b');
+      app.set('two', 'd');
       called.should.be.true;
     });
   });

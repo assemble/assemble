@@ -62,7 +62,7 @@ describe('assemble data', function() {
   describe('.plasma()', function() {
     it('should read JSON files and return an object.', function() {
       var pkg = site.plasma('package.json', { namespace: false });
-      pkg.name.should.equal('assemble');
+      site.cache.data.name.should.equal('assemble');
     });
 
     it('should expand a glob pattern, read JSON/YAML files and return an object.', function() {
