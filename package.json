@@ -1,7 +1,7 @@
 {
   "name": "assemble",
-  "description": "Static site generator for Grunt.js, Yeoman and Node.js. Used in projects like Zurb Foundation, Zurb Ink, H5BP/Effeckt, Less.js / lesscss.org, Topcoat, Web Experience Toolkit, and hundreds of other projects, to build sites, themes, components, documentation, blogs and gh-pages.",
-  "version": "0.6.1",
+  "description": "Assemble is a powerful, extendable and easy to use static site generator for node.js. Used by thousands of projects for much more than building websites, Assemble is also used for creating themes, e-books, UI components, API documentation, blogs, gh-pages and more!",
+  "version": "0.6.2",
   "homepage": "https://github.com/assemble/assemble",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "authors": [
