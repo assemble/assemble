@@ -22,6 +22,9 @@
     "lib/"
   ],
   "main": "index.js",
+  "bin": {
+    "assemble": "bin/cli.js"
+  },
   "engines": {
     "node": ">=0.10.0"
   },
@@ -29,16 +32,34 @@
     "test": "mocha"
   },
   "dependencies": {
+    "ansi-colors": "^0.1.0",
     "assemble-core": "^0.7.0",
-    "assemble-loader": "^0.2.5",
+    "assemble-loader": "^0.2.6",
+    "base-cli": "^0.4.0",
+    "base-config": "^0.3.3",
+    "base-list": "^0.1.4",
+    "base-pipeline": "^0.1.4",
+    "base-questions": "^0.2.3",
+    "base-store": "^0.3.2",
+    "common-middleware": "^0.2.2",
+    "composer-runtimes": "^0.7.0",
     "engine-handlebars": "^0.8.0",
+    "export-files": "^2.1.0",
+    "isobject": "^2.0.0",
     "lazy-cache": "^1.0.3",
-    "parser-front-matter": "^1.3.0"
+    "matched": "^0.3.2",
+    "minimist": "^1.2.0",
+    "opn": "^3.0.3",
+    "parser-front-matter": "^1.3.0",
+    "success-symbol": "^0.1.0",
+    "time-stamp": "^0.1.3",
+    "try-open": "^0.1.0",
+    "word-wrap": "^1.1.0"
   },
   "devDependencies": {
     "ansi-red": "^0.1.1",
     "async": "^1.5.0",
-    "base-methods": "^0.6.1",
+    "base-methods": "^0.6.2",
     "buffer-equal": "0.0.1",
     "consolidate": "^0.13.1",
     "coveralls": "^2.11.6",
@@ -52,15 +73,18 @@
     "gulp-extname": "^0.2.0",
     "gulp-istanbul": "^0.10.3",
     "gulp-mocha": "^2.2.0",
+    "gulp-prettify": "^0.4.0",
+    "helper-markdown": "^0.1.2",
     "is-buffer": "^1.1.0",
     "istanbul": "^0.4.1",
     "kind-of": "^3.0.2",
     "load-pkg": "^3.0.1",
-    "mocha": "*",
+    "mocha": "^2.3.4",
+    "relative-dest": "^0.1.0",
     "resolve-glob": "^0.1.7",
-    "rimraf": "^2.4.4",
+    "rimraf": "^2.5.0",
     "scaffold": "^0.2.1",
-    "should": "*",
+    "should": "^8.0.2",
     "sinon": "^1.17.2",
     "swig": "^1.4.2",
     "through2": "^2.0.0",
@@ -114,10 +138,10 @@
     "related": {
       "list": [
         "boilerplate",
-        "composer",
+        "update",
+        "assemble-core",
         "generate",
         "scaffold",
-        "templates",
         "verb"
       ]
     },
