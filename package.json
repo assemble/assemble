@@ -3,7 +3,7 @@
   "description": "Static site generator for Grunt.js, Yeoman and Node.js. Used by Zurb Foundation, Zurb Ink, H5BP/Effeckt, Less.js / lesscss.org, Topcoat, Web Experience Toolkit, and hundreds of other projects to build sites, themes, components, documentation, blogs and gh-pages.",
   "version": "0.6.2",
   "homepage": "http://assemble.io",
-  "author": "Assemble (https://github.com/assemble/assemble)",
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert/)",
   "maintainers": [
     "Brian Woodward (https://github.com/doowb)",
     "Jon Schlinkert (https://github.com/jonschlinkert)"
@@ -14,9 +14,9 @@
   },
   "license": "MIT",
   "files": [
+    "index.js",
     "bin/",
     "completion/",
-    "index.js",
     "lib/"
   ],
   "engines": {
@@ -117,12 +117,18 @@
   ],
   "verb": {
     "related": {
-      "list": []
-    },
-    "deps": {
-      "ignore": [
-        "coverage"
+      "list": [
+        "assemble-core",
+        "generate",
+        "update",
+        "verb"
       ]
-    }
+    },
+    "reflinks": [
+      "grunt-assemble"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ]
   }
 }
