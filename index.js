@@ -7,6 +7,7 @@
 var path = require('path');
 var Core = require('assemble-core');
 var utils = require('./lib/utils');
+var cli = require('./lib/cli');
 
 /**
  * Create an `assemble` application. This is the main function exported
@@ -25,6 +26,7 @@ function Assemble(options) {
     return new Assemble(options);
   }
   Core.apply(this, arguments);
+  this.isAssemble = true;
   this.initAssemble();
 }
 
@@ -38,12 +40,23 @@ Core.extend(Assemble);
  * Initialize Assemble defaults
  */
 
-Assemble.prototype.initAssemble = function() {
-  this.isAssemble = true;
-  this.use(utils.loader());
-
+Assemble.prototype.initAssemble = function(opts) {
   var exts = this.options.exts || ['md', 'hbs', 'html'];
   var regex = utils.extRegex(exts);
+
+  /**
+   * Register built-in plugins
+   */
+
+  this.use(utils.pipeline(opts))
+    .use(utils.pipeline())
+    .use(utils.loader())
+    .use(utils.config())
+    .use(utils.store())
+    .use(utils.list())
+    .use(utils.cli())
+    .use(utils.ask())
+    .use(cli())
 
   /**
    * Default engine
