@@ -1,5 +1,7 @@
 # assemblefile.js examples
 
+Before you get started, it might help to first visit the [API docs for assemblefiles](./api/assemblefile.md) to become familiarized with the supported signatures and features for `assemblefile.js`.
+
 **Freedom to create**
 
 Although most of the following examples will show tasks being defined, this only because it's easy to write examples with tasks. But your `assemblefile.js` does not need to have tasks, or require that you use the file system API (`src` and `dest`).
@@ -51,4 +53,3 @@ gulp.task('css', function () {
 
 app.task('default', ['html', 'css']);
 ```
-
