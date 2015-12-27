@@ -56,7 +56,7 @@ Assemble.prototype.initAssemble = function(opts) {
     .use(utils.list())
     .use(utils.cli())
     .use(utils.ask())
-    .use(cli())
+    .use(cli());
 
   /**
    * Default engine
@@ -106,9 +106,8 @@ Assemble.prototype.initAssemble = function(opts) {
   });
 };
 
-
 /**
- * Expose the `Assemble` constructor
+ * Expose `Assemble`
  */
 
 module.exports = Assemble;
