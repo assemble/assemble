@@ -1,6 +1,8 @@
 ---
 title: Pagination
 related: ['sortBy', 'groups', 'List', 'lists']
+pagination: > 
+  How to add pagination to your assemble project.
 ---
 
 ## Use cases
