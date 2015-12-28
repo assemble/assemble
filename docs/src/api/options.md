@@ -1,6 +1,58 @@
 ---
-title: Options
+title: Config
+collection: docs
+category: api
 ---
+
+The purpose of the config API is to set and get general configuration values that can be used by any method. In other words, these methods are generically, and globally usable.
+
+## .option
+
+The `.option()` method sets values on the `assemble.options` object.
+
+```js
+// set
+assemble.option('abc', true);
+
+// get
+assemble.option('abc')); //=> true
+assemble.options.abc; //=> true
+```
+
+In addition to `.option()`, the following methods may be used as convenience methods for getting and setting Boolean values on the `assemble.options` object:
+
+```js
+assemble.enable('xyz');
+//=> assemble.options.xyz = true;
+
+assemble.disable('xyz');
+//=> assemble.options.xyz = false;
+```
+
+Is `xyz` enabled?
+
+```js
+assemble.enabled('xyz');
+//=> 'true'
+```
+
+Is `xyz` disabled?
+
+```js
+assemble.disabled('xyz');
+//=> 'false'
+```
+
+## .set / .get
+
+The `.set()` method sets values on the `assemble` instance.
+
+```js
+assemble.set('level', 'admin');
+assemble.get('level');
+//=> 'admin'
+```
+
 
 ## options.mergeTypes
 
