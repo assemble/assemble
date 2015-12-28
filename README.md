@@ -5,9 +5,12 @@
 We're happy to announce the release of Assemble v<%= version %>! Please see the [release history](#release-history) to learn about new features, bug fixes and changes - breaking or otherwise.
 
 - [Install](#install)
-- [Overview](#overview)
 - [Getting started](#getting-started)
   * [Running tasks](#running-tasks)
+- [CLI](#cli)
+  * [Tasks](#tasks)
+  * [Options](#options)
+  * [Object expansion](#object-expansion)
 - [API](#api)
 - [Templates API](#templates-api)
 - [File System API](#file-system-api)
@@ -19,6 +22,7 @@ We're happy to announce the release of Assemble v<%= version %>! Please see the 
   * [.task](#task)
   * [.build](#build)
   * [.watch](#watch)
+- [About](#about)
 - [Test coverage](#test-coverage)
 - [Contributing](#contributing)
 - [Author](#author)
@@ -33,18 +37,6 @@ Install with [npm](https://www.npmjs.com/):
 ```sh
 $ npm i assemble --save
 ```
-
-## Overview
-
-**What is Assemble?**
-
-Assemble makes it easy to create, customize, generate and maintain a complete static web project. This includes:
-
-* Facilitating the use of modular, encapsulated components, like pages, partials and layouts, resulting in consistent design across your project
-* Ability to use any data source for rendering templates, which makes it easy to begin a project using mock data and switch to a "live" data source later on.
-* Use any template engine for rendering templates. You can even use multiple engines at once, Assemble will automatically detect the correct one to use on each template at render time.
-* Assemble is extremely pluggable and easy to extend with helpers, plugins, middleware or engines.
-* Need to transform content from markdown or any other plain text format to HTML? Simple, just add the plugin, helper or engine you need!
 
 ## Getting started
 
@@ -96,6 +88,86 @@ app.build('default', function(err) {
 ```
 
 Learn [more about tasks](#task-api).
+
+## CLI
+
+Run assemble from the command line.
+
+```sh
+$ assemble <tasks> [options]
+```
+
+### Tasks
+
+Optionally specify one or more tasks to run. Multiple tasks are separated by a space.
+
+**Example**
+
+To run tasks `foo` and `bar`, you would enter the following in the command line:
+
+```sh
+$ assemble foo bar
+```
+
+### Options
+
+Non-task commands and options are prefixed with `--` and are specified using any of the following formats:
+
+* single value, like `--foo`, or
+* key-value pair, like `--foo=bar`. Also, key-value pairs may be separated by either `=` or a single whitespace, so `--foo=bar` and `--foo=bar` should both work.
+
+**Example**
+
+To emit views as they're loaded and log them to `stderr`, run assemble with the following command:
+
+```sh
+$ assemble --emit view
+# or
+$ assemble --emit=view
+```
+
+### Object expansion
+
+Object-paths may be specified using dot-notation for **either the key or value** in a command line argument.
+
+Additionally, assemble uses [expand-object][] (and some custom parsing) to make it easier to pass non-trivial options and commands via command line. So all of the following formats are possible.
+
+**Examples**
+
+Boolean values:
+
+```sh
+$ assemble --foo 
+# { foo: true }
+```
+
+Key-value pairs:
+
+```sh
+$ assemble --foo=bar
+# { foo: 'bar' }
+```
+
+Nested booleans:
+
+```sh
+$ assemble --option=foo 
+# {options: { foo: true }}
+```
+
+Nested key-value pairs:
+
+```sh
+$ assemble --option=foo:bar
+# {options: { foo: 'bar' }}
+```
+
+Deeply nested key-value pairs:
+
+```sh
+$ assemble --option=foo.bar.baz:qux
+# {options: { foo: 'bar' }}
+```
 
 ## API
 
@@ -257,6 +329,18 @@ app.task('watch', function() {
   app.watch('docs/*.md', ['docs']);
 });
 ```
+
+## About
+
+**What is Assemble?**
+
+Assemble makes it easy to create, customize, generate and maintain a complete static web project. This includes:
+
+* Facilitating the use of modular, encapsulated components, like pages, partials and layouts, resulting in consistent design across your project
+* Ability to use any data source for rendering templates, which makes it easy to begin a project using mock data and switch to a "live" data source later on.
+* Use any template engine for rendering templates. You can even use multiple engines at once, Assemble will automatically detect the correct one to use on each template at render time.
+* Assemble is extremely pluggable and easy to extend with helpers, plugins, middleware or engines.
+* Need to transform content from markdown or any other plain text format to HTML? Simple, just add the plugin, helper or engine you need!
 
 ## Test coverage
 
