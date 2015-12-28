@@ -30,7 +30,7 @@ app.create('docs');
  * Load helpers
  */
 
-app.helpers('docs/src/helpers/*.js');
+app.helpers('docs/helpers/*.js');
 
 /**
  * Load some "global" data
@@ -53,8 +53,8 @@ app.data({
  * Middleware
  */
 
-app.preLayout(/\/content\/.*\.md/, function(view, next) {
-  view.layout = 'markdown';
+app.preLayout(/\/api\/.*\.md$/, function(view, next) {
+  view.layout = 'body';
   next();
 });
 
@@ -63,9 +63,9 @@ app.preLayout(/\/content\/.*\.md/, function(view, next) {
  */
 
 app.task('load', function(cb) {
-  app.partials('docs/src/templates/partials/*.hbs');
-  app.layouts('docs/src/templates/layouts/*.hbs');
-  app.docs('docs/src/content/*.md');
+  app.partials('docs/templates/partials/*.hbs');
+  app.layouts('docs/templates/layouts/*.hbs');
+  app.docs('docs/src/**/*.md');
   cb();
 });
 
@@ -74,7 +74,7 @@ app.task('load', function(cb) {
  */
 
 app.task('default', ['load'], function() {
-  return app.src('docs/src/content/[a-p]*.md')
+  return app.src('docs/src/api/*.md')
     .on('err', console.log)
     .pipe(app.renderFile())
     .on('err', console.log)
@@ -91,7 +91,7 @@ app.task('default', ['load'], function() {
  */
 
 app.task('watch', ['docs'], function() {
-  app.watch('docs/**/*.*', ['default']);
+  app.watch('docs/**/*.{md,hbs}', ['default']);
 });
 
 /**
