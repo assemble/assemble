@@ -65,7 +65,7 @@ app.preLayout(/\/api\/.*\.md$/, function(view, next) {
 app.task('load', function(cb) {
   app.partials('docs/templates/partials/*.hbs');
   app.layouts('docs/templates/layouts/*.hbs');
-  app.docs('docs/src/**/*.md');
+  app.docs('docs/src/api/*.md');
   cb();
 });
 
@@ -74,7 +74,7 @@ app.task('load', function(cb) {
  */
 
 app.task('default', ['load'], function() {
-  return app.src('docs/src/api/*.md')
+  return app.toStream('docs')
     .on('err', console.log)
     .pipe(app.renderFile())
     .on('err', console.log)
