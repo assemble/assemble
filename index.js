@@ -10,7 +10,7 @@ var utils = require('./lib/utils');
 var cli = require('./lib/cli');
 
 /**
- * Create an `assemble` application. This is the main function exported
+ * Create an `assemble` app. This is the main function exported
  * by the assemble module.
  *
  * ```js
@@ -25,9 +25,11 @@ function Assemble(options) {
   if (!(this instanceof Assemble)) {
     return new Assemble(options);
   }
+
   Core.apply(this, arguments);
   this.isAssemble = true;
-  this.initAssemble();
+
+  this.initAssemble(this.options);
 }
 
 /**
@@ -41,7 +43,7 @@ Core.extend(Assemble);
  */
 
 Assemble.prototype.initAssemble = function(opts) {
-  var exts = this.options.exts || ['md', 'hbs', 'html'];
+  var exts = opts.exts || ['md', 'hbs', 'html'];
   var regex = utils.extRegex(exts);
 
   /**
@@ -53,6 +55,7 @@ Assemble.prototype.initAssemble = function(opts) {
     .use(utils.loader())
     .use(utils.config())
     .use(utils.store())
+    .use(utils.argv())
     .use(utils.list())
     .use(utils.cli())
     .use(utils.ask())
@@ -73,14 +76,13 @@ Assemble.prototype.initAssemble = function(opts) {
   });
 
   /**
-   * Define default view collections
+   * Built-in view collections
    *  | partials
    *  | layouts
    *  | pages
-   *  | files
    */
 
-  var engine = this.options.defaultEngine || 'hbs';
+  var engine = opts.defaultEngine || 'hbs';
 
   this.create('partials', {
     engine: engine,
@@ -105,6 +107,18 @@ Assemble.prototype.initAssemble = function(opts) {
     }
   });
 };
+
+/**
+ * Set a `base` instance that can be used for storing
+ * additional instances.
+ */
+
+Object.defineProperty(Assemble.prototype, 'base', {
+  configurable: true,
+  get: function() {
+    return this.parent ? this.parent.base : this;
+  }
+});
 
 /**
  * Expose `Assemble`

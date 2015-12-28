@@ -31,11 +31,12 @@ function run(cb) {
   var app = require(assemblefile);
   if (typeof app === 'function') {
     var fn = app;
-    app = assemble(argv);
-    fn(app);
-  } else {
+    app = assemble();
     app.option(argv);
+    fn(app);
   }
+
+  var args = utils.processArgv(app, argv);
 
   /**
    * Setup composer-runtimes
@@ -56,14 +57,14 @@ function run(cb) {
    */
 
   if (argv.emit && typeof argv.emit === 'string') {
-    app.on(argv.emit, console.log.bind(console));
+    app.on(argv.emit, console.error.bind(console));
   }
 
   /**
    * Process command line arguments
    */
 
-  app.cli.process(argv);
+  app.cli.process(args);
   cb(null, app);
 }
 
@@ -76,6 +77,8 @@ run(function(err, app) {
     console.log(errors[err]);
     process.exit(1);
   }
+
+  console.log(app.options)
 
   app.build('default', function(err) {
     if (err) throw err;
