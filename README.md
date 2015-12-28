@@ -166,7 +166,14 @@ Deeply nested key-value pairs:
 
 ```sh
 $ assemble --option=foo.bar.baz:qux
-# {options: { foo: 'bar' }}
+# {options: foo: { bar: { baz: 'qux' }}}}
+```
+
+Or on the left-side of the `=`:
+
+```sh
+$ assemble --option.foo.bar.baz=qux
+# {options: foo: { bar: { baz: 'qux' }}}}
 ```
 
 ## API
