@@ -176,10 +176,9 @@ Copy files with the given glob `patterns` to the specified `dest`.
 **Example**
 
 ```js
-app.task('assets', function(cb) {
-  app.copy('assets/**', 'dist/')
-    .on('error', cb)
-    .on('finish', cb)
+app.task('assets', function() {
+  // let assemble know when the task has completed
+  return app.copy('assets/**', 'dist/');
 });
 ```
 
