@@ -78,8 +78,6 @@ run(function(err, app) {
     process.exit(1);
   }
 
-  console.log(app.options)
-
   app.build('default', function(err) {
     if (err) throw err;
     utils.timestamp('finished ' + utils.success());
