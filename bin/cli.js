@@ -49,6 +49,17 @@ function run(cb) {
   }));
 
   /**
+   * Support `--emit` for debugging
+   *
+   * Example:
+   *   $ --emit data
+   */
+
+  if (argv.emit && typeof argv.emit === 'string') {
+    app.on(argv.emit, console.log.bind(console));
+  }
+
+  /**
    * Process command line arguments
    */
 
