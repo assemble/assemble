@@ -24,12 +24,22 @@ function run(cb) {
     return;
   }
 
+  /**
+   * Get the `assemble` instance to use
+   */
+
   var app = require(assemblefile);
   if (typeof app === 'function') {
     var fn = app;
-    app = assemble();
+    app = assemble(argv);
     fn(app);
+  } else {
+    app.option(argv);
   }
+
+  /**
+   * Setup composer-runtimes
+   */
 
   var name = app.name || app.options.name || 'base';
   app.use(utils.runtimes({
@@ -37,6 +47,10 @@ function run(cb) {
       return name !== key ? (name + ':' + key) : key;
     }
   }));
+
+  /**
+   * Process command line arguments
+   */
 
   app.cli.process(argv);
   cb(null, app);
