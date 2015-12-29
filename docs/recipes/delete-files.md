@@ -6,6 +6,8 @@ var del = require('delete');
 var app = assemble();
 
 app.task('default', function(cb) {
-  del(['foo/*.js', 'bar/*.js'], cb);
+  del(['foo/*.js', 'bar/*.js']).then( function() {
+  	cb();
+  });
 });
 ```
