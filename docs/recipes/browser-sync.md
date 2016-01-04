@@ -1,17 +1,18 @@
 # Assemble and Browser-Sync
 
-> This recipe uses assemble and [browser-sync](https://www.browsersync.io/) to both serve the files but also update the served files if needed.
+> Use assemble and [browser-sync](https://www.browsersync.io/) to both serve the files but also update the served files if needed.
 
 ## Purpose of this recipe
 - Convert some .less files to a single style sheet (.css file).
 - Convert some markdown files to html output, containing also a link to the generated CSS file.
 - Servce the files in the local browser automatically
 - Create some watchers on
-	- all .less files (`./less` folder)
-	- all content files (`./content` folder
+	- all .less files in the `./less` folder (`./less/**/*.less`)
+	- all content files in the `./content` folder (`./content/**/*.{md,hbs}`)
 - In case any watcher is triggered, update either the stylesheets or the generated html files.
 
 **Main file:**
+
 ```js
 'use strict';
 var assemble = require( 'assemble' );
@@ -64,12 +65,14 @@ module.exports = app;
 ```
 
 **less/default.less**
+
 ```css
 @import "typography.less";
 @import "variables.less";
 ```
 
 **less/typography.less**
+
 ```css
 html, body {
 	font-family: @defaultFont;
@@ -82,12 +85,14 @@ h1 {
 ```
 
 **less/variables.less**
+
 ```css
 @mainColor: #666;
 @defaultFont: Arial, "Helvetica Neue", Helvetica, sans-serif;
 ```
 
 **templates/layouts/default.hbs**
+
 ```html
 <!doctype html>
 <html lang="en">
@@ -106,6 +111,7 @@ h1 {
 ```
 
 **content/page-1.md**
+
 ```
 ---
 title: Page 1

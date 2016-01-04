@@ -1,10 +1,10 @@
 # Default layout
 
-> This recipe demonstrates how to define or force a default layout.
+> Define or force a default layout.
 
-Basically, to set the default-layout for the entire app, use a global option `layout`:
+Basically, to set the default-layout for the entire app, use the global option `layout`:
 
-```
+```js
 app.option('layout', 'the-special-one');
 ```
 
