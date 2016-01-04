@@ -19,7 +19,8 @@
   "license": "MIT",
   "files": [
     "index.js",
-    "lib/"
+    "lib/",
+    "cli/"
   ],
   "main": "index.js",
   "bin": {
