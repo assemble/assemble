@@ -20,7 +20,7 @@
   "files": [
     "index.js",
     "lib/",
-    "cli/"
+    "bin/"
   ],
   "main": "index.js",
   "bin": {
