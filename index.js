@@ -42,15 +42,16 @@ Core.extend(Assemble);
  * Initialize Assemble defaults
  */
 
-Assemble.prototype.initAssemble = function(opts) {
-  var exts = opts.exts || ['md', 'hbs', 'html'];
+Assemble.prototype.initAssemble = function() {
+  var exts = this.options.exts || ['md', 'hbs', 'html'];
   var regex = utils.extRegex(exts);
+  var self = this;
 
   /**
    * Register built-in plugins
    */
 
-  this.use(utils.pipeline(opts))
+  this.use(utils.pipeline(this.options))
     .use(utils.pipeline())
     .use(utils.loader())
     .use(utils.config())
@@ -72,7 +73,11 @@ Assemble.prototype.initAssemble = function(opts) {
    */
 
   this.onLoad(regex, function(view, next) {
-    utils.matter.parse(view, next);
+    // needs to be inside the middleware, to
+    // account for options defined after init
+    if (file.options.frontMatter !== false && self.options.frontMatter !== false) {
+      utils.matter.parse(view, next);
+    }
   });
 
   /**
@@ -82,7 +87,7 @@ Assemble.prototype.initAssemble = function(opts) {
    *  | pages
    */
 
-  var engine = opts.defaultEngine || 'hbs';
+  var engine = this.options.defaultEngine || 'hbs';
 
   this.create('partials', {
     engine: engine,
