@@ -15,7 +15,7 @@ describe('compile', function() {
     var page = views.getView('foo.bar');
     (function() {
       views.compile(page);
-    }).should.throw('Views#compile cannot find an engine for: .bar');
+    }).should.throw('Views#compile cannot find engine: .bar');
   });
 
   it('should compile a template:', function() {

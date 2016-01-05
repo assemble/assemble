@@ -1,3 +1,5 @@
+'use strict';
+
 require('mocha');
 require('should');
 var assert = require('assert');
@@ -24,7 +26,7 @@ describe('render', function() {
       var page = app.pages.getView('foo.bar');
 
       app.render(page, function(err) {
-        assert(err.message === 'Templates#render cannot find an engine for: .bar');
+        assert(err.message === 'Templates#render cannot find engine: .bar');
         done();
       });
     });
