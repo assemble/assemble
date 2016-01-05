@@ -2,8 +2,9 @@
 title: Engines
 ---
 
+## Engines API
 
-### [.engine](index.js#L150)
+### .engine
 
 Register the given template engine callback `fn` as `ext`.
 
