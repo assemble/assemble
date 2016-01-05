@@ -37,6 +37,7 @@ Assemble makes it easy to create, customize, generate and maintain a complete st
 - [Release history](#release-history)
 - [Test coverage](#test-coverage)
 - [Contributing](#contributing)
+- [Similar projects](#similar-projects)
 - [Author](#author)
 - [License](#license)
 
@@ -377,6 +378,22 @@ Lines      : 100% (38/38)
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/jonschlinkert/assemble/issues/new).
 
 If Assemble doesn't do what you need, [please let us know](https://github.com/assemble/assemble/issues/new?title=request%253A%20%3Ctitle%20here%3E)
+
+## Similar projects
+
+If assemble doesn't do what you need, there are some other great open source projects you might be interested in, created by our friends on GitHub:
+
+**Static site generators**
+
+* [docpad](https://github.com/docpad)
+* [metalsmith](https://github.com/metalsmith)
+* [punch](https://github.com/laktek/punch)
+* [wintersmith](https://github.com/jnordberg/wintersmith)
+
+**Blog frameworks**
+
+* [hexojs](https://github.com/hexojs)
+* [ghost](https://github.com/TryGhost/Ghost)
 
 ## Author
 
