@@ -133,5 +133,3 @@ app.postRender(/\.hbs$/, function(view, next) {
 [verbs]: http://expressjs.com/api.html#router.METHOD
 
 {%= reflinks(['express']) %}
-
-
