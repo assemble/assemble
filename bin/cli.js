@@ -42,10 +42,9 @@ function run(cb) {
    * Setup composer-runtimes
    */
 
-  var name = app.name || app.options.name || 'base';
   app.use(utils.runtimes({
     displayName: function (key) {
-      return name !== key ? (name + ':' + key) : key;
+      return app.name !== key ? (app.name + ':' + key) : key;
     }
   }));
 
@@ -77,6 +76,18 @@ run(function(err, app) {
     console.log(errors[err]);
     process.exit(1);
   }
+
+  /**
+   * Listen for errors
+   */
+
+  app.on('error', function(err) {
+    console.log(err);
+  });
+
+  /**
+   * Run tasks
+   */
 
   app.build('default', function(err) {
     if (err) throw err;
