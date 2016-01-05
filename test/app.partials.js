@@ -7,6 +7,9 @@ var app;
 describe('.partials()', function() {
   beforeEach(function() {
     app = assemble();
+    if (!app.partials) {
+      app.create('partials', {viewType: 'partial'});
+    }
   });
 
   describe('add partials', function() {
@@ -16,6 +19,7 @@ describe('.partials()', function() {
         'b.hbs': {path: 'b.hbs', contents: new Buffer('b')},
         'c.hbs': {path: 'c.hbs', contents: new Buffer('c')},
       });
+
       assert(Object.keys(app.views.partials).length === 3);
     });
   });

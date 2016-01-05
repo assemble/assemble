@@ -7,6 +7,9 @@ var app;
 describe('.partial()', function() {
   beforeEach(function() {
     app = assemble();
+    if (!app.partials) {
+      app.create('partials', {viewType: 'partial'});
+    }
   });
 
   describe('add partial', function() {

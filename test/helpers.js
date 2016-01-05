@@ -1,3 +1,5 @@
+'use strict';
+
 require('mocha');
 require('should');
 var path = require('path');
@@ -66,12 +68,12 @@ describe('helpers', function() {
       assert(typeof app._.helpers.sync.a === 'function');
     });
 
-    it('should fail gracefully on bad globs:', function(done) {
+    it('should fail gracefully on bad globs:', function(cb) {
       try {
         app.helpers('test/fixtures/helpers/*.foo');
-        done();
+        cb();
       } catch (err) {
-        done(new Error('should not throw an error.'));
+        cb(new Error('should not throw an error.'));
       }
     });
 
@@ -141,12 +143,12 @@ describe('helpers', function() {
       assert(typeof app._.helpers.async.three === 'function');
     });
 
-    it('should fail gracefully on bad globs:', function(done) {
+    it('should fail gracefully on bad globs:', function(cb) {
       try {
         app.asyncHelpers('test/fixtures/helpers/*.foo');
-        done();
+        cb();
       } catch (err) {
-        done(new Error('should not throw an error.'));
+        cb(new Error('should not throw an error.'));
       }
     });
 
@@ -200,7 +202,7 @@ describe('sync helpers', function() {
     assert(app._.helpers.sync.hasOwnProperty('b'));
   });
 
-  it('should use a helper:', function(done) {
+  it('should use a helper:', function(cb) {
     app.pages('a.tmpl', {path: 'a.tmpl', content: '<%= upper(a) %>', locals: {a: 'bbb'}});
     app.helper('upper', function(str) {
       return str.toUpperCase();
@@ -209,15 +211,15 @@ describe('sync helpers', function() {
     var page = app.pages.getView('a.tmpl');
 
     app.render(page, function(err, view) {
-      if (err) return done(err);
+      if (err) return cb(err);
 
       assert.equal(typeof view.contents.toString(), 'string');
       assert.equal(view.contents.toString(), 'BBB');
-      done();
+      cb();
     });
   });
 
-  it('should use a namespaced helper:', function(done) {
+  it('should use a namespaced helper:', function(cb) {
     app.pages('a.tmpl', {path: 'a.tmpl', content: '<%= foo.upper(a) %>', locals: {a: 'bbb'}});
 
     app.helperGroup('foo', {
@@ -230,11 +232,11 @@ describe('sync helpers', function() {
 
     var page = app.pages.getView('a.tmpl');
     app.render(page, function(err, view) {
-      if (err) return done(err);
+      if (err) return cb(err);
 
       assert.equal(typeof view.contents.toString(), 'string');
       assert.equal(view.contents.toString(), 'BBB');
-      done();
+      cb();
     });
   });
 });
@@ -253,7 +255,7 @@ describe('async helpers', function() {
     app._.helpers.async.should.have.property('b');
   });
 
-  it('should use an async helper:', function(done) {
+  it('should use an async helper:', function(cb) {
     app.pages('a.tmpl', {path: 'a.tmpl', content: '<%= lower(a) %>', locals: {a: 'BBB'}});
     app.asyncHelper('lower', function(str, next) {
       if (typeof next !== 'function') return str;
@@ -262,10 +264,10 @@ describe('async helpers', function() {
 
     var page = app.pages.getView('a.tmpl');
     app.render(page, function(err, view) {
-      if (err) return done(err);
+      if (err) return cb(err);
       assert.equal(typeof view.content, 'string');
       assert.equal(view.content, 'bbb');
-      done();
+      cb();
     });
   });
 });
@@ -285,80 +287,106 @@ describe('built-in helpers:', function() {
       });
     });
 
-    it('should expose front matter to the `partial` helper.', function(done) {
+    it('should expose front matter to the `partial` helper.', function(cb) {
       app.partial('a.md', {content: '---\nname: "AAA"\n---\n<%= name %>', locals: {name: 'BBB'}});
       app.page('b.md', {path: 'b.md', content: 'foo <%= partial("a.md") %> bar'});
 
       app.render('b.md', function(err, res) {
-        if (err) return done(err);
+        if (err) return cb(err);
         res.content.should.equal('foo AAA bar');
-        done();
+        cb();
       });
     });
 
-    it('should use helper locals.', function(done) {
-      app.partial('abc.md', {content: '---\nname: "AAA"\n---\n<%= name %>', locals: {name: 'BBB'}});
+    it('should use helper locals.', function(cb) {
+      app.partial('abc.md', {content: '<%= name %>', locals: {name: 'BBB'}});
       app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md", { name: "CCC" }) %> bar'});
 
       app.render('xyz.md', {name: 'DDD'}, function(err, res) {
-        if (err) return done(err);
+        if (err) return cb(err);
         res.content.should.equal('foo CCC bar');
-        done();
+        cb();
       });
     });
 
-    it('should use front matter data.', function(done) {
+    it('should use front matter data.', function(cb) {
       app.partial('abc.md', {content: '---\nname: "AAA"\n---\n<%= name %>'});
       app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md") %> bar'});
 
       app.render('xyz.md', {name: 'DDD'}, function(err, res) {
-        if (err) return done(err);
+        if (err) return cb(err);
         res.content.should.equal('foo AAA bar');
-        done();
+        cb();
       });
     });
 
-    it('should use partial locals:', function(done) {
+    it('should prefer helper locals over front-matter', function(cb) {
+      app.partial('abc.md', {content: '---\nname: "AAA"\n---\n<%= name %>', locals: {name: 'BBB'}});
+      app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md", { name: "CCC" }) %> bar'});
+
+      app.render('xyz.md', {name: 'DDD'}, function(err, res) {
+        if (err) return cb(err);
+        res.content.should.equal('foo CCC bar');
+        cb();
+      });
+    });
+
+    it('should use partial locals:', function(cb) {
       app.partial('abc.md', {content: '<%= name %>', locals: {name: 'EEE'}});
 
       app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md") %> bar'})
         .render({name: 'DDD'}, function(err, res) {
-          if (err) return done(err);
+          if (err) return cb(err);
           res.content.should.equal('foo EEE bar');
-          done();
+          cb();
         });
     });
 
-    it('should use locals from the `view.render` method:', function(done) {
+    it('should use locals from the `view.render` method:', function(cb) {
       app.partial('abc.md', {content: '<%= name %>', locals: {name: 'EEE'}});
 
       app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md") %> bar'})
         .render({name: 'DDD'}, function(err, res) {
-          if (err) return done(err);
+          if (err) return cb(err);
 
           res.content.should.equal('foo EEE bar');
-          done();
+          cb();
         });
     });
 
-    it('should use locals from the `app.render` method:', function(done) {
+    it('should use locals from the `app.render` method:', function(cb) {
       app.partial('abc.md', {content: '<%= name %>'});
       app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md") %> bar'});
 
       app.render('xyz.md', {name: 'DDD'}, function(err, res) {
-        if (err) return done(err);
+        if (err) return cb(err);
         res.content.should.equal('foo DDD bar');
-        done();
+        cb();
       });
     });
 
-    it('should return an empty string when the partial is missing.', function(done) {
+    it('should use a `helperContext` function from app.options', function(cb) {
+      app.option('helperContext', function(view, locals) {
+        return { name: 'blah' };
+      });
+
+      app.partial('abc.md', {content: '<%= name %>'});
+      app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md") %> bar'});
+
+      app.render('xyz.md', {name: 'DDD'}, function(err, res) {
+        if (err) return cb(err);
+        res.content.should.equal('foo blah bar');
+        cb();
+      });
+    });
+
+    it('should return an empty string when the partial is missing.', function(cb) {
       app.partial('abc.md', {content: '---\nname: "AAA"\n---\n<%= name %>', locals: {name: 'BBB'}});
       app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("def.md", { name: "CCC" }) %> bar'});
       app.render('xyz.md', {name: 'DDD'}, function(err, res) {
-        if (err) return done(err);
+        if (err) return cb(err);
         res.content.should.equal('foo  bar');
-        done();
+        cb();
       });
     });
   });
@@ -376,38 +404,38 @@ describe('built-in helpers:', function() {
       });
     });
 
-    it('should prefer helper locals over view locals.', function(done) {
+    it('should prefer helper locals over view locals.', function(cb) {
       app.partial('abc.md', {content: '<%= name %>', name: 'BBB'});
       app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md", { name: "CCC" }) %> bar'});
 
       app.render('xyz.md', {name: 'DDD'}, function(err, res) {
-        if (err) return done(err);
+        if (err) return cb(err);
         res.content.should.equal('foo CCC bar');
-        done();
+        cb();
       });
     });
 
-    it('should give preference to view locals over render locals.', function(done) {
+    it('should give preference to view locals over render locals.', function(cb) {
       app.partial('abc.md', {content: '<%= name %>', locals: {name: 'BBB'}});
       app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md") %> bar'});
 
       var page = app.pages.getView('xyz.md');
 
       app.render(page, {name: 'DDD'}, function(err, res) {
-        if (err) return done(err);
+        if (err) return cb(err);
         res.content.should.equal('foo BBB bar');
-        done();
+        cb();
       });
     });
 
-    it('should use render locals when other locals are not defined.', function(done) {
+    it('should use render locals when other locals are not defined.', function(cb) {
       app.partial('abc.md', {content: '<%= name %>'});
       app.page('xyz.md', {path: 'xyz.md', content: 'foo <%= partial("abc.md") %> bar'});
 
       app.render('xyz.md', {name: 'DDD'}, function(err, res) {
-        if (err) return done(err);
+        if (err) return cb(err);
         res.content.should.equal('foo DDD bar');
-        done();
+        cb();
       });
     });
   });
@@ -415,16 +443,17 @@ describe('built-in helpers:', function() {
   describe('user-defined engines:', function() {
     beforeEach(function() {
       app = new App({rethrow: false});
-      app.create('partial', { viewType: 'partial' });
-      app.create('page');
 
       // parse front matter
       app.onLoad(/./, function(view, next) {
         matter.parse(view, next);
       });
+
+      app.create('partial', { viewType: 'partial' });
+      app.create('page');
     });
 
-    it('should use the `partial` helper with handlebars.', function(done) {
+    it('should use the `partial` helper with handlebars.', function(cb) {
       app.engine(['tmpl', 'md'], require('engine-base'));
       app.engine('hbs', handlebars);
 
@@ -432,44 +461,108 @@ describe('built-in helpers:', function() {
       app.page('a.hbs', {path: 'a.hbs', content: 'foo {{{partial "title.hbs" this}}} bar'});
 
       app.render('a.hbs', {name: 'Halle Nicole'}, function(err, res) {
-        if (err) return done(err);
+        if (err) return cb(err);
         res.content.should.equal('foo <title>Halle Nicole</title> bar');
-        done();
+        cb();
       });
     });
 
-    it('should use the `partial` helper with any engine.', function(done) {
+    it('should use the `partial` helper with any engine.', function(cb) {
       app.engine('hbs', handlebars);
       app.engine('md', handlebars);
       app.engine('swig', swig);
       app.engine('tmpl', require('engine-base'));
 
-      app.partial('a.hbs', {content: '---\nname: "AAA"\n---\n<title>{{name}}</title>', locals: {name: 'BBB'}});
-      app.page('a.hbs', {path: 'a.hbs', content: '<title>{{author}}</title>', locals: {author: 'Halle Nicole'}});
-      app.page('b.tmpl', {path: 'b.tmpl', content: '<title><%= author %></title>', locals: {author: 'Halle Nicole'}});
-      app.page('d.swig', {path: 'd.swig', content: '<title>{{author}}</title>', locals: {author: 'Halle Nicole'}});
-      app.page('e.swig', {path: 'e.swig', content: '<title>{{author}}</title>', locals: {author: 'Halle Nicole'}});
-      app.page('f.hbs', {content: '<title>{{author}}</title>', locals: {author: 'Halle Nicole'}});
-      app.page('g.md', {content: '---\nauthor: Brian Woodward\n---\n<title>{{author}}</title>', locals: {author: 'Halle Nicole'}});
-      app.page('with-partial.hbs', {path: 'with-partial.hbs', content: '{{{partial "a.hbs" custom.locals}}}'});
+      /**
+       * Partial
+       */
+      
+      app.partial('a.hbs', {
+        content: '---\nname: "AAA"\n---\n<title>{{name}}</title>',
+        locals: {
+          name: 'BBB'
+        }
+      });
+
+      /**
+       * Pages
+       */
+      
+      app.page('a.hbs', {
+        path: 'a.hbs',
+        content: '<title>{{author}}</title>',
+        locals: {
+          author: 'Halle Nicole'
+        }
+      });
+      app.page('b.tmpl', {
+        path: 'b.tmpl',
+        content: '<title><%= author %></title>',
+        locals: {
+          author: 'Halle Nicole'
+        }
+      });
+      app.page('d.swig', {
+        path: 'd.swig',
+        content: '<title>{{author}}</title>',
+        locals: {
+          author: 'Halle Nicole'
+        }
+      });
+      app.page('e.swig', {
+        path: 'e.swig',
+        content: '<title>{{author}}</title>',
+        locals: {
+          author: 'Halle Nicole'
+        }
+      });
+      app.page('f.hbs', {
+        content: '<title>{{author}}</title>',
+        locals: {
+          author: 'Halle Nicole'
+        }
+      });
+      app.page('g.md', {
+        content: '---\nauthor: Brian Woodward\n---\n<title>{{author}}</title>',
+        locals: {
+          author: 'Halle Nicole'
+        }
+      });
+      app.page('with-partial.hbs', {
+        path: 'with-partial.hbs',
+        content: '{{{partial "a.hbs" custom.locals}}}'
+      });
+
+      app.on('error', function(err) {
+        cb(err);
+      });
 
       var locals = {custom: {locals: {name: 'Halle Nicole' }}};
       app.render('a.hbs', locals, function(err, res) {
-        if (err) return console.log(err);
+        if (err) {
+          app.emit('error', err);
+          return;
+        }
         res.content.should.equal('<title>Halle Nicole</title>');
       });
 
       app.render('with-partial.hbs', locals, function(err, res) {
-        if (err) return console.log(err);
+        if (err) {
+          app.emit('error', err);
+          return;
+        }
         res.content.should.equal('<title>Halle Nicole</title>');
       });
 
-      var page = app.pages.getView('g.md');
-      locals.author = page.data.author || locals.author;
-      page.render(locals, function(err, res) {
-        if (err) return done(err);
+      var page = app.pages.getView('g.md')
+      app.render(page, function(err, res) {
+        if (err) {
+          // test `emit`
+          app.emit('error', err);
+          return;
+        }
         res.content.should.equal('<title>Brian Woodward</title>');
-        done(null, res.content);
+        cb();
       });
     });
   });
@@ -483,7 +576,7 @@ describe('helpers integration', function() {
   });
 
   describe('.helpers()', function() {
-    it('should add helpers and use them in templates.', function(done) {
+    it('should add helpers and use them in templates.', function(cb) {
       app.helpers({
         upper: function(str) {
           return str.toUpperCase();
@@ -492,15 +585,15 @@ describe('helpers integration', function() {
 
       app.page('doc.md', {content: 'a <%= upper(name) %> b'})
         .render({name: 'Halle'}, function(err, res) {
-          if (err) return done(err);
+          if (err) return cb(err);
           assert(res.content === 'a HALLE b');
-          done();
+          cb();
         });
     });
   });
 
   describe('helper options:', function() {
-    it('should expose `this.options` to helpers:', function(done) {
+    it('should expose `this.options` to helpers:', function(cb) {
       app.helper('cwd', function(fp) {
         return path.join(this.options.cwd, fp);
       });
@@ -509,13 +602,13 @@ describe('helpers integration', function() {
       app.option('cwd', 'foo/bar');
       app.page('doc.md', {content: 'a <%= cwd("baz") %> b'})
         .render(function(err, res) {
-          if (err) return done(err);
+          if (err) return cb(err);
           assert(res.content === 'a foo/bar/baz b');
-          done();
+          cb();
         });
     });
 
-    it('should pass helper options to helpers:', function(done) {
+    it('should pass helper options to helpers:', function(cb) {
       app.helper('cwd', function(fp) {
         return path.join(this.options.cwd, fp);
       });
@@ -525,15 +618,15 @@ describe('helpers integration', function() {
 
       app.page('doc.md', {content: 'a <%= cwd("baz") %> b'})
         .render(function(err, res) {
-          if (err) return done(err);
+          if (err) return cb(err);
           assert(res.content === 'a foo/bar/baz b');
-          done();
+          cb();
         });
     });
   });
 
   describe('options.helpers', function() {
-    it('should register helpers passed on the options:', function(done) {
+    it('should register helpers passed on the options:', function(cb) {
       app.option({
         helpers: {
           upper: function(str) {
@@ -547,15 +640,15 @@ describe('helpers integration', function() {
 
       app.page('doc.md', {content: 'a <%= upper(name) %> <%= foo("bar") %> b'})
         .render({name: 'Halle'}, function(err, res) {
-          if (err) return done(err);
+          if (err) return cb(err);
           assert(res.content === 'a HALLE foobar b');
-          done();
+          cb();
         });
     });
   });
 
   describe('options.helpers', function() {
-    it('should add helpers and use them in templates.', function(done) {
+    it('should add helpers and use them in templates.', function(cb) {
       app.options.helpers = {
         upper: function(str) {
           return str.toUpperCase();
@@ -567,9 +660,9 @@ describe('helpers integration', function() {
 
       app.page('doc.md', {content: 'a <%= upper(name) %> b'})
         .render({name: 'Halle'}, function(err, res) {
-          if (err) return done(err);
+          if (err) return cb(err);
           assert(res.content === 'a HALLE b');
-          done();
+          cb();
         });
     });
   });
@@ -589,7 +682,7 @@ describe('collection helpers', function() {
   });
 
   describe('plural', function() {
-    it('should get the given collection', function(done) {
+    it('should get the given collection', function(cb) {
       app.post('a.hbs', {content: 'foo'});
       app.post('b.hbs', {content: 'bar'});
       app.post('c.hbs', {content: 'baz'});
@@ -602,15 +695,15 @@ describe('collection helpers', function() {
         content: '{{> list.hbs }}'
       })
         .render(function(err, res) {
-          if (err) return done(err);
+          if (err) return cb(err);
           assert(res.content === 'foobarbaz');
-          done();
+          cb();
         });
     });
   });
 
   describe('single', function() {
-    it('should get a view from an unspecified collection', function(done) {
+    it('should get a view from an unspecified collection', function(cb) {
       app.post('a.hbs', {content: 'post-a'});
       app.post('b.hbs', {content: 'post-b'});
 
@@ -624,18 +717,18 @@ describe('collection helpers', function() {
 
       assert(one === 'post-a');
       assert(two === 'post-b');
-      done();
+      cb();
     });
 
-    it('should return an empty string if not found', function(done) {
+    it('should return an empty string if not found', function(cb) {
       var one = app.page('one', {content: '{{view "foo.hbs"}}'})
         .compile()
         .fn();
       assert(one === '');
-      done();
+      cb();
     });
 
-    it('should handle engine errors', function(done) {
+    it('should handle engine errors', function(cb) {
       app.post('foo.hbs', {content: '{{one "two"}}'});
       app.page('one', {content: '{{posts "foo.hbs"}}'})
         .render(function(err) {
@@ -643,11 +736,11 @@ describe('collection helpers', function() {
           assert(typeof err === 'object');
           assert(typeof err.message === 'string');
           assert(/Missing helper: "one"/.test(err.message));
-          done();
+          cb();
         });
     });
 
-    it('should handle engine errors2', function(done) {
+    it('should handle engine errors2', function(cb) {
       app.engine('tmpl', require('engine-base'));
       app.create('foo', {engine: 'tmpl'});
       app.create('bar', {engine: 'tmpl'});
@@ -659,11 +752,11 @@ describe('collection helpers', function() {
           assert(err);
           assert(typeof err === 'object');
           assert(/blah is not defined/.test(err.message));
-          done();
+          cb();
         });
     });
 
-    it('should work with non-handlebars engine', function(done) {
+    it('should work with non-handlebars engine', function(cb) {
       app.engine('tmpl', require('engine-base'));
       app.create('foo', {engine: 'tmpl'});
       app.create('bar', {engine: 'tmpl'});
@@ -681,10 +774,10 @@ describe('collection helpers', function() {
 
       assert(one === 'foo-a');
       assert(two === 'foo-b');
-      done();
+      cb();
     });
 
-    it('should get a specific view from the given collection', function(done) {
+    it('should get a specific view from the given collection', function(cb) {
       app.post('a.hbs', {content: 'post-a'});
       app.post('b.hbs', {content: 'post-b'});
       app.post('c.hbs', {content: 'post-c'});
@@ -702,7 +795,7 @@ describe('collection helpers', function() {
 
       assert(one === 'post-a');
       assert(two === 'page-b');
-      done();
+      cb();
     });
   });
 });

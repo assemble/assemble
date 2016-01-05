@@ -7,6 +7,9 @@ var app;
 describe('.layout()', function() {
   beforeEach(function() {
     app = assemble();
+    if (!app.layout) {
+      app.create('layout', {viewType: 'layout'});
+    }
   });
 
   describe('add layout', function() {

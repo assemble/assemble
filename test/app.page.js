@@ -7,6 +7,9 @@ var app;
 describe('.page()', function() {
   beforeEach(function() {
     app = assemble();
+    if (!app.pages) {
+      app.create('pages');
+    }
   });
 
   describe('add page', function() {
