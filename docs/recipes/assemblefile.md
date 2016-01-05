@@ -8,23 +8,23 @@ Although most of the following examples will show tasks being defined, this only
 
 You can use any part of the Assemble API in your `assemblefile.js`, or just regular JavaScript if that's what you need.
 
-## Basic
+## Copy files
 
-The following `assemblefile.js` has a task defined that will copy all of the `.js` files from the root of your project to the `tmp` folder.
+The following `assemblefile.js` has a task defined that will copy all of the `.js` files from the root of your project to the `assets/js` folder.
 
 ```js
 var assemble = require('assemble');
-
 var app = assemble();
 
 app.task('default', function() {
-
+  return app.src('*.js')
+    .pipe(app.dest('site/assets/js'))
 });
 ```
 
-## HTML and CSS
+## HTML and SASS
 
-The following assemblefile will:
+The following `assemblefile.js` will:
 
 1. Generate `.html` files from `.hbs` ([handlebars][]) templates using [engine-handlebars][]
 1. Generate `.css` stylesheets from `.sass`, using [gulp-sass][]
@@ -38,17 +38,42 @@ var assemble = require('assemble');
 var app = assemble();
 
 app.task('html', function() {
-  app.src('templates/*.hbs')
+  return app.src('templates/*.hbs')
     .pipe(app.renderFile())
     .pipe(extname('.html'))
     .pipe(htmlmin())
     .pipe(app.dest('dist/'));
 });
 
-gulp.task('css', function () {
-  gulp.src('./sass/**/*.scss')
+app.task('css', function () {
+  return app.src('./sass/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./css'));
+    .pipe(app.dest('./css'));
+});
+
+app.task('default', ['html', 'css']);
+```
+
+## HTML and LESS
+
+The following `assemblefile.js` will:
+
+1. Generate `.html` files from `.hbs` ([handlebars][]) templates using [engine-handlebars][]
+1. Generate `.css` stylesheets from `.sass`, using [gulp-sass][]
+
+```js
+var assemble = require('assemble');
+var less = require('gulp-less');
+
+app.task('html', function() {
+  return app.src('templates/*.hbs')
+    .pipe(app.dest('dist/'));
+});
+
+app.task('css', function () {
+  return app.src('styles/*.less')
+    .pipe(less())
+    .pipe(app.dest('dist/assets/css'));
 });
 
 app.task('default', ['html', 'css']);
