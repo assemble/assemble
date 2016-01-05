@@ -1,26 +1,6 @@
 
 ## Usage
 
-**Example assemblefile.js**
-
-```js
-var assemble = require('assemble');
-var less = require('gulp-less');
-
-assemble.task('html', function() {
-  assemble.src('templates/*.hbs')
-    .pipe(assemble.dest('dist/'));
-});
-
-assemble.task('css', function () {
-  assemble.src('styles/*.less')
-    .pipe(less())
-    .pipe(assemble.dest('dist/assets/css'));
-});
-
-assemble.task('default', ['html', 'css']);
-```
-
 ### Example: Templates
 
 Generate HTML from templates. _(Assemble automatically renders handlebars templates, but custom engines and plugins may also be used.)_
@@ -28,9 +8,9 @@ Generate HTML from templates. _(Assemble automatically renders handlebars templa
 ```js
 var assemble = require('assemble');
 
-assemble.task('default', function () {
-  assemble.src('templates/*.hbs')
-    .pipe(assemble.dest('dist'));
+app.task('default', function () {
+  app.src('templates/*.hbs')
+    .pipe(app.dest('dist'));
 });
 ```
 
@@ -47,13 +27,13 @@ Use plugins to pre-process CSS (Assemble can run any gulp plugin):
 var assemble = require('assemble');
 var less = require('gulp-less');
 
-assemble.task('css', function () {
-  assemble.src('styles/*.less')
+app.task('css', function () {
+  app.src('styles/*.less')
     .pipe(less())
-    .pipe(assemble.dest('dist/assets/css'));
+    .pipe(app.dest('dist/assets/css'));
 });
 
-assemble.task('default', ['css']);
+app.task('default', ['css']);
 ```
 
 **Or, using an engine**
@@ -64,14 +44,14 @@ _(Engines are run automatically on any files that have a file extension matching
 
 ```js
 var assemble = require('assemble');
-assemble.engine('less', require('engine-less'));
+app.engine('less', require('engine-less'));
 
-assemble.task('css', function () {
-  assemble.src('styles/*.less')
-    .pipe(assemble.dest('dist/assets/css'));
+app.task('css', function () {
+  app.src('styles/*.less')
+    .pipe(app.dest('dist/assets/css'));
 });
 
-assemble.task('default', ['css']);
+app.task('default', ['css']);
 ```
 
 
@@ -88,13 +68,13 @@ assemble.task('default', ['css']);
 > Add partials to be used in other templates.
 
 ```js
-assemble.partial('notice', { content: '<strong>...</strong>' });
-assemble.partial('banner', { content: '/*! Copyright (c) 2014 Jon Schlinkert, Brian Woodward... */' });
+app.partial('notice', { content: '<strong>...</strong>' });
+app.partial('banner', { content: '/*! Copyright (c) 2014 Jon Schlinkert, Brian Woodward... */' });
 // or load a glob of partials
-assemble.partials('partials/*.hbs');
+app.partials('partials/*.hbs');
 
 // optionally pass locals, all template types support this
-assemble.partials('partials/*.hbs', {site: {title: 'Code Project'}});
+app.partials('partials/*.hbs', {site: {title: 'Code Project'}});
 ```
 
 **Usage**
@@ -108,7 +88,7 @@ Use the `partial` helper to inject into other templates:
 Get a cached partial:
 
 ```js
-var banner = assemble.views.partials['banner'];
+var banner = app.views.partials['banner'];
 ```
 
 ### .page
@@ -116,9 +96,9 @@ var banner = assemble.views.partials['banner'];
 > Add pages that might be rendered (really, any template is renderable, pages fit the part though)
 
 ```js
-assemble.page('toc.hbs', { content: 'Table of Contents...'});
+app.page('toc.hbs', { content: 'Table of Contents...'});
 // or load a glob of pages
-assemble.pages('pages/*.hbs', {site: {title: 'Code Project'}});
+app.pages('pages/*.hbs', {site: {title: 'Code Project'}});
 ```
 
 Use the `page` helper to inject pages into other templates:
@@ -130,13 +110,13 @@ Use the `page` helper to inject pages into other templates:
 Get a cached page:
 
 ```js
-var toc = assemble.views.pages['toc'];
+var toc = app.views.pages['toc'];
 ```
 
 Pages are `renderable` templates, so they also have a `.render()` method:
 
 ```js
-var toc = assemble.views.pages['toc'];
+var toc = app.views.pages['toc'];
 // async
 toc.render({}, function(err, content) {
   console.log(content);
@@ -157,7 +137,7 @@ var res = toc.render();
 > Add layouts, which are used to "wrap" other templates:
 
 ```js
-assemble.layout('default', {content: [
+app.layout('default', {content: [
   '<!DOCTYPE html>',
   '  <html lang="en">',
   '  <head>',
@@ -171,7 +151,7 @@ assemble.layout('default', {content: [
 ].join('\n')});
 
 // or load a glob of layouts
-assemble.layouts('layouts/*.hbs', {site: {title: 'Code Project'}});
+app.layouts('layouts/*.hbs', {site: {title: 'Code Project'}});
 ```
 
 Layouts may be use with any other template, including other layouts. Any level of nesting is also possible.
@@ -193,8 +173,8 @@ Layouts can be defined in template locals:
 
 ```js
 // either of these work (one object or two)
-assemble.page('toc.hbs', { content: 'Table of Contents...'}, { layout: 'default' });
-assemble.partial('foo.hbs', { content: 'partial stuff', layout: 'block' });
+app.page('toc.hbs', { content: 'Table of Contents...'}, { layout: 'default' });
+app.partial('foo.hbs', { content: 'partial stuff', layout: 'block' });
 ```
 
 Or in the front matter of a template. For example, here is how another layout would use our layout example from earlier:
@@ -202,7 +182,7 @@ Or in the front matter of a template. For example, here is how another layout wo
 ```js
 // using this 'inline' template format to make it easy to see what's happening
 // this could be loaded from a file too
-assemble.layout('sidebar', {content: [
+app.layout('sidebar', {content: [
   '---',
   'layout: default',
   '---',
@@ -218,10 +198,10 @@ assemble.layout('sidebar', {content: [
 
 ```js
 // render any files with a `.tmpl` extension using engine-lodash
-assemble.engine('tmpl', require('engine-lodash'));
+app.engine('tmpl', require('engine-lodash'));
 
 // render any files with a `.less` extension using engine-less
-assemble.engine('less', require('engine-less'));
+app.engine('less', require('engine-less'));
 ```
 
 
@@ -234,7 +214,7 @@ Helpers are passed to the template engine being used at render time.
 **Custom helper**
 
 ```js
-assemble.helper('read', function(filepath) {
+app.helper('read', function(filepath) {
   return fs.readFileSync(filepath, 'utf8');
 });
 //=> {{read "foo.txt"}}
@@ -243,7 +223,7 @@ assemble.helper('read', function(filepath) {
 **Register a glob of helpers**
 
 ```js
-assemble.helpers('helpers/*.js');
+app.helpers('helpers/*.js');
 ```
 
 **Pro tip**
@@ -260,9 +240,9 @@ If you want to publish your helpers and share them with the community, make them
 Any of these work:
 
 ```js
-assemble.data({foo: 'bar'});
-assemble.data('package.json');
-assemble.data(['foo/*.{json,yml}']);
+app.data({foo: 'bar'});
+app.data('package.json');
+app.data(['foo/*.{json,yml}']);
 ```
 
 # API
