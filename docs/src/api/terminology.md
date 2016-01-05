@@ -1,4 +1,8 @@
-# Terminology
+---
+title: Terminology
+collection: docs
+category: api
+---
 
 ## view
 

@@ -1,5 +1,7 @@
 ---
 title: View
+collection: docs
+category: api
 description: >
   This document explains what a "view" is, and how views are used in Assemble. 
 related: 

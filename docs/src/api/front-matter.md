@@ -1,5 +1,7 @@
 ---
 title: Front matter
+collection: docs
+category: api
 ---
 
 Assemble parses YAML front matter by default, using a built-in [middleware](./middleware.md). If you need something different, this can easily be [customized](#custom-parser) with your own middleware.

@@ -1,5 +1,7 @@
 ---
 title: Route
+collection: docs
+category: api
 ---
 
 ### .route

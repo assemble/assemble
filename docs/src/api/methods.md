@@ -1,3 +1,8 @@
+---
+title: Settings API
+collection: docs
+category: api
+---
 
 ## .set / .get
 

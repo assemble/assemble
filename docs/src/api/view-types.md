@@ -1,5 +1,7 @@
 ---
 title: View types
+collection: docs
+category: api
 description: >
   This document describes a concept unique to Assemble called "view types". View types give Assemble, and the user, a way of controlling the behavior and features expected for a given view.
 related: 

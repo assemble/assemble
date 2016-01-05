@@ -1,5 +1,7 @@
 ---
 title: File system API
+collection: docs
+category: api
 ---
 
 Whether you prefer (or require) a declarative [grunt][]-style approach, or an imperitive [gulp][]-style approach, Assemble offers methods for working with the file system that should satisfy either preference.

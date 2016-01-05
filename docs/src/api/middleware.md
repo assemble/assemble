@@ -1,14 +1,15 @@
 ---
 title: Middleware
 engine: hbs
-description: ""
+description: > 
+  Methods for defining and using middleware and routes
+collection: docs
+category: api
 related: ['en-route']
 reflinks: ['en-route']
 ---
 
 # Middleware FAQ
-
-> Methods for defining and using middleware and routes
 
 **What is "middleware"?**
 

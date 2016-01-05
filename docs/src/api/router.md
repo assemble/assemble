@@ -1,5 +1,7 @@
 ---
 title: Router
+collection: docs
+category: api
 ---
 
 ## Overview

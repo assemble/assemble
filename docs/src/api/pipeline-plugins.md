@@ -1,5 +1,7 @@
 ---
 title: Pipeline plugins
+collection: docs
+category: api
 ---
 
 Pipeline plugins have the same signature and conventions as [gulp][] plugins, and may be used anywhere streams are used (as with `{{name}}.src('*.hbs')` or `{{name}}.toStream('pages')`, for example).

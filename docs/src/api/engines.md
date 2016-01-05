@@ -1,5 +1,7 @@
 ---
 title: Engines
+collection: docs
+category: api
 ---
 
 ## Engines API

@@ -1,6 +1,9 @@
 ---
 title: Assemble's Task API
-description: Assemble's Task API has methods for running tasks and controlling build workflows.
+collection: docs
+category: api
+description: >
+  Assemble's Task API has methods for running tasks and controlling build workflows.
 related: 
   list: ['assemble-fs', 'assemble-pipeline']
   docs: []
