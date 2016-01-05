@@ -1,8 +1,20 @@
-# assemble [![NPM version](https://img.shields.io/npm/v/assemble.svg)](https://www.npmjs.com/package/assemble) [![Build Status](https://img.shields.io/travis/jonschlinkert/assemble.svg)](https://travis-ci.org/jonschlinkert/assemble)
+# assemble [![NPM version](https://img.shields.io/npm/v/assemble.svg)](https://www.npmjs.com/package/assemble) [![Build Status](https://img.shields.io/travis/assemble/assemble.svg)](https://travis-ci.org/assemble/assemble)
 
 > Assemble is a powerful, extendable and easy to use static site generator for node.js. Used by thousands of projects for much more than building websites, Assemble is also used for creating themes, scaffolds, boilerplates, e-books, UI components, API documentation, blogs, gh-pages and more! Plugins for gulp and grunt are also supported.
 
 We're happy to announce the release of Assemble v<%= version %>! Please see the [release history](#release-history) to learn about new features, bug fixes and changes - breaking or otherwise.
+
+## About
+
+**What is Assemble?**
+
+Assemble makes it easy to create, customize, generate and maintain a complete static web project. Highlights:
+* Facilitates the use of modular, encapsulated components, like pages, partials and layouts, resulting in consistent design across your project
+* Assemble is extremely pluggable and easy to extend with helpers, plugins, middleware or engines.
+* Ability to use any data source for rendering templates, which makes it easy to begin a project using mock data and switch to a "live" data source later on.
+* Use any template engine for rendering templates. You can even use multiple engines at once, Assemble will automatically detect the correct one to use on each template at render time.
+* Makes it easy to transform content from markdown or any other plain text format to HTML using plugins, middleware helpers or engines.
+* Assemble has full support for [gulp](http://gulpjs.com) plugins
 
 - [Install](#install)
 - [Getting started](#getting-started)
@@ -22,7 +34,7 @@ We're happy to announce the release of Assemble v<%= version %>! Please see the 
   * [.task](#task)
   * [.build](#build)
   * [.watch](#watch)
-- [About](#about)
+- [Release history](#release-history)
 - [Test coverage](#test-coverage)
 - [Contributing](#contributing)
 - [Author](#author)
@@ -203,18 +215,18 @@ While we work on getting the assemble docs updated with these methods you can vi
 
 ## File System API
 
-Assemble has the following methods for working with the file system:
+Assemble offers the following low-level methods for working with the file system:
 
 * [src](#src)
+* [symlink](#symlink)
 * [dest](#dest)
 * [copy](#copy)
-* [symlink](#symlink)
 
-Assemble has full [vinyl-fs](http://github.com/wearefractal/vinyl-fs) support, any [gulp](http://gulpjs.com) plugin should work with assemble.
+Assemble has first-class support for [vinyl-fs](http://github.com/wearefractal/vinyl-fs), so any [gulp](http://gulpjs.com) plugin can be used in your assemble pipeline.
 
 ### .src
 
-Glob patterns or filepaths to source files.
+Create a [vinyl](http://github.com/gulpjs/vinyl) stream. Takes glob patterns or filepaths to the source files to read.
 
 **Params**
 
@@ -224,7 +236,10 @@ Glob patterns or filepaths to source files.
 **Example**
 
 ```js
-app.src('src/*.hbs', {layout: 'default'});
+app.src('src/*.hbs');
+
+// define `src` options
+app.src('src/*.hbs', { layout: 'default' });
 ```
 
 ### .dest
@@ -256,23 +271,23 @@ Copy files with the given glob `patterns` to the specified `dest`.
 
 ```js
 app.task('assets', function() {
-  // let assemble know when the task has completed
+  // return, to let assemble know when the task has completed
   return app.copy('assets/**', 'dist/');
 });
 ```
 
 ### .symlink
 
-Glob patterns or paths for symlinks.
+Same as `.src` but takes glob patterns or filepaths for the symlinks to read.
 
 **Params**
 
-* `glob` **{String|Array}**
+* `glob` **{String|Array}**: Glob patterns or file paths
 
 **Example**
 
 ```js
-app.symlink('src/**');
+app.symlink('src/*.hbs');
 ```
 
 ***
@@ -299,7 +314,7 @@ Define a task to be run when the task is called.
 ```js
 app.task('default', function() {
   app.src('templates/*.hbs')
-    .pipe(app.dest('dist/'));
+    .pipe(app.dest('site/'));
 });
 ```
 
@@ -316,7 +331,8 @@ Run one or more tasks.
 
 ```js
 app.build(['foo', 'bar'], function(err) {
-  if (err) console.error('ERROR:', err);
+  if (err) throw err;
+  console.log('done!');
 });
 ```
 
@@ -337,21 +353,17 @@ app.task('watch', function() {
 });
 ```
 
-## About
+## Release history
 
-**What is Assemble?**
+**v0.7.0**
 
-Assemble makes it easy to create, customize, generate and maintain a complete static web project. This includes:
+**v0.6.0**
 
-* Facilitating the use of modular, encapsulated components, like pages, partials and layouts, resulting in consistent design across your project
-* Ability to use any data source for rendering templates, which makes it easy to begin a project using mock data and switch to a "live" data source later on.
-* Use any template engine for rendering templates. You can even use multiple engines at once, Assemble will automatically detect the correct one to use on each template at render time.
-* Assemble is extremely pluggable and easy to extend with helpers, plugins, middleware or engines.
-* Need to transform content from markdown or any other plain text format to HTML? Simple, just add the plugin, helper or engine you need!
+* Major refactor. Assemble was completely re-written from the ground-up as a standalone node.js library and is no longer a grunt plugin. Grunt plugin support has been moved to [grunt-assemble](http://assemble.io). Please see that repo for additional details.
 
 ## Test coverage
 
-As of December 28, 2015:
+As of January 05, 2016:
 
 ```
 Statements : 100% (38/38)
@@ -375,9 +387,9 @@ If Assemble doesn't do what you need, [please let us know](https://github.com/as
 
 ## License
 
-Copyright © 2015 [Jon Schlinkert](https://github.com/jonschlinkert)
+Copyright © 2016 [Jon Schlinkert](https://github.com/jonschlinkert)
 Released under the MIT license.
 
 ***
 
-_This file was generated by [verb](https://github.com/verbose/verb) on December 28, 2015._
+_This file was generated by [verb](https://github.com/verbose/verb) on January 05, 2016._
