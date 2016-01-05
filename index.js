@@ -29,7 +29,7 @@ function Assemble(options) {
   Core.apply(this, arguments);
   this.isAssemble = true;
 
-  this.initAssemble(this.options);
+  this.initAssemble(this);
 }
 
 /**
@@ -42,16 +42,21 @@ Core.extend(Assemble);
  * Initialize Assemble defaults
  */
 
-Assemble.prototype.initAssemble = function() {
-  var exts = this.options.exts || ['md', 'hbs', 'html'];
+Assemble.prototype.initAssemble = function(app) {
+  var opts = this.options;
+  var exts = opts.exts || ['md', 'hbs', 'html'];
   var regex = utils.extRegex(exts);
-  var self = this;
+
+  // ensure `name` is set for composer-runtimes
+  if (!this.name) {
+    this.name = opts.name || 'base';
+  }
 
   /**
-   * Register built-in plugins
+   * Register plugins
    */
 
-  this.use(utils.pipeline(this.options))
+  this.use(utils.pipeline(opts))
     .use(utils.pipeline())
     .use(utils.loader())
     .use(utils.config())
@@ -75,8 +80,10 @@ Assemble.prototype.initAssemble = function() {
   this.onLoad(regex, function(view, next) {
     // needs to be inside the middleware, to
     // account for options defined after init
-    if (file.options.frontMatter !== false && self.options.frontMatter !== false) {
+    if (view.options.frontMatter !== false && app.options.frontMatter !== false) {
       utils.matter.parse(view, next);
+    } else {
+      next();
     }
   });
 
@@ -87,7 +94,7 @@ Assemble.prototype.initAssemble = function() {
    *  | pages
    */
 
-  var engine = this.options.defaultEngine || 'hbs';
+  var engine = opts.defaultEngine || 'hbs';
 
   this.create('partials', {
     engine: engine,
