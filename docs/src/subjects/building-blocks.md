@@ -9,7 +9,7 @@
 
 ## Templates / views
 
-Templates are used as a starting point or example on which to base other files or documents so that they do not need to be created from scratch each time. 
+Templates are used as a starting point or example on which to base other files or documents so that they do not need to be created from scratch each time.
 
 **Template types**
 
@@ -24,7 +24,7 @@ Templates are used as a starting point or example on which to base other files o
 
 ## Scaffolds
 
-Scaffolds consist of one or more templates and can be used throughout the development lifecycle. When a project is initialized, scaffolds 
+Scaffolds consist of one or more templates and can be used throughout the development lifecycle. When a project is initialized, scaffolds
 
 
 ## Boilerplates
