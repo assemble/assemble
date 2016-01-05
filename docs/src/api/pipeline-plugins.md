@@ -35,7 +35,8 @@ app.plugin(name, value);
 ```js
 app.plugin('append', function(word) {
   return through.obj(function(view, enc, next) {
-
+    var str = view.contents.toString() += word;
+    view.contents = new Buffer(str);
     next(null, view);
   });
 });
