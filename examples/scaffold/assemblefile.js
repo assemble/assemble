@@ -1,7 +1,6 @@
 'use strict';
 
 var async = require('async');
-var through = require('through2');
 var extend = require('extend-shallow');
 var extname = require('gulp-extname');
 var Scaffold = require('scaffold');
@@ -31,7 +30,7 @@ var scaffold = new Scaffold({
     destBase: 'dist/docs',
     files: [
       {src: '*.hbs', data: {title: 'whatever'}},
-      {src: '*.md', data: {title: 'documentation'}},
+      {src: '*.md', data: {title: 'documentation'}}
     ]
   }
 });
@@ -48,8 +47,8 @@ app.engine('md', require('engine-base'));
  * Tasks
  */
 
-app.task('scaffold', function (done) {
-  async.eachOf(scaffold, function (target, name, cb) {
+app.task('scaffold', function(done) {
+  async.eachOf(scaffold, function(target, name, cb) {
     if (!target.hasOwnProperty('files')) {
       cb();
       return;
@@ -58,7 +57,7 @@ app.task('scaffold', function (done) {
     // log out a time-stamped message for each "files" definition
     utils.logTask(app.name, ':scaffold:' + name);
 
-    async.each(target.files, function (files, next) {
+    async.each(target.files, function(files, next) {
       if (!files.src || !files.src.length) {
         next();
         return;

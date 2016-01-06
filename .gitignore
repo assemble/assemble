@@ -15,4 +15,6 @@ vendor
 benchmark
 coverage
 examples/_draft
+examples/*/src
 examples/*/dist
+examples/*/site

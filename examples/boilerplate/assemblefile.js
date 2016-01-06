@@ -3,7 +3,6 @@
 var path = require('path');
 var async = require('async');
 var extend = require('extend-shallow');
-var extname = require('gulp-extname');
 
 var utils = require('../../lib/utils');
 var assemble = require('../..');
@@ -77,8 +76,6 @@ app.task('default', ['h5bp']);
  */
 
 module.exports = app;
-
-
 
 /**
  * Custom rename function

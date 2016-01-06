@@ -23,6 +23,7 @@ Assemble makes it easy to create, customize, generate and maintain a complete st
   * [Tasks](#tasks)
   * [Options](#options)
   * [Object expansion](#object-expansion)
+  * [cwd](#cwd)
 - [API](#api)
 - [Templates API](#templates-api)
 - [File System API](#file-system-api)
@@ -113,6 +114,8 @@ Run assemble from the command line.
 $ assemble <tasks> [options]
 ```
 
+Note that for most command line options, _order or definition makes no difference_, so tasks can be defined before or after options.
+
 ### Tasks
 
 Optionally specify one or more tasks to run. Multiple tasks are separated by a space.
@@ -131,6 +134,14 @@ Non-task commands and options are prefixed with `--` and are specified using any
 
 * single value, like `--foo`, or
 * key-value pair, like `--foo=bar`. Also, key-value pairs may be separated by either `=` or a single whitespace, so `--foo=bar` and `--foo=bar` should both work.
+
+Additionally, as mentioned above, tasks may be defined before or after options, so both of the following are equivalent:
+
+```sh
+$ assemble --cwd foo bar
+# or 
+$ assemble foo bar --cwd
+```
 
 **Example**
 
@@ -190,6 +201,22 @@ Or on the left-side of the `=`:
 ```sh
 $ assemble --option.foo.bar.baz=qux
 # {options: foo: { bar: { baz: 'qux' }}}}
+```
+
+### cwd
+
+Change the `cwd` for the `assemblefile.js` to run, optionally specifying any tasks to run:
+
+```sh
+$ assemble <tasks> --cwd [directory]
+```
+
+**Example**
+
+To run the `scaffolds` example in the `examples/` directory, you would enter:
+
+```sh
+$ assemble --cwd examples/scaffolds
 ```
 
 ## API

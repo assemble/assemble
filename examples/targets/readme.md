@@ -1,46 +1,44 @@
-# HTML5 Boilerplate
+# Generate "targets"
 
-This recipe shows how to create a boilerplate configuration object from Google's popular [h5bp][], that will make the boilerplate easier to extend, customize and share.
+In this example we demonstrate how to create and use "targets" with assemble. If you're familiar with build-systems such as [make][] or [grunt][], you might also be familiar with the concept of "targets".
 
-**Three steps**
+Targets provide a declarative way of specifying and organizing the files to be operated on by the build-system, and as you'll see this can work quite nicely with assemble's imperitive API.
 
-- [x] Configure the boilerplate (this is already done for you in [bp.js](./bp.js). Please feel free to customize it!)
-- [ ] Download the [h5bp][] repository
-- [ ] "Expand" it, but running `node bp.js` in the command line
+## Creating a target
 
-Let's walk through steps **[2](#download)** and **[3](#expand)**.
-
-## Download
-
- download the project with enter the following in the command line to download Google's popular [h5bp](https://github.com/h5bp/html5-boilerplate)
-
-```sh
-$ git clone https://github.com/h5bp/html5-boilerplate.git src
-```
-
-## Expand
-
-By "expand", we mean that glob patterns in the boilerplate will be resolved to actual file paths. To do this, run:
-
-```sh
-$ node bp.js
-```
-
-## Inspecting the boilerplate
-
-The boilerplate configuration object is organized into "scaffolds", you can inspect these by doing the following:
+TBC...
 
 ```js
-// inspect the boilerplate
-console.log(boilerplate);
-
-// inspect specific scaffolds
-console.log(boilerplate.css);
-console.log(boilerplate.html);
-
-// inspect files arrays on specific scaffolds
-console.log(boilerplate.css.files);
-console.log(boilerplate.html.files);
+var Target = require('expand-target');
+var target = new Target({
+  data: {title: 'My Site'},
+  options: {
+    cwd: 'src',
+    destBase: 'dist'
+  },
+  files: [
+    {src: 'posts/*.md', dest: 'blog/', data: {title: 'My Blog'}},
+    {src: 'pages/*.hbs'}
+  ]
+});
 ```
 
-[h5bp]: https://github.com/h5bp/html5-boilerplate
+TBC...
+
+
+## Build
+
+From the same directory as this example, in the command line run:
+
+```sh
+$ npm install && assemble
+```
+
+From the root of the assemble project, run:
+
+```sh
+$ npm install && assemble --cwd examples/targets
+```
+
+[make]: http://www.gnu.org/software/make/manual/make.html#Phony-Targets
+[grunt]: http://gruntjs.com/configuring-tasks#task-configuration-and-targets
