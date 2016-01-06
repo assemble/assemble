@@ -29,7 +29,7 @@ describe('render', function() {
       var page = pages.getView('foo.bar');
 
       app.pages.render(page, function(err) {
-        assert(err.message === 'Views#render cannot find engine: .bar');
+        assert(err.message === 'Views#render cannot find an engine for: .bar');
         done();
       });
     });
