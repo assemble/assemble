@@ -72,10 +72,7 @@ function run(cb) {
  */
 
 run(function(err, app) {
-  if (typeof err === 'string' && errors[err]) {
-    console.log(errors[err]);
-    process.exit(1);
-  }
+  if (err) handleError(err);
 
   /**
    * Listen for errors
@@ -95,3 +92,14 @@ run(function(err, app) {
     process.exit(0);
   });
 });
+
+
+
+function handleError(err) {
+  if (typeof err === 'string' && errors[err]) {
+    console.error(errors[err]);
+  } else {
+    console.error(err);
+  }
+  process.exit(1);
+}
