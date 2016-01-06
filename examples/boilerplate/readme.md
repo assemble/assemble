@@ -10,7 +10,7 @@ This recipe shows how to create a boilerplate configuration object from Google's
 
 The first step is take care of for you, but you'll need to do 2 and 3:
 
-1. [x] Configure the boilerplate (this is already done for you in [bp.js](./bp.js). Please feel free to customize it!)
+1. [x] Configure the boilerplate (this is already done for you in [assemblefile.js](./assemblefile.js). Please feel free to customize it!)
 1. [ ] Download the [h5bp][] repository
 1. [ ] Generate it by running `assemble` in the command line
 
@@ -24,7 +24,7 @@ First, we need to `git clone` Google's popular [h5bp project](https://github.com
 $ git clone https://github.com/h5bp/html5-boilerplate.git vendor
 ```
 
-_(Note that we're saving h5bp to the `vendor` directory, since your haven't customized the files yet. But we'll be generating the files into the `src` directory, which is where you'll do your customization. You can change any of these paths to whatever works best for you.)_
+_(Note that we're saving h5bp to the `vendor` directory, since you haven't customized the files yet. But we'll be generating the files into the `src` directory, which is where you'll do your customization. You can change any of these paths to whatever works best for you.)_
 
 ## Build
 
@@ -40,6 +40,6 @@ If you're in the root of the assemble project, run:
 $ assemble --cwd examples/boilerplate
 ```
 
-If successful, you should see a `dist` directory in `examples/boilerplate` with files generated from h5bp.
+If successful, you should see a `src` directory in `examples/boilerplate` with files generated from h5bp.
 
 [h5bp]: https://github.com/h5bp/html5-boilerplate
