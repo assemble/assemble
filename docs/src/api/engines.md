@@ -8,7 +8,11 @@ category: api
 
 ### .engine
 
-Register the given template engine callback `fn` as `ext`.
+Register the given template engine `callback` function as `ext`:
+
+```js
+app.engine(ext, callback);
+```
 
 **Example**
 
@@ -23,10 +27,12 @@ app.engine('hbs', require('engine-handlebars'));
 * `options` **{Object}**
 * `returns` **{Object}**: Returns the assemble instance for chaining
 
+
+## How engines work
+
 Template engines in Assemble are used to render views. More specifically:
 
-* `view.content`: Any text or markup language.
-
+* `view.content`: The `content` property in views is rendered. This can be any text or markup language.
 * `layouts` Layouts used when generating web pages.  The path of the layout file will be passed to the engine's `renderFile()` function.
 
 By default Assemble will `require()` the engine based on the file extension.
