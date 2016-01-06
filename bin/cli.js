@@ -8,12 +8,18 @@ var assemble = require('..');
 
 function run(cb) {
   var cwd = process.cwd();
+  var root = cwd;
+
+  if (argv.cwd && process.cwd() !== argv.cwd) {
+    process.chdir(argv.cwd);
+    utils.timestamp('cwd changed to ' + utils.colors.yellow('~/' + argv.cwd));
+  }
 
   /**
    * Get the assemblefile.js to use
    */
 
-  var assemblefile = path.resolve(cwd, 'assemblefile.js');
+  var assemblefile = path.resolve(process.cwd(), 'assemblefile.js');
 
   /**
    * Notify the user if assemblefile.js is not found
@@ -36,7 +42,19 @@ function run(cb) {
     fn(app);
   }
 
+  /**
+   * Process command line arguments
+   */
+
   var args = utils.processArgv(app, argv);
+  app.set('argv', args);
+
+  /**
+   * Show path to assemblefile
+   */
+
+  var fp = utils.homeRelative(root, assemblefile);
+  utils.timestamp('using assemblefile ' + fp);
 
   /**
    * Setup composer-runtimes
@@ -74,6 +92,11 @@ function run(cb) {
 run(function(err, app) {
   if (err) handleError(err);
 
+  var tasks = app.get('argv.tasks');
+  if (!tasks.length) {
+    tasks = ['default'];
+  }
+
   /**
    * Listen for errors
    */
@@ -86,7 +109,7 @@ run(function(err, app) {
    * Run tasks
    */
 
-  app.build('default', function(err) {
+  app.build(tasks, function(err) {
     if (err) throw err;
     utils.timestamp('finished ' + utils.success());
     process.exit(0);
