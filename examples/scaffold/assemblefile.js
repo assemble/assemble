@@ -3,7 +3,6 @@
 var async = require('async');
 var through = require('through2');
 var extend = require('extend-shallow');
-var Target = require('expand-target');
 var extname = require('gulp-extname');
 var Scaffold = require('scaffold');
 
