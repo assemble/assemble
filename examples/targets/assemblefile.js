@@ -1,11 +1,10 @@
 'use strict';
 
 var async = require('async');
-var through = require('through2');
 var extend = require('extend-shallow');
 var Target = require('expand-target');
-var Scaffold = require('scaffold');
-var assemble = require('..');
+var utils = require('../../lib/utils');
+var assemble = require('../..');
 var app = assemble();
 
 /**
@@ -15,8 +14,8 @@ var app = assemble();
 var target = new Target({
   data: {title: 'My Site'},
   options: {
-    cwd: 'test/fixtures/targets',
-    destBase: 'test/actual/target',
+    cwd: 'src',
+    destBase: 'dist'
   },
   files: [
     {src: 'posts/*.md', dest: 'blog/', data: {title: 'My Blog'}},
@@ -35,23 +34,25 @@ app.engine('md', require('engine-base'));
  * Tasks
  */
 
-app.task('default', function (cb) {
-  console.log('generating target: one');
+app.task('default', function(cb) {
+  // log out a time-stamped message for the target
+  utils.logTask(app.name, ':target');
+
+  // iterate over each "files" definition on the target
   async.each(target.files, function(files, next) {
+    // extend "target" data onto files.data
     var data = extend(target.data, files.data);
+    // render "src" files
     app.src(files.src, files.options)
       .pipe(app.renderFile(data))
       .pipe(app.dest(files.dest))
       .on('error', next)
-      .on('end', next);
+      .on('finish', next);
   }, cb);
 });
 
 /**
- * Run tasks
+ * Expose our instance of assemble
  */
 
-app.build('default', function(err) {
-  if (err) throw err;
-  console.log('done!');
-});
+module.exports = app;
