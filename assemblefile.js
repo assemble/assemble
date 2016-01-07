@@ -73,7 +73,7 @@ app.task('load', function(cb) {
  * Building the assemble docs
  */
 
-app.task('docs', ['load'], function() {
+app.task('default', ['load'], function() {
   return app.toStream('docs')
     .on('err', console.log)
     .pipe(app.renderFile())
@@ -90,17 +90,9 @@ app.task('docs', ['load'], function() {
  * Watch files for changes
  */
 
-app.task('watch', ['docs'], function() {
-  app.watch('docs/**/*.{md,hbs}', ['docs']);
+app.task('watch', ['default'], function() {
+  app.watch('docs/**/*.{md,hbs}', ['default']);
   console.log('Watch started!');
-});
-
-/**
- * Default build task for API
- */
-
-app.build('watch', function(err) {
-  if (err) throw err;
 });
 
 /**
