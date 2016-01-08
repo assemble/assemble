@@ -29,7 +29,9 @@ function Assemble(options) {
   Core.apply(this, arguments);
   this.isAssemble = true;
 
-  this.initAssemble(this);
+  this.initDefaults(this);
+  this.initPlugins(this);
+  this.initCollections(this);
 }
 
 /**
@@ -42,30 +44,10 @@ Core.extend(Assemble);
  * Initialize Assemble defaults
  */
 
-Assemble.prototype.initAssemble = function(app) {
+Assemble.prototype.initDefaults = function(app) {
   var opts = this.options;
   var exts = opts.exts || ['md', 'hbs', 'html'];
   var regex = utils.extRegex(exts);
-
-  // ensure `name` is set for composer-runtimes
-  if (!this.name) {
-    this.name = opts.name || 'base';
-  }
-
-  /**
-   * Register plugins
-   */
-
-  this.use(utils.pipeline(opts))
-    .use(utils.pipeline())
-    .use(utils.loader())
-    .use(utils.config())
-    .use(utils.store())
-    .use(utils.argv())
-    .use(utils.list())
-    .use(utils.cli())
-    .use(utils.ask())
-    .use(cli());
 
   /**
    * Default engine
@@ -78,24 +60,62 @@ Assemble.prototype.initAssemble = function(app) {
    */
 
   this.onLoad(regex, function(view, next) {
-    // needs to be inside the middleware, to
+    // check options inside the middleware to
     // account for options defined after init
-    if (view.options.frontMatter !== false && app.options.frontMatter !== false) {
-      utils.matter.parse(view, next);
-    } else {
-      next();
+    if (view.options.frontMatter !== false) {
+      return next();
     }
+    if (app.options.frontMatter !== false) {
+      return next();
+    }
+    utils.matter.parse(view, next);
   });
+};
 
-  /**
-   * Built-in view collections
-   *  | partials
-   *  | layouts
-   *  | pages
-   */
+/**
+ * Load default plugins. Built-in plugins can be disabled
+ * on the `assemble` options.
+ *
+ * ```js
+ * var app = assemble({
+ *   plugins: {
+ *     loader: false,
+ *     store: false
+ *   }
+ * });
+ * ```
+ * @api public
+ */
 
-  var engine = opts.defaultEngine || 'hbs';
+Assemble.prototype.initPlugins = function(app) {
+  enable('pipeline', utils.pipeline);
+  enable('loader', utils.loader);
+  enable('config', utils.config);
+  enable('store', utils.store);
+  enable('argv', utils.argv);
+  enable('list', utils.list);
+  enable('ask', utils.ask);
+  enable('cli', cli);
 
+  function enable(name, fn) {
+    if (app.option('plugins') === false) return;
+    if (app.option('plugins.' + name) !== false) {
+      app.use(fn(app.options));
+    }
+  }
+};
+
+/**
+ * Built-in view collections
+ *  | partials
+ *  | layouts
+ *  | pages
+ */
+
+Assemble.prototype.initCollections = function(app) {
+  if (this.option('collections') === false) return;
+
+  var engine = this.options.defaultEngine || 'hbs';
   this.create('partials', {
     engine: engine,
     viewType: 'partial',
@@ -119,6 +139,20 @@ Assemble.prototype.initAssemble = function(app) {
     }
   });
 };
+
+/**
+ * Ensure `name` is set on the instance for lookups.
+ */
+
+Object.defineProperty(Assemble.prototype, 'name', {
+  configurable: true,
+  set: function(name) {
+    this.options.name = name;
+  },
+  get: function() {
+    return this.options.name || 'base';
+  }
+});
 
 /**
  * Set a `base` instance that can be used for storing
