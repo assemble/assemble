@@ -74,6 +74,7 @@ app.task('load', function(cb) {
  */
 
 app.task('default', ['load'], function() {
+  var pkg = require('./package');
   return app.toStream('docs')
     .on('err', console.log)
     .pipe(app.renderFile())
@@ -82,8 +83,8 @@ app.task('default', ['load'], function() {
     .pipe(extname())
     .pipe(app.dest(function(file) {
       file.base = file.dirname;
-      return '_gh_pages/';
-    }));
+      return '_gh_pages/en/v' + pkg.version;
+    }))
 });
 
 /**
