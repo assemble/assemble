@@ -3,63 +3,107 @@
 > Use assemble and [browser-sync](https://www.browsersync.io/) to both serve the files but also update the served files if needed.
 
 ## Purpose of this recipe
-- Convert some .less files to a single style sheet (.css file).
-- Convert some markdown files to html output, containing also a link to the generated CSS file.
-- Servce the files in the local browser automatically
-- Create some watchers on
-	- all .less files in the `./less` folder (`./less/**/*.less`)
-	- all content files in the `./content` folder (`./content/**/*.{md,hbs}`)
-- In case any watcher is triggered, update either the stylesheets or the generated html files.
 
-**Main file:**
+* Convert multiple `.less` files to a `.css` file.
+* Convert markdown files to `.html`, with link to the generated CSS file.
+* Service the files in the local browser automatically
+* Watch the following files for changes:
+	- all `.less` files 
+	- all markdown content files and `.hbs` (handlebars) templates 
+* When `.watch` is triggered, update the `.css` stylesheets or generated `.html` files.
+
+**Main file**
 
 ```js
-'use strict';
-var assemble = require( 'assemble' );
-var extname = require( 'gulp-extname' );
-var less = require( 'gulp-less' );
-var browserSync = require( 'browser-sync' ).create();
-var path = require( 'path' );
+var path = require('path');
+var less = require('gulp-less');
+var assemble = require('assemble');
+var extname = require('gulp-extname');
+var browserSync = require('browser-sync').create();
+
+/**
+ * Create an instance of assemble
+ */
 
 var app = assemble();
 
-app.task( 'init', function ( cb ) {
-	app.helper('markdown', require('helper-markdown'));
-	app.layouts( path.join( __dirname, './templates/layouts/**/*.hbs' ) );
-	cb();
-} );
+/**
+ * Load helpers
+ */
 
-app.task( 'css', function () {
-	return app.src( path.join( __dirname, './less/default.less' ) )
-		.pipe( less() )
-		.pipe( app.dest( path.join( __dirname, './.build/css' ) ) )
-		.pipe( browserSync.stream() )
-} );
+app.helper('markdown', require('helper-markdown'));
 
-app.task( 'serve', function () {
-	browserSync.init( {
-		port: 8080,
-		startPath: 'page-1.html',
-		server: {
-			baseDir: path.join( __dirname, './.build' )
-		}
-	} )
-} );
+/**
+ * Add some basic site data (passed to templates)
+ */
 
-app.task( 'content', ['init'], function () {
-	return app.pages.src( path.join( __dirname, './content/**/*.{md,hbs}' ) )
-		.pipe( app.renderFile() )
-		.on( 'err', console.error )
-		.pipe( extname() )
-		.pipe( app.dest( path.join( __dirname, './.build' ) ) )
-		.pipe(browserSync.stream());
-} );
+app.data({
+  site: {
+    title: 'My Site'
+  }
+});
 
-app.task( 'default', ['css', 'content', 'serve'], function () {
-} );
+/**
+ * Pre-process LESS to CSS
+ */
 
-app.watch( path.join(__dirname, './content/**/*.md'), ['content']);
-app.watch( path.join(__dirname, './less/**/*.less'), ['css']);
+app.task('css', function () {
+  return app.src('less/default.less')
+    .pipe(less())
+    .pipe(app.dest('site/css'))
+    .pipe(browserSync.stream());
+});
+
+app.task('serve', function () {
+  browserSync.init({
+    port: 8080,
+    startPath: 'page-1.html',
+    server: {
+      baseDir: 'site'
+    }
+  });
+});
+
+/**
+ * Load templates
+ */
+
+app.task('load', function(cb) {
+  app.layouts('templates/layouts/**/*.hbs');
+  cb();
+});
+
+/**
+ * Generate site
+ */
+
+app.task('content', ['load'], function () {  
+  return app.pages.src('content/**/*.{md,hbs}')
+    .pipe(app.renderFile())
+    .on('err', console.error)
+    .pipe(extname())
+    .pipe(app.dest('site'))
+    .pipe(browserSync.stream());
+});
+
+/**
+ * Watch source files
+ */
+
+app.task('watch', function() {
+  app.watch('content/**/*.md', ['content']);
+  app.watch('less/**/*.less', ['css']);
+});
+
+/**
+ * Default task
+ */
+
+app.task('default', ['css', 'content', 'serve']);
+
+/**
+ * Expose the assemble instance
+ */
 
 module.exports = app;
 ```
@@ -74,7 +118,8 @@ module.exports = app;
 **less/typography.less**
 
 ```css
-html, body {
+html, 
+body {
 	font-family: @defaultFont;
 	color: @mainColor;
 }
@@ -86,7 +131,7 @@ h1 {
 
 **less/variables.less**
 
-```css
+```less
 @mainColor: #666;
 @defaultFont: Arial, "Helvetica Neue", Helvetica, sans-serif;
 ```
@@ -96,26 +141,29 @@ h1 {
 ```html
 <!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>{{title}}</title>
-	<link rel="stylesheet" href="css/default.css">
-</head>
-<body>
-<h1>{{title}}</h1>
+  <head>
+  	<meta charset="UTF-8">
+  	<title>{{title}} | {{site.title}}</title>
+  	<link rel="stylesheet" href="css/default.css">
+  </head>
+  <body>
+    <h1>{{title}}</h1>
+
 {{#markdown}}
 {% body %}
 {{/markdown}}
-</body>
+
+  </body>
 </html>
 ```
 
 **content/page-1.md**
 
-```
+```html
 ---
 title: Page 1
 layout: default
 ---
-This is the content of page 1
+
+This is the content of {{title}}.
 ```
