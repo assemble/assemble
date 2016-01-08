@@ -1,3 +1,5 @@
+'use strict';
+
 var relative = require('relative-dest');
 
 module.exports = function assets() {

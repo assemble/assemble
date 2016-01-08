@@ -1,7 +1,8 @@
 'use strict';
+
 var path = require('path');
-var relativePath = require('relative-dest');
 var red = require('ansi-red');
+var relativePath = require('relative-dest');
 
 module.exports = function linkTo(key, collectionName) {
   var name = collectionName;

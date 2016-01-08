@@ -92,11 +92,11 @@ app.task('default', ['load'], function() {
 
 app.task('watch', ['default'], function() {
   app.watch('docs/**/*.{md,hbs}', ['default']);
-  console.log('Watch started!');
+  console.log('watching docs templates');
 });
 
 /**
- * Expose the `app` instance to the assemble CLI
+ * Expose the `app` instance
  */
 
 module.exports = app;

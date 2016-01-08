@@ -116,7 +116,9 @@ run(function(err, app) {
   });
 });
 
-
+/**
+ * Handle CLI errors
+ */
 
 function handleError(err) {
   if (typeof err === 'string' && errors[err]) {
