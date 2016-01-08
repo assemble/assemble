@@ -1,7 +1,8 @@
+# mergeTypes
 
 ## options.mergeTypes
 
-Specify the [viewTypes](view-types.md) to merge onto the context with `mergePartials`.
+Specify the [viewTypes](view-types.md) to merge onto the context by passing an array of collection names to `options.mergePartials`.
 
 **Type:** `Array`
 

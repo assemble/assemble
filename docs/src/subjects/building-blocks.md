@@ -6,7 +6,6 @@
 - [scaffolds]()
 - [boilerplates]()
 
-
 ## Templates / views
 
 Templates are used as a starting point or example on which to base other files or documents so that they do not need to be created from scratch each time.

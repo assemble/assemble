@@ -2,12 +2,11 @@
 title: Data
 collection: docs
 category: api
+description: >
+  Load data to be passed as context to templates at render time.
 ---
 
-> load data to passed as context to templates at render time
-
-
-**Example**
+## Site-wide data
 
 Set a site-wide `title` to be used on all "pages" or "posts":
 
@@ -17,6 +16,12 @@ app.data({
     title: 'Blog'
   }
 });
+```
+
+Load data from a filepath:
+
+```js
+app.data('package.json');
 ```
 
 ## options.namespace

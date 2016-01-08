@@ -1,8 +1,16 @@
 # Render templates
 
-To render templates, you first need to choose a template engine.
+To render templates, you first need to choose a template engine. Engines are registered using the `.engine()` method:
 
-_(Assemble ships with handlebars templates using [], but custom engines and plugins may also be used.)_
+**Example**
+
+```js
+// render handlebars templates in `.hbs` files
+app.engine('hbs', require('engine-handlebars'));
+```
+
+Note that the name you use when registering the engine will be used by assemble for automatically matching the file extensions of files to render. 
+
 
 ```js
 var assemble = require('assemble');
