@@ -90,8 +90,9 @@ app.task('default', ['load'], function() {
  * Watch files for changes
  */
 
-app.task('watch', ['docs'], function() {
+app.task('watch', ['default'], function() {
   app.watch('docs/**/*.{md,hbs}', ['default']);
+  console.log('Watch started!');
 });
 
 /**
