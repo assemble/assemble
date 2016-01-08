@@ -4,11 +4,13 @@ Before you get started, it might help to first visit the [API docs for assemblef
 
 **Freedom to create**
 
-Although most of the following examples will show tasks being defined, this only because it's easy to write examples with tasks. But your `assemblefile.js` does not need to have tasks, or require that you use the file system API (`src` and `dest`).
+Although most of the following examples will show tasks being defined and `src` or `dest` being used, this is only because it's easy to write examples with tasks. But your `assemblefile.js` doesn't have to contain tasks, and _there is no requirement to use the file system API (`src` and `dest`)_.
 
 You can use any part of the Assemble API in your `assemblefile.js`, or just regular JavaScript if that's what you need.
 
-## Copy files
+## Example assemblefiles
+
+### Copy files
 
 The following `assemblefile.js` has a task defined that will copy all of the `.js` files from the root of your project to the `assets/js` folder.
 
@@ -22,7 +24,7 @@ app.task('default', function() {
 });
 ```
 
-## HTML and SASS
+### HTML and SASS
 
 The following `assemblefile.js` will:
 
@@ -54,7 +56,7 @@ app.task('css', function () {
 app.task('default', ['html', 'css']);
 ```
 
-## HTML and LESS
+### HTML and LESS
 
 The following `assemblefile.js` will:
 

@@ -23,10 +23,11 @@ app.pages('foo/*.hbs');
 console.log(app.views.pages);
 ```
 
-That's it! 
+**That's it!**
 
-- create a collection
-- load views
+* create a collection
+* load views
+* done!
 
 ## Related
 
