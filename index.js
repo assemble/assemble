@@ -62,10 +62,10 @@ Assemble.prototype.initDefaults = function(app) {
   this.onLoad(regex, function(view, next) {
     // check options inside the middleware to
     // account for options defined after init
-    if (view.options.frontMatter !== false) {
+    if (view.options.frontMatter === false) {
       return next();
     }
-    if (app.options.frontMatter !== false) {
+    if (app.options.frontMatter === false) {
       return next();
     }
     utils.matter.parse(view, next);
