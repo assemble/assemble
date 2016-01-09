@@ -51,15 +51,19 @@ app.engine('md', require('engine-base'));
 
 app.plugin('render', app.renderFile);
 
-app.plugin('aaa', through.obj(function(file, enc, next) {
-  file.contents = new Buffer(file.contents.toString() + 'aaa\n');
-  next(null, file);
-}));
+app.plugin('aaa', function() {
+  return through.obj(function(file, enc, next) {
+    file.contents = new Buffer(file.contents.toString() + 'aaa\n');
+    next(null, file);
+  });
+});
 
-app.plugin('bbb', through.obj(function(file, enc, next) {
-  file.contents = new Buffer(file.contents.toString() + 'bbb\n');
-  next(null, file);
-}));
+app.plugin('bbb', function() {
+  return through.obj(function(file, enc, next) {
+    file.contents = new Buffer(file.contents.toString() + 'bbb\n');
+    next(null, file);
+  });
+});
 
 /**
  * Tasks
