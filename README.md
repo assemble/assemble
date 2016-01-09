@@ -2,7 +2,7 @@
 
 > Assemble is a powerful, extendable and easy to use static site generator for node.js. Used by thousands of projects for much more than building websites, Assemble is also used for creating themes, scaffolds, boilerplates, e-books, UI components, API documentation, blogs, gh-pages and more! Plugins for gulp and grunt are also supported.
 
-We're happy to announce the release of Assemble v0.7.0! Please see the [release history](#release-history) to learn about new features, bug fixes and changes - breaking or otherwise.
+We're happy to announce the release of Assemble v0.7.1! Please see the [release history](#release-history) to learn about new features, bug fixes and changes - breaking or otherwise.
 
 ## About
 
@@ -250,21 +250,6 @@ Create an `assemble` app. This is the main function exported by the assemble mod
 ```js
 var assemble = require('assemble');
 var app = assemble();
-```
-
-### [.initPlugins](index.js#L88)
-
-Load default plugins. Built-in plugins can be disabled on the `assemble` options.
-
-**Example**
-
-```js
-var app = assemble({
-  plugins: {
-    loader: false,
-    store: false
-  }
-});
 ```
 
 ## Templates API
