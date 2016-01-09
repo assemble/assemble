@@ -44,4 +44,8 @@ app.plugin('append', function(word) {
 
 **Conventions**
 
-Since plugins can be automatically loaded and injected into a pipeline, we recommend that plugins return a function to user options to be more easily (and automatically) defined on the plugin.
+Since plugins can be automatically loaded and injected into a pipeline, we recommend that plugins return a function so user options may be more easily (and automatically) defined on the plugin.
+
+**Caveats**
+
+When passing a stream, the same instance of the stream will be used whenever that plugin is used. This may cause unintended side affects by piping undesired files through the plugin. To avoid this, always pass in a function that returns a new stream.
