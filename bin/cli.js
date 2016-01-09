@@ -1,16 +1,23 @@
 #!/usr/bin/env node
 
 var path = require('path');
-var argv = require('minimist')(process.argv.slice(2));
 var utils = require('../lib/utils');
 var errors = require('./errors');
 var assemble = require('..');
+var Env = assemble.Env;
+
+var argv = require('minimist')(process.argv.slice(2), {
+  alias: {
+    help: 'h',
+    verbose: 'v'
+  }
+});
 
 function run(cb) {
   var cwd = process.cwd();
   var root = cwd;
 
-  if (argv.cwd && process.cwd() !== argv.cwd) {
+  if (argv.cwd && cwd !== argv.cwd) {
     process.chdir(argv.cwd);
     utils.timestamp('cwd changed to ' + utils.colors.yellow('~/' + argv.cwd));
   }
@@ -26,7 +33,7 @@ function run(cb) {
    */
 
   if (!utils.exists(assemblefile)) {
-    cb('assemblefile');
+    cb(new Error('cannot find assemblefile.js'));
     return;
   }
 
@@ -39,13 +46,23 @@ function run(cb) {
     var fn = app;
     app = assemble();
     app.option(argv);
+    app.fn = fn;
     fn(app);
   }
+
+  app.generator('base', require('../lib/generator'));
+
+  /**
+   * Create enviroment
+   */
+
+  app.env = createEnv('assemblefile.js', process.cwd());
 
   /**
    * Process command line arguments
    */
 
+  // var app = runner(argv);
   var args = utils.processArgv(app, argv);
   app.set('argv', args);
 
@@ -78,6 +95,25 @@ function run(cb) {
   }
 
   /**
+   * Listen for generator configs, and register them
+   * as they're emitted
+   */
+
+  app.env.on('config', function(name, env) {
+    app.register(name, env.config.fn, env);
+  });
+
+  app.env
+    .resolve('assemble-generator-*/assemblefile.js', {
+      configfile: 'assemblefile.js',
+      cwd: utils.gm
+    })
+    .resolve('generate-*/generator.js', {
+      configfile: 'generator.js',
+      cwd: utils.gm
+    });
+
+  /**
    * Process command line arguments
    */
 
@@ -92,10 +128,10 @@ function run(cb) {
 run(function(err, app) {
   if (err) handleError(err);
 
-  var tasks = app.get('argv.tasks');
-  if (!tasks.length) {
-    tasks = ['default'];
-  }
+  // var tasks = app.get('argv.tasks');
+  // if (!tasks.length) {
+  //   tasks = ['default'];
+  // }
 
   /**
    * Listen for errors
@@ -109,12 +145,22 @@ run(function(err, app) {
    * Run tasks
    */
 
-  app.build(tasks, function(err) {
+  app.build(argv, function(err) {
     if (err) throw err;
     utils.timestamp('finished ' + utils.success());
     process.exit(0);
   });
 });
+
+/**
+ * Creat a new `env` object
+ */
+
+function createEnv(configfile, cwd) {
+  var env = new Env(configfile, 'assemble', cwd);;
+  env.module.path = utils.tryResolve('assemble');
+  return env;
+}
 
 /**
  * Handle CLI errors
