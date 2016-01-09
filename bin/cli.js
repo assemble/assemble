@@ -17,7 +17,11 @@ function run(cb) {
   var cwd = process.cwd();
   var root = cwd;
 
-  if (argv.cwd && cwd !== argv.cwd) {
+  /**
+   * Set the working directory
+   */
+
+  if (argv.cwd && cwd !== path.resolve(argv.cwd)) {
     process.chdir(argv.cwd);
     utils.timestamp('cwd changed to ' + utils.colors.yellow('~/' + argv.cwd));
   }
@@ -74,16 +78,6 @@ function run(cb) {
   utils.timestamp('using assemblefile ' + fp);
 
   /**
-   * Setup composer-runtimes
-   */
-
-  app.use(utils.runtimes({
-    displayName: function (key) {
-      return app.name !== key ? (app.name + ':' + key) : key;
-    }
-  }));
-
-  /**
    * Support `--emit` for debugging
    *
    * Example:
@@ -102,6 +96,10 @@ function run(cb) {
   app.env.on('config', function(name, env) {
     app.register(name, env.config.fn, env);
   });
+
+  /**
+   * Resolve assemble generators
+   */
 
   app.env
     .resolve('assemble-generator-*/assemblefile.js', {
@@ -127,11 +125,6 @@ function run(cb) {
 
 run(function(err, app) {
   if (err) handleError(err);
-
-  // var tasks = app.get('argv.tasks');
-  // if (!tasks.length) {
-  //   tasks = ['default'];
-  // }
 
   /**
    * Listen for errors
