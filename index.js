@@ -6,7 +6,6 @@
 
 var path = require('path');
 var Generate = require('generate');
-// var Core = require('assemble-core');
 var utils = require('./lib/utils');
 var cli = require('./lib/cli');
 
