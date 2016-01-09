@@ -82,7 +82,6 @@ Assemble.prototype.initDefaults = function(app) {
  *   }
  * });
  * ```
- * @api public
  */
 
 Assemble.prototype.initPlugins = function(app) {
