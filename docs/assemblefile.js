@@ -10,6 +10,7 @@ var assemble = require('../');
 var pkg = require('../package');
 var utils = require('../lib/utils');
 var manifest = require('./plugins/manifest');
+var redirects = require('./plugins/redirects');
 
 
 /**
@@ -104,6 +105,20 @@ app.task('manifest', function(cb) {
     .pipe(app.dest(function(file) {
       file.base = file.dirname;
       return dir;
+    }));
+});
+
+/**
+ * Build up a redirects.json file
+ */
+
+app.task('redirects', function() {
+  return app.src(['../_gh_pages/en/*/manifest.json'])
+    .pipe(redirects(app))
+    .pipe(ignore.include('redirects.json'))
+    .pipe(app.dest(function(file) {
+      file.base = file.dirname;
+      return '.';
     }));
 });
 
