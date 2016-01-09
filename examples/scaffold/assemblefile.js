@@ -4,6 +4,7 @@ var async = require('async');
 var extend = require('extend-shallow');
 var extname = require('gulp-extname');
 var Scaffold = require('scaffold');
+var through = require('through2');
 
 var utils = require('../../lib/utils');
 var assemble = require('../..');
@@ -50,19 +51,27 @@ app.engine('md', require('engine-base'));
 
 app.plugin('render', app.renderFile);
 
+app.plugin('aaa', through.obj(function(file, enc, next) {
+  file.contents = new Buffer(file.contents.toString() + 'aaa\n');
+  next(null, file);
+}));
+
+app.plugin('bbb', through.obj(function(file, enc, next) {
+  file.contents = new Buffer(file.contents.toString() + 'bbb\n');
+  next(null, file);
+}));
+
 /**
  * Tasks
  */
 
-app.task('scaffold', function(cb) {
+app.task('default', function(cb) {
   app.scaffold(scaffold, function(err) {
     if (err) throw err;
     utils.timestamp('finished scaffold');
     cb();
   });
 });
-
-app.task('default', ['scaffold']);
 
 /**
  * Expose our instance of assemble
