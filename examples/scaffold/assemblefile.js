@@ -44,37 +44,22 @@ app.engine('hbs', require('engine-handlebars'));
 app.engine('md', require('engine-base'));
 
 /**
+ * Register a pipeline plugin to be used on the files processed
+ * by the `scaffold` method
+ */
+
+app.plugin('render', app.renderFile);
+
+/**
  * Tasks
  */
 
-app.task('scaffold', function(done) {
-  async.eachOf(scaffold, function(target, name, cb) {
-    if (!target.hasOwnProperty('files')) {
-      cb();
-      return;
-    }
-
-    // log out a time-stamped message for each "files" definition
-    utils.logTask(app.name, ':scaffold:' + name);
-
-    async.each(target.files, function(files, next) {
-      if (!files.src || !files.src.length) {
-        next();
-        return;
-      }
-
-      var opts = extend(target.options, files.options);
-      var data = extend(target.data, files.data);
-
-      app.src(files.src, opts)
-        .pipe(app.renderFile(data))
-        .on('error', next)
-        .pipe(extname())
-        .pipe(app.dest(files.dest))
-        .on('error', next)
-        .on('finish', next);
-    }, cb);
-  }, done);
+app.task('scaffold', function(cb) {
+  app.scaffold(scaffold, function(err) {
+    if (err) throw err;
+    utils.timestamp('finished scaffold');
+    cb();
+  });
 });
 
 app.task('default', ['scaffold']);
