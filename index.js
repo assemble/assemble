@@ -5,7 +5,8 @@
  */
 
 var path = require('path');
-var Core = require('assemble-core');
+var Generate = require('generate');
+// var Core = require('assemble-core');
 var utils = require('./lib/utils');
 var cli = require('./lib/cli');
 
@@ -26,7 +27,7 @@ function Assemble(options) {
     return new Assemble(options);
   }
 
-  Core.apply(this, arguments);
+  Generate.apply(this, arguments);
   this.isAssemble = true;
 
   this.initDefaults(this);
@@ -38,16 +39,14 @@ function Assemble(options) {
  * Inherit assemble-core
  */
 
-Core.extend(Assemble);
+Generate.extend(Assemble);
 
 /**
  * Initialize Assemble defaults
  */
 
 Assemble.prototype.initDefaults = function(app) {
-  var opts = this.options;
-  var exts = opts.exts || ['md', 'hbs', 'html'];
-  var regex = utils.extRegex(exts);
+  var exts = this.options.exts || ['md', 'hbs', 'html'];
 
   /**
    * Default engine
@@ -59,7 +58,7 @@ Assemble.prototype.initDefaults = function(app) {
    * Middleware for parsing front matter
    */
 
-  this.onLoad(regex, function(view, next) {
+  this.onLoad(utils.extRegex(exts), function(view, next) {
     // check options inside the middleware to
     // account for options defined after init
     if (view.options.frontMatter === false) {
@@ -88,13 +87,9 @@ Assemble.prototype.initDefaults = function(app) {
  */
 
 Assemble.prototype.initPlugins = function(app) {
-  enable('pipeline', utils.pipeline);
   enable('loader', utils.loader);
   enable('config', utils.config);
-  enable('store', utils.store);
   enable('argv', utils.argv);
-  enable('list', utils.list);
-  enable('ask', utils.ask);
   enable('cli', cli);
 
   function enable(name, fn) {
@@ -151,18 +146,6 @@ Object.defineProperty(Assemble.prototype, 'name', {
   },
   get: function() {
     return this.options.name || 'base';
-  }
-});
-
-/**
- * Set a `base` instance that can be used for storing
- * additional instances.
- */
-
-Object.defineProperty(Assemble.prototype, 'base', {
-  configurable: true,
-  get: function() {
-    return this.parent ? this.parent.base : this;
   }
 });
 
