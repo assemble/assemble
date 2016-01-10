@@ -53,14 +53,14 @@ app.plugin('render', app.renderFile);
 
 app.plugin('aaa', function() {
   return through.obj(function(file, enc, next) {
-    file.contents = new Buffer(file.contents.toString() + 'aaa\n');
+    file.contents = new Buffer(file.contents.toString() + '\naaa');
     next(null, file);
   });
 });
 
 app.plugin('bbb', function() {
   return through.obj(function(file, enc, next) {
-    file.contents = new Buffer(file.contents.toString() + 'bbb\n');
+    file.contents = new Buffer(file.contents.toString() + '\nbbb');
     next(null, file);
   });
 });
@@ -70,7 +70,7 @@ app.plugin('bbb', function() {
  */
 
 app.task('default', function(cb) {
-  app.scaffold(scaffold, function(err) {
+  app.scaffold(scaffold, {pipeline: ['render']}, function(err) {
     if (err) throw err;
     utils.timestamp('finished scaffold');
     cb();
