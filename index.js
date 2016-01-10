@@ -35,7 +35,7 @@ function Assemble(options) {
 }
 
 /**
- * Inherit assemble-core
+ * Inherit `Generate`
  */
 
 Generate.extend(Assemble);
