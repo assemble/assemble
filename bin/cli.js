@@ -37,7 +37,7 @@ function run(cb) {
    */
 
   if (!utils.exists(assemblefile)) {
-    cb(new Error('cannot find assemblefile.js'));
+    cb('assemblefile');
     return;
   }
 
