@@ -41,7 +41,7 @@
   "devDependencies": {
     "ansi-red": "^0.1.1",
     "async": "^1.5.1",
-    "base-methods": "^0.6.2",
+    "base": "^0.6.3",
     "buffer-equal": "^1.0.0",
     "consolidate": "^0.13.1",
     "coveralls": "^2.11.6",
