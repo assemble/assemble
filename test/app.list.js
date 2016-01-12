@@ -36,13 +36,6 @@ describe('list', function() {
       app.create('pages');
     });
 
-    it('should add an item to a list:', function() {
-      app.pages('test/fixtures/pages/a.hbs');
-      var list = app.list();
-      list.addItem(app.pages.getView('test/fixtures/pages/a.hbs'));
-      assert(list.hasItem(path.resolve('test/fixtures/pages/a.hbs')));
-    });
-
     it('should expose the `option` method from a list:', function() {
       var list = app.list();
       list.option('a', 'b');
