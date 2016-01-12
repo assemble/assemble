@@ -3,7 +3,6 @@
 require('mocha');
 require('should');
 var path = require('path');
-var Base = require('base-methods');
 var assert = require('assert');
 var consolidate = require('consolidate');
 var handlebars = require('engine-handlebars');
@@ -40,10 +39,10 @@ describe('helpers', function() {
   describe('instance', function() {
     it('should prime _', function() {
       function Foo() {
-        Base.call(this);
+        App.call(this);
         init(this);
       }
-      Base.extend(Foo);
+      App.extend(Foo);
       var foo = new Foo();
       helpers(foo);
       assert(typeof foo._ === 'object');

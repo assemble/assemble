@@ -62,7 +62,6 @@
     "ansi-red": "^0.1.1",
     "array-sort": "^0.1.1",
     "async": "^1.5.2",
-    "base-methods": "^0.6.2",
     "buffer-equal": "^1.0.0",
     "consolidate": "^0.13.1",
     "coveralls": "^2.11.6",
