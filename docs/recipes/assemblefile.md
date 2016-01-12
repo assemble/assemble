@@ -1,12 +1,6 @@
 # assemblefile.js examples
 
-Before you get started, it might help to first visit the [API docs for assemblefiles](./api/assemblefile.md) to become familiarized with the supported signatures and features for `assemblefile.js`.
-
-**Freedom to create**
-
-Although most of the following examples will show tasks being defined and `src` or `dest` being used, this is only because it's easy to write examples with tasks. But your `assemblefile.js` doesn't have to contain tasks, and _there is no requirement to use the file system API (`src` and `dest`)_.
-
-You can use any part of the Assemble API in your `assemblefile.js`, or just regular JavaScript if that's what you need.
+Before you get started, it might help to first visit the [API docs for assemblefiles](../src/api/assemblefile.md) to become familiarized with the supported signatures and features for `assemblefile.js`.
 
 ## Example assemblefiles
 

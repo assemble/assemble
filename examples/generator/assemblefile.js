@@ -12,26 +12,26 @@ var namify = require('namify');
  * to extend other generators.
  */
 
-module.exports = function(generate, base, env) {
+module.exports = function(assemble, base, env) {
 
   /**
    * TODO: User help and defaults
    */
 
-  generate.register('defaults', function(app) {
+  assemble.register('defaults', function(app) {
     app.task('init', function(cb) {
-      console.log('generate > init (implement me!)');
+      console.log('assemble > init (implement me!)');
       cb();
     });
 
     app.task('help', function(cb) {
       console.log('Would you like to choose a generator to run?');
-      console.log('(implement me!)')
+      console.log('_(TODO)_')
       cb();
     });
 
     app.task('error', function(cb) {
-      console.log('generate > error (implement me!)');
+      console.log('assemble > error (implement me!)');
       cb();
     });
   });
@@ -40,7 +40,7 @@ module.exports = function(generate, base, env) {
    * Readme task
    */
 
-  generate.register('abc', function(app, base, env) {
+  assemble.register('abc', function(app, base, env) {
     app.task('one', function(cb) {
       console.log('app > one');
       cb();
@@ -56,9 +56,9 @@ module.exports = function(generate, base, env) {
    * Data store tasks
    */
 
-  generate.register('store', function(app) {
+  assemble.register('store', function(app) {
     app.task('del', function(cb) {
-      generate.store.del({ force: true });
+      assemble.store.del({ force: true });
       console.log('deleted data store');
       cb();
     });
@@ -68,12 +68,12 @@ module.exports = function(generate, base, env) {
    * Default configuration settings
    */
 
-  generate.task('defaultConfig', function(cb) {
-    if (!generate.templates) {
-      generate.create('templates');
+  assemble.task('defaultConfig', function(cb) {
+    if (!assemble.templates) {
+      assemble.create('templates');
     }
-    generate.engine(['md', 'text'], require('engine-base'));
-    generate.data({year: new Date().getFullYear()});
+    assemble.engine(['md', 'text'], require('engine-base'));
+    assemble.data({year: new Date().getFullYear()});
     cb();
   });
 
@@ -81,21 +81,21 @@ module.exports = function(generate, base, env) {
    * User prompts
    */
 
-  generate.task('prompt', function(cb) {
+  assemble.task('prompt', function(cb) {
     var pkg = env.config.pkg;
 
     if (!pkg || env.user.isEmpty || env.argv.raw.init) {
-      forceQuestions(generate);
+      forceQuestions(assemble);
     }
 
-    generate.questions.setData(pkg || {});
-    generate.ask({ save: false }, function(err, answers) {
+    assemble.questions.setData(pkg || {});
+    assemble.ask({ save: false }, function(err, answers) {
       if (err) return cb(err);
       if (!pkg) answers = {};
 
       answers.name = answers.name || project();
       answers.varname = namify(answers.name);
-      generate.set('answers', answers);
+      assemble.set('answers', answers);
       cb();
     });
   });
@@ -104,7 +104,7 @@ module.exports = function(generate, base, env) {
    * Load templates to be rendered
    */
 
-  generate.task('templates', ['defaultConfig'], function(cb) {
+  assemble.task('templates', ['defaultConfig'], function(cb) {
     var opts = { cwd: env.config.cwd, dot: true };
 
     glob('templates/*', opts, function(err, files) {
@@ -113,7 +113,7 @@ module.exports = function(generate, base, env) {
         var fp = path.join(opts.cwd, name);
 
         var contents = fs.readFileSync(fp);
-        generate.template(name, {contents: contents, path: fp});
+        assemble.template(name, {contents: contents, path: fp});
         next();
       }, cb);
     });
@@ -123,8 +123,8 @@ module.exports = function(generate, base, env) {
    * Default task to be run
    */
 
-  generate.task('default', function(cb) {
-    generate.build('defaults:help', cb);
+  assemble.task('default', function(cb) {
+    assemble.build('defaults:help', cb);
   });
 };
 
@@ -132,6 +132,6 @@ module.exports = function(generate, base, env) {
  * Force questions to be (re-)asked
  */
 
-function forceQuestions(generate) {
-  generate.questions.options.forceAll = true;
+function forceQuestions(assemble) {
+  assemble.questions.options.forceAll = true;
 }
