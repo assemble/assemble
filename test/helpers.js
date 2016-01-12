@@ -3,7 +3,7 @@
 require('mocha');
 require('should');
 var path = require('path');
-var Base = require('base-methods');
+var Base = require('base');
 var assert = require('assert');
 var consolidate = require('consolidate');
 var handlebars = require('engine-handlebars');
