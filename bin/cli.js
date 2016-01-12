@@ -46,6 +46,16 @@ function run(cb) {
    */
 
   var app = require(assemblefile);
+  if (utils.hasValue(app) === false) {
+    var msg = errors['exports']
+      .split('${assemblefile}')
+      .join(utils.homeRelative(root, assemblefile));
+
+    var err = new Error(msg);
+    cb(err);
+    return;
+  }
+
   if (typeof app === 'function') {
     var fn = app;
     app = assemble();

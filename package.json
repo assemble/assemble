@@ -45,6 +45,7 @@
     "find-pkg": "^0.1.1",
     "generate": "^0.3.6",
     "global-modules": "^0.2.0",
+    "has-value": "^0.3.0",
     "isobject": "^2.0.0",
     "lazy-cache": "^1.0.3",
     "matched": "^0.4.1",
