@@ -475,7 +475,7 @@ describe('built-in helpers:', function() {
       /**
        * Partial
        */
-      
+
       app.partial('a.hbs', {
         content: '---\nname: "AAA"\n---\n<title>{{name}}</title>',
         locals: {
@@ -486,7 +486,7 @@ describe('built-in helpers:', function() {
       /**
        * Pages
        */
-      
+
       app.page('a.hbs', {
         path: 'a.hbs',
         content: '<title>{{author}}</title>',
