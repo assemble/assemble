@@ -27,9 +27,8 @@ module.exports = function linkTo(key, collectionName) {
     return '';
   }
 
-  var data = this.app.cache.data;
-  var fromDest = current.data.dest;
-  var targetDest = target.data.dest;
+  var fromDest = current.data.permalinks ||current.data.dest;
+  var targetDest = target.data.permalinks || target.data.dest;
 
   return relativePath(fromDest, targetDest);
 };
