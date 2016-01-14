@@ -28,6 +28,7 @@ function Assemble(options) {
 
   Generate.apply(this, arguments);
   this.isAssemble = true;
+  this.name = this.name ? (this.name === 'generate' ? 'assemble' : this.name) : 'assemble';
 
   this.initDefaults(this);
   this.initPlugins(this);
