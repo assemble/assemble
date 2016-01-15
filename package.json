@@ -86,6 +86,7 @@
     "kind-of": "^3.0.2",
     "load-pkg": "^3.0.1",
     "mocha": "^2.3.4",
+    "placeholders": "^0.2.0",
     "relative-dest": "^0.1.0",
     "resolve-glob": "^0.1.8",
     "rimraf": "^2.5.0",
