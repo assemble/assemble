@@ -160,7 +160,7 @@ describe('list', function() {
       var a = list.getItem('a');
       list.removeItem(a);
       assert(list.items.length === 2);
-      var c = list.getItem(c);
+      var c = list.getItem('c');
       list.removeItem(c);
       assert(list.items[0].key === 'b');
     });
