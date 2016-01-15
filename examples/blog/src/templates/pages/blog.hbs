@@ -1,5 +1,6 @@
 ---
 title: My Blog
+layout: default
 ---
 
 <h1>Welcome to {{title}}!</h1>
@@ -7,6 +8,6 @@ title: My Blog
 <h2>Read some posts:</h2>
 {{#posts}}
   {{#each items}}
-  - {{data.title}}
+<a href="{{link-to key "posts"}}">{{data.title}}</a>
   {{/each}}
 {{/posts}}

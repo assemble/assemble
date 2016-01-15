@@ -12,14 +12,15 @@ module.exports = function linkTo(key, collectionName) {
 
   name = name || 'pages';
 
-  if (typeof this.app[name] === 'undefined') {
+  var collection = this.app[name];
+  if (typeof collection === 'undefined') {
     var msg = 'Invalid collection `' + name + '`';
     console.error(red(msg));
     return '';
   }
 
   var current = this.context.view;
-  var target = this.app.find(key, name);
+  var target = collection.getView(key);
 
   if (!target || !Object.keys(target).length) {
     var msg = 'Unable target find `' + key + '` in `' + name + '`';
@@ -27,8 +28,7 @@ module.exports = function linkTo(key, collectionName) {
     return '';
   }
 
-  var fromDest = current.data.permalinks ||current.data.dest;
-  var targetDest = target.data.permalinks || target.data.dest;
-
+  var fromDest = current.dest;
+  var targetDest = target.dest;
   return relativePath(fromDest, targetDest);
 };

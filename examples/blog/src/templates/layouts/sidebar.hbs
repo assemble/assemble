@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+{% body %}
+
+<h2>Related</h2>
+{{#posts}}
+  {{#each items as |item|}}
+    {{#isnt @root.permalink data.permalink}}
+<a href="{{link-to @item.key "posts"}}">{{@item.data.title}}</a>
+    {{/isnt}}
+  {{/each}}
+{{/posts}}
