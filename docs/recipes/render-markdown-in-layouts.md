@@ -51,10 +51,13 @@ For example, assuming `templates/posts/a.md` has the following contents:
 ```
 
 For example, assuming `templates/posts/a.md` has the following contents:
-Any template that uses th
 
 ```handlebars
 ---
 layout: foo
-title: Blog Post 1
+---
+
+# Zebras and Elephants
+
+> A 2-year old's guide to the the world
 ```

@@ -1,8 +1,9 @@
 # Render templates
 
-To render templates, you first need to choose a template engine. Engines are registered using the `.engine()` method:
 
-**Example**
+**Registering engines**
+
+Engines are registered using the [.engine](/api/engines#engine) method.  and the name you choose for the engine is used by assemble 
 
 ```js
 // render handlebars templates in `.hbs` files

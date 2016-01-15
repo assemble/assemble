@@ -6,12 +6,11 @@ var prettify = require('gulp-prettify');
 var extname = require('gulp-extname');
 var ignore = require('gulp-ignore');
 
-var assemble = require('../');
-var pkg = require('../package');
-var utils = require('../lib/utils');
-var manifest = require('./plugins/manifest');
 var redirects = require('./plugins/redirects');
-
+var manifest = require('./plugins/manifest');
+var utils = require('./support/utils');
+var pkg = require('../package');
+var assemble = require('../');
 
 /**
  * Create our assemble appplication
@@ -88,6 +87,7 @@ app.task('manifest', function(cb) {
     app.emit('error', new Error('--version needs to be specified when running `assemble manifest`'));
     return cb();
   }
+
   var dir = '../_gh_pages/en/v' + version;
   if (!utils.exists(dir)) {
     app.emit('error', new Error('invalid version [' + version + ']. ' + dir + ' does not exist'));
@@ -151,6 +151,7 @@ app.task('default', ['clean', 'load'], function() {
     }))
     .pipe(app.dest(function(file) {
       file.base = file.dirname;
+      console.log(pkg.version)
       return '../_gh_pages/en/v' + pkg.version;
     }))
 });

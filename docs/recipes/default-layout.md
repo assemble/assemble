@@ -1,4 +1,4 @@
-# Default layout
+# Defining a default layout
 
 > This recipe describes how to define a "default" layout.
 

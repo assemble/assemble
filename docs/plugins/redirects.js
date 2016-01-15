@@ -4,13 +4,15 @@ var arraySort = require('array-sort');
 
 module.exports = function redirects(app) {
   var manifests = {};
-  return through.obj(function (file, enc, cb) {
+  return through.obj(function(file, enc, cb) {
     var segs = file.dirname.split('/');
     var version = segs[segs.length - 1];
     manifests[version] = JSON.parse(file.contents);
     cb(null, file);
-  }, function (cb) {
-    var versions = arraySort(Object.keys(manifests).map(toVersions), [
+  }, function(cb) {
+
+    var keys = Object.keys(manifests).map(toVersions);
+    var versions = arraySort(keys, [
       compare('major'),
       compare('minor'),
       compare('patch')
@@ -26,7 +28,11 @@ module.exports = function redirects(app) {
       }, acc);
     }, {});
 
-    var file = app.view({path: 'redirects.json', content: JSON.stringify(data, null, 2) });
+    var file = app.view({
+      path: 'redirects.json',
+      content: JSON.stringify(data, null, 2)
+    });
+
     this.push(file);
     cb();
   });
@@ -36,14 +42,11 @@ function compare(prop) {
   return function(a, b) {
     var aa = a[prop];
     var bb = b[prop];
-
     if (isWordChar(aa) || isWordChar(bb)) {
       return aa.localeCompare(bb);
     }
-
     aa = +aa;
     bb = +bb;
-
     if (aa > bb) return 1;
     if (aa < bb) return -1;
     return 0;

@@ -6,13 +6,22 @@ category: api
 
 ## Engines API
 
+All of the rendering in assemble is handled by template engines, or "rendering engines". Thus, before we can render anything with assemble, we'll need to register an engine using the `.engine` method. 
+
 ### .engine
 
-Register the given template engine `callback` function as `ext`:
+Register engine `callback` function as `ext`. Instead of a callback, the second argument can alternatively be an object with a `.render` method.
 
 ```js
 app.engine(ext, callback);
 ```
+
+**Params**
+
+* `ext` **{String}** Optionally a file extension to associate with the engine, or any arbirary name if you don't want assemble to auto-match engines to files.
+* `callback` **{Function|Object}**: Engine's callback function or object with a `.render` method.
+* `options` **{Object}**
+* `returns` **{Object}**: Returns the assemble instance for chaining
 
 **Example**
 
@@ -20,46 +29,6 @@ app.engine(ext, callback);
 app.engine('hbs', require('engine-handlebars'));
 ```
 
-**Params**
-
-* `ext` **{String}** File extension to use.
-* `fn` **{Function|Object}**: Engine function or object with a `.render` method.
-* `options` **{Object}**
-* `returns` **{Object}**: Returns the assemble instance for chaining
-
-
 ## How engines work
 
-Template engines in Assemble are used to render views. More specifically:
-
-* `view.content`: The `content` property in views is rendered. This can be any text or markup language.
-* `layouts` Layouts used when generating web pages.  The path of the layout file will be passed to the engine's `renderFile()` function.
-
-By default Assemble will `require()` the engine based on the file extension.
-For example if you try to render a "foo.jade" file Assemble will invoke the
-following internally:
-
-```js
-app.engine('jade', require('jade'));
-```
-
-The module is expected to export a `.renderFile` function, or, for
-compatibility with Express, an `__express` function.
-
-For engines that do not provide `.renderFile` out of the box, or if you wish
-to "map" a different extension to the template engine you may use this
-method. For example mapping the EJS template engine to ".html" files:
-
-```js
-app.engine('html', require('ejs').renderFile);
-```
-
-Additionally, template engines are used to render lightweight markup found in
-content files.  For example using Textile:
-
-```js
-app.engine('textile', require('textile-engine'));
-```
-
-In this case, it is expected that the module export a `render` function which
-will be passed content data (after removing any front matter).
+Template engines in Assemble are used to render the `content` property on [views](/api/views.md), wich can be any text or markup language.
