@@ -5,6 +5,8 @@ title: My Blog
 <h1>Welcome to {{title}}!</h1>
 
 <h2>Read some posts:</h2>
-{{#each .}}
-{{log "foo"}}
-{{/each}}
+{{#posts}}
+  {{#each items}}
+  - {{data.title}}
+  {{/each}}
+{{/posts}}

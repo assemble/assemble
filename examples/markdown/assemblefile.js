@@ -1,6 +1,8 @@
 'use strict';
-var assemble = require('../..')
+
+var path = require('path');
 var extname = require('gulp-extname');
+var assemble = require('../..');
 var app = assemble();
 
 /**
@@ -9,7 +11,11 @@ var app = assemble();
  */
 
 app.create('pages');
-app.create('posts');
+app.create('posts', {
+  renameKey: function(key, view) {
+    return view ? view.basename : path.basename(key);
+  }
+});
 
 /**
  * Register a handlebars helper for processing markdown.
@@ -21,16 +27,6 @@ app.create('posts');
 app.helper('markdown', require('helper-markdown'));
 
 /**
- * Pre-render middleware, for customizing how
- * data (context) will be passed to templates
- */
-
-// app.preRender(/\.(md|hbs|html)$/, function(view, next) {
-//   file.data = merge({}, app.cache.data)
-//   next();
-// });
-
-/**
  * Tasks for loading and rendering our templates
  */
 
@@ -40,6 +36,10 @@ app.task('load', function(cb) {
   app.posts('src/content/*.md');
   cb();
 });
+
+/**
+ * Default task
+ */
 
 app.task('default', ['load'], function() {
   return app.toStream('pages')

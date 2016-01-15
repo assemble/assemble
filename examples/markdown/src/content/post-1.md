@@ -1,6 +1,6 @@
 ---
 title: Post 1
-layout: post
+layout: context-example
 foo:
   title: Foo Title 1
 ---
