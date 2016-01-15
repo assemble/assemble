@@ -1,8 +1,6 @@
-# assemblefile.js examples
+# assemblefile.js 
 
-Before you get started, it might help to first visit the [API docs for assemblefiles](../src/api/assemblefile.md) to become familiarized with the supported signatures and features for `assemblefile.js`.
-
-## Example assemblefiles
+You might also be interested in reading the [assemblefile.js API docs](/api/assemblefile.md).
 
 ### Copy files
 

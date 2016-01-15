@@ -8,7 +8,11 @@ The main export of the assemble library is a function. More specifically, the fu
 var assemble = require('assemble');
 
 var app = assemble();
+```
 
+This pattern was chosen to allow you to "new up" whenever necessary:
+
+```js
 // another instance of assemble
 var blog = assemble();
 
@@ -16,9 +20,3 @@ var blog = assemble();
 var site = assemble();
 ```
 
-The above examples are sugar for:
-
-```js
-var Assemble = require('assemble');
-var app = new Assemble();
-```
