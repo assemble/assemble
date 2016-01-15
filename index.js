@@ -5,7 +5,7 @@
  */
 
 var path = require('path');
-var Generate = require('generate');
+var Core = require('assemble-core');
 var utils = require('./lib/utils');
 var cli = require('./lib/cli');
 
@@ -26,7 +26,7 @@ function Assemble(options) {
     return new Assemble(options);
   }
 
-  Generate.apply(this, arguments);
+  Core.apply(this, arguments);
   this.isAssemble = true;
   this.name = this.name ? (this.name === 'generate' ? 'assemble' : this.name) : 'assemble';
 
@@ -36,10 +36,10 @@ function Assemble(options) {
 }
 
 /**
- * Inherit `Generate`
+ * Inherit `Core`
  */
 
-Generate.extend(Assemble);
+Core.extend(Assemble);
 
 /**
  * Initialize Assemble defaults

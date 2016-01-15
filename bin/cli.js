@@ -4,7 +4,6 @@ var path = require('path');
 var utils = require('../lib/utils');
 var errors = require('./errors');
 var assemble = require('..');
-var Env = assemble.Env;
 
 var argv = require('minimist')(process.argv.slice(2), {
   alias: {
@@ -64,19 +63,10 @@ function run(cb) {
     fn(app);
   }
 
-  app.generator('base', require('../lib/generator'));
-
-  /**
-   * Create enviroment
-   */
-
-  app.env = createEnv('assemblefile.js', process.cwd());
-
   /**
    * Process command line arguments
    */
 
-  // var app = runner(argv);
   var args = utils.processArgv(app, argv);
   app.set('argv', args);
 
@@ -88,6 +78,16 @@ function run(cb) {
   utils.timestamp('using assemblefile ' + fp);
 
   /**
+   * Setup composer-runtimes
+   */
+
+  app.use(utils.runtimes({
+    displayName: function (key) {
+      return app.name !== key ? (app.name + ':' + key) : key;
+    }
+  }));
+
+  /**
    * Support `--emit` for debugging
    *
    * Example:
@@ -97,29 +97,6 @@ function run(cb) {
   if (argv.emit && typeof argv.emit === 'string') {
     app.on(argv.emit, console.error.bind(console));
   }
-
-  /**
-   * Listen for generator configs, and register them
-   * as they're emitted
-   */
-
-  app.env.on('config', function(name, env) {
-    app.register(name, env.config.fn, env);
-  });
-
-  /**
-   * Resolve assemble generators
-   */
-
-  app.env
-    .resolve('assemble-generator-*/assemblefile.js', {
-      configfile: 'assemblefile.js',
-      cwd: utils.gm
-    })
-    .resolve('generate-*/generator.js', {
-      configfile: 'generator.js',
-      cwd: utils.gm
-    });
 
   /**
    * Process command line arguments
@@ -144,26 +121,21 @@ run(function(err, app) {
     console.log(err);
   });
 
+  var tasks = app.get('argv.tasks');
+  if (!tasks.length) {
+    tasks = ['default'];
+  }
+
   /**
    * Run tasks
    */
 
-  app.build(argv, function(err) {
+  app.build(tasks, function(err) {
     if (err) throw err;
     utils.timestamp('finished ' + utils.success());
     process.exit(0);
   });
 });
-
-/**
- * Creat a new `env` object
- */
-
-function createEnv(configfile, cwd) {
-  var env = new Env(configfile, 'assemble', cwd);;
-  env.module.path = utils.tryResolve('assemble');
-  return env;
-}
 
 /**
  * Handle CLI errors
