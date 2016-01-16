@@ -58,6 +58,7 @@ app.data({
 
 app.create('pages');
 app.create('posts', {
+  pager: true,
   renameKey: function(key, view) {
     return view ? view.basename : path.basename(key);
   }
@@ -84,6 +85,7 @@ app.helper('log', function(val) {
  */
 
 app.task('load', function(cb) {
+  app.partials('src/templates/includes/*.hbs');
   app.layouts('src/templates/layouts/*.hbs');
   app.pages('src/templates/pages/*.hbs');
   app.posts('src/content/*.md');
