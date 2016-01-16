@@ -2,21 +2,11 @@
 
 > Assemble is a powerful, extendable and easy to use static site generator for node.js. Used by thousands of projects for much more than building websites, Assemble is also used for creating themes, scaffolds, boilerplates, e-books, UI components, API documentation, blogs, gh-pages and more! Plugins for gulp and grunt are also supported.
 
-We're happy to announce the release of Assemble v0.7.4! Please see the [release history](#release-history) to learn about new features, bug fixes and changes - breaking or otherwise.
+We're happy to announce the release of Assemble v0.7.4!
 
-## About
+[![Gitter Chat](http://img.shields.io/chat/gitter.png?color=brightgreen)](https://gitter.im/assemble/assemble)
 
-**What is Assemble?**
-
-Assemble makes it easy to create, customize, generate and maintain complete web projects. Here are some highlights:
-
-* Expressive, imperative API that is powerful and easy to use
-* Facilitates the use of _modular, encapsulated components_ in your markup, like pages, partials and layouts, resulting in consistent design across your project
-* Assemble is extremely pluggable and easy to extend with helpers, plugins, middleware or engines.
-* Ability to use any data source for rendering templates, which makes it easy to begin a project using mock data and switch to a "live" data source later on.
-* Use any template engine for rendering templates. You can even use multiple engines at once, Assemble will automatically detect the correct one to use on each template at render time.
-* Makes it easy to transform content from markdown or any other plain text format to HTML using plugins, middleware helpers or engines.
-* Assemble has full support for [gulp](http://gulpjs.com) plugins. Read our [gulp FAQ](./docs/src/gulp-faq.md) for more info about gulp support.
+## TOC
 
 - [Install](#install)
 - [Getting started](#getting-started)
@@ -41,6 +31,7 @@ Assemble makes it easy to create, customize, generate and maintain complete web 
 - [Release history](#release-history)
 - [Test coverage](#test-coverage)
 - [Contributing](#contributing)
+- [About](#about)
 - [Similar projects](#similar-projects)
 - [Authors](#authors)
 - [License](#license)
@@ -441,6 +432,20 @@ Lines      : 100% (38/38)
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/jonschlinkert/assemble/issues/new).
 
 If Assemble doesn't do what you need, [please let us know](https://github.com/assemble/assemble/issues/new?title=request%253A%20%3Ctitle%20here%3E)
+
+## About
+
+**What is Assemble?**
+
+Assemble makes it easy to create, customize, generate and maintain complete web projects. Here are some highlights:
+
+* Expressive, imperative API that is powerful and easy to use
+* Facilitates the use of _modular, encapsulated components_ in your markup, like pages, partials and layouts, resulting in consistent design across your project
+* Assemble is extremely pluggable and easy to extend with helpers, plugins, middleware or engines.
+* Ability to use any data source for rendering templates, which makes it easy to begin a project using mock data and switch to a "live" data source later on.
+* Use any template engine for rendering templates. You can even use multiple engines at once, Assemble will automatically detect the correct one to use on each template at render time.
+* Makes it easy to transform content from markdown or any other plain text format to HTML using plugins, middleware helpers or engines.
+* Assemble has full support for [gulp](http://gulpjs.com) plugins. Read our [gulp FAQ](./docs/src/gulp-faq.md) for more info about gulp support.
 
 ## Similar projects
 
