@@ -8,6 +8,11 @@ var project = require('project-name');
 var namify = require('namify');
 
 /**
+ * HEADS UP! This is temporarily broken. We're re-working
+ * the generator API and will update this when it's done.
+ */
+
+/**
  * This is an example generator, but it can also be used
  * to extend other generators.
  */
