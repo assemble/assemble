@@ -4,8 +4,6 @@
 
 We're happy to announce the release of Assemble v0.7.4!
 
-[![Gitter Chat](http://img.shields.io/chat/gitter.png?color=brightgreen)](https://gitter.im/assemble/assemble)
-
 ## TOC
 
 - [Install](#install)
