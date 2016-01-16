@@ -19,7 +19,7 @@ Proxy to `Router#param()` with one added API feature: The `name` parameter can b
 
 ### Routes and middleware
 
-### [.handle](lib/plugins/routes.js#L44)
+### .handle
 
 Handle a middleware `method` for `view`.
 
@@ -36,7 +36,7 @@ Handle a middleware `method` for `view`.
 app.handle('customMethod', view, callback);
 ```
 
-### [.route](lib/plugins/routes.js#L128)
+### .route
 
 Create a new Route for the given path. Each route contains a separate middleware stack.
 
@@ -61,7 +61,7 @@ app.route(/blog/)
 app.post('whatever', {path: 'blog/foo.bar', content: 'bar baz'});
 ```
 
-### [.all](lib/plugins/routes.js#L150)
+### .all
 
 Special route method that works just like the `router.METHOD()` methods, except that it matches all verbs.
 
@@ -80,7 +80,7 @@ app.all(/\.hbs$/, function(view, next) {
 });
 ```
 
-### [.param](lib/plugins/routes.js#L179)
+### .param
 
 Add callback triggers to route parameters, where `name` is the name of the parameter and `fn` is the callback function.
 

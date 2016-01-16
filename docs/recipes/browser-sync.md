@@ -12,7 +12,11 @@
 	- all markdown content files and `.hbs` (handlebars) templates 
 * When `.watch` is triggered, update the `.css` stylesheets or generated `.html` files.
 
+## Tasks
+
 **Main file**
+
+The following example shows how to setup your `assemblefile.js`:
 
 ```js
 var path = require('path');
@@ -47,14 +51,18 @@ app.data({
  * Pre-process LESS to CSS
  */
 
-app.task('css', function () {
+app.task('css', function() {
   return app.src('less/default.less')
     .pipe(less())
     .pipe(app.dest('site/css'))
     .pipe(browserSync.stream());
 });
 
-app.task('serve', function () {
+/**
+ * Static server
+ */
+
+app.task('serve', function() {
   browserSync.init({
     port: 8080,
     startPath: 'page-1.html',
@@ -77,7 +85,7 @@ app.task('load', function(cb) {
  * Generate site
  */
 
-app.task('content', ['load'], function () {  
+app.task('content', ['load'], function() {  
   return app.pages.src('content/**/*.{md,hbs}')
     .pipe(app.renderFile())
     .on('err', console.error)
@@ -108,6 +116,8 @@ app.task('default', ['css', 'content', 'serve']);
 module.exports = app;
 ```
 
+## Styles
+
 **less/default.less**
 
 ```css
@@ -136,6 +146,8 @@ h1 {
 @defaultFont: Arial, "Helvetica Neue", Helvetica, sans-serif;
 ```
 
+## Templates
+
 **templates/layouts/default.hbs**
 
 ```html
@@ -149,6 +161,7 @@ h1 {
   <body>
     <h1>{{title}}</h1>
 
+<!-- keep inline markdown left-aligned, so it formats correctly -->
 {{#markdown}}
 {% body %}
 {{/markdown}}
@@ -156,6 +169,8 @@ h1 {
   </body>
 </html>
 ```
+
+## Markdown content
 
 **content/page-1.md**
 

@@ -1,7 +1,12 @@
 ---
+draft: true
+
 title: Engines
 collection: docs
 category: api
+related: ['helpers', 'views']
+description: > 
+  Learn how to register, use and create template helpers.
 ---
 
 ## Engines API

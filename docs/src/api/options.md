@@ -1,47 +1,55 @@
 ---
+draft: true
+
 title: Config
 collection: docs
 category: api
 description: > 
-  The purpose of the config API is to set and get general configuration values that can be used by any method. In other words, these methods are generically, and globally usable.
+  The purpose of the config API is to set and get general configuration value that are globally usable and accessible in your assemble application.
 ---
 
-## .option
+#### .option
 
-The `.option()` method sets values on the `assemble.options` object.
+Set or get an option value.
+
+**Params**
+
+* `key` **{String|Object}**: Pass a key-value pair or an object to set.
+* `val` **{any}**: Any value when a key-value pair is passed. This can also be options if a glob pattern is passed as the first value.
+* `returns` **{Object}**: Returns the instance for chaining.
+
+**Example**
 
 ```js
-// set
-assemble.option('abc', true);
-
-// get
-assemble.option('abc')); 
-//=> true
-assemble.options.abc; 
-//=> true
+app.option('a', 'b');
+app.option({c: 'd'});
+console.log(app.options);
+//=> {a: 'b', c: 'd'}
 ```
 
-In addition to `.option()`, the following methods may be used as convenience methods for getting and setting Boolean values on the `assemble.options` object:
+
+
+In addition to `.option()`, the following methods may be used as convenience methods for getting and setting Boolean values on the `app.options` object:
 
 ```js
-assemble.enable('xyz');
-//=> assemble.options.xyz = true;
+app.enable('xyz');
+//=> app.options.xyz = true;
 
-assemble.disable('xyz');
-//=> assemble.options.xyz = false;
+app.disable('xyz');
+//=> app.options.xyz = false;
 ```
 
 Is `xyz` enabled?
 
 ```js
-assemble.enabled('xyz');
+app.enabled('xyz');
 //=> 'true'
 ```
 
 Is `xyz` disabled?
 
 ```js
-assemble.disabled('xyz');
+app.disabled('xyz');
 //=> 'false'
 ```
 
@@ -69,18 +77,3 @@ assemble.disabled('xyz');
 - `views`:
 - `viewType`:
 
-cwd
-namespaceData
-
-## Reserved words
-
-- `options`
-  * `rename`
-  * `flatten`
-  * `ext`
-  * `extDot`
-  * `base`
-  * `cwd`
-- `files`
-- `dest`
-- `src`

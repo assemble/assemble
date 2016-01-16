@@ -1,26 +1,30 @@
 # Inspecting the context
 
-Generally, "inspecting the context" means that we're looking at the object that will be used for rendering a template or templates.
+**What does "inspecting the context mean"?**
+
+Generally, "inspecting the context" means that we're attempting to inspect the object that that is created in memory for rendering templates.
 
 **Where can we see the context?**
 
-The context object is created in-memory at render time, and to inspect it we need to see the object _as a template is being rendered_ (not before or after), which means there is really only one place to do it: inside a helper function.
+Since the context object is created in-memory at render time, to inspect it we need access to the object _as a template is actually being rendered_ (not before or after), which means there is really only one place to do it: inside a helper function.
 
-**Create a helper**
+## log helper
 
-A simple `log` helper can be used to show any object we pass to it in the console. Add the following to your `{{configfile}}.js`:
+A simple `log` helper can be used to show (in the console) any object we pass to it. For example, try adding the following to your `assemblefile.js`:
 
 ```js
 app.helper('log', function(context) {
   console.log(context);
 });
 ```
+
 Next, add the following to the template you want to inspect:
 
 ```handlebars
 {{log .}}
 ```
-Handlebars uses `.` as an alias for `this`. You can replace the `.` with any variable you want to inspect.
+
+_(Note that handlebars uses `.` as an alias for `this`. You can replace the `.` with any variable you want to inspect.)_
 
 **Other objects**
 
