@@ -29,7 +29,7 @@ function run(cb) {
    * Get the assemblefile.js to use
    */
 
-  var assemblefile = path.resolve(process.cwd(), 'assemblefile.js');
+  var assemblefile = path.resolve(process.cwd(), argv.file || 'assemblefile.js');
 
   /**
    * Notify the user if assemblefile.js is not found
