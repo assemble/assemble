@@ -2,6 +2,7 @@
 
 var path = require('path');
 var del = require('delete');
+var browserSync = require('browser-sync').create();
 var prettify = require('gulp-prettify');
 var extname = require('gulp-extname');
 var ignore = require('gulp-ignore');
@@ -37,6 +38,7 @@ app.create('docs');
  * Load helpers
  */
 
+app.helper('markdown', require('helper-markdown'));
 app.helpers('helpers/*.js');
 
 /**
@@ -134,10 +136,24 @@ app.task('load', function(cb) {
 });
 
 /**
+ * Static server
+ */
+
+app.task('serve', function() {
+  browserSync.init({
+    port: 8080,
+    startPath: 'en/v' + pkg.version + '/assemblefile.html',
+    server: {
+      baseDir: '../_gh_pages'
+    }
+  });
+});
+
+/**
  * Building the assemble docs
  */
 
-app.task('default', ['clean', 'load'], function() {
+app.task('build', ['load'], function() {
   return app.toStream('docs')
     .on('err', console.log)
     .pipe(app.renderFile())
@@ -153,16 +169,29 @@ app.task('default', ['clean', 'load'], function() {
       file.base = file.dirname;
       return '../_gh_pages/en/v' + pkg.version;
     }))
+    .pipe(browserSync.stream());
 });
 
 /**
  * Watch files for changes
  */
 
-app.task('watch', ['default'], function() {
-  app.watch('**/*.{md,hbs}', ['default']);
+app.task('watch', function() {
+  app.watch('**/*.{md,hbs}', ['build']);
   console.log('watching docs templates');
 });
+
+/**
+ * Alias for building, serving, and watching docs during development.
+ */
+
+app.task('dev', ['default'], app.parallel(['serve', 'watch']));
+
+/**
+ * Alias for cleaning and building docs.
+ */
+
+app.task('default', ['clean', 'build']);
 
 /**
  * Expose the `app` instance
