@@ -118,7 +118,7 @@ app.task('redirects', function() {
     .pipe(ignore.include('redirects.json'))
     .pipe(app.dest(function(file) {
       file.base = file.dirname;
-      return '.';
+      return 'data';
     }));
 });
 
@@ -151,7 +151,6 @@ app.task('default', ['clean', 'load'], function() {
     }))
     .pipe(app.dest(function(file) {
       file.base = file.dirname;
-      console.log(pkg.version)
       return '../_gh_pages/en/v' + pkg.version;
     }))
 });
