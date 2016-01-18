@@ -5,6 +5,7 @@ var merge = require('mixin-deep');
 var extname = require('gulp-extname');
 var permalinks = require('assemble-permalinks');
 var getDest = require('../../docs/plugins/get-dest');
+var viewEvents = require('../../docs/plugins/view-events');
 var assemble = require('../..');
 var app = assemble();
 
@@ -12,33 +13,9 @@ var app = assemble();
  * Plugins
  */
 
-function viewEvents(eventName) {
-  var method = 'on'
-    + eventName.charAt(0).toUpperCase()
-    + eventName.slice(1);
-
-  return function(app) {
-    app.handler(method);
-    app.use(function(app) {
-      return function(views) {
-        return function() {
-          this.on(eventName, function(view) {
-            app.emit(eventName, view);
-            app.handle(method, view);
-          });
-        };
-      };
-    });
-  };
-}
-
 app.use(viewEvents('permalink'));
 app.use(permalinks());
 app.use(getDest());
-
-app.on('permalink', function() {
-
-});
 
 app.onPermalink(/./, function(file, next) {
   file.data = merge({}, app.cache.data, file.data);
