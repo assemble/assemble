@@ -33,6 +33,12 @@ app.option('renameKey', function(fp) {
  */
 
 app.create('docs');
+app.create('redirects', {
+  renameKey: function(fp) {
+    console.log(fp);
+    return fp;
+  }
+});
 
 /**
  * Load helpers
@@ -142,7 +148,7 @@ app.task('load', function(cb) {
 app.task('serve', function() {
   browserSync.init({
     port: 8080,
-    startPath: 'en/v' + pkg.version + '/assemblefile.html',
+    startPath: 'index.html',
     server: {
       baseDir: '../_gh_pages'
     }
@@ -155,9 +161,9 @@ app.task('serve', function() {
 
 app.task('build', ['load'], function() {
   return app.toStream('docs')
-    .on('err', console.log)
+    .on('error', console.log)
     .pipe(app.renderFile())
-    .on('err', console.log)
+    .on('error', console.log)
     .pipe(prettify())
     .pipe(extname())
     .pipe(manifest(app, {
@@ -170,6 +176,27 @@ app.task('build', ['load'], function() {
       return '../_gh_pages/en/v' + pkg.version;
     }))
     .pipe(browserSync.stream());
+});
+
+app.task('gen-redirects', function() {
+  app.data('data/redirects.json', {namespace: 'redirects'});
+  var redirects = app.data('redirects');
+
+  for(var from in redirects) {
+    var to = redirects[from];
+    app.redirect(from, {path: from, data: {to: to, title: from, layout: 'redirect'}, content: ''});
+  }
+
+  return app.toStream('redirects')
+    .on('error', console.error)
+    .pipe(app.renderFile('hbs'))
+    .on('error', console.error)
+    .pipe(prettify())
+    .pipe(extname())
+    .pipe(app.dest(function(file) {
+      file.base = '_gh_pages';
+      return '../_gh_pages';
+    }));
 });
 
 /**
@@ -191,7 +218,7 @@ app.task('dev', ['default'], app.parallel(['serve', 'watch']));
  * Alias for cleaning and building docs.
  */
 
-app.task('default', ['clean', 'build']);
+app.task('default', ['clean', 'build', 'redirects', 'gen-redirects']);
 
 /**
  * Expose the `app` instance
