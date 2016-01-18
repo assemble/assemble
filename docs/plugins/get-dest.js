@@ -1,5 +1,7 @@
 'use strict';
 
+var first = require('get-first');
+
 /**
  * Returns a plugin function that adds a `dest` getter/setter
  * to views.
@@ -17,10 +19,7 @@ module.exports = function getDest() {
         this.data.dest = dest;
       },
       get: function() {
-        if (this.data.permalink) {
-          return this.data.permalink;
-        }
-        return this.data.dest;
+        return first(this.data, ['permalink', 'dest']);
       }
     });
   };
