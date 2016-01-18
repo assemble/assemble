@@ -80,6 +80,7 @@
     "gulp-istanbul": "^0.10.3",
     "gulp-mocha": "^2.2.0",
     "gulp-prettify": "^0.4.0",
+    "helper-link-to": "^0.1.2",
     "is-buffer": "^1.1.1",
     "kind-of": "^3.0.2",
     "load-pkg": "^3.0.1",
