@@ -61,35 +61,25 @@
     "word-wrap": "^1.1.0"
   },
   "devDependencies": {
-    "ansi-red": "^0.1.1",
-    "array-sort": "^0.1.1",
     "async": "^1.5.2",
-    "browser-sync": "^2.11.1",
     "buffer-equal": "^1.0.0",
     "consolidate": "^0.13.1",
     "define-property": "^0.2.5",
-    "delete": "^0.3.0",
     "engine-base": "^0.1.2",
     "event-stream": "^3.3.2",
-    "get-first": "^0.1.2",
     "get-value": "^2.0.2",
     "graceful-fs": "^4.1.2",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.1.1",
     "gulp-extname": "^0.2.0",
     "gulp-format-md": "^0.1.4",
-    "gulp-ignore": "^2.0.1",
     "gulp-istanbul": "^0.10.3",
     "gulp-mocha": "^2.2.0",
     "gulp-prettify": "^0.4.0",
-    "helper-link-to": "^0.1.2",
-    "helper-markdown": "^0.2.1",
     "is-buffer": "^1.1.1",
     "kind-of": "^3.0.2",
     "load-pkg": "^3.0.1",
     "mocha": "^2.3.4",
-    "placeholders": "^0.2.0",
-    "relative-dest": "^0.1.0",
     "resolve-glob": "^0.1.8",
     "rimraf": "^2.5.0",
     "should": "^8.0.2",
@@ -144,6 +134,7 @@
   ],
   "lint-deps": {
     "ignore": [
+      "docs",
       "examples"
     ]
   },

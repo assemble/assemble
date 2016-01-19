@@ -1,0 +1,19 @@
+{
+  "name": "assemble-docs",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {
+    "array-sort": "^0.1.1",
+    "browser-sync": "^2.11.1",
+    "delete": "^0.3.0",
+    "export-files": "^2.1.0",
+    "get-first": "^0.1.2",
+    "gulp-extname": "^0.2.2",
+    "gulp-ignore": "^2.0.1",
+    "gulp-prettify": "^0.4.0",
+    "helper-link-to": "^0.1.2",
+    "placeholders": "^0.2.0",
+    "relative-dest": "^0.1.0",
+    "through2": "^2.0.0"
+  }
+}
