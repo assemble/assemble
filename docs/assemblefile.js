@@ -177,17 +177,28 @@ app.task('build', ['load'], function() {
     .pipe(browserSync.stream());
 });
 
+/**
+ * Generate redirect pages for old versions.
+ */
+
 app.task('gen-redirects', function() {
   app.data('data/redirects.json', {namespace: 'redirects'});
   var redirects = app.data('redirects');
 
   for(var from in redirects) {
     var to = redirects[from];
-    var redirect = {
-      seconds: 3,
-      url: to
+    var view = {
+      path: from,
+      data: {
+        title: from,
+        layout: 'redirect',
+        redirect: {
+          seconds: 3,
+          url: to
+        }
+      }
     };
-    app.redirect(from, {path: from, data: {title: from, layout: 'redirect', redirect: redirect}, content: ''});
+    app.redirect(from, view, content: ''});
   }
 
   return app.toStream('redirects')
