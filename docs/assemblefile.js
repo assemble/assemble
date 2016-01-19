@@ -189,6 +189,7 @@ app.task('gen-redirects', function() {
     var to = redirects[from];
     var view = {
       path: from,
+      content: '',
       data: {
         title: from,
         layout: 'redirect',
@@ -198,7 +199,7 @@ app.task('gen-redirects', function() {
         }
       }
     };
-    app.redirect(from, view, content: ''});
+    app.redirect(from, view);
   }
 
   return app.toStream('redirects')
