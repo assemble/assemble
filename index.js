@@ -27,8 +27,8 @@ function Assemble(options) {
   }
 
   Core.apply(this, arguments);
+  this.name = 'assemble';
   this.isAssemble = true;
-  this.name = this.name ? (this.name === 'generate' ? 'assemble' : this.name) : 'assemble';
 
   this.initDefaults(this);
   this.initPlugins(this);
@@ -144,7 +144,7 @@ Object.defineProperty(Assemble.prototype, 'name', {
     this.options.name = name;
   },
   get: function() {
-    return this.options.name || 'base';
+    return this.options.name || this._name || 'base';
   }
 });
 

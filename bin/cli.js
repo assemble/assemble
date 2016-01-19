@@ -92,11 +92,7 @@ function run(cb) {
    * Setup composer-runtimes
    */
 
-  app.use(utils.runtimes({
-    displayName: function (key) {
-      return app.name !== key ? (app.name + ':' + key) : key;
-    }
-  }));
+  app.use(utils.runtimes());
 
   /**
    * Support `--emit` for debugging
