@@ -35,7 +35,6 @@ app.option('renameKey', function(fp) {
 app.create('docs');
 app.create('redirects', {
   renameKey: function(fp) {
-    console.log(fp);
     return fp;
   }
 });
@@ -184,7 +183,11 @@ app.task('gen-redirects', function() {
 
   for(var from in redirects) {
     var to = redirects[from];
-    app.redirect(from, {path: from, data: {to: to, title: from, layout: 'redirect'}, content: ''});
+    var redirect = {
+      seconds: 3,
+      url: to
+    };
+    app.redirect(from, {path: from, data: {title: from, layout: 'redirect', redirect: redirect}, content: ''});
   }
 
   return app.toStream('redirects')
@@ -193,10 +196,7 @@ app.task('gen-redirects', function() {
     .on('error', console.error)
     .pipe(prettify())
     .pipe(extname())
-    .pipe(app.dest(function(file) {
-      file.base = '_gh_pages';
-      return '../_gh_pages';
-    }));
+    .pipe(app.dest('../_gh_pages'));
 });
 
 /**
