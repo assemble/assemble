@@ -13,7 +13,7 @@ gulp.task('coverage', function() {
 
 gulp.task('mocha', ['coverage'], function() {
   return gulp.src('test/*.js')
-    .pipe(mocha({reporter: 'spec'}))
+    .pipe(mocha())
     .pipe(istanbul.writeReports());
 });
 
