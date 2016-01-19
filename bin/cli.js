@@ -22,14 +22,20 @@ function run(cb) {
 
   if (argv.cwd && cwd !== path.resolve(argv.cwd)) {
     process.chdir(argv.cwd);
-    utils.timestamp('cwd changed to ' + utils.colors.yellow('~/' + argv.cwd));
+    cwd = process.cwd();
   }
+
+  /**
+   * Log the working directory
+   */
+
+  utils.timestamp('cwd set to ' + utils.formatDir(cwd));
 
   /**
    * Get the assemblefile.js to use
    */
 
-  var assemblefile = path.resolve(process.cwd(), argv.file || 'assemblefile.js');
+  var assemblefile = path.resolve(cwd, argv.file || 'assemblefile.js');
 
   /**
    * Notify the user if assemblefile.js is not found
@@ -48,16 +54,21 @@ function run(cb) {
   if (utils.hasValue(app) === false) {
     var msg = errors['exports']
       .split('${assemblefile}')
-      .join(utils.homeRelative(root, assemblefile));
+      .join(utils.homeRelative(assemblefile));
 
     var err = new Error(msg);
     cb(err);
     return;
   }
 
+  /**
+   * If `app` is a function, it's an assemble "generator",
+   * so we need to invoke it with an instance of assemble
+   */
+
   if (typeof app === 'function') {
     var fn = app;
-    app = assemble();
+    app = assemble(argv);
     app.option(argv);
     app.fn = fn;
     fn(app);
@@ -74,8 +85,8 @@ function run(cb) {
    * Show path to assemblefile
    */
 
-  var fp = utils.homeRelative(root, assemblefile);
-  utils.timestamp('using assemblefile ' + fp);
+  var fp = utils.homeRelative(assemblefile);
+  utils.timestamp('using assemblefile ' + utils.colors.green('~/' + fp));
 
   /**
    * Setup composer-runtimes
