@@ -1,9 +1,9 @@
-# Generate HTML and precompile SASS
+# Generate HTML and precompile LESS
 
 The following `assemblefile.js` shows you how to:
 
 1. Generate `.html` files from `.hbs` ([handlebars][]) templates using [engine-handlebars][]
-1. Generate `.css` stylesheets from `.sass`, using [gulp-sass][]
+1. Generate `.css` stylesheets from `.less`, using [gulp-less][]
 
 ```js
 var assemble = require('assemble');
