@@ -107,7 +107,7 @@ app.task('watch', function() {
  * Default task
  */
 
-app.task('default', ['css', 'content', 'serve']);
+app.task('default', ['css', 'content'], app.parallel(['serve', 'watch']));
 
 /**
  * Expose the assemble instance
