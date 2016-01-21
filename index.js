@@ -28,7 +28,7 @@ function Assemble(options) {
 
   Core.apply(this, arguments);
   this.name = 'assemble';
-  this.isAssemble = true;
+  this.is('Assemble');
 
   this.initDefaults(this);
   this.initPlugins(this);
@@ -147,6 +147,12 @@ Object.defineProperty(Assemble.prototype, 'name', {
     return this.options.name || this._name || 'base';
   }
 });
+
+/**
+ * Expose static `is*` methods from Templates
+ */
+
+Core._.plugin.is(Assemble);
 
 /**
  * Expose `Assemble`
