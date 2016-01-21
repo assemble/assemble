@@ -27,7 +27,7 @@ console.log(app.options);
 //=> {a: 'b', c: 'd'}
 ```
 
-
+## .enable / .disable
 
 In addition to `.option()`, the following methods may be used as convenience methods for getting and setting Boolean values on the `app.options` object:
 
@@ -53,7 +53,21 @@ app.disabled('xyz');
 //=> 'false'
 ```
 
-# Options
+## Helper options
+
+Helper options may defined on `app.option()` by prefixing the option property with the name of the helper.
+
+**Example**
+
+To define options for helper `foo`:
+
+```js
+app.option('helper.foo', {bar: 'baz'});
+// or
+app.option('helper.foo.bar', 'baz');
+```
+
+# Currently supported options
 
 - `cwd`:
 - `deep`:

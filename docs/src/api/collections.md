@@ -62,7 +62,7 @@ View collections have methods for adding, finding and getting views, such as:
 
 Views (templates) are stored on the `views` object of a collection, allowing views to be looked up by key. 
 
-Keys can be customized and renamed using a `renameKey` function passed on the options of the collection, or to rename all keys in all collections, you may pass a `renameKey` function on the {{appname}} options. 
+Keys can be customized and renamed using a [renameKey](/api/options#renameKey) function passed on the options of the collection, or to rename all keys in all collections, you may pass a `renameKey` function on the {{appname}} options. 
 
 Ultimately this gives you full control over how views are named and how lookups are done.
 

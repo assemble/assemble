@@ -34,8 +34,8 @@ app.option('renameKey', function(fp) {
 
 app.create('docs');
 app.create('redirects', {
-  renameKey: function(fp) {
-    return fp;
+  renameKey: function(key, view) {
+    return view ? view.path : key;
   }
 });
 
@@ -155,7 +155,38 @@ app.task('serve', function() {
 });
 
 /**
- * Building the assemble docs
+ * Create redirect views from paths > "data/redirects.json"
+ */
+
+app.task('generate-redirects', function() {
+  app.data('data/redirects.json', {namespace: 'redirects'});
+  var redirects = app.data('redirects');
+
+  for(var from in redirects) {
+    var to = redirects[from];
+    var redirect = {seconds: 3, url: to};
+    app.redirect(from, {
+      path: from,
+      data: {
+        title: from,
+        layout: 'redirect',
+        redirect: redirect
+      },
+      content: ''
+    });
+  }
+
+  return app.toStream('redirects')
+    .on('error', console.error)
+    .pipe(app.renderFile('hbs'))
+    .on('error', console.error)
+    .pipe(prettify())
+    .pipe(extname())
+    .pipe(app.dest('../_gh_pages'));
+});
+
+/**
+ * Build the assemble docs
  */
 
 app.task('build', ['load'], function() {
@@ -177,28 +208,6 @@ app.task('build', ['load'], function() {
     .pipe(browserSync.stream());
 });
 
-app.task('gen-redirects', function() {
-  app.data('data/redirects.json', {namespace: 'redirects'});
-  var redirects = app.data('redirects');
-
-  for(var from in redirects) {
-    var to = redirects[from];
-    var redirect = {
-      seconds: 3,
-      url: to
-    };
-    app.redirect(from, {path: from, data: {title: from, layout: 'redirect', redirect: redirect}, content: ''});
-  }
-
-  return app.toStream('redirects')
-    .on('error', console.error)
-    .pipe(app.renderFile('hbs'))
-    .on('error', console.error)
-    .pipe(prettify())
-    .pipe(extname())
-    .pipe(app.dest('../_gh_pages'));
-});
-
 /**
  * Watch files for changes
  */
@@ -209,16 +218,21 @@ app.task('watch', function() {
 });
 
 /**
- * Alias for building, serving, and watching docs during development.
+ * Dev: alias for building, serving, and watching docs.
  */
 
 app.task('dev', ['default'], app.parallel(['serve', 'watch']));
 
 /**
- * Alias for cleaning and building docs.
+ * Production: alias for cleaning and building docs.
  */
 
-app.task('default', ['clean', 'build', 'redirects', 'gen-redirects']);
+app.task('default', [
+  'clean',
+  'build',
+  'redirects',
+  'generate-redirects'
+]);
 
 /**
  * Expose the `app` instance
