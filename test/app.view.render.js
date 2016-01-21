@@ -7,7 +7,7 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('helpers', function() {
+describe('app.view.render', function() {
   describe('rendering', function() {
     beforeEach(function() {
       app = new App();

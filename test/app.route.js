@@ -7,7 +7,7 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('routes', function() {
+describe('app.route', function() {
   beforeEach(function() {
     app = new App();
   });

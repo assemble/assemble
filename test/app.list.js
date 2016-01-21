@@ -3,14 +3,13 @@
 require('mocha');
 require('should');
 var fs = require('fs');
-var path = require('path');
 var assert = require('assert');
 var support = require('./support');
 var App = support.resolve();
 var List = App.List;
 var app;
 
-describe('list', function() {
+describe('app.list', function() {
   describe('method', function() {
     beforeEach(function() {
       app = new App();
@@ -36,6 +35,13 @@ describe('list', function() {
       app = new App();
       app.engine('tmpl', require('engine-base'));
       app.create('pages');
+    });
+
+    it('should add an item to a list:', function() {
+      app.pages('test/fixtures/pages/a.hbs');
+      var list = app.list();
+      list.addItem(app.pages.getView('test/fixtures/pages/a.hbs'));
+      assert(list.hasItem('test/fixtures/pages/a.hbs'));
     });
 
     it('should expose the `option` method from a list:', function() {
@@ -80,21 +86,19 @@ describe('list', function() {
       app = new App();
       app.engine('tmpl', require('engine-base'));
       app.create('pages');
-
-      app.cache.data = {};
     });
 
     it('should render a item with inherited app.render', function(cb) {
       app.page('test/fixtures/templates/a.tmpl')
         .use(function(item) {
-          if (!item.contents) {
+          if (!item.content) {
             item.contents = fs.readFileSync(item.path);
           }
         })
         .set('data.name', 'Brian')
         .render(function(err, res) {
           if (err) return cb(err);
-          assert(res.content === 'Brian');
+          assert(res.contents.toString() === 'Brian');
           cb();
         });
     });

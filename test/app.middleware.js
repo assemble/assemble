@@ -7,7 +7,7 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('middleware', function() {
+describe('app.middleware', function() {
   beforeEach(function() {
     app = new App();
     app.engine('tmpl', require('engine-base'));

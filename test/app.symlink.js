@@ -1,5 +1,3 @@
-'use strict';
-
 require('mocha');
 var should = require('should');
 var fs = require('graceful-fs');

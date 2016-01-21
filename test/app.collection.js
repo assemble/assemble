@@ -11,7 +11,7 @@ var App = support.resolve();
 var Collection = App.Collection;
 var app;
 
-describe('collection', function() {
+describe('app.collection', function() {
   describe('method', function() {
     beforeEach(function() {
       app = new App();
@@ -140,7 +140,7 @@ describe('collection', function() {
         .set('data.name', 'Brian')
         .render(function(err, res) {
           if (err) return cb(err);
-          assert(res.contents.toString() === 'Brian');
+          assert(res.content === 'Brian');
           cb();
         });
     });

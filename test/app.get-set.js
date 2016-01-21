@@ -6,7 +6,7 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('app.set()', function() {
+describe('app.get-set', function() {
   beforeEach(function() {
     app = new App();
   });

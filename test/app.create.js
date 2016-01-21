@@ -156,9 +156,9 @@ describe('app.create', function() {
       app.page('test/fixtures/pages/c.hbs');
 
       app.views.pages.should.have.properties([
-        'test/fixtures/pages/a.hbs',
-        'test/fixtures/pages/b.hbs',
-        'test/fixtures/pages/c.hbs'
+        path.resolve('test/fixtures/pages/a.hbs'),
+        path.resolve('test/fixtures/pages/b.hbs'),
+        path.resolve('test/fixtures/pages/c.hbs'),
       ]);
     });
   });

@@ -7,7 +7,7 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('handler', function() {
+describe('app.handle', function() {
   beforeEach(function() {
     app = new App();
     app.create('pages');
@@ -18,6 +18,8 @@ describe('handler', function() {
     var page = app.page('foo', {contents: null});
 
     app.handle('foo', page, function(err, view) {
+      if (err) return cb(err);
+      
       assert(typeof view.path === 'string');
       cb();
     });
@@ -28,6 +30,8 @@ describe('handler', function() {
     delete page.options.handled;
 
     app.handle('foo', page, function(err, view) {
+      if (err) return cb(err);
+      
       assert(typeof view.path === 'string');
       cb();
     });
