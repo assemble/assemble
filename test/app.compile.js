@@ -1,10 +1,12 @@
+'use strict';
+
 require('should');
 var assert = require('assert');
 var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('compile', function() {
+describe('app.compile', function() {
   beforeEach(function() {
     app = new App();
     app.create('page');

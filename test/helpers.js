@@ -12,8 +12,8 @@ require('swig');
 
 var support = require('./support');
 var App = support.resolve();
-var helpers = App._.proto.helpers;
-var init = App._.proto.init;
+var helpers = App._.plugin.helpers;
+var init = App._.plugin.init;
 var app;
 
 describe('helpers', function() {

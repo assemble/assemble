@@ -1,3 +1,5 @@
+'use strict';
+
 require('mocha');
 require('should');
 var fs = require('fs');
@@ -7,7 +9,7 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('create', function() {
+describe('app.create', function() {
   describe('inflections', function() {
     beforeEach(function() {
       app = new App();
@@ -27,6 +29,59 @@ describe('create', function() {
       app.create('page');
       assert(typeof app.views.pages === 'object');
       assert(typeof app.page === 'function');
+    });
+  });
+
+  describe('renderable views', function() {
+    beforeEach(function() {
+      app = new App();
+      app.create('pages');
+      app.create('partials', {viewType: 'partial'});
+      app.create('layout', {viewType: 'layout'});
+    });
+
+    it('should add renderable views when no type is defined', function() {
+      app.pages.addView('foo', {content: 'bar'});
+      assert(app.views.pages.hasOwnProperty('foo'));
+    });
+
+    it('should add view Ctor names to views', function() {
+      app.pages.addView('foo', {content: 'bar'});
+      assert(app.views.pages.foo._name === 'Page');
+    });
+
+    it('should add partial views when partial type is defined', function() {
+      app.partials.addView('abc', {content: 'xyz'});
+      assert(app.views.partials.hasOwnProperty('abc'));
+    });
+
+    it('should add layout views when layout type is defined', function() {
+      app.layouts.addView('foo', {content: 'bar'});
+      assert(app.views.layouts.hasOwnProperty('foo'));
+    });
+
+    it('should set viewType on renderable views', function() {
+      app.pages.addView('foo', {content: 'bar'});
+      var view = app.pages.getView('foo');
+      assert(view.isType('renderable'));
+      assert(!view.isType('layout'));
+      assert(!view.isType('partial'));
+    });
+
+    it('should set viewType on partial views', function() {
+      app.partials.addView('foo', {content: 'bar'});
+      var view = app.partials.getView('foo');
+      assert(view.isType('partial'));
+      assert(!view.isType('layout'));
+      assert(!view.isType('renderable'));
+    });
+
+    it('should set viewType on layout views', function() {
+      app.layouts.addView('foo', {content: 'bar'});
+      var view = app.layouts.getView('foo');
+      assert(view.isType('layout'));
+      assert(!view.isType('renderable'));
+      assert(!view.isType('partial'));
     });
   });
 
@@ -92,7 +147,7 @@ describe('create', function() {
       app.page('b.hbs', {content: 'b'});
       app.page('c.hbs', {content: 'c'});
       app.views.pages.should.have.properties(['a.hbs', 'b.hbs', 'c.hbs']);
-      assert(app.views.pages['a.hbs'].content === 'a');
+      assert(app.views.pages['a.hbs'].contents.toString() === 'a');
     });
 
     it('should create views from file paths:', function() {
@@ -101,13 +156,12 @@ describe('create', function() {
       app.page('test/fixtures/pages/c.hbs');
 
       app.views.pages.should.have.properties([
-        path.resolve('test/fixtures/pages/a.hbs'),
-        path.resolve('test/fixtures/pages/b.hbs'),
-        path.resolve('test/fixtures/pages/c.hbs')
+        'test/fixtures/pages/a.hbs',
+        'test/fixtures/pages/b.hbs',
+        'test/fixtures/pages/c.hbs'
       ]);
     });
   });
-
 
   describe('instance', function() {
     beforeEach(function() {
@@ -126,15 +180,13 @@ describe('create', function() {
         .use(function(views) {
           views.read = function(name) {
             var view = this.getView(name);
-            if (!view.contents) {
-              view.contents = fs.readFileSync(view.path);
-            }
+            view.contents = fs.readFileSync(view.path);
           };
         });
 
       collection.addView('test/fixtures/templates/a.tmpl');
       collection.read('a.tmpl');
-      assert(collection.getView('a.tmpl').content === '<%= name %>');
+      assert(collection.getView('a.tmpl').contents.toString() === '<%= name %>');
     });
   });
 

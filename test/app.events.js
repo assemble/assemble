@@ -1,3 +1,5 @@
+'use strict';
+
 require('mocha');
 require('should');
 var assert = require('assert');
@@ -16,21 +18,21 @@ describe('events', function() {
     assert(Array.isArray(app._callbacks['$foo']));
   });
 
-  it('should emit an event:', function(done) {
+  it('should emit an event:', function(cb) {
     var app = new App();
     app.on('foo', function(val) {
       assert(val === 'bar');
-      done();
+      cb();
     });
     assert(Array.isArray(app._callbacks['$foo']));
     app.emit('foo', 'bar');
   });
 
-  it('should listen for error events:', function(done) {
+  it('should listen for error events:', function(cb) {
     var app = new App();
     app.on('foo', function(val) {
       assert(val === 'bar');
-      done();
+      cb();
     });
     assert(Array.isArray(app._callbacks['$foo']));
     app.emit('foo', 'bar');

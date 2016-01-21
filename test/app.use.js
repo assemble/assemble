@@ -1,3 +1,5 @@
+'use strict';
+
 require('mocha');
 require('should');
 var assert = require('assert');
@@ -12,14 +14,14 @@ describe('app.use', function() {
     app = new App();
   });
 
-  it('should expose the instance to `use`:', function(done) {
+  it('should expose the instance to `use`:', function(cb) {
     app.use(function(inst) {
       assert(inst instanceof App);
-      done();
+      cb();
     });
   });
 
-  it('should be chainable:', function(done) {
+  it('should be chainable:', function(cb) {
     app.use(function(inst) {
       assert(inst instanceof App);
     })
@@ -28,7 +30,7 @@ describe('app.use', function() {
       })
       .use(function(inst) {
         assert(inst instanceof App);
-        done();
+        cb();
       });
   });
 

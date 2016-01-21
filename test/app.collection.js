@@ -132,16 +132,16 @@ describe('collection', function() {
       app.cache.data = {};
     });
 
-    it('should render a view with inherited app.render', function(done) {
+    it('should render a view with inherited app.render', function(cb) {
       app.page('test/fixtures/templates/a.tmpl')
         .use(function(view) {
           view.contents = fs.readFileSync(view.path);
         })
         .set('data.name', 'Brian')
         .render(function(err, res) {
-          if (err) return done(err);
+          if (err) return cb(err);
           assert(res.contents.toString() === 'Brian');
-          done();
+          cb();
         });
     });
   });

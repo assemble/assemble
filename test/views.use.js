@@ -1,3 +1,5 @@
+'use strict';
+
 require('mocha');
 require('should');
 var assert = require('assert');
@@ -12,14 +14,14 @@ describe('views.use', function() {
     collection = new Views();
   });
 
-  it('should expose the instance to `use`:', function(done) {
+  it('should expose the instance to `use`:', function(cb) {
     collection.use(function(inst) {
       assert(inst instanceof Views);
-      done();
+      cb();
     });
   });
 
-  it('should be chainable:', function(done) {
+  it('should be chainable:', function(cb) {
     collection.use(function(inst) {
       assert(inst instanceof Views);
     })
@@ -28,7 +30,7 @@ describe('views.use', function() {
       })
       .use(function(inst) {
         assert(inst instanceof Views);
-        done();
+        cb();
       });
   });
 

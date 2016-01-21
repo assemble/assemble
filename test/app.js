@@ -66,11 +66,11 @@ describe('app', function() {
   });
 
   describe('initialization', function() {
-    it('should listen for errors:', function(done) {
+    it('should listen for errors:', function(cb) {
       app = new App();
       app.on('error', function(err) {
         assert(err.message === 'foo');
-        done();
+        cb();
       });
       app.emit('error', new Error('foo'));
     });

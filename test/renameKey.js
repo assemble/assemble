@@ -1,3 +1,5 @@
+'use strict';
+
 var path = require('path');
 var support = require('./support');
 var App = support.resolve();

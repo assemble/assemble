@@ -10,8 +10,8 @@ describe('task()', function() {
   });
 
   it('should register a task', function() {
-    var fn = function(done) {
-      done();
+    var fn = function(cb) {
+      cb();
     };
     app.task('default', fn);
     assert.equal(typeof app.tasks.default, 'object');
@@ -19,22 +19,22 @@ describe('task()', function() {
   });
 
   it('should register a task with an array of dependencies', function() {
-    app.task('default', ['foo', 'bar'], function(done) {
-      done();
+    app.task('default', ['foo', 'bar'], function(cb) {
+      cb();
     });
     assert.equal(typeof app.tasks.default, 'object');
     assert.deepEqual(app.tasks.default.deps, ['foo', 'bar']);
   });
 
   it('should register a task with a list of strings as dependencies', function() {
-    app.task('default', 'foo', 'bar', function(done) {
-      done();
+    app.task('default', 'foo', 'bar', function(cb) {
+      cb();
     });
     assert.equal(typeof app.tasks.default, 'object');
     assert.deepEqual(app.tasks.default.deps, ['foo', 'bar']);
   });
 
-  it('should run a task', function(done) {
+  it('should run a task', function(cb) {
     var count = 0;
     app.task('default', function(cb) {
       count++;
@@ -42,13 +42,13 @@ describe('task()', function() {
     });
 
     app.build('default', function(err) {
-      if (err) return done(err);
+      if (err) return cb(err);
       assert.equal(count, 1);
-      done();
+      cb();
     });
   });
 
-  it('should throw an error when a task with unregistered dependencies is run', function(done) {
+  it('should throw an error when a task with unregistered dependencies is run', function(cb) {
     var count = 0;
     app.task('default', ['foo', 'bar'], function(cb) {
       count++;
@@ -56,9 +56,9 @@ describe('task()', function() {
     });
 
     app.build('default', function(err) {
-      if (!err) return done(new Error('Expected an error to be thrown.'));
+      if (!err) return cb(new Error('Expected an error to be thrown.'));
       assert.equal(count, 0);
-      done();
+      cb();
     });
   });
 
@@ -70,7 +70,7 @@ describe('task()', function() {
     }
   });
 
-  it('should emit task events', function(done) {
+  it('should emit task events', function(cb) {
     var events = [];
     app.on('task:starting', function(task) {
       events.push('starting.' + task.name);
@@ -90,7 +90,7 @@ describe('task()', function() {
     });
     app.task('default', ['bar']);
     app.build('default', function(err) {
-      if (err) return done(err);
+      if (err) return cb(err);
       assert.deepEqual(events, [
         'starting.default',
         'starting.bar',
@@ -99,11 +99,11 @@ describe('task()', function() {
         'finished.bar',
         'finished.default'
       ]);
-      done();
+      cb();
     });
   });
 
-  it('should emit an error event when an error is passed back in a task', function(done) {
+  it('should emit an error event when an error is passed back in a task', function(cb) {
     app.on('error', function(err) {
       assert(err);
       assert.equal(err.message, 'This is an error');
@@ -112,12 +112,12 @@ describe('task()', function() {
       return cb(new Error('This is an error'));
     });
     app.build('default', function(err) {
-      if (err) return done();
-      done(new Error('Expected an error'));
+      if (err) return cb();
+      cb(new Error('Expected an error'));
     });
   });
 
-  it('should emit an error event when an error is thrown in a task', function(done) {
+  it('should emit an error event when an error is thrown in a task', function(cb) {
     var errors = 0;
     app.on('error', function(err) {
       errors++;
@@ -129,12 +129,12 @@ describe('task()', function() {
     });
     app.build('default', function(err) {
       assert.equal(errors, 1);
-      if (err) return done();
-      done(new Error('Expected an error'));
+      if (err) return cb();
+      cb(new Error('Expected an error'));
     });
   });
 
-  it('should run dependencies before running the dependent task.', function(done) {
+  it('should run dependencies before running the dependent task.', function(cb) {
     var seq = [];
     app.task('foo', function(cb) {
       seq.push('foo');
@@ -150,9 +150,9 @@ describe('task()', function() {
     });
 
     app.build('default', function(err) {
-      if (err) return done(err);
+      if (err) return cb(err);
       assert.deepEqual(seq, ['foo', 'bar', 'default']);
-      done();
+      cb();
     });
   });
 });

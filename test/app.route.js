@@ -1,3 +1,5 @@
+'use strict';
+
 require('mocha');
 require('should');
 var assert = require('assert');
@@ -11,31 +13,31 @@ describe('routes', function() {
   });
 
   describe('routes', function() {
-    it('should create a route for the given path:', function(done) {
+    it('should create a route for the given path:', function(cb) {
       app = new App();
       app.create('posts');
 
       app.on('all', function(msg) {
-        assert(msg === 'done');
-        done();
+        assert(msg === 'cb');
+        cb();
       });
 
       app.route('blog/:title')
         .all(function(view, next) {
-          app.emit('all', 'done');
+          app.emit('all', 'cb');
           next();
         });
 
       app.post('whatever', {path: 'blog/foo.js', content: 'bar baz'});
     });
 
-    it('should emit events when a route method is called:', function(done) {
+    it('should emit events when a route method is called:', function(cb) {
       app = new App();
       app.create('posts');
 
       app.on('onLoad', function(view) {
         assert(view.path === 'blog/foo.js');
-        done();
+        cb();
       });
 
       app.param('title', function(view, next, title) {
@@ -51,13 +53,13 @@ describe('routes', function() {
       app.post('whatever', {path: 'blog/foo.js', content: 'bar baz'});
     });
 
-    it('should emit errors', function(done) {
+    it('should emit errors', function(cb) {
       app = new App();
       app.create('posts');
 
       app.on('error', function(err) {
         assert(err.message === 'false == true');
-        done();
+        cb();
       });
 
       // wrong...

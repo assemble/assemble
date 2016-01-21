@@ -1,3 +1,5 @@
+'use strict';
+
 require('mocha');
 require('should');
 var fs = require('fs');
@@ -82,7 +84,7 @@ describe('list', function() {
       app.cache.data = {};
     });
 
-    it('should render a item with inherited app.render', function(done) {
+    it('should render a item with inherited app.render', function(cb) {
       app.page('test/fixtures/templates/a.tmpl')
         .use(function(item) {
           if (!item.contents) {
@@ -91,9 +93,9 @@ describe('list', function() {
         })
         .set('data.name', 'Brian')
         .render(function(err, res) {
-          if (err) return done(err);
+          if (err) return cb(err);
           assert(res.content === 'Brian');
-          done();
+          cb();
         });
     });
   });

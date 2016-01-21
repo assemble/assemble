@@ -10,7 +10,7 @@ describe.skip('watch()', function() {
     app = new App({runtimes: false});
   });
 
-  it('should watch files and run a task when files change', function(done) {
+  it('should watch files and run a task when files change', function(cb) {
     this.timeout(750);
 
     var count = 0, watch;
@@ -34,9 +34,9 @@ describe.skip('watch()', function() {
     });
 
     app.build(['watch'], function(err) {
-      if (err) return done(err);
+      if (err) return cb(err);
       assert.equal(count, 1);
-      done();
+      cb();
     });
   });
 });
