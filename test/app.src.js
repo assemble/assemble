@@ -11,17 +11,17 @@ describe('src()', function() {
     app = new App();
   });
 
-  it('should return a stream', function(done) {
+  it('should return a stream', function(cb) {
     var stream = app.src(join(__dirname, './fixtures/*.coffee'));
     assert(stream);
     assert.equal(typeof stream.on, 'function');
     assert.equal(typeof stream.pipe, 'function');
-    done();
+    cb();
   });
 
-  it('should return an input stream from a flat glob', function(done) {
+  it('should return an input stream from a flat glob', function(cb) {
     var stream = app.src(join(__dirname, './fixtures/*.coffee'));
-    stream.on('error', done);
+    stream.on('error', cb);
     stream.on('data', function(file) {
       should.exist(file);
       should.exist(file.path);
@@ -30,11 +30,11 @@ describe('src()', function() {
       String(file.contents).should.equal('Hello world!');
     });
     stream.on('end', function() {
-      done();
+      cb();
     });
   });
 
-  it('should return an input stream for multiple globs', function(done) {
+  it('should return an input stream for multiple globs', function(cb) {
     var globArray = [
       join(__dirname, './fixtures/generic/run.dmc'),
       join(__dirname, './fixtures/generic/test.dmc')
@@ -42,7 +42,7 @@ describe('src()', function() {
     var stream = app.src(globArray);
 
     var files = [];
-    stream.on('error', done);
+    stream.on('error', cb);
     stream.on('data', function(file) {
       should.exist(file);
       should.exist(file.path);
@@ -52,11 +52,11 @@ describe('src()', function() {
       files.length.should.equal(2);
       files[0].path.should.equal(globArray[0]);
       files[1].path.should.equal(globArray[1]);
-      done();
+      cb();
     });
   });
 
-  it('should return an input stream for multiple globs with negation', function(done) {
+  it('should return an input stream for multiple globs with negation', function(cb) {
     var expectedPath = join(__dirname, './fixtures/generic/run.dmc');
     var globArray = [
       join(__dirname, './fixtures/generic/*.dmc'),
@@ -65,7 +65,7 @@ describe('src()', function() {
     var stream = app.src(globArray);
 
     var files = [];
-    stream.on('error', done);
+    stream.on('error', cb);
     stream.on('data', function(file) {
       should.exist(file);
       should.exist(file.path);
@@ -74,13 +74,13 @@ describe('src()', function() {
     stream.on('end', function() {
       files.length.should.equal(1);
       files[0].path.should.equal(expectedPath);
-      done();
+      cb();
     });
   });
 
-  it('should return an input stream with no contents when read is false', function(done) {
+  it('should return an input stream with no contents when read is false', function(cb) {
     var stream = app.src(join(__dirname, './fixtures/*.coffee'), {read: false});
-    stream.on('error', done);
+    stream.on('error', cb);
     stream.on('data', function(file) {
       should.exist(file);
       should.exist(file.path);
@@ -88,13 +88,13 @@ describe('src()', function() {
       join(file.path, '').should.equal(join(__dirname, './fixtures/test.coffee'));
     });
     stream.on('end', function() {
-      done();
+      cb();
     });
   });
 
-  it('should return an input stream with contents as stream when buffer is false', function(done) {
+  it('should return an input stream with contents as stream when buffer is false', function(cb) {
     var stream = app.src(join(__dirname, './fixtures/*.coffee'), {buffer: false});
-    stream.on('error', done);
+    stream.on('error', cb);
     stream.on('data', function(file) {
       should.exist(file);
       should.exist(file.path);
@@ -105,15 +105,15 @@ describe('src()', function() {
       });
       file.contents.on('end', function() {
         buf.should.equal('Hello world!');
-        done();
+        cb();
       });
       join(file.path, '').should.equal(join(__dirname, './fixtures/test.coffee'));
     });
   });
 
-  it('should return an input stream from a deep glob', function(done) {
+  it('should return an input stream from a deep glob', function(cb) {
     var stream = app.src(join(__dirname, './fixtures/**/*.jade'));
-    stream.on('error', done);
+    stream.on('error', cb);
     stream.on('data', function(file) {
       should.exist(file);
       should.exist(file.path);
@@ -122,27 +122,27 @@ describe('src()', function() {
       String(file.contents).should.equal('test template');
     });
     stream.on('end', function() {
-      done();
+      cb();
     });
   });
 
-  it('should return an input stream from a deeper glob', function(done) {
+  it('should return an input stream from a deeper glob', function(cb) {
     var stream = app.src(join(__dirname, './fixtures/**/*.dmc'));
     var a = 0;
-    stream.on('error', done);
+    stream.on('error', cb);
     stream.on('data', function() {
       ++a;
     });
     stream.on('end', function() {
       a.should.equal(2);
-      done();
+      cb();
     });
   });
 
-  it('should return a file stream from a flat path', function(done) {
+  it('should return a file stream from a flat path', function(cb) {
     var a = 0;
     var stream = app.src(join(__dirname, './fixtures/test.coffee'));
-    stream.on('error', done);
+    stream.on('error', cb);
     stream.on('data', function(file) {
       ++a;
       should.exist(file);
@@ -153,20 +153,20 @@ describe('src()', function() {
     });
     stream.on('end', function() {
       a.should.equal(1);
-      done();
+      cb();
     });
   });
 
-  it('should return a stream', function(done) {
+  it('should return a stream', function(cb) {
     var stream = app.src(join(__dirname, './fixtures/*.coffee'));
     should.exist(stream);
     should.exist(stream.on);
-    done();
+    cb();
   });
 
-  it('should return an input stream from a flat glob', function(done) {
+  it('should return an input stream from a flat glob', function(cb) {
     var stream = app.src(join(__dirname, './fixtures/*.coffee'));
-    stream.on('error', done);
+    stream.on('error', cb);
     stream.on('data', function(file) {
       should.exist(file);
       should.exist(file.path);
@@ -175,11 +175,11 @@ describe('src()', function() {
       String(file.contents).should.equal('Hello world!');
     });
     stream.on('end', function() {
-      done();
+      cb();
     });
   });
 
-  it('should return an input stream for multiple globs', function(done) {
+  it('should return an input stream for multiple globs', function(cb) {
     var globArray = [
       join(__dirname, './fixtures/generic/run.dmc'),
       join(__dirname, './fixtures/generic/test.dmc')
@@ -187,7 +187,7 @@ describe('src()', function() {
     var stream = app.src(globArray);
 
     var files = [];
-    stream.on('error', done);
+    stream.on('error', cb);
     stream.on('data', function(file) {
       should.exist(file);
       should.exist(file.path);
@@ -197,11 +197,11 @@ describe('src()', function() {
       files.length.should.equal(2);
       files[0].path.should.equal(globArray[0]);
       files[1].path.should.equal(globArray[1]);
-      done();
+      cb();
     });
   });
 
-  it('should return an input stream for multiple globs, with negation', function(done) {
+  it('should return an input stream for multiple globs, with negation', function(cb) {
     var expectedPath = join(__dirname, './fixtures/generic/run.dmc');
     var globArray = [
       join(__dirname, './fixtures/generic/*.dmc'),
@@ -210,7 +210,7 @@ describe('src()', function() {
     var stream = app.src(globArray);
 
     var files = [];
-    stream.on('error', done);
+    stream.on('error', cb);
     stream.on('data', function(file) {
       should.exist(file);
       should.exist(file.path);
@@ -219,13 +219,13 @@ describe('src()', function() {
     stream.on('end', function() {
       files.length.should.equal(1);
       files[0].path.should.equal(expectedPath);
-      done();
+      cb();
     });
   });
 
-  it('should return an input stream with no contents when read is false', function(done) {
+  it('should return an input stream with no contents when read is false', function(cb) {
     var stream = app.src(join(__dirname, './fixtures/*.coffee'), {read: false});
-    stream.on('error', done);
+    stream.on('error', cb);
     stream.on('data', function(file) {
       should.exist(file);
       should.exist(file.path);
@@ -233,23 +233,23 @@ describe('src()', function() {
       join(file.path, '').should.equal(join(__dirname, './fixtures/test.coffee'));
     });
     stream.on('end', function() {
-      done();
+      cb();
     });
   });
 
-  it.skip('should throw an error when buffer is false', function(done) {
+  it.skip('should throw an error when buffer is false', function(cb) {
     app.src(join(__dirname, './fixtures/*.coffee'), {buffer: false})
       .on('error', function() {
-        done();
+        cb();
       })
       .on('data', function() {
-        done(new Error('should have thrown an error'));
+        cb(new Error('should have thrown an error'));
       });
   });
 
-  it('should return an input stream from a deep glob', function(done) {
+  it('should return an input stream from a deep glob', function(cb) {
     app.src(join(__dirname, './fixtures/**/*.jade'))
-      .on('error', done)
+      .on('error', cb)
       .on('data', function(file) {
         should.exist(file);
         should.exist(file.path);
@@ -258,27 +258,27 @@ describe('src()', function() {
         String(file.contents).should.equal('test template');
       })
       .on('end', function() {
-        done();
+        cb();
       });
   });
 
-  it('should return an input stream from a deeper glob', function(done) {
+  it('should return an input stream from a deeper glob', function(cb) {
     var stream = app.src(join(__dirname, './fixtures/**/*.dmc'));
     var a = 0;
-    stream.on('error', done);
+    stream.on('error', cb);
     stream.on('data', function() {
       ++a;
     });
     stream.on('end', function() {
       a.should.equal(2);
-      done();
+      cb();
     });
   });
 
-  it('should return a file stream from a flat path', function(done) {
+  it('should return a file stream from a flat path', function(cb) {
     var a = 0;
     var stream = app.src(join(__dirname, './fixtures/test.coffee'));
-    stream.on('error', done);
+    stream.on('error', cb);
     stream.on('data', function(file) {
       ++a;
       should.exist(file);
@@ -289,7 +289,7 @@ describe('src()', function() {
     });
     stream.on('end', function() {
       a.should.equal(1);
-      done();
+      cb();
     });
   });
 });

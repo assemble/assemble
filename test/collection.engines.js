@@ -1,3 +1,5 @@
+'use strict';
+
 require('mocha');
 require('should');
 var assert = require('assert');
@@ -59,28 +61,28 @@ describe('engines', function() {
     pages.engines.should.have.property('.a');
   });
 
-  it('should use custom delimiters:', function(done) {
+  it('should use custom delimiters:', function(cb) {
     pages.engine('tmpl', require('engine-base'), {
       delims: ['{{', '}}']
     });
 
     pages.render('foo.tmpl', {letter: 'B'}, function(err, res) {
-      if (err) return done(err);
+      if (err) return cb(err);
       res.content.should.equal('A <%= letter %> B C');
-      done();
+      cb();
     });
   });
 
-  it('should override individual delims values:', function(done) {
+  it('should override individual delims values:', function(cb) {
     pages.engine('tmpl', require('engine-base'), {
       interpolate: /\{{([^}]+)}}/g,
       evaluate: /\{{([^}]+)}}/g,
       escape: /\{{-([^}]+)}}/g
     });
     pages.render('bar.tmpl', {letter: 'B'}, function(err, res) {
-      if (err) return done(err);
+      if (err) return cb(err);
       res.content.should.equal('A <%= letter %> B C');
-      done();
+      cb();
     });
   });
 
@@ -95,83 +97,83 @@ describe('engines', function() {
 
 
 describe('engine selection:', function() {
-  beforeEach(function(done) {
+  beforeEach(function(cb) {
     collection = new Views();
     collection.engine('tmpl', require('engine-base'));
     collection.engine('hbs', require('engine-handlebars'));
-    done();
+    cb();
   });
 
-  it('should get the engine from file extension:', function(done) {
+  it('should get the engine from file extension:', function(cb) {
     var pages = new Views();
     pages.engine('tmpl', require('engine-base'));
     pages.engine('hbs', require('engine-handlebars'));
     pages.addView('a.tmpl', {content: '<%= a %>', locals: {a: 'b'}})
       .render(function(err, view) {
-        if (err) return done(err);
+        if (err) return cb(err);
         assert(view.content === 'b');
-        done();
+        cb();
       });
   });
 
-  it('should use the engine defined on the collection:', function(done) {
+  it('should use the engine defined on the collection:', function(cb) {
     var posts = new Views({engine: 'hbs'});
     posts.engine('tmpl', require('engine-base'));
     posts.engine('hbs', require('engine-handlebars'));
 
     posts.addView('a', {content: '{{a}}', locals: {a: 'b'}})
       .render(function(err, view) {
-        if (err) return done(err);
+        if (err) return cb(err);
         assert(view.content === 'b');
-        done();
+        cb();
       });
   });
 
-  it('should use the engine defined on the view:', function(done) {
+  it('should use the engine defined on the view:', function(cb) {
     var posts = new Views();
     posts.engine('tmpl', require('engine-base'));
     posts.engine('hbs', require('engine-handlebars'));
     posts.addView('a', {content: '{{a}}', engine: 'hbs', locals: {a: 'b'}})
       .render(function(err, view) {
-        if (err) return done(err);
+        if (err) return cb(err);
         assert(view.content === 'b');
-        done();
+        cb();
       });
   });
 
-  it('should use the engine defined on view.options:', function(done) {
+  it('should use the engine defined on view.options:', function(cb) {
     var posts = new Views();
     posts.engine('tmpl', require('engine-base'));
     posts.engine('hbs', require('engine-handlebars'));
     posts.addView('a', {content: '{{a}}', data: {a: 'b'}, options: {engine: 'hbs'}})
       .render(function(err, view) {
-        if (err) return done(err);
+        if (err) return cb(err);
         assert(view.content === 'b');
-        done();
+        cb();
       });
   });
 
-  it('should use the engine defined on view.data:', function(done) {
+  it('should use the engine defined on view.data:', function(cb) {
     var posts = new Views();
     posts.engine('tmpl', require('engine-base'));
     posts.engine('hbs', require('engine-handlebars'));
     posts.addView('a', {content: '{{a}}', locals: {a: 'b'}, data: {engine: 'hbs'}})
       .render(function(err, view) {
-        if (err) return done(err);
+        if (err) return cb(err);
         assert(view.content === 'b');
-        done();
+        cb();
       });
   });
 
-  it('should use the engine defined on render locals:', function(done) {
+  it('should use the engine defined on render locals:', function(cb) {
     var posts = new Views();
     posts.engine('tmpl', require('engine-base'));
     posts.engine('hbs', require('engine-handlebars'));
     posts.addView('a', {content: '{{a}}', locals: {a: 'b'}})
       .render({engine: 'hbs'}, function(err, view) {
-        if (err) return done(err);
+        if (err) return cb(err);
         assert(view.content === 'b');
-        done();
+        cb();
       });
   });
 });

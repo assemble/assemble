@@ -1,3 +1,5 @@
+'use strict';
+
 require('mocha');
 require('should');
 var assert = require('assert');
@@ -12,14 +14,14 @@ describe('list.use', function() {
     list = new List();
   });
 
-  it('should expose the instance to `use`:', function(done) {
+  it('should expose the instance to `use`:', function(cb) {
     list.use(function(inst) {
       assert(inst instanceof List);
-      done();
+      cb();
     });
   });
 
-  it('should be chainable:', function(done) {
+  it('should be chainable:', function(cb) {
     list.use(function(inst) {
       assert(inst instanceof List);
     })
@@ -28,7 +30,7 @@ describe('list.use', function() {
       })
       .use(function(inst) {
         assert(inst instanceof List);
-        done();
+        cb();
       });
   });
 

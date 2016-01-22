@@ -1,3 +1,5 @@
+'use strict';
+
 require('mocha');
 require('should');
 var path = require('path');
@@ -168,27 +170,27 @@ describe('views', function() {
       collection = new Views();
     });
 
-    it('should emit an error if a string glob pattern is passed', function(done) {
+    it('should emit an error if a string glob pattern is passed', function(cb) {
       try {
         collection.addViews('*.js');
-        done(new Error('expected an error'));
-      } catch(err) {
+        cb(new Error('expected an error'));
+      } catch (err) {
         assert(err);
         assert(err.message);
         assert(/glob/.test(err.message));
-        done();
+        cb();
       }
     });
 
-    it('should emit an error if an array glob pattern is passed', function(done) {
+    it('should emit an error if an array glob pattern is passed', function(cb) {
       try {
         collection.addViews(['*.js']);
-        done(new Error('expected an error'));
-      } catch(err) {
+        cb(new Error('expected an error'));
+      } catch (err) {
         assert(err);
         assert(err.message);
         assert(/glob/.test(err.message));
-        done();
+        cb();
       }
     });
 
@@ -264,27 +266,27 @@ describe('views', function() {
       collection = new Views();
     });
 
-    it('should emit an error if a string glob pattern is passed', function(done) {
+    it('should emit an error if a string glob pattern is passed', function(cb) {
       try {
         collection.addList('*.js');
-        done(new Error('expected an error'));
-      } catch(err) {
+        cb(new Error('expected an error'));
+      } catch (err) {
         assert(err);
         assert(err.message);
         assert(/glob/.test(err.message));
-        done();
+        cb();
       }
     });
 
-    it('should emit an error if an array glob pattern is passed', function(done) {
+    it('should emit an error if an array glob pattern is passed', function(cb) {
       try {
         collection.addList(['*.js']);
-        done(new Error('expected an error'));
-      } catch(err) {
+        cb(new Error('expected an error'));
+      } catch (err) {
         assert(err);
         assert(err.message);
         assert(/glob/.test(err.message));
-        done();
+        cb();
       }
     });
 
@@ -461,14 +463,14 @@ describe('queue', function() {
     collection = new Views();
   });
 
-  it('should emit arguments on addView', function(done) {
+  it('should emit arguments on addView', function(cb) {
     collection.on('addView', function(args) {
       assert(args[0] === 'a');
       assert(args[1] === 'b');
       assert(args[2] === 'c');
       assert(args[3] === 'd');
       assert(args[4] === 'e');
-      done();
+      cb();
     });
 
     collection.addView('a', 'b', 'c', 'd', 'e');

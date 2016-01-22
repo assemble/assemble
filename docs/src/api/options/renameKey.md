@@ -6,13 +6,18 @@ The `renameKey` option takes a function that allows you to customize the keys of
 
 **Default**: `undefined` 
 
-**Example**
+**Params**:
+
+- `key` **{String}**: The property key used for setting the view on the `views` object
+- `view` **{Object|undefined}**: The same `renameKey` function is used for both getting and setting a view. When setting a view, `renameKey` exposes the `view` as the second parameter. When getting a view, the second parameter will be undefined. 
+
+**Examples**
 
 ```js
 var path = require('path');
 
 app.option('renameKey', function(key) {
-  return path.basename(key);
+  return view ? view.basename : path.basename(key);
 });
 
 app.create('pages');
@@ -24,7 +29,7 @@ console.log(Object.keys(app.views.pages));
 //=> ['d.md', 'e.md', 'f.md']
 ```
 
-Additional information about `renameKey`:
+## Details
 
 * The `view.key` property is used as a view's object key when adding the view to a collection
 * `options.renameKey` must be defined **before** views are created

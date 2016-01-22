@@ -1,3 +1,5 @@
+'use strict';
+
 require('mocha');
 var should = require('should');
 var fs = require('fs');
@@ -182,17 +184,17 @@ describe('View', function() {
       assert(typeof view.fn === 'function');
     });
 
-    it('should render a compiled template', function(done) {
+    it('should render a compiled template', function(cb) {
       view = new View({path: 'foo', contents: 'a <%= name %> z'});
       view.compile();
       view.render({name: 'Halle'}, function(err, res) {
-        if (err) return done(err);
+        if (err) return cb(err);
         assert(res.contents.toString() === 'a Halle z');
-        done();
+        cb();
       });
     });
 
-    it('should render `fn` using data passed on the constructor', function(done) {
+    it('should render `fn` using data passed on the constructor', function(cb) {
       view = new View({
         path: 'foo',
         contents: 'a <%= name %> z',
@@ -203,24 +205,24 @@ describe('View', function() {
 
       view.compile();
       view.render(function(err, res) {
-        if (err) return done(err);
+        if (err) return cb(err);
         assert(res.contents.toString() === 'a Brooke z');
-        done();
+        cb();
       });
     });
   });
 
   describe('render', function() {
-    it('should render a template', function(done) {
+    it('should render a template', function(cb) {
       view = new View({path: 'foo', contents: 'a <%= name %> z'});
       view.render({name: 'Halle'}, function(err, res) {
-        if (err) return done(err);
+        if (err) return cb(err);
         assert(res.contents.toString() === 'a Halle z');
-        done();
+        cb();
       });
     });
 
-    it('should render fn using data passed on the constructor', function(done) {
+    it('should render fn using data passed on the constructor', function(cb) {
       view = new View({
         path: 'foo',
         contents: 'a <%= name %> z',
@@ -230,13 +232,13 @@ describe('View', function() {
       });
 
       view.render(function(err, res) {
-        if (err) return done(err);
+        if (err) return cb(err);
         assert(res.contents.toString() === 'a Brooke z');
-        done();
+        cb();
       });
     });
 
-    it('should pass errors in the callback.', function(done) {
+    it('should pass errors in the callback.', function(cb) {
       view = new View({
         path: 'foo',
         contents: 'a <%= name %> z'
@@ -244,7 +246,7 @@ describe('View', function() {
 
       view.render(function(err) {
         assert(err.message === 'name is not defined');
-        done();
+        cb();
       });
     });
   });
@@ -258,173 +260,173 @@ describe('View', function() {
 
 describe('View', function() {
   describe('isVinyl()', function() {
-    it('should return true on a vinyl object', function(done) {
+    it('should return true on a vinyl object', function(cb) {
       var view = new View();
       assert(View.isVinyl(view) === true);
-      done();
+      cb();
     });
-    it('should return false on a normal object', function(done) {
+    it('should return false on a normal object', function(cb) {
       assert(View.isVinyl({}) === false);
-      done();
+      cb();
     });
-    it('should return false on a null object', function(done) {
+    it('should return false on a null object', function(cb) {
       assert(View.isVinyl({}) === false);
-      done();
+      cb();
     });
   });
 
   describe('constructor()', function() {
-    it('should default cwd to process.cwd', function(done) {
+    it('should default cwd to process.cwd', function(cb) {
       var view = new View();
       view.cwd.should.equal(process.cwd());
-      done();
+      cb();
     });
 
-    it('should default base to cwd', function(done) {
+    it('should default base to cwd', function(cb) {
       var cwd = '/';
       var view = new View({cwd: cwd});
       view.base.should.equal(cwd);
-      done();
+      cb();
     });
 
-    it('should default base to cwd even when none is given', function(done) {
+    it('should default base to cwd even when none is given', function(cb) {
       var view = new View();
       view.base.should.equal(process.cwd());
-      done();
+      cb();
     });
 
-    it('should default path to null', function(done) {
+    it('should default path to null', function(cb) {
       var view = new View();
       should.not.exist(view.path);
-      done();
+      cb();
     });
 
-    it('should default history to []', function(done) {
+    it('should default history to []', function(cb) {
       var view = new View();
       view.history.should.eql([]);
-      done();
+      cb();
     });
 
-    it('should default stat to null', function(done) {
+    it('should default stat to null', function(cb) {
       var view = new View();
       should.not.exist(view.stat);
-      done();
+      cb();
     });
 
-    it('should default contents to null', function(done) {
+    it('should default contents to null', function(cb) {
       var view = new View();
       should.not.exist(view.contents);
-      done();
+      cb();
     });
 
-    it('should set base to given value', function(done) {
+    it('should set base to given value', function(cb) {
       var val = '/';
       var view = new View({base: val});
       view.base.should.equal(val);
-      done();
+      cb();
     });
 
-    it('should set cwd to given value', function(done) {
+    it('should set cwd to given value', function(cb) {
       var val = '/';
       var view = new View({cwd: val});
       view.cwd.should.equal(val);
-      done();
+      cb();
     });
 
-    it('should set path to given value', function(done) {
+    it('should set path to given value', function(cb) {
       var val = '/test.coffee';
       var view = new View({path: val});
       view.path.should.equal(val);
       view.history.should.eql([val]);
-      done();
+      cb();
     });
 
-    it('should set history to given value', function(done) {
+    it('should set history to given value', function(cb) {
       var val = '/test.coffee';
       var view = new View({history: [val]});
       view.path.should.equal(val);
       view.history.should.eql([val]);
-      done();
+      cb();
     });
 
-    it('should set stat to given value', function(done) {
+    it('should set stat to given value', function(cb) {
       var val = {};
       var view = new View({stat: val});
       view.stat.should.equal(val);
-      done();
+      cb();
     });
 
-    it('should set contents to given value', function(done) {
+    it('should set contents to given value', function(cb) {
       var val = new Buffer('test');
       var view = new View({contents: val});
       view.contents.should.equal(val);
-      done();
+      cb();
     });
   });
 
   describe('isBuffer()', function() {
-    it('should return true when the contents are a Buffer', function(done) {
+    it('should return true when the contents are a Buffer', function(cb) {
       var val = new Buffer('test');
       var view = new View({contents: val});
       view.isBuffer().should.equal(true);
-      done();
+      cb();
     });
 
-    it('should return false when the contents are a Stream', function(done) {
+    it('should return false when the contents are a Stream', function(cb) {
       var val = new Stream();
       var view = new View({contents: val});
       view.isBuffer().should.equal(false);
-      done();
+      cb();
     });
 
-    it('should return false when the contents are a null', function(done) {
+    it('should return false when the contents are a null', function(cb) {
       var view = new View({contents: null});
       view.isBuffer().should.equal(false);
-      done();
+      cb();
     });
   });
 
   describe('isStream()', function() {
-    it('should return false when the contents are a Buffer', function(done) {
+    it('should return false when the contents are a Buffer', function(cb) {
       var val = new Buffer('test');
       var view = new View({contents: val});
       view.isStream().should.equal(false);
-      done();
+      cb();
     });
 
-    it('should return true when the contents are a Stream', function(done) {
+    it('should return true when the contents are a Stream', function(cb) {
       var val = new Stream();
       var view = new View({contents: val});
       view.isStream().should.equal(true);
-      done();
+      cb();
     });
 
-    it('should return false when the contents are a null', function(done) {
+    it('should return false when the contents are a null', function(cb) {
       var view = new View({contents: null});
       view.isStream().should.equal(false);
-      done();
+      cb();
     });
   });
 
   describe('isNull()', function() {
-    it('should return false when the contents are a Buffer', function(done) {
+    it('should return false when the contents are a Buffer', function(cb) {
       var val = new Buffer('test');
       var view = new View({contents: val});
       view.isNull().should.equal(false);
-      done();
+      cb();
     });
 
-    it('should return false when the contents are a Stream', function(done) {
+    it('should return false when the contents are a Stream', function(cb) {
       var val = new Stream();
       var view = new View({contents: val});
       view.isNull().should.equal(false);
-      done();
+      cb();
     });
 
-    it('should return true when the contents are a null', function(done) {
+    it('should return true when the contents are a null', function(cb) {
       var view = new View({contents: null});
       view.isNull().should.equal(true);
-      done();
+      cb();
     });
   });
 
@@ -435,29 +437,29 @@ describe('View', function() {
       }
     };
 
-    it('should return false when the contents are a Buffer', function(done) {
+    it('should return false when the contents are a Buffer', function(cb) {
       var val = new Buffer('test');
       var view = new View({contents: val, stat: fakeStat});
       view.isDirectory().should.equal(false);
-      done();
+      cb();
     });
 
-    it('should return false when the contents are a Stream', function(done) {
+    it('should return false when the contents are a Stream', function(cb) {
       var val = new Stream();
       var view = new View({contents: val, stat: fakeStat});
       view.isDirectory().should.equal(false);
-      done();
+      cb();
     });
 
-    it('should return true when the contents are a null', function(done) {
+    it('should return true when the contents are a null', function(cb) {
       var view = new View({contents: null, stat: fakeStat});
       view.isDirectory().should.equal(true);
-      done();
+      cb();
     });
   });
 
   describe('clone()', function() {
-    it('should copy all attributes over with Buffer', function(done) {
+    it('should copy all attributes over with Buffer', function(cb) {
       var options = {
         cwd: '/',
         base: '/test/',
@@ -473,10 +475,10 @@ describe('View', function() {
       view2.path.should.equal(view.path);
       view2.contents.should.not.equal(view.contents, 'buffer ref should be different');
       view2.contents.toString('utf8').should.equal(view.contents.toString('utf8'));
-      done();
+      cb();
     });
 
-    it('should copy buffer\'s reference with option contents: false', function(done) {
+    it('should copy buffer\'s reference with option contents: false', function(cb) {
       var options = {
         cwd: '/',
         base: '/test/',
@@ -495,10 +497,10 @@ describe('View', function() {
       var copy3 = view.clone({ contents: 'any string' });
       copy3.contents.should.not.equal(view.contents);
 
-      done();
+      cb();
     });
 
-    it('should copy all attributes over with Stream', function(done) {
+    it('should copy all attributes over with Stream', function(cb) {
       var contents = new Stream.PassThrough();
       var options = {
         cwd: '/',
@@ -527,10 +529,10 @@ describe('View', function() {
           data2.should.eql(data, 'stream contents should be the same');
         }));
       }));
-      done();
+      cb();
     });
 
-    it('should copy all attributes over with null', function(done) {
+    it('should copy all attributes over with null', function(cb) {
       var options = {
         cwd: '/',
         base: '/test/',
@@ -545,10 +547,10 @@ describe('View', function() {
       view2.base.should.equal(view.base);
       view2.path.should.equal(view.path);
       should.not.exist(view2.contents);
-      done();
+      cb();
     });
 
-    it('should properly clone the `stat` property', function(done) {
+    it('should properly clone the `stat` property', function(cb) {
       var options = {
         cwd: '/',
         base: '/test/',
@@ -566,10 +568,10 @@ describe('View', function() {
       assert(view.stat.hasOwnProperty('birthtime'));
       assert(copy.stat.hasOwnProperty('birthtime'));
       assert.deepEqual(view.stat, copy.stat);
-      done();
+      cb();
     });
 
-    it('should properly clone the `history` property', function(done) {
+    it('should properly clone the `history` property', function(cb) {
       var options = {
         cwd: '/',
         base: '/test/',
@@ -584,10 +586,10 @@ describe('View', function() {
       copy.history[0].should.equal(options.path);
       copy.path = 'lol';
       view.path.should.not.equal(copy.path);
-      done();
+      cb();
     });
 
-    it('should copy custom properties', function(done) {
+    it('should copy custom properties', function(cb) {
       var options = {
         cwd: '/',
         base: '/test/',
@@ -606,10 +608,10 @@ describe('View', function() {
       view2.custom.should.equal(view.custom);
       view2.custom.a.should.equal(view.custom.a);
 
-      done();
+      cb();
     });
 
-    it('should copy history', function(done) {
+    it('should copy history', function(cb) {
       var options = {
         cwd: '/',
         base: '/test/',
@@ -634,10 +636,10 @@ describe('View', function() {
       ]);
       view2.path.should.eql('/test/test-938di2s.js');
 
-      done();
+      cb();
     });
 
-    it('should copy all attributes deeply', function(done) {
+    it('should copy all attributes deeply', function(cb) {
       var options = {
         cwd: '/',
         base: '/test/',
@@ -668,12 +670,12 @@ describe('View', function() {
       view5.custom.should.equal(view.custom);
       view5.custom.a.should.equal(view.custom.a);
 
-      done();
+      cb();
     });
   });
 
   describe('pipe()', function() {
-    it('should write to stream with Buffer', function(done) {
+    it('should write to stream with Buffer', function(cb) {
       var options = {
         cwd: '/',
         base: '/test/',
@@ -688,13 +690,13 @@ describe('View', function() {
         chunk.toString('utf8').should.equal(options.contents.toString('utf8'));
       });
       stream.on('end', function() {
-        done();
+        cb();
       });
       var ret = view.pipe(stream);
       ret.should.equal(stream, 'should return the stream');
     });
 
-    it('should pipe to stream with Stream', function(done) {
+    it('should pipe to stream with Stream', function(cb) {
       var testChunk = new Buffer('test');
       var options = {
         cwd: '/',
@@ -708,7 +710,7 @@ describe('View', function() {
         should.exist(chunk);
         (chunk instanceof Buffer).should.equal(true, 'should write as a buffer');
         chunk.toString('utf8').should.equal(testChunk.toString('utf8'));
-        done();
+        cb();
       });
       var ret = view.pipe(stream);
       ret.should.equal(stream, 'should return the stream');
@@ -716,7 +718,7 @@ describe('View', function() {
       view.contents.write(testChunk);
     });
 
-    it('should do nothing with null', function(done) {
+    it('should do nothing with null', function(cb) {
       var options = {
         cwd: '/',
         base: '/test/',
@@ -729,13 +731,13 @@ describe('View', function() {
         throw new Error('should not write');
       });
       stream.on('end', function() {
-        done();
+        cb();
       });
       var ret = view.pipe(stream);
       ret.should.equal(stream, 'should return the stream');
     });
 
-    it('should write to stream with Buffer', function(done) {
+    it('should write to stream with Buffer', function(cb) {
       var options = {
         cwd: '/',
         base: '/test/',
@@ -748,7 +750,7 @@ describe('View', function() {
         should.exist(chunk);
         (chunk instanceof Buffer).should.equal(true, 'should write as a buffer');
         chunk.toString('utf8').should.equal(options.contents.toString('utf8'));
-        done();
+        cb();
       });
       stream.on('end', function() {
         throw new Error('should not end');
@@ -757,7 +759,7 @@ describe('View', function() {
       ret.should.equal(stream, 'should return the stream');
     });
 
-    it('should pipe to stream with Stream', function(done) {
+    it('should pipe to stream with Stream', function(cb) {
       var testChunk = new Buffer('test');
       var options = {
         cwd: '/',
@@ -771,7 +773,7 @@ describe('View', function() {
         should.exist(chunk);
         (chunk instanceof Buffer).should.equal(true, 'should write as a buffer');
         chunk.toString('utf8').should.equal(testChunk.toString('utf8'));
-        done();
+        cb();
       });
       stream.on('end', function() {
         throw new Error('should not end');
@@ -782,7 +784,7 @@ describe('View', function() {
       view.contents.write(testChunk);
     });
 
-    it('should do nothing with null', function(done) {
+    it('should do nothing with null', function(cb) {
       var options = {
         cwd: '/',
         base: '/test/',
@@ -799,27 +801,27 @@ describe('View', function() {
       });
       var ret = view.pipe(stream, {end: false});
       ret.should.equal(stream, 'should return the stream');
-      process.nextTick(done);
+      process.nextTick(cb);
     });
   });
 
   describe('inspect()', function() {
-    it('should return correct format when no contents and no path', function(done) {
+    it('should return correct format when no contents and no path', function(cb) {
       var view = new View();
       view.inspect().should.equal('<View >');
-      done();
+      cb();
     });
 
-    it('should return correct format when Buffer and no path', function(done) {
+    it('should return correct format when Buffer and no path', function(cb) {
       var val = new Buffer('test');
       var view = new View({
         contents: val
       });
       view.inspect().should.equal('<View <Buffer 74 65 73 74>>');
-      done();
+      cb();
     });
 
-    it('should return correct format when Buffer and relative path', function(done) {
+    it('should return correct format when Buffer and relative path', function(cb) {
       var val = new Buffer('test');
       var view = new View({
         cwd: '/',
@@ -828,10 +830,10 @@ describe('View', function() {
         contents: val
       });
       view.inspect().should.equal('<View "test.coffee" <Buffer 74 65 73 74>>');
-      done();
+      cb();
     });
 
-    it('should return correct format when Buffer and only path and no base', function(done) {
+    it('should return correct format when Buffer and only path and no base', function(cb) {
       var val = new Buffer('test');
       var view = new View({
         cwd: '/',
@@ -840,10 +842,10 @@ describe('View', function() {
       });
       delete view.base;
       view.inspect().should.equal('<View "/test/test.coffee" <Buffer 74 65 73 74>>');
-      done();
+      cb();
     });
 
-    it('should return correct format when Stream and relative path', function(done) {
+    it('should return correct format when Stream and relative path', function(cb) {
       var view = new View({
         cwd: '/',
         base: '/test/',
@@ -851,10 +853,10 @@ describe('View', function() {
         contents: new Stream.PassThrough()
       });
       view.inspect().should.equal('<View "test.coffee" <PassThroughStream>>');
-      done();
+      cb();
     });
 
-    it('should return correct format when null and relative path', function(done) {
+    it('should return correct format when null and relative path', function(cb) {
       var view = new View({
         cwd: '/',
         base: '/test/',
@@ -862,56 +864,56 @@ describe('View', function() {
         contents: null
       });
       view.inspect().should.equal('<View "test.coffee">');
-      done();
+      cb();
     });
   });
 
   describe('contents get/set', function() {
-    it('should work with Buffer', function(done) {
+    it('should work with Buffer', function(cb) {
       var val = new Buffer('test');
       var view = new View();
       view.contents = val;
       view.contents.should.equal(val);
-      done();
+      cb();
     });
 
-    it('should work with Stream', function(done) {
+    it('should work with Stream', function(cb) {
       var val = new Stream.PassThrough();
       var view = new View();
       view.contents = val;
       view.contents.should.equal(val);
-      done();
+      cb();
     });
 
-    it('should work with null', function(done) {
+    it('should work with null', function(cb) {
       var val = null;
       var view = new View();
       view.contents = val;
       (view.contents === null).should.equal(true);
-      done();
+      cb();
     });
 
-    it('should work with string', function(done) {
+    it('should work with string', function(cb) {
       var val = 'test';
       var view = new View();
       view.contents = val;
       view.contents.should.deepEqual(new Buffer(val));
-      done();
+      cb();
     });
   });
 
   describe('relative get/set', function() {
-    it('should error on set', function(done) {
+    it('should error on set', function(cb) {
       var view = new View();
       try {
         view.relative = 'test';
       } catch (err) {
         should.exist(err);
-        done();
+        cb();
       }
     });
 
-    it('should error on get when no base', function(done) {
+    it('should error on get when no base', function(cb) {
       var a;
       var view = new View();
       delete view.base;
@@ -919,74 +921,74 @@ describe('View', function() {
         a = view.relative;
       } catch (err) {
         should.exist(err);
-        done();
+        cb();
       }
     });
 
-    it('should error on get when no path', function(done) {
+    it('should error on get when no path', function(cb) {
       var a;
       var view = new View();
       try {
         a = view.relative;
       } catch (err) {
         should.exist(err);
-        done();
+        cb();
       }
     });
 
-    it('should return a relative path from base', function(done) {
+    it('should return a relative path from base', function(cb) {
       var view = new View({
         cwd: '/',
         base: '/test/',
         path: '/test/test.coffee'
       });
       view.relative.should.equal('test.coffee');
-      done();
+      cb();
     });
 
-    it('should return a relative path from cwd', function(done) {
+    it('should return a relative path from cwd', function(cb) {
       var view = new View({
         cwd: '/',
         path: '/test/test.coffee'
       });
       view.relative.should.equal(path.join('test', 'test.coffee'));
-      done();
+      cb();
     });
   });
 
   describe('dirname get/set', function() {
-    it('should error on get when no path', function(done) {
+    it('should error on get when no path', function(cb) {
       var a;
       var view = new View();
       try {
         a = view.dirname;
       } catch (err) {
         should.exist(err);
-        done();
+        cb();
       }
     });
 
-    it('should return the dirname of the path', function(done) {
+    it('should return the dirname of the path', function(cb) {
       var view = new View({
         cwd: '/',
         base: '/test/',
         path: '/test/test.coffee'
       });
       view.dirname.should.equal('/test');
-      done();
+      cb();
     });
 
-    it('should error on set when no path', function(done) {
+    it('should error on set when no path', function(cb) {
       var view = new View();
       try {
         view.dirname = '/test';
       } catch (err) {
         should.exist(err);
-        done();
+        cb();
       }
     });
 
-    it('should set the dirname of the path', function(done) {
+    it('should set the dirname of the path', function(cb) {
       var view = new View({
         cwd: '/',
         base: '/test/',
@@ -994,43 +996,43 @@ describe('View', function() {
       });
       view.dirname = '/test/foo';
       view.path.should.equal('/test/foo/test.coffee');
-      done();
+      cb();
     });
   });
 
   describe('basename get/set', function() {
-    it('should error on get when no path', function(done) {
+    it('should error on get when no path', function(cb) {
       var a;
       var view = new View();
       try {
         a = view.basename;
       } catch (err) {
         should.exist(err);
-        done();
+        cb();
       }
     });
 
-    it('should return the basename of the path', function(done) {
+    it('should return the basename of the path', function(cb) {
       var view = new View({
         cwd: '/',
         base: '/test/',
         path: '/test/test.coffee'
       });
       view.basename.should.equal('test.coffee');
-      done();
+      cb();
     });
 
-    it('should error on set when no path', function(done) {
+    it('should error on set when no path', function(cb) {
       var view = new View();
       try {
         view.basename = 'test.coffee';
       } catch (err) {
         should.exist(err);
-        done();
+        cb();
       }
     });
 
-    it('should set the basename of the path', function(done) {
+    it('should set the basename of the path', function(cb) {
       var view = new View({
         cwd: '/',
         base: '/test/',
@@ -1038,43 +1040,43 @@ describe('View', function() {
       });
       view.basename = 'foo.png';
       view.path.should.equal('/test/foo.png');
-      done();
+      cb();
     });
   });
 
   describe('extname get/set', function() {
-    it('should error on get when no path', function(done) {
+    it('should error on get when no path', function(cb) {
       var a;
       var view = new View();
       try {
         a = view.extname;
       } catch (err) {
         should.exist(err);
-        done();
+        cb();
       }
     });
 
-    it('should return the extname of the path', function(done) {
+    it('should return the extname of the path', function(cb) {
       var view = new View({
         cwd: '/',
         base: '/test/',
         path: '/test/test.coffee'
       });
       view.extname.should.equal('.coffee');
-      done();
+      cb();
     });
 
-    it('should error on set when no path', function(done) {
+    it('should error on set when no path', function(cb) {
       var view = new View();
       try {
         view.extname = '.coffee';
       } catch (err) {
         should.exist(err);
-        done();
+        cb();
       }
     });
 
-    it('should set the extname of the path', function(done) {
+    it('should set the extname of the path', function(cb) {
       var view = new View({
         cwd: '/',
         base: '/test/',
@@ -1082,7 +1084,7 @@ describe('View', function() {
       });
       view.extname = '.png';
       view.path.should.equal('/test/test.png');
-      done();
+      cb();
     });
   });
 

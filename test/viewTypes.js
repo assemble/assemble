@@ -1,3 +1,5 @@
+'use strict';
+
 var assert = require('assert');
 var support = require('./support');
 var App = support.resolve();

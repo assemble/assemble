@@ -1,3 +1,5 @@
+'use strict';
+
 require('mocha');
 require('should');
 var support = require('./support');
@@ -15,26 +17,26 @@ describe('helpers', function() {
       app.create('pages');
     });
 
-    it('should expose `.render` for rendering a view:', function(done) {
+    it('should expose `.render` for rendering a view:', function(cb) {
       app.page('a.tmpl', {path: 'a.tmpl', content: '<%= a %>'})
         .render({a: 'bbb'}, function(err, res) {
-          if (err) return done(err);
+          if (err) return cb(err);
           res.content.should.equal('bbb');
-          done();
+          cb();
         });
     });
 
-    it('should render a view with a layout', function(done) {
+    it('should render a view with a layout', function(cb) {
       app.layout('default.tmpl', {content: 'a {% body %} b'});
       app.page('a.tmpl', {content: '<%= title %>', layout: 'default.tmpl'})
         .render({title: 'zzz'}, function(err, res) {
-          if (err) return done(err);
+          if (err) return cb(err);
           res.content.should.equal('a zzz b');
-          done();
+          cb();
         });
     });
 
-    it('should render a view with a layout', function(done) {
+    it('should render a view with a layout', function(cb) {
       app.layout('foo.tmpl', {content: 'a {% body %} a'});
       app.layout('bar.tmpl', {content: 'b {% body %} b'});
       app.pages('a.tmpl', {content: '<%= title %>'});
@@ -44,9 +46,9 @@ describe('helpers', function() {
           return 'bar.tmpl';
         })
         .render({title: 'zzz'}, function(err, res) {
-          if (err) return done(err);
+          if (err) return cb(err);
           res.content.should.equal('b zzz b');
-          done();
+          cb();
         });
     });
   });

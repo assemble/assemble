@@ -1,3 +1,5 @@
+'use strict';
+
 require('should');
 var assert = require('assert');
 var support = require('./support');
@@ -27,7 +29,7 @@ describe('routes', function() {
   });
 
   describe('params', function() {
-    it('should call param function when routing', function(done) {
+    it('should call param function when routing', function(cb) {
       app.param('id', function(view, next, id) {
         assert.equal(id, '123');
         next();
@@ -38,7 +40,7 @@ describe('routes', function() {
         next();
       });
 
-      app.router.handle({ path: '/foo/123/bar' }, done);
+      app.router.handle({ path: '/foo/123/bar' }, cb);
     });
   });
 
@@ -65,7 +67,7 @@ describe('routes', function() {
   });
 
   describe('preRender middleware', function() {
-    it('should run before templates are rendered:', function(done) {
+    it('should run before templates are rendered:', function(cb) {
       app.preRender(/\.tmpl/, prepend('preRender'));
       app.pages('a.tmpl', { path: 'a.tmpl', content: '<%= name %>', locals: {name: 'aaa'} });
 
@@ -73,15 +75,15 @@ describe('routes', function() {
       page.contents.toString().should.equal('<%= name %>');
 
       page.render({}, function(err, res) {
-        if (err) return done(err);
+        if (err) return cb(err);
         res.contents.toString().should.equal('preRender aaa');
-        done();
+        cb();
       });
     });
   });
 
   describe('postRender middleware', function() {
-    it('should run after templates are rendered:', function(done) {
+    it('should run after templates are rendered:', function(cb) {
       app.postRender(/\.tmpl/, append('postRender'));
       app.pages('a.tmpl', { path: 'a.tmpl', content: '<%= name %>', locals: {name: 'aaa' }});
 
@@ -89,9 +91,9 @@ describe('routes', function() {
       page.contents.toString().should.equal('<%= name %>');
 
       page.render({}, function(err, res) {
-        if (err) return done(err);
+        if (err) return cb(err);
         res.contents.toString().should.equal('aaa postRender');
-        done();
+        cb();
       });
     });
   });

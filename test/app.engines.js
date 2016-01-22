@@ -1,3 +1,5 @@
+'use strict';
+
 require('mocha');
 require('should');
 var assert = require('assert');
@@ -5,7 +7,7 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('engine support', function() {
+describe('app.engines', function() {
   beforeEach(function() {
     app = new App();
   });
@@ -64,27 +66,27 @@ describe('engines', function() {
     app.engines.should.have.property('.a');
   });
 
-  it('should use custom delimiters:', function(done) {
+  it('should use custom delimiters:', function(cb) {
     app.engine('tmpl', require('engine-base'), {
       delims: ['{{', '}}']
     });
     app.render('foo.tmpl', {letter: 'B'}, function(err, res) {
-      if (err) return done(err);
+      if (err) return cb(err);
       res.contents.toString().should.equal('A <%= letter %> B C');
-      done();
+      cb();
     });
   });
 
-  it('should override individual delims values:', function(done) {
+  it('should override individual delims values:', function(cb) {
     app.engine('tmpl', require('engine-base'), {
       interpolate: /\{{([^}]+)}}/g,
       evaluate: /\{{([^}]+)}}/g,
       escape: /\{{-([^}]+)}}/g
     });
     app.render('bar.tmpl', {letter: 'B'}, function(err, res) {
-      if (err) return done(err);
+      if (err) return cb(err);
       res.contents.toString().should.equal('A <%= letter %> B C');
-      done();
+      cb();
     });
   });
 
@@ -97,63 +99,62 @@ describe('engines', function() {
   });
 });
 
-
 describe('engine selection:', function() {
-  beforeEach(function(done) {
+  beforeEach(function(cb) {
     app = new App();
     app.engine('tmpl', require('engine-base'));
     app.engine('hbs', require('engine-handlebars'));
     app.create('pages');
-    done();
+    cb();
   });
 
-  it('should get the engine from file extension:', function(done) {
+  it('should get the engine from file extension:', function(cb) {
     app.page('a.tmpl', {content: '<%= a %>', locals: {a: 'b'}})
       .render(function(err, view) {
-        if (err) return done(err);
+        if (err) return cb(err);
         assert(view.content === 'b');
-        done();
+        cb();
       });
   });
 
-  it('should use the engine defined on the collection:', function(done) {
+  it('should use the engine defined on the collection:', function(cb) {
     app.create('posts', {engine: 'hbs'});
 
     app.post('a', {content: '{{a}}', locals: {a: 'b'}})
       .render(function(err, view) {
-        if (err) return done(err);
+        if (err) return cb(err);
         assert(view.content === 'b');
-        done();
+        cb();
       });
   });
 
-  it('should use the engine defined on the view:', function(done) {
+  it('should use the engine defined on the view:', function(cb) {
     app.create('posts');
     app.post('a', {content: '{{a}}', engine: 'hbs', locals: {a: 'b'}})
       .render(function(err, view) {
-        if (err) return done(err);
+        if (err) return cb(err);
         assert(view.content === 'b');
-        done();
+        cb();
       });
   });
 
-  it('should use the engine defined on `view.data`:', function(done) {
+  it('should use the engine defined on `view.data`:', function(cb) {
     app.create('posts');
     app.post('a', {content: '{{a}}', locals: {a: 'b'}, data: {engine: 'hbs'}})
       .render(function(err, view) {
-        if (err) return done(err);
+        if (err) return cb(err);
         assert(view.content === 'b');
-        done();
+        cb();
       });
   });
 
-  it('should use the engine defined on render locals:', function(done) {
+  it('should use the engine defined on render locals:', function(cb) {
     app.create('posts');
     app.post('a', {content: '{{a}}', locals: {a: 'b'}})
       .render({engine: 'hbs'}, function(err, view) {
-        if (err) return done(err);
+        if (err) return cb(err);
         assert(view.content === 'b');
-        done();
+        cb();
       });
   });
 });

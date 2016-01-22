@@ -8,8 +8,8 @@
 * Convert markdown files to `.html`, with link to the generated CSS file.
 * Service the files in the local browser automatically
 * Watch the following files for changes:
-	- all `.less` files 
-	- all markdown content files and `.hbs` (handlebars) templates 
+	- all `.less` files
+	- all markdown content files and `.hbs` (handlebars) templates
 * When `.watch` is triggered, update the `.css` stylesheets or generated `.html` files.
 
 ## Tasks
@@ -107,7 +107,7 @@ app.task('watch', function() {
  * Default task
  */
 
-app.task('default', ['css', 'content', 'serve']);
+app.task('default', ['css', 'content'], app.parallel(['serve', 'watch']));
 
 /**
  * Expose the assemble instance
@@ -128,7 +128,7 @@ module.exports = app;
 **less/typography.less**
 
 ```css
-html, 
+html,
 body {
 	font-family: @defaultFont;
 	color: @mainColor;
@@ -143,6 +143,7 @@ h1 {
 
 ```less
 @mainColor: #666;
+@secondColor: #333;
 @defaultFont: Arial, "Helvetica Neue", Helvetica, sans-serif;
 ```
 

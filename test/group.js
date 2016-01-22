@@ -1,3 +1,5 @@
+'use strict';
+
 require('mocha');
 require('should');
 
@@ -124,13 +126,13 @@ describe('group', function() {
       }).should.throw('paginate can only be used with an array of `List` items.');
     });
 
-    it('should not override properties already existing on non List values', function(done) {
+    it('should not override properties already existing on non List values', function(cb) {
       var group = new Group({
         'foo': {
           items: [1, 2, 3],
           paginate: function() {
             assert(true);
-            done();
+            cb();
           }
         }
       });

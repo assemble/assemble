@@ -30,9 +30,31 @@ app.engine(ext, callback);
 
 **Example**
 
+The most basic engine looks something like this:
+
+```js
+app.engine('txt', function(str, locals, cb) {
+  // do stuff to `str`
+  cb(null, str);
+});
+```
+
+Or, require a published engine as a module dependency:
+
 ```js
 app.engine('hbs', require('engine-handlebars'));
 ```
+
+## Setting a default engine
+
+Set the engine to use for rendering all views. 
+
+
+```js
+app.option('engine', 'txt');
+```
+
+This can be overridden at the collection or view or view level.
 
 ## How engines work
 

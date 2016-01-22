@@ -1,3 +1,5 @@
+'use strict';
+
 require('should');
 var support = require('./support');
 var App = support.resolve();

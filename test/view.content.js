@@ -1,3 +1,5 @@
+'use strict';
+
 require('mocha');
 require('should');
 var fs = require('fs');
@@ -13,7 +15,7 @@ describe('content', function() {
     app.engine('tmpl', require('engine-base'));
   });
 
-  it('should normalize the `content` property on a view to a string:', function(done) {
+  it('should normalize the `content` property on a view to a string:', function(cb) {
     app.page('abc', {path: 'test/fixtures/templates/a.tmpl'})
       .set('read', function() {
         this.contents = fs.readFileSync(this.path);
@@ -24,6 +26,6 @@ describe('content', function() {
 
     assert('content' in app.views.pages.abc);
     assert(typeof app.views.pages.abc.content === 'string');
-    done();
+    cb();
   });
 });

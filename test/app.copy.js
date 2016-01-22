@@ -1,3 +1,5 @@
+'use strict';
+
 require('mocha');
 var path = require('path');
 var assert = require('assert');

@@ -1,3 +1,5 @@
+'use strict';
+
 require('mocha');
 require('should');
 var path = require('path');
@@ -290,14 +292,14 @@ describe('list', function() {
       list = new List();
     });
 
-    it('should emit arguments on addItem', function(done) {
+    it('should emit arguments on addItem', function(cb) {
       list.on('addItem', function(args) {
         assert(args[0] === 'a');
         assert(args[1] === 'b');
         assert(args[2] === 'c');
         assert(args[3] === 'd');
         assert(args[4] === 'e');
-        done();
+        cb();
       });
 
       list.addItem('a', 'b', 'c', 'd', 'e');

@@ -1,3 +1,5 @@
+'use strict';
+
 require('should');
 var assert = require('assert');
 var support = require('./support');
@@ -5,7 +7,7 @@ var App = support.resolve();
 var Views = App.Views;
 var views;
 
-describe('compile', function() {
+describe('app.collection.compile', function() {
   beforeEach(function() {
     views = new Views();
   });
