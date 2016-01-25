@@ -12,6 +12,7 @@
     "gulp-ignore": "^2.0.1",
     "gulp-prettify": "^0.4.0",
     "helper-link-to": "^0.1.2",
+    "helper-markdown": "^0.2.1",
     "placeholders": "^0.2.0",
     "relative-dest": "^0.1.0",
     "through2": "^2.0.0"

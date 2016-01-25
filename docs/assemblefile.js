@@ -6,6 +6,7 @@ var browserSync = require('browser-sync').create();
 var prettify = require('gulp-prettify');
 var extname = require('gulp-extname');
 var ignore = require('gulp-ignore');
+var markdown = require('helper-markdown');
 
 var redirects = require('./plugins/redirects');
 var manifest = require('./plugins/manifest');
@@ -43,7 +44,7 @@ app.create('redirects', {
  * Load helpers
  */
 
-app.helper('markdown', require('helper-markdown'));
+app.helper('markdown', markdown);
 app.helpers('helpers/*.js');
 
 /**
