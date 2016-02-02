@@ -9,6 +9,10 @@ related:
   - { title: view-types, url: view-types.md }
 ---
 
+## Summary
+
+The `View` class is used to add "views" to "view collections" in assemble. Pages, posts, layouts, partials and includes are all examples of view collections you can create. A "page" would represent a single view in a "pages" (view) collection.
+
 ## What is a view?
 
 Created by the [View](/api/View.api.md) constructor, a `view` can be thought of as a "template object". For this reason the terms "view" and "template" are used interchangeably throughout the documentation.
@@ -21,6 +25,23 @@ Views are also instances of [vinyl][] files, so they have all of properties and 
 - `view.data`
 
 See the [vinyl][] docs for more details.
+
+## .setView
+
+Set a view on the collection. This is identical to [addView](#addView) except `setView` does not emit an event for each view.
+
+```js
+collection.setView('foo', {content: 'bar'});
+```
+
+## .addView
+
+Add a view to a collection. 
+
+```js
+collection.addView('foo', {content: 'bar'});
+```
+
 
 ## Related
 
