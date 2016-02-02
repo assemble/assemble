@@ -1,0 +1,10 @@
+{
+  "name": "build-tool-example",
+  "private": true,
+  "dependencies": {
+    "assemble-loader": "^0.2.2",
+    "myth": "^0.3.4",
+    "through2": "^2.0.0",
+    "to-file": "^0.1.3"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "project-generator-example",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "base-questions": "^0.2.2",
+    "base-store": "^0.3.0"
+  }
+}

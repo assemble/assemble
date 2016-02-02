@@ -1,0 +1,15 @@
+{
+  "name": "jekyll-example",
+  "private": true,
+  "devDependencies": {
+    "assemble-loader": "^0.2.4",
+    "composer-runtimes": "^0.7.0",
+    "gulp-extname": "^0.2.0",
+    "helper-date": "^0.2.2",
+    "helper-markdown": "^0.1.2",
+    "parser-front-matter": "^1.3.0"
+  },
+  "scripts": {
+    "build": "metalsmith"
+  }
+}
