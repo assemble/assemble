@@ -17,7 +17,7 @@ If assemble is not already installed globally, you can do so with the following 
 $ npm install -g assemble
 ```
 
-_(See [other options for installing assmble](installing-assemble.md))_
+_(See [other options for installing assemble](installing-assemble.md))_
 
 Next, add the following to an `assemblefile.js`
 
