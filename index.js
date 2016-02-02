@@ -26,8 +26,8 @@ function Assemble(options) {
     return new Assemble(options);
   }
 
-  Core.apply(this, arguments);
-  this.name = 'assemble';
+  this.options = utils.merge({}, this.options, options);
+  Core.call(this, options);
   this.is('Assemble');
 
   this.initDefaults(this);

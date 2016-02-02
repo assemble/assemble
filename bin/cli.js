@@ -13,14 +13,15 @@ var argv = require('minimist')(process.argv.slice(2), {
 });
 
 function run(cb) {
-  var cwd = process.cwd();
-  var root = cwd;
+  // get the unmodifie
+  var root = process.cwd();
+  var cwd = root;
 
   /**
    * Set the working directory
    */
 
-  if (argv.cwd && cwd !== path.resolve(argv.cwd)) {
+  if (argv.cwd && root !== path.resolve(argv.cwd)) {
     process.chdir(argv.cwd);
     cwd = process.cwd();
   }
