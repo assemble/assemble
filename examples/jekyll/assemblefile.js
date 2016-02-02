@@ -82,8 +82,7 @@ app.task('default', function() {
  */
 
 app.build('default', function(err) {
-  if (err) return console.log(err);
-  console.log('done!');
+  if (err) throw err;
 });
 
 /**
