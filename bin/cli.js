@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+var util = require('util');
 var path = require('path');
 var utils = require('../lib/utils');
 var errors = require('./errors');
@@ -13,15 +14,13 @@ var argv = require('minimist')(process.argv.slice(2), {
 });
 
 function run(cb) {
-  // get the unmodifie
-  var root = process.cwd();
-  var cwd = root;
+  var cwd = process.cwd();
 
   /**
    * Set the working directory
    */
 
-  if (argv.cwd && root !== path.resolve(argv.cwd)) {
+  if (argv.cwd && cwd !== path.resolve(argv.cwd)) {
     process.chdir(argv.cwd);
     cwd = process.cwd();
   }
@@ -52,13 +51,9 @@ function run(cb) {
    */
 
   var app = require(assemblefile);
-  if (utils.hasValue(app) === false) {
-    var msg = errors['exports']
-      .split('${assemblefile}')
-      .join(utils.homeRelative(assemblefile));
-
-    var err = new Error(msg);
-    cb(err);
+  if (Object.keys(app).length === 0) {
+    var msg = util.format(errors['instance'], utils.homeRelative(assemblefile));
+    cb(new Error(msg));
     return;
   }
 
@@ -76,11 +71,28 @@ function run(cb) {
   }
 
   /**
+   * Listen for errors
+   */
+
+  app.on('error', console.error.bind(console));
+
+  /**
+   * Support `--emit` for debugging
+   *
+   * Example:
+   *   $ --emit data
+   */
+
+  if (argv.emit && typeof argv.emit === 'string') {
+    app.on(argv.emit, console.log.bind(console));
+  }
+
+  /**
    * Process command line arguments
    */
 
   var args = utils.processArgv(app, argv);
-  app.set('argv', args);
+  app.set('cache.argv', args);
 
   /**
    * Show path to assemblefile
@@ -96,21 +108,9 @@ function run(cb) {
   app.use(utils.runtimes());
 
   /**
-   * Support `--emit` for debugging
-   *
-   * Example:
-   *   $ --emit data
-   */
-
-  if (argv.emit && typeof argv.emit === 'string') {
-    app.on(argv.emit, console.error.bind(console));
-  }
-
-  /**
    * Process command line arguments
    */
 
-  app.cli.process(args);
   cb(null, app);
 }
 
@@ -122,26 +122,24 @@ run(function(err, app) {
   if (err) handleError(err);
 
   /**
-   * Listen for errors
+   * Process command line arguments
    */
 
-  app.on('error', function(err) {
-    console.log(err);
-  });
+  app.cli.process(app.get('cache.argv'), function(err) {
+    if (err) handleError(err);
 
-  var tasks = app.get('argv.tasks');
-  if (!tasks.length) {
-    tasks = ['default'];
-  }
+    var tasks = app.option('tasks') || ['default'];
 
-  /**
-   * Run tasks
-   */
+    /**
+     * Run tasks
+     */
 
-  app.build(tasks, function(err) {
-    if (err) throw err;
-    utils.timestamp('finished ' + utils.success());
-    process.exit(0);
+    app.build(tasks, function(err) {
+      if (err) handleError(err);
+
+      utils.timestamp('finished ' + utils.success());
+      process.exit(0);
+    });
   });
 });
 
