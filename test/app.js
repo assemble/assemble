@@ -75,16 +75,6 @@ describe('app', function() {
       app.emit('error', new Error('foo'));
     });
 
-    it('should mixin methods after init:', function() {
-      app = new App();
-      app.option({
-        mixins: {
-          foo: function() {}
-        }
-      });
-      assert(typeof app.foo === 'function');
-    });
-
     it('should expose constructors from `lib`:', function() {
       app = new App();
       app.expose('Collection');
