@@ -9,7 +9,11 @@ var app = assemble();
 
 ## Create a collection
 
-The following code creates a basic view collection:
+The `.create` method is used to create view collections.
+
+**Example**
+
+The following creates the `pages` view collection:
 
 ```js
 app.create('pages');
@@ -17,13 +21,33 @@ app.create('pages');
 
 ### Add templates
 
-Add templates to the collection
+Add views (templates) to the `pages` collection:
+
+**Add a single view**
 
 ```js
-// add a "page"
 app.page('foo.hbs', { content: 'this is content' });
+```
 
-// add multiple "pages"
+**Add a single view from a filepath**
+
+```js
+app.page('templates/pages/foo.hbs');
+```
+
+**Add a multiple views**
+
+```js
+app.pages({
+  foo: { content: 'this is foo' },
+  bar: { content: 'this is bar' },
+  baz: { content: 'this is baz' }
+});
+```
+
+**Add a glob of views**
+
+```js
 app.pages('templates/*.hbs');
 ```
 
