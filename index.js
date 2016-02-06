@@ -92,8 +92,8 @@ Assemble.prototype.initPlugins = function(app) {
   enable('cli', cli);
 
   function enable(name, fn) {
-    if (app.option('plugins') === false) return;
-    if (app.option('plugins.' + name) !== false) {
+    if (app.isFalse('plugins')) return;
+    if (!app.isFalse('plugins.' + name)) {
       app.use(fn(app.options));
     }
   }
@@ -107,7 +107,7 @@ Assemble.prototype.initPlugins = function(app) {
  */
 
 Assemble.prototype.initCollections = function(app) {
-  if (this.option('collections') === false) return;
+  if (this.isFalse('collections')) return;
 
   var engine = this.options.defaultEngine || 'hbs';
   this.create('partials', {
