@@ -47,7 +47,7 @@ Assemble makes it easy to create, customize, generate and maintain complete web 
 
 * Expressive, imperative API that is powerful and easy to use.
 * Facilitates the use of _modular, encapsulated components_ in your markup, like pages, partials and layouts, resulting in consistent design across your projects.
-* Extremely pluggable and easy to extend with helpers, plugins, middleware or engines.
+* Extremely pluggable and easy to extend with helpers, plugins, routes, middleware or engines.
 * Use any data source for rendering templates, making it easy to begin a project using mock data and switch "live" data source later on.
 * First class collection support, with paging, pagination, lists (arrays), groups and sorting.
 * Use any template engine for rendering templates. You can even use multiple engines at once, Assemble will automatically detect the correct one to use on each template at render time.
@@ -434,6 +434,10 @@ app.task('watch', function() {
 ```
 
 ## Release history
+
+**v0.9.0**
+
+* Bumps several dependencies. No API changes, this is mostly an optimization release. Be sure to completely remove `node_modules` and reinstall all dependencies to avoid errors such as `isRegistered is not a function`
 
 **v0.8.0**
 
