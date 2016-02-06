@@ -2,7 +2,7 @@
 
 > Assemble is a powerful, extendable and easy to use static site generator for node.js. Used by thousands of projects for much more than building websites, Assemble is also used for creating themes, scaffolds, boilerplates, e-books, UI components, API documentation, blogs, gh-pages and more! Plugins for gulp and grunt are also supported.
 
-We're happy to announce the release of Assemble v0.8.0! If you're new to assemble, the [About](#about) section and [FAQ](#faq) might be a good place to start.
+We're happy to announce the release of Assemble v0.9.0! If you're new to assemble, the [About](#about) section and [FAQ](#faq) might be a good place to start.
 
 ## TOC
 
@@ -32,7 +32,7 @@ We're happy to announce the release of Assemble v0.8.0! If you're new to assembl
 - [Test coverage](#test-coverage)
 - [Contributing](#contributing)
 - [FAQ](#faq)
-- [Related project](#related-project)
+- [Related projects](#related-projects)
 - [Similar projects](#similar-projects)
 - [Authors](#authors)
 - [License](#license)
@@ -482,7 +482,7 @@ Assemble adds a CLI, a few built-in view collections: `pages`, `layouts`, and `p
 
 If you want something that handles templates, rendering, engines, helpers, collections, etc. but you don't need to run tasks or work with the file system, then consider using [templates](https://github.com/jonschlinkert/templates) instead of assemble-core.
 
-## Related project
+## Related projects
 
 You might also be interested in these projects from [@doowb](https://github.com/doowb) and [@jonschlinkert](https://github.com/jonschlinkert):
 
