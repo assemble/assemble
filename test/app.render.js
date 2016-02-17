@@ -3,8 +3,7 @@
 require('mocha');
 require('should');
 var assert = require('assert');
-var support = require('./support');
-var App = support.resolve();
+var App = require('..');
 var app;
 
 describe('app.render', function() {

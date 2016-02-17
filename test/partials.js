@@ -56,7 +56,7 @@ describe('partials', function() {
     pages.addView('a.tmpl', {path: 'a.tmpl', content: 'a {{> base }} c'});
 
     var page = pages.getView('a.tmpl');
-    var locals = app.mergePartials(this.options);
+    var locals = app.mergePartialsSync(this.options);
 
     pages.render(page, locals, function(err, view) {
       if (err) return cb(err);

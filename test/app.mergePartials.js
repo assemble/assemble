@@ -5,7 +5,7 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('app.mergePartials', function() {
+describe('app.mergePartialsSync', function() {
   beforeEach(function() {
     app = new App();
   });
@@ -20,7 +20,7 @@ describe('app.mergePartials', function() {
     app.bar('b', {path: 'b', content: 'bbb'});
     app.baz('c', {path: 'c', content: 'ccc'});
 
-    var actual = app.mergePartials();
+    var actual = app.mergePartialsSync();
     actual.should.have.property('partials');
     actual.partials.should.have.properties(['a', 'b', 'c']);
   });
@@ -35,7 +35,7 @@ describe('app.mergePartials', function() {
     app.bar('b', {path: 'b', content: 'bbb'});
     app.baz('c', {path: 'c', content: 'ccc'});
 
-    var actual = app.mergePartials({mergePartials: false});
+    var actual = app.mergePartialsSync({mergePartials: false});
     actual.should.not.have.property('partials');
     actual.should.eql({ foos: { a: 'aaa' }, bars: { b: 'bbb' }, bazs: { c: 'ccc' } });
   });
@@ -55,7 +55,7 @@ describe('app.mergePartials', function() {
     app.bar('b', {path: 'b', content: 'bbb'});
     app.baz('c', {path: 'c', content: 'ccc'});
 
-    var actual = app.mergePartials({mergePartials: false});
+    var actual = app.mergePartialsSync({mergePartials: false});
     actual.should.not.have.property('partials');
     actual.should.eql({ foos: { a: 'aaa' }, bars: { b: 'bbb' }, bazs: { c: 'ccc' } });
     arr.should.eql(['aaa', 'bbb', 'ccc']);
@@ -76,7 +76,7 @@ describe('app.mergePartials', function() {
     app.bar('b', {path: 'b', content: 'bbb'});
     app.baz('c', {path: 'c', content: 'ccc'});
 
-    var actual = app.mergePartials({mergePartials: false});
+    var actual = app.mergePartialsSync({mergePartials: false});
     actual.should.eql({
       foos: {a: 'aaa onMerge'},
       bars: {b: 'bbb onMerge'},
@@ -100,7 +100,7 @@ describe('app.mergePartials', function() {
     app.bar('b', {path: 'b', content: 'bbb'});
     app.baz('c', {path: 'c', content: 'ccc'});
 
-    var actual = app.mergePartials({mergePartials: false});
+    var actual = app.mergePartialsSync({mergePartials: false});
     actual.should.eql({ bazs: { c: 'ccc' } });
   });
 });

@@ -10,8 +10,7 @@ var matter = require('parser-front-matter');
 var swig = consolidate.swig;
 require('swig');
 
-var support = require('./support');
-var App = support.resolve();
+var App = require('..');
 var helpers = App._.plugin.helpers;
 var init = App._.plugin.init;
 var app;
@@ -421,7 +420,7 @@ describe('built-in helpers:', function() {
 
   describe('helper context:', function() {
     beforeEach(function() {
-      app = new App({rethrow: false});
+      app = new App({rethrow: false, collections: false});
       app.engine(['tmpl', 'md'], require('engine-base'));
       app.create('partial', { viewType: 'partial' });
       app.create('page');
@@ -470,7 +469,7 @@ describe('built-in helpers:', function() {
 
   describe('user-defined engines:', function() {
     beforeEach(function() {
-      app = new App({rethrow: false});
+      app = new App({rethrow: false, collections: false});
       app.create('partial', { viewType: 'partial' });
       app.create('page');
 
@@ -620,13 +619,13 @@ describe('helpers integration', function() {
   });
 
   describe('helper options:', function() {
-    it('should expose `this.options` to helpers:', function(cb) {
+    it('should expose global options to helpers:', function(cb) {
       app.helper('cwd', function(fp) {
         return path.join(this.options.cwd, fp);
       });
 
-      app.option('one', 'two');
       app.option('cwd', 'foo/bar');
+
       app.page('doc.md', {content: 'a <%= cwd("baz") %> b'})
         .render(function(err, res) {
           if (err) return cb(err);
@@ -635,13 +634,28 @@ describe('helpers integration', function() {
         });
     });
 
-    it('should pass helper options to helpers:', function(cb) {
+    it('should expose helper-specific options to helpers:', function(cb) {
       app.helper('cwd', function(fp) {
         return path.join(this.options.cwd, fp);
       });
 
       app.option('helper.cwd', 'foo/bar');
-      app.option('helper.whatever', '...');
+
+      app.page('doc.md', {content: 'a <%= cwd("baz") %> b'})
+        .render(function(err, res) {
+          if (err) return cb(err);
+          assert.equal(res.content, 'a foo/bar/baz b');
+          cb();
+        });
+    });
+
+    it('should prefer helper options over global options:', function(cb) {
+      app.helper('cwd', function(fp) {
+        return path.join(this.options.cwd, fp);
+      });
+
+      app.option('cwd', 'one/two');
+      app.option('helper.cwd', 'foo/bar');
 
       app.page('doc.md', {content: 'a <%= cwd("baz") %> b'})
         .render(function(err, res) {
@@ -794,13 +808,12 @@ describe('collection helpers', function() {
 
     it('should handle engine errors2', function(cb) {
       app.engine('tmpl', require('engine-base'));
-      app.create('foo', {engine: 'tmpl'});
+      app.create('foo', {viewType: 'partial'});
       app.create('bar', {engine: 'tmpl'});
 
-      app.create('foo', {viewType: 'partial'});
-      app.foo('foo.tmpl', {path: 'foo.tmpl', content: '<%= blah.bar %>'});
-      app.bar('one.tmpl', {content: '<%= foo("foo.tmpl") %>'})
-        .render(function(err) {
+      app.foo('a.tmpl', {path: 'a.tmpl', content: '<%= blah.baz %>'});
+      app.bar('b.tmpl', {content: '<%= foo("a.tmpl") %>'})
+        .render(function(err, res) {
           assert(err);
           assert.equal(typeof err, 'object');
           assert(/blah is not defined/.test(err.message));

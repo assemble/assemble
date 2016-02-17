@@ -40,7 +40,6 @@ describe('.page()', function() {
   describe('load', function() {
     it('should load a page from a non-glob filepath', function() {
       app.page('test/fixtures/pages/a.hbs');
-      console.log(app.views.pages);
       assert(Object.keys(app.views.pages).length === 1);
     });
   });
