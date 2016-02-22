@@ -56,7 +56,7 @@ The following `assemblefile.js` will:
 1. Generate `.css` stylesheets from `.sass`, using [gulp-sass][]
 
 ```js
-var assemble = require('assemble');
+var app = require('assemble');
 var less = require('gulp-less');
 
 app.task('html', function() {
