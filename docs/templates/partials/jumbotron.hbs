@@ -1,0 +1,16 @@
+{{! Jumbotron component
+================================================== }}
+<header class="jumbotron masthead">
+  <div class="container">
+    <div class="row">
+      <div class="col col-lg-6">
+        <h1> {{{uppercase heading}}} </h1>
+        <p class="lead"> {{{lead}}} </p>
+        <p> <a class="btn {{{btn.modifier}}}" {{#production}}onclick="{{{track.masthead.download}}}" {{/production}}href="https://github.com/assemble/assemble/archive/master.zip">{{{btn.text}}}</a> </p>
+      </div>
+      <div class="col col-lg-6">
+        <blockquote class="twitter-tweet"><p><a href="https://twitter.com/_mattbailey">@_mattbailey</a> no problem! That Assemble module has just completely changed my life . Thanks! <a href="https://twitter.com/search?q=%23webdev&amp;src=hash">#webdev</a> <a href="https://twitter.com/search?q=%23nodejs&amp;src=hash">#nodejs</a> <a href="https://twitter.com/search?q=%23frontend&amp;src=hash">#frontend</a> <a href="https://twitter.com/search?q=%23development&amp;src=hash">#development</a></p>&mdash; Przemyslaw Bobak (@bobek_balinek) <a href="https://twitter.com/bobek_balinek/statuses/346937578773172224">June 18, 2013</a></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </div>
+    </div>
+  </div>
+</header>

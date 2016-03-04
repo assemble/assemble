@@ -1,0 +1,60 @@
+{{! Segment.io Analytics 
+================================================== }}
+<script type="text/javascript">
+  var analytics=analytics||[];(function(){var e=["identify","track","trackLink","trackForm","trackClick","trackSubmit","page","pageview","ab","alias","ready","group"],t=function(e){return function(){analytics.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var n=0;n<e.length;n++)analytics[e[n]]=t(e[n])})(),analytics.load=function(e){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"===document.location.protocol?"https://":"http://")+"d2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/"+e+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n)};
+  analytics.load("5i5ww7uyuk");
+</script>
+
+
+
+{{! Documentation for Segment.io 
+================================================== }}
+{{#documentation}}
+<script type="text/javascript">
+  // Create a queue, but don't obliterate an existing one!
+  var analytics = analytics || [];
+  
+  (function () {
+  
+    // A list of all the methods we want to generate queueing stubs for.
+    var methods = [
+      'identify', 'track', 'trackLink', 'trackForm', 'trackClick', 'trackSubmit',
+      'page', 'pageview', 'ab', 'alias', 'ready', 'group'
+    ];
+  
+    // For each of our methods, generate a queueing method that pushes arrays of
+    // arguments onto our `analytics` queue. The first element of the array
+    // is always the name of the analytics.js method itself (eg. `track`), so that
+    // we know where to replay them when analytics.js finally loads.
+    var factory = function (method) {
+      return function () {
+        analytics.push([method].concat(Array.prototype.slice.call(arguments, 0)));
+      };
+    };
+  
+    for (var i = 0; i < methods.length; i++) {
+      analytics[methods[i]] = factory(methods[i]);
+    }
+  
+  }());
+  
+  // Define a method that will asynchronously load analytics.js from our CDN.
+  analytics.load = function(apiKey) {
+  
+    // Create an async script element for analytics.js based on your API key.
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = ('https:' === document.location.protocol ? 'https://' : 'http://') +
+                  'd2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/' + apiKey + '/analytics.min.js';
+  
+    // Find the first script element on the page and insert our script next to it.
+    var firstScript = document.getElementsByTagName('script')[0];
+    firstScript.parentNode.insertBefore(script, firstScript);
+  };
+  
+  // Load analytics.js with your API key, which will automatically load all of the
+  // analytics integrations you've turned on for your account. Boosh!
+  analytics.load('5i5ww7uyuk');
+</script>
+{{/documentation}}

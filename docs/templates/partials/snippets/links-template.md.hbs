@@ -1,0 +1,10 @@
+---
+layout: false
+---
+{{!-- This is hacky but it works. The "generate-links" helper scans the docs directory to automatically generate links for the documentation. --}}
+
+{{!-- the helper --}}
+{{generate-links 'src/templates/pages/docs/*.md.hbs'}}
+
+{{!-- add links that aren't picked up by helper --}}
+{{> links-manually-defined.md }}
