@@ -214,7 +214,7 @@ describe('app.create', function() {
     });
 
     it('should emit `create` when a collection is created:', function() {
-      app.on('create', function(collection) {
+      app.on('postCreate', function(collection) {
         if (collection.options.plural === 'layouts') {
           collection.options.foo = 'bar';
         }

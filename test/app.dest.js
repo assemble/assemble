@@ -1,16 +1,22 @@
-var spies = require('./support/spy');
-var chmodSpy = spies.chmodSpy;
-var statSpy = spies.statSpy;
+'use strict';
+
+var os = require('os');
+var path = require('path');
+var fs = require('graceful-fs');
+var rimraf = require('rimraf');
+var isWindows = (os.platform() === 'win32');
 
 require('mocha');
 var should = require('should');
 var assert = require('assert');
+var expect = require('expect');
+
+var spies = require('./support/spy');
+var chmodSpy = spies.chmodSpy;
+var statSpy = spies.statSpy;
+
 var App = require('..');
 var app;
-
-var path = require('path');
-var fs = require('graceful-fs');
-var rimraf = require('rimraf');
 
 var bufferStream;
 var bufEqual = require('buffer-equal');
@@ -21,10 +27,11 @@ var actual = path.join(__dirname, 'actual');
 
 var wipeOut = function(cb) {
   app = new App();
-  rimraf(path.join(__dirname, 'actual/'), cb);
   spies.setError('false');
   statSpy.reset();
   chmodSpy.reset();
+  expect.restoreSpies();
+  rimraf(path.join(__dirname, 'actual/'), cb);
 };
 
 var dataWrap = function(fn) {
@@ -34,9 +41,11 @@ var dataWrap = function(fn) {
   };
 };
 
-var realMode = function(n) {
-  return n & 07777;
-};
+var MASK_MODE = parseInt('777', 8);
+
+function masked(mode) {
+  return mode & MASK_MODE;
+}
 
 describe('dest stream', function() {
   beforeEach(wipeOut);
@@ -228,7 +237,7 @@ describe('dest stream', function() {
     var expectedContents = fs.readFileSync(inputPath);
     var expectedCwd = __dirname;
     var expectedBase = path.join(__dirname, 'actual');
-    var expectedMode = 0655;
+    var expectedMode = parseInt('655', 8);
 
     var expectedFile = new File({
       base: inputBase,
@@ -248,7 +257,7 @@ describe('dest stream', function() {
       buffered[0].path.should.equal(expectedPath, 'path should have changed');
       fs.existsSync(expectedPath).should.equal(true);
       bufEqual(fs.readFileSync(expectedPath), expectedContents).should.equal(true);
-      realMode(fs.lstatSync(expectedPath).mode).should.equal(expectedMode);
+      masked(fs.lstatSync(expectedPath).mode).should.equal(expectedMode);
       cb();
     };
 
@@ -268,7 +277,7 @@ describe('dest stream', function() {
     var expectedContents = fs.readFileSync(inputPath);
     var expectedCwd = __dirname;
     var expectedBase = path.join(__dirname, 'actual');
-    var expectedMode = 0655;
+    var expectedMode = parseInt('655', 8);
 
     var contentStream = through.obj();
     var expectedFile = new File({
@@ -289,7 +298,7 @@ describe('dest stream', function() {
       buffered[0].path.should.equal(expectedPath, 'path should have changed');
       fs.existsSync(expectedPath).should.equal(true);
       bufEqual(fs.readFileSync(expectedPath), expectedContents).should.equal(true);
-      realMode(fs.lstatSync(expectedPath).mode).should.equal(expectedMode);
+      masked(fs.lstatSync(expectedPath).mode).should.equal(expectedMode);
       cb();
     };
 
@@ -312,7 +321,7 @@ describe('dest stream', function() {
     var expectedPath = path.join(__dirname, 'actual/test');
     var expectedCwd = __dirname;
     var expectedBase = path.join(__dirname, 'actual');
-    var expectedMode = 0655;
+    var expectedMode = parseInt('655', 8);
 
     var expectedFile = new File({
       base: inputBase,
@@ -335,7 +344,7 @@ describe('dest stream', function() {
       buffered[0].path.should.equal(expectedPath, 'path should have changed');
       fs.existsSync(expectedPath).should.equal(true);
       fs.lstatSync(expectedPath).isDirectory().should.equal(true);
-      realMode(fs.lstatSync(expectedPath).mode).should.equal(expectedMode);
+      masked(fs.lstatSync(expectedPath).mode).should.equal(expectedMode);
       cb();
     };
 
@@ -391,7 +400,7 @@ describe('dest stream', function() {
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
     var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
-    var expectedMode = 0666 & (~process.umask());
+    var expectedMode = parseInt('666', 8) & (~process.umask());
 
     var expectedFile = new File({
       base: inputBase,
@@ -404,7 +413,7 @@ describe('dest stream', function() {
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       fs.existsSync(expectedPath).should.equal(true);
-      realMode(fs.lstatSync(expectedPath).mode).should.equal(expectedMode);
+      masked(fs.lstatSync(expectedPath).mode).should.equal(expectedMode);
       cb();
     };
 
@@ -424,7 +433,7 @@ describe('dest stream', function() {
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
     var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
-    var expectedMode = 0744;
+    var expectedMode = parseInt('744', 8);
 
     var expectedFile = new File({
       base: inputBase,
@@ -437,7 +446,7 @@ describe('dest stream', function() {
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       fs.existsSync(expectedPath).should.equal(true);
-      realMode(fs.lstatSync(expectedPath).mode).should.equal(expectedMode);
+      masked(fs.lstatSync(expectedPath).mode).should.equal(expectedMode);
       cb();
     };
 
@@ -453,13 +462,18 @@ describe('dest stream', function() {
   });
 
   it('should update file mode to match the vinyl mode', function(cb) {
+    if (isWindows) {
+      this.skip();
+      return;
+    }
+
     var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
     var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
     var expectedBase = path.join(__dirname, 'actual');
-    var startMode = 0655;
-    var expectedMode = 0722;
+    var startMode = parseInt('0655', 8);
+    var expectedMode = parseInt('0722', 8);
 
     var expectedFile = new File({
       base: inputBase,
@@ -471,12 +485,8 @@ describe('dest stream', function() {
       }
     });
 
-    var onEnd = function(){
-      assert(chmodSpy.called);
-      buffered.length.should.equal(1);
-      buffered[0].should.equal(expectedFile);
-      fs.existsSync(expectedPath).should.equal(true);
-      realMode(fs.lstatSync(expectedPath).mode).should.equal(expectedMode);
+    var onEnd = function() {
+      assert.equal(masked(fs.lstatSync(expectedPath).mode), expectedMode);
       cb();
     };
 
@@ -484,13 +494,8 @@ describe('dest stream', function() {
     fs.closeSync(fs.openSync(expectedPath, 'w'));
     fs.chmodSync(expectedPath, startMode);
 
-    chmodSpy.reset();
     var stream = app.dest('./actual/', {cwd: __dirname});
-
-    var buffered = [];
-    bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
-
-    stream.pipe(bufferStream);
+    stream.on('end', onEnd);
     stream.write(expectedFile);
     stream.end();
   });
@@ -499,8 +504,8 @@ describe('dest stream', function() {
     var inputBase = path.join(__dirname, 'fixtures/vinyl');
     var inputPath = path.join(__dirname, 'fixtures/vinyl/wow/suchempty');
     var expectedBase = path.join(__dirname, 'actual/wow');
-    var expectedDirMode = 0755;
-    var expectedFileMode = 0655;
+    var expectedDirMode = parseInt('755', 8);
+    var expectedFileMode = parseInt('655', 8);
 
     var firstFile = new File({
       base: inputBase,
@@ -510,8 +515,8 @@ describe('dest stream', function() {
     });
 
     var onEnd = function(){
-      realMode(fs.lstatSync(expectedBase).mode).should.equal(expectedDirMode);
-      realMode(buffered[0].stat.mode).should.equal(expectedFileMode);
+      masked(fs.lstatSync(expectedBase).mode).should.equal(expectedDirMode);
+      masked(buffered[0].stat.mode).should.equal(expectedFileMode);
       cb();
     };
 
@@ -595,7 +600,7 @@ describe('dest stream', function() {
     var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
     var expectedBase = path.join(__dirname, 'actual');
-    var expectedMode = 0722;
+    var expectedMode = parseInt('722', 8);
 
     var expectedFile = new File({
       base: inputBase,
@@ -625,7 +630,7 @@ describe('dest stream', function() {
     var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
     var expectedBase = path.join(__dirname, 'actual');
-    var expectedMode = 0722;
+    var expectedMode = parseInt('722', 8);
 
     var expectedFile = new File({
       base: inputBase,
@@ -641,7 +646,7 @@ describe('dest stream', function() {
     fs.closeSync(fs.openSync(expectedPath, 'w'));
 
     spies.setError(function(mod, fn) {
-      if (fn === 'stat' && arguments[2] === expectedPath) {
+      if (fn === 'fstat' && typeof arguments[2] === 'number') {
         return new Error('stat error');
       }
     });
@@ -654,13 +659,23 @@ describe('dest stream', function() {
     stream.write(expectedFile);
   });
 
-  it('should report chmod errors', function(cb) {
+  it('should report fchmod errors', function(cb) {
+    if (isWindows) {
+      this.skip();
+      return;
+    }
+
     var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
     var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
     var expectedBase = path.join(__dirname, 'actual');
-    var expectedMode = 0722;
+    var expectedMode = parseInt('722', 8);
+
+    var fchmodSpy = expect.spyOn(fs, 'fchmod').andCall(function() {
+      var callback = arguments[arguments.length - 1];
+      callback(new Error('mocked error'));
+    });
 
     var expectedFile = new File({
       base: inputBase,
@@ -675,27 +690,29 @@ describe('dest stream', function() {
     fs.mkdirSync(expectedBase);
     fs.closeSync(fs.openSync(expectedPath, 'w'));
 
-    spies.setError(function(mod, fn) {
-      if (fn === 'chmod' && arguments[2] === expectedPath) {
-        return new Error('chmod error');
-      }
-    });
-
-    var stream = app.dest('./actual/', {cwd: __dirname});
+    var stream = app.dest('actual/', { cwd: __dirname });
     stream.on('error', function(err) {
-      err.message.should.equal('chmod error');
+      expect(err).toExist();
+      expect(fchmodSpy.calls.length).toEqual(1);
       cb();
     });
     stream.write(expectedFile);
   });
 
-  it('should not chmod a matching file', function(cb) {
+  it('should not fchmod a matching file', function(cb) {
+    if (isWindows) {
+      this.skip();
+      return;
+    }
+
+    var fchmodSpy = expect.spyOn(fs, 'fchmod').andCallThrough();
+
     var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
     var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
     var expectedBase = path.join(__dirname, 'actual');
-    var expectedMode = 0722;
+    var expectedMode = parseInt('711', 8);
 
     var expectedFile = new File({
       base: inputBase,
@@ -707,44 +724,31 @@ describe('dest stream', function() {
       }
     });
 
-    var expectedCount = 0;
-    spies.setError(function(mod, fn) {
-      if (fn === 'stat' && arguments[2] === expectedPath) {
-        expectedCount++;
-      }
-    });
-
-    var onEnd = function(){
-      expectedCount.should.equal(1);
-      assert(!chmodSpy.called);
-      realMode(fs.lstatSync(expectedPath).mode).should.equal(expectedMode);
+    var stream = app.dest('actual/', { cwd: __dirname });
+    stream.on('end', function() {
+      assert.equal(fchmodSpy.calls.length, 0);
+      assert.equal(masked(fs.lstatSync(expectedPath).mode), expectedMode);
       cb();
-    };
-
-    fs.mkdirSync(expectedBase);
-    fs.closeSync(fs.openSync(expectedPath, 'w'));
-    fs.chmodSync(expectedPath, expectedMode);
-
-    statSpy.reset();
-    chmodSpy.reset();
-    var stream = app.dest('./actual/', {cwd: __dirname});
-
-    var buffered = [];
-    bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
-
-    stream.pipe(bufferStream);
+    });
     stream.write(expectedFile);
     stream.end();
   });
 
   it('should see a file with special chmod (setuid/setgid/sticky) as matching', function(cb) {
+    if (isWindows) {
+      this.skip();
+      return;
+    }
+
+    var fchmodSpy = expect.spyOn(fs, 'fchmod').andCallThrough();
+
     var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
     var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
     var expectedBase = path.join(__dirname, 'actual');
-    var expectedMode = 03722;
-    var normalMode = 0722;
+    var expectedMode = parseInt('3722', 8);
+    var normalMode = parseInt('722', 8);
 
     var expectedFile = new File({
       base: inputBase,
@@ -756,16 +760,8 @@ describe('dest stream', function() {
       }
     });
 
-    var expectedCount = 0;
-    spies.setError(function(mod, fn) {
-      if (fn === 'stat' && arguments[2] === expectedPath) {
-        expectedCount++;
-      }
-    });
-
-    var onEnd = function(){
-      expectedCount.should.equal(1);
-      assert(!chmodSpy.called);
+    var onEnd = function() {
+      expect(fchmodSpy.calls.length).toEqual(0);
       cb();
     };
 
@@ -773,14 +769,8 @@ describe('dest stream', function() {
     fs.closeSync(fs.openSync(expectedPath, 'w'));
     fs.chmodSync(expectedPath, expectedMode);
 
-    statSpy.reset();
-    chmodSpy.reset();
     var stream = app.dest('./actual/', {cwd: __dirname});
-
-    var buffered = [];
-    bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
-
-    stream.pipe(bufferStream);
+    stream.on('end', onEnd);
     stream.write(expectedFile);
     stream.end();
   });
@@ -900,7 +890,7 @@ describe('dest stream', function() {
     var file = new File({
       path: srcPath,
       cwd: __dirname,
-      contents: new Buffer("1234567890")
+      contents: new Buffer('1234567890')
     });
 
     stream.write(file);
@@ -910,8 +900,8 @@ describe('dest stream', function() {
 
 describe('dest', function() {
   beforeEach(function(cb) {
-    rimraf(actual, cb);
     app = new App();
+    rimraf(actual, cb);
   });
 
   afterEach(function(cb) {
@@ -1087,7 +1077,7 @@ describe('dest', function() {
       // data should be re-emitted correctly
       should.exist(file);
       should.exist(file.path);
-      path.join(file.path,'').should.equal(path.join(actual, 'generic'));
+      path.join(file.path, '').should.equal(path.join(actual, 'generic'));
     });
 
     outstream.on('end', function() {
