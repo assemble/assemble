@@ -6,8 +6,16 @@ var browserSync = require('browser-sync').create();
 var prettify = require('gulp-prettify');
 var extname = require('gulp-extname');
 var ignore = require('gulp-ignore');
+var merge = require('mixin-deep');
 var markdown = require('helper-markdown');
+var permalinks = require('assemble-permalinks');
+var through = require('through2');
 
+var getDest = require('./plugins/get-dest');
+var viewEvents = require('./plugins/view-events');
+
+
+var watch = require('base-watch');
 var redirects = require('./plugins/redirects');
 var manifest = require('./plugins/manifest');
 var utils = require('./support/utils');
@@ -19,6 +27,15 @@ var assemble = require('../');
  */
 
 var app = assemble();
+app.use(viewEvents('permalink'));
+app.use(permalinks());
+app.use(getDest());
+app.use(watch());
+
+app.onPermalink(/./, function(file, next) {
+  file.data = merge({}, app.cache.data, file.data);
+  next();
+});
 
 /**
  * Customize how templates are stored. This changes the
@@ -33,7 +50,7 @@ app.option('renameKey', function(fp) {
  * Create a custom view collection
  */
 
-app.create('docs');
+app.create('docs', {layout: 'body'});
 app.create('redirects', {
   renameKey: function(key, view) {
     return view ? view.path : key;
@@ -53,10 +70,11 @@ app.helpers('helpers/*.js');
 
 app.data({
   site: {
-    title: 'Assemble Docs'
+    title: 'Assemble Docs',
+    base: ':destBase/en/v' + pkg.version
   },
-  destBase: '_gh_pages/',
-  assets: 'assets',
+  destBase: '_gh_pages',
+  assets: ':site.base/assets',
   links: [{
     dest: 'assemble',
     collection: 'docs',
@@ -64,14 +82,16 @@ app.data({
   }]
 });
 
+app.docs.use(permalinks(':site.base/:filename/index.html'));
+
 /**
  * Middleware
  */
 
-app.preLayout(/\/api\/.*\.md$/, function(view, next) {
-  view.layout = 'body';
-  next();
-});
+// app.preLayout(/\/api\/.*\.md$/, function(view, next) {
+//   view.layout = 'body';
+//   next();
+// });
 
 /**
  * Clean out the current version's built files
@@ -84,7 +104,7 @@ app.task('clean', function(cb) {
 
 /**
  * Build manifest for a specific version.
- * This is in case an old version didn't have a manifest or something.
+ * This is in case an old version didn't have a manifest.
  * Run with `assemble manifest --version 0.6.0`
  */
 
@@ -135,8 +155,8 @@ app.task('redirects', function() {
  */
 
 app.task('load', function(cb) {
-  app.partials('templates/partials/*.hbs');
-  app.layouts('templates/layouts/*.hbs');
+  app.partials('templates/partials/**/*.hbs');
+  app.layouts('templates/layouts/**/*.hbs');
   app.docs('src/api/*.md');
   cb();
 });
@@ -197,16 +217,28 @@ app.task('build', ['load'], function() {
     .on('error', console.log)
     .pipe(prettify())
     .pipe(extname())
+    .pipe(through.obj(function(file, enc, next) {
+      file.path = file.data.permalink || file.path;
+      file.base = '_gh_pages';
+      next(null, file);
+    }))
     .pipe(manifest(app, {
+      base: 'en/v' + pkg.version,
       renamePath: function(fp) {
-        return 'en/v' + pkg.version + '/' + fp;
+        var idx = fp.indexOf('en/v' + pkg.version);
+        if (idx === -1) return fp;
+        return fp.substr(idx);
       }
     }))
     .pipe(app.dest(function(file) {
-      file.base = file.dirname;
-      return '../_gh_pages/en/v' + pkg.version;
+      // console.log(file);
+      return '../_gh_pages';
     }))
     .pipe(browserSync.stream());
+});
+
+app.task('assets', function() {
+  return app.copy(['src/assets/**/*'], '../_gh_pages/en/v' + pkg.version + '/assets');
 });
 
 /**
@@ -231,6 +263,7 @@ app.task('dev', ['default'], app.parallel(['serve', 'watch']));
 app.task('default', [
   'clean',
   'build',
+  'assets',
   'redirects',
   'generate-redirects'
 ]);
