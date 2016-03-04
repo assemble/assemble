@@ -1,0 +1,50 @@
+.panel-docs ul + blockquote,
+.panel-docs br + blockquote,
+.panel-docs hr + blockquote,
+.panel-docs pre + p + blockquote,
+.panel-docs pre + blockquote {
+  margin: 0;
+  padding: 10px 25px;
+}
+.panel-docs ul + blockquote > p,
+.panel-docs br + blockquote > p,
+.panel-docs hr + blockquote > p,
+.panel-docs pre + p + blockquote > p,
+.panel-docs pre + blockquote > p,
+.panel-docs ul + blockquote > p > a,
+.panel-docs br + blockquote > p > a,
+.panel-docs hr + blockquote > p > a,
+.panel-docs pre + p + blockquote > p > a,
+.panel-docs pre + blockquote > p > a {
+  font: bold normal 14px/2em 'Assemble SSm A', 'Assemble SSm B', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #000;
+}
+.panel-docs ul + blockquote > p > a,
+.panel-docs br + blockquote > p > a,
+.panel-docs hr + blockquote > p > a,
+.panel-docs pre + p + blockquote > p > a,
+.panel-docs pre + blockquote > p > a {
+  color: #178ab4;
+}
+h1 > em,
+h2 > em,
+h3 > em,
+h4 > em {
+  display: block;
+  color: #000;
+  font: bold normal 14px/2em 'Assemble SSm A', 'Assemble SSm B', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 10px 25px;
+}
+h1 > em > p > a,
+h2 > em > p > a,
+h3 > em > p > a,
+h4 > em > p > a {
+  color: #178ab4;
+}
+h2 > em {
+  margin-top: -65px;
+}
+h3 > em {
+  margin-top: -35px;
+}
