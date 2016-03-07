@@ -1,1 +1,1 @@
-<li{{#is ../../page.dest this.dest}} class="active"{{/is}}><a href="{{relative ../../page.dest this.dest}}" {{> click-tracker }}>{{data.title}}</a></li>
+<li{{#is-current this}} class="active"{{/is-current}}><a href="{{link-to this.key this.options.collection}}" {{> click-tracker }}>{{this.title}}</a></li>
