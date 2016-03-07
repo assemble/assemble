@@ -15,7 +15,7 @@
     {{!-- masthead
     =================================== --}}
     {{#if area}}
-      {{masthead area}}
+      {{partial (join 'masthead' area '-')}}
     {{/if}}
 
     {{!-- content

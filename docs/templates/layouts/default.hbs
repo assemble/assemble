@@ -12,7 +12,7 @@ layout: base
     <div class="col col-lg-3">
       <div class="sidebar">
         {{#if area}}
-          {{segment "sidenav" area}}
+          {{partial (join 'sidenav' area '-')}}
         {{/if}}
       </div>
     </div>
