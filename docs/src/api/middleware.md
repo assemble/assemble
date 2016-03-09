@@ -9,13 +9,19 @@ related: ['en-route']
 reflinks: ['en-route']
 ---
 
+
+## Overview
+
+This document describes the various features, options and API router methods available on Templates.js.
+
+
 # Middleware FAQ
 
 **What is "middleware"?**
 
 Middleware functions are functions that have access to:
 
-- The `view` object (in {{name}}, a "view" is an instance of a [vinyl][] file), and 
+- The `view` object (in assemble, a "view" is an instance of a [vinyl][] file), and 
 - A callback function, `next`, which represents the next middleware in the application’s build cycle
 
 Middleware functions can perform the following tasks:
@@ -82,7 +88,7 @@ certain triggers
 
 ## Related topics
 
-While plugins and middleware are both used to "extend" {{name}}, they serve very different purposes, are used in completely different ways, and have access to different objects at runtime. 
+While plugins and middleware are both used to "extend" assemble, they serve very different purposes, are used in completely different ways, and have access to different objects at runtime. 
 
 ## Middleware VERBS
 
@@ -109,4 +115,132 @@ While plugins and middleware are both used to "extend" {{name}}, they serve very
 - renderable templates only
 
 
-## Pro Tips
+## Router methods
+
+Router methods are similar to the router METHODS in [express][], but instead of representing [HTTP METHODS][verbs], the router methods here represent significant points or "stages" during the build. 
+
+**Summary**
+
+- `onLoad`: Immediately after a view is loaded, as a last step just before adding the view to a collection.
+- `preLayout`: Immediately before the first [layout][] in a [layout-stack][] is applied to a view.
+- `onLayout`: Called after each [layout][] in a [layout-stack][] is applied.
+- `postLayout`: Called after all [layouts][] have been applied to a view.
+- `onMerge`: Called directly before [partials][] collections are merged onto the [context][].
+- `preCompile`: Called before compiling a view.
+- `postCompile`: Called after compiling a view.
+- `preRender`: Called before rendering a view.
+- `postRender`: Called after rendering a view.
+
+
+## Methods
+
+### onLoad
+
+Immediately after a view is loaded, as a last step just before adding the view to a collection.
+
+**Example**
+
+Parse [YAML Front Matter][yaml] and add the parsed data object to `view.data`:
+
+```js
+var matter = require('parser-front-matter');
+app.onLoad(/\.hbs$/, function(view, next) {
+  matter.parse(view, next);
+});
+```
+
+### preLayout
+
+Immediately before the first [layout][] in a [layout-stack][] is applied to a view.
+
+```js
+app.preLayout(/\.hbs$/, function(view, next) {
+  // do something with `view`
+  next();
+});
+```
+
+### onLayout
+
+Called after each [layout][] in a [layout-stack][] is applied.
+
+```js
+app.onLayout(/\.hbs$/, function(view, next) {
+  // do something with `view`
+  next();
+});
+```
+
+### postLayout
+
+Called after all [layouts][] have been applied to a view.
+
+```js
+app.postLayout(/\.hbs$/, function(view, next) {
+  // do something with `view`
+  next();
+});
+```
+
+### onMerge
+
+Called directly before [partials][] collections are merged onto the [context][].
+
+```js
+app.onMerge(/\.hbs$/, function(view, next) {
+  // do something with `view`
+  next();
+});
+```
+
+### preCompile
+
+Called before compiling a view.
+
+```js
+app.preCompile(/\.hbs$/, function(view, next) {
+  // do something with `view`
+  next();
+});
+```
+
+### postCompile
+
+Called after compiling a view.
+
+```js
+app.postCompile(/\.hbs$/, function(view, next) {
+  // do something with `view`
+  next();
+});
+```
+
+### preRender
+
+Called before rendering a view.
+
+```js
+app.preRender(/\.hbs$/, function(view, next) {
+  // do something with `view`
+  next();
+});
+```
+
+### postRender
+
+Called after rendering a view.
+
+```js
+app.postRender(/\.hbs$/, function(view, next) {
+  // do something with `view`
+  next();
+});
+```
+
+
+[yaml]: https://en.wikipedia.org/wiki/YAML
+[verbs]: http://expressjs.com/api.html#router.METHOD
+
+{%= reflinks(['express']) %}
+
+

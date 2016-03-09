@@ -52,7 +52,7 @@ Assemble makes it easy to create, customize, generate and maintain complete web 
 * First class collection support, with paging, pagination, lists (arrays), groups and sorting. Collections even support plugins and collection-specific routes.
 * Use any template engine for rendering templates. You can even use multiple engines at once, Assemble will automatically detect the correct one to use on each template at render time.
 * Transform content from markdown or any other plain text format to HTML using plugins, middleware helpers or engines.
-* Full support for [gulp](http://gulpjs.com) plugins. Read our [gulp FAQ](docs/src/subjects/gulp-faq.md) for more info about gulp support.
+* Full support for [gulp][] plugins. Read our [gulp FAQ](docs/src/subjects/gulp-faq.md) for more info about gulp support.
 
 ## Install
 
@@ -68,7 +68,7 @@ If you plan on using assemble's CLI, you'll need to use an `assemblefile.js`. Ot
 
 **Example**
 
-Render a template with with [handlebars](http://www.handlebarsjs.com/):
+Render a template with with [handlebars][]:
 
 ```js
 var assemble = require('assemble');
@@ -194,7 +194,7 @@ $ assemble --emit=view
 
 Object-paths may be specified using dot-notation for **either the key or value** in a command line argument.
 
-Additionally, assemble uses [expand-object](https://github.com/jonschlinkert/expand-object) (and some custom parsing) to make it easier to pass non-trivial options and commands via command line. So all of the following formats are possible.
+Additionally, assemble uses [expand-object][] (and some custom parsing) to make it easier to pass non-trivial options and commands via command line. So all of the following formats are possible.
 
 **Examples**
 
@@ -287,9 +287,9 @@ var app = assemble();
 
 ## Templates API
 
-Assemble has an extensive API for working with templates and template collections. In fact, the entire API from the [templates](https://github.com/jonschlinkert/templates) library is available on Assemble.
+Assemble has an extensive API for working with templates and template collections. In fact, the entire API from the [templates][] library is available on Assemble.
 
-While we work on getting the assemble docs updated with these methods you can visit [the templates library](https://github.com/jonschlinkert/templates) to learn more about the full range of features and options.
+While we work on getting the assemble docs updated with these methods you can visit [the templates library][templates] to learn more about the full range of features and options.
 
 ***
 
@@ -302,11 +302,11 @@ Assemble offers the following low-level methods for working with the file system
 * [dest](#dest)
 * [copy](#copy)
 
-Assemble has first-class support for [vinyl-fs](http://github.com/wearefractal/vinyl-fs), so any [gulp](http://gulpjs.com) plugin can be used in your assemble pipeline.
+Assemble has first-class support for [vinyl-fs][], so any [gulp][] plugin can be used in your assemble pipeline.
 
 ### .src
 
-Create a [vinyl](http://github.com/gulpjs/vinyl) stream. Takes glob patterns or filepaths to the source files to read.
+Create a [vinyl][] stream. Takes glob patterns or filepaths to the source files to read.
 
 **Params**
 
@@ -441,8 +441,8 @@ app.task('watch', function() {
 
 **v0.8.0**
 
-* Updates [composer](https://github.com/doowb/composer) to v0.11.0, which removes the `.watch` method in favor of using the [base-watch](https://github.com/node-base/base-watch) plugin.
-* Changes in [templates](https://github.com/jonschlinkert/templates). Please see v0.11.0 in [templates history](https://github.com/jonschlinkert/templates#history) for more details.
+* Updates [composer][] to v0.11.0, which removes the `.watch` method in favor of using the [base-watch][] plugin.
+* Changes in [templates][]. Please see v0.11.0 in [templates history](https://github.com/jonschlinkert/templates#history) for more details.
 
 **v0.7.0**
 
@@ -450,11 +450,11 @@ app.task('watch', function() {
 
 **v0.6.0**
 
-* Major refactor. Assemble was completely re-written from the ground-up as a standalone node.js library and is no longer a grunt plugin. Grunt plugin support has been moved to [grunt-assemble](http://assemble.io). Please see that repo for additional details.
+* Major refactor. Assemble was completely re-written from the ground-up as a standalone node.js library and is no longer a grunt plugin. Grunt plugin support has been moved to [grunt-assemble][]. Please see that repo for additional details.
 
 ## Test coverage
 
-As of February 17, 2016:
+As of February 21, 2016:
 
 ```
 Statements : 100% (38/38)
@@ -473,7 +473,7 @@ If Assemble doesn't do what you need, [please let us know](https://github.com/un
 
 **Is the assemble website up-to-date?**
 
-No, it's completely out-of-date. If you're using [grunt-assemble](http://assemble.io), some of the documentation at assemble.io might still be useful. If you're using assemble v0.6.0 and higher, the documentation is probably wrong in almost every way.
+No, it's completely out-of-date. If you're using [grunt-assemble][], some of the documentation at assemble.io might still be useful. If you're using assemble v0.6.0 and higher, the documentation is probably wrong in almost every way.
 
 We're actively (daily) working on a refactor and it's a very high priority.
 
@@ -481,7 +481,7 @@ We're actively (daily) working on a refactor and it's a very high priority.
 
 Assemble adds a CLI, a few built-in view collections: `pages`, `layouts`, and `partials`, middleware for parsing front-matter, and a few other basic defaults that we've found many users expect. If you'd prefer different defaults, [assemble-core](https://github.com/assemble/assemble-core) is a great starting point.
 
-If you want something that handles templates, rendering, engines, helpers, collections, etc. but you don't need to run tasks or work with the file system, then consider using [templates](https://github.com/jonschlinkert/templates) instead of assemble-core.
+If you want something that handles templates, rendering, engines, helpers, collections, etc. but you don't need to run tasks or work with the file system, then consider using [templates][] instead of assemble-core.
 
 ## Related projects
 
@@ -528,4 +528,4 @@ Released under the [MIT license](https://github.com/assemble/assemble/blob/maste
 
 ***
 
-_This file was generated by [verb](https://github.com/verbose/verb), v0.9.0, on February 17, 2016._
+_This file was generated by [verb](https://github.com/verbose/verb), v0.9.0, on February 21, 2016._

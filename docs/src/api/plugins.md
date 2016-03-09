@@ -152,3 +152,46 @@ app.run(config);
 [Collection]: /api/Collection.md
 [Group]: /api/Group.md
 [List]: /api/List.md
+
+
+
+
+## FAQ
+
+> More about about plugins
+
+- a plugin is a function that is invoked by the `.use` method
+- the only parameter exposed to plugin functions is `app`, the object passed by the `.run` method (described in detail below)
+- plugins that **do not** return a function are not cached and will only be run once
+- plugins that **do** return a function will be pushed on to the `app.fns` array, allowing the function to be called later by the `.run` method
+- `.run` takes an object (`obj`) as its only argument and iterates over the array of `fns` passing `obj` to each function
+- `.run` checks `obj` for a `.use` method and, if one exists, it does `obj.use(fn)`, otherwise `fn.call(obj, obj)`. If `fn` once again returns a function, it will be pushed onto the `obj.fns` array, and so on. This can repeat indefinitely.
+- if `.run` is called with no `obj` (e.g. `app.run()` instead of `app.run(obj)`) then `app` (the is passed to `.run` 
+
+**Example**
+
+`.use` a plugin that will only be called once:
+
+```js
+var i = 0;
+function plugin(obj) {
+  obj.foo = i++;
+}
+
+app.use(plugin);
+console.log(app.foo);
+//=> 1
+```
+
+`.use` a plugin that can be called multiple times
+
+```js
+var i = 0;
+function plugin(obj) {
+  obj.foo = i++;
+}
+
+app.use(plugin);
+console.log(app.foo);
+//=> 1
+```
