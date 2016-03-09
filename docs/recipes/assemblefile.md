@@ -58,6 +58,7 @@ The following `assemblefile.js` will:
 ```js
 var assemble = require('assemble');
 var less = require('gulp-less');
+var app = assemble();
 
 app.task('html', function() {
   return app.src('templates/*.hbs')

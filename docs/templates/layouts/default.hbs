@@ -1,11 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>{{title}}</title>
-  </head>
-  <body>
-    {% body %}
-  </body>
-</html>
+---
+layout: base
+---
 
+{{!-- page content
+=================================== --}}
+<div class="container">
+  <div class="row">
+
+    {{!-- side navigation
+    =================================== --}}
+    <div class="col col-lg-3">
+      <div class="sidebar">
+        {{#if area}}
+          {{segment "sidenav" area}}
+        {{/if}}
+      </div>
+    </div>
+
+    {{!> edit-template-link }}
+
+    {{! main content
+    =================================== }}
+    <div class="col col-lg-9">
+      <div class="panel panel-docs">
+        <h1>{{page.title}}</h1>
+          {% body %}
+        <hr>
+
+        <p><a href="{{#is area 'helpers'}}{{site.content.view}}{{else}}{{site.templates.view}}{{/is}}/{{area}}/{{#is area 'helpers'}}{{replace this.basename 'helpers-' '' }}{{else}}{{this.basename}}.hbs{{/is}}">See the template for this page → </a></p>
+        {{> footer }}
+      </div>
+    </div>
+  </div>
+</div>

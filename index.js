@@ -6,6 +6,7 @@
 
 var path = require('path');
 var Core = require('assemble-core');
+var debug = Core.debug;
 var utils = require('./lib/utils');
 var cli = require('./lib/cli');
 
@@ -29,6 +30,7 @@ function Assemble(options) {
   this.options = utils.merge({}, this.options, options);
   Core.call(this, options);
   this.is('Assemble');
+  debug(this);
 
   this.initDefaults(this);
   this.initPlugins(this);
@@ -159,3 +161,11 @@ Core._.plugin.is(Assemble);
  */
 
 module.exports = Assemble;
+
+/**
+ * Expose static properties for unit tests
+ */
+
+Assemble.debug = Core.debug;
+Assemble.utils = Core.utils;
+Assemble._ = Core._;

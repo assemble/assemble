@@ -1,0 +1,89 @@
+<style>
+  .repos {
+    margin-left: 0;
+    padding: 0;
+    margin: 0 0 10px 25px;
+  }
+  .repo {
+    padding: 10px;
+    list-style: none;
+  }
+  .repo > .card {
+    position: relative;
+    padding: 1px 20px;
+    height: 250px;
+    background: #fff;
+    -webkit-box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+       -moz-box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+            box-shadow: 1px 1px 0 rgba(0,0,0,.2);
+  }
+  .card h2 {
+    font-size: 16px;
+  }
+  .card h3 {
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #aaa;
+  }
+  .card p {
+    color: #333;
+  }
+
+  .card:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    border-right: 50px solid #33B5E5;
+    border-bottom: 50px solid rgba(0, 0, 0, 0);
+    border-left: 50px solid rgba(0, 0, 0, 0);
+    content: '';
+  }
+
+  /* renders as black */
+  .card.javascript:after {
+    border-right-color: #333;
+  }
+  /* renders as light blue */
+  .card.css:after {
+    border-right-color: #7ac9de;
+  }
+  /* renders as yellow */
+  .card.css:after {
+    border-right-color: #cc8300;
+  }
+  /* renders as green */
+  .card.css:after {
+    border-right-color: #6aad2d;
+  }
+  /* renders as red */
+  .card.css:after {
+    border-right-color: #cc1100;
+  }
+  iframe.small {
+    float: left;
+  }
+</style>
+
+<!-- GitHub repos -->
+<ol class="repos">
+  {{#each repos}}
+    {{#gt watchers 4}}
+    <li class="repo col col-lg-4">
+      <div class="card {{lowercase language}}">
+        <a href="{{html_url}}">
+          <h2>{{name}}</h2>
+
+          {{!-- githhub buttons --}}
+          <iframe class="small" src="http://ghbtns.com/github-btn.html?user={{owner.login}}&amp;repo={{name}}&amp;type=fork&amp;count=true&amp;size=small" allowtransparency="true" frameborder="0" scrolling="0" width="90" height="30"></iframe>
+          <iframe class="small" src="http://ghbtns.com/github-btn.html?user={{owner.login}}&amp;repo={{name}}&amp;type=watch&amp;count=true&amp;size=small" allowtransparency="true" frameborder="0" scrolling="0" width="90" height="30"></iframe>
+          <h3>{{language}}</h3>
+          <p>{{truncate description 250 ' ...'}}</p>
+        </a>
+      </div>
+    </li>
+    {{/gt}}
+  {{/each}}
+</ol>

@@ -1,0 +1,32 @@
+---
+component: teaser
+---
+
+{{! Special styles for GitHub Buttons
+====================================== }}
+<style type="text/css" media="screen">
+  .teaser iframe {
+    margin: -7px 0 0 25px;
+    vertical-align: text-top;
+  }
+  .teaser iframe + iframe {
+    margin-left: -20px;
+  }
+</style>
+
+
+
+
+{{! TEASER COMPONENT
+====================================== }}
+<div class="teaser {{modifier}}">
+  <a class="teaser-content" href="{{ url }}">
+    {{{default masthead.title ''}}}
+    <em> {{{default masthead.subtitle ''}}} </em>
+
+    {{! GITHUB BUTTONS
+    ======================= }}
+    {{> btn-github-star }}
+    {{> btn-github-fork }}
+  </a>
+</div>

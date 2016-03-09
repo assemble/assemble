@@ -1,0 +1,30 @@
+---
+component: navbar
+---
+<div class="navbar" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="{{!link-to "index"}}/" class="navbar-brand">ASSEMBLE</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li{{#is section "docs"}} class="active"{{/is}}> <a href="{{!link-to "docs"}}/">Docs</a> </li>
+        <!--<li{{#is section "boilerplates"}} class="active"{{/is}}> <a href="{{!link-to "boilerplates"}}/">Boilerplates</a> </li>-->
+        <li{{#is section "plugins"}} class="active"{{/is}}> <a href="{{!link-to "plugins"}}/">Plugins</a> </li>
+        <li{{#is section "helpers"}} class="active"{{/is}}> <a href="{{!link-to "helpers"}}/">Helpers</a> </li>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+        <!--<li{{#is basename "Examples"}} class="active"{{/is}}> <a href="{{!link-to "examples"}}/">Examples</a> </li>-->
+        <!--<li{{#is title "Tutorials"}} class="active"{{/is}}> <a href="{{!link-to "tutorials"}}/">Tutorials</a> </li> -->
+        <li{{#is section "Blog"}} class="active"{{/is}}> <a href="{{!link-to "blog"}}/">Blog</a> </li>
+        <li><a href="https://github.com/assemble/assemble/archive/master.zip" title="Download Assemble" {{#production}}{{{track.navbar.download}}}{{/production}}><i class="glyphicon glypicon-large glyphicon-download"></i></a></li>
+        <li> <a href="https://github.com/assemble/assemble/" {{#production}}{{{track.navbar.click-repo}}}{{/production}}>GitHub Repo</a> </li>
+      </ul>
+    </nav>
+  </div>
+</div>
