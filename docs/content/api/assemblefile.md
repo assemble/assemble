@@ -6,7 +6,7 @@ You might also be interested in reading the [assemblefile.js recipe](/recipes/as
 
 When used via command line, assemble looks for an `assemblefile.js` in the root of your project, and attempts to run the code in the file using any commands or flags that might have been passed. 
 
-An  `assemblefile.js` is not necessary if you just need assemble's API and don't plan on using the CLI.
+_If you are only using assemble's API, an `assemblefile.js` is not necessary._ 
 
 ## CLI
 
@@ -19,7 +19,7 @@ When run via CLI, assemble attempts to automatically detect an `assemblefile.js`
 
 ## API
 
-If you're not using assemble's CLI, you can use the `.build` method to run tasks.
+If you need to run tasks programmatically, use the `.build` method to run tasks.
 
 ```js
 var assemble = require('assemble');
@@ -32,7 +32,6 @@ app.task('default', function() {
 
 app.build('default', function(err) {
   if (err) throw err;
-  console.log('done!');
 });
 ```
 

@@ -6,11 +6,7 @@ description: >
   Learn how to create and work with lists, for grouping, sorting, pagination and more!
 ---
 
-### List
-
-API for the `List` class.
-
-### List
+## List
 
 Create an instance of `List` with the given `options`. Lists differ from collections in that items are stored as an array, allowing items to be paginated, sorted, and grouped.
 

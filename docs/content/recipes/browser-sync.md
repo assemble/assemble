@@ -156,16 +156,16 @@ h1 {
 <html lang="en">
   <head>
   	<meta charset="UTF-8">
-  	<title>{{title}} | {{site.title}}</title>
+  	<title>\{{title}} | \{{site.title}}</title>
   	<link rel="stylesheet" href="css/default.css">
   </head>
   <body>
-    <h1>{{title}}</h1>
+    <h1>\{{title}}</h1>
 
 <!-- keep inline markdown left-aligned, so it formats correctly -->
-{{#markdown}}
+\{{#markdown}}
 {% body %}
-{{/markdown}}
+\{{/markdown}}
 
   </body>
 </html>

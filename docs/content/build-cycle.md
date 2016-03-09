@@ -7,7 +7,7 @@
 * transform
 * write
 
-**View lifecycle**
+**Build stages**
 
 * initialize app
 * create collection (only applies to cached views)
@@ -22,44 +22,34 @@
 
 ## Plugins
 
-Instance plugins are invoked at specific points during the application lifecycle.
+Unless explicitly invoked by the user (using `.use` or `.run`, for example), instance plugins are only invoked when an instance is created. 
 
-**Application lifecycle**
+**Instances**
 
-- App: the application instance is initialized first
-- Collection: next, collections are created, if defined
-- View: last, views are created, if defined
+More specifically, plugins are invoked when the following instances are created:
+
+- App: `app` plugins are invoked when the application (assemble) instance is initialized
+- Collection: `collection` plugins are invoked when a collection is created
+- View: `view` plugins are invoked when a view is created
 
 **Exceptions to the rule**
 
-- Un-cached (collection-less) views might be created before any collections are created, thus
+- Un-cached (collection-less) views might be created before any collections are created (for example, views created using `app.view()` are not cached on a collection)
 - Plugins that are _defined on a collection_ will only be passed to views created by the collection.
-
-### Plugin lifecycle
-
-Accordingly:
-
-- App plugins are invoked when the instance is created
-- Collection plugins are invoked when a collection is created
-- View plugins are invoked when a view is created
 
 ## Middleware
 
 Middleware handlers correspond to points during the build cycle.
 
-## Build cycle
-
-Middleware handlers correspond to points during the build cycle.
-
 ## View lifecycle
 
-- load
-- render
-- write
+- [load](#load)
+- [render cycle](#render-cycle)
+- [write](#write)
 
 ### Load
 
-The "load" stage corresponds to when a `view` is _created and added to a collection_, at which point the `.onLoad` middleware handler is invoked.
+The "load" stage corresponds to when a `view` is _loaded onto a collection_. This is also the point the `.onLoad` middleware handler is invoked.
 
 - `app.src`
 - `collection.addView`
@@ -88,17 +78,34 @@ The render cycle is the most complex part of the build cycle, and consists of fi
 
 **In detail**
 
-_(These probably aren't in the 100% correct order! I just wanted to write it down so I wouldn't forget to do this. Feel free to do a pr with corrections :)_
+Create the context:
+
+- merge context (not a middleware stage)
+
+Start the render cycle:
 
 - pre-render
-- pre-compile
-- apply layout
-- merge partials
-- merge helpers
-- merge context
-- compile
+- pre-compile (if `.compile` is called directly, this will happen before pre-render)
+
+Apply the layout stack:
+
+- pre-layout
+- on-layout
+- post-layout
+
+Merge helpers and partials onto the context:
+
+- merge helpers (not a middleware stage)
+- on-merge (partials)
+
+Finish compiling:
+
+- compile (`.compile` method is called)
 - post-compile
-- render
+
+Finish rendering:
+
+- render (`.render` method is called)
 - post-render
 
 **Related API methods**
@@ -117,3 +124,13 @@ _(These probably aren't in the 100% correct order! I just wanted to write it dow
 
 - `view.write`
 - `app.dest`
+
+
+### Pre-render
+
+- `.preRender` middleware is invoked
+- `preRender` event is emitted
+
+### Render
+
+### Post-render

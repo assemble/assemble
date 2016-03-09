@@ -10,11 +10,11 @@ This document describes the various features, options and API router methods ava
 
 ## Router methods
 
-Router methods are similar to the router METHODS in [express][], but instead of representing [HTTP METHODS][verbs], the router methods here represent significant points or "stages" during the build. 
+Router methods are similar to the router METHODS in [express][], but instead of representing [HTTP METHODS][verbs], the router methods here represent significant points or "stages" during the build cycle. 
 
 **Summary**
 
-- `onLoad`: Immediately after a view is loaded, as a last step just before adding the view to a collection.
+- `onLoad`: Immediately after a view is loaded, after the `load` event is emitted, and before adding the view to a collection.
 - `preLayout`: Immediately before the first [layout][] in a [layout-stack][] is applied to a view.
 - `onLayout`: Called after each [layout][] in a [layout-stack][] is applied.
 - `postLayout`: Called after all [layouts][] have been applied to a view.

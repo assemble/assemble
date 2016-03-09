@@ -3,58 +3,57 @@ title: View types
 collection: docs
 category: api
 description: >
-  This document describes a concept unique to Assemble called "view types". View types give Assemble, and the user, a way of controlling the behavior and features expected for a given view.
+  This document describes a concept unique to Assemble called "view types". View types give Assemble, and the user, a way of controlling how views are handled during the render cycle.
 related: 
   - {title: collections, url: collections.md}
   - {title: view, url: view.md}
 ---
 
-**Jump ahead**
+## Overview
 
-Available view types:
+Whereas "view collections" are used for organizing and caching views, "view types" determine how the individual views in a collection will be handled during the render cycle. 
 
-- [renderable](#renderable)
-- [partial](#partial)
-- [layout](#layout)
+For example, views with the `partial` view type will be merged onto the context before being passed to the template engine for rendering, but views with the `layout` and `renderable` types will not.
 
-**The basics**
+**Supported view types**
 
-View types determine what will happen to templates in a collection at certain points during the build process. Additionally:
+Assemble currently supports three view types: `partial`, `renderable` and `layout`. View types are defined on the `viewType` option when a collection is created, and collections may have one _or more_ view types, defaulting to `renderable` if no other types are defined. 
 
-- every view collection must define at least one view type; if no type is defined `renderable` will be set by default.
-- more than one view type may be defined, but this should be done sparingly to avoid unnecessarily creating methods and logic that aren't needed (continue reading to learn more about this below).
+- `partial`: allows "partial views" to be injected into other views. useful for components, document fragments, or other snippets of reusable code or content. 
+- `layout`: allows views to "wrap" other views (of any type, including other layouts or partials) with common code or content. 
+- `renderable`: views that have a one-to-one relationship with rendered files that will eventually be visible to a user or visitor to a website. For example: pages or blog posts.
+
+**Avoid view type overload!**
+
+Although multiple view types may be assigned to a collection, this should be done sparingly to avoid creating unnecessary methods, logic and processing that can have a cumulative, negative impact on build times.
+
+Usually one view type will be sufficient.
 
 ## Defining view types
 
-View types are defined when a view collection is created by the `.create()` or `.collection()` methods. 
+View types are defined when a view collection is created by the `.create()` or `.collection()` methods. Or, passed on the constructor options when creating a view collection from the [Views class](Views.md).
 
 A string or array of view types may be passed on the `viewType` option. If no `viewType` is defined, `renderable` will be used by default. 
 
 **Example**
 
+View types are stored as an array on a collection's `viewType` property: 
+
 ```js
 app.create('includes', {viewType: 'partial'});
-console.log(app.includes.options.viewType)
+console.log(app.includes.viewType)
 //=> ['partial']
 
 app.create('pages');
-console.log(app.includes.options.viewType)
-//=> ['renderable']
-```
-
-## Checking view types
-
-A collection's view type(s) are stored as an array on `options.viewType`.
-
-```js
-app.create('pages');
-console.log(app.pages.options.viewType)
+console.log(app.includes.viewType)
 //=> ['renderable']
 ```
 
 ## Deciding on view types
 
-Assemble currently supports three view types: `renderable`, `layout` and `partial`. Each view type has unique attributes and features that make that view type more suitable from some things, and less suitable for others. This section describes each, and why you might need one type versus another.
+Each of the three supported view types, `renderable`, `layout` and `partial`, has special attributes that make that view type more suitable from some things, and less suitable for others. 
+
+This section describes each, and why you might need one type versus another.
 
 **How do view types differ from collections?**
 

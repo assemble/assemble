@@ -57,7 +57,7 @@ Assemble has first-class support for collections, with four different collection
 --- | --- | ---
 Collection | Object | Bare-bones collections, for caching an object of `items`. Use `app.collection()` or `new app.Collection()` when you want to customize your own render cycle, middleware handlers, or creating an entirely custom collection experience.
 View collection | Object | Augments collections with special methods and middleware handlers that are synchronized to the render cycle. View collections are typically created using the [.create](#create) method.
-List | Array | Similar to collections, but items are **cached as an array**. Use `app.list()` or `new app.List()` to create a list.
+List | Array | Similar to collections, but caches `items` as an **array**. Use `app.list()` or `new app.List()` to create a list.
 Group | Object | Used within lists for grouping items. Can be used in conjunction with sorting, paging, pagination, and more.
 
 ## API
@@ -110,7 +110,9 @@ var doc = app.views.docs['faq.hbs'];
 
 Assemble supports three different view types: `partial`, `renderable` and `layout`. View types determine how individual views will be handled during the render cycle. When a view collection is created, one or more view types may be passed on the options.
 
-- pa
+- partial
+- renderable
+- layout
 
 ### Built-in view collections
 
@@ -139,7 +141,7 @@ Use the `partial` helper to inject into other templates:
 
 ```html
 <!-- handlebars -->
-{{partial "banner"}}
+\{{partial "banner"}}
 
 <!-- lodash/erb style -->
 <%= partial("banner") %>
@@ -164,7 +166,7 @@ app.pages('pages/*.hbs', {site: {title: 'Code Project'}});
 Use the `page` helper to inject pages into other templates:
 
 ```js
-{{page "toc"}}
+\{{page "toc"}}
 ```
 
 Get a cached page:
@@ -277,7 +279,7 @@ Helpers are passed to the template engine being used at render time.
 app.helper('read', function(filepath) {
   return fs.readFileSync(filepath, 'utf8');
 });
-//=> {{read "foo.txt"}}
+//=> \{{read "foo.txt"}}
 ```
 
 **Register a glob of helpers**

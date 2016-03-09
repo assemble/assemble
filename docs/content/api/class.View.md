@@ -9,7 +9,7 @@ related:
   - { title: view-types, url: view-types.md }
 ---
 
-## Summary
+## Overview
 
 The `View` class is used to add "views" to "view collections" in assemble. Pages, posts, layouts, partials and includes are all examples of view collections you can create. A "page" would represent a single view in a "pages" (view) collection.
 

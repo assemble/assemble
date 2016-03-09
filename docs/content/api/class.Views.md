@@ -5,11 +5,28 @@ draft: true
 
 ## Overview
 
-The `Views` class is used internally for creating collections. But it's also exposed so you can create collections directly if you need to.
+The `Views` class is responsible for view collections in assemble. Whenever the `.create` method is used, an instance of `Views` is created. Thus, all of the methods and properties unique to view collections, such as `.addView` and `.getView`, are prototype methods on the `View` class.
+
+The `View` class is also exposed as a property on `app` in case you need to access it directly.
+
+**Example**
+
+```js
+var assemble = require('assemble');
+var app = assemble();
+var views = new app.Views();
+```
+
+**Related**
+
+Also see: 
+
+- [View](View.md) 
+- [view-collections](view-collections.md)
 
 ## API
 
-API for the `Views` class.
+Methods, features and options available on the `Views` class.
 
 ### Views
 
