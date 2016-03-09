@@ -1,4 +1,5 @@
 'use strict';
+
 var through = require('through2');
 var arraySort = require('array-sort');
 

@@ -11,6 +11,7 @@ module.exports = function viewEvents(eventName) {
     + eventName.slice(1);
 
   return function(app) {
+    if (!app.isApp) return;
     if (!(method in app)) {
       app.handler(method);
     }

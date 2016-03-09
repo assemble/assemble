@@ -7,9 +7,11 @@ var first = require('get-first');
  * to views.
  */
 
-module.exports = function getDest() {
-  return function fn(view) {
-    if (!view.isView && !view.isItem) return fn;
+module.exports = function() {
+  return function getDest(view) {
+    if (this.isRegistered('view-get-dest')) return;
+    if (!view.isView && !view.isItem) return getDest;
+
     Object.defineProperty(view, 'dest', {
       configurable: true,
       set: function(dest) {

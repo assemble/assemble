@@ -21,7 +21,6 @@ module.exports = function manifest(app, options) {
   });
 };
 
-
 function renamePath(options) {
   if (typeof options.renamePath === 'function') {
     return options.renamePath;
