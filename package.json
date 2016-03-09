@@ -122,6 +122,7 @@
     "yeoman"
   ],
   "verb": {
+    "run": true,
     "toc": true,
     "layout": "nil",
     "tasks": [
@@ -162,8 +163,12 @@
       "templates",
       "verb",
       "vinyl",
-      "vinyl-fs"
-    ]
+      "vinyl-fs",
+      "assemble-handle"
+    ],
+    "lint": {
+      "reflinks": true
+    }
   },
   "lintDeps": {
     "ignore": [
