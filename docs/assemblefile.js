@@ -7,6 +7,7 @@ var watch = require('base-watch');
 var prettify = require('gulp-prettify');
 var extname = require('gulp-extname');
 var ignore = require('gulp-ignore');
+var debug = require('debug')('assemble:docs');
 var browserSync = require('browser-sync').create();
 var permalinks = require('assemble-permalinks');
 var markdown = require('helper-markdown');
@@ -21,16 +22,28 @@ var utils = require('./support/utils');
 var pkg = require('../package');
 var assemble = require('..');
 
+assemble.on('preInit', function(app) {
+  console.log(app._name);
+});
+
+assemble.on('init', function(app) {
+  console.log(app);
+});
+
 /**
  * Create our assemble appplication
  */
 
 var app = assemble();
 app.time = new Time();
-app.use(viewEvents('permalink'));
+viewEvents('permalink')(app);
 app.use(permalinks());
 app.use(getDest());
 app.use(watch());
+
+app.on('error', function(err) {
+  console.log(err.stack);
+});
 
 /**
  * Common variables
@@ -45,6 +58,7 @@ var build = {
  */
 
 app.onPermalink(/./, function(file, next) {
+  debug('creating permalink context for %s', file.path);
   file.data = merge({}, app.cache.data, file.data);
   next();
 });
@@ -158,9 +172,9 @@ app.task('redirects', function() {
  */
 
 app.task('load', function(cb) {
-  app.partials('templates/partials/**/*.hbs');
-  app.layouts('templates/layouts/**/*.hbs');
-  app.docs('content/api/*.md');
+  app.partials('templates/partials/**/*.hbs', {cwd: __dirname});
+  app.layouts('templates/layouts/**/*.hbs', {cwd: __dirname});
+  app.docs('content/api/*.md', {cwd: __dirname});
   cb();
 });
 
@@ -183,18 +197,17 @@ app.task('serve', function() {
  */
 
 app.task('generate-redirects', function() {
-  app.data('data/redirects.json', {namespace: 'redirects'});
+  app.data('data/redirects.json', { namespace: 'redirects' });
   var redirects = app.data('redirects');
 
   for(var key in redirects) {
     var to = redirects[key];
-    var redirect = {seconds: 3, url: to};
     app.redirect(key, {
       path: key,
       data: {
         title: key,
         layout: 'redirect',
-        redirect: redirect
+        redirect: { seconds: 3, url: to }
       },
       content: ''
     });

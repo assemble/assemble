@@ -40,7 +40,7 @@ app.create('docs');
  * Load helpers
  */
 
-app.helpers('docs/helpers/*.js');
+app.helpers('docs/support/helpers/*.js');
 
 /**
  * Load some "global" data
@@ -74,9 +74,9 @@ app.preLayout(/\/api\/.*\.md$/, function(view, next) {
 
 app.task('load', function(cb) {
   app.pages('docs/templates/pages/*.hbs');
-  app.partials('docs/templates/partials/*.hbs');
-  app.layouts('docs/templates/layouts/*.hbs');
-  app.docs('./docs/src/api/*.md');
+  app.partials('docs/templates/partials/**/*.hbs');
+  app.layouts('docs/templates/layouts/**/*.hbs');
+  app.docs('./docs/content/api/*.md');
   cb();
 });
 
