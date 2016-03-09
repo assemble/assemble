@@ -3,10 +3,8 @@
 var placeholders = require('placeholders');
 var utils = require('../../lib/utils');
 
-var support = module.exports;
+exports.exists = utils.exists;
 
-support.exists = utils.exists;
-
-support.versionPath = function(structure, data, opts) {
+exports.versionPath = function(structure, data, opts) {
   return placeholders(opts)(structure, data);
 };
