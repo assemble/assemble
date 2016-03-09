@@ -2,6 +2,7 @@
 
 var path = require('path');
 var del = require('delete');
+var Time = require('time-diff');
 var watch = require('base-watch');
 var prettify = require('gulp-prettify');
 var extname = require('gulp-extname');
@@ -25,6 +26,7 @@ var assemble = require('..');
  */
 
 var app = assemble();
+app.time = new Time();
 app.use(viewEvents('permalink'));
 app.use(permalinks());
 app.use(getDest());

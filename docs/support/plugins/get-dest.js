@@ -9,10 +9,7 @@ var first = require('get-first');
 
 module.exports = function getDest() {
   return function fn(view) {
-    if (!view.isView && !view.isItem) {
-      return fn;
-    }
-
+    if (!view.isView && !view.isItem) return fn;
     Object.defineProperty(view, 'dest', {
       configurable: true,
       set: function(dest) {
