@@ -26,23 +26,89 @@ Views are also instances of [vinyl][] files, so they have all of properties and 
 
 See the [vinyl][] docs for more details.
 
-## .setView
+## View API
 
-Set a view on the collection. This is identical to [addView](#addView) except `setView` does not emit an event for each view.
+### View
+
+Create a new `View` with the given object.
+
+**Params**
+
+* `view` **{Object}**
+
+**Example**
 
 ```js
-collection.setView('foo', {content: 'bar'});
+var view = new View({
+  path: 'foo.html',
+  content: 'this is content...'
+});
 ```
 
-## .addView
+### .context
 
-Add a view to a collection. 
+Creates a context object from front-matter data, `view.locals` and the given `locals` object.
+
+**Params**
+
+* `locals` **{Object}**: Optionally pass locals to the engine.
+* `returns` **{Object}**: Returns the context object.
+
+**Example**
 
 ```js
-collection.addView('foo', {content: 'bar'});
+var ctx = page.context({foo: 'bar'});
 ```
 
+### .compile
+
+Synchronously compile a view.
+
+**Params**
+
+* `locals` **{Object}**: Optionally pass locals to the engine.
+* `returns` **{Object}** `View`: instance, for chaining.
+
+**Example**
+
+```js
+var view = page.compile();
+view.fn({title: 'A'});
+view.fn({title: 'B'});
+view.fn({title: 'C'});
+```
+
+### .render
+
+Asynchronously render a view.
+
+**Params**
+
+* `locals` **{Object}**: Optionally pass locals to the engine.
+* `returns` **{Object}** `View`: instance, for chaining.
+
+**Example**
+
+```js
+view.render({title: 'Home'}, function(err, res) {
+  //=> view object with rendered `content`
+});
+```
+
+### .isType
+
+Return true if the view is the given view `type`. Since types are assigned by collections, views that are "collection-less" will not have a type, and thus will always return `false` (as expected).
+
+**Params**
+
+* `type` **{String}**: (`renderable`, `partial`, `layout`)
+
+**Example**
+
+```js
+view.isType('partial');
+```
 
 ## Related
 
-* [View API](/api/view.api.md)
+* [view](/api/view.md)

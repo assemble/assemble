@@ -19,7 +19,7 @@ Assemble makes it easy to create, customize, generate and maintain a complete st
 **For those who prefer a more technical description:**
 
 - Assemble is a node.js/JavaScript build system that that automatically builds projects and libraries from source code. 
-- Besides building projects, Assemble can be used to update any project that contains files that must be updated automatically whenever other files change.
+- Besides building projects, Assemble can be used to update any project that contains files that must be updated automatically whenever other files change (using `.watch`)
 - Development with Assemble takes place on a local machine, and the generated site can be deployed to any web server.
 - Assemble can be used by command line or API.
 
@@ -62,7 +62,8 @@ Assemble loves designers and developers, and is often used for:
 
 Assemble is used on thousands of projects of every size, with users in every country. 
 
-- Large sites: [] [zurb foundation][zurb] | [less.js](http://lesscss.org/) | [WET][]
+- Large projects: [zurb foundation][zurb] | [less.js](http://lesscss.org/) | [Web Experience Toolkit][WET]
+- Large sites: Target, Airbus
 - Small sites: 
 - Marketing sites: 
 - Design sites: 
@@ -73,11 +74,9 @@ If you're a designer, web designer, web developer, node.js developer, blogger, b
 
 **Get in touch!**
 
-Have [questions][issue]? [Suggestions][issue]? The assemble team is more than happy to help! 
+Have [questions][issue]? [Suggestions][issue]? Join the conversation on [gitter](gitter.im/assemble/assemble) or give us a shout on [twitter](https://twitter.com/assemblejs). The assemble team and community are always happy to help! 
 
-
-
+[issue]: https://github.com/assemble/assemble/issues/new?title=%5Byour%20topic%5D&body=assemble%20version%3A%20%5Breplace%20this%20with%20the%20version%20of%20assemble%20used%20on%20your%20project%5D%0Aoperating%20system%3A%20%5Breplace%20this%20with%20your%20os%5D%0A%0Adescription%3A%20%5Bplease%20provide%20as%20much%20detail%20as%20possible%20so%20we%20can%20do%20our%20best%20to%20help%20you%5D
 [WET]: https://wet-boew.github.io/v4.0-ci/index-en.html
 [zurb]: http://foundation.zurb.com/docs/
 [senheiser]: http://sennheiser-d1.com/
-[issue]: https://github.com/assemble/assemble/issues/new?title=%5Byour%20topic%5D&body=assemble%20version%3A%20%5Breplace%20this%20with%20the%20version%20of%20assemble%20used%20on%20your%20project%5D%0Aoperating%20system%3A%20%5Breplace%20this%20with%20your%20os%5D%0A%0Adescription%3A%20%5Bplease%20provide%20as%20much%20detail%20as%20possible%20so%20we%20can%20do%20our%20best%20to%20help%20you%5D

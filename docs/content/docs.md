@@ -1,6 +1,4 @@
 
-## Usage
-
 
 ### Example: Pre-process CSS
 
@@ -40,40 +38,117 @@ app.task('default', ['css']);
 ```
 
 
-***
+## API
 
-# Docs
+All of the following code examples assume the following code:
 
-<br>
+```js
+var assemble = require('assemble');
+var app = assemble();
+```
 
-## Templates
+## Collections
+
+Assemble has first-class support for collections, with four different collection types to choose from, depending on your needs.
+
+### Collection type comparison
+
+**Collection type** | **Object (cache) type** | **Description**
+--- | --- | ---
+Collection | Object | Bare-bones collections, for caching an object of `items`. Use `app.collection()` or `new app.Collection()` when you want to customize your own render cycle, middleware handlers, or creating an entirely custom collection experience.
+View collection | Object | Augments collections with special methods and middleware handlers that are synchronized to the render cycle. View collections are typically created using the [.create](#create) method.
+List | Array | Similar to collections, but items are **cached as an array**. Use `app.list()` or `new app.List()` to create a list.
+Group | Object | Used within lists for grouping items. Can be used in conjunction with sorting, paging, pagination, and more.
+
+## API
+
+* [collections][]
+  - [.create][]
+  - [.addView][]
+  - [.getView][]
+
+### .create
+
+Create a custom view collection.
+
+```js
+app.create('docs');
+```
+
+Adds both the `.doc` and `.docs` methods to `app` for loading views onto the collection (thanks to the [inflection][] library).
+
+**Add views**
+
+Add views to the custom `docs` collection.
+
+```js
+// define a "page"
+app.doc('faq.hbs', { content: 'Read our FAQ' });
+
+// load a glob of "pages"
+app.docs('foo/*.hbs');
+```
+
+You can use `app.doc` or `app.docs` interchangeably. 
+
+**View cache**
+
+Views are cached on `app.views.*` using the _plural_ name of the collection. So our custom `docs` views would be stored on `app.views.docs`.
+
+**Get views**
+
+Get views from the collection.
+
+```js
+var doc = app.docs.getView('faq.hbs'); 
+
+// or
+var doc = app.views.docs['faq.hbs'];
+```
+
+### View types
+
+Assemble supports three different view types: `partial`, `renderable` and `layout`. View types determine how individual views will be handled during the render cycle. When a view collection is created, one or more view types may be passed on the options.
+
+- pa
+
+### Built-in view collections
+
+The following collections ship with assemble. The collections are created using the `.create` method, the same way a user would create them.
+
+- [partials](#partial)
+- [pages](#page)
+- [layouts](#layout)
 
 ### .partial
 
 > Add partials to be used in other templates.
 
 ```js
-app.partial('notice', { content: '<strong>...</strong>' });
-app.partial('banner', { content: '/*! Copyright (c) 2014 Jon Schlinkert, Brian Woodward... */' });
+// define partials as objects
+app.partial('button', { content: '<button>Click me!</button>' });
+app.partial('banner', { content: '<div>Heads up!</div>' });
+
 // or load a glob of partials
 app.partials('partials/*.hbs');
-
-// optionally pass locals, all template types support this
-app.partials('partials/*.hbs', {site: {title: 'Code Project'}});
 ```
 
 **Usage**
 
 Use the `partial` helper to inject into other templates:
 
-```js
+```html
+<!-- handlebars -->
 {{partial "banner"}}
+
+<!-- lodash/erb style -->
+<%= partial("banner") %>
 ```
 
 Get a cached partial:
 
 ```js
-var banner = app.views.partials['banner'];
+var banner = app.partials.getView('banner');
 ```
 
 ### .page
@@ -229,30 +304,3 @@ app.data({foo: 'bar'});
 app.data('package.json');
 app.data(['foo/*.{json,yml}']);
 ```
-
-# API
-{%= apidocs("index.js") %}
-
-## Run tests
-{%= include("tests") %}
-
-## Test coverage
-
-```
-{%= coverage("coverage/summary.txt") %}
-```
-
-## Contributing
-{%= include("contributing") %}
-
-## Authors
-{%= include("authors", maintainers) %}
-
-## License
-{%= copyright({year: 2014}) %}
-Copyright (c) 2014 Fractal <contact@wearefractal.com> (for completions and CLI)
-{%= license %}
-
-***
-
-{%= include("footer") %}
