@@ -13,6 +13,8 @@ layout: base
       <div class="sidebar">
         {{#if area}}
           {{partial (join 'sidenav' area '-')}}
+          {{!> sidenav-docs }}
+          {{!> (resolveId (join 'sidenav' area '-'))}}
         {{/if}}
       </div>
     </div>

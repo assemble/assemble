@@ -1,10 +1,13 @@
+---
+title: assemblefile
+---
 # assemblefile.js
 
 You might also be interested in reading the [assemblefile.js recipe](/recipes/assemblefile.md).
 
 **What's an assemblefile.js?**
 
-When used via command line, assemble looks for an `assemblefile.js` in the root of your project, and attempts to run the code in the file using any commands or flags that might have been passed. 
+When used via command line, assemble looks for an `assemblefile.js` in the root of your project, and attempts to run the code in the file using any commands or flags that might have been passed.
 
 _If you are only using assemble's API, an `assemblefile.js` is not necessary._ 
 
@@ -37,6 +40,6 @@ app.build('default', function(err) {
 
 ## It's just JavaScript!
 
-Although many of the examples in the documentation make heavy use of the `task` API with `src` or `dest` often shown as the highlights of the examples, this is only because it's sometimes easier to write examples with tasks and file system methods. 
+Although many of the examples in the documentation make heavy use of the `task` API with `src` or `dest` often shown as the highlights of the examples, this is only because it's sometimes easier to write examples with tasks and file system methods.
 
 With that in mind, remember that you can use any part of the assemble API in your `assemblefile.js`, or just regular JavaScript if that's what you need. Your `assemblefile.js` doesn't have to contain tasks, and _there is no requirement to use the file system API (`src` and `dest`)_.

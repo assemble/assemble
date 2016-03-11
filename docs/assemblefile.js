@@ -90,6 +90,10 @@ app.create('redirects', {
 app.helper('markdown', markdown);
 app.helpers('support/helpers/*.js');
 
+app.helper('resolveId', function(id, options) {
+  return this.resolveId(id);
+});
+
 /**
  * Load some "global" data
  */
@@ -99,6 +103,7 @@ app.data({
     title: 'Assemble Docs',
     base: ':destBase/en/v' + pkg.version
   },
+  area: 'docs',
   destBase: '_gh_pages',
   assets: ':site.base/assets',
   links: [{

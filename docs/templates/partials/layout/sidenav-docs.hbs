@@ -11,12 +11,17 @@
   Getting Started
 </span>
 <ul class="nav nav-pills nav-stacked">
-  {{#each pages}}
+  {{#docs}}
+    {{#each items as |item|}}
+      {{> sidenav-link item}}
+    {{/each}}
+  {{/docs}}
+{{!--   {{#each pages}}
     {{#is data.section "getting started"}}
       {{!> sidenav-link }}
       <li{{#is ../../page.dest this.dest}} class="active"{{/is}}><a href="{{relative ../../page.dest this.dest}}" {{> click-tracker }}>{{data.title}}</a></li>
     {{/is}}
-  {{/each}}
+  {{/each}} --}}
 </ul>
 
 
