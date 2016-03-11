@@ -2,37 +2,63 @@
 
 var path = require('path');
 var del = require('delete');
-var browserSync = require('browser-sync').create();
+var Time = require('time-diff');
+var watch = require('base-watch');
 var prettify = require('gulp-prettify');
 var extname = require('gulp-extname');
 var ignore = require('gulp-ignore');
-var merge = require('mixin-deep');
-var markdown = require('helper-markdown');
+var debug = require('debug')('assemble:docs');
+var browserSync = require('browser-sync').create();
 var permalinks = require('assemble-permalinks');
+var markdown = require('helper-markdown');
+var merge = require('mixin-deep');
 var through = require('through2');
 
-var getDest = require('./plugins/get-dest');
-var viewEvents = require('./plugins/view-events');
-
-
-var watch = require('base-watch');
-var redirects = require('./plugins/redirects');
-var manifest = require('./plugins/manifest');
+var viewEvents = require('./support/plugins/view-events');
+var redirects = require('./support/plugins/redirects');
+var manifest = require('./support/plugins/manifest');
+var getDest = require('./support/plugins/get-dest');
 var utils = require('./support/utils');
 var pkg = require('../package');
-var assemble = require('../');
+var assemble = require('..');
+
+assemble.on('preInit', function(app) {
+  console.log(app._name);
+});
+
+assemble.on('init', function(app) {
+  console.log(app);
+});
 
 /**
  * Create our assemble appplication
  */
 
 var app = assemble();
-app.use(viewEvents('permalink'));
+app.time = new Time();
+viewEvents('permalink')(app);
 app.use(permalinks());
 app.use(getDest());
 app.use(watch());
 
+app.on('error', function(err) {
+  console.log(err.stack);
+});
+
+/**
+ * Common variables
+ */
+
+var build = {
+  dest: path.resolve.bind(path, __dirname, '../_gh_pages')
+};
+
+/**
+ * Middleware
+ */
+
 app.onPermalink(/./, function(file, next) {
+  debug('creating permalink context for %s', file.path);
   file.data = merge({}, app.cache.data, file.data);
   next();
 });
@@ -62,7 +88,7 @@ app.create('redirects', {
  */
 
 app.helper('markdown', markdown);
-app.helpers('helpers/*.js');
+app.helpers('support/helpers/*.js');
 
 /**
  * Load some "global" data
@@ -82,24 +108,15 @@ app.data({
   }]
 });
 
-app.docs.use(permalinks(':site.base/:filename/index.html'));
-
-/**
- * Middleware
- */
-
-// app.preLayout(/\/api\/.*\.md$/, function(view, next) {
-//   view.layout = 'body';
-//   next();
-// });
+// permalinks pattern for docs
+app.docs.use(permalinks(':site.base/:filename.html'));
 
 /**
  * Clean out the current version's built files
  */
 
 app.task('clean', function(cb) {
-  var pattern = '../_gh_pages/en/v' + pkg.version;
-  del(pattern, {force: true}, cb);
+  del(build.dest('en/v' + pkg.version), {force: true}, cb);
 });
 
 /**
@@ -112,14 +129,14 @@ app.task('manifest', function(cb) {
   // get the version from argv.orig (because of the dots in versions)
   var version = app.argv.orig.version;
   if (typeof version === 'undefined' || typeof version === 'boolean') {
-    app.emit('error', new Error('--version needs to be specified when running `assemble manifest`'));
-    return cb();
+    cb(new Error('--version needs to be specified when running `assemble manifest`'));
+    return;
   }
 
-  var dir = '../_gh_pages/en/v' + version;
+  var dir = build.dest('en/v' + version);
   if (!utils.exists(dir)) {
-    app.emit('error', new Error('invalid version [' + version + ']. ' + dir + ' does not exist'));
-    return cb();
+    cb(new Error('invalid version [' + version + ']. ' + dir + ' does not exist'));
+    return;
   }
 
   return app.src([dir + '/**/*.html'])
@@ -141,7 +158,7 @@ app.task('manifest', function(cb) {
  */
 
 app.task('redirects', function() {
-  return app.src(['../_gh_pages/en/*/manifest.json'])
+  return app.src(build.dest('en/*/manifest.json'))
     .pipe(redirects(app))
     .pipe(ignore.include('redirects.json'))
     .pipe(app.dest(function(file) {
@@ -155,9 +172,9 @@ app.task('redirects', function() {
  */
 
 app.task('load', function(cb) {
-  app.partials('templates/partials/**/*.hbs');
-  app.layouts('templates/layouts/**/*.hbs');
-  app.docs('src/api/*.md');
+  app.partials('templates/partials/**/*.hbs', {cwd: __dirname});
+  app.layouts('templates/layouts/**/*.hbs', {cwd: __dirname});
+  app.docs('content/api/*.md', {cwd: __dirname});
   cb();
 });
 
@@ -170,7 +187,7 @@ app.task('serve', function() {
     port: 8080,
     startPath: 'index.html',
     server: {
-      baseDir: '../_gh_pages'
+      baseDir: build.dest()
     }
   });
 });
@@ -180,18 +197,17 @@ app.task('serve', function() {
  */
 
 app.task('generate-redirects', function() {
-  app.data('data/redirects.json', {namespace: 'redirects'});
+  app.data('data/redirects.json', { namespace: 'redirects' });
   var redirects = app.data('redirects');
 
-  for(var from in redirects) {
-    var to = redirects[from];
-    var redirect = {seconds: 3, url: to};
-    app.redirect(from, {
-      path: from,
+  for(var key in redirects) {
+    var to = redirects[key];
+    app.redirect(key, {
+      path: key,
       data: {
-        title: from,
+        title: key,
         layout: 'redirect',
-        redirect: redirect
+        redirect: { seconds: 3, url: to }
       },
       content: ''
     });
@@ -203,7 +219,7 @@ app.task('generate-redirects', function() {
     .on('error', console.error)
     .pipe(prettify())
     .pipe(extname())
-    .pipe(app.dest('../_gh_pages'));
+    .pipe(app.dest(build.dest()));
 });
 
 /**
@@ -231,14 +247,17 @@ app.task('build', ['load'], function() {
       }
     }))
     .pipe(app.dest(function(file) {
-      // console.log(file);
-      return '../_gh_pages';
+      return build.dest();
     }))
     .pipe(browserSync.stream());
 });
 
+/**
+ * Copy assets
+ */
+
 app.task('assets', function() {
-  return app.copy(['src/assets/**/*'], '../_gh_pages/en/v' + pkg.version + '/assets');
+  return app.copy(['assets/**/*'], build.dest('en/v' + pkg.version + '/assets'));
 });
 
 /**
@@ -246,7 +265,7 @@ app.task('assets', function() {
  */
 
 app.task('watch', function() {
-  app.watch('**/*.{md,hbs}', ['build']);
+  app.watch(['{content,recipes}/**/*.md', 'templates/**/*.hbs'], ['build']);
   console.log('watching docs templates');
 });
 

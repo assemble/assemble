@@ -5,10 +5,10 @@
  */
 
 var path = require('path');
+var cli = require('./lib/cli');
+var utils = require('./lib/utils');
 var Core = require('assemble-core');
 var debug = Core.debug;
-var utils = require('./lib/utils');
-var cli = require('./lib/cli');
 
 /**
  * Create an `assemble` app. This is the main function exported
@@ -29,12 +29,13 @@ function Assemble(options) {
 
   this.options = utils.merge({}, this.options, options);
   Core.call(this, options);
-  this.is('Assemble');
+  this.is(Assemble);
   debug(this);
 
   this.initDefaults(this);
   this.initPlugins(this);
   this.initCollections(this);
+  Assemble.emit('init', this);
 }
 
 /**
@@ -42,6 +43,7 @@ function Assemble(options) {
  */
 
 Core.extend(Assemble);
+Core.bubble(Assemble);
 
 /**
  * Initialize Assemble defaults
@@ -49,6 +51,12 @@ Core.extend(Assemble);
 
 Assemble.prototype.initDefaults = function(app) {
   var exts = this.options.exts || ['md', 'hbs', 'html'];
+
+  /**
+   * Emit `preInit` on the static emitter
+   */
+
+  Assemble.emit('preInit', this);
 
   /**
    * Default engine
@@ -161,11 +169,3 @@ Core._.plugin.is(Assemble);
  */
 
 module.exports = Assemble;
-
-/**
- * Expose static properties for unit tests
- */
-
-Assemble.debug = Core.debug;
-Assemble.utils = Core.utils;
-Assemble._ = Core._;

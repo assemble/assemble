@@ -692,8 +692,8 @@ describe('dest stream', function() {
 
     var stream = app.dest('actual/', { cwd: __dirname });
     stream.on('error', function(err) {
-      expect(err).toExist();
-      expect(fchmodSpy.calls.length).toEqual(1);
+      assert(err);
+      assert.equal(fchmodSpy.calls.length, 1);
       cb();
     });
     stream.write(expectedFile);
@@ -761,7 +761,7 @@ describe('dest stream', function() {
     });
 
     var onEnd = function() {
-      expect(fchmodSpy.calls.length).toEqual(0);
+      assert.equal(fchmodSpy.calls.length, 0);
       cb();
     };
 

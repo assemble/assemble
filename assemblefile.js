@@ -3,13 +3,23 @@
 var path = require('path');
 var prettify = require('gulp-prettify');
 var extname = require('gulp-extname');
+var merge = require('mixin-deep');
+var store = require('base-store');
+var get = require('get-value');
 var assemble = require('./');
+
+/**
+ * HEADS UP! this assemblefile is temporary and is not used in the project.
+ * We're just using it to quickly test things out while we're working on
+ * docs.
+ */
 
 /**
  * Create our assemble appplication
  */
 
 var app = assemble();
+app.use(store('assemble'));
 
 /**
  * Customize how templates are stored. This changes the
@@ -30,7 +40,7 @@ app.create('docs');
  * Load helpers
  */
 
-app.helpers('docs/helpers/*.js');
+app.helpers('docs/support/helpers/*.js');
 
 /**
  * Load some "global" data
@@ -63,9 +73,10 @@ app.preLayout(/\/api\/.*\.md$/, function(view, next) {
  */
 
 app.task('load', function(cb) {
-  app.partials('docs/templates/partials/*.hbs');
-  app.layouts('docs/templates/layouts/*.hbs');
-  app.docs('docs/src/api/*.md');
+  app.pages('docs/templates/pages/*.hbs');
+  app.partials('docs/templates/partials/**/*.hbs');
+  app.layouts('docs/templates/layouts/**/*.hbs');
+  app.docs('./docs/content/api/*.md');
   cb();
 });
 
@@ -75,7 +86,7 @@ app.task('load', function(cb) {
 
 app.task('default', ['load'], function() {
   var pkg = require('./package');
-  return app.toStream('docs')
+  return app.toStream('pages')
     .on('err', console.log)
     .pipe(app.renderFile())
     .on('err', console.log)
