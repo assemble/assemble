@@ -151,7 +151,10 @@ function handleError(err) {
   if (typeof err === 'string' && errors[err]) {
     console.error(errors[err]);
   } else {
-    console.error(err);
+    console.error(err.message);
+    if (argv.verbose) {
+      console.log(err.stack);
+    }
   }
   process.exit(1);
 }

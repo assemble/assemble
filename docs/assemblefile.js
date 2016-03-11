@@ -64,6 +64,10 @@ app.create('redirects', {
 app.helper('markdown', markdown);
 app.helpers('helpers/*.js');
 
+app.helper('resolveId', function(id, options) {
+  return this.resolveId(id);
+});
+
 /**
  * Load some "global" data
  */
@@ -73,6 +77,7 @@ app.data({
     title: 'Assemble Docs',
     base: ':destBase/en/v' + pkg.version
   },
+  area: 'docs',
   destBase: '_gh_pages',
   assets: ':site.base/assets',
   links: [{
@@ -157,7 +162,9 @@ app.task('redirects', function() {
 app.task('load', function(cb) {
   app.partials('templates/partials/**/*.hbs');
   app.layouts('templates/layouts/**/*.hbs');
+  // app.docs('src/api/{a,C,c,d}*.md');
   app.docs('src/api/*.md');
+  // app.docs('src/api/assemblefile.md');
   cb();
 });
 
