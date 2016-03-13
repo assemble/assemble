@@ -291,22 +291,35 @@ app.task('generate-redirects', function() {
     .on('error', console.error)
     .pipe(app.renderFile('hbs'))
     .on('error', console.error)
-    .pipe(prettify())
+    // .pipe(prettify())
     .pipe(extname())
     .pipe(app.dest(build.dest()));
 });
+
+/**
+ * Only push files through the stream that have changed.
+ * This is useful when using `assemble dev`
+ */
+
+var changed = [];
+function changedFilter(key, view) {
+  if (!changed.length) return true;
+  return changed.filter(function(fp) {
+    return view.path.substr(view.path.length - fp.length) === fp;
+  }).length;
+}
 
 /**
  * Build the assemble docs
  */
 
 app.task('build', ['load'], function() {
-  return app.toStream('docs').on('error', console.log)
-    .pipe(app.toStream('docs-apis')).on('error', console.log)
-    .pipe(app.toStream('docs-recipes')).on('error', console.log)
-    .pipe(app.toStream('docs-subjects')).on('error', console.log)
+  return app.toStream('docs', changedFilter).on('error', console.log)
+    .pipe(app.toStream('docs-apis', changedFilter)).on('error', console.log)
+    .pipe(app.toStream('docs-recipes', changedFilter)).on('error', console.log)
+    .pipe(app.toStream('docs-subjects', changedFilter)).on('error', console.log)
     .pipe(app.renderFile()).on('error', console.log)
-    .pipe(prettify())
+    // .pipe(prettify())
     .pipe(extname())
     .pipe(through.obj(function(file, enc, next) {
       file.path = file.data.permalink || file.path;
@@ -340,8 +353,20 @@ app.task('assets', function() {
  */
 
 app.task('watch', function() {
-  app.watch(['{content,recipes}/**/*.md', 'templates/**/*.hbs'], ['build']);
+  var watcher = app.watch(['content/**/*.md', 'templates/**/*.hbs']);
   console.log('watching docs templates');
+
+  // manually handle the change event build
+  // up a list of actual changed files and kick off
+  // the build. This is useful with `assemble dev`
+  watcher.on('change', function(fp) {
+    if (/\.hbs$/.test(fp) === false) {
+      changed.push(fp);
+    }
+    app.build(['build'], function() {
+      changed = [];
+    });
+  });
 });
 
 /**
