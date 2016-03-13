@@ -71,7 +71,25 @@ app.option('renameKey', function(fp) {
 app.data({
   site: {
     title: 'Assemble Docs',
-    base: ':destBase/en/v' + pkg.version
+    base: ':destBase/en/v' + pkg.version,
+    sections: [
+      {
+        title: 'Docs',
+        collection: 'docs'
+      },
+      {
+        title: 'API',
+        collection: 'docs-apis'
+      },
+      {
+        title: 'Recipes',
+        collection: 'docs-recipes'
+      },
+      {
+        title: 'Subjects',
+        collection: 'docs-subjects'
+      }
+    ]
   },
   destBase: '_gh_pages',
   assets: ':site.base/assets',
@@ -160,10 +178,6 @@ app.create('redirects', {
 app.helper('markdown', markdown);
 app.helpers('support/helpers/*.js');
 
-app.helper('resolveId', function(id, options) {
-  return this.resolveId(id);
-});
-
 /**
  * Clean out the current version's built files
  */
@@ -245,7 +259,7 @@ app.task('load', function(cb) {
 app.task('serve', function() {
   browserSync.init({
     port: 8080,
-    startPath: 'index.html',
+    startPath: 'docs.html',
     server: {
       baseDir: build.dest()
     }
