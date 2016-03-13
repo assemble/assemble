@@ -1,0 +1,10 @@
+<span class="nav-section-title">
+  {{section.title}}
+</span>
+<ul class="nav nav-pills nav-stacked">
+  {{#list section.collection}}
+    {{#each items as |item|}}
+      {{> sidenav-link item}}
+    {{/each}}
+  {{/list}}
+</ul>
