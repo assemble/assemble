@@ -22,14 +22,6 @@ var utils = require('./support/utils');
 var pkg = require('../package');
 var assemble = require('..');
 
-assemble.on('preInit', function(app) {
-  console.log(app._name);
-});
-
-assemble.on('init', function(app) {
-  console.log(app);
-});
-
 /**
  * Create our assemble appplication
  */
@@ -73,10 +65,88 @@ app.option('renameKey', function(fp) {
 });
 
 /**
+ * Load some "global" data
+ */
+
+app.data({
+  site: {
+    title: 'Assemble Docs',
+    base: ':destBase/en/v' + pkg.version
+  },
+  destBase: '_gh_pages',
+  assets: ':site.base/assets',
+  links: [{
+    dest: 'assemble',
+    collection: 'docs',
+    text: 'Assemble'
+  }]
+});
+
+/**
  * Create a custom view collection
  */
 
-app.create('docs', {layout: 'body'});
+var permalinkOpts = {
+  rel: function() {
+    var rel = this.relative;
+    var ext = path.extname(rel);
+    return rel.substr(0, rel.length - ext.length);
+  }
+};
+
+app.create('docs', {layout: 'body'})
+  .preRender(/\.md/, function(file, next) {
+    file.data = merge({
+      section: {
+        title: 'Docs',
+        description: 'Assemble documentation',
+        collection: 'docs'
+      }
+    }, file.data);
+    next();
+  })
+  .use(permalinks(':site.base/:filename.html'));
+
+app.create('docs-api', {layout: 'body'})
+  .preRender(/\.md/, function(file, next) {
+    file.data = merge({
+      section: {
+        title: 'API',
+        description: 'Assemble API Documentation',
+        collection: 'docs-api'
+      }
+    }, file.data);
+    next();
+  })
+  .use(permalinks(':site.base/api/:rel()/index.html', permalinkOpts));
+
+app.create('docs-recipes', {layout: 'markdown-raw'})
+  .preRender(/\.md/, function(file, next) {
+    file.data = merge({
+      section: {
+        title: 'Recipes',
+        description: 'Assemble recipes',
+        collection: 'docs-recipes'
+      }
+    }, file.data);
+    next();
+  })
+  .use(permalinks(':site.base/recipes/:rel()/index.html', permalinkOpts));
+
+app.create('docs-subjects', {layout: 'body'})
+  .preRender(/\.md/, function(file, next) {
+    file.data = merge({
+      section: {
+        title: 'Subjects',
+        description: 'Advanced subjects on using assemble',
+        collection: 'docs-subjects'
+      }
+    }, file.data);
+    next();
+  })
+  .use(permalinks(':site.base/subjects/:rel()/index.html', permalinkOpts));
+
+
 app.create('redirects', {
   renameKey: function(key, view) {
     return view ? view.path : key;
@@ -93,28 +163,6 @@ app.helpers('support/helpers/*.js');
 app.helper('resolveId', function(id, options) {
   return this.resolveId(id);
 });
-
-/**
- * Load some "global" data
- */
-
-app.data({
-  site: {
-    title: 'Assemble Docs',
-    base: ':destBase/en/v' + pkg.version
-  },
-  area: 'docs',
-  destBase: '_gh_pages',
-  assets: ':site.base/assets',
-  links: [{
-    dest: 'assemble',
-    collection: 'docs',
-    text: 'Assemble'
-  }]
-});
-
-// permalinks pattern for docs
-app.docs.use(permalinks(':site.base/:filename.html'));
 
 /**
  * Clean out the current version's built files
@@ -179,7 +227,14 @@ app.task('redirects', function() {
 app.task('load', function(cb) {
   app.partials('templates/partials/**/*.hbs', {cwd: __dirname});
   app.layouts('templates/layouts/**/*.hbs', {cwd: __dirname});
-  app.docs('content/api/*.md', {cwd: __dirname});
+  // app.docs('content/*.md', {cwd: __dirname});
+  app.doc('content/docs.md', {cwd: __dirname});
+  app.doc('content/api.md', {cwd: __dirname});
+  app.doc('content/build-cycle.md', {cwd: __dirname});
+
+  app['docs-apis']('content/api/**/*.md', {cwd: __dirname});
+  app['docs-recipes']('content/recipes/**/*.md', {cwd: __dirname});
+  app['docs-subjects']('content/subjects/**/*.md', {cwd: __dirname});
   cb();
 });
 
@@ -232,10 +287,11 @@ app.task('generate-redirects', function() {
  */
 
 app.task('build', ['load'], function() {
-  return app.toStream('docs')
-    .on('error', console.log)
-    .pipe(app.renderFile())
-    .on('error', console.log)
+  return app.toStream('docs').on('error', console.log)
+    .pipe(app.toStream('docs-apis')).on('error', console.log)
+    .pipe(app.toStream('docs-recipes')).on('error', console.log)
+    .pipe(app.toStream('docs-subjects')).on('error', console.log)
+    .pipe(app.renderFile()).on('error', console.log)
     .pipe(prettify())
     .pipe(extname())
     .pipe(through.obj(function(file, enc, next) {
