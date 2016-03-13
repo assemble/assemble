@@ -13,10 +13,12 @@ component: navbar
     </div>
     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
-        <li{{#is section "docs"}} class="active"{{/is}}> <a href="{{!link-to "docs"}}/">Docs</a> </li>
-        <!--<li{{#is section "boilerplates"}} class="active"{{/is}}> <a href="{{!link-to "boilerplates"}}/">Boilerplates</a> </li>-->
-        <li{{#is section "plugins"}} class="active"{{/is}}> <a href="{{!link-to "plugins"}}/">Plugins</a> </li>
-        <li{{#is section "helpers"}} class="active"{{/is}}> <a href="{{!link-to "helpers"}}/">Helpers</a> </li>
+      {{#each site.sections}}
+        {{!log (first (list collection)) }}
+        {{#first (list collection)}}
+        <li{{#is ../../section.title title}} class="active"{{/is}}> <a href="{{link-to this.key this.options.collection}}">{{../title}}</a> </li>
+        {{/first}}
+      {{/each}}
       </ul>
       <ul class="nav navbar-nav pull-right">
         <!--<li{{#is basename "Examples"}} class="active"{{/is}}> <a href="{{!link-to "examples"}}/">Examples</a> </li>-->
