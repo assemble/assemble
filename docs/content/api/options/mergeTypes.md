@@ -1,3 +1,6 @@
+---
+layout: markdown-raw
+---
 # mergeTypes
 
 ## options.mergeTypes
@@ -20,7 +23,7 @@ app.create('includes', {viewType: 'partial'});
 app.partial('foo', {content: 'abc'});
 app.include('foo', {content: 'xyz'});
 
-app.pages('bar', {content: '\\{{> foo }}'});
+app.pages('bar', {content: '{{> foo }}'});
 ```
 
 and the following option:
