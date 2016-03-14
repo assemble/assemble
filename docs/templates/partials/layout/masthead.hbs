@@ -6,8 +6,8 @@
       <div class="col col-lg-12">
         {{> btn-tweet }}
         <h1>
-          <span class="text-muted">Docs /&nbsp;</span>
-          {{default section this.basename}}
+          <span class="text-muted">{{section.title}} /&nbsp;</span>
+          {{default this.title (current "key")}}
         </h1>
       </div>
     </div>
