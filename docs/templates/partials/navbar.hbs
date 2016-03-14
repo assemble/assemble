@@ -16,7 +16,7 @@ component: navbar
       {{#each site.sections}}
         {{!log (first (list collection)) }}
         {{#first (list collection)}}
-        <li{{#is ../../section.title title}} class="active"{{/is}}> <a href="{{link-to this.key this.options.collection}}">{{../title}}</a> </li>
+        <li{{#is ../../section.title title}} class="active"{{/is}}> <a href="{{link-to this}}">{{../title}}</a> </li>
         {{/first}}
       {{/each}}
       </ul>
