@@ -10,13 +10,13 @@ var ignore = require('gulp-ignore');
 var debug = require('debug')('assemble:docs');
 var browserSync = require('browser-sync').create();
 var permalinks = require('assemble-permalinks');
-var markdown = require('helper-markdown');
 var merge = require('mixin-deep');
 var through = require('through2');
 
 var viewEvents = require('./support/plugins/view-events');
 var redirects = require('./support/plugins/redirects');
 var manifest = require('./support/plugins/manifest');
+var versions = require('./support/plugins/versions');
 var getDest = require('./support/plugins/get-dest');
 var utils = require('./support/utils');
 var pkg = require('../package');
@@ -71,7 +71,8 @@ app.option('renameKey', function(fp) {
 app.data({
   site: {
     title: 'Assemble Docs',
-    base: ':destBase/en/v' + pkg.version,
+    version: pkg.version,
+    base: ':destBase/en/v:site.version',
     sections: [
       {
         title: 'Docs',
@@ -138,7 +139,7 @@ app.create('docs-api', {layout: 'body'})
   })
   .use(permalinks(':site.base/api/:rel()/index.html', permalinkOpts));
 
-app.create('docs-recipes', {layout: 'markdown-raw'})
+app.create('docs-recipes', {layout: 'recipe'})
   .preRender(/\.md/, function(file, next) {
     file.data = merge({
       section: {
@@ -175,8 +176,10 @@ app.create('redirects', {
  * Load helpers
  */
 
-app.helper('markdown', markdown);
 app.helpers('support/helpers/*.js');
+app.helper('json', function(obj) {
+  return JSON.stringify(obj);
+});
 
 /**
  * Clean out the current version's built files
@@ -227,11 +230,13 @@ app.task('manifest', function(cb) {
 app.task('redirects', function() {
   return app.src(build.dest('en/*/manifest.json'))
     .pipe(redirects(app))
-    .pipe(ignore.include('redirects.json'))
+    .pipe(versions(app))
+    .pipe(ignore.include(['redirects.json', 'versions.json']))
     .pipe(app.dest(function(file) {
       file.base = file.dirname;
       return 'data';
-    }));
+    }))
+    .pipe(app.dest(build.dest()));
 });
 
 /**
@@ -281,7 +286,7 @@ app.task('generate-redirects', function() {
       data: {
         title: key,
         layout: 'redirect',
-        redirect: { seconds: 3, url: to }
+        redirect: { seconds: 0, url: to }
       },
       content: ''
     });
@@ -345,7 +350,8 @@ app.task('build', ['load'], function() {
  */
 
 app.task('assets', function() {
-  return app.copy(['assets/**/*'], build.dest('en/v' + pkg.version + '/assets'));
+  return app.copy(['assets/**/*'], build.dest('en/v' + pkg.version + '/assets'))
+    .pipe(browserSync.stream());
 });
 
 /**
@@ -353,16 +359,17 @@ app.task('assets', function() {
  */
 
 app.task('watch', function() {
-  var watcher = app.watch(['content/**/*.md', 'templates/**/*.hbs']);
+  app.watch('templates/**/*.hbs', 'build');
+  app.watch('assets/**/*', 'assets');
+  var watcher = app.watch('content/**/*.md');
+
   console.log('watching docs templates');
 
   // manually handle the change event build
   // up a list of actual changed files and kick off
   // the build. This is useful with `assemble dev`
   watcher.on('change', function(fp) {
-    if (/\.hbs$/.test(fp) === false) {
-      changed.push(fp);
-    }
+    changed.push(fp);
     app.build(['build'], function() {
       changed = [];
     });
