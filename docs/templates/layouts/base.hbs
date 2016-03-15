@@ -3,6 +3,11 @@
 <html lang="en">
   <head>
     {{> head }}
+    <script>
+      var site = JSON.parse('{{json site}}');
+      var destBase = "{{destBase}}";
+      var currentPath = "{{permalink}}";
+    </script>
   </head>
   <body{{#isnt title "Home"}} style="background: white;"{{/isnt}} data-spy="scroll" data-target=".bs-sidebar">
 
@@ -14,7 +19,7 @@
 
     {{!-- masthead
     =================================== --}}
-    {{> masthead}}
+    {{> masthead }}
 
     {{!-- content
     =================================== --}}
