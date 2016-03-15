@@ -21,6 +21,11 @@ component: navbar
       {{/each}}
       </ul>
       <ul class="nav navbar-nav pull-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Versions <span class="caret"></span></a>
+          <ul class="dropdown-menu" id="dropdown-versions">
+          </ul>
+        </li>
         <!--<li{{#is basename "Examples"}} class="active"{{/is}}> <a href="{{!link-to "examples"}}/">Examples</a> </li>-->
         <!--<li{{#is title "Tutorials"}} class="active"{{/is}}> <a href="{{!link-to "tutorials"}}/">Tutorials</a> </li> -->
         <li{{#is section "Blog"}} class="active"{{/is}}> <a href="{{!link-to "blog"}}/">Blog</a> </li>
