@@ -177,9 +177,6 @@ app.create('redirects', {
  */
 
 app.helpers('support/helpers/*.js');
-app.helper('json', function(obj) {
-  return JSON.stringify(obj);
-});
 
 /**
  * Clean out the current version's built files
