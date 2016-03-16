@@ -5,6 +5,7 @@ var del = require('delete');
 var Time = require('time-diff');
 var watch = require('base-watch');
 var prettify = require('gulp-prettify');
+var drafts = require('gulp-drafts');
 var extname = require('gulp-extname');
 var ignore = require('gulp-ignore');
 var debug = require('debug')('assemble:docs');
@@ -61,6 +62,9 @@ app.onPermalink(/./, function(file, next) {
  */
 
 app.option('renameKey', function(fp) {
+  if (fp.indexOf(__dirname) === -1) {
+    return fp;
+  }
   return path.basename(fp, path.extname(fp));
 });
 
@@ -113,13 +117,18 @@ var permalinkOpts = {
   }
 };
 
+function sectionFilter(item) {
+  return (typeof item.data.draft === 'undefined' || item.data.draft === false);
+}
+
 app.create('docs', {layout: 'body'})
   .preRender(/\.md/, function(file, next) {
     file.data = merge({
       section: {
         title: 'Docs',
         description: 'Assemble documentation',
-        collection: 'docs'
+        collection: 'docs',
+        filter: sectionFilter
       }
     }, file.data);
     next();
@@ -132,7 +141,8 @@ app.create('docs-api', {layout: 'body'})
       section: {
         title: 'API',
         description: 'Assemble API Documentation',
-        collection: 'docs-api'
+        collection: 'docs-api',
+        filter: sectionFilter
       }
     }, file.data);
     next();
@@ -145,7 +155,8 @@ app.create('docs-recipes', {layout: 'recipe'})
       section: {
         title: 'Recipes',
         description: 'Assemble recipes',
-        collection: 'docs-recipes'
+        collection: 'docs-recipes',
+        filter: sectionFilter
       }
     }, file.data);
     next();
@@ -158,7 +169,8 @@ app.create('docs-subjects', {layout: 'body'})
       section: {
         title: 'Subjects',
         description: 'Advanced subjects on using assemble',
-        collection: 'docs-subjects'
+        collection: 'docs-subjects',
+        filter: sectionFilter
       }
     }, file.data);
     next();
@@ -320,6 +332,7 @@ app.task('build', ['load'], function() {
     .pipe(app.toStream('docs-apis', changedFilter)).on('error', console.log)
     .pipe(app.toStream('docs-recipes', changedFilter)).on('error', console.log)
     .pipe(app.toStream('docs-subjects', changedFilter)).on('error', console.log)
+    .pipe(drafts())
     .pipe(app.renderFile()).on('error', console.log)
     // .pipe(prettify())
     .pipe(extname())

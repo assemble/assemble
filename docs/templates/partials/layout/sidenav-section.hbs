@@ -2,8 +2,8 @@
   {{section.title}}
 </span>
 <ul class="nav nav-pills nav-stacked">
-  {{#list section.collection}}
-    {{#each items as |item|}}
+  {{#list section.collection section.filter}}
+    {{#each . as |item|}}
       {{> sidenav-link item}}
     {{/each}}
   {{/list}}

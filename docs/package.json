@@ -12,6 +12,7 @@
     "export-files": "^2.1.1",
     "extend-shallow": "^2.0.1",
     "get-first": "^0.1.2",
+    "gulp-drafts": "^0.2.0",
     "gulp-extname": "^0.2.2",
     "gulp-ignore": "^2.0.1",
     "gulp-prettify": "^0.4.0",
