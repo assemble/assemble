@@ -13,7 +13,7 @@ component: navbar
     </div>
     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
-      {{#each site.sections}}
+      {{#each site.categories}}
         {{!log (first (list collection)) }}
         {{#first (list collection)}}
         <li{{#is ../../section.title title}} class="active"{{/is}}> <a href="{{link-to this}}">{{../title}}</a> </li>
