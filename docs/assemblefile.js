@@ -77,24 +77,32 @@ app.data({
     title: 'Assemble Docs',
     version: pkg.version,
     base: ':destBase/en/v:site.version',
-    sections: [
-      {
+    categories: {
+      docs: {
         title: 'Docs',
-        collection: 'docs'
+        description: 'Assemble documentation',
+        collection: 'docs',
+        filter: navFilter
       },
-      {
+      api: {
         title: 'API',
-        collection: 'docs-apis'
+        description: 'Assemble API Documentation',
+        collection: 'docs-apis',
+        filter: navFilter
       },
-      {
+      recipes: {
         title: 'Recipes',
-        collection: 'docs-recipes'
+        description: 'Assemble recipes',
+        collection: 'docs-recipes',
+        filter: navFilter
       },
-      {
+      subjects: {
         title: 'Subjects',
-        collection: 'docs-subjects'
+        description: 'Advanced subjects on using assemble',
+        collection: 'docs-subjects',
+        filter: navFilter
       }
-    ]
+    }
   },
   destBase: '_gh_pages',
   assets: ':site.base/assets',
@@ -117,19 +125,14 @@ var permalinkOpts = {
   }
 };
 
-function sectionFilter(item) {
+function navFilter(item) {
   return (typeof item.data.draft === 'undefined' || item.data.draft === false);
 }
 
 app.create('docs', {layout: 'body'})
   .preRender(/\.md/, function(file, next) {
     file.data = merge({
-      section: {
-        title: 'Docs',
-        description: 'Assemble documentation',
-        collection: 'docs',
-        filter: sectionFilter
-      }
+      section: app.data('site.categories.docs')
     }, file.data);
     next();
   })
@@ -138,12 +141,7 @@ app.create('docs', {layout: 'body'})
 app.create('docs-api', {layout: 'body'})
   .preRender(/\.md/, function(file, next) {
     file.data = merge({
-      section: {
-        title: 'API',
-        description: 'Assemble API Documentation',
-        collection: 'docs-api',
-        filter: sectionFilter
-      }
+      section: app.data('site.categories.api')
     }, file.data);
     next();
   })
@@ -152,12 +150,7 @@ app.create('docs-api', {layout: 'body'})
 app.create('docs-recipes', {layout: 'recipe'})
   .preRender(/\.md/, function(file, next) {
     file.data = merge({
-      section: {
-        title: 'Recipes',
-        description: 'Assemble recipes',
-        collection: 'docs-recipes',
-        filter: sectionFilter
-      }
+      section: app.data('site.categories.recipes')
     }, file.data);
     next();
   })
@@ -166,12 +159,7 @@ app.create('docs-recipes', {layout: 'recipe'})
 app.create('docs-subjects', {layout: 'body'})
   .preRender(/\.md/, function(file, next) {
     file.data = merge({
-      section: {
-        title: 'Subjects',
-        description: 'Advanced subjects on using assemble',
-        collection: 'docs-subjects',
-        filter: sectionFilter
-      }
+      section: app.data('site.categories.subjects')
     }, file.data);
     next();
   })
