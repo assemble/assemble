@@ -1,10 +1,9 @@
 'use strict';
 
-module.exports = function(list, options) {
-  if (!list || !list.isList) {
-    return options.fn ? options.fn({}) : {};
+module.exports = function(arr, options) {
+  if (!arr || Array.isArray(arr) === false) {
+    return options.fn ? options.fn(item ? item : {}) : (item ? item : {});
   }
-  var items = list.items;
-  var item = items.length ? items[0] : {};
+  var item = arr.length ? arr[0] : {};
   return options.fn ? options.fn(item) : item;
 }
