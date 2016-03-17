@@ -240,7 +240,7 @@ app.task('redirects', function() {
  * Re-load templates when triggered by watch
  */
 
-app.task('load', function(cb) {
+app.task('load', function* () {
   app.partials('templates/partials/**/*.hbs', {cwd: __dirname});
   app.layouts('templates/layouts/**/*.hbs', {cwd: __dirname});
   // app.docs('content/*.md', {cwd: __dirname});
@@ -251,7 +251,6 @@ app.task('load', function(cb) {
   app['docs-apis']('content/api/**/*.md', {cwd: __dirname});
   app['docs-recipes']('content/recipes/**/*.md', {cwd: __dirname});
   app['docs-subjects']('content/subjects/**/*.md', {cwd: __dirname});
-  cb();
 });
 
 /**
