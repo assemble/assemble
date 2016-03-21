@@ -1,7 +1,7 @@
 {
   "name": "assemble",
   "description": "Assemble is a powerful, extendable and easy to use static site generator for node.js. Used by thousands of projects for much more than building websites, Assemble is also used for creating themes, scaffolds, boilerplates, e-books, UI components, API documentation, blogs, gh-pages and more! Assemble can also be used with gulp and grunt.",
-  "version": "0.9.2",
+  "version": "0.10.0",
   "homepage": "https://github.com/assemble/assemble",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "authors": [
