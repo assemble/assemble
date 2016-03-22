@@ -4,7 +4,7 @@ var utils = require('../utils');
 var get = require('get-value');
 var set = require('set-value');
 
-module.exports = function(options) {
+module.exports = function(config) {
   return function assembleCollections(app) {
     if (!isValidInstance(this)) {
       return;
@@ -33,7 +33,7 @@ module.exports = function(options) {
           sortBy: 'asc'
         }
       }
-    }, options);
+    }, config);
 
     var collections = {};
     var collectionKeys = Object.keys(opts.collections);
@@ -72,7 +72,7 @@ module.exports = function(options) {
           return options.fn({ name: key });
         }).join('\n');
       }
-      return Object.keys(collections).join(', ');
+      return Object.keys(collections);
     });
 
     this.helper('collection', function(name, options) {
