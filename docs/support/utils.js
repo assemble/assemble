@@ -1,10 +1,9 @@
 'use strict';
 
 var placeholders = require('placeholders');
-var utils = require('../../lib/utils');
 
-exports.exists = utils.exists;
+var utils = module.exports = require('../../lib/utils');
 
-exports.versionPath = function(structure, data, opts) {
+utils.versionPath = function(structure, data, opts) {
   return placeholders(opts)(structure, data);
 };
