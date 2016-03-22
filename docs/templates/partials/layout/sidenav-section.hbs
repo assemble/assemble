@@ -8,3 +8,20 @@
     {{/each}}
   {{/list}}
 </ul>
+
+{{#collections}}
+<span class="nav-section-title">{{name}}</span>
+<ul class="nav nav-pills nav-stacked">
+  <li>
+  {{!#collection name}}
+  <span class="nav-section-title">{{inflection}} <span class="badge">{{items.length}}</span></span>
+  <ul class="nav nav-pills nav-stacked">
+    {{!#each items as |item|}}
+      {{!log item}}
+      {{!> sidenav-link item}}
+    {{!/each}}
+  </ul>
+  {{!/collection}}
+  </li>
+</ul>
+{{/collections}}
