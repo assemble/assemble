@@ -14,6 +14,7 @@ var permalinks = require('assemble-permalinks');
 var merge = require('mixin-deep');
 var through = require('through2');
 
+var collections = require('./support/plugins/assemble-collections');
 var viewEvents = require('./support/plugins/view-events');
 var redirects = require('./support/plugins/redirects');
 var manifest = require('./support/plugins/manifest');
@@ -30,6 +31,7 @@ var assemble = require('..');
 var app = assemble();
 app.time = new Time();
 viewEvents('permalink')(app);
+app.use(collections());
 app.use(permalinks());
 app.use(getDest());
 app.use(watch());
@@ -202,7 +204,7 @@ app.task('manifest', function(cb) {
 
   var dir = build.dest('en/v' + version);
   if (!utils.exists(dir)) {
-    cb(new Error('invalid version [' + version + ']. ' + dir + ' does not exist'));
+    cb(new Error('Unable to find "' + dir + '" for version "' + version + '"'));
     return;
   }
 
