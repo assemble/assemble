@@ -2,11 +2,12 @@
 
 var through = require('through2');
 var arraySort = require('array-sort');
+var path = require('path');
 
 module.exports = function redirects(app) {
   var manifests = {};
   return through.obj(function(file, enc, cb) {
-    var segs = file.dirname.split('/');
+    var segs = file.dirname.split(path.sep);
     var version = segs[segs.length - 1];
     manifests[version] = JSON.parse(file.contents);
     cb(null, file);
