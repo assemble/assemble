@@ -29,6 +29,7 @@ var assemble = require('..');
  */
 
 var app = assemble();
+
 app.time = new Time();
 viewEvents('permalink')(app);
 app.use(collections());

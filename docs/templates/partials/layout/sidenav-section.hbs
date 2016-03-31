@@ -13,15 +13,15 @@
 <span class="nav-section-title">{{name}}</span>
 <ul class="nav nav-pills nav-stacked">
   <li>
-  {{!#collection name}}
+  {{#collection name}}
   <span class="nav-section-title">{{inflection}} <span class="badge">{{items.length}}</span></span>
   <ul class="nav nav-pills nav-stacked">
-    {{!#each items as |item|}}
+    {{#each items}}
       {{!log item}}
-      {{!> sidenav-link item}}
-    {{!/each}}
+      {{> sidenav-link .}}
+    {{/each}}
   </ul>
-  {{!/collection}}
+  {{/collection}}
   </li>
 </ul>
 {{/collections}}
