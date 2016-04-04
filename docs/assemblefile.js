@@ -95,26 +95,26 @@ app.data({
       docs: {
         title: 'Docs',
         description: 'Assemble documentation',
-        collection: 'docs',
-        filter: navFilter
+        category: 'docs',
+        filter: navFilter('docs')
       },
       api: {
         title: 'API',
         description: 'Assemble API Documentation',
-        collection: 'docs-apis',
-        filter: navFilter
+        category: 'api',
+        filter: navFilter('api')
       },
       recipes: {
         title: 'Recipes',
         description: 'Assemble recipes',
-        collection: 'docs-recipes',
-        filter: navFilter
+        category: 'recipes',
+        filter: navFilter('recipes')
       },
       subjects: {
         title: 'Subjects',
         description: 'Advanced subjects on using assemble',
-        collection: 'docs-subjects',
-        filter: navFilter
+        category: 'subjects',
+        filter: navFilter('subjects')
       }
     }
   },
@@ -132,53 +132,36 @@ app.data({
  */
 
 var permalinkOpts = {
-  rel: function() {
+  slug: function() {
+    if (this.category === 'docs') {
+      return this.filename + '.html';
+    }
     var rel = this.relative;
     var ext = path.extname(rel);
-    return rel.substr(0, rel.length - ext.length);
+    return path.join(rel.substr(0, rel.length - ext.length), 'index.html');
   }
 };
 
-function navFilter(item) {
-  return (typeof item.data.draft === 'undefined' || item.data.draft === false);
+function navFilter(category) {
+  return function(item) {
+    if (item.data.category !== category) {
+      return false;
+    }
+    return (typeof item.data.draft === 'undefined' || item.data.draft === false);
+  };
 }
 
 app.create('docs', {layout: 'body'})
   .preRender(/\.md/, function(file, next) {
+    var category = file.data.category;
+    if (!category) return next();
     file.data = merge({
-      section: app.data('site.categories.docs')
+      section: app.data('site.categories.' + category),
+      layout: category === 'recipes' ? 'recipe' : file.data.layout
     }, file.data);
     next();
   })
-  .use(permalinks(':site.base/:filename.html'));
-
-app.create('docs-api', {layout: 'body'})
-  .preRender(/\.md/, function(file, next) {
-    file.data = merge({
-      section: app.data('site.categories.api')
-    }, file.data);
-    next();
-  })
-  .use(permalinks(':site.base/:category/:rel()/index.html', permalinkOpts));
-
-app.create('docs-recipes', {layout: 'recipe'})
-  .preRender(/\.md/, function(file, next) {
-    file.data = merge({
-      section: app.data('site.categories.recipes')
-    }, file.data);
-    next();
-  })
-  .use(permalinks(':site.base/recipes/:rel()/index.html', permalinkOpts));
-
-app.create('docs-subjects', {layout: 'body'})
-  .preRender(/\.md/, function(file, next) {
-    file.data = merge({
-      section: app.data('site.categories.subjects')
-    }, file.data);
-    next();
-  })
-  .use(permalinks(':site.base/subjects/:rel()/index.html', permalinkOpts));
-
+  .use(permalinks(':site.base/:slug()', permalinkOpts));
 
 app.create('redirects', {
   renameKey: function(key, view) {
@@ -257,14 +240,7 @@ app.task('redirects', function() {
 app.task('load', function* () {
   app.partials('templates/partials/**/*.hbs', {cwd: __dirname});
   app.layouts('templates/layouts/**/*.hbs', {cwd: __dirname});
-  // app.docs('content/*.md', {cwd: __dirname});
-  app.doc('content/docs.md', {cwd: __dirname});
-  app.doc('content/api.md', {cwd: __dirname});
-  app.doc('content/build-cycle.md', {cwd: __dirname});
-
-  app['docs-apis']('content/api/**/*.md', {cwd: __dirname});
-  app['docs-recipes']('content/recipes/**/*.md', {cwd: __dirname});
-  app['docs-subjects']('content/subjects/**/*.md', {cwd: __dirname});
+  app.docs(['content/**/*.md'], {cwd: __dirname});
 });
 
 /**
@@ -330,9 +306,6 @@ function changedFilter(key, view) {
 
 app.task('build', ['load'], function() {
   return app.toStream('docs', changedFilter).on('error', console.log)
-    .pipe(app.toStream('docs-apis', changedFilter)).on('error', console.log)
-    .pipe(app.toStream('docs-recipes', changedFilter)).on('error', console.log)
-    .pipe(app.toStream('docs-subjects', changedFilter)).on('error', console.log)
     .pipe(drafts())
     .pipe(app.renderFile()).on('error', console.log)
     // .pipe(prettify())

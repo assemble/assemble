@@ -15,7 +15,7 @@ component: navbar
       <ul class="nav navbar-nav">
       {{#each site.categories}}
         {{!log (first (list collection)) }}
-        {{#first (list collection)}}
+        {{#first (list "docs" filter)}}
         <li{{#is ../../section.title title}} class="active"{{/is}}> <a href="{{link-to this}}">{{../title}}</a> </li>
         {{/first}}
       {{/each}}
