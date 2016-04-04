@@ -3,9 +3,7 @@
 var get = require('get-value');
 var set = require('set-value');
 
-var utils = require('../../utils');
-// var Collection = require('./collection');
-var Collections = require('./collections');
+var utils = require('../utils');
 
 module.exports = function(config) {
   return function assembleCollections(app) {
@@ -82,20 +80,11 @@ module.exports = function(config) {
       if (options.fn) {
         return Object.keys(collection).map(function(inflection) {
           var list = collection.get(inflection);
-          // console.log(list);
           var ctx = {
             inflection: inflection
           };
           ctx[collectionOpts.inflection] = inflection;
           ctx.items = list.items;
-
-          // var list = new List(collection.options);
-          // var items = collection.cache[inflection];
-          // ctx.items = Object.keys(items).reduce(function(acc, key) {
-          //   acc.addItem(items[key]);
-          //   return acc;
-          // }, list).sortBy().items;
-
           return options.fn(ctx);
         }).join('\n');
       }
