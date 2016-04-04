@@ -1,27 +1,10 @@
-<span class="nav-section-title">
-  {{section.title}}
-</span>
+{{#collection "categories"}}
+<span class="nav-section-title">{{inflection}} <span class="badge">{{items.length}}</span></span>
 <ul class="nav nav-pills nav-stacked">
-  {{#list section.collection section.filter}}
-    {{#each . as |item|}}
-      {{> sidenav-link item}}
-    {{/each}}
-  {{/list}}
+  {{#each items}}
+    {{#is this.data.draft true}}{{else}}
+    {{> sidenav-link ..}}
+    {{/is}}
+  {{/each}}
 </ul>
-
-{{#collections}}
-<span class="nav-section-title">{{name}}</span>
-<ul class="nav nav-pills nav-stacked">
-  <li>
-  {{#collection name}}
-  <span class="nav-section-title">{{inflection}} <span class="badge">{{items.length}}</span></span>
-  <ul class="nav nav-pills nav-stacked">
-    {{#each items}}
-      {{!log item}}
-      {{> sidenav-link .}}
-    {{/each}}
-  </ul>
-  {{/collection}}
-  </li>
-</ul>
-{{/collections}}
+{{/collection}}
