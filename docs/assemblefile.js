@@ -53,9 +53,20 @@ var build = {
  * Middleware
  */
 
+var permalinkCache = {};
+app.onLoad(/./, function(file, next) {
+  debug('onLoad for %s', file.path);
+  if (permalinkCache[file.path] === true) {
+    debug('creating permalink context for %s', file.path);
+    file.permalink(file.options.permalink);
+  }
+  next();
+});
+
 app.onPermalink(/./, function(file, next) {
-  debug('creating permalink context for %s', file.path);
-  file.data = merge({}, app.cache.data, file.data);
+  debug('onPermalink for %s', file.path);
+  permalinkCache[file.path] = true;
+  file.data = merge({category: 'docs'}, app.cache.data, file.data);
   next();
 });
 
@@ -148,7 +159,7 @@ app.create('docs-api', {layout: 'body'})
     }, file.data);
     next();
   })
-  .use(permalinks(':site.base/api/:rel()/index.html', permalinkOpts));
+  .use(permalinks(':site.base/:category/:rel()/index.html', permalinkOpts));
 
 app.create('docs-recipes', {layout: 'recipe'})
   .preRender(/\.md/, function(file, next) {
