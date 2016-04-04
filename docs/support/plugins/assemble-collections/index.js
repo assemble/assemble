@@ -43,10 +43,6 @@ module.exports = function(config) {
 
     var self = this;
     this.preRender(opts.regex, function(file, next) {
-      if (file.options.collection !== 'docs-apis') {
-        return next();
-      }
-
       var collection = self[file.options.collection];
       if (!collection) {
         return next();
