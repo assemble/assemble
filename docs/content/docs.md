@@ -1,5 +1,6 @@
-
-
+---
+category: docs
+---
 ### Example: Pre-process CSS
 
 **Using a plugin**
@@ -89,7 +90,7 @@ app.doc('faq.hbs', { content: 'Read our FAQ' });
 app.docs('foo/*.hbs');
 ```
 
-You can use `app.doc` or `app.docs` interchangeably. 
+You can use `app.doc` or `app.docs` interchangeably.
 
 **View cache**
 
@@ -100,7 +101,7 @@ Views are cached on `app.views.*` using the _plural_ name of the collection. So 
 Get views from the collection.
 
 ```js
-var doc = app.docs.getView('faq.hbs'); 
+var doc = app.docs.getView('faq.hbs');
 
 // or
 var doc = app.views.docs['faq.hbs'];

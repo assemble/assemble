@@ -1,3 +1,6 @@
+---
+category: recipes
+---
 # Copy files
 
 This recipe shows how to copy files without doing any kind of processing.

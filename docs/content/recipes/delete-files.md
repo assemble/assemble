@@ -1,3 +1,6 @@
+---
+category: recipes
+---
 # Deleting files
 
 ```js

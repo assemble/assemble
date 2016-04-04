@@ -1,3 +1,6 @@
+---
+category: recipes
+---
 # Recipes
 
 + [to stream](to-stream.md)
@@ -16,4 +19,4 @@
 
 ## Related
 
-* [gulp's docs](https://github.com/gulpjs/gulp/tree/master/docs): Since assemble supports gulp plugins, be sure to take a look at the gulp documentation and [recipes](https://github.com/gulpjs/gulp/tree/master/docs/recipes). 
+* [gulp's docs](https://github.com/gulpjs/gulp/tree/master/docs): Since assemble supports gulp plugins, be sure to take a look at the gulp documentation and [recipes](https://github.com/gulpjs/gulp/tree/master/docs/recipes).

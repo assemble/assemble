@@ -1,5 +1,6 @@
 ---
 title: Listening for views
+category: recipes
 ---
 
 When a view is created by a collection, an `view` event is emitted, and a event with the _singular name of the collection_ is emitted. In other words, the `pages` collection will emit a `page` event when a view is created.

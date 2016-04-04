@@ -1,3 +1,6 @@
+---
+category: subjects
+---
 # Gulp FAQ
 
 Common questions we're asked about [gulp][] and gulp plugins.

@@ -1,3 +1,6 @@
+---
+category: subjects
+---
 ## CLI and API
 
 > Assemble v0.6.0 will have both an API and a CLI

@@ -1,5 +1,6 @@
 ---
 title: assemblefile
+category: api
 ---
 # assemblefile.js
 
@@ -9,7 +10,7 @@ You might also be interested in reading the [assemblefile.js recipe](/recipes/as
 
 When used via command line, assemble looks for an `assemblefile.js` in the root of your project, and attempts to run the code in the file using any commands or flags that might have been passed.
 
-_If you are only using assemble's API, an `assemblefile.js` is not necessary._ 
+_If you are only using assemble's API, an `assemblefile.js` is not necessary._
 
 ## CLI
 

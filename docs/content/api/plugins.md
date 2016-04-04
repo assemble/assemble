@@ -4,11 +4,12 @@ draft: true
 title: Plugins
 description: >
   This document describes instance plugins, how they work, how to use them and how to author them.
+category: api
 ---
 
 ## Overview
 
-Instance plugins may be used to either add new features, methods, or functionality, or to modify existing functionality. 
+Instance plugins may be used to either add new features, methods, or functionality, or to modify existing functionality.
 
 For example, plugins can be used to add features like:
 
@@ -25,7 +26,7 @@ For example, plugins can be used to add features like:
 * Plugins can be used on:
   - `app`: an instance of assemble
   - `collection`: an instance of [Collection][], [List][], [Group][]
-  - `view`: an 
+  - `view`: an
 
 ## API
 
@@ -46,13 +47,13 @@ For example, plugins can be used to add features like:
 
 ### app.use
 
-Use a plugin on the application instance. 
+Use a plugin on the application instance.
 
 ```js
 app.use(fn);
 ```
 
-* `fn` **{Function}**: Plugin function to be called with an instance of `app`. 
+* `fn` **{Function}**: Plugin function to be called with an instance of `app`.
 
 **Example**
 
@@ -71,7 +72,7 @@ var app = assemble()
 
 ```js
 collection.use(function(views) {
-  // do stuff to `views` 
+  // do stuff to `views`
 });
 ```
 
@@ -124,12 +125,12 @@ var app = new Base()
 Run all plugins in the `app.fns` array on the given `value`.
 
 ```js
-// this WILL NOT be called by `run` 
+// this WILL NOT be called by `run`
 app.use(function(app) {
   app.foo = 'bar';
 });
 
-// this WILL be called by `run` 
+// this WILL be called by `run`
 app.use(function(app) {
   return function() {
     app.foo = 'bar';
@@ -166,7 +167,7 @@ app.run(config);
 - plugins that **do** return a function will be pushed on to the `app.fns` array, allowing the function to be called later by the `.run` method
 - `.run` takes an object (`obj`) as its only argument and iterates over the array of `fns` passing `obj` to each function
 - `.run` checks `obj` for a `.use` method and, if one exists, it does `obj.use(fn)`, otherwise `fn.call(obj, obj)`. If `fn` once again returns a function, it will be pushed onto the `obj.fns` array, and so on. This can repeat indefinitely.
-- if `.run` is called with no `obj` (e.g. `app.run()` instead of `app.run(obj)`) then `app` (the is passed to `.run` 
+- if `.run` is called with no `obj` (e.g. `app.run()` instead of `app.run(obj)`) then `app` (the is passed to `.run`
 
 **Example**
 

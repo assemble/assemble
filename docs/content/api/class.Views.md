@@ -1,5 +1,6 @@
 ---
 title: Views
+category: api
 draft: true
 ---
 
@@ -19,9 +20,9 @@ var views = new app.Views();
 
 **Related**
 
-Also see: 
+Also see:
 
-- [View](View.md) 
+- [View](View.md)
 - [view-collections](view-collections.md)
 
 ## API

@@ -1,3 +1,6 @@
+---
+category: recipes
+---
 # Registering helpers
 
 All examples below assume we're starting with the following code:
@@ -50,7 +53,7 @@ app.asyncHelper('upper', function(str) {
 
 **Usage**
 
-Async helper usage is identical to sync helper usage. 
+Async helper usage is identical to sync helper usage.
 
 ```handlebars
 ---

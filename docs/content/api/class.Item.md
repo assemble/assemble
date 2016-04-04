@@ -1,5 +1,6 @@
 ---
 title: Item
+category: api
 ---
 
 The `Item` class is used by the [Collection](/api/Collection.md) class to create an `item`.

@@ -3,7 +3,8 @@ draft: true
 
 title: Errors
 description: >
-  Learn how error handling works in assemble, and how to use error codes to find more information. 
+  Learn how error handling works in assemble, and how to use error codes to find more information.
+category: api
 ---
 
 - [ ] error codes

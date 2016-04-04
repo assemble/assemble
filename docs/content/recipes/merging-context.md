@@ -1,3 +1,6 @@
+---
+category: recipes
+---
 # Merging context
 
 > This recipe shows different strategies for merging the context object before rendering, based on which data should be given preferential treatment.
@@ -6,7 +9,7 @@ Learn more about [context](./terminology#context)
 
 ## Middleware
 
-If you need control over how context is merged on a view-by-view basis, one solution is to create a custom `preRender` middleware. 
+If you need control over how context is merged on a view-by-view basis, one solution is to create a custom `preRender` middleware.
 
 **Example**
 

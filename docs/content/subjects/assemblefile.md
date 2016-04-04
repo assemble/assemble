@@ -1,8 +1,11 @@
+---
+category: subjects
+---
 # assemblefile.js
 
 **What is an `assemblefile.js`?**
 
-When run via command line, Assemble will automatically search for an `assemblefile.js` in the current working directory. 
+When run via command line, Assemble will automatically search for an `assemblefile.js` in the current working directory.
 
 This file may contain any JavaScript or assemble-specific code necessary for your project and, if found, assemble will execute the code in the file upon running `assemble` at the command line.
 
@@ -42,7 +45,7 @@ The function should take an instance of assemble, `app`, as its first argument.
 ```js
 module.exports = function(app) {
   // do stuff to `app`
-  
+
   app.task('default', function(cb) {
     console.log('done!');
     cb();

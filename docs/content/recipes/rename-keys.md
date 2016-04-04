@@ -1,3 +1,6 @@
+---
+category: recipes
+---
 # Rename view keys
 
 This recipe shows how to customize the key this is used for storing and looking up views.

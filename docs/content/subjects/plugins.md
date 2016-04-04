@@ -1,8 +1,9 @@
 ---
 title: Assemble Plugins
 description: >
-  This document tells you how to use and author plugins with Assemble. 
-related: 
+  This document tells you how to use and author plugins with Assemble.
+category: subjects
+related:
   - {title: middleware, url: middleware.md}
   - {title: helpers, url: helpers.md}
 ---
@@ -11,7 +12,7 @@ related:
 
 <!-- toc -->
 
-Assemble's first-class plugin system makes it super easy to add custom features and functionality. 
+Assemble's first-class plugin system makes it super easy to add custom features and functionality.
 
 ## Plugin types
 
@@ -30,7 +31,7 @@ There are three kinds of instance plugins:
 
 **App plugins** are defined with the `.use()` method and are called immediately when an instance of Assemble is created.
 
-- The `.use()` method takes a function that exposes the application instance as its only parameter. 
+- The `.use()` method takes a function that exposes the application instance as its only parameter.
 - The instance is also available as `this` inside the plugin function.
 
 
@@ -55,14 +56,14 @@ App plugins are also chainable, so the following is possible:
 
 ```js
 var app = assemble()
-  .use(function(app) {}) 
+  .use(function(app) {})
   .use(function(app) {})
   .use(function(app) {})
 ```
 
 ### Collection instance plugins
 
-**Collection plugins** are identical to [app plugins](#app-instance-plugins), except they are used on a specific view collection, rather than the application instance. 
+**Collection plugins** are identical to [app plugins](#app-instance-plugins), except they are used on a specific view collection, rather than the application instance.
 
 **Example**
 
@@ -96,7 +97,7 @@ app.page('home', {content: '<%= name %>'})
   .use(permalink(':dest/:name.html'))
   .render(function(err, view) {
     if (err) return console.error(err);
-    
+
     view.dest();
   });
 ```
@@ -104,7 +105,7 @@ app.page('home', {content: '<%= name %>'})
 
 ## Pipeline plugins
 
-Pipeline plugins are different than other plugins in that they must receive and return a [vinyl][] stream. 
+Pipeline plugins are different than other plugins in that they must receive and return a [vinyl][] stream.
 
 **Example**
 

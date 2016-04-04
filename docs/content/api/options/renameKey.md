@@ -1,15 +1,18 @@
+---
+category: api
+---
 # options.renameKey
 
 The `renameKey` option takes a function that allows you to customize the keys of views in a collection.
 
 **Type**: `function`
 
-**Default**: `undefined` 
+**Default**: `undefined`
 
 **Params**:
 
 - `key` **{String}**: The property key used for setting the view on the `views` object
-- `view` **{Object|undefined}**: The same `renameKey` function is used for both getting and setting a view. When setting a view, `renameKey` exposes the `view` as the second parameter. When getting a view, the second parameter will be undefined. 
+- `view` **{Object|undefined}**: The same `renameKey` function is used for both getting and setting a view. When setting a view, `renameKey` exposes the `view` as the second parameter. When getting a view, the second parameter will be undefined.
 
 **Examples**
 
@@ -34,4 +37,4 @@ console.log(Object.keys(app.views.pages));
 * The `view.key` property is used as a view's object key when adding the view to a collection
 * `options.renameKey` must be defined **before** views are created
 * If a custom `renameKey` function is _not defined by the user_, `view.key` is set to the same value as `view.path`.
-* A `renameKey` function may be passed on the options of the collection, or to rename all keys in all collections, you may pass a `renameKey` function on the `app` options. 
+* A `renameKey` function may be passed on the options of the collection, or to rename all keys in all collections, you may pass a `renameKey` function on the `app` options.

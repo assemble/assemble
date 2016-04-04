@@ -1,3 +1,6 @@
+---
+category: subjects
+---
 # Building blocks
 
 **Summary**

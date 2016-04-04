@@ -2,6 +2,7 @@
 title: Classes
 description: >
   The core classes exposed on Assemble's API
+category: docs
 ---
 
 ## Classes

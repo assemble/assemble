@@ -1,3 +1,6 @@
+---
+category: recipes
+---
 # Generate HTML and precompile SASS
 
 The following `assemblefile.js` shows you how to:

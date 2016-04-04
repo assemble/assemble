@@ -1,3 +1,6 @@
+---
+category: docs
+---
 # Build Cycle
 
 **Overview**
@@ -22,7 +25,7 @@
 
 ## Plugins
 
-Unless explicitly invoked by the user (using `.use` or `.run`, for example), instance plugins are only invoked when an instance is created. 
+Unless explicitly invoked by the user (using `.use` or `.run`, for example), instance plugins are only invoked when an instance is created.
 
 **Instances**
 

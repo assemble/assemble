@@ -1,5 +1,6 @@
 ---
 title: Listening for errors
+category: recipes
 ---
 
 Error events are emitted on [app][], [collection][] and [view][].

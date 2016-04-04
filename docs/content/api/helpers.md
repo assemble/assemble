@@ -1,5 +1,6 @@
 ---
 title: Helpers
+category: api
 ---
 
 

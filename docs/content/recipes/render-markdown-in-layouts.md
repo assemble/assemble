@@ -1,3 +1,6 @@
+---
+category: recipes
+---
 # Render markdown with layouts
 
 This recipe shows how to use a `markdown` block helper inside a layout to convert any injected markdown content to HTML.
@@ -40,7 +43,7 @@ A markdown block helper can be used to wrap any content that should be converted
 
 **Layouts**
 
-Wrap the `body` tag in a layout to convert any content that uses the layout to HTML. 
+Wrap the `body` tag in a layout to convert any content that uses the layout to HTML.
 
 For example, assuming `templates/posts/a.md` has the following contents:
 

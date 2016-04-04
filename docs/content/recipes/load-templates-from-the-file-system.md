@@ -1,6 +1,9 @@
+---
+category: recipes
+---
 # Loading views for a collection
 
-Assemble offers multiple options for adding views to a collection. This recipe shows how to load templates from the file system using glob patterns. 
+Assemble offers multiple options for adding views to a collection. This recipe shows how to load templates from the file system using glob patterns.
 
 **Create a collection**
 

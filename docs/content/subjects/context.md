@@ -1,3 +1,6 @@
+---
+category: subjects
+---
 # Context
 
 > This document explains how data is passed to views, related methods, and tips for getting the results you need

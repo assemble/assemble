@@ -1,5 +1,6 @@
 ---
 layout: markdown-raw
+category: api
 ---
 # mergeTypes
 

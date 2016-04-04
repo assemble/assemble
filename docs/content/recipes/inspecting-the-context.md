@@ -1,3 +1,6 @@
+---
+category: recipes
+---
 # Inspecting the context
 
 **What does "inspecting the context mean"?**

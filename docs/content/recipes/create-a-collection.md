@@ -1,3 +1,6 @@
+---
+category: recipes
+---
 # Create a collection
 
 The following examples assume you have the following code at the top of your `assemblefile.js`:

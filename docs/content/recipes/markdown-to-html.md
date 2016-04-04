@@ -2,6 +2,7 @@
 title: Converting markdown to HTML
 description: >
   This recipe shows how to convert markdown files to HTML with Assemble.
+category: recipes
 ---
 
 Note that while this example shows how to use helpers with [handlebars][], the methods and examples should work with any template engine.
@@ -12,9 +13,9 @@ Using helpers to process markdown provides a great deal of control and flexibili
 
 **Helpers we use in the examples**
 
-The are two different markdown helpers used in this recipe: 
+The are two different markdown helpers used in this recipe:
 
-- `\{{md}}` helper for injecting markdown from another file or variable, 
+- `\{{md}}` helper for injecting markdown from another file or variable,
 - `\{{markdown}}` block helper for rendering markdown in place
 
 ### Download and install
@@ -49,7 +50,7 @@ A markdown block helper can be used to wrap any content that should be converted
 
 Wrap the `body` tag in a layout to convert any content that uses the layout to HTML.
 
-For example, let's pretend we have a layout named `foo.hbs`, 
+For example, let's pretend we have a layout named `foo.hbs`,
 
 ```handlebars
 ---

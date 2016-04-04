@@ -1,3 +1,6 @@
+---
+category: recipes
+---
 # Defining a default layout
 
 > This recipe describes how to define a "default" layout.
@@ -68,7 +71,7 @@ Learn more about [middleware](/api/middleware.md).
 
 Instance plugins are functions that expose the instance as the only parameter, and are run when an instance is created.
 
-In this section, we show how to use a _view plugin_, which is an instance plugin that get called on a `view` (instance) when the view is created, directly after the `.onLoad` middleware is run. 
+In this section, we show how to use a _view plugin_, which is an instance plugin that get called on a `view` (instance) when the view is created, directly after the `.onLoad` middleware is run.
 
 Layouts defined using a view plugin might get overridden at some point later on at runtime - which is desirable in cases, like when a default layout should be set initially, but then updated dynamically based on path variables or permalinks.
 

@@ -1,3 +1,6 @@
+---
+category: recipes
+---
 ## Install assemble
 
 **CLI**

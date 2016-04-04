@@ -1,3 +1,6 @@
+---
+category: recipes
+---
 # Push views into a vinyl stream
 
 The [collection-loaders](./collection-loaders.md) recipe shows how to create a collection and load views using glob patterns.

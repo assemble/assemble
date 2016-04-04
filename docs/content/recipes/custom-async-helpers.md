@@ -1,3 +1,6 @@
+---
+category: recipes
+---
 # Custom helpers
 
 This recipe shows how to create and use custom async helpers with assemble.

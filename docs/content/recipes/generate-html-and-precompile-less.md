@@ -1,3 +1,6 @@
+---
+category: recipes
+---
 # Generate HTML and precompile LESS
 
 The following `assemblefile.js` shows you how to:

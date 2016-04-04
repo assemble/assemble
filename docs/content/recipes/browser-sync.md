@@ -1,3 +1,6 @@
+---
+category: recipes
+---
 # Assemble and Browser-Sync
 
 > Use assemble and [browser-sync](https://www.browsersync.io/) to both serve the files but also update the served files if needed.
@@ -85,7 +88,7 @@ app.task('load', function(cb) {
  * Generate site
  */
 
-app.task('content', ['load'], function() {  
+app.task('content', ['load'], function() {
   return app.pages.src('content/**/*.{md,hbs}')
     .pipe(app.renderFile())
     .on('err', console.error)

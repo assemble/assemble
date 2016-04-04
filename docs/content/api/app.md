@@ -1,3 +1,6 @@
+---
+category: api
+---
 # API
 
 ## Core API
@@ -583,7 +586,7 @@ opts.merge({foo: 'bar'});
 
 ***
 
-## Plugin API 
+## Plugin API
 
 Assemble's Plugin API is powered by [base-plugins][].
 
@@ -844,7 +847,7 @@ app.on('task:error', function(err) {});
 
 ### Common methods
 
-This section describes methods that are common to all classes exposed through the templates API. 
+This section describes methods that are common to all classes exposed through the templates API.
 
 #### .option
 
