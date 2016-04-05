@@ -13,23 +13,11 @@ component: navbar
     </div>
     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
-      {{#each site.categories}}
-        {{!log (first (list collection)) }}
-        {{#first (list "docs" filter)}}
-        <li{{#is ../../section.title title}} class="active"{{/is}}> <a href="{{link-to this}}">{{../title}}</a> </li>
-        {{/first}}
-      {{/each}}
+      {{#collection "categories"}}
+        {{> category-dropdown }}
+      {{/collection}}
       </ul>
       <ul class="nav navbar-nav pull-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Collections <span class="caret"></span></a>
-          <ul class="dropdown-menu" id="dropdown-collections">
-            {{#collections}}
-            <li class="dropdown-header">{{name}}</li>
-            {{#collection name}}<li><a href="#">{{inflection}} <span class="badge pull-right">{{items.length}}</span></a></li>{{/collection}}
-            {{/collections}}
-          </ul>
-        </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Other Versions <span class="caret"></span></a>
           <ul class="dropdown-menu" id="dropdown-versions">
