@@ -2950,6 +2950,15 @@ input[type="button"].btn-block {
 .nav + .nav-section-title {
   margin-top: 40px;
 }
+
+.sidebar .nav .nav {
+  display: none;
+}
+
+.sidebar .nav .nav.active {
+  display: block;
+}
+
 .nav-pills.nav-stacked > li > a {
   display: block;
   padding: 0.5em 2em 0.5em 1em;
