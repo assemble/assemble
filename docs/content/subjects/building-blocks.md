@@ -1,8 +1,7 @@
 ---
+title: Building blocks
 category: subjects
 ---
-# Building blocks
-
 **Summary**
 
 - [templates]()

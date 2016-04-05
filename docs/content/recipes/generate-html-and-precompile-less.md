@@ -1,8 +1,7 @@
 ---
+title: Generate HTML and precompile LESS
 category: recipes
 ---
-# Generate HTML and precompile LESS
-
 The following `assemblefile.js` shows you how to:
 
 1. Generate `.html` files from `.hbs` ([handlebars][]) templates using [engine-handlebars][]

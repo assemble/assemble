@@ -1,9 +1,9 @@
 ---
+title: Assemble and Browser-Sync
+description: >
+  Use assemble and [browser-sync](https://www.browsersync.io/) to both serve the files but also update the served files if needed.
 category: recipes
 ---
-# Assemble and Browser-Sync
-
-> Use assemble and [browser-sync](https://www.browsersync.io/) to both serve the files but also update the served files if needed.
 
 ## Purpose of this recipe
 

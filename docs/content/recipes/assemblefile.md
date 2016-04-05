@@ -1,7 +1,7 @@
 ---
+title: assemblefile.js
 category: recipes
 ---
-# assemblefile.js
 
 You might also be interested in reading the [assemblefile.js API docs](/api/assemblefile.md).
 

@@ -1,8 +1,7 @@
 ---
+title: Register helpers
 category: recipes
 ---
-# Registering helpers
-
 All examples below assume we're starting with the following code:
 
 ```js

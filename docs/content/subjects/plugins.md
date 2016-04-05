@@ -7,9 +7,6 @@ related:
   - {title: middleware, url: middleware.md}
   - {title: helpers, url: helpers.md}
 ---
-
-{{description}}
-
 <!-- toc -->
 
 Assemble's first-class plugin system makes it super easy to add custom features and functionality.

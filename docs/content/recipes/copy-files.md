@@ -1,9 +1,9 @@
 ---
+title: Copy files
+description: >
+  This recipe shows how to copy files without doing any kind of processing.
 category: recipes
 ---
-# Copy files
-
-This recipe shows how to copy files without doing any kind of processing.
 
 ```js
 var assemble = require('assemble');

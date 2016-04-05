@@ -1,9 +1,9 @@
 ---
-title: app.view
+title: collection.view
 collection: docs
 category: api
 description: >
-  This document describes the `app.view` method.
+  This document describes the `collection.view` method.
 ---
 
 All view collections expose a `.view` method that can be used for creating an un-cached [view](View.md). In other words, a view that will not be added to the collection.

@@ -1,5 +1,5 @@
 ---
-title: assemblefile
+title: assemblefile.js
 category: api
 ---
 # assemblefile.js

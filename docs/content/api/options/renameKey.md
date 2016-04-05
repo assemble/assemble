@@ -1,4 +1,5 @@
 ---
+title: "Option: renameKey"
 category: api
 ---
 # options.renameKey

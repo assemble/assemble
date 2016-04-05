@@ -1,10 +1,9 @@
 ---
+title: Render markdown with layouts
+description: This recipe shows how to use a `markdown` block helper inside a layout to convert any injected markdown content to HTML.
+
 category: recipes
 ---
-# Render markdown with layouts
-
-This recipe shows how to use a `markdown` block helper inside a layout to convert any injected markdown content to HTML.
-
 ## Download and install
 
 First, you can download everything you will need to run the examples with the following command:

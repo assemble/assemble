@@ -1,4 +1,5 @@
 ---
+title: "Option: mergeTypes"
 layout: markdown-raw
 category: api
 ---

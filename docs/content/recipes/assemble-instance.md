@@ -1,7 +1,7 @@
 ---
+title: Assemble instance
 category: recipes
 ---
-# Assemble instance
 
 The main export of the assemble library is a function. More specifically, the function is the `Assemble` constructor.
 

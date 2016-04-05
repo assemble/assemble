@@ -1,6 +1,6 @@
 ---
 title: Helper context
-description:
+description: Properties automatically bound to the context for each helper.
 category: subjects
 ---
 

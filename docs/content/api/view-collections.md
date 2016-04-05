@@ -1,10 +1,10 @@
 ---
-title: View Collections
+title: View collections
 category: api
 collection: docs
 description: >
   This document describes collections, how they are used in Assemble and how to create them.
-related: 
+related:
   - {title: collections, url: collections.md}
   - {title: view, url: view.md}
 ---
@@ -19,7 +19,7 @@ Also see [view-types](view-types.md).
 
 You might find it useful to brush up on [view-types](view-types.md) before continuing on with view collections. In a nutshell, view types determine how a view will be treated during the render-cycle. Assemble currently ships with three built-in view collections:
 
-- [pages](#pages): 
+- [pages](#pages):
 - [partials](#partials)
 - [layouts](#layouts)
 
@@ -81,7 +81,7 @@ To create an un-cached view, use [.view](#view).
 
 ### .addView
 
-Add a [view](view.md) to the collection. 
+Add a [view](view.md) to the collection.
 
 ```js
 collection.addView('foo', {content: 'bar'});

@@ -1,8 +1,7 @@
 ---
+title: Push views onto a vinyl stream
 category: recipes
 ---
-# Push views into a vinyl stream
-
 The [collection-loaders](./collection-loaders.md) recipe shows how to create a collection and load views using glob patterns.
 
 This recipe picks up where that recipe ends, and shows how to push views from any collection into a vinyl `src` stream.

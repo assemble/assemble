@@ -1,8 +1,7 @@
 ---
+title: Recipes
 category: recipes
 ---
-# Recipes
-
 + [to stream](to-stream.md)
 + [tasks](tasks.md)
 + [rendering templates](rendering-templates.md)
