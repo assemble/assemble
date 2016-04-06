@@ -108,33 +108,7 @@ app.data({
   site: {
     title: 'Assemble Docs',
     version: pkg.version,
-    base: ':destBase/en/v:site.version',
-    categories: {
-      docs: {
-        title: 'Docs',
-        description: 'Assemble documentation',
-        category: 'docs',
-        filter: navFilter('docs')
-      },
-      api: {
-        title: 'API',
-        description: 'Assemble API Documentation',
-        category: 'api',
-        filter: navFilter('api')
-      },
-      recipes: {
-        title: 'Recipes',
-        description: 'Assemble recipes',
-        category: 'recipes',
-        filter: navFilter('recipes')
-      },
-      subjects: {
-        title: 'Subjects',
-        description: 'Advanced subjects on using assemble',
-        category: 'subjects',
-        filter: navFilter('subjects')
-      }
-    }
+    base: ':destBase/en/v:site.version'
   },
   destBase: '_gh_pages',
   assets: ':site.base/assets',
@@ -177,7 +151,6 @@ app.create('docs', {layout: 'body'})
     var category = file.data.category;
     if (!category) return next();
     file.data = merge({
-      section: app.data('site.categories.' + category),
       layout: category === 'recipes' ? 'recipe' : file.data.layout
     }, file.data);
     next();
