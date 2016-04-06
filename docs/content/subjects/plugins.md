@@ -3,7 +3,9 @@ title: Assemble Plugins
 description: >
   This document tells you how to use and author plugins with Assemble.
 category: subjects
-related: ['middleware', 'helpers']
+related:
+  - api/middleware
+  - api/helpers
 ---
 <!-- toc -->
 

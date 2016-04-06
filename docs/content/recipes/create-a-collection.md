@@ -2,7 +2,7 @@
 title: Create a collection
 category: recipes
 related:
-  - view-types
+  - api/view-types
 ---
 
 The following examples assume you have the following code at the top of your `assemblefile.js`:
