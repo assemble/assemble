@@ -1,5 +1,6 @@
 'use strict';
 
+var path = require('path');
 var markdown = require('helper-markdown');
 var linkTo = require('helper-link-to');
 var getPkgs = require('get-pkgs');
@@ -68,6 +69,11 @@ function getDocs(arr, helper) {
     }
     var key = item.key || item.name || item.url;
     var view = helper.app.find(key);
+    if (!view && helper.view.data && helper.view.data.category) {
+      key = path.join(helper.view.data.category, key);
+      view = helper.app.find(key);
+    }
+
     item.title = item.title || (view && view.data && view.data.title);
     item.url = (view && linkTo.call(helper, view)) || item.url;
     docs.push(item);
