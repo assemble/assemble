@@ -1,8 +1,10 @@
 ---
 title: Recipes
-draft: true
 category: recipes
+description: >
+  Recipes for using features in assemble, using assemble with other libraries and other libraries with assemble.
 ---
+
 + [to stream](to-stream.md)
 + [tasks](tasks.md)
 + [rendering templates](rendering-templates.md)
