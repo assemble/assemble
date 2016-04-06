@@ -75,14 +75,26 @@ app.onPermalink(/./, function(file, next) {
  * key of each template, so it's easier to lookup later
  */
 
-app.option('renameKey', function(fp) {
+app.option('renameKey', function(fp, view) {
+
+  // key has already been renamed, just strip extension
   if (fp.indexOf(__dirname) === -1) {
     if (/\.md$/.test(fp)) {
       return fp.substr(0, fp.length - 3);
     }
     return fp;
   }
-  return path.basename(fp, path.extname(fp));
+
+  // remove __dirname/content
+  var base = fp.replace(__dirname, '');
+  fp = base.split(path.sep)
+    .filter(Boolean)
+    .slice(1)
+    .join(path.sep);
+
+  // drop extension
+  var ext = path.extname(fp);
+  return fp.substr(0, fp.length - ext.length);
 });
 
 /**
@@ -151,6 +163,9 @@ var permalinkOpts = {
 function navFilter(category) {
   return function(item) {
     if (item.data.category !== category) {
+      return false;
+    }
+    if (/index$/.test(item.key)) {
       return false;
     }
     return (typeof item.data.draft === 'undefined' || item.data.draft === false);
@@ -250,8 +265,8 @@ app.task('redirects', function() {
  */
 
 app.task('load', function* () {
-  app.partials('templates/partials/**/*.hbs', {cwd: __dirname});
-  app.layouts('templates/layouts/**/*.hbs', {cwd: __dirname});
+  app.partials(['templates/partials/**/*.hbs'], {cwd: __dirname});
+  app.layouts(['templates/layouts/**/*.hbs'], {cwd: __dirname});
   app.docs(['content/**/*.md'], {cwd: __dirname});
 });
 
@@ -262,7 +277,7 @@ app.task('load', function* () {
 app.task('serve', function() {
   browserSync.init({
     port: 8080,
-    startPath: 'docs.html',
+    startPath: 'index.html',
     server: {
       baseDir: build.dest()
     }
