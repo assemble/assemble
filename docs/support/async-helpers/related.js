@@ -69,13 +69,18 @@ function getDocs(arr, helper) {
     }
     var key = item.key || item.name || item.url;
     var view = helper.app.find(key);
-    if (!view && helper.view.data && helper.view.data.category) {
-      key = path.join(helper.view.data.category, key);
-      view = helper.app.find(key);
+    if (!view && helper.view.data.category) {
+      view = helper.app.find(path.join(helper.view.data.category, key));
     }
 
-    item.title = item.title || (view && view.data && view.data.title);
-    item.url = (view && linkTo.call(helper, view)) || item.url;
+    if (!view) {
+      console.log(`Unable to find a view named "${key}"`);
+      console.log(`Check the related items in "${helper.view.path}"`);
+      continue;
+    }
+
+    item.title = item.title || view.data.title;
+    item.url = linkTo.call(helper, view) || item.url;
     docs.push(item);
   }
   return docs;
