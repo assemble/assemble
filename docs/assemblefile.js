@@ -77,6 +77,9 @@ app.onPermalink(/./, function(file, next) {
 
 app.option('renameKey', function(fp) {
   if (fp.indexOf(__dirname) === -1) {
+    if (/\.md$/.test(fp)) {
+      return fp.substr(0, fp.length - 3);
+    }
     return fp;
   }
   return path.basename(fp, path.extname(fp));
@@ -177,6 +180,7 @@ app.create('redirects', {
  */
 
 app.helpers('support/helpers/*.js');
+app.asyncHelpers('support/async-helpers/*.js');
 
 /**
  * Clean out the current version's built files
