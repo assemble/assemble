@@ -3,9 +3,7 @@ title: Assemble Plugins
 description: >
   This document tells you how to use and author plugins with Assemble.
 category: subjects
-related:
-  - {title: middleware, url: middleware.md}
-  - {title: helpers, url: helpers.md}
+related: ['middleware', 'helpers']
 ---
 <!-- toc -->
 

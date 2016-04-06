@@ -1,6 +1,8 @@
 ---
 title: Create a collection
 category: recipes
+related:
+  - view-types
 ---
 
 The following examples assume you have the following code at the top of your `assemblefile.js`:
@@ -53,7 +55,3 @@ app.pages({
 ```js
 app.pages('templates/*.hbs');
 ```
-
-## Related
-
-* [view types](/api/view-types.md)

@@ -4,6 +4,14 @@ collection: docs
 category: api
 description: >
   This document describes the `app.view` method.
+related:
+  docs:
+    - view-collections
+    - collection.view
+    - class.View
+    -
+      title: View API # custom title
+      key: class.View # may use `key`, `name`, or `url`
 ---
 
 Create an un-cached [view](View.md) that will not be added to the collection.
@@ -20,10 +28,3 @@ var app = assemble();
 var view = app.view('home', {content: 'This is a random view'});
 // do stuff with "view"
 ```
-
-## Related
-
-* [view-collections](view-collections.md)
-* [collection.view](/api/collection.view.md)
-* [View](/api/view.api.md)
-* [View API](/api/view.api.md)

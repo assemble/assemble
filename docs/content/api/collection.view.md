@@ -4,6 +4,12 @@ collection: docs
 category: api
 description: >
   This document describes the `collection.view` method.
+related:
+  - view-collections
+  - app.view
+  -
+    title: View API
+    key: class.View
 ---
 
 All view collections expose a `.view` method that can be used for creating an un-cached [view](View.md). In other words, a view that will not be added to the collection.
@@ -27,9 +33,3 @@ var home = app.pages.view('home', {content: 'This is the home page'});
 **Caching views**
 
 To cache views (by adding them to a collection) you would use `.addView` or `.setView`. See the [view-collection docs](view-collections.md) for more details.
-
-## Related
-
-* [view-collections](view-collections.md)
-* [app.view](/api/app.view.md)
-* [View API](/api/view.api.md)

@@ -3,6 +3,8 @@ title: Custom helpers
 description: >
   This recipe shows how to create and use custom helpers with assemble.
 category: recipes
+related:
+  - custom-async-helpers
 ---
 ## Create a helper
 
@@ -43,8 +45,3 @@ Results in:
 ```html
 foo BAR baz
 ```
-
-
-## Related
-
-- [custom async helpers](./recipes/custom-async-helpers.md)

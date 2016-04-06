@@ -1,12 +1,10 @@
 ---
 title: Layouts
-description: > 
+description: >
   This document describes Layouts, one of the three view collections that Assemble ships with by default. Layouts are views (templates) that can wrap other views with common content or code.
 collection: docs
 category: api
-related: 
-  - {title: "view collections", url: collections.md}
-  - {title: view, url: view.md}
+related: ['view-collections', 'class.View']
 ---
 
 ## What is a layout?
@@ -21,7 +19,7 @@ In Assemble, any template (view) can be wrapped with a layout. Pages, partials, 
 
 ## Defining layouts
 
-As with all settings in assemble, the most _specific_ layout is the one that will be used on a view. 
+As with all settings in assemble, the most _specific_ layout is the one that will be used on a view.
 
 ### view.layout
 

@@ -4,9 +4,7 @@ category: api
 collection: docs
 description: >
   This document describes collections, how they are used in Assemble and how to create them.
-related:
-  - {title: collections, url: collections.md}
-  - {title: view, url: view.md}
+related: ['collections', 'class.View']
 ---
 
 ## What is a "view collection"?

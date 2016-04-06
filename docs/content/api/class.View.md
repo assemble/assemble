@@ -3,10 +3,8 @@ title: View
 collection: docs
 category: api
 description: >
-  This document explains what a "view" is, and how views are used in Assemble. 
-related: 
-  - { title: collections, url: collections.md }
-  - { title: view-types, url: view-types.md }
+  This document explains what a "view" is, and how views are used in Assemble.
+related: ['collections', 'view-types']
 ---
 
 ## Overview
@@ -108,7 +106,3 @@ Return true if the view is the given view `type`. Since types are assigned by co
 ```js
 view.isType('partial');
 ```
-
-## Related
-
-* [view](/api/view.md)
