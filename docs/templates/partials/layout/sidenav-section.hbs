@@ -1,12 +1,10 @@
 <ul class="nav">
 {{#collection "categories"}}
-  <li><span{{#is ../category this.category}} class="active"{{/is}}><a href="{{link-to (first items)}}" class="nav-section-title">{{inflection}}</a></span>
+  <li><span{{#is ../category this.category}} class="active"{{/is}}>{{> sidenav-section-header-link }}</span>
     <ul class="nav nav-pills nav-stacked {{#is ../category this.category}} active{{/is}}">
-    {{#each items}}
-      {{#is this.data.draft true}}{{else}}
+    {{#each items}}{{#is this.data.draft true}}{{else}}{{#ends-with ../key "index"}}{{else}}
       {{> sidenav-link ..}}
-      {{/is}}
-    {{/each}}
+    {{/ends-with}}{{/is}}{{/each}}
     </ul>
   </li>
 {{/collection}}
