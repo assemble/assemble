@@ -144,7 +144,7 @@ var permalinkOpts = {
     }
     var rel = this.relative;
     var ext = path.extname(rel);
-    return path.join(rel.substr(0, rel.length - ext.length), 'index.html');
+    return path.join(rel.substr(0, rel.length - ext.length) + '.html');
   }
 };
 
@@ -180,6 +180,11 @@ app.create('redirects', {
  */
 
 app.helpers('support/helpers/*.js');
+
+/**
+ * Load async-helpers
+ */
+
 app.asyncHelpers('support/async-helpers/*.js');
 
 /**
