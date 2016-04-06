@@ -19,6 +19,7 @@
     "gulp-extname": "^0.2.2",
     "gulp-ignore": "^2.0.1",
     "gulp-prettify": "^0.4.0",
+    "helper-issue": "^0.3.0",
     "helper-link-to": "^0.1.4",
     "helper-markdown": "^0.2.1",
     "mixin-deep": "^1.1.3",
