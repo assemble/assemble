@@ -5,7 +5,10 @@ layout: markdown
 
 {% body %}
 
-{{#if related.list}}
-{{> related related.list}}
-{{/if}}
+{{#if related}}
+## Related
 
+{{#related related~}}
+- [{{title}}]({{url}})
+{{~/related}}
+{{/if}}
