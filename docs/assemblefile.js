@@ -31,7 +31,7 @@ var assemble = require('..');
 var app = assemble();
 
 app.time = new Time();
-viewEvents('permalink')(app);
+app.use(viewEvents('permalink'));
 app.use(collections());
 app.use(permalinks());
 app.use(getDest());
@@ -87,6 +87,9 @@ app.option('renameKey', function(fp) {
  */
 
 app.data({
+  docs: {
+    content: 'https://github.com/assemble/assemble/tree/master/docs/content'
+  },
   site: {
     title: 'Assemble Docs',
     version: pkg.version,
