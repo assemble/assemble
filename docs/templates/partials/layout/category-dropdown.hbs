@@ -2,9 +2,9 @@
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{pascal name}} <span class="caret"></span></a>
   <ul class="dropdown-menu" id="dropdown-{{name}}">
   {{#each items}}
-    {{#is this.data.draft true}}{{else}}
+    {{#isnt this.data.draft true}}
     {{> category-dropdown-link ..}}
-    {{/is}}
+    {{/isnt}}
   {{/each}}
   </ul>
 </li>

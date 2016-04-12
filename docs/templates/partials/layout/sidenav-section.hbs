@@ -2,9 +2,9 @@
 {{#collection "categories"}}
   <li><span{{#is ../category this.category}} class="active"{{/is}}>{{> sidenav-section-header-link }}</span>
     <ul class="nav nav-pills nav-stacked {{#is ../category this.category}} active{{/is}}">
-    {{#each items}}{{#is this.data.draft true}}{{else}}{{#ends-with ../key "index"}}{{else}}
+    {{#each items}}{{#isnt this.data.draft true}}{{#ends-with ../key "index"}}{{else}}
       {{> sidenav-link ..}}
-    {{/ends-with}}{{/is}}{{/each}}
+    {{/ends-with}}{{/isnt}}{{/each}}
     </ul>
   </li>
 {{/collection}}
