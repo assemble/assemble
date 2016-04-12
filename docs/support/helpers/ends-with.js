@@ -7,5 +7,10 @@ module.exports = function(str, check, options) {
     return '';
   }
   var re = new RegExp(check + '$');
-  return (re.test(str)) ? options.fn(this) : options.inverse(this);
+  var isMatch = re.test(str);
+
+  if (typeof options.fn === 'function') {
+    return isMatch ? options.fn(this) : options.inverse(this);
+  }
+  return isMatch;
 };
