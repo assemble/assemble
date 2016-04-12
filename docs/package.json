@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "array-sort": "^0.1.1",
+    "assemble-collections": "^0.2.0",
     "assemble-permalinks": "^0.3.1",
     "base-watch": "^0.1.2",
     "browser-sync": "^2.11.1",

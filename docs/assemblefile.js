@@ -10,11 +10,11 @@ var extname = require('gulp-extname');
 var ignore = require('gulp-ignore');
 var debug = require('debug')('assemble:docs');
 var browserSync = require('browser-sync').create();
+var collections = require('assemble-collections');
 var permalinks = require('assemble-permalinks');
 var merge = require('mixin-deep');
 var through = require('through2');
 
-var collections = require('./support/plugins/assemble-collections');
 var viewEvents = require('./support/plugins/view-events');
 var redirects = require('./support/plugins/redirects');
 var manifest = require('./support/plugins/manifest');
