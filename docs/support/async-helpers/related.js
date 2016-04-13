@@ -1,7 +1,6 @@
 'use strict';
 
 var path = require('path');
-var markdown = require('helper-markdown');
 var linkTo = require('helper-link-to');
 var getPkgs = require('get-pkgs');
 var co = require('co');
@@ -10,6 +9,7 @@ var get = thunkify(getPkgs);
 
 module.exports = function(related, options, cb) {
   var self = this;
+
   co(function *() {
     related = normalize(related);
 
@@ -34,9 +34,9 @@ module.exports = function(related, options, cb) {
     var items = docs.concat(repos);
 
     if (options.fn) {
-      return markdown(items.map(function(item) {
+      return items.map(function(item) {
         return options.fn(item);
-      }).join('\n'));
+      }).join('\n');
     }
     return items;
   })
@@ -67,8 +67,16 @@ function getDocs(arr, helper) {
     if (typeof item === 'string') {
       item = { key: item };
     }
+
+    var view;
+    if (item.isView || item.isItem) {
+      view = item;
+    }
+
     var key = item.key || item.name || item.url;
-    var view = helper.app.find(key);
+    if (!view) {
+      view = helper.app.find(key);
+    }
     if (!view && helper.view.data.category) {
       view = helper.app.find(path.join(helper.view.data.category, key));
     }
@@ -79,7 +87,7 @@ function getDocs(arr, helper) {
       continue;
     }
 
-    item.title = item.title || view.data.title;
+    item.title = item.title || view.data.title || view.key;
     item.url = linkTo.call(helper, view) || item.url;
     docs.push(item);
   }
