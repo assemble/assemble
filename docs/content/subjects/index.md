@@ -2,6 +2,9 @@
 title: Subjects
 category: subjects
 ---
-# TODO:
 
-- list subjects
+{{#collection "categories"}}
+{{#is name "subjects"}}
+{{> category-list ..}}
+{{/is}}
+{{/collection}}
