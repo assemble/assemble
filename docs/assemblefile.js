@@ -33,7 +33,6 @@ var app = assemble();
 app.time = new Time();
 app.use(viewEvents('permalink'));
 app.use(collections());
-app.use(permalinks());
 app.use(getDest());
 app.use(watch());
 
@@ -53,19 +52,8 @@ var build = {
  * Middleware
  */
 
-var permalinkCache = {};
-app.onLoad(/./, function(file, next) {
-  debug('onLoad for %s', file.path);
-  if (permalinkCache[file.path] === true) {
-    debug('creating permalink context for %s', file.path);
-    file.permalink(file.options.permalink);
-  }
-  next();
-});
-
 app.onPermalink(/./, function(file, next) {
   debug('onPermalink for %s', file.path);
-  permalinkCache[file.path] = true;
   file.data = merge({category: 'docs'}, app.cache.data, file.data);
   next();
 });
