@@ -300,7 +300,7 @@ app.task('build', ['load'], function() {
     .pipe(extname())
     .pipe(through.obj(function(file, enc, next) {
       file.path = file.data.permalink || file.path;
-      file.base = '_gh_pages';
+      file.base = app.data('destBase');
       next(null, file);
     }))
     .pipe(manifest(app, {
@@ -311,9 +311,7 @@ app.task('build', ['load'], function() {
         return fp.substr(idx);
       }
     }))
-    .pipe(app.dest(function(file) {
-      return build.dest();
-    }))
+    .pipe(app.dest(build.dest()))
     .pipe(browserSync.stream());
 });
 
