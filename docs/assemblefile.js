@@ -12,6 +12,7 @@ var debug = require('debug')('assemble:docs');
 var browserSync = require('browser-sync').create();
 var collections = require('assemble-collections');
 var permalinks = require('assemble-permalinks');
+var getDest = require('view-get-dest');
 var merge = require('mixin-deep');
 var through = require('through2');
 
@@ -19,7 +20,6 @@ var viewEvents = require('./support/plugins/view-events');
 var redirects = require('./support/plugins/redirects');
 var manifest = require('./support/plugins/manifest');
 var versions = require('./support/plugins/versions');
-var getDest = require('./support/plugins/get-dest');
 var utils = require('./support/utils');
 var pkg = require('../package');
 var assemble = require('..');

@@ -29,6 +29,7 @@
     "set-value": "^0.3.3",
     "through2": "^2.0.1",
     "thunkify": "^2.1.2",
-    "time-diff": "^0.1.0"
+    "time-diff": "^0.1.0",
+    "view-get-dest": "^0.1.1"
   }
 }
