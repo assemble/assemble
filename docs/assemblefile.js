@@ -108,7 +108,7 @@ app.data({
 });
 
 /**
- * Create a custom view collection
+ * Permalink options to use in the permalinks plugin below
  */
 
 var permalinkOpts = {
@@ -122,28 +122,30 @@ var permalinkOpts = {
   }
 };
 
-function navFilter(category) {
-  return function(item) {
-    if (item.data.category !== category) {
-      return false;
-    }
-    if (/index$/.test(item.key)) {
-      return false;
-    }
-    return (typeof item.data.draft === 'undefined' || item.data.draft === false);
-  };
+/**
+ * Custom preRender middleware to use on the `docs` collection below.
+ */
+
+function preRender(file, next) {
+  var category = file.data.category;
+  if (!category) return next();
+  file.data = merge({
+    layout: category === 'recipes' ? 'recipe' : file.data.layout
+  }, file.data);
+  next();
 }
 
+/**
+ * Create a custom view collection for `docs`
+ */
+
 app.create('docs', {layout: 'body'})
-  .preRender(/\.md/, function(file, next) {
-    var category = file.data.category;
-    if (!category) return next();
-    file.data = merge({
-      layout: category === 'recipes' ? 'recipe' : file.data.layout
-    }, file.data);
-    next();
-  })
+  .preRender(/\.md/, preRender)
   .use(permalinks(':site.base/:slug()', permalinkOpts));
+
+/**
+ * Create a custom view collection for html files that do redirects.
+ */
 
 app.create('redirects', {
   renameKey: function(key, view) {
@@ -299,7 +301,7 @@ app.task('build', ['load'], function() {
     // .pipe(prettify())
     .pipe(extname())
     .pipe(through.obj(function(file, enc, next) {
-      file.path = file.data.permalink || file.path;
+      file.path = file.dest;
       file.base = app.data('destBase');
       next(null, file);
     }))
