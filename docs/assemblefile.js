@@ -93,6 +93,7 @@ app.data({
     base: ':destBase/en/v:site.version',
     baseUrl: 'http://assemble.io'
   },
+  // slug is defined in the url helper. this should be refactored.
   url: ':site.baseUrl/en/v:site.version/docs/:slug()',
   destBase: '_gh_pages',
   assets: ':site.base/assets',
@@ -138,6 +139,10 @@ function preRender(file, next) {
 app.create('docs', {layout: 'body'})
   .preRender(/\.md/, preRender)
   .use(permalinks(':site.base/docs/:slug()', permalinkOpts));
+
+/**
+ * Configure permalinks for main site pages.
+ */
 
 app.pages.use(permalinks(':site.base/:name.html'));
 
