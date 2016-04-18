@@ -90,8 +90,10 @@ app.data({
   site: {
     title: 'Assemble Docs',
     version: pkg.version,
-    base: ':destBase/en/v:site.version'
+    base: ':destBase/en/v:site.version',
+    baseUrl: 'http://assemble.io'
   },
+  url: ':site.baseUrl/en/v:site.version/docs/:slug()',
   destBase: '_gh_pages',
   assets: ':site.base/assets',
   links: [{
