@@ -74,7 +74,7 @@ function run(cb) {
    * Listen for errors
    */
 
-  app.on('error', console.error.bind(console));
+  app.on('error', handleError);
 
   /**
    * Support `--emit` for debugging

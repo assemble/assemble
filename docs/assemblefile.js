@@ -36,10 +36,6 @@ app.use(collections());
 app.use(getDest());
 app.use(watch());
 
-app.on('error', function(err) {
-  console.log(err.stack);
-});
-
 /**
  * Common variables
  */
@@ -64,7 +60,6 @@ app.onPermalink(/./, function(file, next) {
  */
 
 app.option('renameKey', function(fp, view) {
-
   // key has already been renamed, just strip extension
   if (fp.indexOf(__dirname) === -1) {
     if (/\.md$/.test(fp)) {
