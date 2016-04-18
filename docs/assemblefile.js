@@ -136,7 +136,9 @@ function preRender(file, next) {
 
 app.create('docs', {layout: 'body'})
   .preRender(/\.md/, preRender)
-  .use(permalinks(':site.base/:slug()', permalinkOpts));
+  .use(permalinks(':site.base/docs/:slug()', permalinkOpts));
+
+app.pages.use(permalinks(':site.base/:name.html'));
 
 /**
  * Create a custom view collection for html files that do redirects.
@@ -210,6 +212,7 @@ app.task('redirects', function() {
   return app.src(build.dest('en/*/manifest.json'))
     .pipe(redirects(app))
     .pipe(versions(app))
+    // .on('data', console.log)
     .pipe(ignore.include(['redirects.json', 'versions.json']))
     .pipe(app.dest(function(file) {
       file.base = file.dirname;
@@ -225,6 +228,7 @@ app.task('redirects', function() {
 app.task('load', function* () {
   app.partials(['templates/partials/**/*.hbs'], {cwd: __dirname});
   app.layouts(['templates/layouts/**/*.hbs'], {cwd: __dirname});
+  app.pages(['templates/pages/**/*.hbs'], {cwd: __dirname});
   app.docs(['content/**/*.md'], {cwd: __dirname});
 });
 
@@ -291,6 +295,7 @@ function changedFilter(key, view) {
 
 app.task('build', ['load'], function() {
   return app.toStream('docs', changedFilter).on('error', console.log)
+    .pipe(app.toStream('pages', changedFilter)).on('error', console.log)
     .pipe(drafts())
     .pipe(app.renderFile()).on('error', console.log)
     // .pipe(prettify())
