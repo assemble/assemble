@@ -4,7 +4,6 @@ var path = require('path');
 var del = require('delete');
 var Time = require('time-diff');
 var watch = require('base-watch');
-var prettify = require('gulp-prettify');
 var drafts = require('gulp-drafts');
 var extname = require('gulp-extname');
 var ignore = require('gulp-ignore');
@@ -212,7 +211,6 @@ app.task('redirects', function() {
   return app.src(build.dest('en/*/manifest.json'))
     .pipe(redirects(app))
     .pipe(versions(app))
-    // .on('data', console.log)
     .pipe(ignore.include(['redirects.json', 'versions.json']))
     .pipe(app.dest(function(file) {
       file.base = file.dirname;
@@ -271,7 +269,6 @@ app.task('generate-redirects', function() {
     .on('error', console.error)
     .pipe(app.renderFile('hbs'))
     .on('error', console.error)
-    // .pipe(prettify())
     .pipe(extname())
     .pipe(app.dest(build.dest()));
 });
@@ -298,7 +295,6 @@ app.task('build', ['load'], function() {
     .pipe(app.toStream('pages', changedFilter)).on('error', console.log)
     .pipe(drafts())
     .pipe(app.renderFile()).on('error', console.log)
-    // .pipe(prettify())
     .pipe(extname())
     .pipe(through.obj(function(file, enc, next) {
       file.path = file.dest;
