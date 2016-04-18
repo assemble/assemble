@@ -5,6 +5,6 @@ module.exports = function(prop, options) {
     options = prop;
     prop = '';
   }
-  var val = prop ? this.view[prop] : this.view;
+  var val = prop ? this.view.get(prop) : this.view;
   return options.fn ? options.fn(val) : val;
 };
