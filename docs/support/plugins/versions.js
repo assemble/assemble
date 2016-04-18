@@ -4,7 +4,7 @@ var through = require('through2');
 
 module.exports = function versions(app) {
   var versions = {};
-  return through.obj(through.obj(function(file, enc, next) {
+  return through.obj(function(file, enc, next) {
     if (file.path.indexOf('redirects.json') !== -1) {
       return next(null, file);
     }
@@ -19,5 +19,5 @@ module.exports = function versions(app) {
     });
     this.push(file);
     next();
-  }));
+  });
 };
