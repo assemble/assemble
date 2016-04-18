@@ -1,6 +1,5 @@
+<ul>
 {{#related items}}{{#isnt data.draft true}}{{#is-current ..}}{{else}}
-{{! need to use markdown again due to handlebars whitespace}}
-{{#markdown}}
-- [{{../../title}}]({{../../url}})
-{{/markdown}}
+  <li><a href="{{../url}}">{{../title}}</a></li>
 {{/is-current}}{{/isnt}}{{/related}}
+</ul>
