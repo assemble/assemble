@@ -14,6 +14,9 @@ var permalinks = require('assemble-permalinks');
 var getDest = require('view-get-dest');
 var merge = require('mixin-deep');
 var through = require('through2');
+var ghPages = require('gulp-gh-pages');
+var ghClone = require('gh-clone');
+var cmd = require('spawn-commands');
 
 var viewEvents = require('./support/plugins/view-events');
 var redirects = require('./support/plugins/redirects');
@@ -87,8 +90,11 @@ app.data({
   docs: {
     content: 'https://github.com/assemble/assemble/tree/master/docs/content'
   },
+  pkg: pkg,
   site: {
     title: 'Assemble Docs',
+    description: 'The static site generator for Node.js, Grunt.js and Yeoman.',
+    lead: 'It has never been easier to leverage the full force of powerful frameworks like Bootstrap and Zurb Foundation. Nothing can stop you now.',
     version: pkg.version,
     base: ':destBase/en/v:site.version',
     baseUrl: 'http://assemble.io'
@@ -177,14 +183,43 @@ app.task('clean', function(cb) {
 });
 
 /**
+ * Clone current assemble/assemble.io#gh-pages ensure getting previous versions.
+ */
+
+app.task('clone', function(cb) {
+  var options = {
+    repo: 'assemble/assemble.io',
+    branch: 'gh-pages',
+    dest: build.dest()
+  };
+
+  ghClone(options, function(err, config) {
+    if (err) return cb(err);
+    cmd(config, cb);
+  });
+});
+
+/**
+ * Deploy built docs to a branch for the current version.
+ */
+
+app.task('deploy', function() {
+  return app.src(build.dest('**/*'))
+    .pipe(ghPages({
+      remoteUrl: 'https://github.com/assemble/assemble.io.git',
+      branch: 'v' + pkg.version,
+      push: false
+    }));
+});
+
+/**
  * Build manifest for a specific version.
  * This is in case an old version didn't have a manifest.
  * Run with `assemble manifest --version 0.6.0`
  */
 
 app.task('manifest', function(cb) {
-  // get the version from argv.orig (because of the dots in versions)
-  var version = app.argv.orig.version;
+  var version = app.option('version');
   if (typeof version === 'undefined' || typeof version === 'boolean') {
     cb(new Error('--version needs to be specified when running `assemble manifest`'));
     return;
@@ -330,6 +365,15 @@ app.task('assets', function() {
 });
 
 /**
+ * Copy static "root" files
+ */
+
+app.task('static', function(cb) {
+  return app.copy(['static/**/*'], build.dest())
+    .pipe(browserSync.stream());
+});
+
+/**
  * Watch files for changes
  */
 
@@ -365,6 +409,7 @@ app.task('default', [
   'clean',
   'build',
   'assets',
+  'static',
   'redirects',
   'generate-redirects'
 ]);
