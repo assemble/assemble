@@ -1,5 +1,7 @@
 ---
+title: Advanced
 category: docs
+sortBy: 30
 ---
 ### Example: Pre-process CSS
 

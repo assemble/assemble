@@ -3,6 +3,7 @@ title: Classes
 description: >
   The core classes exposed on Assemble's API
 category: docs
+sortBy: 40
 ---
 
 ## Classes
