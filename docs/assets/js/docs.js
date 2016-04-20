@@ -11,7 +11,7 @@
         if (currentPage[0] === '/') {
           currentPage = currentPage.substr(1);
         }
-        currentPage = currentPage.split('/').slice(3).join('/');
+        currentPage = currentPage.split('/').slice(2).join('/');
 
         var list = Object.keys(data)
           // remove current version
@@ -39,12 +39,18 @@
         list.reverse();
 
         // list the current version first
-        versions.append('<li><a href="/' + currentPath.replace(destBase, '').substr(1) + '">Current (' + version + ')</a></li>');
+        versions.append('<li><a href="/' + currentPath.replace(destBase, '').substr(1) + '">' + version + ' (Current)</a></li>');
         versions.append('<li role="separator" class="nav-divider"></li>');
 
+        var i = 0;
         // list all matching versions
         list.forEach(function(page) {
-          versions.append('<li><a href="/' + page + '">' + page.split('/')[1] + '</a></li>');
+          var v = page.split('/')[1];
+          if (i !== 0 && v === 'v0.4.42') {
+            versions.append('<li role="separator" class="nav-divider"></li>');
+          }
+          versions.append('<li><a href="/' + page + '">' + v + (v === 'v0.4.42' ? ' (grunt-assemble)' : '') + '</a></li>');
+          i++;
         });
       })
       .fail(function(err) {
