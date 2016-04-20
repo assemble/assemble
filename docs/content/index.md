@@ -2,4 +2,9 @@
 title: Docs
 category: docs
 ---
-Documentation in this directory is general information about assemble and getting started with assemble.
+
+{{#collection "categories" sortBy="data.sortBy"}}
+{{#is name "docs"}}
+{{> category-list ..}}
+{{/is}}
+{{/collection}}
