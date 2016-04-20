@@ -207,8 +207,7 @@ app.task('deploy', function() {
   return app.src(build.dest('**/*'))
     .pipe(ghPages({
       remoteUrl: 'https://github.com/assemble/assemble.io.git',
-      branch: 'v' + pkg.version,
-      push: false
+      branch: 'v' + pkg.version
     }));
 });
 
