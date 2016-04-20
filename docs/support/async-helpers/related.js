@@ -32,6 +32,7 @@ module.exports = function(related, options, cb) {
     }
 
     var items = docs.concat(repos);
+    // console.log(items);
 
     if (options.fn) {
       return items.map(function(item) {

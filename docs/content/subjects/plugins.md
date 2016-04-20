@@ -7,8 +7,6 @@ related:
   - api/middleware
   - api/helpers
 ---
-<!-- toc -->
-
 Assemble's first-class plugin system makes it super easy to add custom features and functionality.
 
 ## Plugin types

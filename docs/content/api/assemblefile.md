@@ -2,8 +2,6 @@
 title: assemblefile.js
 category: api
 ---
-# assemblefile.js
-
 You might also be interested in reading the [assemblefile.js recipe](/recipes/assemblefile.md).
 
 **What's an assemblefile.js?**
