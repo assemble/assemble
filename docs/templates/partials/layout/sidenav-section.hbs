@@ -1,5 +1,5 @@
 <ul class="nav">
-{{#collection "categories"}}
+{{#collection "categories" sortBy="data.sortBy"}}
   <li><span{{#is ../category this.category}} class="active"{{/is}}>{{> sidenav-section-header-link }}</span>
     <ul class="nav nav-pills nav-stacked {{#is ../category this.category}} active{{/is}}">
     {{#each items}}{{#isnt this.data.draft true}}{{#ends-with ../key "index"}}{{else}}
