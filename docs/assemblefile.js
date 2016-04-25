@@ -163,6 +163,12 @@ app.create('redirects', {
 });
 
 /**
+ * Load default handlebars helpers
+ */
+
+app.helpers(require('assemble-handlebars-helpers'));
+
+/**
  * Load helpers
  */
 

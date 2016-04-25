@@ -5,6 +5,7 @@
   "devDependencies": {
     "array-sort": "^0.1.1",
     "assemble-collections": "^0.2.1",
+    "assemble-handlebars-helpers": "^0.1.0",
     "assemble-permalinks": "^0.4.2",
     "base-watch": "^0.1.3",
     "browser-sync": "^2.12.3",
