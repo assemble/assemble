@@ -1,7 +1,7 @@
 ---
 title: Events
 description: >
-  This document describes Layouts, one of the three view collections that Assemble ships with by default. Layouts are views (templates) that can wrap other views with common content or code.
+  This document describes events in Assemble and how to listen for and handle events.
 collection: docs
 category: api
 related:  ['view-collections', 'class.View']
