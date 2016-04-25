@@ -8,12 +8,11 @@ layout: default
 {% body %}
 {{{{/markdown}}}}
 
-{{#markdown}}
 {{#if related}}
-## Related
-
+<h2>Related</h2>
+<ul>
 {{#related related~}}
-- [{{title}}]({{this.url}})
+  <li><a href="{{this.url}}">{{title}}</a></li>
 {{~/related}}
+</ul>
 {{/if}}
-{{/markdown}}
