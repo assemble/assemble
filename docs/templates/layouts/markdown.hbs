@@ -5,3 +5,11 @@ layout: default
 {% body %}
 {{/markdown}}
 
+{{#if related}}
+<h2>Related</h2>
+<ul>
+{{#related related~}}
+  <li><a href="{{this.url}}">{{title}}</a></li>
+{{/related}}
+</ul>
+{{/if}}
