@@ -32,7 +32,6 @@ module.exports = function(related, options, cb) {
     }
 
     var items = docs.concat(repos);
-    // console.log(items);
 
     if (options.fn) {
       return items.map(function(item) {
@@ -64,17 +63,18 @@ function getDocs(arr, helper) {
   var docs = [];
   var len = arr.length, i = 0;
   while (len--) {
-    var item = arr[i++];
+    let item = arr[i++];
+    let key, view;
+
     if (typeof item === 'string') {
       item = { key: item };
     }
 
-    var view;
     if (item.isView || item.isItem) {
       view = item;
     }
 
-    var key = item.key || item.name || item.url;
+    key = item.key || item.name || item.url;
     if (!view) {
       view = helper.app.find(key);
     }
