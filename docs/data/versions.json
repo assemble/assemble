@@ -2,7 +2,6 @@
   "v0.10.0": [
     "en/v0.10.0/docs/api.html",
     "en/v0.10.0/docs/api/app.html",
-    "en/v0.10.0/docs/api/app.use.html",
     "en/v0.10.0/docs/api/app.view.html",
     "en/v0.10.0/docs/api/assemblefile.html",
     "en/v0.10.0/docs/api/class.Assemble.html",

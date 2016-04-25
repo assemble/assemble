@@ -65,7 +65,6 @@
   "plugins/index.html": "en/v0.4.42/plugins/index.html",
   "docs/api.html": "en/v0.10.0/docs/api.html",
   "docs/api/app.html": "en/v0.10.0/docs/api/app.html",
-  "docs/api/app.use.html": "en/v0.10.0/docs/api/app.use.html",
   "docs/api/app.view.html": "en/v0.10.0/docs/api/app.view.html",
   "docs/api/assemblefile.html": "en/v0.10.0/docs/api/assemblefile.html",
   "docs/api/class.Assemble.html": "en/v0.10.0/docs/api/class.Assemble.html",
