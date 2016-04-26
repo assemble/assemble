@@ -2,58 +2,12 @@
 !function ($) {
 
   $(function(){
-    var searchIdx = null;
-    var files = null;
+    initVersions();
+    initSearch();
+  });
 
+  function initVersions() {
     var versions = $('#dropdown-versions');
-    var search = $('#search');
-
-    search.autocomplete({
-      // use lunr search index to find a page based on specified search term
-      source: function(req, res) {
-        if (!searchIdx) return res();
-        var results = searchIdx.search(req.term)
-          .map(function(result) {
-            return {
-              label: files[result.ref].title,
-              value: files[result.ref]
-            };
-          });
-
-        res(results);
-      },
-
-      // disable populating the search box with the focused result
-      focus: function(event, ui) {
-        return false;
-      },
-
-      // when selected, clear the sarch box and navigate to the selected page
-      select: function(event, ui) {
-        search.val('');
-        window.location = ui.item.value.url.replace('_gh_pages', '');
-        return false;
-      }
-    });
-
-    // modify the <li> being rendered for each item to provide more context to the
-    // found search results
-    search.data('uiAutocomplete')._renderItem =function(ul, item) {
-      return $('<li class="list-group-item">')
-        .attr('data-value', item.value)
-        .append($('<h4 class="list-group-item-heading">').append(`[${item.value.category.toUpperCase()}] ${item.label}`))
-        .append($('<p class="list-group-item-text">').append(item.value.description))
-        .appendTo(ul);
-    };
-
-    // add additional class information to the <ul> being rendered
-    search.data('uiAutocomplete')._renderMenu = function( ul, items ) {
-      var that = this;
-      ul.attr('class', 'list-group');
-      $.each(items, function(index, item) {
-        that._renderItemData(ul, item);
-      });
-    };
 
     // build the versions dropdown list
     $.ajax('/versions.json')
@@ -109,6 +63,69 @@
       .fail(function(err) {
         console.log(err.responseText);
       });
+  }
+
+  function initSearch() {
+    var searchIdx = null;
+    var files = null;
+
+    var search = $('#search');
+    if (!search || !search.length) {
+      return;
+    }
+
+    search.keypress(function(event) {
+      if (event.which == 13) {
+        event.preventDefault();
+      }
+    });
+
+    search.autocomplete({
+      // use lunr search index to find a page based on specified search term
+      source: function(req, res) {
+        if (!searchIdx) return res();
+        var results = searchIdx.search(req.term)
+          .map(function(result) {
+            return {
+              label: files[result.ref].title,
+              value: files[result.ref]
+            };
+          });
+
+        res(results);
+      },
+
+      // disable populating the search box with the focused result
+      focus: function(event, ui) {
+        return false;
+      },
+
+      // when selected, clear the sarch box and navigate to the selected page
+      select: function(event, ui) {
+        search.val('');
+        window.location = ui.item.value.url.replace('_gh_pages', '');
+        return false;
+      }
+    });
+
+    // modify the <li> being rendered for each item to provide more context to the
+    // found search results
+    search.data('uiAutocomplete')._renderItem =function(ul, item) {
+      return $('<li class="list-group-item">')
+        .attr('data-value', item.value)
+        .append($('<h4 class="list-group-item-heading">').append(`[${item.value.category.toUpperCase()}] ${item.label}`))
+        .append($('<p class="list-group-item-text">').append(item.value.description))
+        .appendTo(ul);
+    };
+
+    // add additional class information to the <ul> being rendered
+    search.data('uiAutocomplete')._renderMenu = function( ul, items ) {
+      var that = this;
+      ul.attr('class', 'list-group');
+      $.each(items, function(index, item) {
+        that._renderItemData(ul, item);
+      });
+    };
 
     // load the search index and file results
     $.ajax('/en/v' + site.version + '/search.json')
@@ -123,6 +140,7 @@
       .fail(function(err) {
         console.log(err.responseText);
       });
-  });
+  }
+
 
 }(window.jQuery);
