@@ -76,10 +76,10 @@ function getDocs(arr, helper) {
 
     key = item.key || item.name || item.url;
     if (!view) {
-      view = helper.app.find(key);
+      view = helper.app.docs.getView(key);
     }
     if (!view && helper.view.data.category) {
-      view = helper.app.find(path.join(helper.view.data.category, key));
+      view = helper.app.docs.getView(path.join(helper.view.data.category, key));
     }
 
     if (!view) {
