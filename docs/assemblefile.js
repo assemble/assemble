@@ -31,12 +31,17 @@ var assemble = require('..');
  */
 
 var app = assemble();
-
 app.time = new Time();
 app.use(viewEvents('permalink'));
 app.use(collections());
 app.use(getDest());
 app.use(watch());
+
+/**
+ * Setup search plugin
+ */
+
+var search = require('./support/plugins/search')(app);
 
 /**
  * Common variables
@@ -341,6 +346,7 @@ app.task('build', ['load'], function() {
   return app.toStream('docs', changedFilter).on('error', console.log)
     .pipe(app.toStream('pages', changedFilter)).on('error', console.log)
     .pipe(drafts())
+    .pipe(search.collect())
     .pipe(app.renderFile()).on('error', console.log)
     .pipe(extname())
     .pipe(through.obj(function(file, enc, next) {
@@ -355,6 +361,9 @@ app.task('build', ['load'], function() {
         if (idx === -1) return fp;
         return fp.substr(idx);
       }
+    }))
+    .pipe(search.generate({
+      base: 'en/v' + pkg.version
     }))
     .pipe(app.dest(build.dest()))
     .pipe(browserSync.stream());
