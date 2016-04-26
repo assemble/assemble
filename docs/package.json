@@ -23,6 +23,7 @@
     "helper-issue": "^0.3.0",
     "helper-link-to": "^0.1.4",
     "helper-markdown": "^0.2.1",
+    "lunr": "^0.7.0",
     "mixin-deep": "^1.1.3",
     "placeholders": "^0.2.0",
     "relative-dest": "^0.1.0",
