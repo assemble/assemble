@@ -3315,6 +3315,17 @@ input[type="button"].btn-block {
   }
 }
 
+.search .search-content {
+  background-color: #ffffff;
+  display: block;
+  margin: 0;
+  padding: 10px;
+}
+
+.search .search-content input {
+  font-size: 20px;
+}
+
 .band {
   padding: 40px 0 30px;
   background-color: #fff;
