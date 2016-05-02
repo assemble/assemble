@@ -8,7 +8,6 @@ var path = require('path');
 var cli = require('./lib/cli');
 var utils = require('./lib/utils');
 var Core = require('assemble-core');
-var debug = Core.debug;
 
 /**
  * Create an `assemble` app. This is the main function exported
@@ -30,7 +29,6 @@ function Assemble(options) {
   this.options = utils.merge({}, this.options, options);
   Core.call(this, options);
   this.is(Assemble);
-  debug(this);
 
   this.initDefaults(this);
   this.initPlugins(this);

@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "ansi-colors": "^0.1.0",
-    "assemble-core": "^0.16.0",
+    "assemble-core": "^0.17.1",
     "assemble-loader": "^0.3.0",
     "base-argv": "^0.4.2",
     "base-cli": "^0.4.24",
