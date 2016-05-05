@@ -1,16 +1,15 @@
 'use strict';
 
 var path = require('path');
-var lunr = require('lunr');
-var through = require('through2');
-var extend = require('extend-shallow');
+var utils = require('./utils');
 
 function Search(app) {
   if (!(this instanceof Search)) {
     return new Search(app);
   }
+  utils.diff('starting search');
   this.app = app;
-  this.idx = lunr(function() {
+  this.idx = utils.lunr(function() {
     this.ref('url');
     this.field('title', { boost: 10 });
     this.field('description', { boost: 100 });
@@ -22,8 +21,10 @@ function Search(app) {
 }
 
 Search.prototype.collect = function() {
+  utils.diff('starting search collect');
+
   var self = this;
-  return through.obj(function(file, enc, cb) {
+  return utils.through.obj(function(file, enc, cb) {
     // cache pre-rendered content
     self.files[file.key] = {
       key: file.key,
@@ -33,16 +34,22 @@ Search.prototype.collect = function() {
       description: file.data.description || file.data.title || file.key,
       body: file.content
     };
+
     cb(null, file);
+  }, function(cb) {
+    utils.diff('finished search collect');
+    cb();
   });
 };
 
 Search.prototype.generate = function(options) {
+  utils.diff('starting search generate');
+
   var self = this;
   var app = this.app;
-  var opts = extend({}, options);
+  var opts = utils.extend({}, options);
 
-  return through.obj(function(file, enc, cb) {
+  return utils.through.obj(function(file, enc, cb) {
     if (!self.files[file.key]) {
       return cb(null, file);
     }
@@ -56,6 +63,8 @@ Search.prototype.generate = function(options) {
     var fp = opts.base ? path.join(opts.base, 'search.json') : 'search.json';
     var content = JSON.stringify({files: self.files, idx: self.idx});
     var file = app.view({path: fp, content: content});
+
+    utils.diff('finished search generate');
     this.push(file);
     cb();
   });

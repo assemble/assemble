@@ -5,9 +5,10 @@
  */
 
 var path = require('path');
-var cli = require('./lib/cli');
-var utils = require('./lib/utils');
 var Core = require('assemble-core');
+var plugins = require('./lib/plugins');
+var utils = require('./lib/utils');
+var cli = require('./lib/cli');
 
 /**
  * Create an `assemble` app. This is the main function exported
@@ -94,9 +95,9 @@ Assemble.prototype.initDefaults = function(app) {
  */
 
 Assemble.prototype.initPlugins = function(app) {
-  enable('loader', utils.loader);
-  enable('config', utils.config);
-  enable('argv', utils.argv);
+  enable('loader', plugins.loader);
+  enable('config', plugins.config);
+  enable('argv', plugins.argv);
   enable('cli', cli);
 
   function enable(name, fn) {

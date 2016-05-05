@@ -2,6 +2,7 @@
 
 var util = require('util');
 var path = require('path');
+var plugins = require('../lib/plugins');
 var utils = require('../lib/utils');
 var errors = require('./errors');
 var assemble = require('..');
@@ -91,8 +92,12 @@ function run(cb) {
    * Process command line arguments
    */
 
-  var args = utils.processArgv(app, argv);
+  var tasks = argv._.length ? argv._ : ['default'];
+  var args = app.argv(argv);
+  args.tasks = tasks;
+
   app.set('cache.argv', args);
+  app.option(args);
 
   /**
    * Show path to assemblefile
@@ -102,10 +107,10 @@ function run(cb) {
   utils.timestamp('using assemblefile ' + utils.colors.green('~/' + fp));
 
   /**
-   * Setup composer-runtimes
+   * Registert `runtimes` plugin
    */
 
-  app.use(utils.runtimes());
+  app.use(plugins.runtimes());
 
   /**
    * Process command line arguments
@@ -128,16 +133,12 @@ run(function(err, app) {
   app.cli.process(app.get('cache.argv'), function(err) {
     if (err) handleError(err);
 
-    var tasks = app.option('tasks') || (argv._.length ? argv._ : ['default']);
-
     /**
      * Run tasks
      */
 
-    app.build(tasks, function(err) {
+    app.build(app.get('cache.argv.tasks'), function(err) {
       if (err) handleError(err);
-
-      utils.timestamp('finished ' + utils.success());
       process.exit(0);
     });
   });
@@ -151,9 +152,10 @@ function handleError(err) {
   if (typeof err === 'string' && errors[err]) {
     console.error(errors[err]);
   } else {
-    console.error(err.message);
     if (argv.verbose) {
-      console.log(err.stack);
+      console.error(err.stack);
+    } else {
+      console.error(err.message);
     }
   }
   process.exit(1);

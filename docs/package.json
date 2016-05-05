@@ -30,6 +30,7 @@
     "helper-markdown": "^0.2.1",
     "kind-of": "^3.0.3",
     "lazy-cache": "^2.0.1",
+    "log-utils": "^0.1.4",
     "lunr": "^0.7.0",
     "match-file": "^0.2.0",
     "minimist": "^1.2.0",
@@ -39,7 +40,10 @@
     "spawn-commands": "^0.3.1",
     "through2": "^2.0.1",
     "thunkify": "^2.1.2",
-    "time-diff": "^0.2.1",
+    "time-diff": "^0.3.1",
     "view-get-dest": "^0.1.1"
+  },
+  "dependencies": {
+    "memoize-path": "^0.1.2"
   }
 }
