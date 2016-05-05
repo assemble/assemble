@@ -69,11 +69,11 @@ module.exports = function(app, base) {
 
   app.task('templates', function*() {
     app.debug('loading templates');
-    app.templates(['./scaffolds/pages/*.hbs'], { cwd: cwd });
+    app.templates(['./scaffolds/**/*.{hbs,md}'], { cwd: cwd });
     app.debug('loaded templates');
   });
 
-  app.task('dest', function(cb) {
+  app.task('dest', {silent: true}, function(cb) {
     app.question('dest', 'Destination directory?', {default: defaultDest});
     app.ask('dest', {save: false}, function(err, answers) {
       if (err) return cb(err);
@@ -82,7 +82,7 @@ module.exports = function(app, base) {
     });
   });
 
-  app.task('name', function(cb) {
+  app.task('name', {silent: true}, function(cb) {
     app.question('name', 'File name?', {default: defaultName});
     app.ask('name', {save: false}, function(err, answers) {
       if (err) return cb(err);
@@ -91,42 +91,64 @@ module.exports = function(app, base) {
     });
   });
 
-  function deps(arr) {
-    return (arr || []).concat(['templates', 'name', 'dest']);
+  // app.task('files', ['templates', 'name', 'dest'], function(cb) {
+  //   app.chooseFiles(app.options, cb);
+  // });
+
+  function createTask(name, options) {
+    var opts = utils.extend({
+      defaultDest: 'templates/pages',
+      defaultName: 'page'
+    }, options);
+
+    app.task(name + ':set-dest', {silent: true}, function*() {
+      defaultDest = opts.defaultDest;
+    });
+
+    app.task(name + ':set-name', {silent: true}, function*() {
+      defaultName = opts.defaultName;
+    });
+
+    app.task(name, [name + ':set-dest', name + ':set-name', 'templates', 'name', 'dest'], function() {
+      app.debug(`generating "${name}" file`);
+      var dest = app.option('dest') || app.cwd;
+
+      // add `options` to the context
+      app.data({ options: app.options });
+
+      return app.toStream('templates')
+        .pipe(filter(name))
+        .pipe(app.renderFile('*'))
+        .pipe(app.renameFile(function(file) {
+          file.path = path.join(cwd, dest, defaultName + file.extname);
+          return file;
+        }))
+        .pipe(app.conflicts(dest))
+        .pipe(app.dest(dest));
+    });
   }
 
-  app.task('files', deps(), function(cb) {
-    app.chooseFiles(app.options, cb);
+  createTask('page', {
+    defaultName: 'page',
+    defaultDest: 'templates/pages'
   });
 
-  app.task('page', deps([
-    setDefaultDest('templates/pages'),
-    setDefaultName('page')
-  ]), function() {
-    app.debug('generating default page file');
-    var dest = app.option('dest') || app.cwd;
-    console.log('dest', dest);
-    var page = defaultName || 'page';
-
-    // add `options` to the context
-    app.data({ options: app.options });
-
-    return app.toStream('templates')
-      .on('data', console.log)
-      .pipe(filter('page'))
-      .pipe(app.renderFile('*'))
-      .pipe(app.renameFile(function(file) {
-        file.path = path.join(cwd, dest, page + '.hbs');
-        console.log(file.path);
-        return file;
-      }))
-      .pipe(app.conflicts(dest))
-      .pipe(app.dest(dest));
+  createTask('api', {
+    defaultName: 'api',
+    defaultDest: 'content/api'
   });
 
-  app.task('default', ['page'], function*() {
-    console.log('doc:default');
+  createTask('recipe', {
+    defaultName: 'recipe',
+    defaultDest: 'content/recipes'
   });
+
+  createTask('subject', {
+    defaultName: 'subject',
+    defaultDest: 'content/subjects'
+  });
+
+  app.task('default', ['page']);
 };
 
 function filter(pattern, options) {
@@ -138,7 +160,6 @@ function filter(pattern, options) {
       return;
     }
 
-    console.log(isMatch(file));
     if (isMatch(file)) {
       next(null, file);
     } else {
