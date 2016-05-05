@@ -2,6 +2,7 @@
 
 var util = require('util');
 var path = require('path');
+var plugins = require('../lib/plugins');
 var utils = require('../lib/utils');
 var errors = require('./errors');
 var assemble = require('..');
@@ -106,10 +107,10 @@ function run(cb) {
   utils.timestamp('using assemblefile ' + utils.colors.green('~/' + fp));
 
   /**
-   * Setup composer-runtimes
+   * Registert `runtimes` plugin
    */
 
-  app.use(utils.runtimes());
+  app.use(plugins.runtimes());
 
   /**
    * Process command line arguments
@@ -138,8 +139,6 @@ run(function(err, app) {
 
     app.build(app.get('cache.argv.tasks'), function(err) {
       if (err) handleError(err);
-
-      utils.timestamp('finished ' + utils.log.success);
       process.exit(0);
     });
   });
