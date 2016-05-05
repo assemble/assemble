@@ -1,46 +1,27 @@
 'use strict';
 var path = require('path');
 var opts = {alias: {tmpl: 't'}, default: {tmpl: 'page'}};
-var argv = require('minimist')(process.argv.slice(2), opts);
 var debug = require('debug')('generate:doc');
-
 var utils = require('./lib/utils');
-var rename = require('./lib/rename');
-var files = require('./lib/files');
 
 module.exports = function(app, base) {
   if (this.isRegistered('assemble-docs-generate-doc')) return;
   debug('initializing <%s>, from <%s>', __filename, module.parent.id);
 
   /**
-   * Register instance plugins
+   * Use `generate-mocha` to pull in instance and pipeline plugins
    */
 
-  app
-    .use(require('generate-defaults'))
-    .use(require('generate-collections'))
-    .use(utils.conflicts())
-    .use(rename())
-    .use(files());
+  app.use(require('generate-mocha'));
 
   /**
    * Set options
    */
 
-  app
-    .option(base.options)
-    .option(argv)
-    .option({delims: ['<%', '%>']})
-    .option('renameFile', function(file) {
-      file.stem = 'page';
-      return file;
-    });
-
-  /**
-   * Register pipeline plugins
-   */
-
-  app.plugin('rename', rename);
+  app.option('renameFile', function(file) {
+    file.stem = 'page';
+    return file;
+  });
 
   /**
    * Default variables
