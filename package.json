@@ -39,6 +39,7 @@
     "base-argv": "^0.4.2",
     "base-cli": "^0.4.24",
     "base-config": "^0.5.0",
+    "base-runtimes": "^0.1.10",
     "composer-runtimes": "^0.7.0",
     "engine-handlebars": "^0.8.0",
     "export-files": "^2.1.1",
