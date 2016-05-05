@@ -1,12 +1,10 @@
 ---
 title: Events
-description: > 
-  This document describes Layouts, one of the three view collections that Assemble ships with by default. Layouts are views (templates) that can wrap other views with common content or code.
+description: >
+  This document describes events in Assemble and how to listen for and handle events.
 collection: docs
 category: api
-related: 
-  - {title: "view collections", url: collections.md}
-  - {title: view, url: view.md}
+related:  ['view-collections', 'class.View']
 ---
 
 - [ ] listening for events
@@ -18,12 +16,12 @@ related:
 Events are emitted on all instances that inherit [base][], including:
 
 * [app][]
-* [collection][] 
-* [group][] 
+* [collection][]
+* [group][]
 * [item][]
 * [list][]
 * [view][]
-* [views][] 
+* [views][]
 
 
 ## Example
@@ -38,7 +36,7 @@ app.on('error', function(err) {
 
 
 [app]: /api/app.md
-[collection]: /api/collection.md 
+[collection]: /api/collection.md
 [view]: /api/view.md
 
 [base]: https://github.com/node-base/base

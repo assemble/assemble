@@ -1,10 +1,11 @@
 ---
+title: Custom async helpers
+description: >
+  This recipe shows how to create and use custom async helpers with assemble.
 category: recipes
+related:
+  - custom-helpers
 ---
-# Custom helpers
-
-This recipe shows how to create and use custom async helpers with assemble.
-
 **Heads up!**
 
 It's a best practice to use sync helpers whenever possible, and use async helpers only when necessary. Sync helpers are faster, easier to debug, and are more durable than async helpers.
@@ -57,7 +58,3 @@ Results in:
 ```html
 foo BAR baz
 ```
-
-## Related
-
-- [custom helpers](./recipes/custom-helpers.md)

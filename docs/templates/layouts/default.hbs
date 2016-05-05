@@ -25,7 +25,7 @@ layout: base
           {% body %}
         <hr>
 
-        <p><a href="{{#is area 'helpers'}}{{site.content.view}}{{else}}{{site.templates.view}}{{/is}}/{{area}}/{{#is area 'helpers'}}{{replace this.basename 'helpers-' '' }}{{else}}{{this.basename}}.hbs{{/is}}">See the template for this page → </a></p>
+        <p>{{> edit-template this}}</p>
         {{> footer }}
       </div>
     </div>

@@ -74,7 +74,7 @@ function run(cb) {
    * Listen for errors
    */
 
-  app.on('error', console.error.bind(console));
+  app.on('error', handleError);
 
   /**
    * Support `--emit` for debugging
@@ -128,7 +128,7 @@ run(function(err, app) {
   app.cli.process(app.get('cache.argv'), function(err) {
     if (err) handleError(err);
 
-    var tasks = app.option('tasks') || ['default'];
+    var tasks = app.option('tasks') || (argv._.length ? argv._ : ['default']);
 
     /**
      * Run tasks

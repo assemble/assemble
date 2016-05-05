@@ -1,11 +1,6 @@
 ---
 layout: markdown
 ---
-{{description}}
+{{#if description}}> {{description}}{{/if}}
 
 {% body %}
-
-{{#if related.list}}
-{{> related related.list}}
-{{/if}}
-

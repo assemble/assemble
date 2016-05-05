@@ -1,8 +1,7 @@
 ---
+title: Deleting files
 category: recipes
 ---
-# Deleting files
-
 ```js
 var assemble = require('assemble');
 var del = require('delete');

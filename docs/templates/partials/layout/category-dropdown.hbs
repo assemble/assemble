@@ -1,0 +1,16 @@
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{pascal name}} <span class="caret"></span></a>
+  <ul class="dropdown-menu" id="dropdown-{{name}}">
+  {{#is category "docs"}}
+    <li><a href="{{link-to 'index' 'docs'}}" {{> click-tracker }}>Home</a></li>
+  {{else}}
+    <li><a href="{{link-to (join ../category 'index') 'docs'}}" {{> click-tracker }}>Home</a></li>
+  {{/is}}
+  <li role="separator" class="nav-divider"></li>
+  {{#each items}}
+    {{#isnt this.data.draft true}}{{#ends-with ../key "index"}}{{else}}
+    {{> category-dropdown-link ..}}
+    {{/ends-with}}{{/isnt}}
+  {{/each}}
+  </ul>
+</li>

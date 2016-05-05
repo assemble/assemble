@@ -1,8 +1,8 @@
 ---
+title: Build Cycle
 category: docs
+sortBy: 20
 ---
-# Build Cycle
-
 **Overview**
 
 * initialize app

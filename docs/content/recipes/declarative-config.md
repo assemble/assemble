@@ -1,8 +1,10 @@
 ---
+title: Declarative config
+description: >
+  Using a grunt-style declarative config
+draft: true
 category: recipes
 ---
-# Using a grunt-style declarative config
-
 TODO: not implemented yet! (or at least not 100%!)
 
 ```js

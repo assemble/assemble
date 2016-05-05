@@ -23,7 +23,7 @@ Read and write files.
 
 **High-level**
 
-Combines the low-level methods and flow-control methods, with support for declarative configurations, to simplify automation of common tasks. 
+Combines the low-level methods and flow-control methods, with support for declarative configurations, to simplify automation of common tasks.
 
 - .process
 - .scaffold
@@ -31,13 +31,13 @@ Combines the low-level methods and flow-control methods, with support for declar
 
 ## Comparison table
 
-| **Method** | **Description** 
-| --- | --- | --- |
+| **Method** | **Description** |
+| --- | --- |
 |.src | Read a glob of files from the file system |
 |.dest | Write files to the given `dest` path |
 |.copy | Copy a glob of files to the given `dest` path |
-|.each | Asynchronously loop over `src`/`dest` files definitions in parallel | 
-|.eachSeries | Asynchronously loop over `src`/`dest` files definitions in series | 
+|.each | Asynchronously loop over `src`/`dest` files definitions in parallel |
+|.eachSeries | Asynchronously loop over `src`/`dest` files definitions in series |
 |.process | Expands on `copy` with plugin/pipeline handling |
 |.scaffold | Calls `each` on `process` |
 |.boilerplate | Call `each` on `scaffold` |

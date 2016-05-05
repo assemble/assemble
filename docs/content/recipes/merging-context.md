@@ -1,10 +1,9 @@
 ---
+title: Merging context
+description: >
+  This recipe shows different strategies for merging the context object before rendering, based on which data should be given preferential treatment.
 category: recipes
 ---
-# Merging context
-
-> This recipe shows different strategies for merging the context object before rendering, based on which data should be given preferential treatment.
-
 Learn more about [context](./terminology#context)
 
 ## Middleware

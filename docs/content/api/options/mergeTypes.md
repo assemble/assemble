@@ -1,9 +1,8 @@
 ---
+title: "Option: mergeTypes"
 layout: markdown-raw
 category: api
 ---
-# mergeTypes
-
 ## options.mergeTypes
 
 Specify the [view collections](view-collections.md) to merge onto the context by passing an array of collection names to `options.mergePartials`.

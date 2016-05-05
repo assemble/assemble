@@ -1,11 +1,11 @@
 ---
-title: Assemble's Task API
+title: Task API
 collection: docs
 category: api
 description: >
   Assemble's Task API has methods for running tasks and controlling build workflows.
-related: 
-  list: ['assemble-fs', 'assemble-pipeline']
+related:
+  list: ['assemble-fs', 'base-pipeline']
   docs: []
 ---
 
@@ -65,7 +65,7 @@ app.build('default', function(err) {
 
 ### .watch
 
-Watch files, run one or more tasks when a watched file changes. 
+Watch files, run one or more tasks when a watched file changes.
 
 **Params**
 
@@ -82,5 +82,5 @@ app.task('watch', function() {
 
 **Good to know**
 
-Try to be as explicit as possible with your glob patterns. "Greedy" patterns with double-globstars (`**/*`) will always slow down your builds. Sometimes drastically. 
+Try to be as explicit as possible with your glob patterns. "Greedy" patterns with double-globstars (`**/*`) will always slow down your builds. Sometimes drastically.
 

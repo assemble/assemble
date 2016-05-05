@@ -1,8 +1,7 @@
 ---
+title: Inspecting the context
 category: recipes
 ---
-# Inspecting the context
-
 **What does "inspecting the context mean"?**
 
 Generally, "inspecting the context" means that we're attempting to inspect the object that that is created in memory for rendering templates.

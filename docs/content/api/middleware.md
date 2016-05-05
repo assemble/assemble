@@ -1,11 +1,12 @@
 ---
 title: Middleware
 engine: hbs
-description: > 
+description: >
   Methods for defining and using middleware and routes
 collection: docs
 category: api
-related: ['en-route']
+related:
+  list: ['en-route']
 reflinks: ['en-route']
 ---
 
@@ -21,7 +22,7 @@ This document describes the various features, options and API router methods ava
 
 Middleware functions are functions that have access to:
 
-- The `view` object (in assemble, a "view" is an instance of a [vinyl][] file), and 
+- The `view` object (in assemble, a "view" is an instance of a [vinyl][] file), and
 - A callback function, `next`, which represents the next middleware in the application’s build cycle
 
 Middleware functions can perform the following tasks:
@@ -34,7 +35,7 @@ Middleware functions can perform the following tasks:
 
 **What is a "handler"?**
 
-Middleware functions must be invoked by a middleware handler, which themselves are invoked at pre-determined points during runtime. 
+Middleware functions must be invoked by a middleware handler, which themselves are invoked at pre-determined points during runtime.
 
 Handlers are assigned method names, like `.onLoad` and `preRender`, each of which is typically associated with a specific middleware method known as a "verb" that will only be invoked by that handler.
 
@@ -60,7 +61,7 @@ A middleware stack is an array of middleware functions that are invoked by the A
 
 **Routes**
 
-Given that "verbs" determine **when** a middleware function is called, "routes" determine which files to process. 
+Given that "verbs" determine **when** a middleware function is called, "routes" determine which files to process.
 
 **Routes**
 
@@ -88,7 +89,7 @@ certain triggers
 
 ## Related topics
 
-While plugins and middleware are both used to "extend" assemble, they serve very different purposes, are used in completely different ways, and have access to different objects at runtime. 
+While plugins and middleware are both used to "extend" assemble, they serve very different purposes, are used in completely different ways, and have access to different objects at runtime.
 
 ## Middleware VERBS
 
@@ -96,8 +97,8 @@ While plugins and middleware are both used to "extend" assemble, they serve very
 
 **Handles**
 
-- partials 
-- layouts 
+- partials
+- layouts
 - renderable templates
 
 
@@ -117,7 +118,7 @@ While plugins and middleware are both used to "extend" assemble, they serve very
 
 ## Router methods
 
-Router methods are similar to the router METHODS in [express][], but instead of representing [HTTP METHODS][verbs], the router methods here represent significant points or "stages" during the build. 
+Router methods are similar to the router METHODS in [express][], but instead of representing [HTTP METHODS][verbs], the router methods here represent significant points or "stages" during the build.
 
 **Summary**
 

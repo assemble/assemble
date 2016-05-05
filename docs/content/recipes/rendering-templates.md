@@ -1,9 +1,7 @@
 ---
+title: Render templates
 category: recipes
 ---
-# Render templates
-
-
 **Registering engines**
 
 Engines are registered using the [.engine](/api/engines#engine) method.  and the name you choose for the engine is used by assemble

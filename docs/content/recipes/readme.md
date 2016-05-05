@@ -1,8 +1,8 @@
 ---
+title: Recipes
+draft: true
 category: recipes
 ---
-# Recipes
-
 + [to stream](to-stream.md)
 + [tasks](tasks.md)
 + [rendering templates](rendering-templates.md)
@@ -15,7 +15,6 @@ category: recipes
 + [collection loaders](collection-loaders.md)
 + [browser sync](browser-sync.md)
 + [assemblefile](assemblefile.md)
-
 
 ## Related
 

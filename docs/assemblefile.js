@@ -4,22 +4,24 @@ var path = require('path');
 var del = require('delete');
 var Time = require('time-diff');
 var watch = require('base-watch');
-var prettify = require('gulp-prettify');
 var drafts = require('gulp-drafts');
 var extname = require('gulp-extname');
 var ignore = require('gulp-ignore');
 var debug = require('debug')('assemble:docs');
 var browserSync = require('browser-sync').create();
+var collections = require('assemble-collections');
 var permalinks = require('assemble-permalinks');
+var getDest = require('view-get-dest');
 var merge = require('mixin-deep');
 var through = require('through2');
+var ghPages = require('gulp-gh-pages');
+var ghClone = require('gh-clone');
+var cmd = require('spawn-commands');
 
-var collections = require('./support/plugins/assemble-collections');
 var viewEvents = require('./support/plugins/view-events');
 var redirects = require('./support/plugins/redirects');
 var manifest = require('./support/plugins/manifest');
 var versions = require('./support/plugins/versions');
-var getDest = require('./support/plugins/get-dest');
 var utils = require('./support/utils');
 var pkg = require('../package');
 var assemble = require('..');
@@ -29,17 +31,17 @@ var assemble = require('..');
  */
 
 var app = assemble();
-
 app.time = new Time();
-viewEvents('permalink')(app);
+app.use(viewEvents('permalink'));
 app.use(collections());
-app.use(permalinks());
 app.use(getDest());
 app.use(watch());
 
-app.on('error', function(err) {
-  console.log(err.stack);
-});
+/**
+ * Setup search plugin
+ */
+
+var search = require('./support/plugins/search')(app);
 
 /**
  * Common variables
@@ -53,19 +55,8 @@ var build = {
  * Middleware
  */
 
-var permalinkCache = {};
-app.onLoad(/./, function(file, next) {
-  debug('onLoad for %s', file.path);
-  if (permalinkCache[file.path] === true) {
-    debug('creating permalink context for %s', file.path);
-    file.permalink(file.options.permalink);
-  }
-  next();
-});
-
 app.onPermalink(/./, function(file, next) {
   debug('onPermalink for %s', file.path);
-  permalinkCache[file.path] = true;
   file.data = merge({category: 'docs'}, app.cache.data, file.data);
   next();
 });
@@ -75,11 +66,25 @@ app.onPermalink(/./, function(file, next) {
  * key of each template, so it's easier to lookup later
  */
 
-app.option('renameKey', function(fp) {
+app.option('renameKey', function(fp, view) {
+  // key has already been renamed, just strip extension
   if (fp.indexOf(__dirname) === -1) {
+    if (/\.md$/.test(fp)) {
+      return fp.substr(0, fp.length - 3);
+    }
     return fp;
   }
-  return path.basename(fp, path.extname(fp));
+
+  // remove __dirname/content
+  var base = fp.replace(__dirname, '');
+  fp = base.split(path.sep)
+    .filter(Boolean)
+    .slice(1)
+    .join(path.sep);
+
+  // drop extension
+  var ext = path.extname(fp);
+  return fp.substr(0, fp.length - ext.length);
 });
 
 /**
@@ -87,37 +92,20 @@ app.option('renameKey', function(fp) {
  */
 
 app.data({
+  docs: {
+    content: 'https://github.com/assemble/assemble/tree/master/docs/content'
+  },
+  pkg: pkg,
   site: {
     title: 'Assemble Docs',
+    description: 'The static site generator for Node.js, Grunt.js and Yeoman.',
+    lead: 'It has never been easier to leverage the full force of powerful frameworks like Bootstrap and Zurb Foundation. Nothing can stop you now.',
     version: pkg.version,
     base: ':destBase/en/v:site.version',
-    categories: {
-      docs: {
-        title: 'Docs',
-        description: 'Assemble documentation',
-        category: 'docs',
-        filter: navFilter('docs')
-      },
-      api: {
-        title: 'API',
-        description: 'Assemble API Documentation',
-        category: 'api',
-        filter: navFilter('api')
-      },
-      recipes: {
-        title: 'Recipes',
-        description: 'Assemble recipes',
-        category: 'recipes',
-        filter: navFilter('recipes')
-      },
-      subjects: {
-        title: 'Subjects',
-        description: 'Advanced subjects on using assemble',
-        category: 'subjects',
-        filter: navFilter('subjects')
-      }
-    }
+    baseUrl: 'http://assemble.io'
   },
+  // slug is defined in the url helper. this should be refactored.
+  url: ':site.baseUrl/en/v:site.version/docs/:slug()',
   destBase: '_gh_pages',
   assets: ':site.base/assets',
   links: [{
@@ -128,7 +116,7 @@ app.data({
 });
 
 /**
- * Create a custom view collection
+ * Permalink options to use in the permalinks plugin below
  */
 
 var permalinkOpts = {
@@ -138,30 +126,40 @@ var permalinkOpts = {
     }
     var rel = this.relative;
     var ext = path.extname(rel);
-    return path.join(rel.substr(0, rel.length - ext.length), 'index.html');
+    return path.join(rel.substr(0, rel.length - ext.length) + '.html');
   }
 };
 
-function navFilter(category) {
-  return function(item) {
-    if (item.data.category !== category) {
-      return false;
-    }
-    return (typeof item.data.draft === 'undefined' || item.data.draft === false);
-  };
+/**
+ * Custom preRender middleware to use on the `docs` collection below.
+ */
+
+function preRender(file, next) {
+  var category = file.data.category;
+  if (!category) return next();
+  file.data = merge({
+    layout: category === 'recipes' ? 'recipe' : file.data.layout
+  }, file.data);
+  next();
 }
 
+/**
+ * Create a custom view collection for `docs`
+ */
+
 app.create('docs', {layout: 'body'})
-  .preRender(/\.md/, function(file, next) {
-    var category = file.data.category;
-    if (!category) return next();
-    file.data = merge({
-      section: app.data('site.categories.' + category),
-      layout: category === 'recipes' ? 'recipe' : file.data.layout
-    }, file.data);
-    next();
-  })
-  .use(permalinks(':site.base/:slug()', permalinkOpts));
+  .preRender(/\.md/, preRender)
+  .use(permalinks(':site.base/docs/:slug()', permalinkOpts));
+
+/**
+ * Configure permalinks for main site pages.
+ */
+
+app.pages.use(permalinks(':site.base/:name.html'));
+
+/**
+ * Create a custom view collection for html files that do redirects.
+ */
 
 app.create('redirects', {
   renameKey: function(key, view) {
@@ -170,10 +168,22 @@ app.create('redirects', {
 });
 
 /**
+ * Load default handlebars helpers
+ */
+
+app.helpers(require('assemble-handlebars-helpers'));
+
+/**
  * Load helpers
  */
 
 app.helpers('support/helpers/*.js');
+
+/**
+ * Load async-helpers
+ */
+
+app.asyncHelpers('support/async-helpers/*.js');
 
 /**
  * Clean out the current version's built files
@@ -184,14 +194,42 @@ app.task('clean', function(cb) {
 });
 
 /**
+ * Clone current assemble/assemble.io#gh-pages ensure getting previous versions.
+ */
+
+app.task('clone', function(cb) {
+  var options = {
+    repo: 'assemble/assemble.io',
+    branch: 'gh-pages',
+    dest: build.dest()
+  };
+
+  ghClone(options, function(err, config) {
+    if (err) return cb(err);
+    cmd(config, cb);
+  });
+});
+
+/**
+ * Deploy built docs to a branch for the current version.
+ */
+
+app.task('deploy', function() {
+  return app.src(build.dest('**/*'))
+    .pipe(ghPages({
+      remoteUrl: 'https://github.com/assemble/assemble.io.git',
+      branch: 'v' + pkg.version
+    }));
+});
+
+/**
  * Build manifest for a specific version.
  * This is in case an old version didn't have a manifest.
  * Run with `assemble manifest --version 0.6.0`
  */
 
 app.task('manifest', function(cb) {
-  // get the version from argv.orig (because of the dots in versions)
-  var version = app.argv.orig.version;
+  var version = app.option('version');
   if (typeof version === 'undefined' || typeof version === 'boolean') {
     cb(new Error('--version needs to be specified when running `assemble manifest`'));
     return;
@@ -238,8 +276,9 @@ app.task('redirects', function() {
  */
 
 app.task('load', function* () {
-  app.partials('templates/partials/**/*.hbs', {cwd: __dirname});
-  app.layouts('templates/layouts/**/*.hbs', {cwd: __dirname});
+  app.partials(['templates/partials/**/*.hbs'], {cwd: __dirname});
+  app.layouts(['templates/layouts/**/*.hbs'], {cwd: __dirname});
+  app.pages(['templates/pages/**/*.hbs'], {cwd: __dirname});
   app.docs(['content/**/*.md'], {cwd: __dirname});
 });
 
@@ -250,7 +289,7 @@ app.task('load', function* () {
 app.task('serve', function() {
   browserSync.init({
     port: 8080,
-    startPath: 'docs.html',
+    startPath: 'index.html',
     server: {
       baseDir: build.dest()
     }
@@ -282,7 +321,6 @@ app.task('generate-redirects', function() {
     .on('error', console.error)
     .pipe(app.renderFile('hbs'))
     .on('error', console.error)
-    // .pipe(prettify())
     .pipe(extname())
     .pipe(app.dest(build.dest()));
 });
@@ -306,13 +344,14 @@ function changedFilter(key, view) {
 
 app.task('build', ['load'], function() {
   return app.toStream('docs', changedFilter).on('error', console.log)
+    .pipe(app.toStream('pages', changedFilter)).on('error', console.log)
     .pipe(drafts())
+    .pipe(search.collect())
     .pipe(app.renderFile()).on('error', console.log)
-    // .pipe(prettify())
     .pipe(extname())
     .pipe(through.obj(function(file, enc, next) {
-      file.path = file.data.permalink || file.path;
-      file.base = '_gh_pages';
+      file.path = file.dest;
+      file.base = app.data('destBase');
       next(null, file);
     }))
     .pipe(manifest(app, {
@@ -323,9 +362,10 @@ app.task('build', ['load'], function() {
         return fp.substr(idx);
       }
     }))
-    .pipe(app.dest(function(file) {
-      return build.dest();
+    .pipe(search.generate({
+      base: 'en/v' + pkg.version
     }))
+    .pipe(app.dest(build.dest()))
     .pipe(browserSync.stream());
 });
 
@@ -335,6 +375,15 @@ app.task('build', ['load'], function() {
 
 app.task('assets', function() {
   return app.copy(['assets/**/*'], build.dest('en/v' + pkg.version + '/assets'))
+    .pipe(browserSync.stream());
+});
+
+/**
+ * Copy static "root" files
+ */
+
+app.task('static', function(cb) {
+  return app.copy(['static/**/*'], build.dest())
     .pipe(browserSync.stream());
 });
 
@@ -374,6 +423,7 @@ app.task('default', [
   'clean',
   'build',
   'assets',
+  'static',
   'redirects',
   'generate-redirects'
 ]);

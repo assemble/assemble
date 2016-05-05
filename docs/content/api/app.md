@@ -1,4 +1,5 @@
 ---
+title: Core application
 category: api
 ---
 # API

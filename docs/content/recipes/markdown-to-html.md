@@ -4,7 +4,6 @@ description: >
   This recipe shows how to convert markdown files to HTML with Assemble.
 category: recipes
 ---
-
 Note that while this example shows how to use helpers with [handlebars][], the methods and examples should work with any template engine.
 
 ## Template helpers

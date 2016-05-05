@@ -1,9 +1,8 @@
 ---
+title: Context
 category: subjects
+description: This document explains how data is passed to views, related methods, and tips for getting the results you need
 ---
-# Context
-
-> This document explains how data is passed to views, related methods, and tips for getting the results you need
 
 Context can be thought of as "the data that is passed to views" (see a [better definition](#what-is-context) below), but knowing more about how context is created and the options available for modifying it will also help you:
 

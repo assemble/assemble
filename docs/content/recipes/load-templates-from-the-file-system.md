@@ -1,7 +1,10 @@
 ---
+title: Loading views for a collection
 category: recipes
+related:
+  - create-a-collection
+  - rendering-templates
 ---
-# Loading views for a collection
 
 Assemble offers multiple options for adding views to a collection. This recipe shows how to load templates from the file system using glob patterns.
 
@@ -34,11 +37,5 @@ console.log(app.views.pages);
 ## Custom loading
 
 Assemble uses the [assemble-loader][] plugin to enable some of the features show in this recipe. If you require different behavior, feel free to fork [assemble-loader][] or just use it as a reference to create your own custom plugin.
-
-## Related
-
-- [create a collection](./create-a-collection.md)
-- [rendering templates](./rendering-templates.md)
-
 
 [assemble-loader]: https://github.com/assemble/assemble-loader

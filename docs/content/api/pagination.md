@@ -2,8 +2,8 @@
 draft: true
 
 title: Pagination
-related: ['sortBy', 'groups', 'List', 'lists']
-description: > 
+related: ['sortBy', 'groups', 'class.List', 'lists']
+description: >
   How to add pagination to your assemble project.
 collection: docs
 category: api

@@ -1,8 +1,7 @@
 ---
+title: Install assemble
 category: recipes
 ---
-## Install assemble
-
 **CLI**
 
 If you plan to use assemble from the command line using the `assemble` command, you'll need to install assemble globally:

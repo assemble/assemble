@@ -1,9 +1,9 @@
 ---
+title: Default layout
+description: >
+  This recipe describes how to define a "default" layout.
 category: recipes
 ---
-# Defining a default layout
-
-> This recipe describes how to define a "default" layout.
 
 **What is a "default" layout?**
 

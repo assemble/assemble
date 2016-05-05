@@ -1,7 +1,8 @@
 ---
+title: ES2015 generators
 category: recipes
+description: Using es2015 javascript generators in assemble tasks
 ---
-# Using es2015 javascript generators in assemble tasks.
 
 Assemble is now able to directly take a generator function as a task function. This removes the need for a callback when running synchronous code inside tasks.
 

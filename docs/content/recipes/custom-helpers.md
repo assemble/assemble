@@ -1,10 +1,11 @@
 ---
+title: Custom helpers
+description: >
+  This recipe shows how to create and use custom helpers with assemble.
 category: recipes
+related:
+  - custom-async-helpers
 ---
-# Custom helpers
-
-This recipe shows how to create and use custom helpers with assemble.
-
 ## Create a helper
 
 The following helper takes a string and converts it to all uppercase characters.
@@ -44,8 +45,3 @@ Results in:
 ```html
 foo BAR baz
 ```
-
-
-## Related
-
-- [custom async helpers](./recipes/custom-async-helpers.md)

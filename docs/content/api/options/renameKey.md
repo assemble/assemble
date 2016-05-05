@@ -1,7 +1,7 @@
 ---
+title: "Option: renameKey"
 category: api
 ---
-# options.renameKey
 
 The `renameKey` option takes a function that allows you to customize the keys of views in a collection.
 
