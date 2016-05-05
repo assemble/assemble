@@ -56,7 +56,7 @@ gulp.task('vars', function() {
       });
 
       console.log(res);
-      console.log(keys.length + 1, 'modules');
+      console.log(keys.length, 'modules');
       next();
     }))
 });
