@@ -91,8 +91,12 @@ function run(cb) {
    * Process command line arguments
    */
 
-  var args = utils.processArgv(app, argv);
+  var tasks = argv._.length ? argv._ : ['default'];
+  var args = app.argv(argv);
+  args.tasks = tasks;
+
   app.set('cache.argv', args);
+  app.option(args);
 
   /**
    * Show path to assemblefile
@@ -128,16 +132,14 @@ run(function(err, app) {
   app.cli.process(app.get('cache.argv'), function(err) {
     if (err) handleError(err);
 
-    var tasks = app.option('tasks') || (argv._.length ? argv._ : ['default']);
-
     /**
      * Run tasks
      */
 
-    app.build(tasks, function(err) {
+    app.build(app.get('cache.argv.tasks'), function(err) {
       if (err) handleError(err);
 
-      utils.timestamp('finished ' + utils.success());
+      utils.timestamp('finished ' + utils.log.success);
       process.exit(0);
     });
   });
@@ -151,9 +153,10 @@ function handleError(err) {
   if (typeof err === 'string' && errors[err]) {
     console.error(errors[err]);
   } else {
-    console.error(err.message);
     if (argv.verbose) {
-      console.log(err.stack);
+      console.error(err.stack);
+    } else {
+      console.error(err.message);
     }
   }
   process.exit(1);
