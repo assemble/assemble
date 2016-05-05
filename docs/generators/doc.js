@@ -43,29 +43,16 @@ module.exports = function(app, base) {
   app.plugin('rename', rename);
 
   /**
-   * Register helpers
+   * Default variables
    */
 
-  app.helper('camelcase', require('camel-case'));
-  app.helper('relative', function(dest) {
-    return (dest !== this.app.cwd) ? path.relative(dest, this.app.cwd) : './';
-  });
-
   var cwd = process.cwd();
-
   var defaultDest = 'templates/pages';
-  function setDefaultDest(dest) {
-    return function*() {
-      defaultDest = dest;
-    };
-  }
-
   var defaultName = 'page';
-  function setDefaultName(name) {
-    return function*() {
-      defaultName = name;
-    };
-  }
+
+  /**
+   * Tasks
+   */
 
   app.task('templates', function*() {
     app.debug('loading templates');
@@ -91,15 +78,19 @@ module.exports = function(app, base) {
     });
   });
 
-  // app.task('files', ['templates', 'name', 'dest'], function(cb) {
-  //   app.chooseFiles(app.options, cb);
-  // });
+  createTask('api', {defaultName: 'api', defaultDest: 'content/api'});
+  createTask('page', {defaultName: 'page', defaultDest: 'templates/pages'});
+  createTask('recipe', {defaultName: 'recipe', defaultDest: 'content/recipes'});
+  createTask('subject', {defaultName: 'subject', defaultDest: 'content/subjects'});
+
+  app.task('default', ['page']);
+
+  /**
+   * Dynamically create a set of tasks for a specific tempate being generated.
+   */
 
   function createTask(name, options) {
-    var opts = utils.extend({
-      defaultDest: 'templates/pages',
-      defaultName: 'page'
-    }, options);
+    var opts = utils.extend({defaultName: 'page', defaultDest: 'templates/pages'}, options);
 
     app.task(name + ':set-dest', {silent: true}, function*() {
       defaultDest = opts.defaultDest;
@@ -128,27 +119,6 @@ module.exports = function(app, base) {
     });
   }
 
-  createTask('page', {
-    defaultName: 'page',
-    defaultDest: 'templates/pages'
-  });
-
-  createTask('api', {
-    defaultName: 'api',
-    defaultDest: 'content/api'
-  });
-
-  createTask('recipe', {
-    defaultName: 'recipe',
-    defaultDest: 'content/recipes'
-  });
-
-  createTask('subject', {
-    defaultName: 'subject',
-    defaultDest: 'content/subjects'
-  });
-
-  app.task('default', ['page']);
 };
 
 function filter(pattern, options) {
