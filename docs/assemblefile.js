@@ -2,7 +2,6 @@
 
 var path = require('path');
 var del = require('delete');
-var Time = require('time-diff');
 var watch = require('base-watch');
 var drafts = require('gulp-drafts');
 var extname = require('gulp-extname');
@@ -18,10 +17,9 @@ var ghPages = require('gulp-gh-pages');
 var ghClone = require('gh-clone');
 var cmd = require('spawn-commands');
 
-var viewEvents = require('./support/plugins/view-events');
-var redirects = require('./support/plugins/redirects');
-var manifest = require('./support/plugins/manifest');
-var versions = require('./support/plugins/versions');
+var pipeline = require('./support/pipeline');
+var plugin = require('./support/plugins');
+var Search = require('./support/search');
 var utils = require('./support/utils');
 var pkg = require('../package');
 var assemble = require('..');
@@ -31,8 +29,7 @@ var assemble = require('..');
  */
 
 var app = assemble();
-app.time = new Time();
-app.use(viewEvents('permalink'));
+app.use(plugin.viewEvents('permalink'));
 app.use(collections());
 app.use(getDest());
 app.use(watch());
@@ -41,7 +38,7 @@ app.use(watch());
  * Setup search plugin
  */
 
-var search = require('./support/plugins/search')(app);
+var search = new Search(app);
 
 /**
  * Common variables
@@ -60,6 +57,14 @@ app.onPermalink(/./, function(file, next) {
   file.data = merge({category: 'docs'}, app.cache.data, file.data);
   next();
 });
+
+/**
+ * Load helpers
+ */
+
+app.helpers(require('assemble-handlebars-helpers'));
+app.asyncHelpers('support/async-helpers/*.js');
+app.helpers('support/helpers/*.js');
 
 /**
  * Customize how templates are stored. This changes the
@@ -168,24 +173,6 @@ app.create('redirects', {
 });
 
 /**
- * Load default handlebars helpers
- */
-
-app.helpers(require('assemble-handlebars-helpers'));
-
-/**
- * Load helpers
- */
-
-app.helpers('support/helpers/*.js');
-
-/**
- * Load async-helpers
- */
-
-app.asyncHelpers('support/async-helpers/*.js');
-
-/**
  * Clean out the current version's built files
  */
 
@@ -243,7 +230,7 @@ app.task('manifest', function(cb) {
 
   return app.src([dir + '/**/*.html'])
     .on('err', console.log)
-    .pipe(manifest(app, {
+    .pipe(pipeline.manifest(app, {
       renamePath: function(fp) {
         return 'en/v' + version + '/' + fp;
       }
@@ -253,22 +240,6 @@ app.task('manifest', function(cb) {
       file.base = file.dirname;
       return dir;
     }));
-});
-
-/**
- * Build up a redirects.json file
- */
-
-app.task('redirects', function() {
-  return app.src(build.dest('en/*/manifest.json'))
-    .pipe(redirects(app))
-    .pipe(versions(app))
-    .pipe(ignore.include(['redirects.json', 'versions.json']))
-    .pipe(app.dest(function(file) {
-      file.base = file.dirname;
-      return 'data';
-    }))
-    .pipe(app.dest(build.dest()));
 });
 
 /**
@@ -294,6 +265,22 @@ app.task('serve', function() {
       baseDir: build.dest()
     }
   });
+});
+
+/**
+ * Build up a redirects.json file
+ */
+
+app.task('redirects', function() {
+  return app.src(build.dest('en/*/manifest.json'))
+    .pipe(pipeline.redirects(app))
+    .pipe(pipeline.versions(app))
+    .pipe(ignore.include(['redirects.json', 'versions.json']))
+    .pipe(app.dest(function(file) {
+      file.base = file.dirname;
+      return 'data';
+    }))
+    .pipe(app.dest(build.dest()));
 });
 
 /**
@@ -343,8 +330,14 @@ function changedFilter(key, view) {
  */
 
 app.task('build', ['load'], function() {
-  return app.toStream('docs', changedFilter).on('error', console.log)
-    .pipe(app.toStream('pages', changedFilter)).on('error', console.log)
+  return app.toStream('docs', changedFilter)
+    .on('error', console.log)
+    .on('data', function() {
+
+    })
+    .pipe(app.toStream('pages', changedFilter))
+    .on('error', console.log)
+    .on('data', console.log)
     .pipe(drafts())
     .pipe(search.collect())
     .pipe(app.renderFile()).on('error', console.log)
@@ -354,7 +347,7 @@ app.task('build', ['load'], function() {
       file.base = app.data('destBase');
       next(null, file);
     }))
-    .pipe(manifest(app, {
+    .pipe(pipeline.manifest(app, {
       base: 'en/v' + pkg.version,
       renamePath: function(fp) {
         var idx = fp.indexOf('en/v' + pkg.version);
