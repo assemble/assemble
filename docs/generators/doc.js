@@ -1,6 +1,5 @@
 'use strict';
 var path = require('path');
-var opts = {alias: {tmpl: 't'}, default: {tmpl: 'page'}};
 var debug = require('debug')('generate:doc');
 var utils = require('./lib/utils');
 
@@ -59,10 +58,10 @@ module.exports = function(app, base) {
     });
   });
 
-  createTask('api', {defaultName: 'api', defaultDest: 'content/api'});
-  createTask('page', {defaultName: 'page', defaultDest: 'templates/pages'});
-  createTask('recipe', {defaultName: 'recipe', defaultDest: 'content/recipes'});
-  createTask('subject', {defaultName: 'subject', defaultDest: 'content/subjects'});
+  createTask('api', {name: 'api', dest: 'content/api'});
+  createTask('page', {name: 'page', dest: 'templates/pages'});
+  createTask('recipe', {name: 'recipe', dest: 'content/recipes'});
+  createTask('subject', {name: 'subject', dest: 'content/subjects'});
 
   app.task('default', ['page']);
 
@@ -71,14 +70,14 @@ module.exports = function(app, base) {
    */
 
   function createTask(name, options) {
-    var opts = utils.extend({defaultName: 'page', defaultDest: 'templates/pages'}, options);
+    var opts = utils.extend({name: 'page', dest: 'templates/pages'}, options);
 
     app.task(name + ':set-dest', {silent: true}, function*() {
-      defaultDest = opts.defaultDest;
+      defaultDest = opts.dest;
     });
 
     app.task(name + ':set-name', {silent: true}, function*() {
-      defaultName = opts.defaultName;
+      defaultName = opts.name;
     });
 
     app.task(name, [name + ':set-dest', name + ':set-name', 'templates', 'name', 'dest'], function() {
