@@ -1,17 +1,8 @@
 'use strict';
 
 var path = require('path');
-var del = require('delete');
 var cwd = require('memoize-path')(__dirname);
-var drafts = require('gulp-drafts');
-var ignore = require('gulp-ignore');
 var debug = require('debug')('assemble:docs');
-var browserSync = require('browser-sync').create();
-var merge = require('mixin-deep');
-var through = require('through2');
-var ghClone = require('gh-clone');
-var cmd = require('spawn-commands');
-
 var pipeline = require('./support/pipeline');
 var plugin = require('./support/plugins');
 var Search = require('./support/search');
@@ -62,7 +53,7 @@ var build = {
   pages: src('templates/pages'),
 
   // dest path
-  dest: src('../_gh_pages'),
+  dest: src('../_gh_pages')
 };
 
 // create src path from `memoize-path`
@@ -78,7 +69,7 @@ function src(base) {
 
 app.onPermalink(/./, function(file, next) {
   debug('onPermalink for %s', file.path);
-  file.data = merge({category: 'docs'}, app.cache.data, file.data);
+  file.data = utils.merge({category: 'docs'}, app.cache.data, file.data);
   next();
 });
 
@@ -127,8 +118,8 @@ app.data({
   },
   pkg: pkg,
   site: {
-    title: 'Assemble Docs',
-    description: 'The static site generator for Node.js, Grunt.js and Yeoman.',
+    title: 'Assemble Documentation',
+    description: 'The static site generator for Node.js.',
     lead: 'It has never been easier to leverage the full force of powerful frameworks like Bootstrap and Zurb Foundation. Nothing can stop you now.',
     version: pkg.version,
     base: ':destBase/en/v:site.version',
@@ -147,28 +138,13 @@ app.data({
 utils.diff('loaded data');
 
 /**
- * Permalink options to use in the permalinks plugin below
- */
-
-var permalinkOpts = {
-  slug: function() {
-    if (this.category === 'docs') {
-      return this.filename + '.html';
-    }
-    var rel = this.relative;
-    var ext = path.extname(rel);
-    return path.join(rel.substr(0, rel.length - ext.length) + '.html');
-  }
-};
-
-/**
  * Custom preRender middleware to use on the `docs` collection below.
  */
 
 function preRender(file, next) {
   var category = file.data.category;
   if (!category) return next();
-  file.data = merge({
+  file.data = utils.merge({
     layout: category === 'recipes' ? 'recipe' : file.data.layout
   }, file.data);
   next();
@@ -178,9 +154,18 @@ function preRender(file, next) {
  * Create a custom view collection for `docs`
  */
 
-app.create('docs', {layout: 'body'})
-app.docs.preRender(/\.md/, preRender)
-app.docs.use(plugin.permalinks(':site.base/docs/:slug()', permalinkOpts));
+app.create('docs', {layout: 'body'});
+app.docs.preRender(/\.md/, preRender);
+app.docs.use(plugin.permalinks(':site.base/docs/:slug()', {
+  slug: function() {
+    if (this.category === 'docs') {
+      return this.filename + '.html';
+    }
+    var rel = this.relative;
+    var ext = path.extname(rel);
+    return path.join(rel.substr(0, rel.length - ext.length) + '.html');
+  }
+}));
 utils.diff('created docs collection');
 
 /**
@@ -203,7 +188,7 @@ utils.diff('configured permalinks plugin');
  */
 
 app.task('clean', function(cb) {
-  del(build.dest('en/v' + pkg.version), {force: true}, cb);
+  utils.del(build.dest('en/v' + pkg.version), {force: true}, cb);
 });
 
 /**
@@ -219,9 +204,9 @@ app.task('clone', function(cb) {
     dest: build.dest()
   };
 
-  ghClone(options, function(err, config) {
+  utils.ghClone(options, function(err, config) {
     if (err) return cb(err);
-    cmd(config, cb);
+    utils.cmd(config, cb);
   });
 });
 
@@ -267,14 +252,14 @@ app.task('manifest', function(cb) {
         return 'en/v' + version + '/' + fp;
       }
     }))
-    .pipe(ignore.include('manifest.json'))
+    .pipe(pipeline.ignore.include('manifest.json'))
     .pipe(app.dest(function(file) {
       file.base = file.dirname;
       return dir;
     }))
     .on('end', function() {
       utils.diff('finished manifest task');
-    })
+    });
 });
 
 /**
@@ -302,7 +287,7 @@ app.task('load-templates', function* () {
  */
 
 app.task('serve', function() {
-  browserSync.init({
+  pipeline.browserSync.init({
     port: 8080,
     startPath: 'index.html',
     server: {
@@ -321,10 +306,10 @@ app.task('create-redirects', function() {
   return app.src(build.dest('en/*/manifest.json'))
     .pipe(pipeline.redirects(app))
     .pipe(pipeline.versions(app))
-    .pipe(ignore.include(['redirects.json', 'versions.json']))
+    .pipe(pipeline.ignore.include(['redirects.json', 'versions.json']))
     .pipe(app.dest(function(file) {
       file.base = file.dirname;
-      return 'data';
+      return build.data();
     }))
     .pipe(app.dest(build.dest()))
     .on('end', function() {
@@ -337,10 +322,10 @@ app.task('create-redirects', function() {
  */
 
 app.task('render-redirects', function() {
-  app.data('data/redirects.json', { namespace: 'redirects' });
+  app.data(build.data('redirects.json'), { namespace: 'redirects' });
   var redirects = app.data('redirects');
 
-  for(var key in redirects) {
+  for (var key in redirects) {
     var to = redirects[key];
     app.redirect(key, {
       path: key,
@@ -361,7 +346,7 @@ app.task('render-redirects', function() {
     .pipe(app.dest(build.dest()))
     .on('end', function() {
       utils.diff('finished render-redirects task');
-    })
+    });
 });
 
 /**
@@ -386,11 +371,11 @@ app.task('build', ['load-*'], function() {
 
   return app.toStream('docs', changedFilter).on('error', console.log)
     .pipe(app.toStream('pages', changedFilter)).on('error', console.log)
-    .pipe(drafts())
+    .pipe(pipeline.drafts())
     .pipe(search.collect())
     .pipe(app.renderFile()).on('error', console.log)
     .pipe(pipeline.extname())
-    .pipe(through.obj(function(file, enc, next) {
+    .pipe(utils.through.obj(function(file, enc, next) {
       file.path = file.dest;
       file.base = app.data('destBase');
       next(null, file);
@@ -407,10 +392,10 @@ app.task('build', ['load-*'], function() {
       base: 'en/v' + pkg.version
     }))
     .pipe(app.dest(build.dest()))
-    .pipe(browserSync.stream())
+    .pipe(pipeline.browserSync.stream())
     .on('end', function() {
       utils.diff('finished build task');
-    })
+    });
 });
 
 /**
@@ -420,8 +405,8 @@ app.task('build', ['load-*'], function() {
 app.task('assets', function() {
   utils.diff('starting assets task');
 
-  return app.copy('assets/**/*', build.dest('en/v' + pkg.version + '/assets'))
-    .pipe(browserSync.stream())
+  return app.copy(build.assets('**/*'), build.dest('en/v' + pkg.version + '/assets'))
+    .pipe(pipeline.browserSync.stream())
     .on('end', function() {
       utils.diff('finished assets task');
     });
@@ -434,8 +419,8 @@ app.task('assets', function() {
 app.task('static', function(cb) {
   utils.diff('starting static task');
 
-  return app.copy('static/**/*', build.dest())
-    .pipe(browserSync.stream())
+  return app.copy(build.static('**/*'), build.dest())
+    .pipe(pipeline.browserSync.stream())
     .on('end', function() {
       utils.diff('finished static task');
     });

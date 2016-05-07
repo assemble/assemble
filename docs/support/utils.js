@@ -6,13 +6,17 @@ var utils = require('lazy-cache')(require);
 var fn = require;
 require = utils;
 
+require('delete', 'del');
 require('extend-shallow', 'extend');
+require('gh-clone');
+require('log-utils', 'log');
 require('lunr');
 require('mixin-deep', 'merge');
 require('placeholders');
+require('spawn-commands', 'cmd');
 require('through2', 'through');
 require('time-diff', 'Time');
-require('log-utils', 'log');
+
 require = fn;
 
 /**

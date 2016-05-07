@@ -78,7 +78,7 @@ function getDocs(arr, helper) {
     if (!view) {
       view = helper.app.docs.getView(key);
     }
-    if (!view && helper.view.data.category) {
+    if (!view && typeof helper.view.data.category === 'string') {
       view = helper.app.docs.getView(path.join(helper.view.data.category, key));
     }
 
