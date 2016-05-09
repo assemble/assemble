@@ -44,7 +44,7 @@ module.exports = function(app, base) {
     app.question('dest', 'Destination directory?', {default: defaultDest});
     app.ask('dest', {save: false}, function(err, answers) {
       if (err) return cb(err);
-      app.option('dest', answers.dest);
+      app.option('dest', path.resolve(app.cwd, answers.dest));
       cb();
     });
   });

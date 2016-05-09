@@ -1,7 +1,7 @@
 'use strict';
 
 var path = require('path');
-var cwd = require('memoize-path')(__dirname);
+var cwd = require('memoize-path')(path.join(__dirname, 'src'));
 var debug = require('debug')('assemble:docs');
 var pipeline = require('./support/pipeline');
 var plugin = require('./support/plugins');
@@ -15,7 +15,6 @@ var assemble = require('..');
  */
 
 var app = assemble();
-utils.diff('starting build');
 
 /**
  * Load plugins
@@ -25,7 +24,6 @@ app.use(plugin.viewEvents('permalink'));
 app.use(plugin.collections());
 app.use(plugin.getDest());
 app.use(plugin.watch());
-utils.diff('loaded plugins');
 
 /**
  * Setup search plugin
@@ -53,7 +51,8 @@ var build = {
   pages: src('templates/pages'),
 
   // dest path
-  dest: src('../_gh_pages')
+  dest: path.resolve.bind(path, __dirname, '../_gh_pages'),
+  src: src()
 };
 
 // create src path from `memoize-path`
@@ -80,32 +79,15 @@ app.onPermalink(/./, function(file, next) {
 app.helpers(require('assemble-handlebars-helpers'));
 app.asyncHelpers('support/async-helpers/*.js');
 app.helpers('support/helpers/*.js');
-utils.diff('loaded helpers');
 
 /**
  * Customize how templates are stored. This changes the
  * key of each template, so it's easier to lookup later
  */
 
-app.option('renameKey', function(fp, view) {
-  // key has already been renamed, just strip extension
-  if (fp.indexOf(__dirname) === -1) {
-    if (/\.md$/.test(fp)) {
-      return fp.substr(0, fp.length - 3);
-    }
-    return fp;
-  }
-
-  // remove __dirname/content
-  var base = fp.replace(__dirname, '');
-  fp = base.split(path.sep)
-    .filter(Boolean)
-    .slice(1)
-    .join(path.sep);
-
-  // drop extension
-  var ext = path.extname(fp);
-  return fp.substr(0, fp.length - ext.length);
+app.option('renameKey', function(key, view) {
+  key = path.relative(build.content(), key);
+  return utils.stripExtension(key, path.extname(key));
 });
 
 /**
@@ -135,38 +117,34 @@ app.data({
     text: 'Assemble'
   }]
 });
-utils.diff('loaded data');
-
-/**
- * Custom preRender middleware to use on the `docs` collection below.
- */
-
-function preRender(file, next) {
-  var category = file.data.category;
-  if (!category) return next();
-  file.data = utils.merge({
-    layout: category === 'recipes' ? 'recipe' : file.data.layout
-  }, file.data);
-  next();
-}
 
 /**
  * Create a custom view collection for `docs`
  */
 
 app.create('docs', {layout: 'body'});
-app.docs.preRender(/\.md/, preRender);
+
+/**
+ * Middleware for dynamically setting the layout to use based on
+ * front-matter `category`
+ */
+
+app.docs.preRender(/\.md/, function preRender(file, next) {
+  if (file.data.category === 'recipes') {
+    file.data.layout = 'recipe';
+  }
+  next();
+});
+
 app.docs.use(plugin.permalinks(':site.base/docs/:slug()', {
   slug: function() {
     if (this.category === 'docs') {
       return this.filename + '.html';
     }
-    var rel = this.relative;
-    var ext = path.extname(rel);
-    return path.join(rel.substr(0, rel.length - ext.length) + '.html');
+    var filepath = utils.stripExtension(this.relative, this.extname);
+    return path.relative(cwd(), filepath) + '.html';
   }
 }));
-utils.diff('created docs collection');
 
 /**
  * Create a custom view collection for html
@@ -174,14 +152,12 @@ utils.diff('created docs collection');
  */
 
 app.create('redirects', {renameKey: utils.renameKey});
-utils.diff('configured redirects collection');
 
 /**
  * Configure permalinks for main site pages.
  */
 
 app.pages.use(plugin.permalinks(':site.base/:name.html'));
-utils.diff('configured permalinks plugin');
 
 /**
  * Clean out the current version's built files
@@ -196,8 +172,6 @@ app.task('clean', function(cb) {
  */
 
 app.task('clone', function(cb) {
-  utils.diff('starting clone task');
-
   var options = {
     repo: 'assemble/assemble.io',
     branch: 'gh-pages',
@@ -215,8 +189,6 @@ app.task('clone', function(cb) {
  */
 
 app.task('deploy', function() {
-  utils.diff('starting deploy task');
-
   return app.src(build.dest('**/*'))
     .pipe(pipeline.ghPages({
       remoteUrl: 'https://github.com/assemble/assemble.io.git',
@@ -231,8 +203,6 @@ app.task('deploy', function() {
  */
 
 app.task('manifest', function(cb) {
-  utils.diff('starting manifest task');
-
   var version = app.option('version');
   if (typeof version === 'undefined' || typeof version === 'boolean') {
     cb(new Error('--version needs to be specified when running `assemble manifest`'));
@@ -245,21 +215,18 @@ app.task('manifest', function(cb) {
     return;
   }
 
-  return app.src([dir + '/**/*.html'])
+  return app.src('**/*.html', {cwd: dir})
     .on('err', console.log)
     .pipe(pipeline.manifest(app, {
       renamePath: function(fp) {
-        return 'en/v' + version + '/' + fp;
+        return path.join('en/v' + version, fp);
       }
     }))
     .pipe(pipeline.ignore.include('manifest.json'))
     .pipe(app.dest(function(file) {
       file.base = file.dirname;
       return dir;
-    }))
-    .on('end', function() {
-      utils.diff('finished manifest task');
-    });
+    }));
 });
 
 /**
@@ -267,7 +234,6 @@ app.task('manifest', function(cb) {
  */
 
 app.task('load-content', function* () {
-  utils.diff('loading content');
   app.docs(build.content('**/*.md'));
 });
 
@@ -276,7 +242,6 @@ app.task('load-content', function* () {
  */
 
 app.task('load-templates', function* () {
-  utils.diff('loading templates');
   app.partials(build.partials('**/*.hbs'));
   app.layouts(build.layouts('**/*.hbs'));
   app.pages(build.pages('**/*.hbs'));
@@ -301,8 +266,6 @@ app.task('serve', function() {
  */
 
 app.task('create-redirects', function() {
-  utils.diff('starting create-redirects task');
-
   return app.src(build.dest('en/*/manifest.json'))
     .pipe(pipeline.redirects(app))
     .pipe(pipeline.versions(app))
@@ -311,10 +274,7 @@ app.task('create-redirects', function() {
       file.base = file.dirname;
       return build.data();
     }))
-    .pipe(app.dest(build.dest()))
-    .on('end', function() {
-      utils.diff('finished create-redirects task');
-    });
+    .pipe(app.dest(build.dest()));
 });
 
 /**
@@ -343,10 +303,7 @@ app.task('render-redirects', function() {
     .pipe(app.renderFile('hbs'))
     .on('error', console.error)
     .pipe(pipeline.extname())
-    .pipe(app.dest(build.dest()))
-    .on('end', function() {
-      utils.diff('finished render-redirects task');
-    });
+    .pipe(app.dest(build.dest()));
 });
 
 /**
@@ -367,35 +324,30 @@ function changedFilter(key, view) {
  */
 
 app.task('build', ['load-*'], function() {
-  utils.diff('starting build task');
+  var version = 'en/v' + pkg.version;
 
   return app.toStream('docs', changedFilter).on('error', console.log)
     .pipe(app.toStream('pages', changedFilter)).on('error', console.log)
     .pipe(pipeline.drafts())
     .pipe(search.collect())
     .pipe(app.renderFile()).on('error', console.log)
-    .pipe(pipeline.extname())
     .pipe(utils.through.obj(function(file, enc, next) {
+      file.extname = '.html';
       file.path = file.dest;
       file.base = app.data('destBase');
       next(null, file);
     }))
     .pipe(pipeline.manifest(app, {
-      base: 'en/v' + pkg.version,
+      base: version,
       renamePath: function(fp) {
-        var idx = fp.indexOf('en/v' + pkg.version);
+        var idx = fp.indexOf(version);
         if (idx === -1) return fp;
         return fp.substr(idx);
       }
     }))
-    .pipe(search.generate({
-      base: 'en/v' + pkg.version
-    }))
+    .pipe(search.generate({base: version}))
     .pipe(app.dest(build.dest()))
-    .pipe(pipeline.browserSync.stream())
-    .on('end', function() {
-      utils.diff('finished build task');
-    });
+    .pipe(pipeline.browserSync.stream());
 });
 
 /**
@@ -403,13 +355,8 @@ app.task('build', ['load-*'], function() {
  */
 
 app.task('assets', function() {
-  utils.diff('starting assets task');
-
-  return app.copy(build.assets('**/*'), build.dest('en/v' + pkg.version + '/assets'))
-    .pipe(pipeline.browserSync.stream())
-    .on('end', function() {
-      utils.diff('finished assets task');
-    });
+  return app.copy(build.assets('**/*'), build.dest(path.join('en/v', pkg.version, 'assets')))
+    .pipe(pipeline.browserSync.stream());
 });
 
 /**
@@ -417,13 +364,8 @@ app.task('assets', function() {
  */
 
 app.task('static', function(cb) {
-  utils.diff('starting static task');
-
   return app.copy(build.static('**/*'), build.dest())
-    .pipe(pipeline.browserSync.stream())
-    .on('end', function() {
-      utils.diff('finished static task');
-    });
+    .pipe(pipeline.browserSync.stream());
 });
 
 /**
@@ -465,10 +407,7 @@ app.task('default', [
   'static',
   'create-redirects',
   'render-redirects'
-], function(cb) {
-  utils.diff('finished default task');
-  cb();
-});
+]);
 
 /**
  * Expose the `app` instance

@@ -83,7 +83,7 @@ function getDocs(arr, helper) {
     }
 
     if (!view) {
-      console.log(`Unable to find a view named "${key}"`);
+      console.log(`Unable to find view: "${key}"`);
       console.log(`Check the related items in "${helper.view.path}"`);
       continue;
     }

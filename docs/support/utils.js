@@ -1,5 +1,6 @@
 'use strict';
 
+var path = require('path');
 var opts = {alias: {times: 'logDiff'}};
 var argv = require('minimist')(process.argv.slice(2), opts);
 var utils = require('lazy-cache')(require);
@@ -39,6 +40,11 @@ utils.versionPath = function(structure, data, opts) {
 
 utils.renameKey = function(key, view) {
   return view ? view.path : key;
+};
+
+utils.stripExtension = function(filepath, ext) {
+  ext = ext || path.extname(filepath);
+  return filepath.slice(0, filepath.length - ext.length);
 };
 
 if (argv.times !== true) {
