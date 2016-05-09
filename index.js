@@ -68,13 +68,14 @@ Assemble.prototype.initDefaults = function(app) {
    */
 
   this.onLoad(utils.extRegex(exts), function(view, next) {
-    // check options inside the middleware to
-    // account for options defined after init
+    // check options inside the middleware to account for options defined after init
     if (view.options.frontMatter === false) {
-      return next();
+      next();
+      return;
     }
     if (app.options.frontMatter === false) {
-      return next();
+      next();
+      return;
     }
     utils.matter.parse(view, next);
   });
@@ -98,12 +99,12 @@ Assemble.prototype.initPlugins = function(app) {
   enable('loader', plugins.loader);
   enable('config', plugins.config);
   enable('argv', plugins.argv);
-  enable('cli', cli);
+  enable('cli', plugins.cli);
 
   function enable(name, fn) {
-    if (app.isFalse('plugins')) return;
-    if (!app.isFalse('plugins.' + name)) {
-      app.use(fn(app.options));
+    if (app.option('plugins') === false) return;
+    if (app.option('plugins.' + name) !== false) {
+      app.use(fn());
     }
   }
 };
@@ -142,20 +143,6 @@ Assemble.prototype.initCollections = function(app) {
     }
   });
 };
-
-/**
- * Ensure `name` is set on the instance for lookups.
- */
-
-Object.defineProperty(Assemble.prototype, 'name', {
-  configurable: true,
-  set: function(name) {
-    this.options.name = name;
-  },
-  get: function() {
-    return this.options.name || this._name || 'base';
-  }
-});
 
 /**
  * Expose static `is*` methods from Templates
