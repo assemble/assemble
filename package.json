@@ -18,20 +18,20 @@
   },
   "license": "MIT",
   "files": [
+    "bin",
     "index.js",
-    "bin/",
-    "lib/"
+    "lib"
   ],
   "main": "index.js",
+  "preferGlobal": true,
+  "bin": {
+    "assemble": "bin/cli.js"
+  },
   "engines": {
     "node": ">=4.0"
   },
   "scripts": {
     "test": "mocha"
-  },
-  "preferGlobal": true,
-  "bin": {
-    "assemble": "bin/cli.js"
   },
   "dependencies": {
     "assemble-core": "^0.17.2",
@@ -140,15 +140,16 @@
     "reflinks": [
       "assemble",
       "assemble-core",
-      "assemble-loader",
       "assemble-fs",
+      "assemble-handle",
+      "assemble-loader",
       "bach",
       "base",
       "base-watch",
       "boilerplate",
       "composer",
-      "expand-object",
       "engine-handlebars",
+      "expand-object",
       "grunt-assemble",
       "gulp",
       "gulp-assemble",
@@ -160,8 +161,7 @@
       "templates",
       "verb",
       "vinyl",
-      "vinyl-fs",
-      "assemble-handle"
+      "vinyl-fs"
     ],
     "lint": {
       "reflinks": true
