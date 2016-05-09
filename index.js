@@ -8,7 +8,6 @@ var path = require('path');
 var Core = require('assemble-core');
 var plugins = require('./lib/plugins');
 var utils = require('./lib/utils');
-var cli = require('./lib/cli');
 
 /**
  * Create an `assemble` app. This is the main function exported
