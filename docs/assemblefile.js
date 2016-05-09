@@ -355,7 +355,7 @@ app.task('build', ['load-*'], function() {
  */
 
 app.task('assets', function() {
-  return app.copy(build.assets('**/*'), build.dest(path.join('en/v', pkg.version, 'assets')))
+  return app.copy(build.assets('**/*'), build.dest(path.join('en/v' + pkg.version, 'assets')))
     .pipe(pipeline.browserSync.stream());
 });
 
