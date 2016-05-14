@@ -27,12 +27,18 @@ var less = require('gulp-less');
 var assemble = require('assemble');
 var extname = require('gulp-extname');
 var browserSync = require('browser-sync').create();
+var watch = require('base-watch');
 
 /**
  * Create an instance of assemble
  */
 
 var app = assemble();
+
+/**
+* Load plugins
+*/
+app.use(watch());
 
 /**
  * Load helpers
