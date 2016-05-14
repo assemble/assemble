@@ -27,7 +27,7 @@ module.exports = function(app, base) {
    */
 
   var cwd = process.cwd();
-  var defaultDest = 'templates/pages';
+  var defaultDest = 'src/templates/pages';
   var defaultName = 'page';
 
   /**
@@ -36,7 +36,7 @@ module.exports = function(app, base) {
 
   app.task('templates', function*() {
     app.debug('loading templates');
-    app.templates(['./scaffolds/**/*.{hbs,md}'], { cwd: cwd });
+    app.templates(['./src/scaffolds/**/*.{hbs,md}'], { cwd: cwd });
     app.debug('loaded templates');
   });
 
@@ -58,10 +58,10 @@ module.exports = function(app, base) {
     });
   });
 
-  createTask('api', {name: 'api', dest: 'content/api'});
-  createTask('page', {name: 'page', dest: 'templates/pages'});
-  createTask('recipe', {name: 'recipe', dest: 'content/recipes'});
-  createTask('subject', {name: 'subject', dest: 'content/subjects'});
+  createTask('api', {name: 'api', dest: 'src/content/api'});
+  createTask('page', {name: 'page', dest: 'src/templates/pages'});
+  createTask('recipe', {name: 'recipe', dest: 'src/content/recipes'});
+  createTask('subject', {name: 'subject', dest: 'src/content/subjects'});
 
   app.task('default', ['page']);
 
@@ -70,7 +70,7 @@ module.exports = function(app, base) {
    */
 
   function createTask(name, options) {
-    var opts = utils.extend({name: 'page', dest: 'templates/pages'}, options);
+    var opts = utils.extend({name: 'page', dest: 'src/templates/pages'}, options);
 
     app.task(name + ':set-dest', {silent: true}, function*() {
       defaultDest = opts.dest;

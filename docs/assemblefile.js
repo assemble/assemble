@@ -96,7 +96,7 @@ app.option('renameKey', function(key, view) {
 
 app.data({
   docs: {
-    content: 'https://github.com/assemble/assemble/tree/master/docs/content'
+    content: 'https://github.com/assemble/assemble/tree/master/docs/src/content'
   },
   pkg: pkg,
   site: {
@@ -142,7 +142,7 @@ app.docs.use(plugin.permalinks(':site.base/docs/:slug()', {
       return this.filename + '.html';
     }
     var filepath = utils.stripExtension(this.relative, this.extname);
-    return path.relative(cwd(), filepath) + '.html';
+    return path.relative(build.content(), filepath) + '.html';
   }
 }));
 
