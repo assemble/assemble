@@ -34,10 +34,6 @@ utils.versionPath = function(structure, data, opts) {
   return utils.placeholders(opts)(structure, data);
 };
 
-utils.versionPath = function(structure, data, opts) {
-  return utils.placeholders(opts)(structure, data);
-};
-
 utils.renameKey = function(key, view) {
   return view ? view.path : key;
 };
