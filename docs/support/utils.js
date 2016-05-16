@@ -7,13 +7,18 @@ var utils = require('lazy-cache')(require);
 var fn = require;
 require = utils;
 
+require('base-fs-conflicts', 'conflict');
+require('base-scaffold', 'scaffold');
+require('boilerplate', 'Boilerplate');
 require('delete', 'del');
 require('extend-shallow', 'extend');
 require('gh-clone');
 require('log-utils', 'log');
 require('lunr');
+require('match-file', 'match');
 require('mixin-deep', 'merge');
 require('placeholders');
+require('scaffold', 'Scaffold');
 require('spawn-commands', 'cmd');
 require('through2', 'through');
 require('time-diff', 'Time');
