@@ -20,7 +20,7 @@ app.task('load', function(cb) {
 **To**
 
 ```js
-app.task('load', function* () {
+app.task('load', function*() {
   app.layouts(['src/layouts/**/*.hbs']);
   app.partials(['src/partials/**/*.hbs']);
   app.pages(['src/pages/**/*.hbs']);
@@ -41,7 +41,7 @@ var app = assemble();
 
 var readFile = thunk(fs.readFile);
 
-app.task('read', function* () {
+app.task('read', function*() {
   var contents = yield readFile('./package.json', 'utf8');
   console.log(contents);
 });

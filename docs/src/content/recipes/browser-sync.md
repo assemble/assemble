@@ -95,7 +95,7 @@ app.task('load', function(cb) {
  */
 
 app.task('content', ['load'], function() {
-  return app.pages.src('content/**/*.{md,hbs}')
+  return app.src('content/**/*.{md,hbs}')
     .pipe(app.renderFile())
     .on('err', console.error)
     .pipe(extname())
