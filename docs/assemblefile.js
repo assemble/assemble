@@ -363,7 +363,7 @@ app.task('assets', function() {
  * Copy static "root" files
  */
 
-app.task('static', function(cb) {
+app.task('static', function() {
   return app.copy(build.static('**/*'), build.dest())
     .pipe(pipeline.browserSync.stream());
 });
