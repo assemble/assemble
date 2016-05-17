@@ -10,22 +10,8 @@ module.exports = function(app, base) {
   app.use(require('generate-collections'));
   app.use(require('generate-defaults'));
 
-  /**
-   * Use `generate-mocha` to pull in instance and pipeline plugins
-   */
-
-  app.use(require('generate-mocha'));
   app.use(utils.conflict());
   app.use(utils.scaffold());
-
-  /**
-   * Set options
-   */
-
-  app.option('renameFile', function(file) {
-    file.stem = 'page';
-    return file;
-  });
 
   /**
    * Default variables
@@ -164,15 +150,11 @@ module.exports = function(app, base) {
       // add `options` to the context
       app.data({ options: app.options });
       var config = {
-          options: {
+        options: {
           cwd: cwd,
-          delims: ['---'],
           pipeline: [
             app.renderFile('*'),
-            app.renameFile(function(file) {
-              file.path = path.join(dest, defaultName + file.extname);
-              return file;
-            }),
+            rename(defaultName),
             app.conflicts(dest)
           ]
         }
@@ -181,6 +163,13 @@ module.exports = function(app, base) {
 
       var scaffold = new utils.Scaffold(config);
       return app.scaffold(scaffold);
+    });
+  }
+
+  function rename(name) {
+    return utils.through.obj(function(file, enc, next) {
+      file.stem = name;
+      next(null, file);
     });
   }
 };
