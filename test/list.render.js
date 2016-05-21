@@ -2,31 +2,36 @@
 
 require('mocha');
 require('should');
-var async = require('async');
+var each = require('async-each');
 var assert = require('assert');
 var support = require('./support');
 var App = support.resolve();
 var List = App.List;
-var pages;
+var posts;
 
-describe('render', function() {
+describe('list.render', function() {
   describe('rendering', function() {
     beforeEach(function() {
-      pages = new List();
-      pages.engine('tmpl', require('engine-base'));
+      posts = new List();
+      posts.engine('tmpl', require('engine-base'));
     });
 
-    it('should throw an error when no callback is given:', function() {
-      (function() {
-        pages.render({});
-      }).should.throw('List#render is async and expects a callback function');
+    it('should throw an error when no callback is given:', function(cb) {
+      try {
+        posts.render({});
+        cb(new Error('expected an error'));
+      } catch (err) {
+        console.log(err);
+        assert.equal(err.message, 'List#render is async and expects a callback function');
+        cb();
+      }
     });
 
     it('should throw an error when an engine is not defined:', function(cb) {
-      pages.addItem('foo.bar', {content: '<%= name %>'});
-      var page = pages.getItem('foo.bar');
+      posts.addItem('foo.bar', {content: '<%= name %>'});
+      var page = posts.getItem('foo.bar');
 
-      pages.render(page, function(err) {
+      posts.render(page, function(err) {
         assert(err.message === 'List#render cannot find an engine for: .bar');
         cb();
       });
@@ -35,14 +40,14 @@ describe('render', function() {
     it('should use helpers to render a item:', function(cb) {
       var locals = {name: 'Halle'};
 
-      pages.helper('upper', function(str) {
+      posts.helper('upper', function(str) {
         return str.toUpperCase(str);
       });
 
-      pages.addItem('a.tmpl', {content: 'a <%= upper(name) %> b', locals: locals});
-      var page = pages.getItem('a.tmpl');
+      posts.addItem('a.tmpl', {content: 'a <%= upper(name) %> b', locals: locals});
+      var page = posts.getItem('a.tmpl');
 
-      pages.render(page, function(err, res) {
+      posts.render(page, function(err, res) {
         if (err) return cb(err);
 
         assert(res.content === 'a HALLE b');
@@ -52,14 +57,14 @@ describe('render', function() {
 
     it('should use helpers when rendering a item:', function(cb) {
       var locals = {name: 'Halle'};
-      pages.helper('upper', function(str) {
+      posts.helper('upper', function(str) {
         return str.toUpperCase(str);
       });
 
-      pages.addItem('a.tmpl', {content: 'a <%= upper(name) %> b', locals: locals});
-      var page = pages.getItem('a.tmpl');
+      posts.addItem('a.tmpl', {content: 'a <%= upper(name) %> b', locals: locals});
+      var page = posts.getItem('a.tmpl');
 
-      pages.render(page, function(err, res) {
+      posts.render(page, function(err, res) {
         if (err) return cb(err);
         assert(res.content === 'a HALLE b');
         cb();
@@ -67,10 +72,10 @@ describe('render', function() {
     });
 
     it('should render a template when contents is a buffer:', function(cb) {
-      pages.addItem('a.tmpl', {content: '<%= a %>', locals: {a: 'b'}});
-      var item = pages.getItem('a.tmpl');
+      posts.addItem('a.tmpl', {content: '<%= a %>', locals: {a: 'b'}});
+      var item = posts.getItem('a.tmpl');
 
-      pages.render(item, function(err, item) {
+      posts.render(item, function(err, item) {
         if (err) return cb(err);
         assert(item.contents.toString() === 'b');
         cb();
@@ -78,10 +83,10 @@ describe('render', function() {
     });
 
     it('should render a template when content is a string:', function(cb) {
-      pages.addItem('a.tmpl', {content: '<%= a %>', locals: {a: 'b'}});
-      var item = pages.getItem('a.tmpl');
+      posts.addItem('a.tmpl', {content: '<%= a %>', locals: {a: 'b'}});
+      var item = posts.getItem('a.tmpl');
 
-      pages.render(item, function(err, item) {
+      posts.render(item, function(err, item) {
         if (err) return cb(err);
         assert(item.contents.toString() === 'b');
         cb();
@@ -89,9 +94,9 @@ describe('render', function() {
     });
 
     it('should render a item from its path:', function(cb) {
-      pages.addItem('a.tmpl', {content: '<%= a %>', locals: {a: 'b'}});
+      posts.addItem('a.tmpl', {content: '<%= a %>', locals: {a: 'b'}});
 
-      pages.render('a.tmpl', function(err, item) {
+      posts.render('a.tmpl', function(err, item) {
         if (err) return cb(err);
         assert(item.content === 'b');
         cb();
@@ -99,10 +104,10 @@ describe('render', function() {
     });
 
     it('should use a plugin for rendering:', function(cb) {
-      pages.engine('tmpl', require('engine-base'));
-      pages.option('engine', 'tmpl');
+      posts.engine('tmpl', require('engine-base'));
+      posts.option('engine', 'tmpl');
 
-      pages.addItems({
+      posts.addItems({
         'a': {content: '<%= title %>', locals: {title: 'aaa'}},
         'b': {content: '<%= title %>', locals: {title: 'bbb'}},
         'c': {content: '<%= title %>', locals: {title: 'ccc'}},
@@ -112,22 +117,22 @@ describe('render', function() {
         'g': {content: '<%= title %>', locals: {title: 'ggg'}},
         'h': {content: '<%= title %>', locals: {title: 'hhh'}},
         'i': {content: '<%= title %>', locals: {title: 'iii'}},
-        'j': {content: '<%= title %>', locals: {title: 'jjj'}},
+        'j': {content: '<%= title %>', locals: {title: 'jjj'}}
       });
 
-      pages.use(function(collection) {
+      posts.use(function(collection) {
         collection.option('pager', false);
 
         collection.renderEach = function(cb) {
           var list = new List(collection);
 
-          async.map(list.items, function(item, next) {
+          each(list.items, function(item, next) {
             collection.render(item, next);
           }, cb);
         };
       });
 
-      pages.renderEach(function(err, items) {
+      posts.renderEach(function(err, items) {
         if (err) return cb(err);
         assert(items[0].content === 'aaa');
         assert(items[9].content === 'jjj');

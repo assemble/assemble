@@ -47,7 +47,7 @@ describe('app.create', function() {
 
     it('should add view Ctor names to views', function() {
       app.pages.addView('foo', {content: 'bar'});
-      assert(app.views.pages.foo._name === 'Page');
+      assert.equal(app.views.pages.foo._name, 'page');
     });
 
     it('should add partial views when partial type is defined', function() {

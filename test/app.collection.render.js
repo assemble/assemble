@@ -2,7 +2,7 @@
 
 require('mocha');
 require('should');
-var async = require('async');
+var each = require('async-each');
 var assert = require('assert');
 var support = require('./support');
 var App = support.resolve();
@@ -139,7 +139,7 @@ describe('app.collection.render', function() {
 
         collection.renderEach = function(cb) {
           var list = new List(collection);
-          async.map(list.items, function(item, next) {
+          each(list.items, function(item, next) {
             collection.render(item, next);
           }, cb);
         };

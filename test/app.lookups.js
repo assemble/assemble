@@ -52,6 +52,11 @@ describe('app.lookups', function() {
       assert(typeof view === 'undefined');
     });
 
+    it('should return undefined when name is a directory', function() {
+      var view = app.getView('pages', 'test/fixtures/templates');
+      assert(typeof view === 'undefined');
+    });
+
     it('should find a view using a glob pattern', function() {
       var view = app.getView('pages', 'a', function(key) {
         return key + '.tmpl';
