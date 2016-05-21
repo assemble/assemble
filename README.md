@@ -1,8 +1,8 @@
-# assemble [![NPM version](https://img.shields.io/npm/v/assemble.svg)](https://www.npmjs.com/package/assemble) [![Build Status](https://img.shields.io/travis/assemble/assemble.svg)](https://travis-ci.org/assemble/assemble)
+# assemble [![NPM version](https://img.shields.io/npm/v/assemble.svg?style=flat)](https://www.npmjs.com/package/assemble) [![Build Status](https://img.shields.io/travis/assemble/assemble.svg?style=flat)](https://travis-ci.org/assemble/assemble)
 
 > Assemble is a powerful, extendable and easy to use static site generator for node.js. Used by thousands of projects for much more than building websites, Assemble is also used for creating themes, scaffolds, boilerplates, e-books, UI components, API documentation, blogs, gh-pages and more! Assemble can also be used with gulp and grunt.
 
-We're happy to announce the release of Assemble v0.10.0! If you're new to assemble, the [About](#about) section and [FAQ](#faq) might be a good place to start.
+We're happy to announce the release of Assemble v0.11.0! If you're new to assemble, the [About](#about) section and [FAQ](#faq) might be a good place to start.
 
 **Website is outdated and being refactored!**
 
@@ -13,6 +13,38 @@ In the meantime, you might find the [WIP docs](docs/content) useful. The [unit t
 **Get in touch!**
 
 Have [questions](https://github.com/assemble/assemble/issues/new?title=%5Byour%20topic%5D&body=assemble%20version%3A%20%5Breplace%20this%20with%20the%20version%20of%20assemble%20used%20on%20your%20project%5D%0Aoperating%20system%3A%20%5Breplace%20this%20with%20your%20os%5D%0A%0Adescription%3A%20%5Bplease%20provide%20as%20much%20detail%20as%20possible%20so%20we%20can%20do%20our%20best%20to%20help%20you%5D)? [Suggestions](https://github.com/assemble/assemble/issues/new?title=%5Byour%20topic%5D&body=assemble%20version%3A%20%5Breplace%20this%20with%20the%20version%20of%20assemble%20used%20on%20your%20project%5D%0Aoperating%20system%3A%20%5Breplace%20this%20with%20your%20os%5D%0A%0Adescription%3A%20%5Bplease%20provide%20as%20much%20detail%20as%20possible%20so%20we%20can%20do%20our%20best%20to%20help%20you%5D)? Want to discuss assemble? Join the conversation on [gitter](gitter.im/assemble/assemble) or give us a shout on [twitter](https://twitter.com/assemblejs). The assemble team and community are always happy to help!
+
+## TOC
+
+- [About](#about)
+- [Install](#install)
+- [Getting started](#getting-started)
+  * [Running tasks](#running-tasks)
+  * [API and CLI](#api-and-cli)
+- [CLI](#cli)
+  * [Tasks](#tasks)
+  * [Options](#options)
+  * [Object expansion](#object-expansion)
+  * [cwd](#cwd)
+  * [file](#file)
+- [API](#api)
+- [Templates API](#templates-api)
+- [File System API](#file-system-api)
+  * [.src](#src)
+  * [.dest](#dest)
+  * [.copy](#copy)
+  * [.symlink](#symlink)
+- [Task API](#task-api)
+  * [.task](#task)
+  * [.build](#build)
+  * [.watch](#watch)
+- [Release history](#release-history)
+- [Contributing](#contributing)
+- [FAQ](#faq)
+- [Related projects](#related-projects)
+- [Similar projects](#similar-projects)
+- [Authors](#authors)
+- [License](#license)
 
 ## About
 
@@ -245,7 +277,7 @@ $ assemble --file assemblefile.dev.js
 
 ## API
 
-### [Assemble](index.js#L25)
+### [Assemble](index.js#L24)
 
 Create an `assemble` app. This is the main function exported by the assemble module.
 
@@ -410,6 +442,20 @@ app.task('watch', function() {
 
 ## Release history
 
+**v0.12.0**
+
+* Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.18.0, which includes a bump in [templates](https://github.com/jonschlinkert/templates). See the changelog on the templates library for more details.
+
+**v0.11.0**
+
+* `debug` methods and related code have been removed
+* Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.17.0
+
+**v0.10.0**
+
+* Adds support for using es6 generators with tasks
+* Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.15.0
+
 **v0.9.0**
 
 * Bumps several dependencies. No API changes, this is mostly an optimization release. Be sure to completely remove `node_modules` and reinstall all dependencies to avoid errors such as `isRegistered is not a function`
@@ -429,7 +475,7 @@ app.task('watch', function() {
 
 ## Contributing
 
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/jonschlinkert/assemble/issues/new).
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/assemble/assemble/issues/new).
 
 If Assemble doesn't do what you need, [please let us know](https://github.com/undefined/issues/new)
 
@@ -451,7 +497,7 @@ If you want something that handles templates, rendering, engines, helpers, colle
 
 You can run gulp plugins with assemble, but it won't always work the other way around. This is because, as a build system, assemble does things that gulp doesn't do, like handle middleware.
 
-For example, assemble's `.src` and `.dest` methods have built-in `.onStream`, `.preWrite`, and `.postWrite` middleware handlers. If you still wish to use gulp and your build cycle includes middleware that requires these handlers, you can use the [assemble-handle](https://github.com/jonschlinkert/assemble-handle) plugin with gulp to ensure that the handlers are still called as needed.
+For example, assemble's `.src` and `.dest` methods have built-in `.onStream`, `.preWrite`, and `.postWrite` middleware handlers. If you still wish to use gulp and your build cycle includes middleware that requires these handlers, you can use the [assemble-handle](https://github.com/assemble/assemble-handle) plugin with gulp to ensure that the handlers are still called as needed.
 
 This is a long way of saying, you can find ways to make gulp work, but you would just be adding an extra dependency to your project to do things that assemble already does.
 
@@ -499,9 +545,9 @@ If assemble doesn't do what you need, there are some other great open source pro
 
 ## License
 
-Copyright © 2016 [Jon Schlinkert](https://github.com/jonschlinkert)
+Copyright © 2016, [Jon Schlinkert](https://github.com/jonschlinkert).
 Released under the [MIT license](https://github.com/assemble/assemble/blob/master/LICENSE).
 
 ***
 
-_This file was generated by [verb](https://github.com/verbose/verb), v0.9.0, on March 21, 2016._
+_This file was generated by [verb](https://github.com/verbose/verb), v0.9.0, on May 21, 2016._
