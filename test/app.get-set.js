@@ -13,48 +13,48 @@ describe('app.get-set', function() {
 
   it('should set a value', function() {
     app.set('a', 'b');
-    app.get('a').should.equal('b');
+    assert.equal(app.get('a'), 'b');
   });
 
   it('should set properties on the instance.', function() {
     app.set('a', 'b');
-    app.a.should.equal('b');
+    assert.equal(app.a, 'b');
   });
 
   it('should allow an object to be set directly.', function() {
     app.set({x: 'y'});
-    app.x.should.equal('y');
-    app.get('x').should.equal('y');
+    assert.equal(app.x, 'y');
+    assert.equal(app.get('x'), 'y');
   });
 
   it('should set nested properties on the instance.', function() {
     app.set('c', {d: 'e'});
-    app.get('c').d.should.equal('e');
+    assert.equal(app.get('c').d, 'e');
   });
 
   it('should use dot notation to `set` values.', function() {
     app.set('h.i', 'j');
-    app.get('h').should.eql({i: 'j'});
+    assert.deepEqual(app.get('h'), {i: 'j'});
   });
 
   it('should use dot notation to `get` values.', function() {
     app.set('h', {i: 'j'});
-    app.get('h.i').should.equal('j');
+    assert.equal(app.get('h.i'), 'j');
   });
 
   it('should return `this` for chaining', function() {
-    app.set('a', 'b').should.equal(app);
+    assert.equal(app.set('a', 'b'), app);
     app
       .set('aa', 'bb')
       .set('bb', 'cc')
       .set('cc', 'dd');
-    app.get('aa').should.equal('bb');
-    app.get('bb').should.equal('cc');
-    app.get('cc').should.equal('dd');
+    assert.equal(app.get('aa'), 'bb');
+    assert.equal(app.get('bb'), 'cc');
+    assert.equal(app.get('cc'), 'dd');
   });
 
   it('should return undefined when not set', function() {
-    app.set('a', undefined).should.equal(app);
+    assert.equal(app.set('a', undefined), app);
   });
 });
 
@@ -69,6 +69,6 @@ describe('app.get()', function() {
 
   it('should otherwise return the value', function() {
     app.set('a', 'b');
-    app.get('a').should.equal('b');
+    assert.equal(app.get('a'), 'b');
   });
 });

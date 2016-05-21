@@ -14,79 +14,79 @@ describe('app.option', function() {
 
   it('should set a key-value pair on options:', function() {
     app.option('a', 'b');
-    assert(app.options.a === 'b');
+    assert.equal(app.options.a, 'b');
   });
 
   it('should set an object on options:', function() {
     app.option({c: 'd'});
-    assert(app.options.c === 'd');
+    assert.equal(app.options.c, 'd');
   });
 
   it('should set an option.', function() {
     app.option('a', 'b');
-    app.options.should.have.property('a');
+    assert(app.options.hasOwnProperty('a'));
   });
 
   it('should get an option.', function() {
     app.option('a', 'b');
-    app.option('a').should.equal('b');
+    assert.equal(app.option('a'), 'b');
   });
 
   it('should extend the `options` object.', function() {
     app.option({x: 'xxx', y: 'yyy', z: 'zzz'});
-    app.option('x').should.equal('xxx');
-    app.option('y').should.equal('yyy');
-    app.option('z').should.equal('zzz');
+    assert.equal(app.option('x'), 'xxx');
+    assert.equal(app.option('y'), 'yyy');
+    assert.equal(app.option('z'), 'zzz');
   });
 
   it('options should be on the `options` object.', function() {
     app.option({x: 'xxx', y: 'yyy', z: 'zzz'});
-    app.options.x.should.equal('xxx');
-    app.options.y.should.equal('yyy');
-    app.options.z.should.equal('zzz');
+    assert.equal(app.options.x, 'xxx');
+    assert.equal(app.options.y, 'yyy');
+    assert.equal(app.options.z, 'zzz');
   });
 
   it('should be chainable.', function() {
     app.option({x: 'xxx', y: 'yyy', z: 'zzz'});
     app.option({a: 'aaa', b: 'bbb', c: 'ccc'});
 
-    app.option('x').should.equal('xxx');
-    app.option('a').should.equal('aaa');
+    assert.equal(app.option('x'), 'xxx');
+    assert.equal(app.option('a'), 'aaa');
   });
 
   it('should extend the `options` object when the first param is a string.', function() {
     app.option('foo', {x: 'xxx', y: 'yyy', z: 'zzz'});
     app.option('bar', {a: 'aaa', b: 'bbb', c: 'ccc'});
 
-    app.option('foo').should.have.property('x');
-    app.option('bar').should.have.property('a');
+    assert(app.option('foo').hasOwnProperty('x'));
+    assert(app.option('bar').hasOwnProperty('a'));
 
-    app.options.foo.should.have.property('x');
-    app.options.bar.should.have.property('a');
+    assert(app.options.foo.hasOwnProperty('x'));
+    assert(app.options.bar.hasOwnProperty('a'));
   });
 
   it('should set an option.', function() {
     app.option('a', 'b');
-    app.options.should.have.property('a');
+    assert(app.options.hasOwnProperty('a'));
   });
 
   it('should get an option.', function() {
     app.option('a', 'b');
-    app.option('a').should.equal('b');
+    assert.equal(app.option('a'), 'b');
   });
 
   it('should extend the `options` object.', function() {
     app.option({x: 'xxx', y: 'yyy', z: 'zzz'});
-    app.option('x').should.equal('xxx');
-    app.option('y').should.equal('yyy');
-    app.option('z').should.equal('zzz');
+    assert.equal(app.option('x'), 'xxx');
+    assert.equal(app.option('y'), 'yyy');
+    assert.equal(app.option('z'), 'zzz');
   });
 
   it('options should be on the `options` object.', function() {
     app.option({x: 'xxx', y: 'yyy', z: 'zzz'});
-    app.options.x.should.equal('xxx');
-    app.options.y.should.equal('yyy');
-    app.options.z.should.equal('zzz');
+    assert.equal(app.options.x, 'xxx');
+    assert.equal(app.options.y, 'yyy');
+    assert.equal(app.options.z, 'zzz');
   });
 
   it('should be chainable.', function() {
@@ -94,7 +94,7 @@ describe('app.option', function() {
       .option({x: 'xxx', y: 'yyy', z: 'zzz'})
       .option({a: 'aaa', b: 'bbb', c: 'ccc'});
 
-    app.option('x').should.equal('xxx');
-    app.option('a').should.equal('aaa');
+    assert.equal(app.option('x'), 'xxx');
+    assert.equal(app.option('a'), 'aaa');
   });
 });
