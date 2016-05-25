@@ -150,7 +150,14 @@ Assemble.prototype.initCollections = function(app) {
 Core._.plugin.is(Assemble);
 
 /**
- * Expose `Assemble`
+ * Expose static properties for unit tests
+ */
+
+utils.define(Assemble, 'utils', Core.utils);
+utils.define(Assemble, '_', Core._);
+
+/**
+ * Expose the `Assemble` constructor
  */
 
 module.exports = Assemble;
