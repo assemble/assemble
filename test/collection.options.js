@@ -5,7 +5,7 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('collection.option()', function() {
+describe('collection.options', function() {
   beforeEach(function() {
     app = new App();
     app.create('page');

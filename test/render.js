@@ -22,7 +22,7 @@ describe('render', function() {
       app.page('a.tmpl', view)
         .render(function(err, res) {
           if (err) return cb(err);
-          assert(res.contents.toString() === 'a Halle b');
+          assert.equal(res.contents.toString(), 'a Halle b');
           cb();
         });
     });
@@ -32,7 +32,7 @@ describe('render', function() {
 
       app.page('a.tmpl', view)
         .render(function(err) {
-          assert(err.message === 'foo is not defined');
+          assert.equal(err.message, 'foo is not defined');
           cb();
         });
     });
@@ -46,7 +46,7 @@ describe('render', function() {
 
       app.page('a.tmpl', view)
         .render(function(err) {
-          assert(err.message === 'foo is not defined');
+          assert.equal(err.message, 'foo is not defined');
           cb();
         });
     });
@@ -59,13 +59,13 @@ describe('render', function() {
       app.create('page');
 
       app.on('error', function(err) {
-        assert(err.message === 'foo is not defined');
+        assert.equal(err.message, 'foo is not defined');
         cb();
       });
 
       app.page('a.tmpl', view)
         .render(function(err) {
-          assert(err.message === 'foo is not defined');
+          assert.equal(err.message, 'foo is not defined');
         });
     });
   });

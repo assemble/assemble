@@ -5,7 +5,7 @@ var assert = require('assert');
 var should = require('should');
 var app;
 
-describe('toStream()', function() {
+describe('app.toStream', function() {
   beforeEach(function() {
     app = assemble();
     app.create('pages');

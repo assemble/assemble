@@ -1,3 +1,5 @@
+'use strict';
+
 require('mocha');
 var should = require('should');
 var fs = require('graceful-fs');
@@ -28,10 +30,10 @@ var dataWrap = function(fn) {
 };
 
 var realMode = function(n) {
-  return n & 07777;
+  return n & parseInt('777', 8);
 };
 
-describe('symlink stream', function() {
+describe('app.symlink', function() {
   beforeEach(wipeOut);
   afterEach(wipeOut);
 
@@ -45,7 +47,7 @@ describe('symlink stream', function() {
       contents: null
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       cb();
@@ -70,7 +72,7 @@ describe('symlink stream', function() {
       contents: null
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       cb();
@@ -99,7 +101,7 @@ describe('symlink stream', function() {
       contents: expectedContents
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       buffered[0].cwd.should.equal(__dirname, 'cwd should have changed');
@@ -134,7 +136,7 @@ describe('symlink stream', function() {
       contents: expectedContents
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       buffered[0].cwd.should.equal(__dirname, 'cwd should have changed');
@@ -146,7 +148,7 @@ describe('symlink stream', function() {
       cb();
     };
 
-    var stream = app.symlink(function(file){
+    var stream = app.symlink(function(file) {
       should.exist(file);
       file.should.equal(expectedFile);
       return './actual';
@@ -165,7 +167,7 @@ describe('symlink stream', function() {
     var expectedPath = path.join(__dirname, './actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
     var expectedBase = path.join(__dirname, './actual');
-    var expectedMode = 0655;
+    var expectedMode = parseInt('655', 8);
 
     var expectedFile = new File({
       base: inputBase,
@@ -177,7 +179,7 @@ describe('symlink stream', function() {
       }
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       buffered[0].cwd.should.equal(__dirname, 'cwd should have changed');
@@ -204,7 +206,7 @@ describe('symlink stream', function() {
     var expectedPath = path.join(__dirname, './actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
     var expectedBase = path.join(__dirname, './actual');
-    var expectedMode = 0655;
+    var expectedMode = parseInt('655', 8);
 
     var contentStream = through.obj();
     var expectedFile = new File({
@@ -217,7 +219,7 @@ describe('symlink stream', function() {
       }
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       buffered[0].cwd.should.equal(__dirname, 'cwd should have changed');
@@ -235,10 +237,10 @@ describe('symlink stream', function() {
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
     stream.pipe(bufferStream);
     stream.write(expectedFile);
-    setTimeout(function(){
+    setImmediate(function() {
       contentStream.write(expectedContents);
       contentStream.end();
-    }, 100);
+    });
     stream.end();
   });
 
@@ -247,7 +249,7 @@ describe('symlink stream', function() {
     var inputBase = path.join(__dirname, './fixtures/');
     var expectedPath = path.join(__dirname, './actual/wow');
     var expectedBase = path.join(__dirname, './actual');
-    var expectedMode = 0655;
+    var expectedMode = parseInt('655', 8);
 
     var expectedFile = new File({
       base: inputBase,
@@ -255,14 +257,14 @@ describe('symlink stream', function() {
       path: inputPath,
       contents: null,
       stat: {
-        isDirectory: function(){
+        isDirectory: function() {
           return true;
         },
         mode: expectedMode
       }
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       buffered[0].cwd.should.equal(__dirname, 'cwd should have changed');
@@ -287,8 +289,8 @@ describe('symlink stream', function() {
     var inputBase = path.join(__dirname, './fixtures');
     var inputPath = path.join(__dirname, './fixtures/wow/suchempty');
     var expectedBase = path.join(__dirname, './actual/wow');
-    var expectedDirMode = 0755;
-    var expectedFileMode = 0655;
+    var expectedDirMode = parseInt('755', 8);
+    var expectedFileMode = parseInt('655', 8);
 
     var firstFile = new File({
       base: inputBase,
@@ -297,7 +299,7 @@ describe('symlink stream', function() {
       stat: fs.statSync(inputPath)
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       realMode(fs.lstatSync(expectedBase).mode).should.equal(expectedDirMode);
       realMode(buffered[0].stat.mode).should.equal(expectedFileMode);
       cb();
@@ -328,7 +330,7 @@ describe('symlink stream', function() {
       stat: fs.statSync(inputPath)
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered[0].base.should.equal(inputBase);
       cb();
     };
@@ -351,7 +353,7 @@ describe('symlink stream', function() {
     var inputBase = path.join(__dirname, './fixtures/');
     var expectedContents = fs.readFileSync(inputPath);
     var expectedBase = path.join(__dirname, './actual');
-    var expectedMode = 0722;
+    var expectedMode = parseInt('722', 8);
 
     var expectedFile = new File({
       base: inputBase,
@@ -386,7 +388,7 @@ describe('symlink stream', function() {
       var file = new File({
         path: srcPath,
         cwd: __dirname,
-        contents: new Buffer("1234567890")
+        contents: new Buffer('1234567890')
       });
 
       stream.write(file);

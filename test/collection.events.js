@@ -5,7 +5,7 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('collection events', function() {
+describe('collection.events', function() {
   beforeEach(function() {
     app = new App();
     app.create('page');

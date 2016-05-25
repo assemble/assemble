@@ -13,32 +13,37 @@ describe('app.events', function() {
   });
 
   it('should listen for an event:', function() {
-    var app = new App();
+    app = new App();
     app.on('foo', function() {});
     assert(Array.isArray(app._callbacks['$foo']));
   });
 
   it('should emit an event:', function(cb) {
-    var app = new App();
+    app = new App();
     app.on('foo', function(val) {
-      assert(val === 'bar');
+      assert.equal(val, 'bar');
       cb();
     });
     assert(Array.isArray(app._callbacks['$foo']));
     app.emit('foo', 'bar');
   });
 
-  it('should listen for `view` events:', function() {
+  it('should listen for `view` events:', function(cb) {
     app = new App();
+    var count = 0;
 
     app.on('view', function(view) {
       view.foo = 'bar';
+      count++;
     });
 
     var view = app.view({path: 'a', content: 'b'});
-    assert(view.foo === 'bar');
+    assert.equal(view.foo, 'bar');
+    assert.equal(count, 1);
+    cb();
   });
 });
+
 
 describe('onLoad', function() {
   beforeEach(function() {
@@ -50,12 +55,12 @@ describe('onLoad', function() {
       var collection = app.collection();
 
       app.on('view', function(view) {
-        assert(view.path === 'blog/foo.js');
+        assert.equal(view.path, 'blog/foo.js');
         cb();
       });
 
       app.onLoad('blog/:title', function(view, next) {
-        assert(view.path === 'blog/foo.js');
+        assert.equal(view.path, 'blog/foo.js');
         next();
       });
 
@@ -66,12 +71,12 @@ describe('onLoad', function() {
       var collection = app.collection();
 
       app.on('onLoad', function(view) {
-        assert(view.path === 'blog/foo.js');
+        assert.equal(view.path, 'blog/foo.js');
         cb();
       });
 
       app.onLoad('blog/:title', function(view, next) {
-        assert(view.path === 'blog/foo.js');
+        assert.equal(view.path, 'blog/foo.js');
         next();
       });
 
@@ -84,12 +89,12 @@ describe('onLoad', function() {
       app.create('posts');
 
       app.on('view', function(view) {
-        assert(view.path === 'blog/foo.js');
+        assert.equal(view.path, 'blog/foo.js');
         cb();
       });
 
       app.onLoad('blog/:title', function(view, next) {
-        assert(view.path === 'blog/foo.js');
+        assert.equal(view.path, 'blog/foo.js');
         next();
       });
 
@@ -100,12 +105,12 @@ describe('onLoad', function() {
       app.create('posts');
 
       app.on('onLoad', function(view) {
-        assert(view.path === 'blog/foo.js');
+        assert.equal(view.path, 'blog/foo.js');
         cb();
       });
 
       app.onLoad('blog/:title', function(view, next) {
-        assert(view.path === 'blog/foo.js');
+        assert.equal(view.path, 'blog/foo.js');
         next();
       });
 

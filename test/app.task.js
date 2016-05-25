@@ -4,7 +4,7 @@ var assert = require('assert');
 var App = require('..');
 var app;
 
-describe('task()', function() {
+describe('app.task', function() {
   beforeEach(function() {
     app = new App();
   });
@@ -79,6 +79,7 @@ describe('task()', function() {
       events.push('finished.' + task.name);
     });
     app.on('task:error', function(err, task) {
+      assert(err);
       events.push('error.' + task.name);
     });
 

@@ -10,7 +10,7 @@ var app;
 var fixtures = path.join(__dirname, 'fixtures/copy/*.txt');
 var actual = path.join(__dirname, 'actual');
 
-describe('copy()', function() {
+describe('app.copy', function() {
   beforeEach(function(cb) {
     rimraf(actual, cb);
     app = new App();

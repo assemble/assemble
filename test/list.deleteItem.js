@@ -2,7 +2,6 @@
 
 require('mocha');
 require('should');
-var path = require('path');
 var assert = require('assert');
 var support = require('./support');
 var App = support.resolve();

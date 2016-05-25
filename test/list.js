@@ -10,7 +10,6 @@ var typeOf = require('kind-of');
 var support = require('./support/');
 assert.containEql = support.containEql;
 
-var support = require('./support');
 var App = support.resolve();
 var List = App.List;
 var Views = App.Views;
@@ -137,7 +136,7 @@ describe('list', function() {
   });
 
   describe('addItem', function() {
-   beforeEach(function() {
+    beforeEach(function() {
       list = new List();
     });
 
@@ -238,7 +237,7 @@ describe('list', function() {
       list.addList([
         { path: 'a.md', locals: { date: '2014-01-01', foo: 'zzz', bar: 1 } },
         { path: 'f.md', locals: { date: '2014-01-01', foo: 'mmm', bar: 2 } },
-        { path: 'd.md', locals: { date: '2014-01-01', foo: 'xxx', bar: 3 } },
+        { path: 'd.md', locals: { date: '2014-01-01', foo: 'xxx', bar: 3 } }
       ], addContents);
 
       assert(isBuffer(list.items[0].contents));
@@ -255,7 +254,7 @@ describe('list', function() {
         list.addList({
           'a.md': {locals: { date: '2014-01-01', foo: 'zzz', bar: 1 }},
           'f.md': {locals: { date: '2014-01-01', foo: 'mmm', bar: 2 }},
-          'd.md': {locals: { date: '2014-01-01', foo: 'xxx', bar: 3 }},
+          'd.md': {locals: { date: '2014-01-01', foo: 'xxx', bar: 3 }}
         }, addContents);
 
         assert(isBuffer(list.items[0].contents));
@@ -279,7 +278,7 @@ describe('list', function() {
       list.addList([
         { path: 'a.md', locals: { date: '2014-01-01', foo: 'zzz', bar: 1 } },
         { path: 'f.md', locals: { date: '2014-01-01', foo: 'mmm', bar: 2 } },
-        { path: 'd.md', locals: { date: '2014-01-01', foo: 'xxx', bar: 3 } },
+        { path: 'd.md', locals: { date: '2014-01-01', foo: 'xxx', bar: 3 } }
       ]);
 
       assert.equal(list.items.length, 2);
@@ -349,7 +348,7 @@ describe('list', function() {
       { path: 'b.md', locals: { date: '2012-01-02', foo: 'ccc', bar: 9 } },
       { path: 'f.md', locals: { date: '2014-06-01', foo: 'rrr', bar: 10 } },
       { path: 'c.md', locals: { date: '2015-04-12', foo: 'ttt', bar: 11 } },
-      { path: 'g.md', locals: { date: '2014-02-02', foo: 'yyy', bar: 12 } },
+      { path: 'g.md', locals: { date: '2014-02-02', foo: 'yyy', bar: 12 } }
     ];
 
     it('should sort a list', function() {
@@ -507,7 +506,7 @@ describe('list', function() {
       { path: 'b.md', locals: { date: '2012-01-02', foo: 'ccc', bar: 9 } },
       { path: 'f.md', locals: { date: '2014-06-01', foo: 'rrr', bar: 10 } },
       { path: 'c.md', locals: { date: '2015-04-12', foo: 'ttt', bar: 11 } },
-      { path: 'g.md', locals: { date: '2014-02-02', foo: 'yyy', bar: 12 } },
+      { path: 'g.md', locals: { date: '2014-02-02', foo: 'yyy', bar: 12 } }
     ];
 
     it('should group a list by a property', function() {
@@ -538,7 +537,7 @@ describe('list', function() {
       { path: 'b.md', locals: { date: '2012-01-02', foo: 'ccc', bar: 9 } },
       { path: 'f.md', locals: { date: '2014-06-01', foo: 'rrr', bar: 10 } },
       { path: 'c.md', locals: { date: '2015-04-12', foo: 'ttt', bar: 11 } },
-      { path: 'g.md', locals: { date: '2014-02-02', foo: 'yyy', bar: 12 } },
+      { path: 'g.md', locals: { date: '2014-02-02', foo: 'yyy', bar: 12 } }
     ];
 
     it('should group a list by a property', function() {
@@ -576,7 +575,7 @@ describe('list', function() {
       { path: 'b.md', locals: { date: '2012-01-02', foo: 'ccc', bar: 9 } },
       { path: 'f.md', locals: { date: '2014-06-01', foo: 'rrr', bar: 10 } },
       { path: 'c.md', locals: { date: '2015-04-12', foo: 'ttt', bar: 11 } },
-      { path: 'g.md', locals: { date: '2014-02-02', foo: 'yyy', bar: 12 } },
+      { path: 'g.md', locals: { date: '2014-02-02', foo: 'yyy', bar: 12 } }
     ];
 
     it('should paginate a list', function() {

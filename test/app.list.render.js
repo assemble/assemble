@@ -131,12 +131,12 @@ describe('render', function() {
         'g': {content: '<%= title %>', locals: {title: 'ggg'}},
         'h': {content: '<%= title %>', locals: {title: 'hhh'}},
         'i': {content: '<%= title %>', locals: {title: 'iii'}},
-        'j': {content: '<%= title %>', locals: {title: 'jjj'}},
+        'j': {content: '<%= title %>', locals: {title: 'jjj'}}
       });
 
       pages.use(function(collection) {
         collection.option('pager', false);
-        
+
         collection.renderEach = function(cb) {
           var list = new List(collection);
           each(list.items, function(item, next) {

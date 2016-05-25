@@ -8,7 +8,7 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('content', function() {
+describe('view.content', function() {
   beforeEach(function() {
     app = new App();
     app.create('page');

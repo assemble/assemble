@@ -18,10 +18,14 @@ describe('app.collection.render', function() {
       pages.engine('tmpl', require('engine-base'));
     });
 
-    it('should throw an error when no callback is given:', function() {
-      (function() {
+    it('should throw an error when no callback is given:', function(cb) {
+      try {
         app.pages.render({});
-      }).should.throw('Views#render is async and expects a callback function');
+        cb(new Error('expected an error'));
+      } catch (err) {
+        assert.equal(err.message, 'Views#render is async and expects a callback function');
+        cb();
+      }
     });
 
     it('should throw an error when an engine is not defined:', function(cb) {

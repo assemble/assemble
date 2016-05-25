@@ -83,13 +83,13 @@ describe('dest stream', function() {
       contents: null
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       cb();
     };
 
-    var stream = app.dest('./actual/', {cwd: __dirname});
+    var stream = app.dest('actual/', {cwd: __dirname});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -108,7 +108,7 @@ describe('dest stream', function() {
       contents: null
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       cb();
@@ -137,7 +137,7 @@ describe('dest stream', function() {
       contents: null
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       buffered[0].cwd.should.equal(expectedCwd, 'cwd should have changed');
@@ -147,7 +147,7 @@ describe('dest stream', function() {
       cb();
     };
 
-    var stream = app.dest('./actual/', {cwd: __dirname});
+    var stream = app.dest('actual/', {cwd: __dirname});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -171,7 +171,7 @@ describe('dest stream', function() {
       contents: expectedContents
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       buffered[0].cwd.should.equal(expectedCwd, 'cwd should have changed');
@@ -182,7 +182,7 @@ describe('dest stream', function() {
       cb();
     };
 
-    var stream = app.dest('./actual/', {cwd: path.relative(process.cwd(), __dirname)});
+    var stream = app.dest('actual/', {cwd: path.relative(process.cwd(), __dirname)});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -206,7 +206,7 @@ describe('dest stream', function() {
       contents: expectedContents
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       buffered[0].cwd.should.equal(expectedCwd, 'cwd should have changed');
@@ -217,7 +217,7 @@ describe('dest stream', function() {
       cb();
     };
 
-    var stream = app.dest(function(file){
+    var stream = app.dest(function(file) {
       should.exist(file);
       file.should.equal(expectedFile);
       return './actual';
@@ -249,7 +249,7 @@ describe('dest stream', function() {
       }
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       buffered[0].cwd.should.equal(expectedCwd, 'cwd should have changed');
@@ -261,7 +261,7 @@ describe('dest stream', function() {
       cb();
     };
 
-    var stream = app.dest('./actual/', {cwd: __dirname});
+    var stream = app.dest('actual/', {cwd: __dirname});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -290,7 +290,7 @@ describe('dest stream', function() {
       }
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       buffered[0].cwd.should.equal(expectedCwd, 'cwd should have changed');
@@ -302,13 +302,13 @@ describe('dest stream', function() {
       cb();
     };
 
-    var stream = app.dest('./actual/', {cwd: __dirname});
+    var stream = app.dest('actual/', {cwd: __dirname});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
     stream.pipe(bufferStream);
     stream.write(expectedFile);
-    setTimeout(function(){
+    setTimeout(function() {
       contentStream.write(expectedContents);
       contentStream.end();
     }, 100);
@@ -329,14 +329,14 @@ describe('dest stream', function() {
       path: inputPath,
       contents: null,
       stat: {
-        isDirectory: function(){
+        isDirectory: function() {
           return true;
         },
         mode: expectedMode
       }
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       buffered[0].cwd.should.equal(expectedCwd, 'cwd should have changed');
@@ -348,7 +348,7 @@ describe('dest stream', function() {
       cb();
     };
 
-    var stream = app.dest('./actual/', {cwd: __dirname});
+    var stream = app.dest('actual/', {cwd: __dirname});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -362,8 +362,8 @@ describe('dest stream', function() {
     var inputPath2 = path.join(__dirname, 'actual/multiple-second');
     var inputBase = path.join(__dirname, 'actual/');
     var srcPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
-    var stream1 = app.dest('./actual/', {cwd: __dirname});
-    var stream2 = app.dest('./actual/', {cwd: __dirname});
+    var stream1 = app.dest('actual/', {cwd: __dirname});
+    var stream2 = app.dest('actual/', {cwd: __dirname});
     var content = fs.readFileSync(srcPath);
     var rename = through.obj(function(file, _, next) {
       file.path = inputPath2;
@@ -400,16 +400,16 @@ describe('dest stream', function() {
     var inputBase = path.join(__dirname, 'fixtures/vinyl/');
     var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
-    var expectedMode = parseInt('666', 8) & (~process.umask());
+    var expectedMode = parseInt('0666', 8) & (~process.umask());
 
     var expectedFile = new File({
       base: inputBase,
       cwd: __dirname,
       path: inputPath,
-      contents: expectedContents,
+      contents: expectedContents
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       fs.existsSync(expectedPath).should.equal(true);
@@ -418,7 +418,7 @@ describe('dest stream', function() {
     };
 
     chmodSpy.reset();
-    var stream = app.dest('./actual/', {cwd: __dirname});
+    var stream = app.dest('actual/', {cwd: __dirname});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -439,10 +439,10 @@ describe('dest stream', function() {
       base: inputBase,
       cwd: __dirname,
       path: inputPath,
-      contents: expectedContents,
+      contents: expectedContents
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered.length.should.equal(1);
       buffered[0].should.equal(expectedFile);
       fs.existsSync(expectedPath).should.equal(true);
@@ -451,7 +451,7 @@ describe('dest stream', function() {
     };
 
     chmodSpy.reset();
-    var stream = app.dest('./actual/', {cwd: __dirname, mode:expectedMode});
+    var stream = app.dest('actual/', { cwd: __dirname, mode: expectedMode });
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -467,11 +467,11 @@ describe('dest stream', function() {
       return;
     }
 
-    var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
-    var inputBase = path.join(__dirname, 'fixtures/vinyl/');
-    var expectedPath = path.join(__dirname, 'actual/test.coffee');
+    var inputPath = path.join(__dirname, 'fixtures/test.coffee');
+    var inputBase = path.join(__dirname, 'fixtures/');
+    var expectedPath = path.join(__dirname, './actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
-    var expectedBase = path.join(__dirname, 'actual');
+    var expectedBase = path.join(__dirname, './actual');
     var startMode = parseInt('0655', 8);
     var expectedMode = parseInt('0722', 8);
 
@@ -494,7 +494,7 @@ describe('dest stream', function() {
     fs.closeSync(fs.openSync(expectedPath, 'w'));
     fs.chmodSync(expectedPath, startMode);
 
-    var stream = app.dest('./actual/', {cwd: __dirname});
+    var stream = app.dest('actual/', { cwd: __dirname });
     stream.on('end', onEnd);
     stream.write(expectedFile);
     stream.end();
@@ -514,13 +514,13 @@ describe('dest stream', function() {
       stat: fs.statSync(inputPath)
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       masked(fs.lstatSync(expectedBase).mode).should.equal(expectedDirMode);
       masked(buffered[0].stat.mode).should.equal(expectedFileMode);
       cb();
     };
 
-    var stream = app.dest('./actual/', {
+    var stream = app.dest('actual/', {
       cwd: __dirname,
       mode: expectedFileMode,
       dirMode: expectedDirMode
@@ -544,12 +544,12 @@ describe('dest stream', function() {
       stat: fs.statSync(inputPath)
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered[0].base.should.equal(inputBase);
       cb();
     };
 
-    var stream = app.dest('./actual/', {
+    var stream = app.dest('actual/', {
       cwd: __dirname,
       base: inputBase
     });
@@ -577,9 +577,9 @@ describe('dest stream', function() {
       cb();
     };
 
-    var stream = app.dest('./actual/', {
+    var stream = app.dest('actual/', {
       cwd: __dirname,
-      base: function(file){
+      base: function(file) {
         should.exist(file);
         file.path.should.equal(inputPath);
         return inputBase;
@@ -616,7 +616,7 @@ describe('dest stream', function() {
     fs.closeSync(fs.openSync(expectedPath, 'w'));
     fs.chmodSync(expectedPath, 0);
 
-    var stream = app.dest('./actual/', {cwd: __dirname});
+    var stream = app.dest('actual/', {cwd: __dirname});
     stream.on('error', function(err) {
       err.code.should.equal('EACCES');
       cb();
@@ -651,7 +651,7 @@ describe('dest stream', function() {
       }
     });
 
-    var stream = app.dest('./actual/', {cwd: __dirname});
+    var stream = app.dest('actual/', {cwd: __dirname});
     stream.on('error', function(err) {
       err.message.should.equal('stat error');
       cb();
@@ -665,8 +665,8 @@ describe('dest stream', function() {
       return;
     }
 
-    var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
-    var inputBase = path.join(__dirname, 'fixtures/vinyl/');
+    var inputPath = path.join(__dirname, 'fixtures/test.coffee');
+    var inputBase = path.join(__dirname, 'fixtures/');
     var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
     var expectedBase = path.join(__dirname, 'actual');
@@ -707,11 +707,10 @@ describe('dest stream', function() {
 
     var fchmodSpy = expect.spyOn(fs, 'fchmod').andCallThrough();
 
-    var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
-    var inputBase = path.join(__dirname, 'fixtures/vinyl/');
+    var inputPath = path.join(__dirname, 'fixtures/test.coffee');
+    var inputBase = path.join(__dirname, 'fixtures/');
     var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
-    var expectedBase = path.join(__dirname, 'actual');
     var expectedMode = parseInt('711', 8);
 
     var expectedFile = new File({
@@ -742,8 +741,8 @@ describe('dest stream', function() {
 
     var fchmodSpy = expect.spyOn(fs, 'fchmod').andCallThrough();
 
-    var inputPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
-    var inputBase = path.join(__dirname, 'fixtures/vinyl/');
+    var inputPath = path.join(__dirname, 'fixtures/test.coffee');
+    var inputBase = path.join(__dirname, 'fixtures/');
     var expectedPath = path.join(__dirname, 'actual/test.coffee');
     var expectedContents = fs.readFileSync(inputPath);
     var expectedBase = path.join(__dirname, 'actual');
@@ -769,7 +768,7 @@ describe('dest stream', function() {
     fs.closeSync(fs.openSync(expectedPath, 'w'));
     fs.chmodSync(expectedPath, expectedMode);
 
-    var stream = app.dest('./actual/', {cwd: __dirname});
+    var stream = app.dest('actual/', { cwd: __dirname });
     stream.on('end', onEnd);
     stream.write(expectedFile);
     stream.end();
@@ -791,7 +790,7 @@ describe('dest stream', function() {
       contents: inputContents
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered.length.should.equal(1);
       bufEqual(fs.readFileSync(expectedPath), new Buffer(existingContents)).should.equal(true);
       cb();
@@ -801,7 +800,7 @@ describe('dest stream', function() {
     fs.mkdirSync(expectedBase);
     fs.writeFileSync(expectedPath, existingContents);
 
-    var stream = app.dest('./actual/', {cwd: __dirname, overwrite: false});
+    var stream = app.dest('actual/', {cwd: __dirname, overwrite: false});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -826,7 +825,7 @@ describe('dest stream', function() {
       contents: inputContents
     });
 
-    var onEnd = function(){
+    var onEnd = function() {
       buffered.length.should.equal(1);
       bufEqual(fs.readFileSync(expectedPath), new Buffer(inputContents)).should.equal(true);
       cb();
@@ -836,7 +835,7 @@ describe('dest stream', function() {
     fs.mkdirSync(expectedBase);
     fs.writeFileSync(expectedPath, existingContents);
 
-    var stream = app.dest('./actual/', {cwd: __dirname, overwrite: true});
+    var stream = app.dest('actual/', {cwd: __dirname, overwrite: true});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -856,13 +855,13 @@ describe('dest stream', function() {
       base: inputBase,
       cwd: __dirname,
       path: inputPath,
-      contents: null, //''
+      contents: null
     });
 
     // `src()` adds this side-effect with `keepSymlinks` option set to false
     inputFile.symlink = inputRelativeSymlinkPath;
 
-    var onEnd = function(){
+    var onEnd = function() {
       fs.readlink(buffered[0].path, function() {
         buffered[0].symlink.should.equal(inputFile.symlink);
         buffered[0].path.should.equal(expectedPath);
@@ -870,7 +869,7 @@ describe('dest stream', function() {
       });
     };
 
-    var stream = app.dest('./actual/', {cwd: __dirname});
+    var stream = app.dest('actual/', {cwd: __dirname});
 
     var buffered = [];
     bufferStream = through.obj(dataWrap(buffered.push.bind(buffered)), onEnd);
@@ -881,7 +880,7 @@ describe('dest stream', function() {
 
   it('should emit finish event', function(cb) {
     var srcPath = path.join(__dirname, 'fixtures/vinyl/test.coffee');
-    var stream = app.dest('./actual/', {cwd: __dirname});
+    var stream = app.dest('actual/', {cwd: __dirname});
 
     stream.once('finish', function() {
       cb();

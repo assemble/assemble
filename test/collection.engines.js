@@ -8,7 +8,7 @@ var App = support.resolve();
 var Views = App.Views;
 var collection, pages;
 
-describe('collection engines', function() {
+describe('collection.engines', function() {
   beforeEach(function() {
     pages = new Views();
   });

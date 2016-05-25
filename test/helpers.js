@@ -7,12 +7,13 @@ var assert = require('assert');
 var consolidate = require('consolidate');
 var handlebars = require('engine-handlebars');
 var matter = require('parser-front-matter');
+var helpers = require('templates/lib/plugins/helpers');
+var init = require('templates/lib/plugins/init');
 var swig = consolidate.swig;
 require('swig');
 
-var App = require('..');
-var helpers = App._.plugin.helpers;
-var init = App._.plugin.init;
+var support = require('./support');
+var App = support.resolve();
 var app;
 
 describe('helpers', function() {
@@ -313,14 +314,18 @@ describe('built-in helpers:', function() {
     it('should emit `helper` when a built-in helper is called', function(cb) {
       app.partial('a.md', {content: '---\nname: "AAA"\n---\n<%= name %>', locals: {name: 'BBB'}});
       app.page('b.md', {path: 'b.md', content: 'foo <%= partial("a.md") %> bar'});
+      var count = 0;
 
       app.once('helper', function(msg) {
         assert(msg);
         assert.equal(msg, 'partial helper > rendering "a.md"');
-        cb();
+        count++;
       });
 
       app.render('b.md', function(err, res) {
+        if (err) return cb(err);
+        assert.equal(count, 1);
+        cb();
       });
     });
 
@@ -420,7 +425,7 @@ describe('built-in helpers:', function() {
 
   describe('helper context:', function() {
     beforeEach(function() {
-      app = new App({rethrow: false, collections: false});
+      app = new App({rethrow: false});
       app.engine(['tmpl', 'md'], require('engine-base'));
       app.create('partial', { viewType: 'partial' });
       app.create('page');
@@ -469,7 +474,7 @@ describe('built-in helpers:', function() {
 
   describe('user-defined engines:', function() {
     beforeEach(function() {
-      app = new App({rethrow: false, collections: false});
+      app = new App({rethrow: false});
       app.create('partial', { viewType: 'partial' });
       app.create('page');
 
@@ -718,7 +723,7 @@ describe('collection helpers', function() {
     app.create('snippet', {viewType: 'partial'});
     app.engine('hbs', require('engine-handlebars'));
     app.helper('log', function(ctx) {
-      console.log(ctx);
+      // console.log(ctx);
     });
   });
 
@@ -808,12 +813,12 @@ describe('collection helpers', function() {
 
     it('should handle engine errors2', function(cb) {
       app.engine('tmpl', require('engine-base'));
-      app.create('foo', {viewType: 'partial'});
+      app.create('foo', {viewType: 'partial', engine: 'tmpl'});
       app.create('bar', {engine: 'tmpl'});
 
-      app.foo('a.tmpl', {path: 'a.tmpl', content: '<%= blah.baz %>'});
+      app.foo('a.tmpl', {path: 'a.tmpl', content: '<%= blah.bar %>'});
       app.bar('b.tmpl', {content: '<%= foo("a.tmpl") %>'})
-        .render(function(err, res) {
+        .render(function(err) {
           assert(err);
           assert.equal(typeof err, 'object');
           assert(/blah is not defined/.test(err.message));
@@ -861,7 +866,7 @@ describe('collection helpers', function() {
           app.page('two', {content: '{{view "b.hbs" "pages" render=true}}'})
             .render(function(err, page) {
               if (err) return cb(err);
-              assert.equal(page.content, 'page-b')
+              assert.equal(page.content, 'page-b');
               cb();
             });
         });

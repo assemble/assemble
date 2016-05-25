@@ -501,21 +501,22 @@ describe('View', function() {
     });
 
     it('should copy all attributes over with Stream', function(cb) {
-      var contents = new Stream.PassThrough();
+      var stream = new Stream.PassThrough();
       var options = {
         cwd: '/',
         base: '/test/',
         path: '/test/test.coffee',
-        contents: contents
+        contents: stream
       };
+
       var view = new View(options);
       var view2 = view.clone();
 
-      contents.write(new Buffer('wa'));
+      stream.write(new Buffer('wa'));
 
       process.nextTick(function() {
-        contents.write(new Buffer('dup'));
-        contents.end();
+        stream.write(new Buffer('dup'));
+        stream.end();
       });
 
       view2.should.not.equal(view, 'refs should be different');
@@ -524,12 +525,17 @@ describe('View', function() {
       view2.path.should.equal(view.path);
       view2.contents.should.not.equal(view.contents, 'stream ref should not be the same');
       view.contents.pipe(es.wait(function(err, data) {
+        if (err) return cb(err);
+
         view2.contents.pipe(es.wait(function(err, data2) {
+          if (err) return cb(err);
+
           data2.should.not.equal(data, 'stream contents ref should not be the same');
           data2.should.eql(data, 'stream contents should be the same');
         }));
       }));
-      cb();
+
+      stream.on('end', cb);
     });
 
     it('should copy all attributes over with null', function(cb) {
@@ -564,7 +570,8 @@ describe('View', function() {
 
       assert(copy.stat.isFile());
       assert(!copy.stat.isDirectory());
-
+      assert(copy.stat instanceof fs.Stats);
+      
       assert(view.stat.hasOwnProperty('birthtime'));
       assert(copy.stat.hasOwnProperty('birthtime'));
       assert.deepEqual(view.stat, copy.stat);
@@ -914,11 +921,10 @@ describe('View', function() {
     });
 
     it('should error on get when no base', function(cb) {
-      var a;
       var view = new View();
       delete view.base;
       try {
-        a = view.relative;
+        view.relative;
       } catch (err) {
         should.exist(err);
         cb();
@@ -926,10 +932,9 @@ describe('View', function() {
     });
 
     it('should error on get when no path', function(cb) {
-      var a;
       var view = new View();
       try {
-        a = view.relative;
+        view.relative;
       } catch (err) {
         should.exist(err);
         cb();
@@ -958,10 +963,9 @@ describe('View', function() {
 
   describe('dirname get/set', function() {
     it('should error on get when no path', function(cb) {
-      var a;
       var view = new View();
       try {
-        a = view.dirname;
+        view.dirname;
       } catch (err) {
         should.exist(err);
         cb();
@@ -1002,10 +1006,9 @@ describe('View', function() {
 
   describe('basename get/set', function() {
     it('should error on get when no path', function(cb) {
-      var a;
       var view = new View();
       try {
-        a = view.basename;
+        view.basename;
       } catch (err) {
         should.exist(err);
         cb();
@@ -1046,10 +1049,9 @@ describe('View', function() {
 
   describe('extname get/set', function() {
     it('should error on get when no path', function(cb) {
-      var a;
       var view = new View();
       try {
-        a = view.extname;
+        view.extname;
       } catch (err) {
         should.exist(err);
         cb();
@@ -1134,7 +1136,7 @@ describe('View', function() {
 
     it('should throw when set path null in constructor', function() {
       (function() {
-        new View({
+        view = new View({
           cwd: '/',
           path: null
         });
@@ -1142,7 +1144,7 @@ describe('View', function() {
     });
 
     it('should throw when set path null', function() {
-      var view = new View({
+      view = new View({
         cwd: '/',
         path: 'foo'
       });

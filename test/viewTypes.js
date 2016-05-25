@@ -5,7 +5,7 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('viewType', function() {
+describe('viewTypes', function() {
   describe('view types', function() {
     beforeEach(function() {
       app = new App();

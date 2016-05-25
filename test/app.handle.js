@@ -19,8 +19,7 @@ describe('app.handle', function() {
 
     app.handle('foo', page, function(err, view) {
       if (err) return cb(err);
-      
-      assert(typeof view.path === 'string');
+      assert.equal(typeof view.path, 'string');
       cb();
     });
   });
@@ -31,8 +30,7 @@ describe('app.handle', function() {
 
     app.handle('foo', page, function(err, view) {
       if (err) return cb(err);
-      
-      assert(typeof view.path === 'string');
+      assert.equal(typeof view.path, 'string');
       cb();
     });
   });

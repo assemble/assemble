@@ -49,7 +49,7 @@ describe('app.lookups', function() {
 
     it('should return undefined when nothing is found', function() {
       var view = app.getView('pages', 'test/fixtures/templates/foo.tmpl');
-      assert(typeof view === 'undefined');
+      assert.equal(typeof view, 'undefined');
     });
 
     it('should return undefined when name is a directory', function() {

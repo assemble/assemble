@@ -1,46 +1,74 @@
 'use strict';
 
 require('should');
+var fs = require('fs');
+var path = require('path');
+var assert = require('assert');
+var resolve = require('resolve-glob');
 var support = require('./support');
 var App = support.resolve();
 var app;
+
+function decorateViews(views) {
+  var fn = views.decorateView;
+  views.decorateView = function() {
+    var view = fn.apply(fn, arguments);
+    view.read = function() {
+      if (!this.contents) {
+        this.contents = fs.readFileSync(this.path);
+      }
+    };
+    return view;
+  };
+  views.loader = function(pattern) {
+    var files = resolve.sync(pattern);
+    return files.reduce(function(acc, fp) {
+      acc[fp] = {path: fp};
+      return acc;
+    }, {});
+  };
+  return views;
+}
 
 describe('app.handlers', function() {
   describe('custom handlers', function() {
     beforeEach(function() {
       app = new App();
-      app.create('page');
+      app.create('pages')
+        .use(decorateViews)
+        .option('renameKey', function(key) {
+          return path.basename(key);
+        });
+    });
+
+    it('should add custom middleware handlers:', function() {
+      app.handler('foo');
+      app.router.should.have.property('foo');
+      assert.equal(typeof app.router.foo, 'function');
     });
 
     it('should add custom middleware handlers:', function() {
       app.handler('foo');
       app.handler('bar');
 
-      app.pages.use(function() {
-        return function(view) {
-          app.handle('foo', view);
-          app.handle('bar', view);
-        };
-      });
-
-      app.foo(/a/, function(view, next) {
+      app.foo(/./, function(view, next) {
         view.one = 'aaa';
         next();
       });
 
-      app.bar(/z/, function(view, next) {
+      app.bar(/./, function(view, next) {
         view.two = 'zzz';
         next();
       });
 
-      app.pages('a.txt', {content: 'aaa'});
-      app.pages('z.txt', {content: 'zzz'});
+      app.page('abc', {content: '...'})
+        .use(function(view) {
+          app.handleView('foo', view);
+          app.handleView('bar', view);
+        });
 
-      app.pages.getView('a.txt').should.have.property('one');
-      app.pages.getView('a.txt').should.not.have.property('two');
-
-      app.pages.getView('z.txt').should.not.have.property('one');
-      app.pages.getView('z.txt').should.have.property('two');
+      app.views.pages.abc.should.have.property('one', 'aaa');
+      app.views.pages.abc.should.have.property('two', 'zzz');
     });
   });
 });

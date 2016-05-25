@@ -6,7 +6,7 @@ var should = require('should');
 var path = require('path');
 var app;
 
-describe('app.renderFile()', function() {
+describe('app.renderFile', function() {
   beforeEach(function() {
     app = assemble();
     app.engine('hbs', require('engine-handlebars'));

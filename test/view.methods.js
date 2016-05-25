@@ -5,13 +5,12 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('view.option()', function() {
+describe('view.methods', function() {
   beforeEach(function() {
     app = new App();
     app.engine('tmpl', require('engine-base'));
     app.create('page');
   });
-
 
   describe('.use', function() {
     it('should expose `.use` for running plugins on a view:', function() {

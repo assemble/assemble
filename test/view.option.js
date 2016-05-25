@@ -5,7 +5,7 @@ var support = require('./support');
 var App = support.resolve();
 var app;
 
-describe('view.option()', function() {
+describe('view.option', function() {
   beforeEach(function() {
     app = new App();
     app.create('page');

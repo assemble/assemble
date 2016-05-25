@@ -337,18 +337,18 @@ describe('views', function() {
     });
 
     it('should load an array of items from an event:', function() {
-      var collection = new Views();
+      var pages = new Views();
 
-      collection.on('addList', function(list) {
+      pages.on('addList', function(list) {
         while (list.length) {
-          collection.addView({path: list.pop()});
+          pages.addView({path: list.pop()});
         }
         this.loaded = true;
       });
 
-      collection.addList(['a.txt', 'b.txt', 'c.txt']);
-      assert(collection.views.hasOwnProperty('a.txt'));
-      assert(collection.views['a.txt'].path === 'a.txt');
+      pages.addList(['a.txt', 'b.txt', 'c.txt']);
+      assert(pages.views.hasOwnProperty('a.txt'));
+      assert(pages.views['a.txt'].path === 'a.txt');
     });
 
     it('should load an array of items from the addList callback:', function() {
@@ -456,7 +456,6 @@ describe('options', function() {
     });
   });
 });
-
 
 describe('queue', function() {
   beforeEach(function() {

@@ -6,7 +6,7 @@ var should = require('should');
 var join = require('path').join;
 var app;
 
-describe('src()', function() {
+describe('app.src', function() {
   beforeEach(function() {
     app = new App();
   });
@@ -60,7 +60,7 @@ describe('src()', function() {
     var expectedPath = join(__dirname, './fixtures/generic/run.dmc');
     var globArray = [
       join(__dirname, './fixtures/generic/*.dmc'),
-      '!' + join(__dirname, './fixtures/generic/test.dmc'),
+      '!' + join(__dirname, './fixtures/generic/test.dmc')
     ];
     var stream = app.src(globArray);
 
@@ -205,7 +205,7 @@ describe('src()', function() {
     var expectedPath = join(__dirname, './fixtures/generic/run.dmc');
     var globArray = [
       join(__dirname, './fixtures/generic/*.dmc'),
-      '!' + join(__dirname, './fixtures/generic/test.dmc'),
+      '!' + join(__dirname, './fixtures/generic/test.dmc')
     ];
     var stream = app.src(globArray);
 

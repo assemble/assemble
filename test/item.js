@@ -4,7 +4,6 @@ require('mocha');
 var should = require('should');
 var fs = require('fs');
 var path = require('path');
-var util = require('util');
 var assert = require('assert');
 var es = require('event-stream');
 var Stream = require('stream');
@@ -26,8 +25,17 @@ describe('Item', function() {
     });
 
     it('inspect should not double name `Stream` when ctor is `Stream`', function(cb) {
+      var fn = console.log;
+      var count = 0;
+      console.log = function(val) {
+        console.log = fn;
+        assert.deepEqual(val.inspect(), '<Item <Stream>>');
+        count++;
+      };
       var val = new Stream();
-      var item = new Item({contents: val});
+      item = new Item({contents: val});
+      console.log(item);
+      assert.equal(count, 1);
       cb();
     });
   });
@@ -439,12 +447,15 @@ describe('Item', function() {
       item2.path.should.equal(item.path);
       item2.contents.should.not.equal(item.contents, 'stream ref should not be the same');
       item.contents.pipe(es.wait(function(err, data) {
+        if (err) return cb(err);
         item2.contents.pipe(es.wait(function(err, data2) {
+          if (err) return cb(err);
           data2.should.not.equal(data, 'stream contents ref should not be the same');
           data2.should.eql(data, 'stream contents should be the same');
         }));
       }));
-      cb();
+
+      contents.on('end', cb);
     });
 
     it('should copy all attributes over with null', function(cb) {
@@ -479,10 +490,10 @@ describe('Item', function() {
 
       assert(copy.stat.isFile());
       assert(!copy.stat.isDirectory());
-
       assert(item.stat.hasOwnProperty('birthtime'));
       assert(copy.stat.hasOwnProperty('birthtime'));
       assert.deepEqual(item.stat, copy.stat);
+      assert(copy.stat instanceof fs.Stats);
       cb();
     });
 
@@ -829,11 +840,10 @@ describe('Item', function() {
     });
 
     it('should error on get when no base', function(cb) {
-      var a;
       var item = new Item();
       delete item.base;
       try {
-        a = item.relative;
+        item.relative;
       } catch (err) {
         should.exist(err);
         cb();
@@ -841,10 +851,9 @@ describe('Item', function() {
     });
 
     it('should error on get when no path', function(cb) {
-      var a;
       var item = new Item();
       try {
-        a = item.relative;
+        item.relative;
       } catch (err) {
         should.exist(err);
         cb();
@@ -873,10 +882,9 @@ describe('Item', function() {
 
   describe('dirname get/set', function() {
     it('should error on get when no path', function(cb) {
-      var a;
       var item = new Item();
       try {
-        a = item.dirname;
+        item.dirname;
       } catch (err) {
         should.exist(err);
         cb();
@@ -917,10 +925,9 @@ describe('Item', function() {
 
   describe('basename get/set', function() {
     it('should error on get when no path', function(cb) {
-      var a;
       var item = new Item();
       try {
-        a = item.basename;
+        item.basename;
       } catch (err) {
         should.exist(err);
         cb();
@@ -961,10 +968,9 @@ describe('Item', function() {
 
   describe('extname get/set', function() {
     it('should error on get when no path', function(cb) {
-      var a;
       var item = new Item();
       try {
-        a = item.extname;
+        item.extname;
       } catch (err) {
         should.exist(err);
         cb();
@@ -1049,7 +1055,7 @@ describe('Item', function() {
 
     it('should throw when set path null in constructor', function() {
       (function() {
-        new Item({
+        item = new Item({
           cwd: '/',
           path: null
         });
@@ -1057,7 +1063,7 @@ describe('Item', function() {
     });
 
     it('should throw when set path null', function() {
-      var item = new Item({
+      item = new Item({
         cwd: '/',
         path: 'foo'
       });

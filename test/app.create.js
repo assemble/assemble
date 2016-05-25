@@ -16,19 +16,19 @@ describe('app.create', function() {
     });
 
     it('should expose the create method', function() {
-      assert(typeof app.create === 'function');
+      assert.equal(typeof app.create, 'function');
     });
 
     it('should add a collection to `views`', function() {
       app.create('pages');
-      assert(typeof app.views.pages === 'object');
-      assert(typeof app.pages === 'function');
+      assert.equal(typeof app.views.pages, 'object');
+      assert.equal(typeof app.pages, 'function');
     });
 
     it('should add a pluralized collection to `views`', function() {
       app.create('page');
-      assert(typeof app.views.pages === 'object');
-      assert(typeof app.page === 'function');
+      assert.equal(typeof app.views.pages, 'object');
+      assert.equal(typeof app.page, 'function');
     });
   });
 
@@ -45,7 +45,7 @@ describe('app.create', function() {
       assert(app.views.pages.hasOwnProperty('foo'));
     });
 
-    it('should add view Ctor names to views', function() {
+    it('should add view collection name to view._name', function() {
       app.pages.addView('foo', {content: 'bar'});
       assert.equal(app.views.pages.foo._name, 'page');
     });
@@ -126,7 +126,7 @@ describe('app.create', function() {
       var a = app.pages.getView('a.hbs');
       assert(a instanceof Vinyl);
       assert(Vinyl.isVinyl(a));
-      assert(typeof a.read === 'function');
+      assert.equal(typeof a.read, 'function');
 
       views.addView('d.hbs', {path: 'd.hbs', content: 'd'});
       var d = app.pages.getView('d.hbs');
@@ -147,7 +147,7 @@ describe('app.create', function() {
       app.page('b.hbs', {content: 'b'});
       app.page('c.hbs', {content: 'c'});
       app.views.pages.should.have.properties(['a.hbs', 'b.hbs', 'c.hbs']);
-      assert(app.views.pages['a.hbs'].contents.toString() === 'a');
+      assert.equal(app.views.pages['a.hbs'].contents.toString(), 'a');
     });
 
     it('should create views from file paths:', function() {
@@ -156,9 +156,9 @@ describe('app.create', function() {
       app.page('test/fixtures/pages/c.hbs');
 
       app.views.pages.should.have.properties([
-        path.resolve('test/fixtures/pages/a.hbs'),
-        path.resolve('test/fixtures/pages/b.hbs'),
-        path.resolve('test/fixtures/pages/c.hbs'),
+        'test/fixtures/pages/a.hbs',
+        'test/fixtures/pages/b.hbs',
+        'test/fixtures/pages/c.hbs'
       ]);
     });
   });
@@ -180,13 +180,15 @@ describe('app.create', function() {
         .use(function(views) {
           views.read = function(name) {
             var view = this.getView(name);
-            view.contents = fs.readFileSync(view.path);
+            if (!view.contents) {
+              view.contents = fs.readFileSync(view.path);
+            }
           };
         });
 
       collection.addView('test/fixtures/templates/a.tmpl');
       collection.read('a.tmpl');
-      assert(collection.getView('a.tmpl').contents.toString() === '<%= name %>');
+      assert.equal(collection.getView('a.tmpl').contents.toString(), '<%= name %>');
     });
   });
 
@@ -198,7 +200,7 @@ describe('app.create', function() {
 
     it('should add collection to the given viewType', function() {
       app.create('layout', {viewType: 'layout'});
-      assert(app.layouts.options.viewType[0] === 'layout');
+      assert.equal(app.layouts.options.viewType[0], 'layout');
     });
 
     it('should add a collection to multiple viewTypes', function() {
@@ -222,7 +224,7 @@ describe('app.create', function() {
 
       app.create('layout');
       app.layout('one', {path: 'two', contents: '...'});
-      assert(app.layouts.options.foo === 'bar');
+      assert.equal(app.layouts.options.foo, 'bar');
     });
   });
 
@@ -236,7 +238,7 @@ describe('app.create', function() {
       });
 
       assert(app.pages.foo);
-      assert(typeof app.pages.foo === 'function');
+      assert.equal(typeof app.pages.foo, 'function');
     });
   });
 });
