@@ -1,3 +1,12 @@
+**v0.13.0**
+
+- Bumps [templates][] to v0.21.0. Support for the `queue` property was removed on collections. See [templates][] for additional details.
+- Fixes bug where glob parent was not being used for `file.base`, causing dest directory to be relative to cwd instead of glob parent in some cases.
+- Some changes were made to context handling that effected one unit test out of ~1,000. although it's unlikely you'll be effected by the change, it warrants a minor bump
+- Externalizes common [templates][] tests to base-test-runner, so that assemble plugins and other [base][] applications can use the tests
+- Includes a fix from [assemble-loader][], where a bug caused `renameKey` to not always be used when defined on collection loader options.
+- Includes fixes from templates for resolving layouts
+
 **v0.12.0**
 
 - Bumps [assemble-core][] to v0.18.0, which includes a bump in [templates][]. See the changelog on the templates library for more details.

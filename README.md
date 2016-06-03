@@ -2,7 +2,7 @@
 
 > Assemble is a powerful, extendable and easy to use static site generator for node.js. Used by thousands of projects for much more than building websites, Assemble is also used for creating themes, scaffolds, boilerplates, e-books, UI components, API documentation, blogs, gh-pages and more! Assemble can also be used with gulp and grunt.
 
-We're happy to announce the release of Assemble v0.12.0! If you're new to assemble, the [About](#about) section and [FAQ](#faq) might be a good place to start.
+We're happy to announce the release of Assemble v0.13.0! If you're new to assemble, the [About](#about) section and [FAQ](#faq) might be a good place to start.
 
 **Website is outdated and being refactored!**
 
@@ -443,6 +443,15 @@ app.task('watch', function() {
 ```
 
 ## Release history
+
+**v0.13.0**
+
+* Bumps [templates](https://github.com/jonschlinkert/templates) to v0.21.0. Support for the `queue` property was removed on collections. See [templates](https://github.com/jonschlinkert/templates) for additional details.
+* Fixes bug where glob parent was not being used for `file.base`, causing dest directory to be relative to cwd instead of glob parent in some cases.
+* Some changes were made to context handling that effected one unit test out of ~1,000. although it's unlikely you'll be effected by the change, it warrants a minor bump
+* Externalizes common [templates](https://github.com/jonschlinkert/templates) tests to base-test-runner, so that assemble plugins and other [base](https://github.com/node-base/base) applications can use the tests
+* Includes a fix from [assemble-loader](https://github.com/assemble/assemble-loader), where a bug caused `renameKey` to not always be used when defined on collection loader options.
+* Includes fixes from templates for resolving layouts
 
 **v0.12.0**
 
