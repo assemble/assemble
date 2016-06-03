@@ -6,14 +6,13 @@ var fs = require('fs');
 var path = require('path');
 var assert = require('assert');
 var store = require('base-store');
-var support = require('./support');
-var assemble = support.resolve();
+var App = require('..');
 var app;
 
 describe('store', function() {
   describe('methods', function() {
     beforeEach(function() {
-      app = assemble({cli: true});
+      app = new App({cli: true});
       app.use(store());
       app.store.create('app-data-tests');
     });
@@ -154,7 +153,7 @@ describe('store', function() {
 
 describe('create', function() {
   beforeEach(function() {
-    app = assemble({cli: true});
+    app = new App({cli: true});
     app.use(store());
     app.store.create('abc');
 
@@ -225,7 +224,7 @@ describe('create', function() {
 
 describe('events', function() {
   beforeEach(function() {
-    app = assemble({cli: true});
+    app = new App({cli: true});
     app.use(store());
     app.store.create('abc');
   });

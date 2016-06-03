@@ -2,8 +2,7 @@
 
 require('mocha');
 var assert = require('assert');
-var support = require('./support');
-var App = support.resolve();
+var App = require('..');
 var app;
 
 describe('app.cli', function() {

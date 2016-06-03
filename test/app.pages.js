@@ -21,14 +21,14 @@ describe('.pages()', function() {
         'b.hbs': {path: 'b.hbs', contents: new Buffer('b')},
         'c.hbs': {path: 'c.hbs', contents: new Buffer('c')},
       });
-      assert(Object.keys(app.views.pages).length === 3);
+      assert.equal(Object.keys(app.views.pages).length, 3);
     });
   });
 
   describe('load pages', function() {
     it('should load pages onto `app.views.pages`:', function() {
       app.pages('test/fixtures/pages/*.hbs');
-      assert(Object.keys(app.views.pages).length === 3);
+      assert.equal(Object.keys(app.views.pages).length, 3);
     });
   });
 });
