@@ -7,15 +7,13 @@ var utils = require('../lib/utils');
 var errors = require('./errors');
 var assemble = require('..');
 
-var argv = require('minimist')(process.argv.slice(2), {
-  alias: {
-    help: 'h',
-    verbose: 'v'
-  }
+var argv = require('yargs-parser')(process.argv.slice(2), {
+  alias: {help: 'h', verbose: 'v'}
 });
 
 function run(cb) {
   var cwd = process.cwd();
+  var app;
 
   /**
    * Set the working directory
@@ -42,20 +40,15 @@ function run(cb) {
    * Notify the user if assemblefile.js is not found
    */
 
-  if (!utils.exists(assemblefile)) {
-    cb('assemblefile');
-    return;
-  }
-
   /**
    * Get the `assemble` instance to use
    */
 
-  var app = require(assemblefile);
-  if (Object.keys(app).length === 0) {
-    var msg = util.format(errors['instance'], utils.homeRelative(assemblefile));
-    cb(new Error(msg));
-    return;
+
+  if (utils.exists(assemblefile)) {
+    app = require(assemblefile);
+  } else {
+    app = require('../lib/generator');
   }
 
   /**
@@ -69,6 +62,10 @@ function run(cb) {
     app.option(argv);
     app.fn = fn;
     fn(app);
+  } else if (Object.keys(app).length === 0) {
+    var msg = util.format(errors['instance'], utils.homeRelative(assemblefile));
+    cb(new Error(msg));
+    return;
   }
 
   /**
