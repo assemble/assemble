@@ -123,14 +123,18 @@ Router methods are similar to the router METHODS in [express][], but instead of 
 **Summary**
 
 - `onLoad`: Immediately after a view is loaded, as a last step just before adding the view to a collection.
+- `onStream`: 
+- `preRender`: Called before rendering a view.
+- `preCompile`: Called before compiling a view.
 - `preLayout`: Immediately before the first [layout][] in a [layout-stack][] is applied to a view.
+- `postCompile`: Called after compiling a view.
+- `postRender`: Called after rendering a view.
+- `preWrite`: 
+- `postWrite`: 
+
 - `onLayout`: Called after each [layout][] in a [layout-stack][] is applied.
 - `postLayout`: Called after all [layouts][] have been applied to a view.
 - `onMerge`: Called directly before [partials][] collections are merged onto the [context][].
-- `preCompile`: Called before compiling a view.
-- `postCompile`: Called after compiling a view.
-- `preRender`: Called before rendering a view.
-- `postRender`: Called after rendering a view.
 
 
 ## Methods
