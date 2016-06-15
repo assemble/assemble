@@ -6,6 +6,7 @@ category: recipes
 related:
   - custom-async-helpers
 ---
+
 ## Create a helper
 
 The following helper takes a string and converts it to all uppercase characters.
@@ -23,7 +24,7 @@ app.helper('upper', function(str) {
 Usage with handlebars:
 
 ```handlebars
-foo {{upper "bar"}} baz
+foo \{{upper "bar"}} baz
 ```
 
 Results in:
@@ -37,7 +38,7 @@ foo BAR baz
 Usage with Lo-Dash templates:
 
 ```html
-foo <%= upper("bar") %> baz
+foo <%%= upper("bar") %> baz
 ```
 
 Results in:

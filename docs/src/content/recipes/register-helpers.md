@@ -28,7 +28,7 @@ app.helper('upper', function(str) {
 title: home page
 ---
 
-<h1>{{upper title}}</h1>
+<h1>\{{upper title}}</h1>
 ```
 
 **Results in**:
@@ -59,7 +59,7 @@ Async helper usage is identical to sync helper usage.
 title: home page
 ---
 
-<h1>{{upper title}}</h1>
+<h1>\{{upper title}}</h1>
 ```
 
 **Results in**:

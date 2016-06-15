@@ -1,25 +1,27 @@
 ---
 title: Assemble instance
 category: recipes
+related: ['assemblefile']
 ---
 
-The main export of the assemble library is a function. More specifically, the function is the `Assemble` constructor.
+The main export of the `assemble` library is the `Assemble` constructor function. To use assemble, you must first create an instance (your `app`):
 
-**Create an instance**
+**Example**
 
 ```js
 var assemble = require('assemble');
 
+// create an instance
 var app = assemble();
 ```
 
-This pattern was chosen to allow you to "new up" whenever necessary:
+This pattern is useful for when you need to create more than one instance:
 
 ```js
-// another instance of assemble
+// instance of assemble for `blog`
 var blog = assemble();
 
-// yet another instance of assemble
+// instance of assemble for `site`
 var site = assemble();
 ```
 

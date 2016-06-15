@@ -36,7 +36,7 @@ Async helper usage is exactly the same as sync helper usage.
 Usage with handlebars:
 
 ```handlebars
-foo {{upper "bar"}} baz
+foo \{{upper "bar"}} baz
 ```
 
 Results in:
@@ -50,7 +50,7 @@ foo BAR baz
 Usage with Lo-Dash templates:
 
 ```html
-foo <%= upper("bar") %> baz
+foo <%%= upper("bar") %> baz
 ```
 
 Results in:

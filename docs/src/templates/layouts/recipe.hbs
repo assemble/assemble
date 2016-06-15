@@ -1,4 +1,18 @@
 ---
-layout: markdown-raw
+layout: false
 ---
+{{#if title}}
+# {{title}}
+{{/if}}
+
+{{#if description}}
+> {{description}}
+{{/if}}
+
 {% body %}
+
+{{#if related}}
+## Related
+
+{{#related related~}}- [{{title}}]({{this.url}}){{~/related}}
+{{/if}}
