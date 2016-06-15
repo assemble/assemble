@@ -28,7 +28,7 @@ function Assemble(options) {
 
   this.options = utils.merge({}, this.options, options);
   Core.call(this, options);
-  this.is(Assemble);
+  this.is('assemble');
 
   this.initDefaults(this);
   this.initPlugins(this);
@@ -142,19 +142,6 @@ Assemble.prototype.initCollections = function(app) {
     }
   });
 };
-
-/**
- * Expose static `is*` methods from Templates
- */
-
-Core._.plugin.is(Assemble);
-
-/**
- * Expose static properties for unit tests
- */
-
-utils.define(Assemble, 'utils', Core.utils);
-utils.define(Assemble, '_', Core._);
 
 /**
  * Expose the `Assemble` constructor
