@@ -1,7 +1,6 @@
 'use strict';
 
 require('mocha');
-require('should');
 var fs = require('fs');
 var path = require('path');
 var assert = require('assert');
@@ -12,7 +11,7 @@ var app;
 describe('store', function() {
   describe('methods', function() {
     beforeEach(function() {
-      app = new App({cli: true});
+      app = new App();
       app.use(store());
       app.store.create('app-data-tests');
     });
@@ -25,42 +24,42 @@ describe('store', function() {
 
     it('should `.set()` a value on the store', function() {
       app.store.set('one', 'two');
-      app.store.data.one.should.equal('two');
+      assert.equal(app.store.data.one, 'two');
     });
 
     it('should `.set()` an object', function() {
       app.store.set({four: 'five', six: 'seven'});
-      app.store.data.four.should.equal('five');
-      app.store.data.six.should.equal('seven');
+      assert.equal(app.store.data.four, 'five');
+      assert.equal(app.store.data.six, 'seven');
     });
 
     it('should `.set()` a nested value', function() {
       app.store.set('a.b.c.d', {e: 'f'});
-      app.store.data.a.b.c.d.e.should.equal('f');
+      assert.equal(app.store.data.a.b.c.d.e, 'f');
     });
 
     it('should `.union()` a value on the store', function() {
       app.store.union('one', 'two');
-      app.store.data.one.should.eql(['two']);
+      assert.deepEqual(app.store.data.one, ['two']);
     });
 
     it('should not union duplicate values', function() {
       app.store.union('one', 'two');
-      app.store.data.one.should.eql(['two']);
+      assert.deepEqual(app.store.data.one, ['two']);
 
       app.store.union('one', ['two']);
-      app.store.data.one.should.eql(['two']);
+      assert.deepEqual(app.store.data.one, ['two']);
     });
 
     it('should concat an existing array:', function() {
       app.store.union('one', 'a');
-      app.store.data.one.should.eql(['a']);
+      assert.deepEqual(app.store.data.one, ['a']);
 
       app.store.union('one', ['b']);
-      app.store.data.one.should.eql(['a', 'b']);
+      assert.deepEqual(app.store.data.one, ['a', 'b']);
 
       app.store.union('one', ['c', 'd']);
-      app.store.data.one.should.eql(['a', 'b', 'c', 'd']);
+      assert.deepEqual(app.store.data.one, ['a', 'b', 'c', 'd']);
     });
 
     it('should return true if a key `.has()` on the store', function() {
@@ -121,24 +120,24 @@ describe('store', function() {
 
     it('should `.get()` a stored value', function() {
       app.store.set('three', 'four');
-      app.store.get('three').should.equal('four');
+      assert.equal(app.store.get('three'), 'four');
     });
 
     it('should `.get()` a nested value', function() {
       app.store.set({a: {b: {c: 'd'}}});
-      app.store.get('a.b.c').should.equal('d');
+      assert.equal(app.store.get('a.b.c'), 'd');
     });
 
     it('should `.del()` a stored value', function() {
       app.store.set('a', 'b');
       app.store.set('c', 'd');
-      app.store.data.should.have.property('a');
-      app.store.data.should.have.property('c');
+      assert(app.store.data.hasOwnProperty('a'));
+      assert(app.store.data.hasOwnProperty('c'));
 
       app.store.del('a');
       app.store.del('c');
-      app.store.data.should.not.have.property('a');
-      app.store.data.should.not.have.property('c');
+      assert(!app.store.data.hasOwnProperty('a'));
+      assert(!app.store.data.hasOwnProperty('c'));
     });
 
     it('should `.del()` multiple stored values', function() {
@@ -146,7 +145,7 @@ describe('store', function() {
       app.store.set('c', 'd');
       app.store.set('e', 'f');
       app.store.del(['a', 'c', 'e']);
-      app.store.data.should.eql({});
+      assert.deepEqual(app.store.data, {});
     });
   });
 });
@@ -242,7 +241,7 @@ describe('events', function() {
     });
 
     app.store.set({a: {b: {c: 'd'}}});
-    keys.should.eql(['a']);
+    assert.deepEqual(keys, ['a']);
   });
 
   it('should emit `set` when a key/value pair is set:', function() {
@@ -253,7 +252,7 @@ describe('events', function() {
     });
 
     app.store.set('a', 'b');
-    keys.should.eql(['a']);
+    assert.deepEqual(keys, ['a']);
   });
 
   it('should emit `set` when an object value is set:', function() {
@@ -264,7 +263,7 @@ describe('events', function() {
     });
 
     app.store.set('a', {b: 'c'});
-    keys.should.eql(['a']);
+    assert.deepEqual(keys, ['a']);
   });
 
   it('should emit `set` when an array of objects is passed:', function(cb) {
@@ -275,7 +274,7 @@ describe('events', function() {
     });
 
     app.store.set([{a: 'b'}, {c: 'd'}]);
-    keys.should.eql(['a', 'c']);
+    assert.deepEqual(keys, ['a', 'c']);
     cb();
   });
 
@@ -293,13 +292,13 @@ describe('events', function() {
 
   it('should emit `del` when a value is delted:', function(cb) {
     app.store.on('del', function(keys) {
-      keys.should.eql('a');
+      assert.deepEqual(keys, 'a');
       assert.equal(typeof app.store.get('a'), 'undefined');
       cb();
     });
 
     app.store.set('a', {b: 'c'});
-    app.store.get('a').should.eql({b: 'c'});
+    assert.deepEqual(app.store.get('a'), {b: 'c'});
     app.store.del('a');
   });
 
@@ -316,17 +315,21 @@ describe('events', function() {
     app.store.set('e', 'f');
 
     app.store.del({force: true});
-    arr.should.eql(['a', 'c', 'e']);
+    assert.deepEqual(arr, ['a', 'c', 'e']);
     cb();
   });
 
-  it('should throw an error if force is not passed', function() {
+  it('should throw an error if force is not passed', function(cb) {
     app.store.set('a', 'b');
     app.store.set('c', 'd');
     app.store.set('e', 'f');
 
-    (function() {
+    try {
       app.store.del();
-    }).should.throw('options.force is required to delete the entire cache.');
+      cb(new Error('expected an error'));
+    } catch (err) {
+      assert.equal(err.message, 'options.force is required to delete the entire cache.');
+      cb();
+    }
   });
 });
