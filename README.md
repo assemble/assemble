@@ -12,7 +12,7 @@ In the meantime, you might find the [WIP docs](docs/src/content) useful. The [un
 
 **Get in touch!**
 
-Have questions? Want to discuss assemble? Join the conversation on [gitter](gitter.im/assemble/assemble) or give us a shout on [twitter](https://twitter.com/assemblejs). The assemble team and community are always happy to help!
+Have questions, suggestions, or want to discuss assemble? Join the conversation on [gitter](http://gitter.im/assemble/assemble) or give us a shout on [twitter](https://twitter.com/assemblejs). The assemble team and community are always happy to help!
 
 ## TOC
 
@@ -68,7 +68,7 @@ Assemble makes it easy to create, customize, generate and maintain complete web 
 Install with [npm](https://www.npmjs.com/):
 
 ```sh
-$ npm install assemble --save
+$ npm install --save assemble
 ```
 
 ## Getting started
@@ -444,49 +444,57 @@ app.task('watch', function() {
 
 ## Release history
 
-**v0.13.0**
+### v0.14.0
 
-* Bumps [templates](https://github.com/jonschlinkert/templates) to v0.21.0. Support for the `queue` property was removed on collections. See [templates](https://github.com/jonschlinkert/templates) for additional details.
+Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.22.0 to take advantage of fixes and improvements to lookup methods: `.find` and `getView`. No API changes were made. Please [let us know](../../issues) if regressions occur.
+
+* fixes `List` bug that was caused collection helpers to explode
+* Improvements to lookup functions: `app.getView()` and `app.find()`
+* Bumps [base](https://github.com/node-base/base) to take advantages of code optimizations.
+
+### v0.13.0
+
+* Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.21.0. Support for the `queue` property was removed on collections. See [assemble-core](https://github.com/assemble/assemble-core) for additional details.
 * Fixes bug where glob parent was not being used for `file.base`, causing dest directory to be relative to cwd instead of glob parent in some cases.
 * Some changes were made to context handling that effected one unit test out of ~1,000. although it's unlikely you'll be effected by the change, it warrants a minor bump
 * Externalizes common [templates](https://github.com/jonschlinkert/templates) tests to base-test-runner, so that assemble plugins and other [base](https://github.com/node-base/base) applications can use the tests
 * Includes a fix from [assemble-loader](https://github.com/assemble/assemble-loader), where a bug caused `renameKey` to not always be used when defined on collection loader options.
 * Includes fixes from templates for resolving layouts
 
-**v0.12.0**
+### v0.12.0
 
 * Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.18.0, which includes a bump in [templates](https://github.com/jonschlinkert/templates). See the changelog on the templates library for more details.
 
-**v0.11.0**
+### v0.11.0
 
 * `debug` methods and related code have been removed
 * Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.17.0
 
-**v0.10.0**
+### v0.10.0
 
 * Adds support for using es6 generators with tasks
 * Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.15.0
 
-**v0.9.0**
+### v0.9.0
 
 * Bumps several dependencies. No API changes, this is mostly an optimization release. Be sure to completely remove `node_modules` and reinstall all dependencies to avoid errors such as `isRegistered is not a function`
 
-**v0.8.0**
+### v0.8.0
 
 * Updates [composer](https://github.com/doowb/composer) to v0.11.0, which removes the `.watch` method in favor of using the [base-watch](https://github.com/node-base/base-watch) plugin.
 * Changes in [templates](https://github.com/jonschlinkert/templates). Please see v0.11.0 in [templates history](https://github.com/jonschlinkert/templates#history) for more details.
 
-**v0.7.0**
+### v0.7.0
 
 * Stability improvements and optimizations of the API introduced in v0.6.0.
 
-**v0.6.0**
+### v0.6.0
 
 * Major refactor. Assemble was completely re-written from the ground-up as a standalone node.js library and is no longer a grunt plugin. Grunt plugin support has been moved to [grunt-assemble](http://assemble.io). Please see that repo for additional details.
 
 ## Contributing
 
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/assemble/assemble/issues/new).
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](../../issues/new).
 
 If Assemble doesn't do what you need, [please let us know](https://github.com/undefined/issues/new)
 
@@ -520,11 +528,11 @@ Please read our [gulp FAQ](docs/src/subjects/gulp-faq.md) for more information.
 
 You might also be interested in these projects from [@doowb](https://github.com/doowb) and [@jonschlinkert](https://github.com/jonschlinkert):
 
-* [boilerplate](https://www.npmjs.com/package/boilerplate): Tools and conventions for authoring and publishing boilerplates that can be generated by any build… [more](https://www.npmjs.com/package/boilerplate) | [homepage](http://boilerplates.io)
-* [generate](https://www.npmjs.com/package/generate): Fast, composable, highly pluggable project generator with a user-friendly and expressive API. | [homepage](https://github.com/generate/generate)
-* [scaffold](https://www.npmjs.com/package/scaffold): Conventions and API for creating declarative configuration objects for project scaffolds - similar in format… [more](https://www.npmjs.com/package/scaffold) | [homepage](https://github.com/jonschlinkert/scaffold)
-* [update](https://www.npmjs.com/package/update): Easily keep anything in your project up-to-date by installing the updaters you want to use… [more](https://www.npmjs.com/package/update) | [homepage](https://github.com/update/update)
-* [verb](https://www.npmjs.com/package/verb): Documentation generator for GitHub projects. Verb is extremely powerful, easy to use, and is used… [more](https://www.npmjs.com/package/verb) | [homepage](https://github.com/verbose/verb)
+* [boilerplate](https://www.npmjs.com/package/boilerplate): Tools and conventions for authoring and publishing boilerplates that can be generated by any build… [more](http://boilerplates.io) | [homepage](http://boilerplates.io "Tools and conventions for authoring and publishing boilerplates that can be generated by any build system or generator.")
+* [generate](https://www.npmjs.com/package/generate): The Santa Claus machine for GitHub projects. Scaffolds out new projects, or creates any kind… [more](https://github.com/generate/generate) | [homepage](https://github.com/generate/generate "The Santa Claus machine for GitHub projects. Scaffolds out new projects, or creates any kind of required file or document from any given templates or source materials.")
+* [scaffold](https://www.npmjs.com/package/scaffold): Conventions and API for creating declarative configuration objects for project scaffolds - similar in format… [more](https://github.com/jonschlinkert/scaffold) | [homepage](https://github.com/jonschlinkert/scaffold "Conventions and API for creating declarative configuration objects for project scaffolds - similar in format to a grunt task, but more portable, generic and can be used by any build system or generator - even gulp.")
+* [update](https://www.npmjs.com/package/update): Easily keep anything in your project up-to-date by installing the updaters you want to use… [more](https://github.com/update/update) | [homepage](https://github.com/update/update "Easily keep anything in your project up-to-date by installing the updaters you want to use and running `update` in the command line! Update the copyright date, licence type, ensure that a project uses your latest eslint or jshint configuration, remove dep")
+* [verb](https://www.npmjs.com/package/verb): Documentation generator for GitHub projects. Verb is extremely powerful, easy to use, and is used… [more](https://github.com/verbose/verb) | [homepage](https://github.com/verbose/verb "Documentation generator for GitHub projects. Verb is extremely powerful, easy to use, and is used on hundreds of projects of all sizes to generate everything from API docs to readmes.")
 
 ## Similar projects
 
@@ -561,4 +569,4 @@ Released under the [MIT license](https://github.com/assemble/assemble/blob/maste
 
 ***
 
-_This file was generated by [verb](https://github.com/verbose/verb), v0.9.0, on June 03, 2016._
+_This file was generated by [verb](https://github.com/verbose/verb), v0.9.0, on June 15, 2016._
