@@ -1,3 +1,7 @@
+### v0.15.0
+
+- Bumps [assemble-core][] to v0.24.0 to get the latest versions of [templates][] and [base-data][] which removes the `renameKey` option from the `.data` method. Use the `namespace` option instead.
+
 ### v0.14.0
 
 Bumps [assemble-core][] to v0.22.0 to take advantage of fixes and improvements to lookup methods: `.find` and `getView`. No API changes were made. Please [let us know](../../issues) if regressions occur.
