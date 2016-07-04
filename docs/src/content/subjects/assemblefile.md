@@ -2,6 +2,7 @@
 title: assemblefile.js
 category: subjects
 ---
+
 **What is an `assemblefile.js`?**
 
 When run via command line, Assemble will automatically search for an `assemblefile.js` in the current working directory.

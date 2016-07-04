@@ -4,6 +4,7 @@ description: >
   Get a high level overview of Assemble, and answers to questions like, "What is Assemble?", "What does Assemble do?", "Is Assemble a good fit for me?".
 category: subjects
 ---
+
 Assemble makes it easy to create, customize, generate and maintain a complete static web project. This includes:
 
 - Transforming content from markdown or any other plain text format to HTML
