@@ -25,15 +25,9 @@ function Assemble(options) {
   if (!(this instanceof Assemble)) {
     return new Assemble(options);
   }
-
-  this.options = utils.merge({}, this.options, options);
   Core.call(this, options);
   this.is('assemble');
-
-  this.initDefaults(this);
-  this.initPlugins(this);
-  this.initCollections(this);
-  Assemble.emit('init', this);
+  this.initAssemble();
 }
 
 /**
@@ -44,29 +38,43 @@ Core.extend(Assemble);
 Core.bubble(Assemble);
 
 /**
- * Initialize Assemble defaults
+ * Initialize assemble and emit pre and post init events
  */
 
-Assemble.prototype.initDefaults = function(app) {
-  var exts = this.options.exts || ['md', 'hbs', 'html'];
+Assemble.prototype.initAssemble = function() {
+  Assemble.emit('assemble.preInit', this);
+  Assemble.initAssemble(this);
+  Assemble.emit('assemble.postInit', this);
+};
 
-  /**
-   * Emit `preInit` on the static emitter
-   */
+/**
+ * Initialize Assemble defaults, plugins and views
+ */
 
-  Assemble.emit('preInit', this);
+Assemble.initAssemble = function(app) {
+  Assemble.initDefaults(app);
+  Assemble.initPlugins(app);
+  Assemble.initViews(app);
+};
+
+/**
+ * Initialize defaults
+ */
+
+Assemble.initDefaults = function(app) {
+  var exts = app.options.exts || ['md', 'hbs', 'html'];
 
   /**
    * Default engine
    */
 
-  this.engine(exts, require('engine-handlebars'));
+  app.engine(exts, require('engine-handlebars'));
 
   /**
    * Middleware for parsing front matter
    */
 
-  this.onLoad(utils.extRegex(exts), function(view, next) {
+  app.onLoad(utils.extRegex(exts), function(view, next) {
     // check options inside the middleware to account for options defined after init
     if (view.options.frontMatter === false) {
       next();
@@ -94,7 +102,8 @@ Assemble.prototype.initDefaults = function(app) {
  * ```
  */
 
-Assemble.prototype.initPlugins = function(app) {
+Assemble.initPlugins = function(app) {
+  enable('logger', plugins.logger);
   enable('loader', plugins.loader);
   enable('config', plugins.config);
   enable('argv', plugins.argv);
@@ -115,28 +124,27 @@ Assemble.prototype.initPlugins = function(app) {
  *  | pages
  */
 
-Assemble.prototype.initCollections = function(app) {
-  if (this.isFalse('collections')) return;
+Assemble.initViews = function(app) {
+  if (app.isFalse('collections')) return;
 
-  var engine = this.options.defaultEngine || 'hbs';
-  this.create('partials', {
-    engine: engine,
+  app.create('partials', {
+    engine: app.options.engine || 'hbs',
     viewType: 'partial',
     renameKey: function(fp) {
       return path.basename(fp, path.extname(fp));
     }
   });
 
-  this.create('layouts', {
-    engine: engine,
+  app.create('layouts', {
+    engine: app.options.engine || 'hbs',
     viewType: 'layout',
     renameKey: function(fp) {
       return path.basename(fp, path.extname(fp));
     }
   });
 
-  this.create('pages', {
-    engine: engine,
+  app.create('pages', {
+    engine: app.options.engine || 'hbs',
     renameKey: function(fp) {
       return fp;
     }
