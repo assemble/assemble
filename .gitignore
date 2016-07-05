@@ -14,6 +14,7 @@ vendor
 .idea
 benchmark
 coverage
-examples/_draft
+_draft
+_drafts
 examples/*/dist
 examples/*/site
