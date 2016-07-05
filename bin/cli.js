@@ -28,7 +28,7 @@ function run(cb) {
    * Log the working directory
    */
 
-  utils.timestamp('cwd set to ' + utils.formatDir(cwd));
+  console.log(utils.log.timestamp, 'using cwd ' + utils.formatDir(cwd));
 
   /**
    * Get the assemblefile.js to use
@@ -60,8 +60,7 @@ function run(cb) {
     var fn = app;
     app = assemble(argv);
     app.option(argv);
-    app.fn = fn;
-    fn(app);
+    app.use(fn);
   } else if (Object.keys(app).length === 0) {
     var msg = util.format(errors['instance'], utils.homeRelative(assemblefile));
     cb(new Error(msg));
@@ -82,7 +81,7 @@ function run(cb) {
    */
 
   if (argv.emit && typeof argv.emit === 'string') {
-    app.on(argv.emit, console.log.bind(console));
+    app.on(argv.emit, app.log.bind(console));
   }
 
   /**
@@ -101,7 +100,7 @@ function run(cb) {
    */
 
   var fp = utils.homeRelative(assemblefile);
-  utils.timestamp('using assemblefile ' + utils.colors.green('~/' + fp));
+  app.log.path('using assemblefile ' + utils.colors.green('~/' + fp));
 
   /**
    * Registert `runtimes` plugin
