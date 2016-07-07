@@ -1148,8 +1148,8 @@ app.helperGroup('mdu', {
 });
 
 // Usage:
-// <%= mdu.foo() %>
-// <%= mdu.bar() %>
+// <%%= mdu.foo() %>
+// <%%= mdu.bar() %>
 ```
 
 ### Built-in helpers

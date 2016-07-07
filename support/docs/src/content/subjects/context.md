@@ -25,7 +25,7 @@ Context is built at runtime by the `.mergeContext()` method, which combines data
 **Example:**
 
 ```js
-app.page('abc', {content: '---\ntitle: About\n---\nThis is <%= title %>.' }, {title: 'Home'});
+app.page('abc', {content: '---\ntitle: About\n---\nThis is <%%= title %>.' }, {title: 'Home'});
 ```
 
 

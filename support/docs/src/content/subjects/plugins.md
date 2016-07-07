@@ -89,7 +89,7 @@ var app = assemble();
 
 app.create('pages');
 
-app.page('home', {content: '<%= name %>'})
+app.page('home', {content: '<%%= name %>'})
   .use(permalink(':dest/:name.html'))
   .render(function(err, view) {
     if (err) return console.error(err);

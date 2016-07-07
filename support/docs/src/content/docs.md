@@ -147,7 +147,7 @@ Use the `partial` helper to inject into other templates:
 \{{partial "banner"}}
 
 <!-- lodash/erb style -->
-<%= partial("banner") %>
+<%%= partial("banner") %>
 ```
 
 Get a cached partial:

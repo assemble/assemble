@@ -3,6 +3,9 @@ title: Build Cycle
 category: docs
 sortBy: 20
 ---
+
+The "render cycle" describes the complete lifecycle of a view (template), from the time it's created, to the time it's rendered, and all of the stages in between.
+
 **Overview**
 
 * initialize app
