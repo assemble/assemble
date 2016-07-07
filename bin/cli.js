@@ -2,14 +2,12 @@
 
 var util = require('util');
 var path = require('path');
+var assemble = require('..');
+var commands = require('../lib/commands');
 var plugins = require('../lib/plugins');
 var utils = require('../lib/utils');
 var errors = require('./errors');
-var assemble = require('..');
-
-var argv = require('yargs-parser')(process.argv.slice(2), {
-  alias: {help: 'h', verbose: 'v'}
-});
+var argv = utils.parseArgs(process.argv.slice(2));
 
 function run(cb) {
   var cwd = process.cwd();
@@ -37,18 +35,15 @@ function run(cb) {
   var assemblefile = path.resolve(cwd, argv.file || 'assemblefile.js');
 
   /**
-   * Notify the user if assemblefile.js is not found
-   */
-
-  /**
    * Get the `assemble` instance to use
    */
 
-
-  if (utils.exists(assemblefile)) {
+  var defaults = require('../lib/generator');
+  var configfile = utils.exists(assemblefile);
+  if (configfile) {
     app = require(assemblefile);
   } else {
-    app = require('../lib/generator');
+    app = defaults;
   }
 
   /**
@@ -72,6 +67,16 @@ function run(cb) {
    */
 
   app.on('error', handleError);
+  app.on('build', function(event, build) {
+    if (typeof event === 'string' && !build.isSilent) {
+      app.log.time(event, build.key, app.log.magenta(build.time));
+    }
+  });
+  app.on('task', function(event, task) {
+    if (typeof event === 'string' && !task.isSilent) {
+      app.log.time(event, task.key);
+    }
+  });
 
   /**
    * Support `--emit` for debugging
@@ -121,6 +126,7 @@ function run(cb) {
 
 run(function(err, app) {
   if (err) handleError(err);
+  commands(app);
 
   /**
    * Process command line arguments
@@ -133,9 +139,10 @@ run(function(err, app) {
      * Run tasks
      */
 
-    app.build(app.get('cache.argv.tasks'), function(err) {
+    var tasks = app.get('cache.argv.tasks');
+    app.build(tasks, function(err) {
       if (err) handleError(err);
-      process.exit(0);
+      app.log.success('finished');
     });
   });
 });
