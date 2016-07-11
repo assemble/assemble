@@ -1,3 +1,11 @@
+### v0.16.0
+
+- **Added**: `.log()` method, which also exposes additional methods, like `.log.info()`, `.log.success()`, etc. 
+- docs were moved to `support/docs`, so that markdown docs can be built to the `docs` directory
+- docs were updated, new docs added
+- Moves some private prototype methods to static methods, to allow them to be used without creating an instance
+- Bumps [assemble-core][] to v0.25.0
+
 ### v0.15.0
 
 - Bumps [assemble-core][] to v0.24.0 to get the latest versions of [templates][] and [base-data][] which removes the `renameKey` option from the `.data` method. Use the `namespace` option instead.
