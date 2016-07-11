@@ -62,6 +62,8 @@ function run(cb) {
     return;
   }
 
+  assemble.initPlugins(app);
+
   /**
    * Listen for errors
    */
