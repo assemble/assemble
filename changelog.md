@@ -1,3 +1,7 @@
+### v0.16.1
+
+- bump dependencies. In particular, there was a bug in [parser-front-matter][] where leading whitespace was removed after extracting front-matter, which caused the first line of indentation to be removed. This has been fixed.
+
 ### v0.16.0
 
 - **Added**: `.log()` method, which also exposes additional methods, like `.log.info()`, `.log.success()`, etc. 
