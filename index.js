@@ -144,10 +144,7 @@ Assemble.initViews = function(app) {
   });
 
   app.create('pages', {
-    engine: app.options.engine || 'hbs',
-    renameKey: function(fp) {
-      return fp;
-    }
+    engine: app.options.engine || 'hbs'
   });
 };
 

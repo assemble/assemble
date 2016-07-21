@@ -1,3 +1,13 @@
+#### key
+
+Changelog entries are classified using the following labels _(from [keep-a-changelog][]_):
+
+- `added`: for new features
+- `changed`: for changes in existing functionality
+- `deprecated`: for once-stable features removed in upcoming releases
+- `removed`: for deprecated features removed in this release
+- `fixed`: for any bug fixes
+
 ### v0.16.1
 
 - bump dependencies. In particular, there was a bug in [parser-front-matter][] where leading whitespace was removed after extracting front-matter, which caused the first line of indentation to be removed. This has been fixed.
@@ -61,3 +71,5 @@ Bumps [assemble-core][] to v0.22.0 to take advantage of fixes and improvements t
 ### v0.6.0
 
 - Major refactor. Assemble was completely re-written from the ground-up as a standalone node.js library and is no longer a grunt plugin. Grunt plugin support has been moved to [grunt-assemble][]. Please see that repo for additional details.
+
+[keep-a-changelog]: https://github.com/olivierlacan/keep-a-changelog
