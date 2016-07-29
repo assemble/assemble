@@ -51,15 +51,15 @@ function run(cb) {
    * so we need to invoke it with an instance of assemble
    */
 
-  if (typeof app === 'function') {
+  if ((app && Object.keys(app).length === 0) || (typeof app === 'function' && app.initAssemble)) {
+    var msg = util.format(errors['instance'], utils.homeRelative(assemblefile));
+    cb(new Error(msg));
+    return;
+  } else if (typeof app === 'function') {
     var fn = app;
     app = assemble(argv);
     app.option(argv);
     app.use(fn);
-  } else if (Object.keys(app).length === 0) {
-    var msg = util.format(errors['instance'], utils.homeRelative(assemblefile));
-    cb(new Error(msg));
-    return;
   }
 
   assemble.initPlugins(app);
