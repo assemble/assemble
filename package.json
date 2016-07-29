@@ -40,19 +40,19 @@
     "base-argv": "^0.5.0",
     "base-cli-process": "^0.1.18",
     "base-config": "^0.5.2",
-    "base-questions": "^0.7.1",
+    "base-questions": "^0.7.3",
     "base-runtimes": "^0.2.0",
     "cross-spawn": "^4.0.0",
     "engine-handlebars": "^0.8.0",
     "export-files": "^2.1.1",
     "fs-exists-sync": "^0.1.0",
-    "global-modules": "^0.2.2",
+    "global-modules": "^0.2.3",
     "is-valid-app": "^0.2.0",
     "lazy-cache": "^2.0.1",
     "log-utils": "^0.2.1",
     "parser-front-matter": "^1.4.1",
     "resolve-dir": "^0.1.0",
-    "yargs-parser": "^2.4.0"
+    "yargs-parser": "^2.4.1"
   },
   "devDependencies": {
     "base-store": "^0.4.4",
@@ -153,6 +153,7 @@
       "consolidate",
       "engine-handlebars",
       "expand-object",
+      "generate",
       "grunt-assemble",
       "gulp",
       "gulp-assemble",
@@ -165,11 +166,10 @@
       "scaffold",
       "swig",
       "templates",
+      "update",
       "verb",
       "vinyl",
-      "vinyl-fs",
-      "generate",
-      "update"
+      "vinyl-fs"
     ],
     "lint": {
       "reflinks": true
