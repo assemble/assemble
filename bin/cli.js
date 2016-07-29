@@ -18,6 +18,7 @@ function run(cb) {
    */
 
   if (argv.cwd && cwd !== path.resolve(argv.cwd)) {
+    process.ORIG_CWD = process.cwd();
     process.chdir(argv.cwd);
     cwd = process.cwd();
   }
@@ -51,15 +52,15 @@ function run(cb) {
    * so we need to invoke it with an instance of assemble
    */
 
-  if ((app && Object.keys(app).length === 0) || (typeof app === 'function' && app.initAssemble)) {
-    var msg = util.format(errors['instance'], utils.homeRelative(assemblefile));
-    cb(new Error(msg));
-    return;
-  } else if (typeof app === 'function') {
+  if (typeof app === 'function') {
     var fn = app;
     app = assemble(argv);
     app.option(argv);
     app.use(fn);
+  } else if (Object.keys(app).length === 0) {
+    var msg = util.format(errors['instance'], utils.homeRelative(assemblefile));
+    cb(new Error(msg));
+    return;
   }
 
   assemble.initPlugins(app);
@@ -106,8 +107,10 @@ function run(cb) {
    * Show path to assemblefile
    */
 
-  var fp = utils.homeRelative(assemblefile);
-  app.log.path('using assemblefile ' + utils.colors.green('~/' + fp));
+  if (configfile) {
+    var fp = utils.homeRelative(assemblefile);
+    app.log.path('using assemblefile ' + utils.colors.green('~/' + fp));
+  }
 
   /**
    * Registert `runtimes` plugin
