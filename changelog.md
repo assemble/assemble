@@ -8,6 +8,17 @@ Changelog entries are classified using the following labels _(from [keep-a-chang
 - `removed`: for deprecated features removed in this release
 - `fixed`: for any bug fixes
 
+Custom labels used in this changelog:
+
+* `dependencies`: bumps dependencies
+* `housekeeping`: code re-organization, minor edits, or other changes that don't fit in one of the other categories.
+
+### v0.17.0
+
+**Dependencies**
+
+- bumps [assemble-core][] to 0.26.0
+
 ### v0.16.1
 
 - bump dependencies. In particular, there was a bug in [parser-front-matter][] where leading whitespace was removed after extracting front-matter, which caused the first line of indentation to be removed. This has been fixed.

@@ -9,49 +9,34 @@
 
 [![NPM version](https://img.shields.io/npm/v/assemble.svg?style=flat)](https://www.npmjs.com/package/assemble) [![NPM downloads](https://img.shields.io/npm/dm/assemble.svg?style=flat)](https://npmjs.org/package/assemble) [![Build Status](https://img.shields.io/travis/assemble/assemble.svg?style=flat)](https://travis-ci.org/assemble/assemble) [![Gitter](https://badges.gitter.im/join_chat.svg)](https://gitter.im/assemble/assemble)
 
-> Get the rocks out of your socks! Assemble makes you fast at creating web projects. Assemble is used by thousands of projects for rapid prototyping, creating themes, scaffolds, boilerplates, e-books, UI components, API documentation, blogs, building websites / static site generator, alternative to jekyll for gh-pages and more! Assemble can also be used with gulp and grunt.
+Welcome to Assemble v0.16.2!
 
-Welcome to Assemble! We're happy to announce the release of Assemble v0.16.2! If you're new to assemble, the [About](#about) section and [FAQ](#faq) might be a good place to start.
+Assemble is a command line tool and developer framework for rapid prototyping, creating themes, scaffolds, boilerplates, e-books, UI components, API documentation, blogs, building websites / static site generator, alternative to jekyll for gh-pages and more!
 
-## Developer toolkit
+_(Note that the current website, assemble.io, is for [grunt-assemble]([assemble]grunt-assemble). Thanks for your patience while we work on updating the site with documentation for the latest assemble)_.
 
-Assemble can be used standalone, or alongside the following libraries as part of a build workflow:
+## Who uses assemble?
 
-* [generate](https://github.com/generate/generate): create projects
-* [assemble](https://github.com/assemble/assemble): build projects (<= you are here)
-* [verb](https://github.com/verbose/verb): document projects
-* [update](https://github.com/update/update): maintain projects
+Assemble is used by thousands of projects, including:
 
-_(All of these applications are built on [base](https://github.com/node-base/base).)_
+* [Airbus Group](http://www.airbusgroup.com/int/en.html)
+* [hillaryclinton.com](https://www.hillaryclinton.com/)
+* [Diebold](http://www.diebold.com/)
+* [Transformicons](http://www.transformicons.com/)
+* [Barrel](https://www.barrelny.com/)
+* [yesware](https://www.yesware.com/)
+* [Amaze](https://www.amaze.com/)
+* [sennheiser](http://sennheiser-d1.com/)
+* [perf.rocks](http://perf.rocks/)
+* [Milano JS](http://milanojs.com/)
+* [AKQA](http://www.akqa.com/)
+* [huxtaburger](http://www.huxtaburger.com.au/)
+* [Typeplate](http://typeplate.com/)
+* [Angular Basics](http://www.angularjsbook.com/)
 
-## What is Assemble?
+## Features
 
-Assemble makes it easy to create, customize, generate and maintain complete web projects. Here are some highlights:
-
-* **Render templates** using any template engine, including [handlebars](http://www.handlebarsjs.com/), [lodash](https://lodash.com/), [swig](https://github.com/paularmstrong/swig) and [pug](http://jade-lang.com), and anything supported by [consolidate](https://github.com/visionmedia/consolidate.js).
-* **Engine detection**: If you register multiple engines, Assemble will automatically detect the correct one to use on each template at render time.
-* **gulp plugins**: Full support for [gulp](http://gulpjs.com) plugins. Read our [gulp FAQ](docs/src/subjects/gulp-faq.md) for more info about gulp support.
-* **Collections**: First class collection support, with paging, pagination, lists (arrays), groups and sorting. Collections even support plugins and collection-specific routes.
-* **Markdown**: Transform content from markdown or any other plain text format to HTML using plugins, middleware helpers or engines.
-* **Easy to extend**: Extremely pluggable and easy to extend with helpers, plugins, routes, middleware or engines.
-* **Data**: Use any data source for rendering templates, making it easy to begin a project using mock data and switch "live" data source later on.
-
-### Why assemble?
-
-**Why should I use assemble, instead of X?**
-
-* Powerful flow control using [gulp](http://gulpjs.com)-style [tasks](docs/tasks.md)
-* Use [middleware](docs/middleware.md) at any point in the [render cycle](docs/render-cycle.md)
-* Granular [control over context](docs/why-assemble#context)
-* [Plugin ecosystem](docs/why-assemble#plugin-ecosystem): Use any [gulp](http://gulpjs.com) plugin, or plugins from any [base](https://github.com/node-base/base) application
-* Facilitates the use of _modular, encapsulated components_ in your markup, like pages, partials and layouts, resulting in consistent design across your projects.
-* Built using [base](https://github.com/node-base/base). By learning how to use assemble, you'll also learn how to work with [verb](https://github.com/verbose/verb), [generate](https://github.com/generate/generate), [update](https://github.com/update/update) and other [base](https://github.com/node-base/base) apps.
-* Functional, expressive API
-* Intuitive CLI, with commands that map elegantly to API methods and conventions
-
-### What can I do with assemble?
-
-Use assemble to create:
+Assemble can be used to create:
 
 * [blogs](examples/blog)
 * [build system](examples/build-tool)
@@ -68,11 +53,23 @@ Use assemble to create:
 * styleguides
 * themes
 
-### Additional features
+**Project lifecycle**
 
-* templates are [vinyl](http://github.com/gulpjs/vinyl) files
-* rich plugin support, use any [gulp](http://gulpjs.com) or [base](https://github.com/node-base/base) plugin!
-* render templates with any [template engine](#engine), including [nunjucks][engine-nunjucks], [handlebars](https://github.com/jonschlinkert/engine-handlebars), [lodash][engine-lodash] and any consolidate engine!
+As a standalone library, assemble can be used for creating, building and maintaining entire web projects. But it's even more powerful when used longside the following libraries:
+
+* [generate](https://github.com/generate/generate): scaffold out new projects
+* [assemble]([github]assemble): build web projects (<= you are here)
+* [verb](https://github.com/verbose/verb): create project documention
+* [update](https://github.com/update/update): maintain projects
+
+Assemble also has a [grunt plugin]([assemble]grunt-assemble) and can be used alongside [gulp](http://gulpjs.com).
+
+**Features**
+
+* Full support for [gulp](http://gulpjs.com) plugins
+* Support for [base](https://github.com/node-base/base) plugins
+* Assemble templates are [vinyl](http://github.com/gulpjs/vinyl) files
+* render templates with any [template engine](#engine), including [nunjucks]([assemble]assemble-nunjucks), [handlebars]([github]jonschlinkert/engine-handlebars), [lodash]([github]jonschlinkert/engine-lodash) and any consolidate engine!
 * [helpers](#helpers): support for sync and async
 * [templates collections](#collections) support
 * partials and includes
@@ -85,31 +82,32 @@ Use assemble to create:
 * pagination
 * Much more!
 
-## Documentation
+## Table of contents
 
 - [Getting started](#getting-started)
-  * [Installing assemble](#installing-assemble)
+  * [Install assemble](#install-assemble)
   * [Example usage](#example-usage)
     + [Rendering templates](#rendering-templates)
     + [Running tasks](#running-tasks)
 - [CLI](#cli)
-  * [Tasks](#tasks)
-  * [Options](#options)
+  * [Running tasks](#running-tasks-1)
+  * [Specifying options](#specifying-options)
   * [Object expansion](#object-expansion)
+- [Command line options](#command-line-options)
   * [cwd](#cwd)
   * [file](#file)
 - [API](#api)
-- [Templates API](#templates-api)
-- [Render cycle](#render-cycle)
-- [File System API](#file-system-api)
-  * [.src](#src)
-  * [.dest](#dest)
-  * [.copy](#copy)
-  * [.symlink](#symlink)
-- [Task API](#task-api)
-  * [.task](#task)
-  * [.build](#build)
-  * [.watch](#watch)
+  * [Templates API](#templates-api)
+    + [.create](#create)
+  * [File System API](#file-system-api)
+    + [.src](#src)
+    + [.dest](#dest)
+    + [.copy](#copy)
+    + [.symlink](#symlink)
+  * [Task API](#task-api)
+    + [.task](#task)
+    + [.build](#build)
+    + [.watch](#watch)
 - [Plugins](#plugins)
   * [Discovering plugins](#discovering-plugins)
   * [Authoring plugins](#authoring-plugins)
@@ -130,7 +128,7 @@ _(TOC generated by [verb](https://github.com/verbose/verb) using [markdown-toc](
 
 ## Getting started
 
-### Installing assemble
+### Install assemble
 
 To use assemble's CLI, you will first need to install it globally using [npm](https://www.npmjs.com):
 
@@ -176,13 +174,13 @@ app.page('b.hbs', {content: '...'});
 app.page('c.hbs', {content: '...'});
 
 app.task('default', function() {
-   return app.toStream('pages')
-    .pipe(app.renderFile())
-    .pipe(htmlmin())
-    .pipe(app.dest('site'));
+  return app.toStream('pages') //<= push "pages" collection into stream
+    .pipe(app.renderFile()) //<= render pages with default engine (hbs)
+    .pipe(htmlmin()) //<= gulp plugin for minifying html
+    .pipe(app.dest('site')); //<= write files to the "./site" directory
 });
 
-// expose your instance of assemble
+// expose your instance of assemble to assemble's CLI
 module.exports = app;
 ```
 
@@ -194,44 +192,43 @@ Run assemble from the command line.
 $ assemble <tasks> [options]
 ```
 
-Note that for most command line options, _order or definition makes no difference_, so tasks can be defined before or after options.
+### Running tasks
 
-### Tasks
+Specify one or more space-separated tasks to run.
 
-Optionally specify one or more tasks to run. Multiple tasks are separated by a space.
+**Examples**
 
-**Example**
+Run task `foo`
 
-To run tasks `foo` and `bar`, you would enter the following in the command line:
+```sh
+$ assemble foo
+```
+
+Run tasks `foo` and `bar`
 
 ```sh
 $ assemble foo bar
 ```
 
-### Options
+### Specifying options
 
-Non-task commands and options are prefixed with `--` and are specified using any of the following formats:
+Non-task options are prefixed with `--`.
 
-* single value, like `--foo`, or
-* key-value pair, like `--foo=bar`. Also, key-value pairs may be separated by either `=` or a single whitespace, so `--foo=bar` and `--foo=bar` should both work.
+**Examples**
 
-Additionally, as mentioned above, tasks may be defined before or after options, so both of the following are equivalent:
+Set the `--cwd` to run an assemblefile.js in a different directory:
 
 ```sh
-$ assemble --cwd foo bar
-# or 
-$ assemble foo bar --cwd
+$ assemble --cwd=docs
 ```
 
-**Example**
-
-To emit views as they're loaded and log them to `stderr`, run assemble with the following command:
+Emit views as they're loaded and log them to `stderr`:
 
 ```sh
-$ assemble --emit view
-# or
 $ assemble --emit=view
 ```
+
+See more [command line options](#command line options)
 
 ### Object expansion
 
@@ -283,6 +280,8 @@ $ assemble --option.foo.bar.baz=qux
 # {options: foo: { bar: { baz: 'qux' }}}}
 ```
 
+## Command line options
+
 ### cwd
 
 Change the `cwd` for the `assemblefile.js` to run, optionally specifying any tasks to run:
@@ -305,7 +304,9 @@ If successful, in the command line, you should see something like this:
 
 ### file
 
-The name of which file to load when running, defaulting to `assemblefile.js`:
+Specify the name of the config file for assemble's CLI to run, the default is `assemblefile.js`.
+
+**Example**
 
 ```sh
 $ assemble --file assemblefile.dev.js
@@ -328,19 +329,23 @@ var assemble = require('assemble');
 var app = assemble();
 ```
 
-## Templates API
+### Templates API
 
-Assemble has an extensive API for working with templates and template collections. In fact, the entire API from the [templates](https://github.com/jonschlinkert/templates) library is available on Assemble.
+Assemble exposes the entire API from the [templates](https://github.com/jonschlinkert/templates) library for working with templates and template collections.
 
-While we work on getting the assemble docs updated with these methods you can visit [the templates library](https://github.com/jonschlinkert/templates) to learn more about the full range of features and options.
+#### .create
 
-## Render cycle
+Create a template collection.
 
-TODO
+```js
+app.create('includes');
+```
+
+Add views to the collection.
 
 ***
 
-## File System API
+### File System API
 
 Assemble offers the following low-level methods for working with the file system:
 
@@ -351,7 +356,7 @@ Assemble offers the following low-level methods for working with the file system
 
 Assemble has first-class support for [vinyl-fs](http://github.com/wearefractal/vinyl-fs), so any [gulp](http://gulpjs.com) plugin can be used in your assemble pipeline.
 
-### .src
+#### .src
 
 Create a [vinyl](http://github.com/gulpjs/vinyl) stream. Takes glob patterns or filepaths to the source files to read.
 
@@ -369,7 +374,7 @@ app.src('src/*.hbs');
 app.src('src/*.hbs', { layout: 'default' });
 ```
 
-### .dest
+#### .dest
 
 Specify a destination for processed files.
 
@@ -384,7 +389,7 @@ Specify a destination for processed files.
 app.dest('dist/');
 ```
 
-### .copy
+#### .copy
 
 Copy files with the given glob `patterns` to the specified `dest`.
 
@@ -403,7 +408,7 @@ app.task('assets', function() {
 });
 ```
 
-### .symlink
+#### .symlink
 
 Same as `.src` but takes glob patterns or filepaths for the symlinks to read.
 
@@ -419,7 +424,7 @@ app.symlink('src/*.hbs');
 
 ***
 
-## Task API
+### Task API
 
 Assemble has the following methods for running tasks and controlling workflows:
 
@@ -427,7 +432,7 @@ Assemble has the following methods for running tasks and controlling workflows:
 * [build](#build)
 * [watch](#watch)
 
-### .task
+#### .task
 
 Define a task to be run when the task is called.
 
@@ -445,7 +450,7 @@ app.task('default', function() {
 });
 ```
 
-### .build
+#### .build
 
 Run one or more tasks.
 
@@ -463,7 +468,7 @@ app.build(['foo', 'bar'], function(err) {
 });
 ```
 
-### .watch
+#### .watch
 
 Watch files, run one or more tasks when a watched file changes.
 
@@ -521,7 +526,7 @@ In the meantime, you might find the [WIP docs](docs/src/content) useful. The [un
 
 **Is the assemble website up-to-date?**
 
-No, as mentioned above, it's completely out-of-date. If you're using [grunt-assemble](http://assemble.io), some of the documentation at assemble.io might still be useful. If you're using assemble v0.6.0 and higher, the documentation is probably wrong in almost every way.
+No, as mentioned above, it's completely out-of-date. If you're using [grunt-assemble]([assemble]grunt-assemble), some of the documentation at assemble.io might still be useful. If you're using assemble v0.6.0 and higher, the documentation is probably wrong in almost every way.
 
 We're actively (daily) working on a refactor and it's a very high priority.
 
@@ -553,7 +558,7 @@ Here are some suggestions!
 
 * If you get like Assemble and want to tweet about it, please feel free to mention `@assemble` or use the `#assemble` hashtag
 * Tell us about [your assemble project](https://github.com/assemble/assemble/issues/300)
-* Show your love by starring [Assemble](https://github.com/assemble/assemble) and `assemble`
+* Show your love by starring [Assemble]([github]assemble) and `assemble`
 * Get implementation help on [StackOverflow](http://stackoverflow.com/questions/tagged/assemble) (please use the `assemble` tag in questions)
 * **Gitter** Discuss Assemble with us on [Gitter](https://gitter.im/assemble/assemble)
 * If you publish an assemble plugin, thank you! To make your project as discoverable as possible, please add the keyword `assembleplugin` to package.json.
@@ -599,6 +604,17 @@ Changelog entries are classified using the following labels _(from [keep-a-chang
 * `deprecated`: for once-stable features removed in upcoming releases
 * `removed`: for deprecated features removed in this release
 * `fixed`: for any bug fixes
+
+Custom labels used in this changelog:
+
+* `dependencies`: bumps dependencies
+* `housekeeping`: code re-organization, minor edits, or other changes that don't fit in one of the other categories.
+
+### v0.17.0
+
+**Dependencies**
+
+* bumps [assemble-core](https://github.com/assemble/assemble-core) to 0.26.0
 
 ### v0.16.1
 
@@ -662,7 +678,7 @@ Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.22.0 to t
 
 ### v0.6.0
 
-* Major refactor. Assemble was completely re-written from the ground-up as a standalone node.js library and is no longer a grunt plugin. Grunt plugin support has been moved to [grunt-assemble](http://assemble.io). Please see that repo for additional details.
+* Major refactor. Assemble was completely re-written from the ground-up as a standalone node.js library and is no longer a grunt plugin. Grunt plugin support has been moved to [grunt-assemble]([assemble]grunt-assemble). Please see that repo for additional details.
 
 ### Contributing
 
@@ -691,4 +707,4 @@ Released under the [MIT license](https://github.com/assemble/assemble/blob/maste
 
 ***
 
-_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.1.28, on July 29, 2016._
+_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.1.28, on August 06, 2016._
