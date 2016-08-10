@@ -47,7 +47,6 @@ _(Note that the current website assemble.io, is for [grunt-assemble](https://git
     + [.src](#src)
     + [.dest](#dest)
     + [.copy](#copy)
-    + [.symlink](#symlink)
     + [.renderFile](#renderfile)
   * [Task API](#task-api)
     + [.task](#task)
@@ -163,7 +162,7 @@ var assemble = require('assemble');
 var app = assemble();
 
 // add a "page"  nd render it!
-app.page('home.hbs', {content: 'This is '})
+app.page('home.hbs', {content: 'This is {{title}}'})
   .render({title: 'Home!'}, function(err, view) {
     if (err) throw err;
     console.log(view.content);
@@ -540,20 +539,6 @@ app.task('assets', function() {
 });
 ```
 
-#### .symlink
-
-Same as `.src` but takes glob patterns or filepaths for the symlinks to read.
-
-**Params**
-
-* `glob` **{String|Array}**: Glob patterns or file paths
-
-**Example**
-
-```js
-app.symlink('src/*.hbs');
-```
-
 #### .renderFile
 
 Renders files as they are pushed through the stream.
@@ -645,12 +630,12 @@ app.task('watch', function() {
 
 Plugins from any applications built on [base](https://github.com/node-base/base) should work with Assemble and can be used in your `assemblefile.js`:
 
-* [base][base-plugin]: find base plugins on npm using the `baseplugin` keyword
-* [assemble][assemble-plugin]: find assemble plugins on npm using the `assembleplugin` keyword
-* [generate][generate-plugin]: find generate plugins on npm using the `generateplugin` keyword
-* [templates][templates-plugin]: find templates plugins on npm using the `templatesplugin` keyword
+* [base](https://www.npmjs.com/browse/keyword/baseplugin): find base plugins on npm using the `baseplugin` keyword
+* [assemble](https://www.npmjs.com/browse/keyword/assembleplugin): find assemble plugins on npm using the `assembleplugin` keyword
+* [generate](https://www.npmjs.com/browse/keyword/generateplugin): find generate plugins on npm using the `generateplugin` keyword
+* [templates](https://www.npmjs.com/browse/keyword/templatesplugin): find templates plugins on npm using the `templatesplugin` keyword
 * [update][update-plugin]: find update plugins on npm using the `updateplugin` keyword
-* [verb][verb-plugin]: find verb plugins on npm using the `verbplugin` keyword
+* [verb](https://www.npmjs.com/browse/keyword/verbplugin): find verb plugins on npm using the `verbplugin` keyword
 
 ### Authoring plugins
 
@@ -668,7 +653,7 @@ Have questions, suggestions, or want to discuss assemble? Join the conversation 
 
 * [Documentation](docs)
 * [API documentation](docs/api)
-* [Generaters maintained by the core team](https://github.com/generate)
+* [Generators maintained by the core team](https://github.com/generate)
 
 ### FAQ
 
