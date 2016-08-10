@@ -11,6 +11,12 @@
 
 Looking for the grunt plugin? Please visit [grunt-assemble](https://github.com/assemble/grunt-assemble).
 
+**Jump to**
+
+* [What is assemble?](#what-is-assemble)
+* [Who uses assemble?](#who-uses-assemble)
+* [Getting started](#getting-started)
+
 _(Note that the current website assemble.io, is for [grunt-assemble](https://github.com/assemble/grunt-assemble). Thanks for your patience while we work on updating the site with documentation for the latest assemble)_.
 
 ## Table of contents
