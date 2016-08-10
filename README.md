@@ -9,86 +9,21 @@
 
 [![NPM version](https://img.shields.io/npm/v/assemble.svg?style=flat)](https://www.npmjs.com/package/assemble) [![NPM downloads](https://img.shields.io/npm/dm/assemble.svg?style=flat)](https://npmjs.org/package/assemble) [![Build Status](https://img.shields.io/travis/assemble/assemble.svg?style=flat)](https://travis-ci.org/assemble/assemble) [![Gitter](https://badges.gitter.im/join_chat.svg)](https://gitter.im/assemble/assemble)
 
-Welcome to Assemble v0.16.2!
+Looking for the grunt plugin? Please visit [grunt-assemble](https://github.com/assemble/grunt-assemble).
 
-Assemble is a command line tool and developer framework for rapid prototyping, creating themes, scaffolds, boilerplates, e-books, UI components, API documentation, blogs, building websites / static site generator, alternative to jekyll for gh-pages and more!
-
-_(Note that the current website, assemble.io, is for [grunt-assemble]([assemble]grunt-assemble). Thanks for your patience while we work on updating the site with documentation for the latest assemble)_.
-
-## Who uses assemble?
-
-Assemble is used by thousands of projects, including:
-
-* [Airbus Group](http://www.airbusgroup.com/int/en.html)
-* [hillaryclinton.com](https://www.hillaryclinton.com/)
-* [Diebold](http://www.diebold.com/)
-* [Transformicons](http://www.transformicons.com/)
-* [Barrel](https://www.barrelny.com/)
-* [yesware](https://www.yesware.com/)
-* [Amaze](https://www.amaze.com/)
-* [sennheiser](http://sennheiser-d1.com/)
-* [perf.rocks](http://perf.rocks/)
-* [Milano JS](http://milanojs.com/)
-* [AKQA](http://www.akqa.com/)
-* [huxtaburger](http://www.huxtaburger.com.au/)
-* [Typeplate](http://typeplate.com/)
-* [Angular Basics](http://www.angularjsbook.com/)
-
-## Features
-
-Assemble can be used to create:
-
-* [blogs](examples/blog)
-* [build system](examples/build-tool)
-* documentation
-* e-books
-* front-end UI
-* [generate boilerplates](examples/boilerplates)
-* [generate targets](examples/targets)
-* landing pages
-* [project generator](examples/generator)
-* [project scaffolds](examples/scaffold)
-* rapid prototyping
-* static site generator
-* styleguides
-* themes
-
-**Project lifecycle**
-
-As a standalone library, assemble can be used for creating, building and maintaining entire web projects. But it's even more powerful when used longside the following libraries:
-
-* [generate](https://github.com/generate/generate): scaffold out new projects
-* [assemble]([github]assemble): build web projects (<= you are here)
-* [verb](https://github.com/verbose/verb): create project documention
-* [update](https://github.com/update/update): maintain projects
-
-Assemble also has a [grunt plugin]([assemble]grunt-assemble) and can be used alongside [gulp](http://gulpjs.com).
-
-**Features**
-
-* Full support for [gulp](http://gulpjs.com) plugins
-* Support for [base](https://github.com/node-base/base) plugins
-* Assemble templates are [vinyl](http://github.com/gulpjs/vinyl) files
-* render templates with any [template engine](#engine), including [nunjucks]([assemble]assemble-nunjucks), [handlebars]([github]jonschlinkert/engine-handlebars), [lodash]([github]jonschlinkert/engine-lodash) and any consolidate engine!
-* [helpers](#helpers): support for sync and async
-* [templates collections](#collections) support
-* partials and includes
-* layouts
-* pages
-* custom template "types"
-* pagination
-* [permalinks][assemble-permalinks]
-* [middleware](#middleware) can be used to tranform files at any stage in the render cycle
-* pagination
-* Much more!
+_(Note that the current website assemble.io, is for [grunt-assemble](https://github.com/assemble/grunt-assemble). Thanks for your patience while we work on updating the site with documentation for the latest assemble)_.
 
 ## Table of contents
 
+- [Overview](#overview)
+  * [Who uses assemble?](#who-uses-assemble)
+  * [What is assemble?](#what-is-assemble)
+  * [Rapid development toolkit](#rapid-development-toolkit)
+  * [Features](#features)
 - [Getting started](#getting-started)
-  * [Install assemble](#install-assemble)
-  * [Example usage](#example-usage)
-    + [Rendering templates](#rendering-templates)
-    + [Running tasks](#running-tasks)
+  * [Installing assemble](#installing-assemble)
+  * [Rendering templates](#rendering-templates)
+  * [Running tasks](#running-tasks)
 - [CLI](#cli)
   * [Running tasks](#running-tasks-1)
   * [Specifying options](#specifying-options)
@@ -99,11 +34,15 @@ Assemble also has a [grunt plugin]([assemble]grunt-assemble) and can be used alo
 - [API](#api)
   * [Templates API](#templates-api)
     + [.create](#create)
+    + [View types](#view-types)
+    + [.engine](#engine)
+    + [.render](#render)
   * [File System API](#file-system-api)
     + [.src](#src)
     + [.dest](#dest)
     + [.copy](#copy)
     + [.symlink](#symlink)
+    + [.renderFile](#renderfile)
   * [Task API](#task-api)
     + [.task](#task)
     + [.build](#build)
@@ -126,9 +65,80 @@ Assemble also has a [grunt plugin]([assemble]grunt-assemble) and can be used alo
 
 _(TOC generated by [verb](https://github.com/verbose/verb) using [markdown-toc](https://github.com/jonschlinkert/markdown-toc))_
 
+## Overview
+
+### Who uses assemble?
+
+Assemble is used by thousands of developers and teams in more than 170 countries! Here are a few examples of sites built with assemble:
+
+* [Airbus Group](http://www.airbusgroup.com/int/en.html)
+* [hillaryclinton.com](https://www.hillaryclinton.com/)
+* [Diebold](http://www.diebold.com/)
+* [Transformicons](http://www.transformicons.com/)
+* [Barrel](https://www.barrelny.com/)
+* [yesware](https://www.yesware.com/)
+* [Amaze](https://www.amaze.com/)
+* [sennheiser](http://sennheiser-d1.com/)
+* [perf.rocks](http://perf.rocks/)
+* [Milano JS](http://milanojs.com/)
+* [AKQA](http://www.akqa.com/)
+* [huxtaburger](http://www.huxtaburger.com.au/)
+* [Typeplate](http://typeplate.com/)
+* [Angular Basics](http://www.angularjsbook.com/)
+
+Is your website, blog or project built with assemble? Please [let us know about it](../../issues/300)!
+
+### What is assemble?
+
+Assemble is a command line tool and developer framework that can be used for
+
+* Rapid prototyping
+* An alternative to jekyll
+* Static site generation: [hillaryclinton.com](https://medium.com/git-out-the-vote/fear-and-page-loading-on-the-campaign-trail-7163ed42e6d0#.i512hhdxv) was built with Assemble
+* Landing pages
+* A/B testing
+* [blogs](examples/blog)
+* Styleguides
+* Themes
+* UI components
+* [Project scaffolder](examples/generator) ([generate](https://github.com/generate/generate) is also built on assemble)
+* [build tool](examples/build-tool)
+* Documentation ([verb](https://github.com/verbose/verb) is built on assemble)
+* Generate [boilerplates](examples/boilerplates), [scaffolds](examples/scaffold), and [targets](examples/targets)
+* E-books ([Angular Basics](http://www.angularjsbook.com/) was built with assemble)
+* Much more!
+
+### Rapid development toolkit
+
+Assemble can be used standalone, but it's even more powerful when used alongside the following libraries:
+
+* [generate](https://github.com/generate/generate): scaffold out new projects from the command line
+* [assemble](https://github.com/assemble/): <= you are here
+* [verb](https://github.com/verbose/verb): generate documention for your projects
+* [update](https://github.com/update/update): keep your projects up-to-date
+
+### Features
+
+Here are just a few of the features assemble offers:
+
+* Full support for [gulp](http://gulpjs.com) and [base](https://github.com/node-base/base) plugins
+* Assemble templates are [vinyl](http://github.com/gulpjs/vinyl) files
+* Render templates with any [template engine](#engine), including [nunjucks](https://github.com/assemble/assemble-nunjucks), [handlebars](https://github.com/jonschlinkert/engine-handlebars), [lodash](https://github.com/jonschlinkert/engine-lodash) and any consolidate engine!
+* Use multiple engines, assemble can detect the one to use based on file extension
+* [helpers](#helpers): support for sync and async
+* [Templates collections](#collections)
+* Pages
+* Partials/includes
+* [Layouts](https://github.com/doowb/layouts)
+* Pagination
+* [permalinks][assemble-permalinks]
+* [middleware](#middleware) can be used to tranform files at any stage in the render cycle
+* Generate pages from JSON
+* Much more!
+
 ## Getting started
 
-### Install assemble
+### Installing assemble
 
 To use assemble's CLI, you will first need to install it globally using [npm](https://www.npmjs.com):
 
@@ -138,29 +148,24 @@ $ npm --global install assemble
 
 This adds the `assemble` command to your system path, allowing it to be run from any directory.
 
-### Example usage
+### Rendering templates
 
-#### Rendering templates
-
-Render a template with with [handlebars](http://www.handlebarsjs.com/):
+Render a template _(the default engine is [handlebars](https://github.com/jonschlinkert/engine-handlebars), but you can use any engine you want)_:
 
 ```js
 var assemble = require('assemble');
 var app = assemble();
-var locals = {title: 'Home!'};
 
-// add a "page" 
-app.page('home.hbs', {content: 'This is '});
-
-// render it!
-app.render('home.hbs', locals, function(err, view) {
-  if (err) throw err;
-  console.log(view.content);
-  //=> 'This is Home!'
-});
+// add a "page"  nd render it!
+app.page('home.hbs', {content: 'This is '})
+  .render({title: 'Home!'}, function(err, view) {
+    if (err) throw err;
+    console.log(view.content);
+    //=> 'This is Home!'
+  });
 ```
 
-#### Running tasks
+### Running tasks
 
 Create an `assemblefile.js` and add tasks to run:
 
@@ -331,17 +336,138 @@ var app = assemble();
 
 ### Templates API
 
-Assemble exposes the entire API from the [templates](https://github.com/jonschlinkert/templates) library for working with templates and template collections.
+Assemble exposes the entire API from the [templates](https://github.com/jonschlinkert/templates) library for working with templates and template collections. The API is much more extensive than what is documented here, see [templates](https://github.com/jonschlinkert/templates) for more documentation.
+
+**Templates and Views**
+
+In the following documentation, the terms "template" and "view" both refer to _aspects_ of the same thing. Here's what they mean:
+
+* `template`: an actual template string
+* `view`: a object with a `content` property that contains the template string. Since views are instances of [vinyl](http://github.com/gulpjs/vinyl), you can think of a view as a "vinyl file for templates".
 
 #### .create
 
-Create a template collection.
+Create a template collection for caching [views](https://github.com/cpsubrian/node-views):
 
 ```js
-app.create('includes');
+app.create('includes', {viewType: 'partial'});
 ```
 
-Add views to the collection.
+**Options**
+
+* `cwd` **{String}**: the base directory to use when loading templates onto the collection from a glob
+
+* `viewType`: **{String|Array}**: One or more [view types](#view-types) to associate with the collection
+
+**Add views**
+
+Add a view to the collection:
+
+```js
+app.include('foo.md', {contents: new Buffer('this is contents')});
+```
+
+Add multiple views:
+
+```js
+app.includes({
+  path: 'foo.md', contents: new Buffer('this is contents'),
+  path: 'bar.md', contents: new Buffer('this is contents'),
+  path: 'baz.md', contents: new Buffer('this is contents')
+});
+
+// or pass a glob (optionally override `cwd` defined on `.create`)
+app.includes('*.{md,hbs}', {cwd: 'templates/includes'});
+```
+
+#### View types
+
+View types are defined on a collection to determine how a templates in the collection will be handled throughout the [render cycle][].
+
+**Available types**
+
+Assemble supports three view types:
+
+* `partial`: Views with this type are can be used as "partials" (or "partial views"), which can be injected into other views. Useful for components, document fragments, or other snippets of reusable code or content. These views are passed to rendering engines to be used as partials, or variables on the context if partials are not directly supported.
+* `layout`: allows views to "wrap" other views (of any type, including other layouts or partials) with common code or content.
+* `renderable`: Views that have a one-to-one relationship with rendered files that will eventually be visible to a user or visitor to a website. For example: pages or blog posts. The `renderable` view type is automatically set if no other view types are set.
+
+**Defining view types**
+
+You can define view types when a collection is created:
+
+```js
+app.create('snippet', {viewType: 'partial'});
+```
+
+Or directly on the collection options:
+
+```js
+app.create('snippet');
+app.snippets.option('viewType', ['partial']); // string or array
+```
+
+#### .engine
+
+Register template engine for rendering views with the given `ext`:
+
+```js
+app.engine(ext, fn);
+```
+
+**Params**
+
+* `ext` **{String}**: The file extension of files to render with the engine
+* `fn` **{Function}**: Async function that follows [consolidate](https://github.com/visionmedia/consolidate.js) engine conventions, and takes three arguments: `str`, `locals` and `callback`.
+
+**Example**
+
+```js
+// this engine is already registered in assemble
+app.engine('hbs', require('engine-handlebars'));
+
+// create a custom engine
+app.engine('txt', function(str, locals, cb) {
+  // render `str` with `locals`
+  cb(null, str);
+});
+```
+
+You can tell assemble to use the same engine for all file extensions by setting a value on `options.engine`.
+
+**Example**
+
+```js
+// use engine `hbs` for rendering all files
+app.option('engine', 'hbs');
+```
+
+Or, if you're using [.renderFile](#renderFile), you can force a specific engine to be used by passing the engine name.
+
+**Example**
+
+Use the `hbs` engine to render all templates:
+
+```js
+app.src('templates/*.*')
+  .pipe(app.renderFile('hbs'))
+```
+
+#### .render
+
+Render a view with the given `locals` and `callback`.
+
+```js
+app.render(view, {title: 'Foo'}, function(err, view) {
+  // `view` is an object with a rendered `content` property
+});
+```
+
+**Params**
+
+* `view` **{Object|String}**: The view to render
+* `locals` **{Object}**: Locals to pass to template engine for rendering templates in `view`
+* `callback` **{Function}**
 
 ***
 
@@ -420,6 +546,28 @@ Same as `.src` but takes glob patterns or filepaths for the symlinks to read.
 
 ```js
 app.symlink('src/*.hbs');
+```
+
+#### .renderFile
+
+Renders files as they are pushed through the stream.
+
+```js
+app.src('*.hbs')
+  .pipe(app.renderfile())
+  .pipe(app.dest('foo'));
+```
+
+Force a specific engine to be used for rendering files:
+
+```js
+app.engine('txt', function(str, locals, cb) {
+  cb(null, str);
+});
+
+app.src('*.hbs')
+  .pipe(app.renderfile('txt')) //<= use engine `txt`
+  .pipe(app.dest('foo'));
 ```
 
 ***
@@ -526,7 +674,7 @@ In the meantime, you might find the [WIP docs](docs/src/content) useful. The [un
 
 **Is the assemble website up-to-date?**
 
-No, as mentioned above, it's completely out-of-date. If you're using [grunt-assemble]([assemble]grunt-assemble), some of the documentation at assemble.io might still be useful. If you're using assemble v0.6.0 and higher, the documentation is probably wrong in almost every way.
+No, as mentioned above, it's completely out-of-date. If you're using [grunt-assemble](https://github.com/assemble/grunt-assemble), some of the documentation at assemble.io might still be useful. If you're using assemble v0.6.0 and higher, the documentation is probably wrong in almost every way.
 
 We're actively (daily) working on a refactor and it's a very high priority.
 
@@ -558,7 +706,7 @@ Here are some suggestions!
 
 * If you get like Assemble and want to tweet about it, please feel free to mention `@assemble` or use the `#assemble` hashtag
 * Tell us about [your assemble project](https://github.com/assemble/assemble/issues/300)
-* Show your love by starring [Assemble]([github]assemble) and `assemble`
+* Show your love by starring [Assemble](https://github.com/assemble/) and `assemble`
 * Get implementation help on [StackOverflow](http://stackoverflow.com/questions/tagged/assemble) (please use the `assemble` tag in questions)
 * **Gitter** Discuss Assemble with us on [Gitter](https://gitter.im/assemble/assemble)
 * If you publish an assemble plugin, thank you! To make your project as discoverable as possible, please add the keyword `assembleplugin` to package.json.
@@ -678,7 +826,7 @@ Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.22.0 to t
 
 ### v0.6.0
 
-* Major refactor. Assemble was completely re-written from the ground-up as a standalone node.js library and is no longer a grunt plugin. Grunt plugin support has been moved to [grunt-assemble]([assemble]grunt-assemble). Please see that repo for additional details.
+* Major refactor. Assemble was completely re-written from the ground-up as a standalone node.js library and is no longer a grunt plugin. Grunt plugin support has been moved to [grunt-assemble](https://github.com/assemble/grunt-assemble). Please see that repo for additional details.
 
 ### Contributing
 
@@ -707,4 +855,4 @@ Released under the [MIT license](https://github.com/assemble/assemble/blob/maste
 
 ***
 
-_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.1.28, on August 06, 2016._
+_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.1.30, on August 10, 2016._
