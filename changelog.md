@@ -13,6 +13,12 @@ Custom labels used in this changelog:
 * `dependencies`: bumps dependencies
 * `housekeeping`: code re-organization, minor edits, or other changes that don't fit in one of the other categories.
 
+### v0.18.0
+
+**Dependencies**
+
+- bumps [assemble-core][] to 0.27.0
+
 ### v0.17.0
 
 **Dependencies**
