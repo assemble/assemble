@@ -20,9 +20,7 @@
   "files": [
     "bin",
     "index.js",
-    "lib",
-    "LICENSE",
-    "README.md"
+    "lib"
   ],
   "main": "index.js",
   "bin": {
@@ -35,36 +33,36 @@
     "test": "mocha"
   },
   "dependencies": {
-    "assemble-core": "^0.26.0",
+    "assemble-core": "^0.27.0",
     "assemble-loader": "^0.6.1",
     "base-argv": "^0.5.0",
     "base-cli-process": "^0.1.18",
     "base-config": "^0.5.2",
-    "base-questions": "^0.7.4",
+    "base-questions": "^0.9.1",
     "base-runtimes": "^0.2.0",
-    "cross-spawn": "^4.0.0",
+    "cross-spawn": "^5.0.1",
     "engine-handlebars": "^0.8.0",
-    "export-files": "^2.1.1",
     "fs-exists-sync": "^0.1.0",
     "global-modules": "^0.2.3",
-    "is-valid-app": "^0.2.0",
-    "lazy-cache": "^2.0.1",
+    "is-valid-app": "^0.2.1",
+    "lazy-cache": "^2.0.2",
     "log-utils": "^0.2.1",
-    "parser-front-matter": "^1.5.0",
-    "resolve-dir": "^0.1.1",
-    "yargs-parser": "^2.4.1"
+    "parser-front-matter": "^1.6.2",
+    "resolve-dir": "^1.0.0",
+    "yargs-parser": "^4.2.0"
   },
   "devDependencies": {
     "base-store": "^0.4.4",
     "base-test-runner": "^0.2.0",
-    "base-test-suite": "^0.1.12",
+    "base-test-suite": "^0.3.1",
+    "export-files": "^2.1.1",
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
-    "gulp-format-md": "^0.1.9",
-    "gulp-istanbul": "^1.0.0",
-    "gulp-mocha": "^2.2.0",
-    "gulp-unused": "^0.1.2",
-    "mocha": "^2.5.3"
+    "gulp-format-md": "^0.1.11",
+    "gulp-istanbul": "^1.1.1",
+    "gulp-mocha": "^3.0.1",
+    "gulp-unused": "^0.2.0",
+    "mocha": "^3.2.0"
   },
   "keywords": [
     "assemble",
@@ -139,35 +137,27 @@
       ]
     },
     "reflinks": [
-      "assemble",
       "assemble-core",
-      "assemble-fs",
       "assemble-handle",
       "assemble-loader",
-      "bach",
+      "assemble-permalinks",
       "base",
       "base-data",
       "base-watch",
-      "boilerplate",
       "composer",
       "consolidate",
-      "engine-handlebars",
+      "consolidatejs",
       "expand-object",
       "generate",
-      "grunt-assemble",
+      "generate-assemble",
+      "grunt",
       "gulp",
       "gulp-assemble",
-      "handlebars",
-      "lazy-cache",
-      "less",
-      "lodash",
       "parser-front-matter",
-      "pug",
-      "scaffold",
-      "swig",
       "templates",
       "update",
       "verb",
+      "views",
       "vinyl",
       "vinyl-fs"
     ],
@@ -176,9 +166,12 @@
     }
   },
   "lintDeps": {
-    "ignore": [
-      "docs",
-      "examples"
-    ]
+    "files": {
+      "ignore": [
+        "docs",
+        "examples",
+        "support"
+      ]
+    }
   }
 }
