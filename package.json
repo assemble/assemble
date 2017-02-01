@@ -33,7 +33,7 @@
     "test": "mocha"
   },
   "dependencies": {
-    "assemble-core": "^0.27.1",
+    "assemble-core": "^0.28.0",
     "assemble-loader": "^0.6.1",
     "base-argv": "^0.5.0",
     "base-cli-process": "^0.1.18",
@@ -55,7 +55,7 @@
   "devDependencies": {
     "base-store": "^0.4.4",
     "base-test-runner": "^0.2.0",
-    "base-test-suite": "^0.3.2",
+    "base-test-suite": "^0.4.0",
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
     "gulp-format-md": "^0.1.11",
