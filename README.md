@@ -743,12 +743,12 @@ Please read our [gulp FAQ](docs/src/subjects/gulp-faq.md) for more information.
 
 Get updates on Assemble's development and chat with the project maintainers and community members.
 
-* Follow [@assemble on Twitter](https://twitter.com/assemble).
+* Follow [@assemblejs on Twitter](https://twitter.com/assemblejs).
 
-* If you get like Assemble and want to tweet about it, please feel free to mention `@assemble` or use the `#assemble` hashtag
+* If you like Assemble and want to tweet about it, please feel free to mention `@assemblejs` or use the `#assemble` hashtag
 
 * Read and subscribe to [The Official Assemble Blog](https://github.com/assemble/assemble/blog).
-* Join [the official Slack room](https://assemble-slack.herokuapp.com).
+* Join [the official Slack room](https://assemble.github.io/slack).
 * Join the [conversation on Gitter](https://gitter.im/assemble/assemble?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 
 * Tell us about [your assemble project](https://github.com/assemble/assemble/issues/300)
