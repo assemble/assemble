@@ -741,16 +741,22 @@ Please read our [gulp FAQ](docs/src/subjects/gulp-faq.md) for more information.
 
 ### Community
 
-Are you using assemble in your project? Have you published an assemble project and want to share your project with the world?
+Get updates on Assemble's development and chat with the project maintainers and community members.
 
-Here are some suggestions!
+* Follow [@assemble on Twitter](https://twitter.com/assemble).
 
 * If you get like Assemble and want to tweet about it, please feel free to mention `@assemble` or use the `#assemble` hashtag
+
+* Read and subscribe to [The Official Assemble Blog](https://github.com/assemble/assemble/blog).
+* Join [the official Slack room](https://assemble-slack.herokuapp.com).
+* Join the [conversation on Gitter](https://gitter.im/assemble/assemble?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+
 * Tell us about [your assemble project](https://github.com/assemble/assemble/issues/300)
-* Show your love by starring [Assemble](https://github.com/assemble/) and `assemble`
-* Get implementation help on [StackOverflow](http://stackoverflow.com/questions/tagged/assemble) (please use the `assemble` tag in questions)
+* Show your love by starring Assemble!
+* Get implementation help on [StackOverflow](http://stackoverflow.com/questions/tagged/assemble) (please use the [assemble](https://stackoverflow.com/questions/tagged/assemble)`assemble` tag in questions)
 * **Gitter** Discuss Assemble with us on [Gitter](https://gitter.im/assemble/assemble)
-* If you publish an assemble plugin, thank you! To make your project as discoverable as possible, please add the keyword `assembleplugin` to package.json.
+
+* For maximum discoverability, plugin developers should use the keyword `assembleplugin` on packages which modify or add to the functionality of Assemble when distributing through [npm](https://www.npmjs.com/browse/keyword/assemble) or similar delivery mechanisms.
 
 **Contributing**
 
@@ -799,23 +805,29 @@ Custom labels used in this changelog:
 * `dependencies`: bumps dependencies
 * `housekeeping`: code re-organization, minor edits, or other changes that don't fit in one of the other categories.
 
-### v0.18.0
+## [0.19.0] - 2017-02-01
+
+**dependencies**
+
+* Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.28.0 to take advantage of new methods available on `list`s
+
+### [0.18.0]
 
 **Dependencies**
 
 * bumps [assemble-core](https://github.com/assemble/assemble-core) to 0.27.0
 
-### v0.17.0
+### [0.17.0]
 
 **Dependencies**
 
 * bumps [assemble-core](https://github.com/assemble/assemble-core) to 0.26.0
 
-### v0.16.1
+### [0.16.1]
 
 * bump dependencies. In particular, there was a bug in [parser-front-matter](https://github.com/jonschlinkert/parser-front-matter) where leading whitespace was removed after extracting front-matter, which caused the first line of indentation to be removed. This has been fixed.
 
-### v0.16.0
+### [0.16.0]
 
 * **Added**: `.log()` method, which also exposes additional methods, like `.log.info()`, `.log.success()`, etc.
 * docs were moved to `support/docs`, so that markdown docs can be built to the `docs` directory
@@ -823,11 +835,11 @@ Custom labels used in this changelog:
 * Moves some private prototype methods to static methods, to allow them to be used without creating an instance
 * Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.25.0
 
-### v0.15.0
+### [0.15.0]
 
 * Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.24.0 to get the latest versions of [templates](https://github.com/jonschlinkert/templates) and [base-data](https://github.com/node-base/base-data) which removes the `renameKey` option from the `.data` method. Use the `namespace` option instead.
 
-### v0.14.0
+### [0.14.0]
 
 Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.22.0 to take advantage of fixes and improvements to lookup methods: `.find` and `getView`. No API changes were made. Please [let us know](../../issues) if regressions occur.
 
@@ -835,7 +847,7 @@ Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.22.0 to t
 * Improvements to lookup functions: `app.getView()` and `app.find()`
 * Bumps [base](https://github.com/node-base/base) to take advantages of code optimizations.
 
-### v0.13.0
+### [0.13.0]
 
 * Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.21.0. Support for the `queue` property was removed on collections. See [assemble-core](https://github.com/assemble/assemble-core) for additional details.
 * Fixes bug where glob parent was not being used for `file.base`, causing dest directory to be relative to cwd instead of glob parent in some cases.
@@ -844,34 +856,34 @@ Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.22.0 to t
 * Includes a fix from [assemble-loader](https://github.com/assemble/assemble-loader), where a bug caused `renameKey` to not always be used when defined on collection loader options.
 * Includes fixes from templates for resolving layouts
 
-### v0.12.0
+### [0.12.0]
 
 * Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.18.0, which includes a bump in [templates](https://github.com/jonschlinkert/templates). See the changelog on the templates library for more details.
 
-### v0.11.0
+### [0.11.0]
 
 * `debug` methods and related code have been removed
 * Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.17.0
 
-### v0.10.0
+### [0.10.0]
 
 * Adds support for using es6 generators with tasks
 * Bumps [assemble-core](https://github.com/assemble/assemble-core) to v0.15.0
 
-### v0.9.0
+### [0.9.0]
 
 * Bumps several dependencies. No API changes, this is mostly an optimization release. Be sure to completely remove `node_modules` and reinstall all dependencies to avoid errors such as `isRegistered is not a function`
 
-### v0.8.0
+### [0.8.0]
 
 * Updates [composer](https://github.com/doowb/composer) to v0.11.0, which removes the `.watch` method in favor of using the [base-watch](https://github.com/node-base/base-watch) plugin.
 * Changes in [templates](https://github.com/jonschlinkert/templates). Please see v0.11.0 in [templates history](https://github.com/jonschlinkert/templates#history) for more details.
 
-### v0.7.0
+### [0.7.0]
 
 * Stability improvements and optimizations of the API introduced in v0.6.0.
 
-### v0.6.0
+### [0.6.0]
 
 * Major refactor. Assemble was completely re-written from the ground-up as a standalone node.js library and is no longer a grunt plugin. Grunt plugin support has been moved to [grunt-assemble](https://github.com/assemble/grunt-assemble). Please see that repo for additional details.
 
@@ -898,8 +910,8 @@ If Assemble doesn't do what you need, [please let us know](https://github.com/un
 ### License
 
 Copyright © 2017, [Jon Schlinkert](https://github.com/jonschlinkert).
-Released under the [MIT license](LICENSE).
+MIT
 
 ***
 
-_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.4.1, on January 17, 2017._
+_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.4.2, on February 01, 2017._
