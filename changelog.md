@@ -13,6 +13,12 @@ Custom labels used in this changelog:
 * `dependencies`: bumps dependencies
 * `housekeeping`: code re-organization, minor edits, or other changes that don't fit in one of the other categories.
 
+## [0.20.0] - 2017-02-02
+
+**dependencies**
+
+- Bumps [assemble-core] to v0.29.0 to take advantage of improvements to `dest` handling
+
 ## [0.19.0] - 2017-02-01
 
 **dependencies**
