@@ -1,7 +1,7 @@
 {
   "name": "assemble",
   "description": "Get the rocks out of your socks! Assemble makes you fast at creating web projects. Assemble is used by thousands of projects for rapid prototyping, creating themes, scaffolds, boilerplates, e-books, UI components, API documentation, blogs, building websites / static site generator, alternative to jekyll for gh-pages and more! Assemble can also be used with gulp and grunt.",
-  "version": "0.19.0",
+  "version": "0.20.0",
   "homepage": "https://github.com/assemble/assemble",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "authors": [
@@ -33,8 +33,8 @@
     "test": "mocha"
   },
   "dependencies": {
-    "assemble-core": "^0.28.0",
-    "assemble-loader": "^0.6.1",
+    "assemble-core": "^0.29.0",
+    "assemble-loader": "^0.7.0",
     "base-argv": "^0.5.0",
     "base-cli-process": "^0.1.18",
     "base-config": "^0.5.2",
@@ -55,7 +55,7 @@
   "devDependencies": {
     "base-store": "^0.4.4",
     "base-test-runner": "^0.2.0",
-    "base-test-suite": "^0.4.0",
+    "base-test-suite": "^0.4.1",
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
     "gulp-format-md": "^0.1.11",
