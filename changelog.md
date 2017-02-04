@@ -13,6 +13,17 @@ Custom labels used in this changelog:
 * `dependencies`: bumps dependencies
 * `housekeeping`: code re-organization, minor edits, or other changes that don't fit in one of the other categories.
 
+## [0.21.0] - 2017-02-03
+
+**dependencies**
+
+- Bumps [assemble-loader] to v1.0.0 to take advantage of optimizations, improvements and bug fixes related to loading views
+
+**fixed**
+
+- Regression in 0.20.0 that was causing `view.stat` to be null in some cases after `view.path` changed
+- `view.base` was not always correct on views that were not created from the file system 
+
 ## [0.20.0] - 2017-02-02
 
 **dependencies**

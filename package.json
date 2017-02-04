@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "assemble-core": "^0.29.0",
-    "assemble-loader": "^0.7.0",
+    "assemble-loader": "^1.0.0",
     "base-argv": "^0.5.0",
     "base-cli-process": "^0.1.18",
     "base-config": "^0.5.2",
