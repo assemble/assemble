@@ -13,6 +13,12 @@ Custom labels used in this changelog:
 * `dependencies`: bumps dependencies
 * `housekeeping`: code re-organization, minor edits, or other changes that don't fit in one of the other categories.
 
+## [0.23.0] - 2017-02-11
+
+**dependencies**
+
+- Bumps [assemble-core][] to get an update to [assemble-streams][] that ensures that `view` is decorated with `.toStream()` when created by `app` (versus a collection).
+
 ## [0.21.0] - 2017-02-03
 
 **dependencies**
