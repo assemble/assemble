@@ -1,18 +1,16 @@
 ---
 title: Copy files
-description: >
-  This recipe shows how to copy files without doing any kind of processing.
 category: recipes
 ---
+
+Easily copy any assets or other static files in your project.
 
 ```js
 var assemble = require('assemble');
 var app = assemble();
 
-
-app.task('default', function() {
-  return app.src('src/assets/**/*')
-    .pipe(app.dest('site/assets'));
+app.task('copy', function() {
+  return app.copy('src/assets/**/*', 'site/assets');
 });
 ```
 
@@ -33,8 +31,8 @@ var app = assemble();
 
 app.task('html', function() {
   return app.src('templates/*.hbs')
-    .pipe(app.renderFile())
     .pipe(extname('.html'))
+    .pipe(app.renderFile())
     .pipe(htmlmin())
     .pipe(app.dest('dist/'));
 });
@@ -53,7 +51,7 @@ app.task('default', ['html', 'css']);
 The following `assemblefile.js` will:
 
 1. Generate `.html` files from `.hbs` ([handlebars][]) templates using [engine-handlebars][]
-1. Generate `.css` stylesheets from `.sass`, using [gulp-sass][]
+1. Generate `.css` stylesheets from `.less`, using [gulp-less][]
 
 ```js
 var assemble = require('assemble');
@@ -61,6 +59,7 @@ var less = require('gulp-less');
 
 app.task('html', function() {
   return app.src('templates/*.hbs')
+    .pipe(app.renderFile())
     .pipe(app.dest('dist/'));
 });
 

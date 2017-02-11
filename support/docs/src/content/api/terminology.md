@@ -4,14 +4,41 @@ collection: docs
 category: api
 ---
 
-## view
+## views, files and templates
 
-A `view` is a "template object", with properties like `path` and `contents`.  Additionally, views are instances of [vinyl][] files, with the addition of a few special properties to make middleware handling and rendering easier.
+Throughout the documentation, you will see references to "files", "views", "templates", "items" and "pages". Here is how they differ:
 
-Learn [more about views](./view.md).
+| **name** | **description** |
+| --- | --- |
+| `file` | a [vinyl file](https://github.com/gulpjs/vinyl). Assemble supports any [gulp][] plugin. When we use the term `file`, we are generally referring to a file in a vinyl pipeline, like in plugin documentation for example. |
+| `view` | a [vinyl file](https://github.com/gulpjs/vinyl) that has been loaded by assemble, either onto a collection using a method like `app.src()` or `app.pages()`, or using [app.view()](api/app.view.md). Learn more [about views](api/view.md) |
+
+
+| **name** | **description** |
+| --- | --- |
+| `page` | a view from the `pages` collection |
+| `partial` | a view from the `partials` collection |
+| `layout` | a view from the `layouts` collection |
+
+
+
+
+## Middleware
+
+TODO
 
 ## Pipeline
 
+TODO
+
+## Plugins
+
+TODO
+
 ## Stream
 
+TODO
+
 ## Context
+
+TODO

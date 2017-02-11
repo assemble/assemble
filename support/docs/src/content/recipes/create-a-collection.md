@@ -5,12 +5,7 @@ related:
   - api/view-types
 ---
 
-The following examples assume you have the following code at the top of your `assemblefile.js`:
-
-```js
-var assemble = require('assemble');
-var app = assemble();
-```
+The following examples assume you have [this code defined](#app.md) at the top of your `assemblefile.js`.
 
 ## Create a collection
 

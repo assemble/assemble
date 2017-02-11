@@ -1,30 +1,27 @@
 ---
-title: Render templates
-category: recipes
+title: Rendering templates
 ---
-**Registering engines**
 
-Engines are registered using the [.engine](/api/engines#engine) method. The name you choose for the engine is used by assemble.
 
-```js
-// render handlebars templates in `.hbs` files
-app.engine('hbs', require('engine-handlebars'));
-```
+The `.render` method is used for rendering [views](docs/views.md)
 
-Note that the name you use when registering the engine will be used by assemble for automatically matching the file extensions of files to render.
+
+You can use [any engine](template-engines.md) to render templates with assemble.
 
 ```js
 var assemble = require('assemble');
 var app = assemble();
 
-app.engine('hbs', require('engine-handlebars'));
-
-app.task('default', function() {
-  return app.src('templates/*.hbs')
-    .pipe(app.dest('dist'));
+// add a "page"  nd render it!
+app.page('home.hbs', {content: 'This is \{{title}}'})
+app.render({title: 'Home!'}, function(err, view) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  console.log(view.contents.toString());
+  //=> 'This is Home!'
 });
-
-module.exports = app;
 ```
 
-Run `assemble` from the command line to run the `default` task in your `assemblefile.js`.
+
