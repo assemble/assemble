@@ -13,6 +13,16 @@ Custom labels used in this changelog:
 * `dependencies`: bumps dependencies
 * `housekeeping`: code re-organization, minor edits, or other changes that don't fit in one of the other categories.
 
+## [0.24.0] - 2017-05-19
+
+**added**
+ 
+- By popular request, assemble now automatically expands config templates in yaml front-matter, via [expand-front-matter][]! This is a feature that we had in grunt-assemble, and users let us know that they wanted it back.
+
+**fixed**
+
+- Updated dependencies to use [is-binary-buffer][], which fixes a bug where `isbinaryfile` was trying to read from a file that didn't exist.
+
 ## [0.23.0] - 2017-02-11
 
 **dependencies**
