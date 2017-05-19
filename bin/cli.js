@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+var fs = require('fs');
 var util = require('util');
 var path = require('path');
 var assemble = require('..');
@@ -40,7 +41,7 @@ function run(cb) {
    */
 
   var defaults = require('../lib/generator');
-  var configfile = utils.exists(assemblefile);
+  var configfile = fs.existsSync(assemblefile);
   if (configfile) {
     app = require(assemblefile);
   } else {
