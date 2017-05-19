@@ -12,6 +12,37 @@
     "Brian Woodward (https://github.com/doowb)",
     "Jon Schlinkert (https://github.com/jonschlinkert)"
   ],
+  "contributors": [
+    "Aaron Van Ruler (https://github.com/avr)",
+    "Ain Tohvri (http://tekkie.flashbit.net)",
+    "Alex Sanz (https://github.com/asans)",
+    "Anders D. Johnson (https://andrz.me)",
+    "Ben Drucker (http://www.bendrucker.me)",
+    "Brian Woodward (https://twitter.com/doowb)",
+    "Carl A. Bauer (http://carlbauer.org)",
+    "Casey Garland (https://github.com/caseyg1204)",
+    "Dane Petersen (https://thegreatsunra.com)",
+    "Daniel « Klokie » Grossfeld (http://klokie.com)",
+    "Daniel Rauber (https://danielrauber.de)",
+    "Eugene Krevenets (https://hyzhak.github.io)",
+    "John O'Donnell (https://github.com/criticalmash)",
+    "Jon Schlinkert (http://twitter.com/jonschlinkert)",
+    "Joonas Ylitalo (http://joonasy.com)",
+    "Jordan Thomas (http://jordanthomas.me)",
+    "Michael Frayer (https://github.com/frayer)",
+    "Michael Mifsud (https://github.com/xzyfer)",
+    "Mikko Tapionlinna (http://mikko.tapionlinna.fi)",
+    "Oleg Orlov (https://github.com/efender)",
+    "Osman Nuri Okumuş (http://onokumus.com)",
+    "Patrick Burtchaell (https://pburtchaell.com)",
+    "Rob Loach (http://robloach.net)",
+    "Sam Morrison (http://cnstechgroup.com)",
+    "Stefan Walther (http://qliksite.io)",
+    "Steven Black (http://stevenblack.com)",
+    "Thomas Parisot (https://oncletom.io)",
+    "Thomas Traub (http://thomastraub.com)",
+    "Tyler Howarth (twitter.com/tylr)"
+  ],
   "repository": "assemble/assemble",
   "bugs": {
     "url": "https://github.com/assemble/assemble/issues"
@@ -34,36 +65,36 @@
   },
   "dependencies": {
     "assemble-core": "^0.31.0",
-    "assemble-loader": "^1.0.3",
+    "assemble-loader": "^1.0.5",
     "base-argv": "^0.5.0",
-    "base-cli-process": "^0.1.18",
+    "base-cli-process": "^0.1.19",
     "base-config": "^0.5.2",
     "base-questions": "^0.9.1",
     "base-runtimes": "^0.2.0",
-    "cross-spawn": "^5.0.1",
-    "engine-handlebars": "^0.8.0",
+    "cross-spawn": "^5.1.0",
+    "engine-handlebars": "^0.8.2",
+    "expand-front-matter": "^1.0.0",
     "export-files": "^2.1.1",
-    "fs-exists-sync": "^0.1.0",
     "global-modules": "^0.2.3",
-    "is-valid-app": "^0.2.1",
+    "is-valid-app": "^0.3.0",
     "lazy-cache": "^2.0.2",
     "log-utils": "^0.2.1",
-    "parser-front-matter": "^1.6.2",
-    "resolve-dir": "^1.0.0",
-    "yargs-parser": "^4.2.1"
+    "minimist": "^1.2.0",
+    "parser-front-matter": "^1.6.3",
+    "resolve-dir": "^1.0.0"
   },
   "devDependencies": {
     "base-store": "^0.4.4",
     "base-test-runner": "^0.2.0",
-    "base-test-suite": "^0.4.2",
+    "base-test-suite": "^0.4.3",
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
-    "gulp-format-md": "^0.1.11",
+    "gulp-format-md": "^0.1.12",
     "gulp-istanbul": "^1.1.1",
     "gulp-mocha": "^3.0.1",
     "gulp-unused": "^0.2.1",
     "helper-changelog": "^0.3.0",
-    "mocha": "^3.2.0"
+    "mocha": "^3.4.1"
   },
   "keywords": [
     "assemble",
@@ -118,6 +149,28 @@
     "website",
     "yaml"
   ],
+  "lintDeps": {
+    "dependencies": {
+      "files": {
+        "options": {
+          "ignore": [
+            "lib/templates/**"
+          ]
+        }
+      }
+    },
+    "devDependencies": {
+      "files": {
+        "options": {
+          "ignore": [
+            "docs",
+            "examples/**",
+            "support"
+          ]
+        }
+      }
+    }
+  },
   "verb": {
     "run": true,
     "toc": true,
@@ -145,6 +198,7 @@
       "assemble-handle",
       "assemble-loader",
       "assemble-permalinks",
+      "assemble-streams",
       "base",
       "base-data",
       "base-watch",
@@ -152,7 +206,6 @@
       "consolidate",
       "expand-object",
       "generate",
-      "generate-assemble",
       "gulp",
       "gulp-assemble",
       "helper-changelog",
@@ -166,15 +219,6 @@
     ],
     "lint": {
       "reflinks": true
-    }
-  },
-  "lintDeps": {
-    "files": {
-      "ignore": [
-        "docs",
-        "examples",
-        "support"
-      ]
     }
   }
 }
