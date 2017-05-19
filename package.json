@@ -215,7 +215,9 @@
       "verb",
       "views",
       "vinyl",
-      "vinyl-fs"
+      "vinyl-fs",
+      "expand-front-matter",
+      "is-binary-buffer"
     ],
     "lint": {
       "reflinks": true
