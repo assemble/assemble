@@ -84,7 +84,14 @@ Assemble.initDefaults = function(app) {
       next();
       return;
     }
-    utils.matter.parse(view, next);
+
+    utils.matter.parse(view, function(err) {
+      if (err) {
+        next(err);
+        return;
+      }
+      utils.expand.middleware(app)(view, next);
+    });
   });
 };
 
