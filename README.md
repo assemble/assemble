@@ -180,7 +180,7 @@ You should now be able to run assemble directly (using `node assemblefile.js` et
 Then run
 
 ```sh
-$ npm run assemble
+$ npm run build
 ```
 
 ### Installing assemble's CLI
