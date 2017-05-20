@@ -20,7 +20,8 @@ _(Click the following sections to expand them)_
 <details>
 <summary>Table of contents</summary>
 - [Quickstart](#quickstart)
-  * [Install assemble](#install-assemble)
+  * [Installing assemble](#installing-assemble)
+  * [Installing assemble's CLI](#installing-assembles-cli)
   * [assemblefile.js](#assemblefilejs)
 - [CLI](#cli)
   * [Running tasks](#running-tasks)
@@ -158,15 +159,39 @@ Here are just a few of the features assemble offers:
 
 ## Quickstart
 
-### Install assemble
+### Installing assemble
 
-Install assemble's CLI globally:
+Add assemble your project's `devDependencies` using [npm](https://npmjs.org):
+
+```sh
+$ npm install -D assemble
+```
+
+You should now be able to run assemble directly (using `node assemblefile.js` etc) or using `npm` scripts. For example, add the following to package.json:
+
+```json
+{
+  "scripts": {
+    "build": "assemble"
+  }
+}
+```
+
+Then run
+
+```sh
+$ npm run assemble
+```
+
+### Installing assemble's CLI
+
+You can also assemble's CLI globally, which adds the `assemble` command to your system path, allowing it to be run from any directory.
 
 ```sh
 $ npm install --global assemble
 ```
 
-This adds the `assemble` command to your system path, allowing it to be run from any directory.
+_Note that even if assemble is installed globally, it's good practice to install it locally in every project to ensure that your projects are protected against any potentially breaking changes that might occur in assemble between development cycles._
 
 ### assemblefile.js
 
@@ -866,7 +891,7 @@ If Assemble doesn't do what you need, [please let us know](https://github.com/un
 
 | **Commits** | **Contributor** | 
 | --- | --- |
-| 1485 | [jonschlinkert](https://github.com/jonschlinkert) |
+| 1493 | [jonschlinkert](https://github.com/jonschlinkert) |
 | 841 | [doowb](https://github.com/doowb) |
 | 11 | [adjohnson916](https://github.com/adjohnson916) |
 | 7 | [Arkkimaagi](https://github.com/Arkkimaagi) |
