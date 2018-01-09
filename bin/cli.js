@@ -114,7 +114,7 @@ function run(cb) {
   }
 
   /**
-   * Registert `runtimes` plugin
+   * Register `runtimes` plugin
    */
 
   app.use(plugins.runtimes());
