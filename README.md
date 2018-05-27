@@ -666,7 +666,7 @@ Have questions, suggestions, or want to discuss assemble? Join the conversation 
 ### More information
 
 * ~~[Documentation](docs)~~ (Temporarily, while we work on the new website, docs can be found in [support/docs/src](support/docs/src))
-* [API documentation](docs/src/content/api.md)
+* [API documentation](support/docs/src/content/api.md)
 * [Generators maintained by the core team](https://github.com/generate)
 
 ### FAQ
