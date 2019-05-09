@@ -1,0 +1,2 @@
+{{#if pager.prev}}{{#with pager.prev}}&lt;=&nbsp;<a href="{{link-to key 'posts'}}" title="{{data.title}}">{{data.title}}</a>{{/with}}{{else}}<span>no previous posts</span>{{/if}}&nbsp;|&nbsp;
+{{#if pager.next}}{{#with pager.next}}<a href="{{link-to key 'posts'}}" title="{{data.title}}">{{data.title}}</a>&nbsp;=&gt;{{/with}}{{else}}<span>no more posts</span>{{/if}}

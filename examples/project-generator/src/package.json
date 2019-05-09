@@ -1,0 +1,12 @@
+{
+  "name": "{{ask 'name'}}",
+  "description": "{{ask 'description'}}",
+  "repository": "git://github.com/{{ask 'repository'}}.git",
+  "version": "0.0.0",
+  "license": "{{ask 'license'}}",
+  "main": "lib/index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "1.x"
+  }
+}

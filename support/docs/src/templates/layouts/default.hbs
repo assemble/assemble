@@ -1,0 +1,33 @@
+---
+layout: base
+---
+
+{{!-- page content
+=================================== --}}
+<div class="container">
+  <div class="row">
+
+    {{!-- side navigation
+    =================================== --}}
+    <div class="col col-lg-3">
+      <div class="sidebar">
+        {{> sidenav-section }}
+      </div>
+    </div>
+
+    {{!> edit-template-link }}
+
+    {{! main content
+    =================================== }}
+    <div class="col col-lg-9">
+      <div class="panel panel-docs">
+        <h1>{{this.title}}</h1>
+          {% body %}
+        <hr>
+
+        <p>{{> edit-template this}}</p>
+        {{> footer }}
+      </div>
+    </div>
+  </div>
+</div>

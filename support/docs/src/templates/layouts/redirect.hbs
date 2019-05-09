@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <meta http-equiv="refresh" content="{{redirect.seconds}};url=/{{redirect.url}}">
+  </head>
+  <body>
+    This URL has been moved to <a href="/{{redirect.url}}">{{redirect.url}}</a>.<br><br>
+    Redirecting to <a href="/{{redirect.url}}">{{redirect.url}}</a> in {{redirect.seconds}}...<br>
+    {% body %}
+  </body>
+</html>

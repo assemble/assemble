@@ -1,0 +1,16 @@
+{
+  "name": "assemble-docs",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {},
+  "dependencies": {
+    "arrayify-compact": "^0.2.0",
+    "assemble-collections": "^0.2.1",
+    "common-middleware": "^0.2.9",
+    "engine-handlebars": "^0.8.0",
+    "gulp-drafts": "^0.2.0",
+    "gulp-format-md": "^0.1.9",
+    "inflection": "^1.10.0",
+    "isobject": "^2.1.0"
+  }
+}

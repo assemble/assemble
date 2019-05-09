@@ -1,0 +1,12 @@
+{
+  "name": "boilerplate",
+  "description": "Recipe for generating projects from h5bp using Boilerplate",
+  "private": true,
+  "devDependencies": {
+    "async": "^1.5.2",
+    "engine-base": "^0.1.2",
+    "engine-handlebars": "^0.8.0",
+    "expand-target": "^0.5.3",
+    "extend-shallow": "^2.0.1"
+  }
+}

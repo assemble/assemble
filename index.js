@@ -6,8 +6,8 @@
 
 var path = require('path');
 var Core = require('assemble-core');
+var plugins = require('./lib/plugins');
 var utils = require('./lib/utils');
-var cli = require('./lib/cli');
 
 /**
  * Create an `assemble` app. This is the main function exported
@@ -25,115 +25,138 @@ function Assemble(options) {
   if (!(this instanceof Assemble)) {
     return new Assemble(options);
   }
-
-  Core.apply(this, arguments);
-  this.isAssemble = true;
-
-  this.initAssemble(this);
+  Core.call(this, options);
+  this.is('assemble');
+  this.initAssemble();
 }
 
 /**
- * Inherit assemble-core
+ * Inherit `Core`
  */
 
 Core.extend(Assemble);
+Core.bubble(Assemble);
 
 /**
- * Initialize Assemble defaults
+ * Initialize assemble and emit pre and post init events
  */
 
-Assemble.prototype.initAssemble = function(app) {
-  var opts = this.options;
-  var exts = opts.exts || ['md', 'hbs', 'html'];
-  var regex = utils.extRegex(exts);
+Assemble.prototype.initAssemble = function() {
+  Assemble.emit('assemble.preInit', this);
+  Assemble.initAssemble(this);
+  Assemble.emit('assemble.postInit', this);
+};
 
-  // ensure `name` is set for composer-runtimes
-  if (!this.name) {
-    this.name = opts.name || 'base';
-  }
+/**
+ * Initialize Assemble defaults, plugins and views
+ */
 
-  /**
-   * Register plugins
-   */
+Assemble.initAssemble = function(app) {
+  Assemble.initDefaults(app);
+  Assemble.initPlugins(app);
+  Assemble.initViews(app);
+};
 
-  this.use(utils.pipeline(opts))
-    .use(utils.pipeline())
-    .use(utils.loader())
-    .use(utils.config())
-    .use(utils.store())
-    .use(utils.argv())
-    .use(utils.list())
-    .use(utils.cli())
-    .use(utils.ask())
-    .use(cli());
+/**
+ * Initialize defaults
+ */
+
+Assemble.initDefaults = function(app) {
+  var exts = app.options.exts || ['md', 'hbs', 'html'];
 
   /**
    * Default engine
    */
 
-  this.engine(exts, require('engine-handlebars'));
+  app.engine(exts, require('engine-handlebars'));
 
   /**
    * Middleware for parsing front matter
    */
 
-  this.onLoad(regex, function(view, next) {
-    // needs to be inside the middleware, to
-    // account for options defined after init
-    if (view.options.frontMatter !== false && app.options.frontMatter !== false) {
-      utils.matter.parse(view, next);
-    } else {
+  app.onLoad(utils.extRegex(exts), function(view, next) {
+    // check options inside the middleware to account for options defined after init
+    if (view.options.frontMatter === false) {
       next();
+      return;
     }
+    if (app.options.frontMatter === false) {
+      next();
+      return;
+    }
+
+    utils.matter.parse(view, function(err) {
+      if (err) {
+        next(err);
+        return;
+      }
+      utils.expand.middleware(app)(view, next);
+    });
   });
+};
 
-  /**
-   * Built-in view collections
-   *  | partials
-   *  | layouts
-   *  | pages
-   */
+/**
+ * Load default plugins. Built-in plugins can be disabled
+ * on the `assemble` options.
+ *
+ * ```js
+ * var app = assemble({
+ *   plugins: {
+ *     loader: false,
+ *     store: false
+ *   }
+ * });
+ * ```
+ */
 
-  var engine = opts.defaultEngine || 'hbs';
+Assemble.initPlugins = function(app) {
+  enable('logger', plugins.logger);
+  enable('loader', plugins.loader);
+  enable('config', plugins.config);
+  enable('argv', plugins.argv);
+  enable('cli', plugins.cli);
 
-  this.create('partials', {
-    engine: engine,
+  function enable(name, fn) {
+    if (app.option('plugins') === false) return;
+    if (app.option('plugins.' + name) !== false) {
+      app.use(fn());
+    }
+  }
+};
+
+/**
+ * Built-in view collections
+ *  | partials
+ *  | layouts
+ *  | pages
+ */
+
+Assemble.initViews = function(app) {
+  if (app.isFalse('collections')) return;
+
+  app.create('partials', {
+    engine: app.options.engine || 'hbs',
     viewType: 'partial',
     renameKey: function(fp) {
       return path.basename(fp, path.extname(fp));
     }
   });
 
-  this.create('layouts', {
-    engine: engine,
+  app.create('layouts', {
+    engine: app.options.engine || 'hbs',
     viewType: 'layout',
     renameKey: function(fp) {
       return path.basename(fp, path.extname(fp));
     }
   });
 
-  this.create('pages', {
-    engine: engine,
-    renameKey: function(fp) {
-      return fp;
-    }
+  app.create('pages', {
+    engine: app.options.engine || 'hbs'
   });
 };
 
 /**
- * Set a `base` instance that can be used for storing
- * additional instances.
- */
-
-Object.defineProperty(Assemble.prototype, 'base', {
-  configurable: true,
-  get: function() {
-    return this.parent ? this.parent.base : this;
-  }
-});
-
-/**
- * Expose `Assemble`
+ * Expose the `Assemble` constructor
  */
 
 module.exports = Assemble;

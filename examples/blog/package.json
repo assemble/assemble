@@ -1,0 +1,11 @@
+{
+  "name": "assemble-markdown-example",
+  "description": "Example of how to process markown files with assemble.",
+  "private": true,
+  "devDependencies": {
+    "assemble-permalinks": "^0.3.1",
+    "gulp-extname": "^0.2.2",
+    "helper-markdown": "^0.2.1",
+    "mixin-deep": "^1.1.3"
+  }
+}

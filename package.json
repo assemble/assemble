@@ -1,7 +1,7 @@
 {
   "name": "assemble",
-  "description": "Assemble is a powerful, extendable and easy to use static site generator for node.js. Used by thousands of projects for much more than building websites, Assemble is also used for creating themes, scaffolds, boilerplates, e-books, UI components, API documentation, blogs, gh-pages and more! Plugins for gulp and grunt are also supported.",
-  "version": "0.7.0",
+  "description": "Get the rocks out of your socks! Assemble makes you fast at creating web projects. Assemble is used by thousands of projects for rapid prototyping, creating themes, scaffolds, boilerplates, e-books, UI components, API documentation, blogs, building websites / static site generator, alternative to jekyll for gh-pages and more! Assemble can also be used with gulp and grunt.",
+  "version": "0.24.3",
   "homepage": "https://github.com/assemble/assemble",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "authors": [
@@ -12,137 +12,180 @@
     "Brian Woodward (https://github.com/doowb)",
     "Jon Schlinkert (https://github.com/jonschlinkert)"
   ],
+  "contributors": [
+    "Aaron Van Ruler (https://github.com/avr)",
+    "Ain Tohvri (http://tekkie.flashbit.net)",
+    "Alex Sanz (https://github.com/asans)",
+    "Anders D. Johnson (https://andrz.me)",
+    "Ben Drucker (http://www.bendrucker.me)",
+    "Brian Woodward (https://twitter.com/doowb)",
+    "Carl A. Bauer (http://carlbauer.org)",
+    "Casey Garland (https://github.com/caseyg1204)",
+    "Dane Petersen (https://thegreatsunra.com)",
+    "Daniel « Klokie » Grossfeld (http://klokie.com)",
+    "Daniel Rauber (https://danielrauber.de)",
+    "Eugene Krevenets (https://hyzhak.github.io)",
+    "John O'Donnell (https://github.com/criticalmash)",
+    "Jon Schlinkert (http://twitter.com/jonschlinkert)",
+    "Joonas Ylitalo (http://joonasy.com)",
+    "Jordan Thomas (http://jordanthomas.me)",
+    "Michael Frayer (https://github.com/frayer)",
+    "Michael Mifsud (https://github.com/xzyfer)",
+    "Mikko Tapionlinna (http://mikko.tapionlinna.fi)",
+    "Oleg Orlov (https://github.com/efender)",
+    "Osman Nuri Okumuş (http://onokumus.com)",
+    "Patrick Burtchaell (https://pburtchaell.com)",
+    "Rob Loach (http://robloach.net)",
+    "Sam Morrison (http://cnstechgroup.com)",
+    "Stefan Walther (http://qliksite.io)",
+    "Steven Black (http://stevenblack.com)",
+    "Thomas Parisot (https://oncletom.io)",
+    "Thomas Traub (http://thomastraub.com)",
+    "Tyler Howarth (twitter.com/tylr)"
+  ],
   "repository": "assemble/assemble",
   "bugs": {
     "url": "https://github.com/assemble/assemble/issues"
   },
   "license": "MIT",
   "files": [
-    "bin/",
+    "bin",
     "index.js",
-    "lib/"
+    "lib"
   ],
   "main": "index.js",
+  "bin": {
+    "assemble": "bin/cli.js"
+  },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4.0"
   },
   "scripts": {
     "test": "mocha"
   },
-  "preferGlobal": true,
-  "bin": {
-    "assemble": "bin/cli.js"
-  },
   "dependencies": {
-    "ansi-colors": "^0.1.0",
-    "assemble-core": "^0.8.0",
-    "assemble-loader": "^0.2.6",
-    "base-argv": "^0.3.0",
-    "base-cli": "^0.4.0",
-    "base-config": "^0.3.3",
-    "base-list": "^0.1.4",
-    "base-pipeline": "^0.1.4",
-    "base-questions": "^0.2.3",
-    "base-store": "^0.3.2",
-    "common-middleware": "^0.2.2",
-    "composer-runtimes": "^0.7.0",
-    "engine-handlebars": "^0.8.0",
-    "export-files": "^2.1.0",
-    "isobject": "^2.0.0",
-    "lazy-cache": "^1.0.3",
-    "matched": "^0.4.0",
+    "assemble-core": "^0.31.0",
+    "assemble-loader": "^1.0.5",
+    "base-argv": "^0.5.0",
+    "base-cli-process": "^0.1.19",
+    "base-config": "^0.5.2",
+    "base-questions": "^0.9.1",
+    "base-runtimes": "^0.2.0",
+    "cross-spawn": "^5.1.0",
+    "engine-handlebars": "^0.8.2",
+    "expand-front-matter": "^1.0.0",
+    "export-files": "^2.1.1",
+    "global-modules": "^0.2.3",
+    "is-valid-app": "^0.3.0",
+    "lazy-cache": "^2.0.2",
+    "log-utils": "^0.2.1",
     "minimist": "^1.2.0",
-    "opn": "^3.0.3",
-    "parser-front-matter": "^1.3.0",
-    "success-symbol": "^0.1.0",
-    "time-stamp": "^0.1.3",
-    "try-open": "^0.1.0",
-    "word-wrap": "^1.1.0"
+    "parser-front-matter": "^1.6.3",
+    "resolve-dir": "^1.0.0"
   },
   "devDependencies": {
-    "ansi-red": "^0.1.1",
-    "async": "^1.5.0",
-    "base-methods": "^0.6.2",
-    "buffer-equal": "0.0.1",
-    "consolidate": "^0.13.1",
-    "coveralls": "^2.11.6",
-    "define-property": "^0.2.5",
-    "engine-base": "^0.1.2",
-    "event-stream": "^3.3.2",
-    "get-value": "^2.0.2",
-    "graceful-fs": "^4.1.2",
-    "gulp": "^3.9.0",
-    "gulp-eslint": "^1.1.1",
-    "gulp-extname": "^0.2.0",
-    "gulp-format-md": "^0.1.4",
-    "gulp-istanbul": "^0.10.3",
-    "gulp-mocha": "^2.2.0",
-    "gulp-prettify": "^0.4.0",
-    "helper-markdown": "^0.1.2",
-    "is-buffer": "^1.1.0",
-    "istanbul": "^0.4.1",
-    "kind-of": "^3.0.2",
-    "load-pkg": "^3.0.1",
-    "mixin-deep": "^1.1.3",
-    "mocha": "*",
-    "relative-dest": "^0.1.0",
-    "resolve-glob": "^0.1.7",
-    "rimraf": "^2.5.0",
-    "scaffold": "^0.2.1",
-    "should": "*",
-    "sinon": "^1.17.2",
-    "swig": "^1.4.2",
-    "through2": "^2.0.0",
-    "vinyl": "^1.1.0"
+    "base-store": "^0.4.4",
+    "base-test-runner": "^0.2.0",
+    "base-test-suite": "^0.4.3",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-format-md": "^0.1.12",
+    "gulp-istanbul": "^1.1.1",
+    "gulp-mocha": "^3.0.1",
+    "gulp-unused": "^0.2.1",
+    "helper-changelog": "^0.3.0",
+    "mocha": "^3.4.1"
   },
   "keywords": [
-    "api",
-    "app",
     "assemble",
+    "async-helper",
+    "base",
     "blog",
     "boilerplate",
     "boilerplates",
     "bootstrap",
     "build",
     "builder",
+    "collection",
+    "compile",
     "component",
-    "components",
-    "create",
-    "doc",
+    "content",
     "docs",
+    "document",
     "documentation",
-    "front",
-    "front-matter",
+    "engines",
     "generate",
     "generator",
     "handlebars",
+    "helper",
     "helpers",
     "html",
+    "inflections",
     "jekyll",
+    "layout",
+    "lodash",
     "markdown",
-    "matter",
     "md",
-    "pages",
+    "page",
     "partial",
-    "partials",
     "post",
+    "pug",
+    "render",
     "scaffold",
-    "scaffolds",
+    "scaffolder",
+    "scaffolding",
     "site",
+    "smith",
     "static",
     "static-site",
+    "symlink",
     "task",
+    "tasks",
+    "template",
     "templates",
     "templating",
-    "web",
+    "view",
+    "views",
     "website",
-    "yaml",
-    "yeoman"
+    "yaml"
   ],
+  "lintDeps": {
+    "dependencies": {
+      "files": {
+        "options": {
+          "ignore": [
+            "lib/templates/**"
+          ]
+        }
+      }
+    },
+    "devDependencies": {
+      "files": {
+        "options": {
+          "ignore": [
+            "docs",
+            "examples/**",
+            "support"
+          ]
+        }
+      }
+    }
+  },
   "verb": {
+    "run": true,
+    "toc": true,
+    "layout": "nil",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "helpers": [
+      "helper-changelog"
+    ],
     "related": {
       "list": [
-        "assemble-core",
         "boilerplate",
         "generate",
         "scaffold",
@@ -151,26 +194,33 @@
       ]
     },
     "reflinks": [
-      "assemble",
       "assemble-core",
+      "assemble-handle",
       "assemble-loader",
-      "boilerplate",
-      "engine-handlebars",
-      "grunt-assemble",
+      "assemble-permalinks",
+      "assemble-streams",
+      "base",
+      "base-data",
+      "base-watch",
+      "composer",
+      "consolidate",
+      "expand-object",
+      "generate",
       "gulp",
       "gulp-assemble",
-      "handlebars",
-      "lazy-cache",
-      "less",
+      "helper-changelog",
       "parser-front-matter",
-      "scaffold",
-      "template",
+      "templates",
+      "update",
       "verb",
+      "views",
       "vinyl",
-      "vinyl-fs"
+      "vinyl-fs",
+      "expand-front-matter",
+      "is-binary-buffer"
     ],
-    "plugins": [
-      "gulp-format-md"
-    ]
+    "lint": {
+      "reflinks": true
+    }
   }
 }

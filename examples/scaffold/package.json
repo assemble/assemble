@@ -1,0 +1,11 @@
+{
+  "name": "scaffold-recipe",
+  "description": "Recipe for generating projects from scaffolds",
+  "private": true,
+  "devDependencies": {
+    "async": "^1.5.2",
+    "extend-shallow": "^2.0.1",
+    "gulp-extname": "^0.2.2",
+    "scaffold": "^0.2.5"
+  }
+}

@@ -1,0 +1,5 @@
+<ul>
+{{#related items}}{{#isnt data.draft true}}{{#is-current ..}}{{else}}
+  <li><a href="{{../url}}">{{../title}}</a></li>
+{{/is-current}}{{/isnt}}{{/related}}
+</ul>

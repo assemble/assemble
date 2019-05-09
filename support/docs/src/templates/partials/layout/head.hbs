@@ -1,0 +1,45 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="{{#if description}} {{description}} | {{/if}} {{package.description}}">
+<meta name="author" content="http://twitter.com/jonschlinkert">
+
+<title>
+  {{default title page.basename}} | Assemble
+</title>
+
+
+<!-- Styles -->
+<link rel="stylesheet" href="{{assets}}/css/bootstrap.css">
+<link rel="stylesheet" href="{{assets}}/css/assemble.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+{{#unless cheatsheet}}
+  <link rel="stylesheet" href="{{assets}}/css/markdown.css">
+{{/unless}}
+
+{{#if cheatsheet}}
+  <link rel="stylesheet" href="{{assets}}/css/gist.css">
+{{/if}}
+
+<!-- Webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,300,600,700' rel='stylesheet' type='text/css'>
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="{{assets}}/js/html5shiv.js"></script>
+  <script src="{{assets}}/js/respond/respond.min.js"></script>
+<![endif]-->
+
+<!-- Favicons -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{assets}}/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{assets}}/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{assets}}/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="{{assets}}/ico/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="{{assets}}/img/favicon.png">
+
+{{!-- Google Analytics --}}
+{{> analytics }}
+
+{{!-- Add JSON-LD metadata. TODO: update metadata to conform better to Google standards. --}}
+{{> metadata }}

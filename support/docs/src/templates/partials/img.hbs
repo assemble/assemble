@@ -1,0 +1,10 @@
+---
+class: image
+---
+<img src="{{assets}}/images/{{URL}}"
+     class="{{#each classes}}{{this}} {{/each}}{{class}}"
+     id="{{#if id}}{{id}}{{else}}{{slugify title}}{{/if}}"
+     width="{{width}}"
+     height="{{height}}"
+     title="{{title}}"
+     alt="{{#if alt}}{{alt}}{{else}}{{title}}{{/if}}"/>

@@ -1,0 +1,22 @@
+{{!-- MASTHEAD
+=================================== --}}
+<header class="masthead subhead">
+  <div class="container">
+    <div class="row">
+      <div class="col col-lg-8">
+        <h1>
+          <span class="text-muted">{{category}} /&nbsp;</span>
+          {{default this.title (current "key")}}
+        </h1>
+      </div>
+      <div class="col col-lg-2">
+        <form class="navbar-form">
+          <input type="text" id="search" class="form-control" placeholder="Search...">
+        </form>
+      </div>
+      <div class="col col-lg-2">
+        {{> btn-tweet }}
+      </div>
+    </div>
+  </div>
+</header>

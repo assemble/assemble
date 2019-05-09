@@ -1,0 +1,20 @@
+<div class="alert">
+
+  {{!-- Special styles for GitHub Buttons
+  =========================================== --}}
+  <style type="text/css" media="screen">
+    .alert iframe {
+      float: right;
+      margin: 7px -30px 0 0;
+      vertical-align: text-top;
+    }
+  </style>
+
+  {{!-- GITHUB BUTTONS (right aligned)
+  =========================================== --}}
+  {{> btn-github-star }}
+  {{> btn-github-fork }}
+
+  <p>Find an error? <a class="alert-link" href="{{issue-link}}">Let us know →</a></p>
+</div>
+{{> disqus }}
